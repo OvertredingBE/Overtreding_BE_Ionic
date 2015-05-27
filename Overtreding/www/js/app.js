@@ -53,12 +53,13 @@ app.controller("ConfigController", function($scope, $ionicLoading, $cordovaSQLit
 
 app.controller("HomeController", function($scope, $ionicPlatform, $cordovaSQLite){
     $scope.items = [];
+    db = window.openDatabase("test", "1.0", "Test DB", 1000000);
     $ionicPlatform.ready(function(){
         var query = "SELECT id, test FROM user";
         $cordovaSQLite.execute(db, query, []).then(function(res){
-            if(res.row.length > 0){
-                for(var i = 0; i < res.row.length; i++){
-                    $scope.items.push({id: res.row.item(i).id});
+            if(res.rows.length > 0){
+                for(var i = 0; i < res.rows.length; i++){
+                    $scope.items.push({id: res.rows.item(i).id});
                 }
             }
         }, function(err){
