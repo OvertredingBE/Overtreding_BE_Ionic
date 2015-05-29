@@ -35,35 +35,31 @@ app.config(function($stateProvider, $urlRouterProvider){
 
 var db = null;
 
-app.controller("ConfigController", function($scope, $ionicLoading, $cordovaSQLite, $location){
-    if(window.cordova){
-        db = window.openDatabase("test", "1.0", "Test DB", 1000000);
-        $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS user (id integer primary key, test text)");
-        var query = "INSERT INTO user (test) VALUES (?)";
-        for(var i = 0; i < 5; i++){
-            $cordovaSQLite.execute(db,query,[i]).then(function(result) {
-                console.log("INSERT ID -> " + result.insertId);
-            }, function(error) {
-                console.error(error);
-            });
-        }
-        $location.path("/home");
+app.controller("ConfigController", function($scope, $ionicLoading, $cordovaSQLite, $location, $http){
+    if(window.cordova) {
+        db = window.openDatabase("test2", "1.0", "Test DB", 1000000);
+        db.transaction(function (tx) {
+            tx.executeSql("DROP TABLE IF EXISTS Texts");
+            tx.executeSql("CREATE TABLE IF NOT EXISTS Texts(id integer primary key, body text)");
+            tx.executeSql("INSERT INTO Texts (body) VALUES (?)", ["TEST"]);
+        })
     }
 });
 
-app.controller("HomeController", function($scope, $ionicPlatform, $cordovaSQLite){
+app.controller("HomeController", function($scope, $ionicPlatform, $cordovaSQLite, $http){
     $scope.items = [];
-    db = window.openDatabase("test", "1.0", "Test DB", 1000000);
+    db = window.openDatabase("test2", "1.0", "Test DB", 1000000);
     $ionicPlatform.ready(function(){
-        var query = "SELECT id, test FROM user";
+        var query = "SELECT id, body FROM Texts";
         $cordovaSQLite.execute(db, query, []).then(function(res){
             if(res.rows.length > 0){
                 for(var i = 0; i < res.rows.length; i++){
-                    $scope.items.push({id: res.rows.item(i).id});
+                    $scope.items.push({id: res.rows.item(i).id, body: res.rows.item(i).body});
                 }
             }
         }, function(err){
             console.error(err);
         });
     });
+
 });
