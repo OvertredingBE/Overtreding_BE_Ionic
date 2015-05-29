@@ -37,12 +37,30 @@ var db = null;
 
 app.controller("ConfigController", function($scope, $ionicLoading, $cordovaSQLite, $location, $http){
     if(window.cordova) {
-        db = window.openDatabase("test2", "1.0", "Test DB", 1000000);
-        db.transaction(function (tx) {
-            tx.executeSql("DROP TABLE IF EXISTS Texts");
-            tx.executeSql("CREATE TABLE IF NOT EXISTS Texts(id integer primary key, body text)");
-            tx.executeSql("INSERT INTO Texts (body) VALUES (?)", ["TEST"]);
+        $http.get('http://localhost/overtreding_api/v1/texts').then(function(resp) {
+            $scope.succ = resp.statusText;
+            var items = resp.data.texts;
+            $scope.items = [];
+            $scope.log = items.length;
+            db = window.openDatabase("test2", "1.0", "Test DB", 1000000);
+            db.transaction(function (tx) {
+                tx.executeSql("DROP TABLE IF EXISTS Texts");
+                tx.executeSql("CREATE TABLE IF NOT EXISTS Texts(id integer primary key, body text)");
+            });
+
+            for(var i = 0; i < items.length; i++){
+                var textBody = items[i].body;
+                db.transaction(function (tx) {
+                    tx.executeSql("INSERT INTO Texts (body) VALUES (?)", [textBody]);
+                });
+                $scope.items.push({id: 0, body: textBody});
+            }
+        }, function(err) {
+            console.error('ERR', err);
+            // err.status will contain the status code
         })
+
+
     }
 });
 
