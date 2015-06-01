@@ -107,7 +107,7 @@ app.controller("RightsController", function($scope, $ionicPlatform, $cordovaSQLi
     $scope.items = [];
     db = window.openDatabase("test2", "1.0", "Test DB", 1000000);
     $ionicPlatform.ready(function(){
-        var query = "SELECT * from Rights";
+        var query = "SELECT * from Rights where type = 0";
         $cordovaSQLite.execute(db, query, []).then(function(res){
             if(res.rows.length > 0){
                 for(var i = 0; i < res.rows.length; i++){
@@ -118,4 +118,30 @@ app.controller("RightsController", function($scope, $ionicPlatform, $cordovaSQLi
             console.error(err);
         });
     });
+    $scope.showAlch = function() {
+        $scope.items.length = 0;
+        var query = "SELECT * from Rights where type = 0";
+        $cordovaSQLite.execute(db, query, []).then(function(res){
+            if(res.rows.length > 0){
+                for(var i = 0; i < res.rows.length; i++){
+                    $scope.items.push({id: res.rows.item(i).id, body: res.rows.item(i).body});
+                }
+            }
+        }, function(err){
+            console.error(err);
+        });
+    }
+    $scope.showDrugs = function() {
+        $scope.items.length = 0;
+        var query = "SELECT * from Rights where type = 1";
+        $cordovaSQLite.execute(db, query, []).then(function(res){
+            if(res.rows.length > 0){
+                for(var i = 0; i < res.rows.length; i++){
+                    $scope.items.push({id: res.rows.item(i).id, body: res.rows.item(i).body});
+                }
+            }
+        }, function(err){
+            console.error(err);
+        });
+    }
 });
