@@ -85,6 +85,12 @@ angular.module('starter.controllers', [])
     }
 })
     .controller("AlcoholController", function($scope, Rights) {
+        var alchohol = {
+            Licence: 0,
+            Age: 0,
+            Driver: 0,
+            Intoxication: 0
+        };
         $scope.groups = [];
         var names = ["RIJBEWIJS","LEEFTIJD", "BESTRUUDER", "INTOXICATIE"];
         var subgroups = [['Ik bezit mijn rijbewijs minder dan 2 jaar', "Ik bezit mijn rijbewijs langer dan 2 jaar"],
