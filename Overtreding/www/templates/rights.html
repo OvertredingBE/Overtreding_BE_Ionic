@@ -1,12 +1,13 @@
 <ion-view view-title="Dashboard">
     <ion-content class="padding">
-        <a class="button button-light" ui-sref="rights">UM RECHTEN BIJ EEN POLITIECONTROLE</a>
         <button class="button button-light">
-            BOETE BEREKENEN
+            ALCHOHOL CONTROLE
         </button>
         <button class="button button-light">
-            U ONTVING EEN BRIEF
+            DRUGS CONTROLE
         </button>
-
+        <ion-list>
+            <ion-item ng-repeat="item in items" >{{item.body}}</ion-item>
+        </ion-list>
     </ion-content>
 </ion-view>
