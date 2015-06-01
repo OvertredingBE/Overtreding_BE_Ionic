@@ -2,7 +2,7 @@
  * Created by MartinDzhonov on 6/1/15.
  */
 angular.module('starter.services', [])
-    .factory('Chats', function($cordovaSQLite) {
+    .factory('Rights', function($cordovaSQLite) {
 
         var alchRights = [];
         var drugsRights = [];

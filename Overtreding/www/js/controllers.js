@@ -53,8 +53,8 @@ angular.module('starter.controllers', [])
 
 .controller("HomeController", function($scope, $ionicPlatform, $cordovaSQLite, $http){
         var db = null;
-
         $scope.items = [];
+
     db = window.openDatabase("test2", "1.0", "Test DB", 1000000);
     $ionicPlatform.ready(function(){
         var query = "SELECT id, body FROM Texts";
@@ -71,30 +71,29 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller("RightsController", function($scope, $ionicPlatform, $cordovaSQLite, $http, Chats) {
-        var db = null;
+.controller("RightsController", function($scope, Rights) {
+        $scope.items = Rights.alchRights();
 
-        $scope.items = [];
-    db = window.openDatabase("test2", "1.0", "Test DB", 1000000);
-    $ionicPlatform.ready(function(){
-        var query = "SELECT * from Rights where type = 0";
-        $cordovaSQLite.execute(db, query, []).then(function(res){
-            if(res.rows.length > 0){
-                for(var i = 0; i < res.rows.length; i++){
-                    $scope.items.push({id: res.rows.item(i).id, body: res.rows.item(i).body});
-                }
-            }
-        }, function(err){
-            console.error(err);
-        });
-    });
     $scope.showAlch = function() {
         $scope.items = [];
-        $scope.items = Chats.alchRights();
+        $scope.items = Rights.alchRights();
     }
     $scope.showDrugs = function() {
         $scope.items = [];
-        $scope.items = Chats.drugRights();
+        $scope.items = Rights.drugRights();
 
     }
-});
+})
+    .controller("AlcoholController", function($scope, Rights) {
+        $scope.items = Rights.alchRights();
+
+        $scope.showAlch = function() {
+            $scope.items = [];
+            $scope.items = Rights.alchRights();
+        }
+        $scope.showDrugs = function() {
+            $scope.items = [];
+            $scope.items = Rights.drugRights();
+
+        }
+    });

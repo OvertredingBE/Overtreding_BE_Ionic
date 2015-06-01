@@ -29,6 +29,11 @@ app.run(function($ionicPlatform) {
           url:"/rights",
           templateUrl: "templates/rights.html",
           controller: "RightsController"
+      })
+      .state("alcohol", {
+          url:"/alcohol",
+          templateUrl: "templates/alcohol.html",
+          controller: "AlcoholController"
       });
     $urlRouterProvider.otherwise("/config");
 });
