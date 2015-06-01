@@ -1,4 +1,4 @@
-var app = angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
+var app = angular.module('starter', ['ionic', 'starter.controllers', , 'starter.services', 'ngCordova'])
 
 app.run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
