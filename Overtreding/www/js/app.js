@@ -40,6 +40,11 @@ app.run(function($ionicPlatform) {
           url:"/alcohol",
           templateUrl: "templates/alcohol.html",
           controller: "SpeedController"
+      })
+      .state("contact", {
+          url:"/contact",
+          templateUrl: "templates/contact.html",
+          controller: "ContactController"
       });
     $urlRouterProvider.otherwise("/config");
 });

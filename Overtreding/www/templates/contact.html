@@ -1,0 +1,32 @@
+<ion-view view-title="Dashboard">
+    <ion-content class="padding">
+        <div class="list">
+            <label class="item item-input">
+                <input type="text" placeholder="Name">
+            </label>
+            <label class="item item-input">
+                <input type="text" placeholder="Phone">
+            </label>
+            <label class="item item-input">
+                <textarea placeholder="E-mail"></textarea>
+            </label>
+            <label class="item item-input">
+                <textarea placeholder="E-mail"></textarea>
+            </label>
+            <label class="item item-input">
+                <textarea placeholder="Postcode"></textarea>
+            </label>
+            <label class="item item-input">
+                <textarea placeholder="Comments"></textarea>
+            </label>
+            <button class="button button-primary" ng-click="showConfirm()">
+                Confirm
+            </button>
+        </div>
+    </ion-content>
+    <ion-footer-bar align-title="left" class="bar-positive">
+        <div class="buttons" ng-click="showConfirm()">
+            <button class="button">BEVESTIG ></button>
+        </div>
+    </ion-footer-bar>
+</ion-view>
