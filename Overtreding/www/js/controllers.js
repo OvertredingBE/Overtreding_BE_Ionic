@@ -81,9 +81,56 @@ angular.module('starter.controllers', [])
     $scope.showDrugs = function() {
         $scope.items = [];
         $scope.items = Rights.drugRights();
-
     }
 })
+    .controller("SpeedController", function($scope, Rights) {
+        var alchohol = {
+            Licence: 0,
+            Age: 0,
+            Driver: 0,
+            Intoxication: 0
+        };
+        $scope.groups = [];
+        $scope.items = Rights.alchRights();
+        var names = ["2","LEEFTIJD", "BESTRUUDER", "INTOXICATIE"];
+        var subgroups = [['Ik bezit mijn rijbewijs minder dan 2 jaar', "Ik bezit mijn rijbewijs langer dan 2 jaar"],
+            ["Jonger dan 18 jaar","18 jaar of ouder"],
+            ["Professionele bestuurder", "Gewone bestuurder"],
+            ["0,50 – 0,80 Promille",
+                "0,80 – 1,00 Promille",
+                "1,00 – 1,14 Promille",
+                "1,14 – 1,48 Promille",
+                "1,48 - ... Promille",
+                "Weigering ademtest of analyse zonder wettige reden",
+                "Dronkenschap",
+                "Eerder betrapt op alcoholintoxicatie van meer dan 0,8 Promille of dronkenschap en nu opnieuw betrapt op alcoholintoxicatie van meerdan 0,8 Promille.",
+                "Eerder betrapt op alcoholintoxicatie van meer dan 0,8 Promille of dronkenschap en nu opnieuw betrapt op dronkenschap"]];
+
+        for (var i=0; i<4; i++) {
+            $scope.groups[i] = {
+                name: names[i],
+                items: []
+            };
+            for (var j=0; j< subgroups[i].length; j++) {
+                $scope.groups[i].items.push(subgroups[i][j]);
+            }
+        }
+
+        /*
+         * if given group is the selected group, deselect it
+         * else, select the given group
+         */
+        $scope.toggleGroup = function(group) {
+            if ($scope.isGroupShown(group)) {
+                $scope.shownGroup = null;
+            } else {
+                $scope.shownGroup = group;
+            }
+        };
+        $scope.isGroupShown = function(group) {
+            return $scope.shownGroup === group;
+        };
+    })
     .controller("AlcoholController", function($scope, Rights) {
         var alchohol = {
             Licence: 0,
@@ -92,7 +139,8 @@ angular.module('starter.controllers', [])
             Intoxication: 0
         };
         $scope.groups = [];
-        var names = ["RIJBEWIJS","LEEFTIJD", "BESTRUUDER", "INTOXICATIE"];
+        $scope.items = Rights.drugRights();
+        var names = ["1","LEEFTIJD", "BESTRUUDER", "INTOXICATIE"];
         var subgroups = [['Ik bezit mijn rijbewijs minder dan 2 jaar', "Ik bezit mijn rijbewijs langer dan 2 jaar"],
             ["Jonger dan 18 jaar","18 jaar of ouder"],
             ["Professionele bestuurder", "Gewone bestuurder"],

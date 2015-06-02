@@ -1,4 +1,4 @@
-var app = angular.module('starter', ['ionic', 'starter.controllers', , 'starter.services', 'ngCordova']).constant('ApiEndpoint', {url: 'http://localhost:8100/api'});
+var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'ngCordova']).constant('ApiEndpoint', {url: 'http://localhost:8100/api'});
 
 app.run(function($ionicPlatform) {
 
@@ -35,6 +35,11 @@ app.run(function($ionicPlatform) {
           url:"/alcohol",
           templateUrl: "templates/alcohol.html",
           controller: "AlcoholController"
+      })
+      .state("speed", {
+          url:"/alcohol",
+          templateUrl: "templates/alcohol.html",
+          controller: "SpeedController"
       });
     $urlRouterProvider.otherwise("/config");
 });

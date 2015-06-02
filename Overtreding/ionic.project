@@ -1,4 +1,10 @@
 {
   "name": "Overtreding",
-  "app_id": ""
+  "app_id": "",
+  "proxies": [
+    {
+      "path": "/api",
+      "proxyUrl": "http://localhost/overtreding_api/v1"
+    }
+  ]
 }

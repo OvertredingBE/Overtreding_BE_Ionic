@@ -26,10 +26,16 @@
   <body ng-app="starter">
 
     <ion-pane>
-      <ion-header-bar class="bar-stable">
+      <ion-header-bar class="bar-positive">
         <h1 class="title">OVERTREDING.BE</h1>
       </ion-header-bar>
       <ion-nav-view></ion-nav-view>
+      <ion-footer-bar align-title="left" class="bar-positive">
+        <h1 class="title">BOETE BEREKENEN</h1>
+        <div class="buttons" ng-click="doSomething()">
+          <button class="button">></button>
+        </div>
+      </ion-footer-bar>
     </ion-pane>
   </body>
 </html>
