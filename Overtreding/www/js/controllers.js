@@ -4,7 +4,7 @@
 
 angular.module('starter.controllers', [])
 
-.controller("ConfigController", function($scope, $ionicLoading, $cordovaSQLite, $location, $http){
+.controller("ConfigController", function($scope, $cordovaSQLite, $location, $http){
     if(window.cordova) {
         var db = null;
 
