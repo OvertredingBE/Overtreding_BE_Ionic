@@ -10,12 +10,12 @@
                 </ion-item>
                 <ion-item class="item-accordion"
                           ng-repeat="item in group.items"
-                          ng-click="subgroupTapped(item, group, $index); toggleGroup(group)"
+                          ng-click="showConfirm(item,group); toggleGroup(group)"
                           ng-show="isGroupShown(group)">
                     {{item}}
                 </ion-item>
             </div>
-            <button class="button button-primary" ng-click="doStuff()">
+            <button class="button button-primary" ng-click="showConfirm()">
                 Confirm
             </button>
     </ion-content>

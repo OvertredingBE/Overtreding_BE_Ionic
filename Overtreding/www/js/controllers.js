@@ -130,13 +130,7 @@ angular.module('starter.controllers', [])
         return $scope.shownGroup === group;
     };
 })
-.controller("AlcoholController", function($scope,  $ionicPopup, Offenses, $location) {
-    var alchohol = {
-        license: 0,
-        age: 0,
-        driver: 1,
-        intoxication: 1
-    };
+.controller("AlcoholController", function($scope,  $ionicPopup) {
     var names = ["RIJBEWIJS","LEEFTIJD", "BESTRUUDER", "INTOXICATIE"];
     var subgroups = [['Ik bezit mijn rijbewijs minder dan 2 jaar', "Ik bezit mijn rijbewijs langer dan 2 jaar"],
     ["Jonger dan 18 jaar","18 jaar of ouder"],
@@ -167,19 +161,8 @@ angular.module('starter.controllers', [])
     * if given group is the selected group, deselect it
     * else, select the given group
     */
-    $scope.subgroupTapped = function(item, group, index) {
+    $scope.showConfirm = function(item, group) {
         $scope.groups[group.id].name =  item;
-        var confirmPopup = $ionicPopup.confirm({
-          title: "subroup:" + index + " " + "group:" + group.id,
-          template: 'Send email'
-        });
-        confirmPopup.then(function(res) {
-          if(res) {
-            console.log('You are sure');
-          } else {
-            console.log('You are not sure');
-          }
-        });
   };
     $scope.toggleGroup = function(group) {
 
@@ -192,7 +175,6 @@ angular.module('starter.controllers', [])
     $scope.isGroupShown = function(group) {
         return $scope.shownGroup === group;
     };
-    
 })
 .controller("ContactController", function($scope, Rights, $ionicPopup) {
     $scope.showConfirm = function() {
@@ -209,7 +191,4 @@ angular.module('starter.controllers', [])
     });
   };
 
-})
-.controller("ResultController", function($scope, Offenses, $ionicPopup) {
-    $scope.offenses = Offenses.all();
 });
