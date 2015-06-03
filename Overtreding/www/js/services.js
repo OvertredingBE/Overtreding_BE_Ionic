@@ -39,7 +39,7 @@ angular.module('starter.services', [])
 })
 .factory('Offenses', function($cordovaSQLite) {
 
-    var offenses = [{id:1, body:"TEST"},{id:2, body:"TEEST2"}]
+    var offenses = [];
 
     return {
         all: function() {

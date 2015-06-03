@@ -4,7 +4,7 @@
 
 angular.module('starter.controllers', [])
 
-.controller("ConfigController", function($scope, $ionicLoading, $cordovaSQLite, $location, $http){
+.controller("ConfigController", function($scope, $ionicLoading, $cordovaSQLite, $location, $http,Offenses, $ionicPopup){
     if(window.cordova) {
         var db = null;
 
@@ -49,6 +49,10 @@ angular.module('starter.controllers', [])
             // err.status will contain the status code
         });
     }
+    $scope.doStuff = function(){
+        var offense = {id:1, body:"YASYDAS"};
+        Offenses.add(offense);
+    }
 })
 
 .controller("HomeController", function($scope, $ionicPlatform, $cordovaSQLite, $http){
@@ -82,8 +86,12 @@ angular.module('starter.controllers', [])
         $scope.items = Rights.drugRights();
     }
 })
-.controller("AlcoholController", function($scope,  $ionicPopup) {
-    var alchohol = {age:1};
+.controller("AlcoholController", function($scope,  $ionicPopup, Offenses, $location) {
+    var offense = {licence: -1,
+        age:-1,
+        driver:-1,
+        intoxication:-1,
+         body:"YASYDAS"};
     var names = ["RIJBEWIJS","LEEFTIJD", "BESTRUUDER", "INTOXICATIE"];
     var subgroups = [['Ik bezit mijn rijbewijs minder dan 2 jaar', "Ik bezit mijn rijbewijs langer dan 2 jaar"],
     ["Jonger dan 18 jaar","18 jaar of ouder"],
@@ -136,17 +144,8 @@ angular.module('starter.controllers', [])
         return $scope.shownGroup === group;
     };
     $scope.doStuff = function(){
-        var confirmPopup = $ionicPopup.confirm({
-            title: 'This is a popup',
-            template: 'Send email ?'
-        });
-        confirmPopup.then(function(res) {
-            if(res) {
-                console.log('You are sure');
-            } else {
-                console.log('You are not sure');
-            }
-        });
+        Offenses.add(offense);
+        $location.path("/result");
     }
 
 })
@@ -167,7 +166,5 @@ angular.module('starter.controllers', [])
 
 })
 .controller("ResultController", function($scope, $ionicPopup, Offenses) {
-    var offense = {id:1, body:"YASYDAS"};
-    Offenses.add(offense);
     $scope.items = Offenses.all();
 });
