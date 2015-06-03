@@ -131,6 +131,7 @@ angular.module('starter.controllers', [])
     };
 })
 .controller("AlcoholController", function($scope,  $ionicPopup) {
+    var alchohol = {age:1};
     var names = ["RIJBEWIJS","LEEFTIJD", "BESTRUUDER", "INTOXICATIE"];
     var subgroups = [['Ik bezit mijn rijbewijs minder dan 2 jaar', "Ik bezit mijn rijbewijs langer dan 2 jaar"],
     ["Jonger dan 18 jaar","18 jaar of ouder"],
@@ -146,24 +147,31 @@ angular.module('starter.controllers', [])
     "Eerder betrapt op alcoholintoxicatie van meer dan 0,8 Promille of dronkenschap en nu opnieuw betrapt op dronkenschap"]];
 
     $scope.groups = [];
-     for (var i=0; i<names.length; i++) {
-       $scope.groups[i] = {
-         id: i,
-         name: names[i],
-         items: []
-       };
-       for (var j=0; j<subgroups[i].length; j++) {
-         $scope.groups[i].items.push(subgroups[i][j]);
-       }
-     }
+    for (var i=0; i<names.length; i++) {
+        $scope.groups[i] = {
+            id: i,
+            name: names[i],
+            items: []
+        };
+        for (var j=0; j<subgroups[i].length; j++) {
+            $scope.groups[i].items.push(subgroups[i][j]);
+        }
+    }
 
-    /*
-    * if given group is the selected group, deselect it
-    * else, select the given group
-    */
-    $scope.showConfirm = function(item, group) {
+    $scope.subgroupTapped = function(item, group, index) {
         $scope.groups[group.id].name =  item;
-  };
+        var confirmPopup = $ionicPopup.confirm({
+            title: "subroup:" + index + " " + "group:" + group.id,
+            template: 'Send email'
+        });
+        confirmPopup.then(function(res) {
+            if(res) {
+                console.log('You are sure');
+            } else {
+                console.log('You are not sure');
+            }
+        });
+    };
     $scope.toggleGroup = function(group) {
 
         if ($scope.isGroupShown(group)) {
@@ -175,20 +183,38 @@ angular.module('starter.controllers', [])
     $scope.isGroupShown = function(group) {
         return $scope.shownGroup === group;
     };
+    $scope.doStuff = function(){
+        var confirmPopup = $ionicPopup.confirm({
+            title: 'This is a popup',
+            template: 'Send email ?'
+        });
+        confirmPopup.then(function(res) {
+            if(res) {
+                console.log('You are sure');
+            } else {
+                console.log('You are not sure');
+            }
+        });
+    }
+
 })
 .controller("ContactController", function($scope, Rights, $ionicPopup) {
     $scope.showConfirm = function() {
-    var confirmPopup = $ionicPopup.confirm({
-      title: 'This is a popup',
-      template: 'Send email ?'
-    });
-    confirmPopup.then(function(res) {
-      if(res) {
-        console.log('You are sure');
-      } else {
-        console.log('You are not sure');
-      }
-    });
-  };
+        var confirmPopup = $ionicPopup.confirm({
+            title: 'This is a popup',
+            template: 'Send email ?'
+        });
+        confirmPopup.then(function(res) {
+            if(res) {
+                console.log('You are sure');
+            } else {
+                console.log('You are not sure');
+            }
+        });
+    };
+
+})
+.controller("ResultController", function($scope, Offenses, $ionicPopup) {
+    $scope.offenses = Offenses.all();
 
 });

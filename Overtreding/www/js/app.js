@@ -36,11 +36,6 @@ app.run(function($ionicPlatform) {
           templateUrl: "templates/alcohol.html",
           controller: "AlcoholController"
       })
-      .state("speed", {
-          url:"/alcohol",
-          templateUrl: "templates/alcohol.html",
-          controller: "SpeedController"
-      })
       .state("contact", {
           url:"/contact",
           templateUrl: "templates/contact.html",
