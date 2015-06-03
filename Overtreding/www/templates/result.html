@@ -1,13 +1,13 @@
 <ion-view view-title="Dashboard">
     <ion-content class="padding">
         <ion-list>
-            <ion-item ng-repeat="item in items" >{{item.body}}</ion-item>
-            <ion-item ng-repeat="item in items" >{{item.licence}}</ion-item>
-            <ion-item ng-repeat="item in items" >{{item.age}}</ion-item>
-            <ion-item ng-repeat="item in items" >{{item.driver}}</ion-item>
-            <ion-item ng-repeat="item in items" >{{item.intoxication}}</ion-item>
-
-
+            <div ng-repeat="item in items">
+            <ion-item href="#/result/{{$index}}">{{item.type}}</ion-item>
+            <ion-item>{{item.licence}}</ion-item>
+            <ion-item>{{item.age}}</ion-item>
+            <ion-item>{{item.driver}}</ion-item>
+            <ion-item>{{item.intoxication}}</ion-item>
+        </div>
         </ion-list>
     </ion-content>
 </ion-view>

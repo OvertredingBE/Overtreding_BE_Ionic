@@ -47,6 +47,9 @@ angular.module('starter.services', [])
         },
         add: function(offense) {
              offenses.push(offense);
+        },
+        findById: function(offenseId){
+            return offenses[offenseId];
         }
     };
 });

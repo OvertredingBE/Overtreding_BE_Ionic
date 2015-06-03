@@ -45,6 +45,11 @@ app.run(function($ionicPlatform) {
           url:"/result",
           templateUrl: "templates/result.html",
           controller: "ResultController"
+      })
+      .state("result-detail", {
+          url:"/result/:offenseId",
+          templateUrl: "templates/result-detail.html",
+          controller: "ResultDetailController"
       });
     $urlRouterProvider.otherwise("/config");
 });

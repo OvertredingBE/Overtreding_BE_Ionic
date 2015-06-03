@@ -71,7 +71,6 @@ angular.module('starter.controllers', [])
             console.error(err);
         });
     });
-
 })
 
 .controller("RightsController", function($scope, Rights) {
@@ -86,12 +85,33 @@ angular.module('starter.controllers', [])
         $scope.items = Rights.drugRights();
     }
 })
+.controller("ContactController", function($scope, Rights, $ionicPopup) {
+    $scope.showConfirm = function() {
+        var confirmPopup = $ionicPopup.confirm({
+            title: 'This is a popup',
+            template: 'Send email ?'
+        });
+        confirmPopup.then(function(res) {
+            if(res) {
+                console.log('You are sure');
+            } else {
+                console.log('You are not sure');
+            }
+        });
+    };
+
+})
 .controller("AlcoholController", function($scope,  $ionicPopup, Offenses, $location) {
     var offense = {licence: -1,
         age:-1,
         driver:-1,
         intoxication:-1,
-         body:"YASYDAS"};
+         type:"Alchohol"};
+         var offense2 = {licence: -1,
+             age:-1,
+             driver:-1,
+             intoxication:1,
+              type:"Alchohol"};
     var names = ["RIJBEWIJS","LEEFTIJD", "BESTRUUDER", "INTOXICATIE"];
     var subgroups = [['Ik bezit mijn rijbewijs minder dan 2 jaar', "Ik bezit mijn rijbewijs langer dan 2 jaar"],
     ["Jonger dan 18 jaar","18 jaar of ouder"],
@@ -145,26 +165,19 @@ angular.module('starter.controllers', [])
     };
     $scope.doStuff = function(){
         Offenses.add(offense);
+        Offenses.add(offense2);
+
+        //Offenses.add(offense);
         $location.path("/result");
     }
 
 })
-.controller("ContactController", function($scope, Rights, $ionicPopup) {
-    $scope.showConfirm = function() {
-        var confirmPopup = $ionicPopup.confirm({
-            title: 'This is a popup',
-            template: 'Send email ?'
-        });
-        confirmPopup.then(function(res) {
-            if(res) {
-                console.log('You are sure');
-            } else {
-                console.log('You are not sure');
-            }
-        });
-    };
-
-})
 .controller("ResultController", function($scope, $ionicPopup, Offenses) {
     $scope.items = Offenses.all();
+    //$scope.items.push(Offenses.findById(0));
+})
+.controller("ResultDetailController", function($scope,$stateParams, $ionicPopup, Offenses) {
+    $scope.test = $stateParams.offenseId;
+    //$scope.items = Offenses.all();
+    //$scope.items.push(Offenses.findById(0));
 });
