@@ -48,6 +48,38 @@ angular.module('starter.controllers', [])
             console.error('ERR', err);
             // err.status will contain the status code
         });
+
+        $http.get('http://localhost/overtreding_api/v1/alchohol').then(function(resp) {
+            $scope.succ = resp.statusText;
+            var items = resp.data.alchohol;
+            $scope.items = [];
+            $scope.log = items.length;
+            db = window.openDatabase("test2", "1.0", "Test DB", 1000000);
+            db.transaction(function (tx) {
+                tx.executeSql("DROP TABLE IF EXISTS Alchohol");
+                tx.executeSql("CREATE TABLE IF NOT EXISTS Alchohol(id integer primary key, intoxication integer, FOREIGN KEY(text_id_1) REFERENCES Texts(id))");
+            });
+
+            for(var i = 0; i < items.length; i++){
+                var textBody = items[i].intoxication;
+                var type = items[i].text_id_1;
+                $cordovaSQLite.execute(db, "INSERT INTO Alchohol (intoxication, text_id_1) VALUES (?,?)", [type, textBody]);
+                $scope.items.push({intoxication: type});
+            }
+        }, function(err) {
+            var confirmPopup = $ionicPopup.confirm({
+                title: "subroup:" + index + " " + "group:" + group.id,
+                template: 'Send email'
+            });
+            confirmPopup.then(function(res) {
+                if(res) {
+                    console.log('You are sure');
+                } else {
+                    console.log('You are not sure');
+                }
+            });
+            // err.status will contain the status code
+        });
     }
     $scope.doStuff = function(){
         var offense = {id:1, body:"YASYDAS"};
@@ -177,7 +209,9 @@ angular.module('starter.controllers', [])
     //$scope.items.push(Offenses.findById(0));
 })
 .controller("ResultDetailController", function($scope,$stateParams, $ionicPopup, Offenses) {
-    $scope.test = $stateParams.offenseId;
+    var offense = Offenses.findById($stateParams.offenseId);
+    $scope.test = offense.type;// $stateParams.offenseId;
+
     //$scope.items = Offenses.all();
     //$scope.items.push(Offenses.findById(0));
 });
