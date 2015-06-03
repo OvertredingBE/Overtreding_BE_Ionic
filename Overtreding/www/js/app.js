@@ -40,6 +40,11 @@ app.run(function($ionicPlatform) {
           url:"/contact",
           templateUrl: "templates/contact.html",
           controller: "ContactController"
+      })
+      .state("result", {
+          url:"/result",
+          templateUrl: "templates/result.html",
+          controller: "ResultController"
       });
     $urlRouterProvider.otherwise("/config");
 });
