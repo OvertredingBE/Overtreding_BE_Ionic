@@ -61,9 +61,9 @@ angular.module('starter.controllers', [])
             });
 
             for(var i = 0; i < items.length; i++){
-                var textBody = items[i].intoxication;
-                var type = items[i].text_id_1;
-                $cordovaSQLite.execute(db, "INSERT INTO Alchohol (intoxication, text_id_1) VALUES (?,?)", [type, textBody]);
+                var intoxication = items[i].intoxication;
+                var textId1 = items[i].text_id_1;
+                $cordovaSQLite.execute(db, "INSERT INTO Alchohol (intoxication, text_id_1) VALUES (?,?)", [intoxication, textId1]);
                 $scope.items.push({intoxication: type});
             }
         }, function(err) {
@@ -208,10 +208,10 @@ angular.module('starter.controllers', [])
     $scope.items = Offenses.all();
     //$scope.items.push(Offenses.findById(0));
 })
-.controller("ResultDetailController", function($scope,$stateParams, $ionicPopup, Offenses) {
+.controller("ResultDetailController", function($scope,$stateParams, $ionicPopup, Offenses, ResultTexts) {
     var offense = Offenses.findById($stateParams.offenseId);
     $scope.test = offense.type;// $stateParams.offenseId;
-
+    $scope.items = ResultTexts.getTexts(offense);
     //$scope.items = Offenses.all();
     //$scope.items.push(Offenses.findById(0));
 });
