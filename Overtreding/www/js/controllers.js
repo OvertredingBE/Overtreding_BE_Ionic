@@ -19,36 +19,34 @@ angular.module('starter.controllers', [])
             });
 
             for(var i = 0; i < items.length; i++){
-                var textBody = items[i].body;
+                var textBody = items[i].text_id_1;
                 $cordovaSQLite.execute(db, "INSERT INTO Texts (body) VALUES (?)", [textBody]);
-
             }
         }, function(err) {
             console.error('ERR', err);
             // err.status will contain the status code
         });
 
-        $http.get('http://localhost/overtreding_api/v1/rights').then(function(resp) {
-            $scope.succ = resp.statusText;
-            var items = resp.data.rights;
-            $scope.items = [];
-            $scope.log = items.length;
-            db = window.openDatabase("test2", "1.0", "Test DB", 1000000);
-            db.transaction(function (tx) {
-                tx.executeSql("DROP TABLE IF EXISTS Rights");
-                tx.executeSql("CREATE TABLE IF NOT EXISTS Rights(id integer primary key, type integer, body text)");
-            });
-
-            for(var i = 0; i < items.length; i++){
-                var textBody = items[i].body;
-                var type = items[i].type;
-                $cordovaSQLite.execute(db, "INSERT INTO Rights (type, body) VALUES (?,?)", [type, textBody]);
-            }
-        }, function(err) {
-            console.error('ERR', err);
-            // err.status will contain the status code
-        });
-
+        // $http.get('http://localhost/overtreding_api/v1/rights').then(function(resp) {
+        //     $scope.succ = resp.statusText;
+        //     var items = resp.data.rights;
+        //     $scope.items = [];
+        //     $scope.log = items.length;
+        //     db = window.openDatabase("test2", "1.0", "Test DB", 1000000);
+        //     db.transaction(function (tx) {
+        //         tx.executeSql("DROP TABLE IF EXISTS Rights");
+        //         tx.executeSql("CREATE TABLE IF NOT EXISTS Rights(id integer primary key, type integer, body text)");
+        //     });
+        //
+        //     for(var i = 0; i < items.length; i++){
+        //         var textBody = items[i].body;
+        //         var type = items[i].type;
+        //         $cordovaSQLite.execute(db, "INSERT INTO Rights (type, body) VALUES (?,?)", [type, textBody]);
+        //     }
+        // }, function(err) {
+        //     console.error('ERR', err);
+        //     // err.status will contain the status code
+        // });
         $http.get('http://localhost/overtreding_api/v1/alchohol').then(function(resp) {
             $scope.succ = resp.statusText;
             var items = resp.data.alchohol;
@@ -57,19 +55,41 @@ angular.module('starter.controllers', [])
             db = window.openDatabase("test2", "1.0", "Test DB", 1000000);
             db.transaction(function (tx) {
                 tx.executeSql("DROP TABLE IF EXISTS Alchohol");
-                tx.executeSql("CREATE TABLE IF NOT EXISTS Alchohol(id integer primary key, intoxication integer)");
+                tx.executeSql("CREATE TABLE IF NOT EXISTS Alchohol(id integer primary key, intoxication integer, text_id_1 integer)");
             });
 
             for(var i = 0; i < items.length; i++){
                 var intoxication = items[i].intoxication;
-                var textId1 = items[i].text_id_1;
-                $cordovaSQLite.execute(db, "INSERT INTO Alchohol (intoxication, text_id_1) VALUES (?,?)", [intoxication, textId1]);
-                $scope.items.push({intoxication: textId1});
+                var text_id_1 = items[i].text_id_1;
+                $cordovaSQLite.execute(db, "INSERT INTO Alchohol (intoxication, text_id_1) VALUES (?,?)", [intoxication, text_id_1]);
             }
         }, function(err) {
             console.error('ERR', err);
-
+            // err.status will contain the status code
         });
+
+
+        // $http.get('http://localhost/overtreding_api/v1/alchohol').then(function(resp) {
+        //     $scope.succ = resp.statusText;
+        //     var items = resp.data.alchohol;
+        //     $scope.items = [];
+        //     $scope.log = items.length;
+        //     db = window.openDatabase("test2", "1.0", "Test DB", 1000000);
+        //     db.transaction(function (tx) {
+        //         tx.executeSql("DROP TABLE IF EXISTS Alchohol");
+        //         tx.executeSql("CREATE TABLE IF NOT EXISTS Alchohol(id integer primary key, intoxication integer)");
+        //     });
+        //
+        //     for(var i = 0; i < items.length; i++){
+        //         var intoxication = items[i].intoxication;
+        //         var textId1 = items[i].text_id_1;
+        //         $cordovaSQLite.execute(db, "INSERT INTO Alchohol (intoxication, text_id_1) VALUES (?,?)", [intoxication, textId1]);
+        //         $scope.items.push({intoxication: textId1});
+        //     }
+        // }, function(err) {
+        //     console.error('ERR', err);
+        //
+        // });
     }
     $scope.doStuff = function(){
         var offense = {id:1, body:"YASYDAS"};
@@ -81,11 +101,11 @@ angular.module('starter.controllers', [])
     $scope.items = [];
     db = window.openDatabase("test2", "1.0", "Test DB", 1000000);
     $ionicPlatform.ready(function(){
-        var query = "SELECT id FROM Rights";
+        var query = "SELECT * FROM Alchohol";
         $cordovaSQLite.execute(db, query, []).then(function(res){
             if(res.rows.length > 0){
                 for(var i = 0; i < res.rows.length; i++){
-                    $scope.items.push({id: res.rows.item(i).id});
+                    $scope.items.push({id: res.rows.item(i).intoxication});
                 }
             }
         }, function(err){
@@ -127,80 +147,80 @@ angular.module('starter.controllers', [])
         age:-1,
         driver:-1,
         intoxication:-1,
-         type:"Alchohol"};
-         var offense2 = {licence: -1,
-             age:-1,
-             driver:-1,
-             intoxication:1,
-              type:"Alchohol"};
-    var names = ["RIJBEWIJS","LEEFTIJD", "BESTRUUDER", "INTOXICATIE"];
-    var subgroups = [['Ik bezit mijn rijbewijs minder dan 2 jaar', "Ik bezit mijn rijbewijs langer dan 2 jaar"],
-    ["Jonger dan 18 jaar","18 jaar of ouder"],
-    ["Professionele bestuurder", "Gewone bestuurder"],
-    ["0,50 – 0,80 Promille",
-    "0,80 – 1,00 Promille",
-    "1,00 – 1,14 Promille",
-    "1,14 – 1,48 Promille",
-    "1,48 - ... Promille",
-    "Weigering ademtest of analyse zonder wettige reden",
-    "Dronkenschap",
-    "Eerder betrapt op alcoholintoxicatie van meer dan 0,8 Promille of dronkenschap en nu opnieuw betrapt op alcoholintoxicatie van meerdan 0,8 Promille.",
-    "Eerder betrapt op alcoholintoxicatie van meer dan 0,8 Promille of dronkenschap en nu opnieuw betrapt op dronkenschap"]];
+        type:"Alchohol"};
+        var offense2 = {licence: -1,
+            age:-1,
+            driver:-1,
+            intoxication:1,
+            type:"Alchohol"};
+            var names = ["RIJBEWIJS","LEEFTIJD", "BESTRUUDER", "INTOXICATIE"];
+            var subgroups = [['Ik bezit mijn rijbewijs minder dan 2 jaar', "Ik bezit mijn rijbewijs langer dan 2 jaar"],
+            ["Jonger dan 18 jaar","18 jaar of ouder"],
+            ["Professionele bestuurder", "Gewone bestuurder"],
+            ["0,50 – 0,80 Promille",
+            "0,80 – 1,00 Promille",
+            "1,00 – 1,14 Promille",
+            "1,14 – 1,48 Promille",
+            "1,48 - ... Promille",
+            "Weigering ademtest of analyse zonder wettige reden",
+            "Dronkenschap",
+            "Eerder betrapt op alcoholintoxicatie van meer dan 0,8 Promille of dronkenschap en nu opnieuw betrapt op alcoholintoxicatie van meerdan 0,8 Promille.",
+            "Eerder betrapt op alcoholintoxicatie van meer dan 0,8 Promille of dronkenschap en nu opnieuw betrapt op dronkenschap"]];
 
-    $scope.groups = [];
-    for (var i=0; i<names.length; i++) {
-        $scope.groups[i] = {
-            id: i,
-            name: names[i],
-            items: []
-        };
-        for (var j=0; j<subgroups[i].length; j++) {
-            $scope.groups[i].items.push(subgroups[i][j]);
-        }
-    }
-
-    $scope.subgroupTapped = function(item, group, index) {
-        $scope.groups[group.id].name =  item;
-        var confirmPopup = $ionicPopup.confirm({
-            title: "subroup:" + index + " " + "group:" + group.id,
-            template: 'Send email'
-        });
-        confirmPopup.then(function(res) {
-            if(res) {
-                console.log('You are sure');
-            } else {
-                console.log('You are not sure');
+            $scope.groups = [];
+            for (var i=0; i<names.length; i++) {
+                $scope.groups[i] = {
+                    id: i,
+                    name: names[i],
+                    items: []
+                };
+                for (var j=0; j<subgroups[i].length; j++) {
+                    $scope.groups[i].items.push(subgroups[i][j]);
+                }
             }
+
+            $scope.subgroupTapped = function(item, group, index) {
+                $scope.groups[group.id].name =  item;
+                var confirmPopup = $ionicPopup.confirm({
+                    title: "subroup:" + index + " " + "group:" + group.id,
+                    template: 'Send email'
+                });
+                confirmPopup.then(function(res) {
+                    if(res) {
+                        console.log('You are sure');
+                    } else {
+                        console.log('You are not sure');
+                    }
+                });
+            };
+            $scope.toggleGroup = function(group) {
+
+                if ($scope.isGroupShown(group)) {
+                    $scope.shownGroup = null;
+                } else {
+                    $scope.shownGroup = group;
+                }
+            };
+            $scope.isGroupShown = function(group) {
+                return $scope.shownGroup === group;
+            };
+            $scope.doStuff = function(){
+                Offenses.add(offense);
+                Offenses.add(offense2);
+
+                //Offenses.add(offense);
+                $location.path("/result");
+            }
+
+        })
+        .controller("ResultController", function($scope, $ionicPopup, Offenses) {
+            $scope.items = Offenses.all();
+            //$scope.items.push(Offenses.findById(0));
+        })
+        .controller("ResultDetailController", function($scope,$stateParams, $ionicPopup, Offenses, ResultTexts) {
+            var offense = Offenses.findById($stateParams.offenseId);
+            $scope.test = offense.type;// $stateParams.offenseId;
+            $scope.items = ResultTexts.getTexts(offense);
+            //$scope.items = Offenses.all();
+            //$scope.items.push(Offenses.findById(0));
         });
-    };
-    $scope.toggleGroup = function(group) {
-
-        if ($scope.isGroupShown(group)) {
-            $scope.shownGroup = null;
-        } else {
-            $scope.shownGroup = group;
-        }
-    };
-    $scope.isGroupShown = function(group) {
-        return $scope.shownGroup === group;
-    };
-    $scope.doStuff = function(){
-        Offenses.add(offense);
-        Offenses.add(offense2);
-
-        //Offenses.add(offense);
-        $location.path("/result");
-    }
-
-})
-.controller("ResultController", function($scope, $ionicPopup, Offenses) {
-    $scope.items = Offenses.all();
-    //$scope.items.push(Offenses.findById(0));
-})
-.controller("ResultDetailController", function($scope,$stateParams, $ionicPopup, Offenses, ResultTexts) {
-    var offense = Offenses.findById($stateParams.offenseId);
-    $scope.test = offense.type;// $stateParams.offenseId;
-    $scope.items = ResultTexts.getTexts(offense);
-    //$scope.items = Offenses.all();
-    //$scope.items.push(Offenses.findById(0));
-});
