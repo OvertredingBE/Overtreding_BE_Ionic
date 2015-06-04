@@ -7,6 +7,7 @@ angular.module('starter.controllers', [])
 .controller("ConfigController", function($scope, $ionicLoading, $cordovaSQLite, $location, $http,Offenses, $ionicPopup){
     if(window.cordova) {
         var db = null;
+        $scope.items = [];
 
         $http.get('http://localhost/overtreding_api/v1/texts').then(function(resp) {
             $scope.succ = resp.statusText;
@@ -19,7 +20,7 @@ angular.module('starter.controllers', [])
             });
 
             for(var i = 0; i < items.length; i++){
-                var textBody = items[i].text_id_1;
+                var textBody = items[i].body;
                 $cordovaSQLite.execute(db, "INSERT INTO Texts (body) VALUES (?)", [textBody]);
             }
         }, function(err) {
@@ -27,30 +28,29 @@ angular.module('starter.controllers', [])
             // err.status will contain the status code
         });
 
-        // $http.get('http://localhost/overtreding_api/v1/rights').then(function(resp) {
-        //     $scope.succ = resp.statusText;
-        //     var items = resp.data.rights;
-        //     $scope.items = [];
-        //     $scope.log = items.length;
-        //     db = window.openDatabase("test2", "1.0", "Test DB", 1000000);
-        //     db.transaction(function (tx) {
-        //         tx.executeSql("DROP TABLE IF EXISTS Rights");
-        //         tx.executeSql("CREATE TABLE IF NOT EXISTS Rights(id integer primary key, type integer, body text)");
-        //     });
-        //
-        //     for(var i = 0; i < items.length; i++){
-        //         var textBody = items[i].body;
-        //         var type = items[i].type;
-        //         $cordovaSQLite.execute(db, "INSERT INTO Rights (type, body) VALUES (?,?)", [type, textBody]);
-        //     }
-        // }, function(err) {
-        //     console.error('ERR', err);
-        //     // err.status will contain the status code
-        // });
+        $http.get('http://localhost/overtreding_api/v1/rights').then(function(resp) {
+            $scope.succ = resp.statusText;
+            var items = resp.data.rights;
+            $scope.items = [];
+            $scope.log = items.length;
+            db = window.openDatabase("test2", "1.0", "Test DB", 1000000);
+            db.transaction(function (tx) {
+                tx.executeSql("DROP TABLE IF EXISTS Rights");
+                tx.executeSql("CREATE TABLE IF NOT EXISTS Rights(id integer primary key, type integer, body text)");
+            });
+
+            for(var i = 0; i < items.length; i++){
+                var textBody = items[i].body;
+                var type = items[i].type;
+                $cordovaSQLite.execute(db, "INSERT INTO Rights (type, body) VALUES (?,?)", [type, textBody]);
+            }
+        }, function(err) {
+            console.error('ERR', err);
+            // err.status will contain the status code
+        });
         $http.get('http://localhost/overtreding_api/v1/alchohol').then(function(resp) {
             $scope.succ = resp.statusText;
             var items = resp.data.alchohol;
-            $scope.items = [];
             $scope.log = items.length;
             db = window.openDatabase("test2", "1.0", "Test DB", 1000000);
             db.transaction(function (tx) {
@@ -67,29 +67,6 @@ angular.module('starter.controllers', [])
             console.error('ERR', err);
             // err.status will contain the status code
         });
-
-
-        // $http.get('http://localhost/overtreding_api/v1/alchohol').then(function(resp) {
-        //     $scope.succ = resp.statusText;
-        //     var items = resp.data.alchohol;
-        //     $scope.items = [];
-        //     $scope.log = items.length;
-        //     db = window.openDatabase("test2", "1.0", "Test DB", 1000000);
-        //     db.transaction(function (tx) {
-        //         tx.executeSql("DROP TABLE IF EXISTS Alchohol");
-        //         tx.executeSql("CREATE TABLE IF NOT EXISTS Alchohol(id integer primary key, intoxication integer)");
-        //     });
-        //
-        //     for(var i = 0; i < items.length; i++){
-        //         var intoxication = items[i].intoxication;
-        //         var textId1 = items[i].text_id_1;
-        //         $cordovaSQLite.execute(db, "INSERT INTO Alchohol (intoxication, text_id_1) VALUES (?,?)", [intoxication, textId1]);
-        //         $scope.items.push({intoxication: textId1});
-        //     }
-        // }, function(err) {
-        //     console.error('ERR', err);
-        //
-        // });
     }
     $scope.doStuff = function(){
         var offense = {id:1, body:"YASYDAS"};
@@ -101,11 +78,11 @@ angular.module('starter.controllers', [])
     $scope.items = [];
     db = window.openDatabase("test2", "1.0", "Test DB", 1000000);
     $ionicPlatform.ready(function(){
-        var query = "SELECT * FROM Alchohol";
+        var query = "SELECT * FROM Texts";
         $cordovaSQLite.execute(db, query, []).then(function(res){
             if(res.rows.length > 0){
                 for(var i = 0; i < res.rows.length; i++){
-                    $scope.items.push({id: res.rows.item(i).intoxication});
+                    $scope.items.push({id: res.rows.item(i).body});// + "-" + res.rows.item(i).text_id_1});
                 }
             }
         }, function(err){
@@ -146,7 +123,7 @@ angular.module('starter.controllers', [])
     var offense = {licence: -1,
         age:-1,
         driver:-1,
-        intoxication:-1,
+        intoxication:1,
         type:"Alchohol"};
         var offense2 = {licence: -1,
             age:-1,
@@ -219,8 +196,7 @@ angular.module('starter.controllers', [])
         })
         .controller("ResultDetailController", function($scope,$stateParams, $ionicPopup, Offenses, ResultTexts) {
             var offense = Offenses.findById($stateParams.offenseId);
-            $scope.test = offense.type;// $stateParams.offenseId;
+            $scope.test = offense.type;
             $scope.items = ResultTexts.getTexts(offense);
-            //$scope.items = Offenses.all();
-            //$scope.items.push(Offenses.findById(0));
+
         });

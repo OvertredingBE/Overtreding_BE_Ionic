@@ -77,10 +77,23 @@ angular.module('starter.services', [])
 
     return {
         getAlchohol: function(offense) {
-            var query = "SELECT * from Alchohol";
-            $cordovaSQLite.execute(db, query, []).then(function(res){
+            var query = "SELECT * from Alchohol where intoxication = ?";
+            $cordovaSQLite.execute(db, query, [offense.intoxication]).then(function(res){
                 if(res.rows.length > 0){
-                    offenses.push("asd");
+                    for(var i = 0; i < res.rows.length; i++){
+                        var query = "SELECT * from Texts where id = ?";
+                        $cordovaSQLite.execute(db, query, [res.rows.item(i).text_id_1]).then(function(res){
+                            if(res.rows.length > 0){
+                                for(var i = 0; i < res.rows.length; i++){
+                                    offenses.push(res.rows.item(i).body);// + "-" + res.rows.item(i).text_id_1);
+                                }
+
+                            }
+                        }, function(err){
+                            console.error(err);
+                        });
+                        //offenses.push(res.rows.item(i).intoxication + "-" + res.rows.item(i).text_id_1);
+                    }
 
                 }
             }, function(err){
