@@ -77,7 +77,15 @@ angular.module('starter.services', [])
 
     return {
         getAlchohol: function(offense) {
-            offenses.push("asd");
+            var query = "SELECT * from Alchohol";
+            $cordovaSQLite.execute(db, query, []).then(function(res){
+                if(res.rows.length > 0){
+                    offenses.push("asd");
+
+                }
+            }, function(err){
+                console.error(err);
+            });
             return offenses;
         }
     };

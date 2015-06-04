@@ -5,5 +5,10 @@
         <button class="button button-positive">
             U ONTVING EEN BRIEF
         </button>
+        <ion-list>
+            <div ng-repeat="item in items">
+            <ion-item href="#/result/{{$index}}">{{item.id}}</ion-item>
+        </div>
+        </ion-list>
     </ion-content>
 </ion-view>

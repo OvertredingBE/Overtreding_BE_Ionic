@@ -57,28 +57,18 @@ angular.module('starter.controllers', [])
             db = window.openDatabase("test2", "1.0", "Test DB", 1000000);
             db.transaction(function (tx) {
                 tx.executeSql("DROP TABLE IF EXISTS Alchohol");
-                tx.executeSql("CREATE TABLE IF NOT EXISTS Alchohol(id integer primary key, intoxication integer, FOREIGN KEY(text_id_1) REFERENCES Texts(id))");
+                tx.executeSql("CREATE TABLE IF NOT EXISTS Alchohol(id integer primary key, intoxication integer)");
             });
 
             for(var i = 0; i < items.length; i++){
                 var intoxication = items[i].intoxication;
                 var textId1 = items[i].text_id_1;
                 $cordovaSQLite.execute(db, "INSERT INTO Alchohol (intoxication, text_id_1) VALUES (?,?)", [intoxication, textId1]);
-                $scope.items.push({intoxication: type});
+                $scope.items.push({intoxication: textId1});
             }
         }, function(err) {
-            var confirmPopup = $ionicPopup.confirm({
-                title: "subroup:" + index + " " + "group:" + group.id,
-                template: 'Send email'
-            });
-            confirmPopup.then(function(res) {
-                if(res) {
-                    console.log('You are sure');
-                } else {
-                    console.log('You are not sure');
-                }
-            });
-            // err.status will contain the status code
+            console.error('ERR', err);
+
         });
     }
     $scope.doStuff = function(){
@@ -88,15 +78,14 @@ angular.module('starter.controllers', [])
 })
 
 .controller("HomeController", function($scope, $ionicPlatform, $cordovaSQLite, $http){
-    var db = null;
     $scope.items = [];
     db = window.openDatabase("test2", "1.0", "Test DB", 1000000);
     $ionicPlatform.ready(function(){
-        var query = "SELECT id, body FROM Texts";
+        var query = "SELECT id FROM Rights";
         $cordovaSQLite.execute(db, query, []).then(function(res){
             if(res.rows.length > 0){
                 for(var i = 0; i < res.rows.length; i++){
-                    $scope.items.push({id: res.rows.item(i).id, body: res.rows.item(i).body});
+                    $scope.items.push({id: res.rows.item(i).id});
                 }
             }
         }, function(err){
