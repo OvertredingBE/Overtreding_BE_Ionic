@@ -53,50 +53,88 @@ angular.module('starter.services', [])
         }
     };
 })
-.factory('ResultTexts', function($cordovaSQLite, OffenseTexts) {
-    var offenses = [];
-
+.factory('ResultTexts', function($cordovaSQLite, OffenseTexts, FinesCalculator) {
+    var texts = [];
+    var fines = [];
+    var composedTexts = [];
+    //var composedTexts = [];
     return {
         getTexts: function(offense) {
             switch (offense.type) {
                 case "Alchohol":
-                offenses = OffenseTexts.getAlchohol(offense);
+                var query = "SELECT * FROM Texts a INNER JOIN Alchohol b ON a.id=b.text_id_1 or a.id = b.text_id_2 or a.id = b.text_id_3 WHERE b.intoxication=?";
+                //var query = "SELECT * from Alchohol where intoxication = ?";
+                $cordovaSQLite.execute(db, query, [offense.intoxication]).then(function(res){
+                    if(res.rows.length > 0){
+                        for(var i = 0; i < res.rows.length; i++){
+                            texts.push(res.rows.item(i).body);
+                        }
+
+                        for (var i = 0; i < fines.length; i++) {
+                            if(fines[i] === null){
+                            }
+                            else{
+                                for (var key in fines[i]) {
+                                    if (fines[i].hasOwnProperty(key)) {
+                                        texts[i] = texts[i].replace(key, fines[i][key]);
+                                        //texts.push(key + " -> " + fines[i][key]);
+                                    }
+                                }
+                                //texts.push("WTF" + i);
+                            }
+                        }
+                    }
+                }, function(err){
+                    console.error(err);
+                });
+                fines = FinesCalculator.getAlchohol(offense);
                 break;
                 case "Speed":
                 // Blah
                 break;
             }
 
-            return offenses;
+            return texts;
         }
     }
 })
 .factory('OffenseTexts', function($cordovaSQLite) {
     db = window.openDatabase("test2", "1.0", "Test DB", 1000000);
-    var texts = [];
-
     return {
         getAlchohol: function(offense) {
-            var query = "SELECT * from Alchohol where intoxication = ?";
+            var texts = [];
+
+            var query = "SELECT * FROM Texts a INNER JOIN Alchohol b ON a.id=b.text_id_1 or a.id = b.text_id_2 or a.id = b.text_id_3 WHERE b.intoxication=?";
+            //var query = "SELECT * from Alchohol where intoxication = ?";
             $cordovaSQLite.execute(db, query, [offense.intoxication]).then(function(res){
                 if(res.rows.length > 0){
                     for(var i = 0; i < res.rows.length; i++){
-                        var query = "SELECT * from Texts where id = ? or id = ? or id = ?";
-                        $cordovaSQLite.execute(db, query, [res.rows.item(i).text_id_1, res.rows.item(i).text_id_2,res.rows.item(i).text_id_3]).then(function(res){
-                            if(res.rows.length > 0){
-                                for(var i = 0; i < res.rows.length; i++){
-                                    texts.push(res.rows.item(i).body);
-                                }
-                            }
-                        }, function(err){
-                            console.error(err);
-                        });
+                        texts.push(res.rows.item(i).body);
                     }
                 }
             }, function(err){
                 console.error(err);
             });
+
             return texts;
         }
     };
+})
+.factory('FinesCalculator', function($cordovaSQLite, OffenseTexts) {
+    var fines = [];
+    fines.push(null);
+    fines.push(null);
+    return {
+        getAlchohol: function(offense) {
+            switch (offense.intoxication) {
+                case 1:
+                fines.push({"#TOTALAMOUNT7#" : 100, "#TOTALAMOUNT2#": 50});
+                break;
+                default:
+
+            }
+
+            return fines;
+        }
+    }
 })
