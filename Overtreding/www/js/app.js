@@ -1,4 +1,4 @@
-var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'ngCordova']).constant('ApiEndpoint', {url: 'http://localhost:8100/api'});
+var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'ngCordova']);
 
 app.run(function($ionicPlatform) {
 
