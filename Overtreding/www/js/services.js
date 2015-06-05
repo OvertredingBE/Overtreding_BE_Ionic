@@ -92,6 +92,26 @@ angular.module('starter.services', [])
                         }, function(err){
                             console.error(err);
                         });
+                        $cordovaSQLite.execute(db, query, [res.rows.item(i).text_id_2]).then(function(res){
+                            if(res.rows.length > 0){
+                                for(var i = 0; i < res.rows.length; i++){
+                                    offenses.push(res.rows.item(i).body);// + "-" + res.rows.item(i).text_id_1);
+                                }
+
+                            }
+                        }, function(err){
+                            console.error(err);
+                        });
+                        $cordovaSQLite.execute(db, query, [res.rows.item(i).text_id_3]).then(function(res){
+                            if(res.rows.length > 0){
+                                for(var i = 0; i < res.rows.length; i++){
+                                    offenses.push(res.rows.item(i).body);// + "-" + res.rows.item(i).text_id_1);
+                                }
+
+                            }
+                        }, function(err){
+                            console.error(err);
+                        });
                         //offenses.push(res.rows.item(i).intoxication + "-" + res.rows.item(i).text_id_1);
                     }
 

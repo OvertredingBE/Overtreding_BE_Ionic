@@ -5,15 +5,15 @@
 angular.module('starter.controllers', [])
 
 .controller("ConfigController", function($scope, $ionicLoading, $cordovaSQLite, $location, $http,Offenses, $ionicPopup){
-    $http.get('http://localhost/overtreding_api/v1/texts').then(function(resp) {
-        $scope.succ = resp.statusText;
-        var items = resp.data.texts;
-        $scope.log = items.length;
-        $scope.items = items;
-    }, function(err) {
-        console.error('ERR', err);
-        // err.status will contain the status code
-    });
+    // $http.get('http://localhost/overtreding_api/v1/texts').then(function(resp) {
+    //     $scope.succ = resp.statusText;
+    //     var items = resp.data.texts;
+    //     $scope.log = items.length;
+    //     $scope.items = items;
+    // }, function(err) {
+    //     console.error('ERR', err);
+    //     // err.status will contain the status code
+    // });
     if(window.cordova) {
         var db = null;
         $scope.items = [];
@@ -34,7 +34,6 @@ angular.module('starter.controllers', [])
             }
         }, function(err) {
             console.error('ERR', err);
-            // err.status will contain the status code
         });
 
         $http.get('http://localhost/overtreding_api/v1/rights').then(function(resp) {
@@ -55,7 +54,6 @@ angular.module('starter.controllers', [])
             }
         }, function(err) {
             console.error('ERR', err.status);
-            // err.status will contain the status code
         });
         $http.get('http://localhost/overtreding_api/v1/alchohol').then(function(resp) {
             $scope.succ = resp.statusText;
@@ -64,17 +62,18 @@ angular.module('starter.controllers', [])
             db = window.openDatabase("test2", "1.0", "Test DB", 1000000);
             db.transaction(function (tx) {
                 tx.executeSql("DROP TABLE IF EXISTS Alchohol");
-                tx.executeSql("CREATE TABLE IF NOT EXISTS Alchohol(id integer primary key, intoxication integer, text_id_1 integer)");
+                tx.executeSql("CREATE TABLE IF NOT EXISTS Alchohol(id integer primary key, intoxication integer, text_id_1 integer, text_id_2 integer, text_id_3 integer)");
             });
 
             for(var i = 0; i < items.length; i++){
                 var intoxication = items[i].intoxication;
                 var text_id_1 = items[i].text_id_1;
-                $cordovaSQLite.execute(db, "INSERT INTO Alchohol (intoxication, text_id_1) VALUES (?,?)", [intoxication, text_id_1]);
+                var text_id_2 = items[i].text_id_2;
+                var text_id_3 = items[i].text_id_3;
+                $cordovaSQLite.execute(db, "INSERT INTO Alchohol (intoxication, text_id_1,text_id_2,text_id_3) VALUES (?,?,?,?)", [intoxication, text_id_1, text_id_2, text_id_3]);
             }
         }, function(err) {
             console.error('ERR', err);
-            // err.status will contain the status code
         });
     }
     $scope.doStuff = function(){
@@ -91,7 +90,7 @@ angular.module('starter.controllers', [])
         $cordovaSQLite.execute(db, query, []).then(function(res){
             if(res.rows.length > 0){
                 for(var i = 0; i < res.rows.length; i++){
-                    $scope.items.push({id: res.rows.item(i).body});// + "-" + res.rows.item(i).text_id_1});
+                    $scope.items.push({id: res.rows.item(i).body});
                 }
             }
         }, function(err){
@@ -132,14 +131,15 @@ angular.module('starter.controllers', [])
     var offense = {licence: -1,
         age:-1,
         driver:-1,
-        intoxication:1,
+        intoxication:-1,
         type:"Alchohol"};
 
         var names = ["RIJBEWIJS","LEEFTIJD", "BESTRUUDER", "INTOXICATIE"];
         var subgroups = [['Ik bezit mijn rijbewijs minder dan 2 jaar', "Ik bezit mijn rijbewijs langer dan 2 jaar"],
         ["Jonger dan 18 jaar","18 jaar of ouder"],
         ["Professionele bestuurder", "Gewone bestuurder"],
-        ["0,50 – 0,80 Promille",
+        ["0,20 - 0,50 promille",
+        "0,50 – 0,80 Promille",
         "0,80 – 1,00 Promille",
         "1,00 – 1,14 Promille",
         "1,14 – 1,48 Promille",
@@ -163,17 +163,23 @@ angular.module('starter.controllers', [])
 
         $scope.subgroupTapped = function(item, group, index) {
             $scope.groups[group.id].name =  item;
-            var confirmPopup = $ionicPopup.confirm({
-                title: "subroup:" + index + " " + "group:" + group.id,
-                template: 'Send email'
-            });
-            confirmPopup.then(function(res) {
-                if(res) {
-                    console.log('You are sure');
-                } else {
-                    console.log('You are not sure');
-                }
-            });
+
+            switch (group.id) {
+                case 0:
+                offense.licence = index;
+                break;
+                case 1:
+                offense.age = index;
+                break;
+                case 2:
+                offense.driver = index;
+                break;
+                case 3:
+                offense.intoxication = index;
+                break;
+                default:
+
+            }
         };
         $scope.toggleGroup = function(group) {
 
@@ -194,7 +200,6 @@ angular.module('starter.controllers', [])
     })
     .controller("ResultController", function($scope, $ionicPopup, Offenses) {
         $scope.items = Offenses.all();
-        //$scope.items.push(Offenses.findById(0));
     })
     .controller("ResultDetailController", function($scope,$stateParams, $ionicPopup, Offenses, ResultTexts) {
         var offense = Offenses.findById($stateParams.offenseId);
