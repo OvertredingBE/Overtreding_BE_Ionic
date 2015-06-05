@@ -178,7 +178,6 @@ angular.module('starter.controllers', [])
                 offense.intoxication = index;
                 break;
                 default:
-
             }
         };
         $scope.toggleGroup = function(group) {
@@ -203,7 +202,7 @@ angular.module('starter.controllers', [])
     })
     .controller("ResultDetailController", function($scope,$stateParams, $ionicPopup, Offenses, ResultTexts) {
         var offense = Offenses.findById($stateParams.offenseId);
-        $scope.test = offense.type;
+        $scope.offenseType = offense.type;
         $scope.items = ResultTexts.getTexts(offense);
 
     });

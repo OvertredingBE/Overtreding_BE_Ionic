@@ -73,7 +73,7 @@ angular.module('starter.services', [])
 })
 .factory('OffenseTexts', function($cordovaSQLite) {
     db = window.openDatabase("test2", "1.0", "Test DB", 1000000);
-    var offenses = [];
+    var texts = [];
 
     return {
         getAlchohol: function(offense) {
@@ -81,78 +81,22 @@ angular.module('starter.services', [])
             $cordovaSQLite.execute(db, query, [offense.intoxication]).then(function(res){
                 if(res.rows.length > 0){
                     for(var i = 0; i < res.rows.length; i++){
-                        var query = "SELECT * from Texts where id = ?";
-                        $cordovaSQLite.execute(db, query, [res.rows.item(i).text_id_1]).then(function(res){
+                        var query = "SELECT * from Texts where id = ? or id = ? or id = ?";
+                        $cordovaSQLite.execute(db, query, [res.rows.item(i).text_id_1, res.rows.item(i).text_id_2,res.rows.item(i).text_id_3]).then(function(res){
                             if(res.rows.length > 0){
                                 for(var i = 0; i < res.rows.length; i++){
-                                    offenses.push(res.rows.item(i).body);// + "-" + res.rows.item(i).text_id_1);
+                                    texts.push(res.rows.item(i).body);
                                 }
-
                             }
                         }, function(err){
                             console.error(err);
                         });
-                        $cordovaSQLite.execute(db, query, [res.rows.item(i).text_id_2]).then(function(res){
-                            if(res.rows.length > 0){
-                                for(var i = 0; i < res.rows.length; i++){
-                                    offenses.push(res.rows.item(i).body);// + "-" + res.rows.item(i).text_id_1);
-                                }
-
-                            }
-                        }, function(err){
-                            console.error(err);
-                        });
-                        $cordovaSQLite.execute(db, query, [res.rows.item(i).text_id_3]).then(function(res){
-                            if(res.rows.length > 0){
-                                for(var i = 0; i < res.rows.length; i++){
-                                    offenses.push(res.rows.item(i).body);// + "-" + res.rows.item(i).text_id_1);
-                                }
-
-                            }
-                        }, function(err){
-                            console.error(err);
-                        });
-                        //offenses.push(res.rows.item(i).intoxication + "-" + res.rows.item(i).text_id_1);
                     }
-
                 }
             }, function(err){
                 console.error(err);
             });
-            return offenses;
+            return texts;
         }
     };
 })
-// .factory("ResultTexts", function($cordovaSQLite, OffenseTexts) {
-//     db = window.openDatabase("test2", "1.0", "Test DB", 1000000);
-//     var texts = [];
-//     var fineAmounts = [];
-//     var fullTexts = [];
-//     return{
-//         getTexts: function(offense){
-//     switch (offense.type) {
-//         case "Alchohol":
-//
-//         texts.push("ASD");// = OffenseTexts.getAlchohol(offense);
-//         break;
-//         case "Speed":
-//         // Blah
-//         break;
-//     }
-//
-//     return texts;
-// }
-//     };
-//
-// })
-// .factory("OffenseTexts", function($cordovaSQLite) {
-//     db = window.openDatabase("test2", "1.0", "Test DB", 1000000);
-//     var texts = [];
-//     return{
-//         getAlchohol: function(offense){
-//             texts.push("some text here");
-//         }
-//
-//         return texts;
-//     };
-// })
