@@ -202,7 +202,5 @@ angular.module('starter.controllers', [])
     })
     .controller("ResultDetailController", function($scope,$stateParams, $ionicPopup, Offenses, ResultTexts) {
         var offense = Offenses.findById($stateParams.offenseId);
-        //$scope.items = ['asd','xcadas','asda'];
         $scope.items = ResultTexts.getTexts(offense);
-        $scope.offenseType = $scope.items.length;
     });

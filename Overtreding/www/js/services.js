@@ -57,7 +57,6 @@ angular.module('starter.services', [])
     var texts = [];
     var fines = [];
     var composedTexts = [];
-    //var composedTexts = [];
     return {
         getTexts: function(offense) {
             switch (offense.type) {
@@ -69,25 +68,23 @@ angular.module('starter.services', [])
                         for(var i = 0; i < res.rows.length; i++){
                             texts.push(res.rows.item(i).body);
                         }
-
-                        for (var i = 0; i < fines.length; i++) {
-                            if(fines[i] === null){
-                            }
-                            else{
-                                for (var key in fines[i]) {
-                                    if (fines[i].hasOwnProperty(key)) {
-                                        texts[i] = texts[i].replace(key, fines[i][key]);
-                                        //texts.push(key + " -> " + fines[i][key]);
-                                    }
+                    }
+                    fines = FinesCalculator.getAlchohol(offense);
+                    for (var i = 0; i < fines.length; i++) {
+                        if(fines[i] === null){
+                        }
+                        else{
+                            for (var key in fines[i]) {
+                                if (fines[i].hasOwnProperty(key)) {
+                                    var s2 = texts[i].replace(key,fines[i][key])
+                                    texts[i] = s2;
                                 }
-                                //texts.push("WTF" + i);
                             }
                         }
                     }
                 }, function(err){
                     console.error(err);
                 });
-                fines = FinesCalculator.getAlchohol(offense);
                 break;
                 case "Speed":
                 // Blah
@@ -100,12 +97,10 @@ angular.module('starter.services', [])
 })
 .factory('OffenseTexts', function($cordovaSQLite) {
     db = window.openDatabase("test2", "1.0", "Test DB", 1000000);
+    var texts = [];
     return {
         getAlchohol: function(offense) {
-            var texts = [];
-
             var query = "SELECT * FROM Texts a INNER JOIN Alchohol b ON a.id=b.text_id_1 or a.id = b.text_id_2 or a.id = b.text_id_3 WHERE b.intoxication=?";
-            //var query = "SELECT * from Alchohol where intoxication = ?";
             $cordovaSQLite.execute(db, query, [offense.intoxication]).then(function(res){
                 if(res.rows.length > 0){
                     for(var i = 0; i < res.rows.length; i++){
@@ -131,7 +126,6 @@ angular.module('starter.services', [])
                 fines.push({"#TOTALAMOUNT7#" : 100, "#TOTALAMOUNT2#": 50});
                 break;
                 default:
-
             }
 
             return fines;
