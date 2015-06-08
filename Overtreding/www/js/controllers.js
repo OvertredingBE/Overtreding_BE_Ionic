@@ -140,11 +140,8 @@ angular.module('starter.controllers', [])
 
 })
 .controller("AlcoholController", function($scope,  $ionicPopup, Offenses, Questions, $location) {
-    var offense = {licence: -1,
-        age:-1,
-        driver:-1,
-        intoxication:-1,
-        type:"Alchohol"};
+    var offense = null;
+
         $scope.menu = Questions.getMenu();
 
         $scope.subgroupTapped = function(item, group, index) {
@@ -161,7 +158,7 @@ angular.module('starter.controllers', [])
                 offense.driver = index;
                 break;
                 case 3:
-                offense.intoxication = index;
+                //offense["intoxication"] = index;
                 break;
                 default:
             }
@@ -182,22 +179,30 @@ angular.module('starter.controllers', [])
             $location.path("/result");
         }
         $scope.menuItemTapped = function(menuItem){
-            var names =[];// ["RIJBEWIJS","LEEFTIJD", "BESTRUUDER", "INTOXICATIE"];
+            var groupNames =[];
             var subgroups = [];
+            var questionsArr = Questions.getQuestions(menuItem);
+            groupNames = questionsArr[0];
+            subgroups = questionsArr[1];
 
             switch (menuItem) {
                 case "Alchohol":
-                var groups = Questions.getQuestions();
-                names = groups[0];
-                subgroups = groups[1];
-                break;
+                    offense =  {
+                        type:"Alchohol",
+                        licence: -1,
+                        age:-1,
+                        driver:-1,
+                        "intoxication":-1,
+                        };
+                    break;
                 default:
+
             }
             $scope.groups = [];
             for (var i=0; i<names.length; i++) {
                 $scope.groups[i] = {
                     id: i,
-                    name: names[i],
+                    name: groupNames[i],
                     items: []
                 };
                 for (var j=0; j<subgroups[i].length; j++) {
