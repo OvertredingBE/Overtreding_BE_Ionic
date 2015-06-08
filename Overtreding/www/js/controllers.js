@@ -111,6 +111,18 @@ angular.module('starter.controllers', [])
         $scope.items = Rights.drugRights();
     }
 })
+.controller("DashCtrl", function($scope, Rights) {
+    $scope.items = Rights.alchRights();
+
+    $scope.showAlch = function() {
+        $scope.items = [];
+        $scope.items = Rights.alchRights();
+    }
+    $scope.showDrugs = function() {
+        $scope.items = [];
+        $scope.items = Rights.drugRights();
+    }
+})
 .controller("ContactController", function($scope, Rights, $ionicPopup) {
     $scope.showConfirm = function() {
         var confirmPopup = $ionicPopup.confirm({
