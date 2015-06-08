@@ -1,6 +1,11 @@
 <ion-view view-title="Dashboard">
     <ion-content>
         <ion-list>
+            <div ng-repeat="menuItem in menu">
+                <ion-item class="item-stable" ng-click="menuItemTapped(menuItem)">
+                    {{menuItem}}
+                </ion-item>
+            </div>
             <div ng-repeat="group in groups">
                 <ion-item class="item-stable"
                 ng-click="toggleGroup(group)"

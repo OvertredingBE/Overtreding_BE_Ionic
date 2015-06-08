@@ -16,42 +16,6 @@ app.run(function($ionicPlatform) {
 
 .config(function($stateProvider, $urlRouterProvider){
     $stateProvider
-    .state('tab', {
-    url: "/tab",
-    abstract: true,
-    templateUrl: "templates/tabs.html"
-  })
-
-  // Each tab has its own nav history stack:
-
-  .state('tab.dash', {
-    url: '/dash',
-    views: {
-      'tab-dash': {
-        templateUrl: 'templates/tab-dash.html',
-        controller: 'DashCtrl'
-      }
-    }
-  })
-
-  .state('tab.chats', {
-      url: '/chats',
-      views: {
-        'tab-chats': {
-          templateUrl: 'templates/config.html',
-          controller: 'ConfigController'
-        }
-      }
-    })
-    .state('tab.chat-detail', {
-      url: '/chats/:chatId',
-      views: {
-        'tab-chats': {
-          templateUrl: 'templates/chat-detail.html',
-          controller: 'ChatDetailCtrl'
-        }
-      }
-    })
     .state("config", {
         url:"/config",
         templateUrl: "templates/config.html",
@@ -87,5 +51,5 @@ app.run(function($ionicPlatform) {
         templateUrl: "templates/result-detail.html",
         controller: "ResultDetailController"
     });
-    $urlRouterProvider.otherwise("/config");//"/tab/dash");
+    $urlRouterProvider.otherwise("/config");
 });

@@ -139,39 +139,13 @@ angular.module('starter.controllers', [])
     };
 
 })
-.controller("AlcoholController", function($scope,  $ionicPopup, Offenses, $location) {
+.controller("AlcoholController", function($scope,  $ionicPopup, Offenses, Questions, $location) {
     var offense = {licence: -1,
         age:-1,
         driver:-1,
         intoxication:-1,
         type:"Alchohol"};
-
-        var names = ["RIJBEWIJS","LEEFTIJD", "BESTRUUDER", "INTOXICATIE"];
-        var subgroups = [['Ik bezit mijn rijbewijs minder dan 2 jaar', "Ik bezit mijn rijbewijs langer dan 2 jaar"],
-        ["Jonger dan 18 jaar","18 jaar of ouder"],
-        ["Professionele bestuurder", "Gewone bestuurder"],
-        ["0,20 - 0,50 promille",
-        "0,50 – 0,80 Promille",
-        "0,80 – 1,00 Promille",
-        "1,00 – 1,14 Promille",
-        "1,14 – 1,48 Promille",
-        "1,48 - ... Promille",
-        "Weigering ademtest of analyse zonder wettige reden",
-        "Dronkenschap",
-        "Eerder betrapt op alcoholintoxicatie van meer dan 0,8 Promille of dronkenschap en nu opnieuw betrapt op alcoholintoxicatie van meerdan 0,8 Promille.",
-        "Eerder betrapt op alcoholintoxicatie van meer dan 0,8 Promille of dronkenschap en nu opnieuw betrapt op dronkenschap"]];
-
-        $scope.groups = [];
-        for (var i=0; i<names.length; i++) {
-            $scope.groups[i] = {
-                id: i,
-                name: names[i],
-                items: []
-            };
-            for (var j=0; j<subgroups[i].length; j++) {
-                $scope.groups[i].items.push(subgroups[i][j]);
-            }
-        }
+        $scope.menu = Questions.getMenu();
 
         $scope.subgroupTapped = function(item, group, index) {
             $scope.groups[group.id].name =  item;
@@ -206,6 +180,31 @@ angular.module('starter.controllers', [])
         $scope.doStuff = function(){
             Offenses.add(offense);
             $location.path("/result");
+        }
+        $scope.menuItemTapped = function(menuItem){
+            var names =[];// ["RIJBEWIJS","LEEFTIJD", "BESTRUUDER", "INTOXICATIE"];
+            var subgroups = [];
+
+            switch (menuItem) {
+                case "Alchohol":
+                var groups = Questions.getQuestions();
+                names = groups[0];
+                subgroups = groups[1];
+                break;
+                default:
+            }
+            $scope.groups = [];
+            for (var i=0; i<names.length; i++) {
+                $scope.groups[i] = {
+                    id: i,
+                    name: names[i],
+                    items: []
+                };
+                for (var j=0; j<subgroups[i].length; j++) {
+                    $scope.groups[i].items.push(subgroups[i][j]);
+                }
+            }
+
         }
 
     })
