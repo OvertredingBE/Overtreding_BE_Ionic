@@ -50,6 +50,31 @@ angular.module('starter.services', [])
         },
         findById: function(offenseId){
             return offenses[offenseId];
+        },
+        createDefault: function(type){
+            var offense = null;
+            switch (type) {
+                case "Alchohol":
+                offense =  {
+                    type:"Alchohol",
+                    licence: -1,
+                    age:-1,
+                    driver:-1,
+                    "intoxication":-1,
+                };
+                break;
+                case "Drugs":
+                offense =  {
+                    type:"Drugs",
+                    licence: -1,
+                    age:-1,
+                    driver:-1,
+                    "intoxication":-1,
+                };
+                break;
+                default:
+            }
+            return offense;
         }
     };
 })
@@ -86,7 +111,7 @@ angular.module('starter.services', [])
                     console.error(err);
                 });
                 break;
-                case "Speed":
+                case "Drugs":
                 // Blah
                 break;
             }

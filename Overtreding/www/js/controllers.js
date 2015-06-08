@@ -111,6 +111,7 @@ angular.module('starter.controllers', [])
         $scope.items = Rights.drugRights();
     }
 })
+
 .controller("DashCtrl", function($scope, Rights) {
     $scope.items = Rights.alchRights();
 
@@ -123,6 +124,7 @@ angular.module('starter.controllers', [])
         $scope.items = Rights.drugRights();
     }
 })
+
 .controller("ContactController", function($scope, Rights, $ionicPopup) {
     $scope.showConfirm = function() {
         var confirmPopup = $ionicPopup.confirm({
@@ -139,84 +141,109 @@ angular.module('starter.controllers', [])
     };
 
 })
+
 .controller("AlcoholController", function($scope,  $ionicPopup, Offenses, Questions, $location) {
     var offense = null;
+    var currentType = null;
+    $scope.menu = Questions.getMenu();
 
-        $scope.menu = Questions.getMenu();
-
-        $scope.subgroupTapped = function(item, group, index) {
-            $scope.groups[group.id].name =  item;
-
-            switch (group.id) {
-                case 0:
-                offense.licence = index;
-                break;
-                case 1:
-                offense.age = index;
-                break;
-                case 2:
-                offense.driver = index;
-                break;
-                case 3:
-                //offense["intoxication"] = index;
-                break;
-                default:
-            }
-        };
-        $scope.toggleGroup = function(group) {
-
-            if ($scope.isGroupShown(group)) {
-                $scope.shownGroup = null;
-            } else {
-                $scope.shownGroup = group;
-            }
-        };
-        $scope.isGroupShown = function(group) {
-            return $scope.shownGroup === group;
-        };
-        $scope.doStuff = function(){
-            Offenses.add(offense);
-            $location.path("/result");
-        }
-        $scope.menuItemTapped = function(menuItem){
-            var groupNames =[];
-            var subgroups = [];
-            var questionsArr = Questions.getQuestions(menuItem);
-            groupNames = questionsArr[0];
-            subgroups = questionsArr[1];
-
-            switch (menuItem) {
+    $scope.subgroupTapped = function(item, group, index) {
+        $scope.groups[group.id].name =  item;
+        if(offense.hasOwnProperty("type")){
+            switch (offense["type"]) {
                 case "Alchohol":
-                    offense =  {
-                        type:"Alchohol",
-                        licence: -1,
-                        age:-1,
-                        driver:-1,
-                        "intoxication":-1,
-                        };
+                var confirmPopup = $ionicPopup.confirm({
+                    title: 'Alch',
+                    template: 'Send email ?'
+                });
+                confirmPopup.then(function(res) {
+                    if(res) {
+                        console.log('You are sure');
+                    } else {
+                        console.log('You are not sure');
+                    }
+                });
                     break;
+                    case "Drugs":
+                    var confirmPopup = $ionicPopup.confirm({
+                        title: 'Drugs',
+                        template: 'Send email ?'
+                    });
+                    confirmPopup.then(function(res) {
+                        if(res) {
+                            console.log('You are sure');
+                        } else {
+                            console.log('You are not sure');
+                        }
+                    });
+                        break;
                 default:
 
             }
-            $scope.groups = [];
-            for (var i=0; i<names.length; i++) {
-                $scope.groups[i] = {
-                    id: i,
-                    name: groupNames[i],
-                    items: []
-                };
-                for (var j=0; j<subgroups[i].length; j++) {
-                    $scope.groups[i].items.push(subgroups[i][j]);
-                }
-            }
-
         }
+        switch (group.id) {
+            case 0:
+            offense.licence = index;
+            break;
+            case 1:
+            offense.age = index;
+            break;
+            case 2:
+            offense.driver = index;
+            break;
+            case 3:
+            offense["intoxication"] = index;
+            break;
+            default:
+        }
+    };
+    $scope.toggleGroup = function(group) {
 
-    })
-    .controller("ResultController", function($scope, $ionicPopup, Offenses) {
-        $scope.items = Offenses.all();
-    })
-    .controller("ResultDetailController", function($scope,$stateParams, $ionicPopup, Offenses, ResultTexts) {
-        var offense = Offenses.findById($stateParams.offenseId);
-        $scope.items = ResultTexts.getTexts(offense);
-    });
+        if ($scope.isGroupShown(group)) {
+            $scope.shownGroup = null;
+        } else {
+            $scope.shownGroup = group;
+        }
+    };
+    $scope.isGroupShown = function(group) {
+        return $scope.shownGroup === group;
+    };
+    $scope.doStuff = function(){
+        Offenses.add(offense);
+        $location.path("/result");
+    }
+    $scope.addOffense = function(){
+        Offenses.add(offense);
+        $scope.offenses = Offenses.all();
+    }
+    $scope.menuItemTapped = function(menuItem){
+        offense = Offenses.createDefault(menuItem);
+
+        var groupNames =[];
+        var subgroups = [];
+        var questionsArr = Questions.getQuestions(menuItem);
+        groupNames = questionsArr[0];
+        subgroups = questionsArr[1];
+        $scope.groups = [];
+
+        for (var i=0; i<groupNames.length; i++) {
+            $scope.groups[i] = {
+                id: i,
+                name: groupNames[i],
+                items: []
+            };
+            for (var j=0; j<subgroups[i].length; j++) {
+                $scope.groups[i].items.push(subgroups[i][j]);
+            }
+        }
+    }
+})
+
+.controller("ResultController", function($scope, $ionicPopup, Offenses) {
+    $scope.items = Offenses.all();
+})
+
+.controller("ResultDetailController", function($scope,$stateParams, $ionicPopup, Offenses, ResultTexts) {
+    var offense = Offenses.findById($stateParams.offenseId);
+    $scope.items = ResultTexts.getTexts(offense);
+});
