@@ -183,16 +183,16 @@ angular.module('starter.services', [])
                 var groups = [];
                 groups.push(names);
                 groups.push(subgroups);
-                    break;
-                    case "Drugs":
-                    var names = ["RIJBEWIJS","LEEFTIJD", "TYPE OVERTREDING"];
-                    var subgroups = [['Ik bezit mijn rijbewijs minder dan 2 jaar', "Ik bezit mijn rijbewijs langer dan 2 jaar"],
-                    ["Jonger dan 18 jaar","18 jaar of ouder"],
-                    ["Blood test", "Refused test"]];
-                    var groups = [];
-                    groups.push(names);
-                    groups.push(subgroups);
-                        break;
+                break;
+                case "Drugs":
+                var names = ["RIJBEWIJS","LEEFTIJD", "TYPE OVERTREDING"];
+                var subgroups = [['Ik bezit mijn rijbewijs minder dan 2 jaar', "Ik bezit mijn rijbewijs langer dan 2 jaar"],
+                ["Jonger dan 18 jaar","18 jaar of ouder"],
+                ["Blood test", "Refused test"]];
+                var groups = [];
+                groups.push(names);
+                groups.push(subgroups);
+                break;
                 default:
 
             }
