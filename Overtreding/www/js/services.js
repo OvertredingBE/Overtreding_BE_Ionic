@@ -67,8 +67,7 @@ angular.module('starter.services', [])
                 offense =  {
                     licence: -1,
                     age:-1,
-                    driver:-1,
-                    "intoxication":-1,
+                    blood_test:-1,
                     type:"Drugs"
                 };
                 break;
@@ -97,7 +96,18 @@ angular.module('starter.services', [])
                 }
                 break;
                 case "Drugs":
-
+                switch (groupId) {
+                    case 0:
+                    fieldName = "licence";
+                    break;
+                    case 1:
+                    fieldName = "age";
+                    break;
+                    case 2:
+                    fieldName = "blood_test";
+                    break;
+                    default:
+                }
                 break;
                 default:
             }
@@ -181,7 +191,29 @@ angular.module('starter.services', [])
                 });
                 break;
                 case "Drugs":
-                // Blah
+                var query = "SELECT * FROM Texts a INNER JOIN Drugs b ON a.id=b.text_id_1 or a.id = b.text_id_2 or a.id = b.text_id_3";
+                $cordovaSQLite.execute(db, query, []).then(function(res){
+                    if(res.rows.length > 0){
+                        for(var i = 0; i < res.rows.length; i++){
+                            texts.push(res.rows.item(i).body);
+                        }
+                    }
+                    fines = FinesCalculator.getAlchohol(offense);
+                    for (var i = 0; i < fines.length; i++) {
+                        if(fines[i] === null){
+                        }
+                        else{
+                            for (var key in fines[i]) {
+                                if (fines[i].hasOwnProperty(key)) {
+                                    var s2 = texts[i].replace(key,fines[i][key])
+                                    texts[i] = s2;
+                                }
+                            }
+                        }
+                    }
+                }, function(err){
+                    console.error(err);
+                })
                 break;
             }
 

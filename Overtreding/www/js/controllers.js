@@ -19,6 +19,8 @@ angular.module('starter.controllers', [])
                 tx.executeSql("CREATE TABLE IF NOT EXISTS Rights(id integer primary key, type integer, body text)");
                 tx.executeSql("DROP TABLE IF EXISTS Alchohol");
                 tx.executeSql("CREATE TABLE IF NOT EXISTS Alchohol(id integer primary key, intoxication integer, text_id_1 integer, text_id_2 integer, text_id_3 integer)");
+                tx.executeSql("DROP TABLE IF EXISTS Drugs");
+                tx.executeSql("CREATE TABLE IF NOT EXISTS Drugs(id integer primary key, text_id_1 integer, text_id_2 integer, text_id_3 integer)");
             });
 
             var items = resp.data.texts;
@@ -43,6 +45,14 @@ angular.module('starter.controllers', [])
                 $cordovaSQLite.execute(db, "INSERT INTO Alchohol (intoxication, text_id_1,text_id_2,text_id_3) VALUES (?,?,?,?)", [intoxication, text_id_1, text_id_2, text_id_3]);
             }
 
+            var items = resp.data.drugs;
+            for(var i = 0; i < items.length; i++){
+                var text_id_1 = items[i].text_id_1;
+                var text_id_2 = items[i].text_id_2;
+                var text_id_3 = items[i].text_id_3;
+                $cordovaSQLite.execute(db, "INSERT INTO Drugs (text_id_1,text_id_2,text_id_3) VALUES (?,?,?)", [text_id_1, text_id_2, text_id_3]);
+            }
+
             $scope.succ = resp.statusText;
             $scope.log = items.length;
 
@@ -50,6 +60,7 @@ angular.module('starter.controllers', [])
             console.error('ERR', err);
         });
     }
+
     $scope.doStuff = function(){
     }
 })
@@ -77,24 +88,12 @@ angular.module('starter.controllers', [])
     $scope.showAlch = function() {
         $scope.items = [];
         $scope.items = Rights.alchRights();
-    }
+    };
+
     $scope.showDrugs = function() {
         $scope.items = [];
         $scope.items = Rights.drugRights();
-    }
-})
-
-.controller("DashCtrl", function($scope, Rights) {
-    $scope.items = Rights.alchRights();
-
-    $scope.showAlch = function() {
-        $scope.items = [];
-        $scope.items = Rights.alchRights();
-    }
-    $scope.showDrugs = function() {
-        $scope.items = [];
-        $scope.items = Rights.drugRights();
-    }
+    };
 })
 
 .controller("ContactController", function($scope, Rights, $ionicPopup) {
@@ -111,7 +110,6 @@ angular.module('starter.controllers', [])
             }
         });
     };
-
 })
 
 .controller("AlcoholController", function($scope,  $ionicPopup, Offenses, Questions, $location) {
@@ -138,35 +136,14 @@ angular.module('starter.controllers', [])
                 $scope.groups[i].items.push(subgroups[i][j]);
             }
         }
-    }
+    };
 
     $scope.subgroupTapped = function(item, group, index) {
         $scope.groups[group.id].name =  item;
-
         var fieldName = Offenses.getFieldName(group.id, offense["type"]);
-        var confirmPopup = $ionicPopup.confirm({
-            title: fieldName,
-            template: 'Send email ?'
-        });
-        confirmPopup.then(function(res) {
-            if(res) {
-                console.log('You are sure');
-            } else {
-                console.log('You are not sure');
-            }
-        });
         offense[fieldName] = index;
-        switch (offense["type"]) {
-            case "Alchohol":
-                //get selected
-            break;
-            case "Drugs":
-
-            break;
-            default:
-
-        }
     };
+
     $scope.toggleGroup = function(group) {
 
         if ($scope.isGroupShown(group)) {
@@ -175,13 +152,16 @@ angular.module('starter.controllers', [])
             $scope.shownGroup = group;
         }
     };
+
     $scope.isGroupShown = function(group) {
         return $scope.shownGroup === group;
     };
+
     $scope.doStuff = function(){
         Offenses.add(offense);
         $location.path("/result");
-    }
+    };
+
     $scope.addOffense = function(){
         Offenses.add(offense);
         $scope.offenses = Offenses.all();
@@ -194,5 +174,6 @@ angular.module('starter.controllers', [])
 
 .controller("ResultDetailController", function($scope,$stateParams, $ionicPopup, Offenses, ResultTexts) {
     var offense = Offenses.findById($stateParams.offenseId);
+    $scope.items = [];
     $scope.items = ResultTexts.getTexts(offense);
 });
