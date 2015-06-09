@@ -31,15 +31,10 @@ app.run(function($ionicPlatform) {
         templateUrl: "templates/rights.html",
         controller: "RightsController"
     })
-    .state("alcohol", {
-        url:"/alcohol",
-        templateUrl: "templates/alcohol.html",
-        controller: "AlcoholController"
-    })
-    .state("contact", {
-        url:"/contact",
-        templateUrl: "templates/contact.html",
-        controller: "ContactController"
+    .state("calc-fine", {
+        url:"/calc-fine",
+        templateUrl: "templates/calc-fine.html",
+        controller: "CalcFineController"
     })
     .state("result", {
         url:"/result",
@@ -50,6 +45,11 @@ app.run(function($ionicPlatform) {
         url:"/result/:offenseId",
         templateUrl: "templates/result-detail.html",
         controller: "ResultDetailController"
+    })
+    .state("contact", {
+        url:"/contact",
+        templateUrl: "templates/contact.html",
+        controller: "ContactController"
     });
     $urlRouterProvider.otherwise("/config");
 });

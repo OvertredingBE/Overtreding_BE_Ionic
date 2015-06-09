@@ -7,6 +7,10 @@ angular.module('starter.controllers', [])
 .controller("ConfigController", function($scope, $ionicLoading, $cordovaSQLite, $location, $http,Offenses, $ionicPopup){
 
     if(window.cordova) {
+        $ionicLoading.show({
+          template: 'Loading...'
+        });
+        //$ionicLoading.show("Loading...");
         var db = null;
         $scope.items = [];
 
@@ -21,6 +25,8 @@ angular.module('starter.controllers', [])
                 tx.executeSql("CREATE TABLE IF NOT EXISTS Alchohol(id integer primary key, intoxication integer, text_id_1 integer, text_id_2 integer, text_id_3 integer)");
                 tx.executeSql("DROP TABLE IF EXISTS Drugs");
                 tx.executeSql("CREATE TABLE IF NOT EXISTS Drugs(id integer primary key, text_id_1 integer, text_id_2 integer, text_id_3 integer)");
+                tx.executeSql("DROP TABLE IF EXISTS Speed");
+                tx.executeSql("CREATE TABLE IF NOT EXISTS Speed(id integer primary key, exceed integer, road integer, text_id_1 integer, text_id_2 integer, text_id_3 integer)");
             });
 
             var items = resp.data.texts;
@@ -53,27 +59,40 @@ angular.module('starter.controllers', [])
                 $cordovaSQLite.execute(db, "INSERT INTO Drugs (text_id_1,text_id_2,text_id_3) VALUES (?,?,?)", [text_id_1, text_id_2, text_id_3]);
             }
 
+            var items = resp.data.speed;
+            for(var i = 0; i < items.length; i++){
+                var exceed = items[i].exceed;
+                var road = items[i].road;
+                var text_id_1 = items[i].text_id_1;
+                var text_id_2 = items[i].text_id_2;
+                var text_id_3 = items[i].text_id_3;
+                $cordovaSQLite.execute(db, "INSERT INTO Speed (exceed, road, text_id_1,text_id_2,text_id_3) VALUES (?, ?, ?,?,?)", [exceed, road, text_id_1, text_id_2, text_id_3]);
+            }
+
             $scope.succ = resp.statusText;
             $scope.log = items.length;
+            $ionicLoading.hide();
 
         }, function(err) {
             console.error('ERR', err);
         });
     }
 
-    $scope.doStuff = function(){
-    }
+    $scope.doStuff = function() {
+
+    };
 })
 
 .controller("HomeController", function($scope, $ionicPlatform, $cordovaSQLite, $http){
     $scope.items = [];
     db = window.openDatabase("test2", "1.0", "Test DB", 1000000);
+    $scope.items.push({id: "Test"});
     $ionicPlatform.ready(function(){
-        var query = "SELECT * FROM Texts";
+        var query = "SELECT * FROM Speed";
         $cordovaSQLite.execute(db, query, []).then(function(res){
             if(res.rows.length > 0){
                 for(var i = 0; i < res.rows.length; i++){
-                    $scope.items.push({id: res.rows.item(i).body});
+                    $scope.items.push({id: res.rows.item(i).exceed});
                 }
             }
         }, function(err){
@@ -112,7 +131,7 @@ angular.module('starter.controllers', [])
     };
 })
 
-.controller("AlcoholController", function($scope,  $ionicPopup, Offenses, Questions, $location) {
+.controller("CalcFineController", function($scope,  $ionicPopup, Offenses, Questions, $location) {
     var offense = null;
     var currentType = null;
     $scope.menu = Questions.getMenu();
