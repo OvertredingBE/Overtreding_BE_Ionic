@@ -161,6 +161,12 @@ angular.module('starter.controllers', [])
         $scope.groups[group.id].name =  item;
         var fieldName = Offenses.getFieldName(group.id, offense["type"]);
         offense[fieldName] = index;
+        if(offense["type"] == "Speed"){
+            var fieldName = Offenses.getFieldName(4, offense["type"]);
+            offense[fieldName] = 90;
+            var fieldName = Offenses.getFieldName(5, offense["type"]);
+            offense[fieldName] = 100;
+        }
     };
 
     $scope.toggleGroup = function(group) {

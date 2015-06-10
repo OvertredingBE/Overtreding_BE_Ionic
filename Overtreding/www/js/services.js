@@ -71,21 +71,36 @@ angular.module('starter.services', [])
                     type:"Drugs"
                 };
                 break;
+                case "Speed":
+                offense =  {
+                    licence: -1,
+                    age:-1,
+                    road:-1,
+                    speed_limit: 0,
+                    speed_driven: 0,
+                    speed_corrected: 0,
+                    type:"Speed"
+                };
+                break;
                 default:
             }
             return offense;
         },
         getFieldName: function(groupId, type){
             var fieldName = null;
+            switch (groupId) {
+                case 0:
+                fieldName = "licence";
+                break;
+                case 1:
+                fieldName = "age";
+                break;
+                default:
+
+            }
             switch (type) {
                 case "Alchohol":
                 switch (groupId) {
-                    case 0:
-                    fieldName = "licence";
-                    break;
-                    case 1:
-                    fieldName = "age";
-                    break;
                     case 2:
                     fieldName = "driver";
                     break;
@@ -97,14 +112,26 @@ angular.module('starter.services', [])
                 break;
                 case "Drugs":
                 switch (groupId) {
-                    case 0:
-                    fieldName = "licence";
-                    break;
-                    case 1:
-                    fieldName = "age";
-                    break;
                     case 2:
                     fieldName = "blood_test";
+                    break;
+                    default:
+                }
+                break;
+                case "Speed":
+                switch (groupId) {
+                    case 0:
+                    case 2:
+                    fieldName = "road";
+                    break;
+                    case 3:
+                    fieldName = "speed_limit";
+                    break;
+                    case 4:
+                    fieldName = "speed_driven";
+                    break;
+                    case 5:
+                    fieldName = "speed_corrected";
                     break;
                     default:
                 }
@@ -147,6 +174,16 @@ angular.module('starter.services', [])
                 var subgroups = [['Ik bezit mijn rijbewijs minder dan 2 jaar', "Ik bezit mijn rijbewijs langer dan 2 jaar"],
                 ["Jonger dan 18 jaar","18 jaar of ouder"],
                 ["Blood test", "Refused test"]];
+                var groups = [];
+                groups.push(names);
+                groups.push(subgroups);
+                break;
+                case "Speed":
+                var names = ["RIJBEWIJS","LEEFTIJD", "TYPE RUJBAAN", "SNEIHELDSLIMIET"];
+                var subgroups = [['Ik bezit mijn rijbewijs minder dan 2 jaar', "Ik bezit mijn rijbewijs langer dan 2 jaar"],
+                ["Jonger dan 18 jaar","18 jaar of ouder"],
+                ["Woonerf, zone 30, etc", "Andere wegen"],
+                ["10","20","30","40","50","60","70","80","90","100","110","120",]];
                 var groups = [];
                 groups.push(names);
                 groups.push(subgroups);
