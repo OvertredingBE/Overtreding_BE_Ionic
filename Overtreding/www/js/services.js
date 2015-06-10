@@ -252,18 +252,18 @@ angular.module('starter.services', [])
                 break;
                 case "Speed":
                 var exceed = FinesCalculator.calculateExceed(offense.speed_limit, offense.speed_corrected);
-                texts.push(exceed);
+                //texts.push(exceed);
 
-                // var query = "SELECT * FROM Texts a INNER JOIN Speed b ON a.id=b.text_id_1 OR a.id = b.text_id_2 OR a.id = b.text_id_3 WHERE b.exceed = ? AND b.road = ?";
-                // $cordovaSQLite.execute(db, query, [1,offense.road]).then(function(res){
-                //     if(res.rows.length > 0){
-                //         for(var i = 0; i < res.rows.length; i++){
-                //             texts.push(res.rows.item(i).body);
-                //         }
-                //     }
-                // }, function(err){
-                //     console.error(err);
-                // });
+                var query = "SELECT * FROM Texts a INNER JOIN Speed b ON a.id=b.text_id_1 OR a.id = b.text_id_2 OR a.id = b.text_id_3 WHERE b.exceed = ? AND b.road = ?";
+                $cordovaSQLite.execute(db, query, [exceed,offense.road]).then(function(res){
+                    if(res.rows.length > 0){
+                        for(var i = 0; i < res.rows.length; i++){
+                            texts.push(res.rows.item(i).body);
+                        }
+                    }
+                }, function(err){
+                    console.error(err);
+                });
                 break;
             }
 
@@ -271,26 +271,6 @@ angular.module('starter.services', [])
         }
     }
 })
-// .factory('OffenseTexts', function($cordovaSQLite) {
-//     db = window.openDatabase("test2", "1.0", "Test DB", 1000000);
-//     var texts = [];
-//     return {
-//         getAlchohol: function(offense) {
-//             var query = "SELECT * FROM Texts a INNER JOIN Alchohol b ON a.id=b.text_id_1 or a.id = b.text_id_2 or a.id = b.text_id_3 WHERE b.intoxication=?";
-//             $cordovaSQLite.execute(db, query, [offense.intoxication]).then(function(res){
-//                 if(res.rows.length > 0){
-//                     for(var i = 0; i < res.rows.length; i++){
-//                         texts.push(res.rows.item(i).body);
-//                     }
-//                 }
-//             }, function(err){
-//                 console.error(err);
-//             });
-//
-//             return texts;
-//         }
-//     };
-// })
 .factory('FinesCalculator', function($cordovaSQLite) {
     var fines = [];
     fines.push(null);
