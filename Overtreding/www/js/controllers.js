@@ -10,7 +10,6 @@ angular.module('starter.controllers', [])
         $ionicLoading.show({
           template: 'Loading...'
         });
-        //$ionicLoading.show("Loading...");
         var db = null;
         $scope.items = [];
 
@@ -66,7 +65,7 @@ angular.module('starter.controllers', [])
                 var text_id_1 = items[i].text_id_1;
                 var text_id_2 = items[i].text_id_2;
                 var text_id_3 = items[i].text_id_3;
-                $cordovaSQLite.execute(db, "INSERT INTO Speed (exceed, road, text_id_1,text_id_2,text_id_3) VALUES (?, ?, ?,?,?)", [exceed, road, text_id_1, text_id_2, text_id_3]);
+                $cordovaSQLite.execute(db, "INSERT INTO Speed (exceed, road, text_id_1,text_id_2,text_id_3) VALUES (?,?,?,?,?)", [exceed, road, text_id_1, text_id_2, text_id_3]);
             }
 
             $scope.succ = resp.statusText;
@@ -86,13 +85,12 @@ angular.module('starter.controllers', [])
 .controller("HomeController", function($scope, $ionicPlatform, $cordovaSQLite, $http){
     $scope.items = [];
     db = window.openDatabase("test2", "1.0", "Test DB", 1000000);
-    $scope.items.push({id: "Test"});
     $ionicPlatform.ready(function(){
-        var query = "SELECT * FROM Speed";
-        $cordovaSQLite.execute(db, query, []).then(function(res){
+        var query = "SELECT * FROM Texts a INNER JOIN Speed b ON a.id=b.text_id_1 OR a.id = b.text_id_2 OR a.id = b.text_id_3 WHERE b.exceed = ? AND b.road = ?";
+        $cordovaSQLite.execute(db, query, [0,0]).then(function(res){
             if(res.rows.length > 0){
                 for(var i = 0; i < res.rows.length; i++){
-                    $scope.items.push({id: res.rows.item(i).exceed});
+                    $scope.items.push({id: res.rows.item(i).body });
                 }
             }
         }, function(err){
@@ -163,7 +161,7 @@ angular.module('starter.controllers', [])
         offense[fieldName] = index;
         if(offense["type"] == "Speed"){
             var fieldName = Offenses.getFieldName(4, offense["type"]);
-            offense[fieldName] = 90;
+            offense[fieldName] = 50;
             var fieldName = Offenses.getFieldName(5, offense["type"]);
             offense[fieldName] = 100;
         }

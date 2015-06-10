@@ -96,7 +96,6 @@ angular.module('starter.services', [])
                 fieldName = "age";
                 break;
                 default:
-
             }
             switch (type) {
                 case "Alchohol":
@@ -120,7 +119,6 @@ angular.module('starter.services', [])
                 break;
                 case "Speed":
                 switch (groupId) {
-                    case 0:
                     case 2:
                     fieldName = "road";
                     break;
@@ -195,7 +193,7 @@ angular.module('starter.services', [])
         }
     }
 })
-.factory('ResultTexts', function($cordovaSQLite, OffenseTexts, FinesCalculator) {
+.factory('ResultTexts', function($cordovaSQLite, FinesCalculator) {
     var texts = [];
     var fines = [];
     var composedTexts = [];
@@ -252,33 +250,68 @@ angular.module('starter.services', [])
                     console.error(err);
                 })
                 break;
+                case "Speed":
+                var query = "SELECT * FROM Texts a INNER JOIN Speed b ON a.id=b.text_id_1 OR a.id = b.text_id_2 OR a.id = b.text_id_3 WHERE b.exceed = ? AND b.road = ?";
+                $cordovaSQLite.execute(db, query, [0,offense.road]).then(function(res){
+                    if(res.rows.length > 0){
+                        for(var i = 0; i < res.rows.length; i++){
+                            texts.push(res.rows.item(i).body);
+                        }
+                    }
+                }, function(err){
+                    console.error(err);
+                });
+                // var query = "SELECT * FROM Texts a INNER JOIN Drugs b ON a.id=b.text_id_1 or a.id = b.text_id_2 or a.id = b.text_id_3";
+                // $cordovaSQLite.execute(db, query, [offense.exceed]).then(function(res){
+                //     if(res.rows.length > 0){
+                //         for(var i = 0; i < res.rows.length; i++){
+                //             texts.push(res.rows.item(i).body);
+                //         }
+                //     }
+                //     fines = FinesCalculator.getAlchohol(offense);
+                //     for (var i = 0; i < fines.length; i++) {
+                //         if(fines[i] === null){
+                //         }
+                //         else{
+                //             for (var key in fines[i]) {
+                //                 if (fines[i].hasOwnProperty(key)) {
+                //                     var s2 = texts[i].replace(key,fines[i][key])
+                //                     texts[i] = s2;
+                //                 }
+                //             }
+                //         }
+                //     }
+                // }, function(err){
+                //     console.error(err);
+                // })
+                break;
             }
 
             return texts;
         }
     }
 })
-.factory('OffenseTexts', function($cordovaSQLite) {
-    db = window.openDatabase("test2", "1.0", "Test DB", 1000000);
-    var texts = [];
-    return {
-        getAlchohol: function(offense) {
-            var query = "SELECT * FROM Texts a INNER JOIN Alchohol b ON a.id=b.text_id_1 or a.id = b.text_id_2 or a.id = b.text_id_3 WHERE b.intoxication=?";
-            $cordovaSQLite.execute(db, query, [offense.intoxication]).then(function(res){
-                if(res.rows.length > 0){
-                    for(var i = 0; i < res.rows.length; i++){
-                        texts.push(res.rows.item(i).body);
-                    }
-                }
-            }, function(err){
-                console.error(err);
-            });
-
-            return texts;
-        }
-    };
-})
-.factory('FinesCalculator', function($cordovaSQLite, OffenseTexts) {
+// .factory('OffenseTexts', function($cordovaSQLite) {
+//     db = window.openDatabase("test2", "1.0", "Test DB", 1000000);
+//     var texts = [];
+//     return {
+//         getAlchohol: function(offense) {
+//             var query = "SELECT * FROM Texts a INNER JOIN Alchohol b ON a.id=b.text_id_1 or a.id = b.text_id_2 or a.id = b.text_id_3 WHERE b.intoxication=?";
+//             $cordovaSQLite.execute(db, query, [offense.intoxication]).then(function(res){
+//                 if(res.rows.length > 0){
+//                     for(var i = 0; i < res.rows.length; i++){
+//                         texts.push(res.rows.item(i).body);
+//                     }
+//                 }
+//             }, function(err){
+//                 console.error(err);
+//             });
+//
+//             return texts;
+//         }
+//     };
+// })
+.factory('FinesCalculator', function($cordovaSQLite) {
     var fines = [];
     fines.push(null);
     fines.push(null);
