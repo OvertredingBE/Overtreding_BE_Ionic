@@ -251,39 +251,19 @@ angular.module('starter.services', [])
                 })
                 break;
                 case "Speed":
-                var query = "SELECT * FROM Texts a INNER JOIN Speed b ON a.id=b.text_id_1 OR a.id = b.text_id_2 OR a.id = b.text_id_3 WHERE b.exceed = ? AND b.road = ?";
-                $cordovaSQLite.execute(db, query, [0,offense.road]).then(function(res){
-                    if(res.rows.length > 0){
-                        for(var i = 0; i < res.rows.length; i++){
-                            texts.push(res.rows.item(i).body);
-                        }
-                    }
-                }, function(err){
-                    console.error(err);
-                });
-                // var query = "SELECT * FROM Texts a INNER JOIN Drugs b ON a.id=b.text_id_1 or a.id = b.text_id_2 or a.id = b.text_id_3";
-                // $cordovaSQLite.execute(db, query, [offense.exceed]).then(function(res){
+                var exceed = FinesCalculator.calculateExceed(offense.speed_limit, offense.speed_corrected);
+                texts.push(exceed);
+
+                // var query = "SELECT * FROM Texts a INNER JOIN Speed b ON a.id=b.text_id_1 OR a.id = b.text_id_2 OR a.id = b.text_id_3 WHERE b.exceed = ? AND b.road = ?";
+                // $cordovaSQLite.execute(db, query, [1,offense.road]).then(function(res){
                 //     if(res.rows.length > 0){
                 //         for(var i = 0; i < res.rows.length; i++){
                 //             texts.push(res.rows.item(i).body);
                 //         }
                 //     }
-                //     fines = FinesCalculator.getAlchohol(offense);
-                //     for (var i = 0; i < fines.length; i++) {
-                //         if(fines[i] === null){
-                //         }
-                //         else{
-                //             for (var key in fines[i]) {
-                //                 if (fines[i].hasOwnProperty(key)) {
-                //                     var s2 = texts[i].replace(key,fines[i][key])
-                //                     texts[i] = s2;
-                //                 }
-                //             }
-                //         }
-                //     }
                 // }, function(err){
                 //     console.error(err);
-                // })
+                // });
                 break;
             }
 
@@ -325,6 +305,26 @@ angular.module('starter.services', [])
             }
 
             return fines;
+        },
+        calculateExceed: function(speedLimit, speedDriven){
+            speedLimit = (speedLimit+1)*10;
+            var difference = speedDriven - speedLimit;
+            if(difference > 40){
+                return 4;
+            }
+            if(difference > 30){
+                return 3;
+            }
+            if(difference > 20){
+                return 2;
+            }
+            if(difference > 10){
+                return 1;
+            }
+            if(difference > 1){
+                return 0;
+            }
+            return - 1;
         }
     }
 })
