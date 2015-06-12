@@ -271,19 +271,45 @@ angular.module('starter.services', [])
         }
     }
 })
-.factory('FinesCalculator', function($cordovaSQLite) {
+.factory('FinesCalculator', function($cordovaSQLite, Formulas) {
     var fines = [];
-    fines.push(null);
-    fines.push(null);
     return {
         getAlchohol: function(offense) {
-            switch (offense.intoxication) {
-                case 1:
-                fines.push({"#TOTALAMOUNT7#" : 100, "#TOTALAMOUNT2#": 50});
+            switch (offense.type) {
+                case "Alchohol":
+                fines.push(null);
+                fines.push(null);
+                var formulaIds = [];
+                formulaIds.push(2);
+                switch (offense.intoxication) {
+                    case 0:
+                    formulaIds.push(7);
+                    break;
+                    case 1:
+                    formulaIds.push(7);
+                    break;
+                    case 8:
+                    formulaIds.push(9);
+                    break;
+                    case 9:
+                    formulaIds.push(10);
+                    break;
+                    default:
+                    formulaIds.push(8);
+                }
+                var obj = {};
+
+                for (var i = 0; i < formulaIds.length; i++) {
+                    var toBeReplaced = "#TOTALAMOUNT" + formulaIds[i] + "#";
+                    obj[toBeReplaced] = Formulas.getResultForFormula(formulaIds[i]);
+
+                }
+                fines.push(obj);
+
                 break;
                 default:
-            }
 
+            }
             return fines;
         },
         calculateExceed: function(speedLimit, speedDriven){
@@ -305,6 +331,33 @@ angular.module('starter.services', [])
                 return 0;
             }
             return - 1;
+        }
+    }
+})
+.factory('Formulas', function($cordovaSQLite){
+    return{
+        getResultForFormula: function(formulaId){
+            switch (formulaId) {
+                case 1:
+                break;
+                case 2:
+                return "TEST2";
+                break;
+                case 7:
+                    return "TEST";
+                break;
+                default:
+
+            }
+        },
+        calc1: function(y){
+
+        },
+        calc2: function(y){
+
+        },
+        calc3: function(x, y, z){
+
         }
     }
 })
