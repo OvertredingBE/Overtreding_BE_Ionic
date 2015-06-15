@@ -3,7 +3,6 @@
 */
 angular.module('starter.services', [])
 .factory('Rights', function($cordovaSQLite) {
-
     var alchRights = [];
     var drugsRights = [];
     db = window.openDatabase("test2", "1.0", "Test DB", 1000000);
@@ -242,7 +241,7 @@ angular.module('starter.services', [])
                 break;
             }
 
-            fines = FinesCalculator.getAlchohol(offense);
+            fines = FinesCalculator.getFines(offense);
             for (var i = 0; i < fines.length; i++) {
                 if(fines[i] === null){
                 }
@@ -263,7 +262,7 @@ angular.module('starter.services', [])
 .factory('FinesCalculator', function($cordovaSQLite, Formulas) {
     var fines = [];
     return {
-        getAlchohol: function(offense) {
+        getFines: function(offense) {
             switch (offense.type) {
                 case "Alchohol":
                 fines.push(null);
@@ -272,26 +271,14 @@ angular.module('starter.services', [])
                 formulaIds.push(2);
                 switch (offense.intoxication) {
                     case 0:
-                    formulaIds.push(7);
-                    break;
                     case 1:
                     formulaIds.push(7);
                     break;
                     case 2:
-                    formulaIds.push(8);
-                    break;
                     case 3:
-                    formulaIds.push(8);
-                    break;
                     case 4:
-                    formulaIds.push(8);
-                    break;
                     case 5:
-                    formulaIds.push(8);
-                    break;
                     case 6:
-                    formulaIds.push(8);
-                    break;
                     case 7:
                     formulaIds.push(8);
                     break;
@@ -307,7 +294,7 @@ angular.module('starter.services', [])
 
                 for (var i = 0; i < formulaIds.length; i++) {
                     var toBeReplaced = "#TOTALAMOUNT" + formulaIds[i] + "#";
-                    obj[toBeReplaced] = Formulas.getResultForFormula(formulaIds[i]);
+                    obj[toBeReplaced] = Formulas.getResultForFormula(formulaIds[i], offense);
 
                 }
                 fines.push(obj);
@@ -342,7 +329,7 @@ angular.module('starter.services', [])
 })
 .factory('Formulas', function($cordovaSQLite){
     return{
-        getResultForFormula: function(formulaId){
+        getResultForFormula: function(formulaId, offense){
             switch (formulaId) {
                 case 1:
                 return calc1(10) + " tot " + calc1(500);
@@ -351,12 +338,15 @@ angular.module('starter.services', [])
                 return calc2(25);
                 break;
                 case 3:
+                return calc3(50, 10, 10);
                 break;
                 case 4:
+                return calc3(60,10, 10);
                 break;
                 case 5:
+                return calc3(50,5, 10);
                 break;
-                case 6:
+                return calc3(60,5, 10);
                 break;
                 case 7:
                 return calc1(25) + " tot " + calc1(500);
