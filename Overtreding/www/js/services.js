@@ -196,9 +196,10 @@ angular.module('starter.services', [])
 .factory('ResultTexts', function($cordovaSQLite, FinesCalculator) {
     var texts = [];
     var fines = [];
-    var composedTexts = [];
     return {
         getTexts: function(offense) {
+            texts.length = 0;
+            fines.length = 0;
             switch (offense.type) {
                 case "Alchohol":
                 var query = "SELECT * FROM Texts a INNER JOIN Alchohol b ON a.id=b.text_id_1 or a.id = b.text_id_2 or a.id = b.text_id_3 WHERE b.intoxication=?";
@@ -208,19 +209,7 @@ angular.module('starter.services', [])
                             texts.push(res.rows.item(i).body);
                         }
                     }
-                    fines = FinesCalculator.getAlchohol(offense);
-                    for (var i = 0; i < fines.length; i++) {
-                        if(fines[i] === null){
-                        }
-                        else{
-                            for (var key in fines[i]) {
-                                if (fines[i].hasOwnProperty(key)) {
-                                    var s2 = texts[i].replace(key,fines[i][key])
-                                    texts[i] = s2;
-                                }
-                            }
-                        }
-                    }
+
                 }, function(err){
                     console.error(err);
                 });
@@ -233,26 +222,12 @@ angular.module('starter.services', [])
                             texts.push(res.rows.item(i).body);
                         }
                     }
-                    fines = FinesCalculator.getAlchohol(offense);
-                    for (var i = 0; i < fines.length; i++) {
-                        if(fines[i] === null){
-                        }
-                        else{
-                            for (var key in fines[i]) {
-                                if (fines[i].hasOwnProperty(key)) {
-                                    var s2 = texts[i].replace(key,fines[i][key])
-                                    texts[i] = s2;
-                                }
-                            }
-                        }
-                    }
                 }, function(err){
                     console.error(err);
                 })
                 break;
                 case "Speed":
                 var exceed = FinesCalculator.calculateExceed(offense.speed_limit, offense.speed_corrected);
-                //texts.push(exceed);
 
                 var query = "SELECT * FROM Texts a INNER JOIN Speed b ON a.id=b.text_id_1 OR a.id = b.text_id_2 OR a.id = b.text_id_3 WHERE b.exceed = ? AND b.road = ?";
                 $cordovaSQLite.execute(db, query, [exceed,offense.road]).then(function(res){
@@ -267,6 +242,20 @@ angular.module('starter.services', [])
                 break;
             }
 
+            fines = FinesCalculator.getAlchohol(offense);
+            for (var i = 0; i < fines.length; i++) {
+                if(fines[i] === null){
+                }
+                else{
+                    for (var key in fines[i]) {
+                        if (fines[i].hasOwnProperty(key)) {
+                            texts.push(key + " -> " + fines[i][key])
+                            // var s2 = texts[i].replace(key,fines[i][key])
+                            // texts[i] = s2;
+                        }
+                    }
+                }
+            }
             return texts;
         }
     }
@@ -288,6 +277,24 @@ angular.module('starter.services', [])
                     case 1:
                     formulaIds.push(7);
                     break;
+                    case 2:
+                    formulaIds.push(8);
+                    break;
+                    case 3:
+                    formulaIds.push(8);
+                    break;
+                    case 4:
+                    formulaIds.push(8);
+                    break;
+                    case 5:
+                    formulaIds.push(8);
+                    break;
+                    case 6:
+                    formulaIds.push(8);
+                    break;
+                    case 7:
+                    formulaIds.push(8);
+                    break;
                     case 8:
                     formulaIds.push(9);
                     break;
@@ -295,7 +302,6 @@ angular.module('starter.services', [])
                     formulaIds.push(10);
                     break;
                     default:
-                    formulaIds.push(8);
                 }
                 var obj = {};
 
@@ -339,25 +345,42 @@ angular.module('starter.services', [])
         getResultForFormula: function(formulaId){
             switch (formulaId) {
                 case 1:
+                return calc1(10) + " tot " + calc1(500);
                 break;
                 case 2:
-                return "TEST2";
+                return calc2(25);
+                break;
+                case 3:
+                break;
+                case 4:
+                break;
+                case 5:
+                break;
+                case 6:
                 break;
                 case 7:
-                    return "TEST";
+                return calc1(25) + " tot " + calc1(500);
+                break;
+                case 8:
+                return calc1(200) + " tot " + calc1(2000);
+                break;
+                case 9:
+                return calc1(400) + " tot " + calc1(5000);
+                break;
+                case 10:
+                return calc1(800) + " tot " + calc1(10000);
                 break;
                 default:
-
             }
-        },
-        calc1: function(y){
-
-        },
-        calc2: function(y){
-
-        },
-        calc3: function(x, y, z){
-
         }
     }
+    function calc1(y){
+        return y*6 + 100;
+    };
+    function calc2(y){
+        return y*6;;
+    };
+    function calc3(y){
+        return y + x*z;
+    };
 })

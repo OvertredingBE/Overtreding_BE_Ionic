@@ -6,80 +6,80 @@ angular.module('starter.controllers', [])
 
 .controller("ConfigController", function($scope, $ionicLoading, $cordovaSQLite, $location, $http,Offenses, $ionicPopup){
 
-    // if(window.cordova) {
-    //     $ionicLoading.show({
-    //       template: 'Loading...'
-    //     });
-    //     var db = null;
-    //     $scope.items = [];
-    //
-    //     $http.get('http://localhost/overtreding_api/v1/db').then(function(resp) {
-    //         db = window.openDatabase("test2", "1.0", "Test DB", 1000000);
-    //         db.transaction(function (tx) {
-    //             tx.executeSql("DROP TABLE IF EXISTS Texts");
-    //             tx.executeSql("CREATE TABLE IF NOT EXISTS Texts(id integer primary key, body text)");
-    //             tx.executeSql("DROP TABLE IF EXISTS Rights");
-    //             tx.executeSql("CREATE TABLE IF NOT EXISTS Rights(id integer primary key, type integer, body text)");
-    //             tx.executeSql("DROP TABLE IF EXISTS Alchohol");
-    //             tx.executeSql("CREATE TABLE IF NOT EXISTS Alchohol(id integer primary key, intoxication integer, text_id_1 integer, text_id_2 integer, text_id_3 integer)");
-    //             tx.executeSql("DROP TABLE IF EXISTS Drugs");
-    //             tx.executeSql("CREATE TABLE IF NOT EXISTS Drugs(id integer primary key, text_id_1 integer, text_id_2 integer, text_id_3 integer)");
-    //             tx.executeSql("DROP TABLE IF EXISTS Speed");
-    //             tx.executeSql("CREATE TABLE IF NOT EXISTS Speed(id integer primary key, exceed integer, road integer, text_id_1 integer, text_id_2 integer, text_id_3 integer)");
-    //         });
-    //
-    //         var items = resp.data.texts;
-    //         for(var i = 0; i < items.length; i++){
-    //             var textBody = items[i].body;
-    //             $cordovaSQLite.execute(db, "INSERT INTO Texts (body) VALUES (?)", [textBody]);
-    //         }
-    //
-    //         var items = resp.data.rights;
-    //         for(var i = 0; i < items.length; i++){
-    //             var textBody = items[i].body;
-    //             var type = items[i].type;
-    //             $cordovaSQLite.execute(db, "INSERT INTO Rights (type, body) VALUES (?,?)", [type, textBody]);
-    //         }
-    //
-    //         var items = resp.data.alcohol;
-    //         for(var i = 0; i < items.length; i++){
-    //             var intoxication = items[i].intoxication;
-    //             var text_id_1 = items[i].text_id_1;
-    //             var text_id_2 = items[i].text_id_2;
-    //             var text_id_3 = items[i].text_id_3;
-    //             $cordovaSQLite.execute(db, "INSERT INTO Alchohol (intoxication, text_id_1,text_id_2,text_id_3) VALUES (?,?,?,?)", [intoxication, text_id_1, text_id_2, text_id_3]);
-    //         }
-    //
-    //         var items = resp.data.drugs;
-    //         for(var i = 0; i < items.length; i++){
-    //             var text_id_1 = items[i].text_id_1;
-    //             var text_id_2 = items[i].text_id_2;
-    //             var text_id_3 = items[i].text_id_3;
-    //             $cordovaSQLite.execute(db, "INSERT INTO Drugs (text_id_1,text_id_2,text_id_3) VALUES (?,?,?)", [text_id_1, text_id_2, text_id_3]);
-    //         }
-    //
-    //         var items = resp.data.speed;
-    //         for(var i = 0; i < items.length; i++){
-    //             var exceed = items[i].exceed;
-    //             var road = items[i].road;
-    //             var text_id_1 = items[i].text_id_1;
-    //             var text_id_2 = items[i].text_id_2;
-    //             var text_id_3 = items[i].text_id_3;
-    //             $cordovaSQLite.execute(db, "INSERT INTO Speed (exceed, road, text_id_1,text_id_2,text_id_3) VALUES (?,?,?,?,?)", [exceed, road, text_id_1, text_id_2, text_id_3]);
-    //         }
-    //
-    //         $scope.succ = resp.statusText;
-    //         $scope.log = items.length;
-    //         $ionicLoading.hide();
-    //
-    //     }, function(err) {
-    //         console.error('ERR', err);
-    //     });
-    // }
-    //
-    // $scope.doStuff = function() {
-    //
-    // };
+    if(window.cordova) {
+        $ionicLoading.show({
+          template: 'Loading...'
+        });
+        var db = null;
+        $scope.items = [];
+
+        $http.get('http://localhost/overtreding_api/v1/db').then(function(resp) {
+            db = window.openDatabase("test2", "1.0", "Test DB", 1000000);
+            db.transaction(function (tx) {
+                tx.executeSql("DROP TABLE IF EXISTS Texts");
+                tx.executeSql("CREATE TABLE IF NOT EXISTS Texts(id integer primary key, body text)");
+                tx.executeSql("DROP TABLE IF EXISTS Rights");
+                tx.executeSql("CREATE TABLE IF NOT EXISTS Rights(id integer primary key, type integer, body text)");
+                tx.executeSql("DROP TABLE IF EXISTS Alchohol");
+                tx.executeSql("CREATE TABLE IF NOT EXISTS Alchohol(id integer primary key, intoxication integer, text_id_1 integer, text_id_2 integer, text_id_3 integer)");
+                tx.executeSql("DROP TABLE IF EXISTS Drugs");
+                tx.executeSql("CREATE TABLE IF NOT EXISTS Drugs(id integer primary key, text_id_1 integer, text_id_2 integer, text_id_3 integer)");
+                tx.executeSql("DROP TABLE IF EXISTS Speed");
+                tx.executeSql("CREATE TABLE IF NOT EXISTS Speed(id integer primary key, exceed integer, road integer, text_id_1 integer, text_id_2 integer, text_id_3 integer)");
+            });
+
+            var items = resp.data.texts;
+            for(var i = 0; i < items.length; i++){
+                var textBody = items[i].body;
+                $cordovaSQLite.execute(db, "INSERT INTO Texts (body) VALUES (?)", [textBody]);
+            }
+
+            var items = resp.data.rights;
+            for(var i = 0; i < items.length; i++){
+                var textBody = items[i].body;
+                var type = items[i].type;
+                $cordovaSQLite.execute(db, "INSERT INTO Rights (type, body) VALUES (?,?)", [type, textBody]);
+            }
+
+            var items = resp.data.alcohol;
+            for(var i = 0; i < items.length; i++){
+                var intoxication = items[i].intoxication;
+                var text_id_1 = items[i].text_id_1;
+                var text_id_2 = items[i].text_id_2;
+                var text_id_3 = items[i].text_id_3;
+                $cordovaSQLite.execute(db, "INSERT INTO Alchohol (intoxication, text_id_1,text_id_2,text_id_3) VALUES (?,?,?,?)", [intoxication, text_id_1, text_id_2, text_id_3]);
+            }
+
+            var items = resp.data.drugs;
+            for(var i = 0; i < items.length; i++){
+                var text_id_1 = items[i].text_id_1;
+                var text_id_2 = items[i].text_id_2;
+                var text_id_3 = items[i].text_id_3;
+                $cordovaSQLite.execute(db, "INSERT INTO Drugs (text_id_1,text_id_2,text_id_3) VALUES (?,?,?)", [text_id_1, text_id_2, text_id_3]);
+            }
+
+            var items = resp.data.speed;
+            for(var i = 0; i < items.length; i++){
+                var exceed = items[i].exceed;
+                var road = items[i].road;
+                var text_id_1 = items[i].text_id_1;
+                var text_id_2 = items[i].text_id_2;
+                var text_id_3 = items[i].text_id_3;
+                $cordovaSQLite.execute(db, "INSERT INTO Speed (exceed, road, text_id_1,text_id_2,text_id_3) VALUES (?,?,?,?,?)", [exceed, road, text_id_1, text_id_2, text_id_3]);
+            }
+
+            $scope.succ = resp.statusText;
+            $scope.log = items.length;
+            $ionicLoading.hide();
+
+        }, function(err) {
+            console.error('ERR', err);
+        });
+    }
+
+    $scope.doStuff = function() {
+
+    };
 })
 
 .controller("HomeController", function($scope, $ionicPlatform, $cordovaSQLite, $http){
@@ -181,11 +181,11 @@ angular.module('starter.controllers', [])
     };
 
     $scope.doStuff = function(){
-        //Offenses.add(offense);
         $location.path("/result");
     };
 
     $scope.addOffense = function(){
+        $scope.groups = [];
         Offenses.add(offense);
         $scope.offenses = Offenses.all();
     }
