@@ -225,82 +225,60 @@ angular.module('starter.services', [])
                 });
                 break;
                 case "Speed":
-
+                var exceed = FinesCalculator.calculateExceed(offense.speed_limit, offense.speed_corrected);
+                texts.push(exceed);
+                var query = "SELECT * FROM Texts a INNER JOIN Speed b ON a.id=b.text_id_1 OR a.id = b.text_id_2 OR a.id = b.text_id_3 WHERE b.exceed = ? AND b.road = ?";
+                $cordovaSQLite.execute(db, query, [exceed, offense.road]).then(function(res){
+                    if(res.rows.length > 0){
+                        for(var i = 0; i < res.rows.length; i++){
+                            texts.push(res.rows.item(i).body);
+                        }
+                    }
+                }, function(err){
+                    console.error(err);
+                });
                 break;
                 default:
 
             }
-            // switch (offense.type) {
-            //     case "Alchohol":
-            //
-            // var query = "SELECT * FROM Texts a INNER JOIN Alchohol b ON a.id=b.text_id_1 or a.id = b.text_id_2 or a.id = b.text_id_3 WHERE b.intoxication=?";
-            // $cordovaSQLite.execute(db, query, [offense.intoxication]).then(function(res){
-            //     if(res.rows.length > 0){
-            //         for(var i = 0; i < res.rows.length; i++){
-            //             texts.push(res.rows.item(i).body);
-            //         }
-            //     }
-            //
-            // }, function(err){
-            //     console.error(err);
-            // });
-            //     break;
-            //     case "Drugs":
-                // var query = "SELECT * FROM Texts a INNER JOIN Drugs b ON a.id=b.text_id_1 or a.id = b.text_id_2 or a.id = b.text_id_3";
-                // $cordovaSQLite.execute(db, query, []).then(function(res){
-                //     if(res.rows.length > 0){
-                //         for(var i = 0; i < res.rows.length; i++){
-                //             texts.push(res.rows.item(i).body);
-                //         }
-                //     }
-                // }, function(err){
-                //     console.error(err);
-                // });
-            //     break;
-            //     case "Speed":
-            //     var exceed = FinesCalculator.calculateExceed(offense.speed_limit, offense.speed_corrected);
-            //
-            //     var query = "SELECT * FROM Texts a INNER JOIN Speed b ON a.id=b.text_id_1 OR a.id = b.text_id_2 OR a.id = b.text_id_3 WHERE b.exceed = ? AND b.road = ?";
-            //     $cordovaSQLite.execute(db, query, [exceed,offense.road]).then(function(res){
-            //         if(res.rows.length > 0){
-            //             for(var i = 0; i < res.rows.length; i++){
-            //                 texts.push(res.rows.item(i).body);
-            //             }
-            //         }
-            //     }, function(err){
-            //         console.error(err);
-            //     });
-            //     break;
-            //     default:
-            // }
+           fines = FinesCalculator.getFines(offense);
 
-            fines = FinesCalculator.getFines(offense);
-            for (var i = 0; i < fines.length; i++) {
-                if(fines[i] === null){
-                }
-                else{
-                    for (var key in fines[i]) {
-                        if (fines[i].hasOwnProperty(key)) {
-                            texts.push(key + " -> " + fines[i][key])
-                            // var s2 = texts[i].replace(key,fines[i][key])
-                            // texts[i] = s2;
-                        }
-                    }
+            for (var key in fines) {
+                if (fines.hasOwnProperty(key)) {
+                    texts.push(key + " -> " + fines[key])
                 }
             }
+
             return texts;
         }
     }
 })
 .factory('FinesCalculator', function($cordovaSQLite, Formulas) {
-    var fines = [];
+    var sd =  function(speedLimit, speedDriven){
+            speedLimit = (speedLimit+1)*10;
+            var difference = speedDriven - speedLimit;
+            if(difference > 40){
+                return 4;
+            }
+            if(difference > 30){
+                return 3;
+            }
+            if(difference > 20){
+                return 2;
+            }
+            if(difference > 10){
+                return 1;
+            }
+            if(difference > 1){
+                return 0;
+            }
+            return - 1;
+        }
     return {
         getFines: function(offense) {
+            var formulaIds = [];
             switch (offense.type) {
                 case "Alchohol":
-                fines.push(null);
-                fines.push(null);
-                var formulaIds = [];
                 formulaIds.push(2);
                 switch (offense.intoxication) {
                     case 0:
@@ -323,20 +301,44 @@ angular.module('starter.services', [])
                     break;
                     default:
                 }
-                var obj = {};
-
-                for (var i = 0; i < formulaIds.length; i++) {
-                    var toBeReplaced = "#TOTALAMOUNT" + formulaIds[i] + "#";
-                    obj[toBeReplaced] = Formulas.getResultForFormula(formulaIds[i], offense);
-
+                break;
+                case "Drugs":
+                formulaIds.push(2);
+                formulaIds.push(8);
+                break;
+                case "Speed":
+                var exceed = sd(offense.speed_limit, offense.speed_corrected);
+                formulaIds.push(1);
+                formulaIds.push(2);
+                switch (exceed) {
+                    case 1:
+                    case 2:
+                        if(offense.road === 0){
+                            formulaIds.push(3);
+                            formulaIds.push(4);
+                        }
+                        else{
+                            formulaIds.push(5);
+                            formulaIds.push(6);
+                        }
+                    break;
+                    case 3:
+                    formulaIds.push(5);
+                    formulaIds.push(6);
+                    break;
+                    default:
                 }
-                fines.push(obj);
-
                 break;
                 default:
+            }
+
+            var obj = {};
+            for (var i = 0; i < formulaIds.length; i++) {
+                var key = "#TOTALAMOUNT" + formulaIds[i] + "#";
+                obj[key] = Formulas.getResultForFormula(formulaIds[i], offense);
 
             }
-            return fines;
+            return obj;
         },
         calculateExceed: function(speedLimit, speedDriven){
             speedLimit = (speedLimit+1)*10;
@@ -379,6 +381,7 @@ angular.module('starter.services', [])
                 case 5:
                 return calc3(50,5, 10);
                 break;
+                case 6:
                 return calc3(60,5, 10);
                 break;
                 case 7:

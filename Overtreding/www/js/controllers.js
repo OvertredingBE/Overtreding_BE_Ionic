@@ -26,6 +26,8 @@ angular.module('starter.controllers', [])
                 tx.executeSql("CREATE TABLE IF NOT EXISTS Drugs(id integer primary key, text_id_1 integer, text_id_2 integer, text_id_3 integer)");
                 tx.executeSql("DROP TABLE IF EXISTS Speed");
                 tx.executeSql("CREATE TABLE IF NOT EXISTS Speed(id integer primary key, exceed integer, road integer, text_id_1 integer, text_id_2 integer, text_id_3 integer)");
+                tx.executeSql("DROP TABLE IF EXISTS Other");
+                tx.executeSql("CREATE TABLE IF NOT EXISTS Other(id integer primary key, degree integer, description text, text_id_1 integer, text_id_2 integer, text_id_3 integer)");
             });
 
             var items = resp.data.texts;
@@ -58,14 +60,14 @@ angular.module('starter.controllers', [])
                 $cordovaSQLite.execute(db, "INSERT INTO Drugs (text_id_1,text_id_2,text_id_3) VALUES (?,?,?)", [text_id_1, text_id_2, text_id_3]);
             }
 
-            var items = resp.data.speed;
+            var items = resp.data.other;
             for(var i = 0; i < items.length; i++){
-                var exceed = items[i].exceed;
-                var road = items[i].road;
+                var degree = items[i].degree;
+                var description = items[i].description;
                 var text_id_1 = items[i].text_id_1;
                 var text_id_2 = items[i].text_id_2;
                 var text_id_3 = items[i].text_id_3;
-                $cordovaSQLite.execute(db, "INSERT INTO Speed (exceed, road, text_id_1,text_id_2,text_id_3) VALUES (?,?,?,?,?)", [exceed, road, text_id_1, text_id_2, text_id_3]);
+                $cordovaSQLite.execute(db, "INSERT INTO Other (degree, description, text_id_1,text_id_2,text_id_3) VALUES (?,?,?,?,?)", [degree, description, text_id_1, text_id_2, text_id_3]);
             }
 
             $scope.succ = resp.statusText;
@@ -86,11 +88,12 @@ angular.module('starter.controllers', [])
     $scope.items = [];
     db = window.openDatabase("test2", "1.0", "Test DB", 1000000);
     $ionicPlatform.ready(function(){
-        var query = "SELECT * FROM Texts a INNER JOIN Speed b ON a.id=b.text_id_1 OR a.id = b.text_id_2 OR a.id = b.text_id_3 WHERE b.exceed = ? AND b.road = ?";
-        $cordovaSQLite.execute(db, query, [0,0]).then(function(res){
+        var query = "SELECT * FROM Other a WHERE a.degree = 1";
+        //var query = "SELECT * FROM Texts a INNER JOIN Speed b ON a.id=b.text_id_1 OR a.id = b.text_id_2 OR a.id = b.text_id_3 WHERE b.exceed = ? AND b.road = ?";
+        $cordovaSQLite.execute(db, query, []).then(function(res){
             if(res.rows.length > 0){
                 for(var i = 0; i < res.rows.length; i++){
-                    $scope.items.push({id: res.rows.item(i).body });
+                    $scope.items.push({id: res.rows.item(i).description });
                 }
             }
         }, function(err){
