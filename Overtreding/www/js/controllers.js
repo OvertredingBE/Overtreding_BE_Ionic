@@ -84,19 +84,19 @@ angular.module('starter.controllers', [])
 
 .controller("HomeController", function($scope, $ionicPlatform, $cordovaSQLite, $http){
     $scope.items = [];
-    // db = window.openDatabase("test2", "1.0", "Test DB", 1000000);
-    // $ionicPlatform.ready(function(){
-    //     var query = "SELECT * FROM Texts a INNER JOIN Speed b ON a.id=b.text_id_1 OR a.id = b.text_id_2 OR a.id = b.text_id_3 WHERE b.exceed = ? AND b.road = ?";
-    //     $cordovaSQLite.execute(db, query, [0,0]).then(function(res){
-    //         if(res.rows.length > 0){
-    //             for(var i = 0; i < res.rows.length; i++){
-    //                 $scope.items.push({id: res.rows.item(i).body });
-    //             }
-    //         }
-    //     }, function(err){
-    //         console.error(err);
-    //     });
-    // });
+    db = window.openDatabase("test2", "1.0", "Test DB", 1000000);
+    $ionicPlatform.ready(function(){
+        var query = "SELECT * FROM Texts a INNER JOIN Speed b ON a.id=b.text_id_1 OR a.id = b.text_id_2 OR a.id = b.text_id_3 WHERE b.exceed = ? AND b.road = ?";
+        $cordovaSQLite.execute(db, query, [0,0]).then(function(res){
+            if(res.rows.length > 0){
+                for(var i = 0; i < res.rows.length; i++){
+                    $scope.items.push({id: res.rows.item(i).body });
+                }
+            }
+        }, function(err){
+            console.error(err);
+        });
+    });
 })
 
 .controller("RightsController", function($scope, Rights) {

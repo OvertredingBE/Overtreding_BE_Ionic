@@ -208,7 +208,6 @@ angular.module('starter.services', [])
                             texts.push(res.rows.item(i).body);
                         }
                     }
-
                 }, function(err){
                     console.error(err);
                 });
@@ -223,23 +222,57 @@ angular.module('starter.services', [])
                     }
                 }, function(err){
                     console.error(err);
-                })
-                break;
-                case "Speed":
-                var exceed = FinesCalculator.calculateExceed(offense.speed_limit, offense.speed_corrected);
-
-                var query = "SELECT * FROM Texts a INNER JOIN Speed b ON a.id=b.text_id_1 OR a.id = b.text_id_2 OR a.id = b.text_id_3 WHERE b.exceed = ? AND b.road = ?";
-                $cordovaSQLite.execute(db, query, [exceed,offense.road]).then(function(res){
-                    if(res.rows.length > 0){
-                        for(var i = 0; i < res.rows.length; i++){
-                            texts.push(res.rows.item(i).body);
-                        }
-                    }
-                }, function(err){
-                    console.error(err);
                 });
                 break;
+                case "Speed":
+
+                break;
+                default:
+
             }
+            // switch (offense.type) {
+            //     case "Alchohol":
+            //
+            // var query = "SELECT * FROM Texts a INNER JOIN Alchohol b ON a.id=b.text_id_1 or a.id = b.text_id_2 or a.id = b.text_id_3 WHERE b.intoxication=?";
+            // $cordovaSQLite.execute(db, query, [offense.intoxication]).then(function(res){
+            //     if(res.rows.length > 0){
+            //         for(var i = 0; i < res.rows.length; i++){
+            //             texts.push(res.rows.item(i).body);
+            //         }
+            //     }
+            //
+            // }, function(err){
+            //     console.error(err);
+            // });
+            //     break;
+            //     case "Drugs":
+                // var query = "SELECT * FROM Texts a INNER JOIN Drugs b ON a.id=b.text_id_1 or a.id = b.text_id_2 or a.id = b.text_id_3";
+                // $cordovaSQLite.execute(db, query, []).then(function(res){
+                //     if(res.rows.length > 0){
+                //         for(var i = 0; i < res.rows.length; i++){
+                //             texts.push(res.rows.item(i).body);
+                //         }
+                //     }
+                // }, function(err){
+                //     console.error(err);
+                // });
+            //     break;
+            //     case "Speed":
+            //     var exceed = FinesCalculator.calculateExceed(offense.speed_limit, offense.speed_corrected);
+            //
+            //     var query = "SELECT * FROM Texts a INNER JOIN Speed b ON a.id=b.text_id_1 OR a.id = b.text_id_2 OR a.id = b.text_id_3 WHERE b.exceed = ? AND b.road = ?";
+            //     $cordovaSQLite.execute(db, query, [exceed,offense.road]).then(function(res){
+            //         if(res.rows.length > 0){
+            //             for(var i = 0; i < res.rows.length; i++){
+            //                 texts.push(res.rows.item(i).body);
+            //             }
+            //         }
+            //     }, function(err){
+            //         console.error(err);
+            //     });
+            //     break;
+            //     default:
+            // }
 
             fines = FinesCalculator.getFines(offense);
             for (var i = 0; i < fines.length; i++) {
