@@ -28,6 +28,8 @@ angular.module('starter.controllers', [])
                 tx.executeSql("CREATE TABLE IF NOT EXISTS Speed(id integer primary key, exceed integer, road integer, text_id_1 integer, text_id_2 integer, text_id_3 integer)");
                 tx.executeSql("DROP TABLE IF EXISTS Other");
                 tx.executeSql("CREATE TABLE IF NOT EXISTS Other(id integer primary key, degree integer, description text, text_id_1 integer, text_id_2 integer, text_id_3 integer)");
+                tx.executeSql("DROP TABLE IF EXISTS Other_Tags");
+                tx.executeSql("CREATE TABLE IF NOT EXISTS Other_Tags(tag_name text, offense_id integer)");
             });
 
             var items = resp.data.texts;
@@ -70,6 +72,12 @@ angular.module('starter.controllers', [])
                 $cordovaSQLite.execute(db, "INSERT INTO Other (degree, description, text_id_1,text_id_2,text_id_3) VALUES (?,?,?,?,?)", [degree, description, text_id_1, text_id_2, text_id_3]);
             }
 
+            var items = resp.data.other_tags;
+            for(var i = 0; i < items.length; i++){
+                var tag_name = items[i].tag_name;
+                var offense_id = items[i].offense_id;
+                $cordovaSQLite.execute(db, "INSERT INTO Other_Tags (tag_name, offense_id) VALUES (?,?)", [tag_name, offense_id]);
+            }
             $scope.succ = resp.statusText;
             $scope.log = items.length;
             $ionicLoading.hide();
@@ -88,12 +96,12 @@ angular.module('starter.controllers', [])
     $scope.items = [];
     db = window.openDatabase("test2", "1.0", "Test DB", 1000000);
     $ionicPlatform.ready(function(){
-        var query = "SELECT * FROM Other a WHERE a.degree = 1";
+        var query = "SELECT * FROM Other_Tags";
         //var query = "SELECT * FROM Texts a INNER JOIN Speed b ON a.id=b.text_id_1 OR a.id = b.text_id_2 OR a.id = b.text_id_3 WHERE b.exceed = ? AND b.road = ?";
         $cordovaSQLite.execute(db, query, []).then(function(res){
             if(res.rows.length > 0){
                 for(var i = 0; i < res.rows.length; i++){
-                    $scope.items.push({id: res.rows.item(i).description });
+                    $scope.items.push({id: res.rows.item(i).tag_name });
                 }
             }
         }, function(err){
