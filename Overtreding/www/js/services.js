@@ -301,6 +301,7 @@ angular.module('starter.services', [])
 
                 break;
                 default:
+
             }
             return fines;
         },
