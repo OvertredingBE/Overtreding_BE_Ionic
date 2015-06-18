@@ -20,12 +20,18 @@
                 </div>
             </div>
         </div>
-
-        <ion-list>
             <div ng-repeat="item in items">
             <ion-item href="#/result/{{$index}}">{{item.body}}</ion-item>
         </div>
-        </ion-list>
+        <button ng-click="hideCard()" class="button button-full button-calm button icon-right ion-chevron-right">
+            Start now
+        </button>
+        <div class="list card" id="startCard" ng-show="showstartCard">
+                <label class="item item-input">
+                    <input type="text" placeholder="Name">
+                </label>
+            </div>
+
 
     </ion-content>
 </ion-view>
