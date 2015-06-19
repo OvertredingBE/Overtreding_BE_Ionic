@@ -32,12 +32,20 @@
             {{item}}
             </ion-item>
     </div>
-    <div class="list card" id="startCard" ng-show="showstartCard">
+    <div ng-show="showInput">
+        <label class="item item-input">
+            <input type="text" placeholder="Name">
+        </label>
+        <label class="item item-input">
+            <input type="text" placeholder="Name">
+        </label>
+    </div>
+    <div class="list card" id="startCard" ng-show="showSearch">
 
             <label class="item item-input">
                 <input type="text" placeholder="Name">
             </label>
-            <button ng-click="hideCard()" class="button button-full button-calm">
+            <button ng-click="search()" class="button button-full button-calm">
                 Search
             </button>
             <div class="card" ng-repeat="item in items">

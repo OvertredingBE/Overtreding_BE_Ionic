@@ -8,7 +8,7 @@ angular.module('starter.controllers', [])
 
     if(window.cordova) {
         $ionicLoading.show({
-          template: 'Loading...'
+            template: 'Loading...'
         });
         var db = null;
         $scope.items = [];
@@ -93,8 +93,8 @@ angular.module('starter.controllers', [])
     $scope.showstartCard = true;
 
     $scope.hideCard = function() {
-          $scope.showstartCard = !$scope.showstartCard;
-      };
+        $scope.showstartCard = !$scope.showstartCard;
+    };
 })
 
 .controller("HomeController", function($scope, $ionicPlatform, $cordovaSQLite, $http){
@@ -147,23 +147,23 @@ angular.module('starter.controllers', [])
 
 .controller("CalcFineController", function($scope,  $ionicPopup, Offenses, Questions, $location) {
     var offense = null;
-    var currentType = null;
     $scope.menu = Questions.getMenu();
-    $scope.isVisible = true;
-    $scope.showstartCard = false;
 
-    $scope.hideCard = function() {
+    $scope.search = function() {
         $scope.items = ["asd", "asdf", "ASdasf"];
-      };
+    };
     $scope.menuItemTapped = function(menuItem){
 
         offense = Offenses.createDefault(menuItem);
-        $scope.showstartCard = false;
+        $scope.showSearch = false;
+        $scope.showInput = false;
         if(menuItem === "Other"){
-            $scope.showstartCard = true;
+            $scope.showSearch = true;
             $scope.groups = [];
         }
-        else{
+        if(menuItem === "Alchohol"){
+            $scope.showInput = true;
+        }
         var groupNames =[];
         var subgroups = [];
         var questionsArr = Questions.getQuestions(menuItem);
@@ -181,7 +181,7 @@ angular.module('starter.controllers', [])
                 $scope.groups[i].items.push(subgroups[i][j]);
             }
         }
-    }
+
     };
 
     $scope.subgroupTapped = function(item, group, index) {
@@ -218,12 +218,6 @@ angular.module('starter.controllers', [])
         Offenses.add(offense);
         $scope.offenses = Offenses.all();
     }
-    $scope.test = function(){
-        return $scope.isVisible;
-    }
-    $scope.doStuff = function() {
-        $scope.isVisible = false;
-    };
 })
 
 .controller("ResultController", function($scope, $ionicPopup, Offenses) {
