@@ -161,7 +161,7 @@ angular.module('starter.controllers', [])
             $scope.showSearch = true;
             $scope.groups = [];
         }
-        if(menuItem === "Alchohol"){
+        if(menuItem === "Speed"){
             $scope.showInput = true;
         }
         var groupNames =[];
