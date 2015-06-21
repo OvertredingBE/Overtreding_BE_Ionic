@@ -147,13 +147,13 @@ angular.module('starter.controllers', [])
 
 .controller("CalcFineController", function($scope,  $ionicPopup, Offenses, Questions, $location) {
     var offense = null;
+    $scope.offenses = [];
     $scope.menu = Questions.getMenu();
+    $scope.showMenu = false;
 
-    $scope.search = function() {
-        $scope.items = ["asd", "asdf", "ASdasf"];
-    };
     $scope.menuItemTapped = function(menuItem){
-
+        $scope.offenses.splice($scope.offenses.length -1,1,{type: menuItem});
+        $scope.menu = [];
         offense = Offenses.createDefault(menuItem);
         $scope.showSearch = false;
         $scope.showInput = false;
@@ -197,7 +197,6 @@ angular.module('starter.controllers', [])
     };
 
     $scope.toggleGroup = function(group) {
-
         if ($scope.isGroupShown(group)) {
             $scope.shownGroup = null;
         } else {
@@ -209,15 +208,25 @@ angular.module('starter.controllers', [])
         return $scope.shownGroup === group;
     };
 
-    $scope.doStuff = function(){
-        $location.path("/result");
-    };
-
     $scope.addOffense = function(){
+        $scope.showInput = false;
+        $scope.showSearch = false;
+        $scope.showMenu = false;
         $scope.groups = [];
         Offenses.add(offense);
-        $scope.offenses = Offenses.all();
-    }
+        //$scope.offenses = Offenses.all();
+    };
+
+    $scope.createNewOffense = function(){
+        $scope.menu = Questions.getMenu();
+
+        $scope.offenses.push({type: ""});
+        $scope.showMenu = true;
+    };
+
+    $scope.search = function() {
+        $scope.items = ["asd", "asdf", "ASdasf"];
+    };
 })
 
 .controller("ResultController", function($scope, $ionicPopup, Offenses) {

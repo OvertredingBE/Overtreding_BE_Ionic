@@ -3,15 +3,14 @@
         <div>{{test}}</div>
         <div>
             <div ng-repeat="offense in offenses track by $index">
-                <ion-item href="#/result/{{$index}}">{{offense.type}}</ion-item>
+                <ion-item href="#/result/{{$index}}">Overtreding {{$index+1}}: {{offense.type}}</ion-item>
                 <!-- <ion-item>{{item.licence}}</ion-item>
                 <ion-item>{{item.age}}</ion-item>
                 <ion-item>{{item.driver}}</ion-item>
                 <ion-item>{{item.intoxication}}</ion-item> -->
             </div>
         </div>
-
-        <div ng-repeat="menuItem in menu">
+        <div ng-repeat="menuItem in menu" ng-show="showMenu">
             <ion-item class="item-stable" ng-click="menuItemTapped(menuItem)">
                 {{menuItem}}
             </ion-item>
@@ -32,10 +31,10 @@
 </div>
 <div ng-show="showInput">
     <label class="item item-input">
-        <input type="text" placeholder="Name">
+        <input type="text" placeholder="Speed Driven">
     </label>
     <label class="item item-input">
-        <input type="text" placeholder="Name">
+        <input type="text" placeholder="Speed Corrected">
     </label>
 </div>
 <div class="list card" id="startCard" ng-show="showSearch">
@@ -55,7 +54,7 @@
 <button class="button button-full button-positive" ng-click="addOffense()">
     ADD
 </button>
-<button class="button button-full button-positive" ng-click="addOffense()">
+<button class="button button-full button-positive" ng-click="createNewOffense()">
     VOEG EEN OVERTREDING TOE
 </button>
 
