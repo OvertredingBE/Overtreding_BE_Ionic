@@ -51,5 +51,5 @@ app.run(function($ionicPlatform) {
         templateUrl: "templates/contact.html",
         controller: "ContactController"
     });
-    $urlRouterProvider.otherwise("/home");
+    $urlRouterProvider.otherwise("/config");
 });

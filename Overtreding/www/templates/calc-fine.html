@@ -1,5 +1,5 @@
 <ion-view view-title="Dashboard">
-    <ion-content ng-controller="CalcFineController">
+    <ion-content>
         <div>{{test}}</div>
         <div>
             <div ng-repeat="offense in offenses track by $index">
@@ -29,16 +29,16 @@
         {{item}}
     </ion-item>
 </div>
-<div ng-controller="CalcFineController">
 <div ng-show="showInput">
     <label class="item item-input">
-        <input type="text" placeholder="Speed Driven" ng-model="speed_driven">
+        <input type="text" placeholder="Speed Driven">
     </label>
     <label class="item item-input">
-        <input type="text" placeholder="Speed Corrected" ng-model="speed_corrected">
+        <input type="text" placeholder="Speed Corrected">
     </label>
 </div>
-<div ng-show="showSearch">
+<div class="list card" id="startCard" ng-show="showSearch" ng-controller="CalcFineController">
+
     <label class="item item-input">
         <input type="text" placeholder="Name" ng-model="wtf">
     </label>
@@ -51,9 +51,7 @@
         </div>
     </div>
 </div>
-</div>
-
-<button class="button button-full button-positive" ng-controller="CalcFineController" ng-click="addOffense()">
+<button class="button button-full button-positive" ng-click="addOffense()">
     ADD
 </button>
 <button class="button button-full button-positive" ng-click="createNewOffense()">
