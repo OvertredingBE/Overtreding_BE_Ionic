@@ -248,11 +248,11 @@ angular.module('starter.services', [])
                 break;
                 case "Speed":
                 var exceed = FinesCalculator.calculateExceed(offense.speed_limit, offense.speed_corrected);
-                texts.push(exceed);
-                texts.push(offese.speed_corrected);
+               texts.push(exceed);
+               texts.push(offense.speed_corrected);
 
-                var query = "SELECT * FROM Texts a INNER JOIN Speed b ON a.id=b.text_id_1 OR a.id = b.text_id_2 OR a.id = b.text_id_3 WHERE b.exceed = ? AND b.road = ?";
-                $cordovaSQLite.execute(db, query, [exceed, offense.road]).then(function(res){
+               var query = "SELECT * FROM Texts a INNER JOIN Speed b ON a.id=b.text_id_1 OR a.id = b.text_id_2 OR a.id = b.text_id_3 WHERE b.exceed = ? AND b.road = ?";
+               $cordovaSQLite.execute(db, query, [exceed, offense.road]).then(function(res){
                     if(res.rows.length > 0){
                         for(var i = 0; i < res.rows.length; i++){
                             texts.push(res.rows.item(i).body);
@@ -430,7 +430,7 @@ angular.module('starter.services', [])
     function calc2(y){
         return y*6;;
     };
-    function calc3(y){
+    function calc3(y,x,z){
         return y + x*z;
     };
 })

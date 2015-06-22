@@ -169,7 +169,7 @@ angular.module('starter.controllers', [])
     $scope.items = [];
     $scope.menu = Questions.getMenu();
     $scope.showMenu = false;
-    $scope.wtf = "Bevel";
+    $scope.wtf = "Bevel";$scope.course = {};  //only do this if $scope.course has not already been declared
 
     $scope.menuItemTapped = function(menuItem){
         $scope.offenses.splice($scope.offenses.length -1,1,{type: menuItem});
@@ -229,6 +229,13 @@ angular.module('starter.controllers', [])
     };
 
     $scope.addOffense = function(){
+        if(offense["type"] == "Speed"){
+            var fieldName = Offenses.getFieldName(4, offense["type"]);
+            offense[fieldName] = parseInt($scope.course.edit_course_name);//speed driven
+            var fieldName = Offenses.getFieldName(5, offense["type"]);
+            offense[fieldName] = parseInt($scope.course.edit_course_name);//corrected speed
+        }
+        console.log($scope.course.edit_course_name);
         $scope.showInput = false;
         $scope.showSearch = false;
         $scope.showMenu = false;
