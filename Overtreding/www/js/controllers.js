@@ -199,9 +199,9 @@ angular.module('starter.controllers', [])
         offense[fieldName] = index;
         if(offense["type"] == "Speed"){
             var fieldName = Offenses.getFieldName(4, offense["type"]);
-            offense[fieldName] = 100;
+            offense[fieldName] = 98;//speed driven
             var fieldName = Offenses.getFieldName(5, offense["type"]);
-            offense[fieldName] = 100;
+            offense[fieldName] = 92;//corrected speed
         }
     };
 

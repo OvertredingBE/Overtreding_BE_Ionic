@@ -227,8 +227,6 @@ angular.module('starter.services', [])
                 case "Speed":
                 var exceed = FinesCalculator.calculateExceed(offense.speed_limit, offense.speed_corrected);
                 texts.push(exceed);
-                texts.push(offense.speed_limit);
-                texts.push(offense.speed_corrected);
                 var query = "SELECT * FROM Texts a INNER JOIN Speed b ON a.id=b.text_id_1 OR a.id = b.text_id_2 OR a.id = b.text_id_3 WHERE b.exceed = ? AND b.road = ?";
                 $cordovaSQLite.execute(db, query, [exceed, offense.road]).then(function(res){
                     if(res.rows.length > 0){

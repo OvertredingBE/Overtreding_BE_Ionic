@@ -21,20 +21,20 @@
             ng-class="{active: isGroupShown(group)}">
             <i class="icon" ng-class="isGroupShown(group) ? 'ion-minus' : 'ion-plus'"></i>
             {{group.name}}
-            </ion-item>
-            <ion-item class="item-accordion"
-            ng-repeat="item in group.items"
-            ng-click="subgroupTapped(item, group, $index); toggleGroup(group)"
-            ng-show="isGroupShown(group)">
-            {{item}}
-            </ion-item>
-        </div>
+        </ion-item>
+        <ion-item class="item-accordion"
+        ng-repeat="item in group.items"
+        ng-click="subgroupTapped(item, group, $index); toggleGroup(group)"
+        ng-show="isGroupShown(group)">
+        {{item}}
+    </ion-item>
+</div>
 <div ng-show="showInput">
     <label class="item item-input">
-        <input type="text" placeholder="Speed Driven" ng-model="speed_driven">
+        <input type="text" placeholder="Speed Driven">
     </label>
     <label class="item item-input">
-        <input type="text" placeholder="Speed Corrected" ng-model="speed_corrected">
+        <input type="text" placeholder="Speed Corrected">
     </label>
 </div>
 <div class="list card" id="startCard" ng-show="showSearch">
