@@ -44,6 +44,15 @@ angular.module('starter.controllers', [])
                 var type = items[i].type;
                 $cordovaSQLite.execute(db, "INSERT INTO Rights (type, body) VALUES (?,?)", [type, textBody]);
             }
+            var items = resp.data.speed;
+            for(var i = 0; i < items.length; i++){
+                var exceed = items[i].exceed;
+                var road = items[i].road;
+                var text_id_1 = items[i].text_id_1;
+                var text_id_2 = items[i].text_id_2;
+                var text_id_3 = items[i].text_id_3;
+                $cordovaSQLite.execute(db, "INSERT INTO Speed (exceed, road, text_id_1,text_id_2,text_id_3) VALUES (?,?,?,?,?)", [exceed, road, text_id_1, text_id_2, text_id_3]);
+            }
 
             var items = resp.data.alcohol;
             for(var i = 0; i < items.length; i++){
@@ -101,12 +110,12 @@ angular.module('starter.controllers', [])
     $scope.items = [];
     db = window.openDatabase("test2", "1.0", "Test DB", 1000000);
     $ionicPlatform.ready(function(){
-        var query = "SELECT * FROM Other_Tags";
+        var query = "SELECT * FROM Speed";
         //var query = "SELECT * FROM Texts a INNER JOIN Speed b ON a.id=b.text_id_1 OR a.id = b.text_id_2 OR a.id = b.text_id_3 WHERE b.exceed = ? AND b.road = ?";
         $cordovaSQLite.execute(db, query, []).then(function(res){
             if(res.rows.length > 0){
                 for(var i = 0; i < res.rows.length; i++){
-                    $scope.items.push({id: res.rows.item(i).tag_name });
+                    $scope.items.push({id: res.rows.item(i).exceed });
                 }
             }
         }, function(err){
