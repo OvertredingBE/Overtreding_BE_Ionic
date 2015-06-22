@@ -109,17 +109,7 @@ angular.module('starter.controllers', [])
 .controller("HomeController", function($scope, $ionicPlatform, $cordovaSQLite, $http){
     $scope.items = [];
     db = window.openDatabase("test2", "1.0", "Test DB", 1000000);
-    var query = "SELECT * FROM Other a INNER JOIN Other_Tags b ON a.id = b.offense_id where b.tag_name = ?";
-    var tag = "radar";
-    $cordovaSQLite.execute(db, query, [tag]).then(function(res){
-        if(res.rows.length > 0){
-            for(var i = 0; i < res.rows.length; i++){
-                $scope.items.push(res.rows.item(i).description);
-            }
-        }
-    }, function(err){
-        console.error(err);
-    });
+    console.log("AAAAAAAAAA");
     // var query = "SELECT * FROM Other_Tags b where b.tag_name = ?";
     // var tag = "radar";
     // $cordovaSQLite.execute(db, query, [tag]).then(function(res){
@@ -163,13 +153,14 @@ angular.module('starter.controllers', [])
     };
 })
 
-.controller("CalcFineController", function($scope,  $ionicPopup, Offenses, Questions, $location) {
+.controller("CalcFineController", function($scope, $ionicPopup, Offenses, Questions, $location) {
     var offense = null;
     $scope.offenses = [];
     $scope.items = [];
     $scope.menu = Questions.getMenu();
     $scope.showMenu = false;
     $scope.wtf = "Bevel";
+    $scope.speed_corrected = 80;
 
     $scope.menuItemTapped = function(menuItem){
         $scope.offenses.splice($scope.offenses.length -1,1,{type: menuItem});
@@ -208,12 +199,14 @@ angular.module('starter.controllers', [])
         $scope.groups[group.id].name =  item;
         var fieldName = Offenses.getFieldName(group.id, offense["type"]);
         offense[fieldName] = index;
-        if(offense["type"] == "Speed"){
-            var fieldName = Offenses.getFieldName(4, offense["type"]);
-            offense[fieldName] = 98;//speed driven
-            var fieldName = Offenses.getFieldName(5, offense["type"]);
-            offense[fieldName] = 92;//corrected speed
-        }
+
+
+        // if(offense["type"] == "Speed"){
+        //     var fieldName = Offenses.getFieldName(4, offense["type"]);
+        //     offense[fieldName] = 100;//speed driven
+        //     var fieldName = Offenses.getFieldName(5, offense["type"]);
+        //     offense[fieldName] = $scope.speed_corrected;//corrected speed
+        // }
     };
 
     $scope.toggleGroup = function(group) {
@@ -229,6 +222,8 @@ angular.module('starter.controllers', [])
     };
 
     $scope.addOffense = function(){
+        console.log($scope.wtf);
+        console.log($scope.speed_driven);
         $scope.showInput = false;
         $scope.showSearch = false;
         $scope.showMenu = false;
@@ -246,7 +241,9 @@ angular.module('starter.controllers', [])
 
     $scope.search = function() {
         $scope.items.length = 0;
-        $scope.items = Offenses.searchOthers($scope.wtf);
+        console.log($scope.wtf);
+
+        //$scope.items = Offenses.searchOthers($scope.wtf);
     };
 })
 
