@@ -109,19 +109,28 @@ angular.module('starter.controllers', [])
 .controller("HomeController", function($scope, $ionicPlatform, $cordovaSQLite, $http){
     $scope.items = [];
     db = window.openDatabase("test2", "1.0", "Test DB", 1000000);
-    $ionicPlatform.ready(function(){
-        var query = "SELECT * FROM Speed";
-        //var query = "SELECT * FROM Texts a INNER JOIN Speed b ON a.id=b.text_id_1 OR a.id = b.text_id_2 OR a.id = b.text_id_3 WHERE b.exceed = ? AND b.road = ?";
-        $cordovaSQLite.execute(db, query, []).then(function(res){
-            if(res.rows.length > 0){
-                for(var i = 0; i < res.rows.length; i++){
-                    $scope.items.push({id: res.rows.item(i).exceed });
-                }
+    var query = "SELECT * FROM Other a INNER JOIN Other_Tags b ON a.id = b.offense_id where b.tag_name = ?";
+    var tag = "radar";
+    $cordovaSQLite.execute(db, query, [tag]).then(function(res){
+        if(res.rows.length > 0){
+            for(var i = 0; i < res.rows.length; i++){
+                $scope.items.push(res.rows.item(i).description);
             }
-        }, function(err){
-            console.error(err);
-        });
+        }
+    }, function(err){
+        console.error(err);
     });
+    // var query = "SELECT * FROM Other_Tags b where b.tag_name = ?";
+    // var tag = "radar";
+    // $cordovaSQLite.execute(db, query, [tag]).then(function(res){
+    //     if(res.rows.length > 0){
+    //         for(var i = 0; i < res.rows.length; i++){
+    //             $scope.items.push(res.rows.item(i).tag_name);
+    //         }
+    //     }
+    // }, function(err){
+    //     console.error(err);
+    // });
 })
 
 .controller("RightsController", function($scope, Rights) {
@@ -157,8 +166,10 @@ angular.module('starter.controllers', [])
 .controller("CalcFineController", function($scope,  $ionicPopup, Offenses, Questions, $location) {
     var offense = null;
     $scope.offenses = [];
+    $scope.items = [];
     $scope.menu = Questions.getMenu();
     $scope.showMenu = false;
+    $scope.wtf = "Bevel";
 
     $scope.menuItemTapped = function(menuItem){
         $scope.offenses.splice($scope.offenses.length -1,1,{type: menuItem});
@@ -234,7 +245,8 @@ angular.module('starter.controllers', [])
     };
 
     $scope.search = function() {
-        $scope.items = ["asd", "asdf", "ASdasf"];
+        $scope.items.length = 0;
+        $scope.items = Offenses.searchOthers($scope.wtf);
     };
 })
 

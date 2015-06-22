@@ -37,15 +37,15 @@
         <input type="text" placeholder="Speed Corrected">
     </label>
 </div>
-<div class="list card" id="startCard" ng-show="showSearch">
+<div class="list card" id="startCard" ng-show="showSearch" ng-controller="CalcFineController">
 
     <label class="item item-input">
-        <input type="text" placeholder="Name">
+        <input type="text" placeholder="Name" ng-model="wtf">
     </label>
     <button ng-click="search()" class="button button-full button-calm">
         Search
     </button>
-    <div class="card" ng-repeat="item in items">
+    <div class="card" ng-repeat="item in items track by $index">
         <div class="item item-text-wrap">
             {{item}}
         </div>

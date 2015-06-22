@@ -20,8 +20,10 @@
                 </div>
             </div>
         </div>
-            <div ng-repeat="item in items">
-            <ion-item href="#/result/{{$index}}">{{item.body}}</ion-item>
+        <div class="card" ng-repeat="item in items">
+            <div class="item item-text-wrap">
+                {{item}}
+            </div>
         </div>
     </ion-content>
 </ion-view>

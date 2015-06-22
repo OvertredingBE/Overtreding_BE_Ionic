@@ -39,10 +39,32 @@ angular.module('starter.services', [])
 .factory('Offenses', function($cordovaSQLite) {
 
     var offenses = [];
+    var others = [];
 
     return {
         all: function() {
             return offenses;
+        },
+        searchOthers: function(tag){
+            var query = "SELECT * FROM Other_Tags where tag_name = ?";
+            $cordovaSQLite.execute(db, query, [tag]).then(function(res){
+                if(res.rows.length > 0){
+                    for(var i = 0; i < res.rows.length; i++){
+                        var query = "SELECT * FROM Other where id = ?";
+                        $cordovaSQLite.execute(db, query, [res.rows.item(i).offense_id]).then(function(res){
+                            if(res.rows.length > 0){
+                                for(var i = 0; i < res.rows.length; i++){
+                                    others.push(res.rows.item(i).description);
+                                }
+                            }
+                        }, function(err){
+                            console.error(err);
+                        });                    }
+                }
+            }, function(err){
+                console.error(err);
+            });
+            return others;
         },
         add: function(offense) {
             offenses.push(offense);
@@ -227,6 +249,8 @@ angular.module('starter.services', [])
                 case "Speed":
                 var exceed = FinesCalculator.calculateExceed(offense.speed_limit, offense.speed_corrected);
                 texts.push(exceed);
+                texts.push(offese.speed_corrected);
+
                 var query = "SELECT * FROM Texts a INNER JOIN Speed b ON a.id=b.text_id_1 OR a.id = b.text_id_2 OR a.id = b.text_id_3 WHERE b.exceed = ? AND b.road = ?";
                 $cordovaSQLite.execute(db, query, [exceed, offense.road]).then(function(res){
                     if(res.rows.length > 0){
