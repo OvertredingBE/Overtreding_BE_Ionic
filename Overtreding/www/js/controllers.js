@@ -13,7 +13,7 @@ angular.module('starter.controllers', [])
         var db = null;
         $scope.items = [];
 
-        $http.get('http://localhost/overtreding_api/v1/db').then(function(resp) {
+        $http.get('http://www.martindzhonov.podserver.info/overtreding_api/v1/db').then(function(resp) {
             db = window.openDatabase("test2", "1.0", "Test DB", 1000000);
             db.transaction(function (tx) {
                 tx.executeSql("DROP TABLE IF EXISTS Texts");
