@@ -46,6 +46,7 @@ angular.module('starter.services', [])
             return offenses;
         },
         searchOthers: function(tag){
+            db = window.openDatabase("test2", "1.0", "Test DB", 1000000);
             var query = "SELECT * FROM Other_Tags where tag_name = ?";
             $cordovaSQLite.execute(db, query, [tag]).then(function(res){
                 if(res.rows.length > 0){
@@ -59,7 +60,8 @@ angular.module('starter.services', [])
                             }
                         }, function(err){
                             console.error(err);
-                        });                    }
+                        });
+                    }
                 }
             }, function(err){
                 console.error(err);
@@ -248,8 +250,6 @@ angular.module('starter.services', [])
                 break;
                 case "Speed":
                 var exceed = FinesCalculator.calculateExceed(offense.speed_limit, offense.speed_corrected);
-               texts.push(exceed);
-               texts.push(offense.speed_corrected);
 
                var query = "SELECT * FROM Texts a INNER JOIN Speed b ON a.id=b.text_id_1 OR a.id = b.text_id_2 OR a.id = b.text_id_3 WHERE b.exceed = ? AND b.road = ?";
                $cordovaSQLite.execute(db, query, [exceed, offense.road]).then(function(res){

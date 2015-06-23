@@ -95,42 +95,10 @@ angular.module('starter.controllers', [])
             console.error('ERR', err);
         });
     }
-
-    $scope.doStuff = function() {
-
-    };
-    $scope.showstartCard = true;
-
-    $scope.hideCard = function() {
-        $scope.showstartCard = !$scope.showstartCard;
-    };
 })
 
 .controller("HomeController", function($scope, $ionicPlatform, $cordovaSQLite, $http){
     $scope.items = [];
-    db = window.openDatabase("test2", "1.0", "Test DB", 1000000);
-    var query = "SELECT * FROM Other a INNER JOIN Other_Tags b ON a.id = b.offense_id where b.tag_name = ?";
-    var tag = "radar";
-    $cordovaSQLite.execute(db, query, [tag]).then(function(res){
-        if(res.rows.length > 0){
-            for(var i = 0; i < res.rows.length; i++){
-                $scope.items.push(res.rows.item(i).description);
-            }
-        }
-    }, function(err){
-        console.error(err);
-    });
-    // var query = "SELECT * FROM Other_Tags b where b.tag_name = ?";
-    // var tag = "radar";
-    // $cordovaSQLite.execute(db, query, [tag]).then(function(res){
-    //     if(res.rows.length > 0){
-    //         for(var i = 0; i < res.rows.length; i++){
-    //             $scope.items.push(res.rows.item(i).tag_name);
-    //         }
-    //     }
-    // }, function(err){
-    //     console.error(err);
-    // });
 })
 
 .controller("RightsController", function($scope, Rights) {
@@ -169,7 +137,8 @@ angular.module('starter.controllers', [])
     $scope.items = [];
     $scope.menu = Questions.getMenu();
     $scope.showMenu = false;
-    $scope.wtf = "Bevel";$scope.course = {};  //only do this if $scope.course has not already been declared
+    $scope.wtf = "Bevel";
+    $scope.course = {};  //only do this if $scope.course has not already been declared
 
     $scope.menuItemTapped = function(menuItem){
         $scope.offenses.splice($scope.offenses.length -1,1,{type: menuItem});
