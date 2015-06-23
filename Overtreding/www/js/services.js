@@ -219,6 +219,7 @@ angular.module('starter.services', [])
 .factory('ResultTexts', function($cordovaSQLite, FinesCalculator) {
     var texts = [];
     var fines = [];
+    db = window.openDatabase("test2", "1.0", "Test DB", 1000000);
     return {
         getTexts: function(offense) {
             texts.length = 0;

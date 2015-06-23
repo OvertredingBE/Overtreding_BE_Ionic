@@ -136,9 +136,9 @@ angular.module('starter.controllers', [])
     $scope.offenses = [];
     $scope.items = [];
     $scope.menu = Questions.getMenu();
-    $scope.showMenu = false;
-    $scope.wtf = "Bevel";
-    $scope.course = {};  //only do this if $scope.course has not already been declared
+    $scope.offenses.push({type: ""});
+    $scope.showMenu = true;
+    $scope.course = {};
 
     $scope.menuItemTapped = function(menuItem){
         $scope.offenses.splice($scope.offenses.length -1,1,{type: menuItem});
@@ -210,12 +210,10 @@ angular.module('starter.controllers', [])
         $scope.showMenu = false;
         $scope.groups = [];
         Offenses.add(offense);
-        //$scope.offenses = Offenses.all();
     };
 
     $scope.createNewOffense = function(){
         $scope.menu = Questions.getMenu();
-
         $scope.offenses.push({type: ""});
         $scope.showMenu = true;
     };
@@ -232,6 +230,8 @@ angular.module('starter.controllers', [])
 
 .controller("ResultDetailController", function($scope,$stateParams, $ionicPopup, Offenses, ResultTexts) {
     var offense = Offenses.findById($stateParams.offenseId);
+    var offenseDisplayId = parseInt($stateParams.offenseId) + 1;
+    $scope.title = "Overtreding " + offenseDisplayId + " " + offense.type;
     $scope.items = [];
     $scope.items = ResultTexts.getTexts(offense);
 });
