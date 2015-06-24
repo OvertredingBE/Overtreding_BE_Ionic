@@ -33,7 +33,7 @@
         <input type="text" placeholder="Speed Driven" ng-model="inputs.speed_driven" ng-change="calcSpeed()">
     </label>
     <label class="item item-input">
-    <input type="text" placeholder="Speed Corrected" ng-model="inputs.speed_corrected">
+        <input type="text" placeholder="Speed Corrected" ng-model="inputs.speed_corrected">
     </label>
 </div>
 
@@ -41,7 +41,7 @@
     <label class="item item-input">
         <input type="text" placeholder="Search"  ng-model="inputs.searchWord">
     </label>
-    <button ng-click="search()" class="button button-full button-calm">
+    <button ng-click="search()" class="button button-full button-positive">
         Search
     </button>
     <div class="card" ng-repeat="item in items track by $index">
@@ -56,7 +56,6 @@
 <button class="button button-full button-positive" ng-click="createNewOffense()">
     VOEG EEN OVERTREDING TOE
 </button>
-
 </ion-content>
 </ion-view>
 <ion-footer-bar align-title="left" class="bar-positive">

@@ -206,7 +206,7 @@ angular.module('starter.controllers', [])
                 }else{
                     if(offense[key] === -1){
                         valid = false;
-                   }
+                    }
                 }
             }
         }
