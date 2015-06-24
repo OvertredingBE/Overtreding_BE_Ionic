@@ -212,7 +212,7 @@ angular.module('starter.controllers', [])
         }
         if(valid){
             $scope.groups = [];
-            $scope.showSearch = false;
+            $scope.showInput2 = false;
             $scope.showInput = false;
             Offenses.add(offense);
         }
@@ -233,7 +233,7 @@ angular.module('starter.controllers', [])
 
     $scope.createNewOffense = function() {
         $scope.groups = [];
-        $scope.showSearch = false;
+        $scope.showInput2 = false;
         $scope.showInput = false;
         $scope.menu = Questions.getMenu();
         $scope.offenses.push({type: ""});
@@ -242,6 +242,23 @@ angular.module('starter.controllers', [])
     $scope.search = function() {
         $scope.items.length = 0;
         $scope.items = Offenses.searchOthers($scope.inputs.searchWord);
+    };
+    $scope.otherTapped = function(item) {
+        offense.id = item.id;
+        offense.degree = item.degree;
+        offense.age = 1;
+        offense.licence = 1;
+        var confirmPopup = $ionicPopup.confirm({
+            title: 'Invliad input',
+            template: 'Please enter all fields'
+        });
+        confirmPopup.then(function(res) {
+            if(res) {
+                console.log('You are sure');
+            } else {
+                console.log('You are not sure');
+            }
+        });
     };
     $scope.calcSpeed = function() {
         var speedDriven = $scope.inputs.speed_driven;

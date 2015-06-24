@@ -55,7 +55,10 @@ angular.module('starter.services', [])
                         $cordovaSQLite.execute(db, query, [res.rows.item(i).offense_id]).then(function(res){
                             if(res.rows.length > 0){
                                 for(var i = 0; i < res.rows.length; i++){
-                                    others.push(res.rows.item(i).description);
+                                    others.push({
+                                        id: res.rows.item(i).id,
+                                        degree: res.rows.item(i).degree,
+                                        description: res.rows.item(i).description});
                                 }
                             }
                         }, function(err){
@@ -107,6 +110,7 @@ angular.module('starter.services', [])
                 break;
                 case "Other":
                 offense =  {
+                    id: -1,
                     licence: -1,
                     age:-1,
                     degree:-1,
@@ -275,6 +279,18 @@ angular.module('starter.services', [])
 
                     var query = "SELECT * FROM Texts a INNER JOIN Speed b ON a.id=b.text_id_1 OR a.id = b.text_id_2 OR a.id = b.text_id_3 WHERE b.exceed = ? AND b.road = ?";
                     $cordovaSQLite.execute(db, query, [exceed, offense.road]).then(function(res){
+                        if(res.rows.length > 0){
+                            for(var i = 0; i < res.rows.length; i++){
+                                texts.push(res.rows.item(i).body);
+                            }
+                        }
+                    }, function(err){
+                        console.error(err);
+                    });
+                    break;
+                    case "Other":
+                    var query = "SELECT * FROM Texts a INNER JOIN Other b ON a.id=b.text_id_1 or a.id = b.text_id_2 or a.id = b.text_id_3 WHERE b.id=?";
+                    $cordovaSQLite.execute(db, query, [offense.id]).then(function(res){
                         if(res.rows.length > 0){
                             for(var i = 0; i < res.rows.length; i++){
                                 texts.push(res.rows.item(i).body);
