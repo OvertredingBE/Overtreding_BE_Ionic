@@ -140,20 +140,18 @@ angular.module('starter.controllers', [])
     $scope.offenses.push({type: ""});
 
     $scope.menuItemTapped = function(menuItem){
+
         $scope.menu = [];
         offense = Offenses.createDefault(menuItem);
         $scope.offenses.splice($scope.offenses.length -1,1,{type: offense.type});
+        $scope.showSearch = false;
+        $scope.showInput = false;
 
         if(menuItem === "Other"){
-            $scope.showSearch = true;
-            $scope.groups = [];
+            $scope.showInput2 = true;
         }
         if(menuItem === "Speed"){
             $scope.showInput = true;
-        }
-        else{
-            $scope.showSearch = false;
-            $scope.showInput = false;
         }
 
         var groupNames =[];
@@ -233,7 +231,7 @@ angular.module('starter.controllers', [])
         }
     };
 
-    $scope.createNewOffense = function(){
+    $scope.createNewOffense = function() {
         $scope.groups = [];
         $scope.showSearch = false;
         $scope.showInput = false;

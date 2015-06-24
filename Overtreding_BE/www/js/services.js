@@ -105,6 +105,14 @@ angular.module('starter.services', [])
                     type:"Speed"
                 };
                 break;
+                case "Other":
+                offense =  {
+                    licence: -1,
+                    age:-1,
+                    degree:-1,
+                    type:"Other"
+                };
+                break;
                 default:
             }
             return offense;
@@ -224,7 +232,7 @@ angular.module('starter.services', [])
         getTexts: function(offense) {
             texts.length = 0;
             fines.length = 0;
-            if(offense.age === 1 || offense.licence === 1){
+            if(offense.age === 0 || offense.licence === 0){
                 var query = "SELECT * FROM Texts WHERE id = ? OR id = ? OR id = ?";
                 $cordovaSQLite.execute(db, query, [9, 10, 11]).then(function(res){
                     if(res.rows.length > 0){
