@@ -447,39 +447,6 @@ angular.module('starter.services', [])
                 calc1(800) + " tot " + calc1(10000)];
 
             return formulas[formulaId -1];
-            // switch (formulaId) {
-            //     case 1:
-            //     return calc1(10) + " tot " + calc1(500);
-            //     break;
-            //     case 2:
-            //     return calc2(25);
-            //     break;
-            //     case 3:
-            //     return calc3(50, 10, diff);
-            //     break;
-            //     case 4:
-            //     return calc3(60,10, diff);
-            //     break;
-            //     case 5:
-            //     return calc3(50,5, diff);
-            //     break;
-            //     case 6:
-            //     return calc3(60,5, diff);
-            //     break;
-            //     case 7:
-            //     return calc1(25) + " tot " + calc1(500);
-            //     break;
-            //     case 8:
-            //     return calc1(200) + " tot " + calc1(2000);
-            //     break;
-            //     case 9:
-            //     return calc1(400) + " tot " + calc1(5000);
-            //     break;
-            //     case 10:
-            //     return calc1(800) + " tot " + calc1(10000);
-            //     break;
-            //     default:
-            // }
         }
     }
     function calc1(y){
