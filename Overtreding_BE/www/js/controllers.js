@@ -135,7 +135,7 @@ angular.module('starter.controllers', [])
     var offense = null;
     $scope.offenses = [];
     $scope.items = [];
-    $scope.course = {};
+    $scope.inputs = {};
     $scope.menu = Questions.getMenu();
     $scope.offenses.push({type: ""});
 
@@ -199,9 +199,9 @@ angular.module('starter.controllers', [])
         $scope.showInput = false;
         if(offense["type"] == "Speed"){
             var fieldName = Offenses.getFieldName(4, offense["type"]);
-            offense[fieldName] = parseInt($scope.course.edit_course_name);//speed driven
+            offense[fieldName] = parseInt($scope.inputs.speed_driven);//speed driven
             var fieldName = Offenses.getFieldName(5, offense["type"]);
-            offense[fieldName] = parseInt($scope.course.edit_course_name);//corrected speed
+            offense[fieldName] = parseInt($scope.inputs.speed_corrected);//corrected speed
         }
         Offenses.add(offense);
     };
@@ -216,10 +216,27 @@ angular.module('starter.controllers', [])
 
     $scope.search = function() {
         $scope.items.length = 0;
-        $scope.items = Offenses.searchOthers($scope.course.edit_course_name2);
+        $scope.items = Offenses.searchOthers($scope.inputs.searchWord);
     };
     $scope.calcSpeed = function() {
-        $scope.course.edit_course_name = parseInt($scope.course.edit_course_name3) - 10;
+        var speedDriven = $scope.inputs.speed_driven;
+        if(isNaN(speedDriven)){
+            $scope.inputs.speed_corrected = "";
+        }
+        else{
+            speedDriven = parseInt(speedDriven);
+            if(speedDriven > 10){
+                if(speedDriven <= 100){
+                    $scope.inputs.speed_corrected = speedDriven - 6;
+                }
+                else{
+                    $scope.inputs.speed_corrected = Math.floor(speedDriven - 0.06*speedDriven);
+                }
+            }
+            else {
+                $scope.inputs.speed_corrected = "";
+            }
+        }
     };
 })
 

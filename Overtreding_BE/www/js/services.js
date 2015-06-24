@@ -390,6 +390,11 @@ angular.module('starter.services', [])
 .factory('Formulas', function($cordovaSQLite){
     return{
         getResultForFormula: function(formulaId, offense){
+            var diff = -1;
+            if(offense["type"] === "Speed"){
+                speedLimit = (offense.speed_limit+1)*10;
+                diff = offense.speed_corrected - speedLimit;
+            }
             switch (formulaId) {
                 case 1:
                 return calc1(10) + " tot " + calc1(500);
@@ -398,16 +403,16 @@ angular.module('starter.services', [])
                 return calc2(25);
                 break;
                 case 3:
-                return calc3(50, 10, 10);
+                return calc3(50, 10, diff);
                 break;
                 case 4:
-                return calc3(60,10, 10);
+                return calc3(60,10, diff);
                 break;
                 case 5:
-                return calc3(50,5, 10);
+                return calc3(50,5, diff);
                 break;
                 case 6:
-                return calc3(60,5, 10);
+                return calc3(60,5, diff);
                 break;
                 case 7:
                 return calc1(25) + " tot " + calc1(500);
@@ -432,6 +437,6 @@ angular.module('starter.services', [])
         return y*6;;
     };
     function calc3(y,x,z){
-        return y + x*z;
+        return y + (x * z);
     };
 })

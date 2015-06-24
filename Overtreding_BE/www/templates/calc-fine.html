@@ -30,16 +30,16 @@
 
 <div ng-show="showInput">
     <label class="item item-input">
-        <input type="text" placeholder="Speed Driven" ng-model="course.edit_course_name3" ng-change="calcSpeed()">
+        <input type="text" placeholder="Speed Driven" ng-model="inputs.speed_driven" ng-change="calcSpeed()">
     </label>
     <label class="item item-input">
-    <input type="text" placeholder="Speed Corrected" ng-model="course.edit_course_name">
+    <input type="text" placeholder="Speed Corrected" ng-model="inputs.speed_corrected">
     </label>
 </div>
 
 <div ng-show="showSearch">
     <label class="item item-input">
-        <input type="text" placeholder="Search"  ng-model="course.edit_course_name2">
+        <input type="text" placeholder="Search"  ng-model="inputs.searchWord">
     </label>
     <button ng-click="search()" class="button button-full button-calm">
         Search
