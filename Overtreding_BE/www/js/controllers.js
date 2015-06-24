@@ -131,7 +131,7 @@ angular.module('starter.controllers', [])
     };
 })
 
-.controller("CalcFineController", function($scope,  $ionicPopup, Offenses, Questions, $location) {
+.controller("CalcFineController", function($scope, $ionicPopup, Offenses, Questions, $location) {
     var offense = null;
     $scope.offenses = [];
     $scope.items = [];
@@ -194,16 +194,43 @@ angular.module('starter.controllers', [])
     };
 
     $scope.addOffense = function(){
-        $scope.groups = [];
-        $scope.showSearch = false;
-        $scope.showInput = false;
+        var valid = true;
         if(offense["type"] == "Speed"){
             var fieldName = Offenses.getFieldName(4, offense["type"]);
             offense[fieldName] = parseInt($scope.inputs.speed_driven);//speed driven
             var fieldName = Offenses.getFieldName(5, offense["type"]);
             offense[fieldName] = parseInt($scope.inputs.speed_corrected);//corrected speed
         }
-        Offenses.add(offense);
+        for (var key in offense) {
+            if (offense.hasOwnProperty(key)) {
+                if(key === "type"){
+
+                }else{
+                    if(offense[key] === -1){
+                        valid = false;
+                   }
+                }
+            }
+        }
+        if(valid){
+            $scope.groups = [];
+            $scope.showSearch = false;
+            $scope.showInput = false;
+            Offenses.add(offense);
+        }
+        else{
+            var confirmPopup = $ionicPopup.confirm({
+                title: 'Invliad input',
+                template: 'Please enter all fields'
+            });
+            confirmPopup.then(function(res) {
+                if(res) {
+                    console.log('You are sure');
+                } else {
+                    console.log('You are not sure');
+                }
+            });
+        }
     };
 
     $scope.createNewOffense = function(){
