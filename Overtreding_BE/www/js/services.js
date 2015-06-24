@@ -224,6 +224,19 @@ angular.module('starter.services', [])
         getTexts: function(offense) {
             texts.length = 0;
             fines.length = 0;
+            if(offense.age === 1){
+                var query = "SELECT * FROM Texts WHERE id = ? OR id = ? OR id = ?";
+                $cordovaSQLite.execute(db, query, [9, 10, 11]).then(function(res){
+                     if(res.rows.length > 0){
+                         for(var i = 0; i < res.rows.length; i++){
+                             texts.push(res.rows.item(i).body);
+                         }
+                     }
+                 }, function(err){
+                     console.error(err);
+                 });
+             }
+             else{
             switch (offense.type) {
                 case "Alchohol":
                 var query = "SELECT * FROM Texts a INNER JOIN Alchohol b ON a.id=b.text_id_1 or a.id = b.text_id_2 or a.id = b.text_id_3 WHERE b.intoxication=?";
@@ -266,13 +279,16 @@ angular.module('starter.services', [])
                 default:
 
             }
-           fines = FinesCalculator.getFines(offense);
+            fines = FinesCalculator.getFines(offense);
 
-            for (var key in fines) {
-                if (fines.hasOwnProperty(key)) {
-                    texts.push(key + " -> " + fines[key])
-                }
-            }
+             for (var key in fines) {
+                 if (fines.hasOwnProperty(key)) {
+                     texts.push(key + " -> " + fines[key])
+                 }
+             }
+
+        }
+
 
             return texts;
         }
