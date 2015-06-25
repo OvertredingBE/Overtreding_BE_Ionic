@@ -198,18 +198,12 @@ angular.module('starter.services', [])
                 "Dronkenschap",
                 "Eerder betrapt op alcoholintoxicatie van meer dan 0,8 Promille of dronkenschap en nu opnieuw betrapt op alcoholintoxicatie van meerdan 0,8 Promille.",
                 "Eerder betrapt op alcoholintoxicatie van meer dan 0,8 Promille of dronkenschap en nu opnieuw betrapt op dronkenschap"]];
-                var groups = [];
-                groups.push(names);
-                groups.push(subgroups);
                 break;
                 case "Drugs":
                 var names = ["RIJBEWIJS","LEEFTIJD", "TYPE OVERTREDING"];
                 var subgroups = [['Ik bezit mijn rijbewijs minder dan 2 jaar', "Ik bezit mijn rijbewijs langer dan 2 jaar"],
                 ["Jonger dan 18 jaar","18 jaar of ouder"],
                 ["Blood test", "Refused test"]];
-                var groups = [];
-                groups.push(names);
-                groups.push(subgroups);
                 break;
                 case "Speed":
                 var names = ["RIJBEWIJS","LEEFTIJD", "TYPE RUJBAAN", "SNEIHELDSLIMIET"];
@@ -217,13 +211,17 @@ angular.module('starter.services', [])
                 ["Jonger dan 18 jaar","18 jaar of ouder"],
                 ["Woonerf, zone 30, etc", "Andere wegen"],
                 ["10","20","30","40","50","60","70","80","90","100","110","120",]];
-                var groups = [];
-                groups.push(names);
-                groups.push(subgroups);
                 break;
+                case "Test":
+                var names = ["RIJBEWIJS","LEEFTIJD"];
+                var subgroups = [['Ik bezit mijn rijbewijs minder dan 2 jaar', "Ik bezit mijn rijbewijs langer dan 2 jaar"],
+                ["Jonger dan 18 jaar","18 jaar of ouder"]];
                 default:
 
             }
+            var groups = [];
+            groups.push(names);
+            groups.push(subgroups);
             return groups;
         }
     }

@@ -249,17 +249,25 @@ angular.module('starter.controllers', [])
         offense.degree = item.degree;
         offense.age = 1;
         offense.licence = 1;
-        var confirmPopup = $ionicPopup.confirm({
-            title: 'Invliad input',
-            template: 'Please enter all fields'
-        });
-        confirmPopup.then(function(res) {
-            if(res) {
-                console.log('You are sure');
-            } else {
-                console.log('You are not sure');
+        $scope.items.length = 0;
+        $scope.items.push(item);
+        var groupNames =[];
+        var subgroups = [];
+        var questionsArr = Questions.getQuestions("Test");
+        groupNames = questionsArr[0];
+        subgroups = questionsArr[1];
+        $scope.groups = [];
+
+        for (var i=0; i<groupNames.length; i++) {
+            $scope.groups[i] = {
+                id: i,
+                name: groupNames[i],
+                items: []
+            };
+            for (var j=0; j<subgroups[i].length; j++) {
+                $scope.groups[i].items.push(subgroups[i][j]);
             }
-        });
+        }
     };
     $scope.calcSpeed = function() {
         var speedDriven = $scope.inputs.speed_driven;

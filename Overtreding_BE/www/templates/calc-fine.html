@@ -13,6 +13,19 @@
                 {{menuItem}}
             </ion-item>
         </div>
+        <div ng-show="showInput2">
+            <label class="item item-input">
+                <input type="text" placeholder="Search"  ng-model="inputs.searchWord">
+            </label>
+            <button ng-click="search()" class="button button-full button-positive">
+                Search
+            </button>
+            <div class="card" ng-repeat="item in items track by $index" ng-click="otherTapped(item)">
+                <div class="item item-text-wrap">
+                    {{item.description}}
+                </div>
+            </div>
+        </div>
         <div ng-repeat="group in groups">
             <ion-item class="item-stable"
             ng-click="toggleGroup(group)"
@@ -37,19 +50,7 @@
     </label>
 </div>
 
-<div ng-show="showInput2">
-    <label class="item item-input">
-        <input type="text" placeholder="Search"  ng-model="inputs.searchWord">
-    </label>
-    <button ng-click="search()" class="button button-full button-positive">
-        Search
-    </button>
-    <div class="card" ng-repeat="item in items track by $index" ng-click="otherTapped(item)">
-        <div class="item item-text-wrap">
-            {{item.description}}
-        </div>
-    </div>
-</div>
+
 <button class="button button-full button-positive" ng-click="addOffense()">
     ADD
 </button>
