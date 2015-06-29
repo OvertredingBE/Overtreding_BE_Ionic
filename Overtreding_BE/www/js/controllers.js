@@ -4,9 +4,8 @@
 
 angular.module('starter.controllers', [])
 
-.controller("ConfigController", function($scope,$ionicPlatform, $ionicLoading, $cordovaSQLite, $location, $http,Offenses, $ionicPopup){
+.controller("ConfigController", function($scope, $ionicPlatform, $ionicLoading, $cordovaSQLite, $http, $ionicPopup){
     $ionicPlatform.ready(function() {
-    if(window.cordova) {
         $ionicLoading.show({
             template: 'Loading...'
         });
@@ -15,16 +14,6 @@ angular.module('starter.controllers', [])
         var url = 'http://www.martindzhonov.podserver.info/overtreding_api/v1/db';
         // var url = 'http://localhost/overtreding_api/v1/db';
 
-        $scope.url = url;
-        // $http.get(url).then(function(resp) {
-        //     console.log(resp.data.texts);
-        //     $scope.succ = resp.statusText;
-        //     $ionicLoading.hide();
-        //
-        // }, function(err) {
-        //     $ionicLoading.hide();
-        //     console.error(err);
-        // });
         $http.get(url).then(function(resp) {
             db = window.openDatabase("test2", "1.0", "Test DB", 1000000);
             db.transaction(function (tx) {
@@ -111,12 +100,10 @@ angular.module('starter.controllers', [])
             });
             console.error(err);
         });
-}
-});
+    });
 })
 
 .controller("HomeController", function($scope, $ionicPlatform, $cordovaSQLite, $http){
-    $scope.items = [];
 })
 
 .controller("RightsController", function($scope, Rights) {
@@ -133,7 +120,7 @@ angular.module('starter.controllers', [])
     };
 })
 
-.controller("ContactController", function($scope, Rights, $ionicPopup) {
+.controller("ContactController", function($scope, $ionicPopup, Rights) {
     $scope.showConfirm = function() {
         var confirmPopup = $ionicPopup.confirm({
             title: 'This is a popup',
@@ -149,7 +136,7 @@ angular.module('starter.controllers', [])
     };
 })
 
-.controller("CalcFineController", function($scope, $ionicPopup, Offenses, Questions, $location) {
+.controller("CalcFineController", function($scope, $ionicPopup, $location, Offenses, Questions, Others) {
     var offense = null;
     $scope.offenses = [];
     $scope.items = [];
@@ -158,7 +145,6 @@ angular.module('starter.controllers', [])
     $scope.offenses.push({type: ""});
 
     $scope.menuItemTapped = function(menuItem){
-
         $scope.menu = [];
         offense = Offenses.createDefault(menuItem);
         $scope.offenses.splice($scope.offenses.length -1,1,{type: offense.type});
@@ -171,24 +157,7 @@ angular.module('starter.controllers', [])
         if(menuItem === "Speed"){
             $scope.showInput = true;
         }
-
-        var groupNames =[];
-        var subgroups = [];
-        var questionsArr = Questions.getQuestions(menuItem);
-        groupNames = questionsArr[0];
-        subgroups = questionsArr[1];
-        $scope.groups = [];
-
-        for (var i=0; i<groupNames.length; i++) {
-            $scope.groups[i] = {
-                id: i,
-                name: groupNames[i],
-                items: []
-            };
-            for (var j=0; j<subgroups[i].length; j++) {
-                $scope.groups[i].items.push(subgroups[i][j]);
-            }
-        }
+        $scope.groups = Questions.getQuestions(menuItem);
     };
 
     $scope.subgroupTapped = function(item, group, index) {
@@ -259,7 +228,7 @@ angular.module('starter.controllers', [])
 
     $scope.search = function() {
         $scope.items.length = 0;
-        $scope.items = Offenses.searchOthers($scope.inputs.searchWord);
+        $scope.items = Others.searchOthers($scope.inputs.searchWord);
     };
     $scope.otherTapped = function(item) {
         offense.id = item.id;
@@ -268,23 +237,8 @@ angular.module('starter.controllers', [])
         offense.licence = 1;
         $scope.items.length = 0;
         $scope.items.push(item);
-        var groupNames =[];
-        var subgroups = [];
-        var questionsArr = Questions.getQuestions("Test");
-        groupNames = questionsArr[0];
-        subgroups = questionsArr[1];
-        $scope.groups = [];
 
-        for (var i=0; i<groupNames.length; i++) {
-            $scope.groups[i] = {
-                id: i,
-                name: groupNames[i],
-                items: []
-            };
-            for (var j=0; j<subgroups[i].length; j++) {
-                $scope.groups[i].items.push(subgroups[i][j]);
-            }
-        }
+        var groups = Questions.getQuestions("Test");
     };
     $scope.calcSpeed = function() {
         var speedDriven = $scope.inputs.speed_driven;

@@ -2,6 +2,66 @@
 * Created by MartinDzhonov on 6/1/15.
 */
 angular.module('starter.services', [])
+.factory('Questions', function($cordovaSQLite) {
+    var menu = ["Speed", "Alchohol", "Drugs", "Other"];
+    return {
+        getMenu: function() {
+            return menu;
+        },
+        getQuestions: function(name) {
+            switch (name) {
+                case "Alchohol":
+                var names = ["RIJBEWIJS","LEEFTIJD", "BESTRUUDER", "INTOXICATIE"];
+                var subgroups = [['Ik bezit mijn rijbewijs minder dan 2 jaar', "Ik bezit mijn rijbewijs langer dan 2 jaar"],
+                ["Jonger dan 18 jaar","18 jaar of ouder"],
+                ["Professionele bestuurder", "Gewone bestuurder"],
+                ["0,20 - 0,50 promille",
+                "0,50 – 0,80 Promille",
+                "0,80 – 1,00 Promille",
+                "1,00 – 1,14 Promille",
+                "1,14 – 1,48 Promille",
+                "1,48 - ... Promille",
+                "Weigering ademtest of analyse zonder wettige reden",
+                "Dronkenschap",
+                "Eerder betrapt op alcoholintoxicatie van meer dan 0,8 Promille of dronkenschap en nu opnieuw betrapt op alcoholintoxicatie van meerdan 0,8 Promille.",
+                "Eerder betrapt op alcoholintoxicatie van meer dan 0,8 Promille of dronkenschap en nu opnieuw betrapt op dronkenschap"]];
+                break;
+                case "Drugs":
+                var names = ["RIJBEWIJS","LEEFTIJD", "TYPE OVERTREDING"];
+                var subgroups = [['Ik bezit mijn rijbewijs minder dan 2 jaar', "Ik bezit mijn rijbewijs langer dan 2 jaar"],
+                ["Jonger dan 18 jaar","18 jaar of ouder"],
+                ["Blood test", "Refused test"]];
+                break;
+                case "Speed":
+                var names = ["RIJBEWIJS","LEEFTIJD", "TYPE RUJBAAN", "SNEIHELDSLIMIET"];
+                var subgroups = [['Ik bezit mijn rijbewijs minder dan 2 jaar', "Ik bezit mijn rijbewijs langer dan 2 jaar"],
+                ["Jonger dan 18 jaar","18 jaar of ouder"],
+                ["Woonerf, zone 30, etc", "Andere wegen"],
+                ["10","20","30","40","50","60","70","80","90","100","110","120",]];
+                break;
+                case "Test":
+                var names = ["RIJBEWIJS","LEEFTIJD"];
+                var subgroups = [['Ik bezit mijn rijbewijs minder dan 2 jaar', "Ik bezit mijn rijbewijs langer dan 2 jaar"],
+                ["Jonger dan 18 jaar","18 jaar of ouder"]];
+                default:
+
+            }
+            var groups = [];
+            
+            for (var i=0; i<names.length; i++) {
+                groups[i] = {
+                    id: i,
+                    name: names[i],
+                    items: []
+                };
+                for (var j=0; j<subgroups[i].length; j++) {
+                    groups[i].items.push(subgroups[i][j]);
+                }
+            }
+            return groups;
+        }
+    }
+})
 .factory('Rights', function($cordovaSQLite) {
     var alchRights = [];
     var drugsRights = [];
@@ -36,15 +96,9 @@ angular.module('starter.services', [])
         }
     };
 })
-.factory('Offenses', function($cordovaSQLite) {
-
-    var offenses = [];
+.factory('Others', function($cordovaSQLite) {
     var others = [];
-
     return {
-        all: function() {
-            return offenses;
-        },
         searchOthers: function(tag){
             db = window.openDatabase("test2", "1.0", "Test DB", 1000000);
             var query = "SELECT * FROM Other_Tags where tag_name = ?";
@@ -70,6 +124,15 @@ angular.module('starter.services', [])
                 console.error(err);
             });
             return others;
+        }
+    }
+})
+.factory('Offenses', function($cordovaSQLite) {
+    var offenses = [];
+
+    return {
+        all: function() {
+            return offenses;
         },
         add: function(offense) {
             offenses.push(offense);
@@ -173,57 +236,6 @@ angular.module('starter.services', [])
             }
             return fieldName;
         }
-    };
-})
-.factory('Questions', function($cordovaSQLite) {
-    var menu = ["Speed", "Alchohol", "Drugs", "Other"];
-    return {
-        getMenu: function() {
-            return menu;
-        },
-        getQuestions: function(name) {
-            switch (name) {
-                case "Alchohol":
-                var names = ["RIJBEWIJS","LEEFTIJD", "BESTRUUDER", "INTOXICATIE"];
-                var subgroups = [['Ik bezit mijn rijbewijs minder dan 2 jaar', "Ik bezit mijn rijbewijs langer dan 2 jaar"],
-                ["Jonger dan 18 jaar","18 jaar of ouder"],
-                ["Professionele bestuurder", "Gewone bestuurder"],
-                ["0,20 - 0,50 promille",
-                "0,50 – 0,80 Promille",
-                "0,80 – 1,00 Promille",
-                "1,00 – 1,14 Promille",
-                "1,14 – 1,48 Promille",
-                "1,48 - ... Promille",
-                "Weigering ademtest of analyse zonder wettige reden",
-                "Dronkenschap",
-                "Eerder betrapt op alcoholintoxicatie van meer dan 0,8 Promille of dronkenschap en nu opnieuw betrapt op alcoholintoxicatie van meerdan 0,8 Promille.",
-                "Eerder betrapt op alcoholintoxicatie van meer dan 0,8 Promille of dronkenschap en nu opnieuw betrapt op dronkenschap"]];
-                break;
-                case "Drugs":
-                var names = ["RIJBEWIJS","LEEFTIJD", "TYPE OVERTREDING"];
-                var subgroups = [['Ik bezit mijn rijbewijs minder dan 2 jaar', "Ik bezit mijn rijbewijs langer dan 2 jaar"],
-                ["Jonger dan 18 jaar","18 jaar of ouder"],
-                ["Blood test", "Refused test"]];
-                break;
-                case "Speed":
-                var names = ["RIJBEWIJS","LEEFTIJD", "TYPE RUJBAAN", "SNEIHELDSLIMIET"];
-                var subgroups = [['Ik bezit mijn rijbewijs minder dan 2 jaar', "Ik bezit mijn rijbewijs langer dan 2 jaar"],
-                ["Jonger dan 18 jaar","18 jaar of ouder"],
-                ["Woonerf, zone 30, etc", "Andere wegen"],
-                ["10","20","30","40","50","60","70","80","90","100","110","120",]];
-                break;
-                case "Test":
-                var names = ["RIJBEWIJS","LEEFTIJD"];
-                var subgroups = [['Ik bezit mijn rijbewijs minder dan 2 jaar', "Ik bezit mijn rijbewijs langer dan 2 jaar"],
-                ["Jonger dan 18 jaar","18 jaar of ouder"]];
-                default:
-
-            }
-            var groups = [];
-            groups.push(names);
-            groups.push(subgroups);
-            return groups;
-        }
     }
 })
 .factory('ResultTexts', function($cordovaSQLite, FinesCalculator) {
@@ -284,6 +296,7 @@ angular.module('starter.services', [])
                     console.error(err);
                 });
                 break;
+
                 case "Drugs":
                 var query = "SELECT * FROM Texts a INNER JOIN Drugs b ON a.id=b.text_id_1 or a.id = b.text_id_2 or a.id = b.text_id_3";
                 $cordovaSQLite.execute(db, query, []).then(function(res){
@@ -296,9 +309,9 @@ angular.module('starter.services', [])
                     console.error(err);
                 });
                 break;
+
                 case "Speed":
                 var exceed = FinesCalculator.calculateExceed(offense.speed_limit, offense.speed_corrected);
-
                 var query = "SELECT * FROM Texts a INNER JOIN Speed b ON a.id=b.text_id_1 OR a.id = b.text_id_2 OR a.id = b.text_id_3 WHERE b.exceed = ? AND b.road = ?";
                 $cordovaSQLite.execute(db, query, [exceed, offense.road]).then(function(res){
                     if(res.rows.length > 0){
@@ -309,6 +322,7 @@ angular.module('starter.services', [])
                 }, function(err){
                     console.error(err);
                 });
+
                 break;
                 case "Other":
                 var query = "SELECT * FROM Texts a INNER JOIN Other b ON a.id=b.text_id_1 or a.id = b.text_id_2 or a.id = b.text_id_3 WHERE b.id=?";
@@ -323,7 +337,6 @@ angular.module('starter.services', [])
                 });
                 break;
                 default:
-
             }
             fines = FinesCalculator.getFines(offense);
 
@@ -333,13 +346,12 @@ angular.module('starter.services', [])
                 }
             }
         }
-
         return texts;
         }
     }
 })
 .factory('FinesCalculator', function($cordovaSQLite, Formulas) {
-    var sd =  function(speedLimit, speedDriven){
+    var calculateExceed =  function(speedLimit, speedDriven){
         speedLimit = (speedLimit+1)*10;
         var difference = speedDriven - speedLimit;
         if(difference > 40){
@@ -425,26 +437,7 @@ angular.module('starter.services', [])
             }
             return obj;
         },
-        calculateExceed: function(speedLimit, speedDriven){
-            speedLimit = (speedLimit+1)*10;
-            var difference = speedDriven - speedLimit;
-            if(difference > 40){
-                return 4;
-            }
-            if(difference > 30){
-                return 3;
-            }
-            if(difference > 20){
-                return 2;
-            }
-            if(difference > 10){
-                return 1;
-            }
-            if(difference > 1){
-                return 0;
-            }
-            return - 1;
-        }
+        calculateExceed: calculateExceed
     }
 })
 .factory('Formulas', function($cordovaSQLite){
@@ -466,7 +459,6 @@ angular.module('starter.services', [])
                 calc1(200) + " tot " + calc1(2000),
                 calc1(400) + " tot " + calc1(5000),
                 calc1(800) + " tot " + calc1(10000)];
-
             return formulas[formulaId -1];
         }
     }
