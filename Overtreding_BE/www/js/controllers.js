@@ -96,7 +96,7 @@ angular.module('starter.controllers', [])
             $ionicLoading.hide();
             var confirmPopup = $ionicPopup.confirm({
                 title: 'Error',
-                template: err.status
+                template: "Could not connect to server"
             });
             console.error(err);
         });
@@ -139,17 +139,16 @@ angular.module('starter.controllers', [])
 .controller("CalcFineController", function($scope, $ionicPopup, $location, Offenses, Questions, Others) {
     var offense = null;
     $scope.offenses = [];
-    $scope.items = [];
-    $scope.inputs = {};
+    $scope.searchResults = [];
     $scope.menu = Questions.getMenu();
+    $scope.inputs = {};
+
     $scope.offenses.push({type: ""});
 
     $scope.menuItemTapped = function(menuItem){
         $scope.menu = [];
         offense = Offenses.createDefault(menuItem);
-        $scope.offenses.splice($scope.offenses.length -1,1,{type: offense.type});
-        $scope.showSearch = false;
-        $scope.showInput = false;
+        $scope.offenses.splice($scope.offenses.length -1, 1, offense);
 
         if(menuItem === "Other"){
             $scope.showInput2 = true;
@@ -166,37 +165,9 @@ angular.module('starter.controllers', [])
         offense[fieldName] = index;
     };
 
-    $scope.toggleGroup = function(group) {
-        if ($scope.isGroupShown(group)) {
-            $scope.shownGroup = null;
-        } else {
-            $scope.shownGroup = group;
-        }
-    };
-
-    $scope.isGroupShown = function(group) {
-        return $scope.shownGroup === group;
-    };
-
     $scope.addOffense = function(){
-        var valid = true;
-        if(offense["type"] == "Speed"){
-            var fieldName = Offenses.getFieldName(4, offense["type"]);
-            offense[fieldName] = parseInt($scope.inputs.speed_driven);//speed driven
-            var fieldName = Offenses.getFieldName(5, offense["type"]);
-            offense[fieldName] = parseInt($scope.inputs.speed_corrected);//corrected speed
-        }
-        for (var key in offense) {
-            if (offense.hasOwnProperty(key)) {
-                if(key === "type"){
+        var valid = Offenses.validateOffense(offense);
 
-                }else{
-                    if(offense[key] === -1){
-                        valid = false;
-                    }
-                }
-            }
-        }
         if(valid){
             $scope.groups = [];
             $scope.showInput2 = false;
@@ -227,19 +198,21 @@ angular.module('starter.controllers', [])
     };
 
     $scope.search = function() {
-        $scope.items.length = 0;
-        $scope.items = Others.searchOthers($scope.inputs.searchWord);
+        $scope.searchResults.length = 0;
+        $scope.searchResults = Others.searchOthers($scope.inputs.searchWord);
     };
+
     $scope.otherTapped = function(item) {
         offense.id = item.id;
         offense.degree = item.degree;
         offense.age = 1;
-        offense.licence = 1;
-        $scope.items.length = 0;
-        $scope.items.push(item);
+        offense.searchResults = 1;
+        $scope.searchResults.length = 0;
+        $scope.searchResults.push(item);
 
-        var groups = Questions.getQuestions("Test");
+        $scope.groups = Questions.getQuestions("Test");
     };
+
     $scope.calcSpeed = function() {
         var speedDriven = $scope.inputs.speed_driven;
         if(isNaN(speedDriven)){
@@ -259,6 +232,22 @@ angular.module('starter.controllers', [])
                 $scope.inputs.speed_corrected = "";
             }
         }
+        var fieldName = Offenses.getFieldName(4, offense["type"]);
+        offense[fieldName] = parseInt($scope.inputs.speed_driven);
+        var fieldName = Offenses.getFieldName(5, offense["type"]);
+        offense[fieldName] = parseInt($scope.inputs.speed_corrected);
+    };
+
+    $scope.toggleGroup = function(group) {
+        if ($scope.isGroupShown(group)) {
+            $scope.shownGroup = null;
+        } else {
+            $scope.shownGroup = group;
+        }
+    };
+
+    $scope.isGroupShown = function(group) {
+        return $scope.shownGroup === group;
     };
 })
 

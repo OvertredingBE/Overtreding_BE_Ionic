@@ -1,6 +1,7 @@
 <ion-view view-title="BOETE BEREKENEN">
     <ion-content>
         <div>{{test}}</div>
+
         <div ng-repeat="offense in offenses track by $index">
             <ion-item href="#/result/{{$index}}">Overtreding {{$index+1}}: {{offense.type}}</ion-item>
             <!-- <ion-item>{{item.licence}}</ion-item>
@@ -8,11 +9,13 @@
             <ion-item>{{item.driver}}</ion-item>
             <ion-item>{{item.intoxication}}</ion-item> -->
         </div>
+
         <div ng-repeat="menuItem in menu">
             <ion-item class="item-stable" ng-click="menuItemTapped(menuItem)">
                 {{menuItem}}
             </ion-item>
         </div>
+
         <div ng-show="showInput2">
             <label class="item item-input">
                 <input type="text" placeholder="Search"  ng-model="inputs.searchWord">
@@ -20,12 +23,13 @@
             <button ng-click="search()" class="button button-full button-positive">
                 Search
             </button>
-            <div class="card" ng-repeat="item in items track by $index" ng-click="otherTapped(item)">
+            <div class="card" ng-repeat="item in searchResults track by $index" ng-click="otherTapped(item)">
                 <div class="item item-text-wrap">
                     {{item.description}}
                 </div>
             </div>
         </div>
+
         <div ng-repeat="group in groups">
             <ion-item class="item-stable"
             ng-click="toggleGroup(group)"

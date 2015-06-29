@@ -47,7 +47,7 @@ angular.module('starter.services', [])
 
             }
             var groups = [];
-            
+
             for (var i=0; i<names.length; i++) {
                 groups[i] = {
                     id: i,
@@ -140,45 +140,43 @@ angular.module('starter.services', [])
         findById: function(offenseId){
             return offenses[offenseId];
         },
+        validateOffense: function(offense){
+            var valid = true;
+            for (var key in offense) {
+                if (offense.hasOwnProperty(key)) {
+                    if(key === "type"){
+
+                    }else{
+                        if(offense[key] === -1){
+                            valid = false;
+                        }
+                    }
+                }
+            }
+            return valid;
+        },
         createDefault: function(type){
-            var offense = null;
+            var offense = {};
+            offense.licence = -1;
+            offense.age = -1;
+            offense.type = type;
             switch (type) {
                 case "Alchohol":
-                offense =  {
-                    licence: -1,
-                    age:-1,
-                    driver:-1,
-                    intoxication:-1,
-                    type:"Alchohol"
-                };
+                offense.driver = -1;
+                offense.intoxication = -1;
                 break;
                 case "Drugs":
-                offense =  {
-                    licence: -1,
-                    age:-1,
-                    blood_test:-1,
-                    type:"Drugs"
-                };
+                offense.blood_test = -1;
                 break;
                 case "Speed":
-                offense =  {
-                    licence: -1,
-                    age:-1,
-                    road:-1,
-                    speed_limit: -1,
-                    speed_driven: -1,
-                    speed_corrected: -1,
-                    type:"Speed"
-                };
+                offense.road = -1;
+                offense.speed_limit = -1;
+                offense.speed_driven = -1;
+                offense.speed_corrected= -1;
                 break;
                 case "Other":
-                offense =  {
-                    id: -1,
-                    licence: -1,
-                    age:-1,
-                    degree:-1,
-                    type:"Other"
-                };
+                offense.id = -1;
+                offense.degree = -1;
                 break;
                 default:
             }
@@ -404,7 +402,7 @@ angular.module('starter.services', [])
                 formulaIds.push(8);
                 break;
                 case "Speed":
-                var exceed = sd(offense.speed_limit, offense.speed_corrected);
+                var exceed = calculateExceed(offense.speed_limit, offense.speed_corrected);
                 formulaIds.push(1);
                 formulaIds.push(2);
                 switch (exceed) {
