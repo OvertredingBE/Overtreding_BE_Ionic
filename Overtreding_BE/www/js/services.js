@@ -229,14 +229,52 @@ angular.module('starter.services', [])
 .factory('ResultTexts', function($cordovaSQLite, FinesCalculator) {
     var texts = [];
     var fines = [];
+    var otherTexts = [];
     db = window.openDatabase("test2", "1.0", "Test DB", 1000000);
+    var query = "SELECT * FROM Texts WHERE id = ? OR id = ? OR id = ?";
+    $cordovaSQLite.execute(db, query, [9, 10, 11]).then(function(res){
+        if(res.rows.length > 0){
+            for(var i = 0; i < res.rows.length; i++){
+                otherTexts.push(res.rows.item(i).body);
+            }
+        }
+    }, function(err){
+        console.error(err);
+    });
     return {
         getTexts: function(offense) {
             texts.length = 0;
             fines.length = 0;
-            if(offense.age === 0 || offense.licence === 0){
-                var query = "SELECT * FROM Texts WHERE id = ? OR id = ? OR id = ?";
-                $cordovaSQLite.execute(db, query, [9, 10, 11]).then(function(res){
+            var flag = true;
+
+            if(offense.age === 0){
+                texts = otherTexts;
+                flag = false;
+            }
+            if(offense.licence === 0){
+                switch (offense.type) {
+                        case "Speed":
+                        var exceed = FinesCalculator.calculateExceed(offense.speed_limit, offense.speed_corrected);
+                        if(exceed >= 2){
+                            texts = otherTexts;
+                            flag = false;
+                        }
+                        break;
+                        case "Alchohol":
+                        if(offense.intoxication <= 5){
+                            texts = otherTexts;
+                            flag = false;
+                        }
+                        break;
+                    default:
+
+                }
+            }
+            if(flag){
+                switch (offense.type) {
+                case "Alchohol":
+                var query = "SELECT * FROM Texts a INNER JOIN Alchohol b ON a.id=b.text_id_1 or a.id = b.text_id_2 or a.id = b.text_id_3 WHERE b.intoxication=?";
+                $cordovaSQLite.execute(db, query, [offense.intoxication]).then(function(res){
                     if(res.rows.length > 0){
                         for(var i = 0; i < res.rows.length; i++){
                             texts.push(res.rows.item(i).body);
@@ -245,73 +283,58 @@ angular.module('starter.services', [])
                 }, function(err){
                     console.error(err);
                 });
-            }
-            else{
-                switch (offense.type) {
-                    case "Alchohol":
-                    var query = "SELECT * FROM Texts a INNER JOIN Alchohol b ON a.id=b.text_id_1 or a.id = b.text_id_2 or a.id = b.text_id_3 WHERE b.intoxication=?";
-                    $cordovaSQLite.execute(db, query, [offense.intoxication]).then(function(res){
-                        if(res.rows.length > 0){
-                            for(var i = 0; i < res.rows.length; i++){
-                                texts.push(res.rows.item(i).body);
-                            }
+                break;
+                case "Drugs":
+                var query = "SELECT * FROM Texts a INNER JOIN Drugs b ON a.id=b.text_id_1 or a.id = b.text_id_2 or a.id = b.text_id_3";
+                $cordovaSQLite.execute(db, query, []).then(function(res){
+                    if(res.rows.length > 0){
+                        for(var i = 0; i < res.rows.length; i++){
+                            texts.push(res.rows.item(i).body);
                         }
-                    }, function(err){
-                        console.error(err);
-                    });
-                    break;
-                    case "Drugs":
-                    var query = "SELECT * FROM Texts a INNER JOIN Drugs b ON a.id=b.text_id_1 or a.id = b.text_id_2 or a.id = b.text_id_3";
-                    $cordovaSQLite.execute(db, query, []).then(function(res){
-                        if(res.rows.length > 0){
-                            for(var i = 0; i < res.rows.length; i++){
-                                texts.push(res.rows.item(i).body);
-                            }
-                        }
-                    }, function(err){
-                        console.error(err);
-                    });
-                    break;
-                    case "Speed":
-                    var exceed = FinesCalculator.calculateExceed(offense.speed_limit, offense.speed_corrected);
-
-                    var query = "SELECT * FROM Texts a INNER JOIN Speed b ON a.id=b.text_id_1 OR a.id = b.text_id_2 OR a.id = b.text_id_3 WHERE b.exceed = ? AND b.road = ?";
-                    $cordovaSQLite.execute(db, query, [exceed, offense.road]).then(function(res){
-                        if(res.rows.length > 0){
-                            for(var i = 0; i < res.rows.length; i++){
-                                texts.push(res.rows.item(i).body);
-                            }
-                        }
-                    }, function(err){
-                        console.error(err);
-                    });
-                    break;
-                    case "Other":
-                    var query = "SELECT * FROM Texts a INNER JOIN Other b ON a.id=b.text_id_1 or a.id = b.text_id_2 or a.id = b.text_id_3 WHERE b.id=?";
-                    $cordovaSQLite.execute(db, query, [offense.id]).then(function(res){
-                        if(res.rows.length > 0){
-                            for(var i = 0; i < res.rows.length; i++){
-                                texts.push(res.rows.item(i).body);
-                            }
-                        }
-                    }, function(err){
-                        console.error(err);
-                    });
-                    break;
-                    default:
-
-                }
-                fines = FinesCalculator.getFines(offense);
-
-                for (var key in fines) {
-                    if (fines.hasOwnProperty(key)) {
-                        texts.push(key + " -> " + fines[key])
                     }
-                }
+                }, function(err){
+                    console.error(err);
+                });
+                break;
+                case "Speed":
+                var exceed = FinesCalculator.calculateExceed(offense.speed_limit, offense.speed_corrected);
+
+                var query = "SELECT * FROM Texts a INNER JOIN Speed b ON a.id=b.text_id_1 OR a.id = b.text_id_2 OR a.id = b.text_id_3 WHERE b.exceed = ? AND b.road = ?";
+                $cordovaSQLite.execute(db, query, [exceed, offense.road]).then(function(res){
+                    if(res.rows.length > 0){
+                        for(var i = 0; i < res.rows.length; i++){
+                            texts.push(res.rows.item(i).body);
+                        }
+                    }
+                }, function(err){
+                    console.error(err);
+                });
+                break;
+                case "Other":
+                var query = "SELECT * FROM Texts a INNER JOIN Other b ON a.id=b.text_id_1 or a.id = b.text_id_2 or a.id = b.text_id_3 WHERE b.id=?";
+                $cordovaSQLite.execute(db, query, [offense.id]).then(function(res){
+                    if(res.rows.length > 0){
+                        for(var i = 0; i < res.rows.length; i++){
+                            texts.push(res.rows.item(i).body);
+                        }
+                    }
+                }, function(err){
+                    console.error(err);
+                });
+                break;
+                default:
 
             }
+            fines = FinesCalculator.getFines(offense);
 
-            return texts;
+            for (var key in fines) {
+                if (fines.hasOwnProperty(key)) {
+                    texts.push(key + " -> " + fines[key])
+                }
+            }
+        }
+
+        return texts;
         }
     }
 })
