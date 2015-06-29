@@ -4,17 +4,28 @@
 
 angular.module('starter.controllers', [])
 
-.controller("ConfigController", function($scope, $ionicLoading, $cordovaSQLite, $location, $http,Offenses, $ionicPopup){
-
+.controller("ConfigController", function($scope,$ionicPlatform, $ionicLoading, $cordovaSQLite, $location, $http,Offenses, $ionicPopup){
+    $ionicPlatform.ready(function() {
     if(window.cordova) {
         $ionicLoading.show({
             template: 'Loading...'
         });
         var db = null;
         $scope.items = [];
-        //http://localhost/overtreding_api/v1/db
-        //'http://www.martindzhonov.podserver.info/overtreding_api/v1/db'
-        $http.get('http://localhost/overtreding_api/v1/db').then(function(resp) {
+        var url = 'http://www.martindzhonov.podserver.info/overtreding_api/v1/db';
+        // var url = 'http://localhost/overtreding_api/v1/db';
+
+        $scope.url = url;
+        // $http.get(url).then(function(resp) {
+        //     console.log(resp.data.texts);
+        //     $scope.succ = resp.statusText;
+        //     $ionicLoading.hide();
+        //
+        // }, function(err) {
+        //     $ionicLoading.hide();
+        //     console.error(err);
+        // });
+        $http.get(url).then(function(resp) {
             db = window.openDatabase("test2", "1.0", "Test DB", 1000000);
             db.transaction(function (tx) {
                 tx.executeSql("DROP TABLE IF EXISTS Texts");
@@ -93,9 +104,15 @@ angular.module('starter.controllers', [])
             $ionicLoading.hide();
 
         }, function(err) {
-            console.error('ERR', err);
+            $ionicLoading.hide();
+            var confirmPopup = $ionicPopup.confirm({
+                title: 'Error',
+                template: err.status
+            });
+            console.error(err);
         });
-    }
+}
+});
 })
 
 .controller("HomeController", function($scope, $ionicPlatform, $cordovaSQLite, $http){
