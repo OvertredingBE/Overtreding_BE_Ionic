@@ -103,24 +103,6 @@ angular.module('starter.controllers', [])
             console.error(err);
         });
     });
-    $scope.sendEmail = function() {
-       if(window.plugins && window.plugins.emailComposer) {
-           window.plugins.emailComposer.showEmailComposerWithCallback(function(result) {
-               var confirmPopup = $ionicPopup.confirm({
-                   title: 'Result',
-                   template: result
-               });
-           },
-           "Feedback for your App", // Subject
-           "",                      // Body
-           ["martin.dzhonov@gmail.com"],    // To
-           null,                    // CC
-           null,                    // BCC
-           false,                   // isHTML
-           null,                    // Attachments
-           null);                   // Attachment Data
-       }
-    };
 })
 
 .controller("HomeController", function($scope, $ionicPlatform, $cordovaSQLite, $http){
@@ -140,7 +122,24 @@ angular.module('starter.controllers', [])
     };
 })
 
-.controller("ContactController", function($scope, $ionicPopup, Rights) {
+.controller("ContactController", function($scope, $ionicPopup, Offenses) {
+    $scope.form = {};
+    $scope.sendEmail = function() {
+       if(window.plugins && window.plugins.emailComposer) {
+           var emailBody = Offenses.composeEmail($scope.form);
+           window.plugins.emailComposer.showEmailComposerWithCallback(function(result) {
+              console.log(emailBody);
+           },
+           "Feedback for your App", // Subject
+           emailBody,                      // Body
+           ["martin.dzhonov@gmail.com"],    // To
+           null,                    // CC
+           null,                    // BCC
+           false,                   // isHTML
+           null,                    // Attachments
+           null);                   // Attachment Data
+       }
+    };
     $scope.showConfirm = function() {
         var confirmPopup = $ionicPopup.confirm({
             title: 'This is a popup',

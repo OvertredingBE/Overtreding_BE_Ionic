@@ -172,6 +172,24 @@ angular.module('starter.services', [])
             }
             return valid;
         },
+        composeEmail: function(form){
+            var texts = [];
+            for (var key in form) {
+                if (form.hasOwnProperty(key)) {
+                    texts.push(key + ": " + form[key])
+                }
+            }
+            for (var i = 0; i < offenses.length; i++) {
+            texts.push("OFFENSE " + i);
+             var offense =   offenses[i];
+             for (var key in offense) {
+                 if (offense.hasOwnProperty(key)) {
+                     texts.push(key + ": " + offense[key])
+                 }
+             }
+            }
+            return texts.join("\n")
+        },
         createDefault: function(type){
             var offense = {};
             offense.licence = -1;

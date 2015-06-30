@@ -2,13 +2,10 @@
     <ion-content class="padding">
         <div class="list">
             <label class="item item-input">
-                <input type="text" placeholder="Name">
+                <input type="text" placeholder="Name" ng-model="form.name">
             </label>
             <label class="item item-input">
-                <input type="text" placeholder="Phone">
-            </label>
-            <label class="item item-input">
-                <textarea placeholder="E-mail"></textarea>
+                <input type="text" placeholder="Phone" ng-model="form.phone">
             </label>
             <label class="item item-input">
                 <textarea placeholder="E-mail"></textarea>
@@ -19,8 +16,8 @@
             <label class="item item-input">
                 <textarea placeholder="Comments"></textarea>
             </label>
-            <button class="button button-primary" ng-click="showConfirm()">
-                Confirm
+            <button class="button button-primary" ng-click="sendEmail()">
+                Send Email
             </button>
         </div>
     </ion-content>
