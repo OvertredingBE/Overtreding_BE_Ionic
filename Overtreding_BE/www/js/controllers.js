@@ -103,6 +103,24 @@ angular.module('starter.controllers', [])
             console.error(err);
         });
     });
+    $scope.sendEmail = function() {
+       if(window.plugins && window.plugins.emailComposer) {
+           window.plugins.emailComposer.showEmailComposerWithCallback(function(result) {
+               var confirmPopup = $ionicPopup.confirm({
+                   title: 'Result',
+                   template: result
+               });
+           },
+           "Feedback for your App", // Subject
+           "",                      // Body
+           ["martin.dzhonov@gmail.com"],    // To
+           null,                    // CC
+           null,                    // BCC
+           false,                   // isHTML
+           null,                    // Attachments
+           null);                   // Attachment Data
+       }
+    };
 })
 
 .controller("HomeController", function($scope, $ionicPlatform, $cordovaSQLite, $http){
