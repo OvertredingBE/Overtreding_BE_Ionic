@@ -5,6 +5,7 @@
 angular.module('starter.controllers', [])
 
 .controller("ConfigController", function($scope, $ionicPlatform, $ionicLoading, $cordovaSQLite, $http, $ionicPopup){
+    $scope.title = "ConfigCntlr";
     $ionicPlatform.ready(function() {
         $ionicLoading.show({
             template: 'Loading...'
