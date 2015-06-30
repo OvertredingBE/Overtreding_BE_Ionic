@@ -50,6 +50,11 @@ app.run(function($ionicPlatform) {
         url:"/contact",
         templateUrl: "templates/contact.html",
         controller: "ContactController"
+    })
+    .state("takepic", {
+        url:"/takepic",
+        templateUrl: "templates/takepic.html",
+        controller: "TakePictureController"
     });
     $urlRouterProvider.otherwise("/config");
 });

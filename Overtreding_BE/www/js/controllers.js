@@ -45,6 +45,7 @@ angular.module('starter.controllers', [])
                 var type = items[i].type;
                 $cordovaSQLite.execute(db, "INSERT INTO Rights (type, body) VALUES (?,?)", [type, textBody]);
             }
+
             var items = resp.data.speed;
             for(var i = 0; i < items.length; i++){
                 var exceed = items[i].exceed;
@@ -261,4 +262,15 @@ angular.module('starter.controllers', [])
     $scope.title = "Overtreding " + offenseDisplayId + " " + offense.type;
     $scope.items = [];
     $scope.items = ResultTexts.getTexts(offense);
+})
+.controller("TakePictureController", function($scope, Camera) {
+    $scope.getPhoto = function() {
+        Camera.getPicture().then(function(imageURI) {
+            $scope.src =  imageURI;
+$scope.$apply();
+          console.log(imageURI);
+        }, function(err) {
+          console.log(err);
+        });
+      };
 });
