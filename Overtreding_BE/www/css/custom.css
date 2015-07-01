@@ -22,22 +22,32 @@
    border-right: none;
    color:white;
 }
+.item-subgroups{
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-color:white;
+}
 .item-custom{
    background-color: #43A0DC;
 }
 .item-custom-2{
-   background-color: #68B3E2;
+    background-color: #68B3E2
+    border-top: none;
 }
 
 .background-nav-bar{
    color:white;
    background-color: #0089D2;
 }
-.background, .background .pane {
+.background-dark{
    background-color: #43A0DC;
 }
-.background-2{
+.background-light{
    background-color: #68B3E2;
+}
+.background-transp{
+    background-color: transparent;
 }
 .item-accordion{
    border: 2px solid black;
