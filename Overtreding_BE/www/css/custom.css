@@ -1,0 +1,44 @@
+.button-custom {
+    border-top: none;
+    border-color: white;
+    color: white;
+    background-color: transparent;
+}
+.button-custom-2 {
+   border-color: white;
+   color: white;
+   background-color: #1E91D5;
+}
+.button-custom-3{
+    background-color: #68B3E2;
+}
+.ion-chevron-left{
+   color: white;
+}
+.card-custom{
+   background-color: transparent;
+   border-top: none;
+   border-left: none;
+   border-right: none;
+   color:white;
+}
+.item-custom{
+   background-color: #43A0DC;
+}
+.item-custom-2{
+   background-color: #68B3E2;
+}
+
+.background-nav-bar{
+   color:white;
+   background-color: #0089D2;
+}
+.background, .background .pane {
+   background-color: #43A0DC;
+}
+.background-2{
+   background-color: #68B3E2;
+}
+.item-accordion{
+   border: 2px solid black;
+}
