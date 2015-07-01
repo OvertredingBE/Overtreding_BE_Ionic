@@ -1,13 +1,13 @@
-<ion-view view-title="UW RECHTEN BIJ EEN POLITIECONTROLE" class="background">
+<ion-view view-title="UW RECHTEN BIJ EEN POLITIECONTROLE" class="background-2">
     <ion-content class="padding">
-        <button class="button button-positive" ng-click="showAlch()">
+        <button class="button button-custom-2" ng-click="showAlch()">
             ALCHOHOL CONTROLE
         </button>
-        <button class="button button-positive" ng-click="showDrugs()">
+        <button class="button button-custom-2" ng-click="showDrugs()">
             DRUGS CONTROLE
         </button>
-        <div class="card" ng-repeat="item in items">
-            <div class="item item-text-wrap">
+        <div ng-repeat="item in items">
+            <div class="item item-text-wrap card-custom">
                 {{item.body}}
             </div>
         </div>
