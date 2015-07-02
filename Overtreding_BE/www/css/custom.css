@@ -24,6 +24,15 @@
     border: none;
     color:white;
 }
+.item-group-underline{
+    border:1px solid white;
+    color:white;
+    border-color: white;
+}
+.item-group-noline{
+    border-bottom:none;
+    color:white;
+}
 .button-custom-2 {
    border-color: white;
    color: white;
