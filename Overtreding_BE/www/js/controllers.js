@@ -110,6 +110,7 @@ angular.module('starter.controllers', [])
 
 .controller("RightsController", function($scope, Rights) {
     $scope.items = Rights.alchRights();
+    $scope.last = "item-underline";
 
     $scope.showAlch = function() {
         $scope.items = [];

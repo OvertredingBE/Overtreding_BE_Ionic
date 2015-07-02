@@ -1,8 +1,28 @@
-.button-custom {
-    border-top: none;
-    border-color: white;
-    color: white;
+.button-underline{
     background-color: transparent;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    color:white;
+    border-color: white;
+}
+.button-noline{
+    background-color: transparent;
+    border:none;
+    color:white;
+}
+.item-underline{
+    background-color: transparent;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    color:white;
+    border-color: white;
+}
+.item-noline{
+    background-color: transparent;
+    border: none;
+    color:white;
 }
 .button-custom-2 {
    border-color: white;
@@ -40,7 +60,7 @@
    color:white;
    background-color: #0089D2;
 }
-.background-dark{
+.background-medium{
    background-color: #43A0DC;
 }
 .background-light{
