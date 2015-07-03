@@ -1,10 +1,8 @@
 <ion-view view-title="{{title}}" class="background-light">
     <ion-content class="padding">
         <!-- <div class="card">Lenght: {{offenseType}}</div> -->
-        <div class="card" ng-repeat="item in items track by $index">
-            <div class="item item-text-wrap">
+        <div ng-repeat="item in items track by $index" ng-class="$last ? 'item item-text-wrap item-noline' : 'item item-text-wrap item-underline'">
                 {{item}}
-            </div>
         </div>
     </ion-content>
     <ion-footer-bar align-title="left" class="bar-positive">

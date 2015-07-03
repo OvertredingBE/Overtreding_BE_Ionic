@@ -1,8 +1,7 @@
 <ion-view view-title="BOETE BEREKENEN - RESULTAAT" class="background-light">
-    <ion-content class="padding">
-        <ion-list>
-            <div ng-repeat="item in items track by $index">
-                <ion-item href="#/result/{{$index}}">Overtreding {{$index+1}}: {{item.type}}</ion-item>
+    <ion-content>
+            <a href="#/result/{{$index}}" ng-repeat="item in items track by $index" class="button button-full button-underline">
+                 Overtreding {{$index+1}}: {{item.type}}
                 <!-- <ion-item>{{item.licence}}</ion-item>
                 <ion-item>{{item.age}}</ion-item>
                 <ion-item>{{item.degree}}</ion-item>
@@ -12,8 +11,7 @@
                 <ion-item>{{item.intoxication}}</ion-item>
                 <ion-item>{{item.speed_driven}}</ion-item>
                 <ion-item>{{item.speed_corrected}}</ion-item> -->
-            </div>
-        </ion-list>
+            </a>
     </ion-content>
     <ion-footer-bar align-title="left" class="bar-positive">
         <div class="buttons" ng-click="showConfirm()">
