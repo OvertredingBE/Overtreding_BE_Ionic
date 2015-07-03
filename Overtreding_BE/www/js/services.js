@@ -56,6 +56,10 @@ angular.module('starter.services', [])
                 ["Woonerf, zone 30, etc", "Andere wegen"],
                 ["10","20","30","40","50","60","70","80","90","100","110","120",]];
                 break;
+                case "Other":
+                var names = [];
+                var subgroups = [];
+                break;
                 case "Test":
                 var names = ["RIJBEWIJS","LEEFTIJD"];
                 var subgroups = [['Ik bezit mijn rijbewijs minder dan 2 jaar', "Ik bezit mijn rijbewijs langer dan 2 jaar"],
