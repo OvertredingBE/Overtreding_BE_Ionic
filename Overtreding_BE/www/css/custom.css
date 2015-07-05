@@ -1,15 +1,34 @@
+@font-face {
+    font-family: "AvenrirNext";
+    src: url("../fonts/AvenirNextLTPro-Demi.otf") format("opentype");
+    font-weight: normal;
+    font-style: normal;
+}
+.background-nav-bar{
+    font-family: "AvenrirNext";
+    color:white;
+    background-color: #0089D2;
+}
+.background-medium{
+    background-color: #43A0DC;
+}
+.background-light{
+    background-color: #68B3E2;
+}
 .button-underline{
+    font-family: "AvenrirNext";
+    color:white;
     background-color: transparent;
     border-top: none;
     border-left: none;
     border-right: none;
-    color:white;
     border-color: white;
 }
 .button-noline{
+    font-family: "AvenrirNext";
+    color:white;
     background-color: transparent;
     border:none;
-    color:white;
 }
 .item-underline{
     background-color: transparent;
@@ -34,22 +53,22 @@
     color:white;
 }
 .button-custom-2 {
-   border-color: white;
-   color: white;
-   background-color: #1E91D5;
+    border-color: white;
+    color: white;
+    background-color: #1E91D5;
 }
 .button-custom-3{
     background-color: #68B3E2;
 }
 .ion-chevron-left{
-   color: white;
+    color: white;
 }
 .card-custom{
-   background-color: transparent;
-   border-top: none;
-   border-left: none;
-   border-right: none;
-   color:white;
+    background-color: transparent;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    color:white;
 }
 .item-subgroups{
     border-top: none;
@@ -57,27 +76,20 @@
     border-right: none;
     border-color:white;
 }
+
+.bar-subheader-custom{
+}
 .item-custom{
-   background-color: #43A0DC;
+    background-color: #43A0DC;
 }
 .item-custom-2{
     background-color: #68B3E2
     border-top: none;
 }
 
-.background-nav-bar{
-   color:white;
-   background-color: #0089D2;
-}
-.background-medium{
-   background-color: #43A0DC;
-}
-.background-light{
-   background-color: #68B3E2;
-}
 .background-transp{
     background-color: transparent;
 }
 .item-accordion{
-   border: 2px solid black;
+    border: 2px solid black;
 }

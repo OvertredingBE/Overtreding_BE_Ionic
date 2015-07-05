@@ -1,4 +1,9 @@
-<ion-view view-title="BOETE BEREKENEN - RESULTAAT" class="background-light">
+<ion-view view-title="OVERTREDING.BE" class="background-light">
+    <ion-header-bar class="bar bar-subheader background-nav-bar bar-subheader-custom">
+        <i class="button-icon ion-chevron-left" ng-click="goBack()"></i>
+        <h1 class="title background-nav-bar">BOETE BEREKENEN - RESULTAAT</h1>
+    </ion-header-bar>
+
     <ion-content>
             <a href="#/result/{{$index}}" ng-repeat="item in items track by $index" class="button button-full button-underline">
                  Overtreding {{$index+1}}: {{item.type}}

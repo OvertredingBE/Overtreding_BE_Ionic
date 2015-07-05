@@ -105,10 +105,13 @@ angular.module('starter.controllers', [])
     });
 })
 
-.controller("HomeController", function($scope, $ionicPlatform, $cordovaSQLite, $http){
+.controller("HomeController", function($scope, $ionicPlatform, $ionicHistory, $cordovaSQLite, $http){
+    $scope.goBack = function() {
+        $ionicHistory.goBack();  // This takes you back to the last view state.
+    }
 })
 
-.controller("RightsController", function($scope, Rights) {
+.controller("RightsController", function($scope, $ionicHistory, Rights) {
     $scope.items = Rights.alchRights();
     $scope.last = "item-underline";
 
@@ -121,25 +124,28 @@ angular.module('starter.controllers', [])
         $scope.items = [];
         $scope.items = Rights.drugRights();
     };
+    $scope.goBack = function() {
+        $ionicHistory.goBack();  // This takes you back to the last view state.
+    }
 })
 
 .controller("ContactController", function($scope, $ionicPopup, Offenses) {
     $scope.form = {};
     $scope.sendEmail = function() {
-       if(window.plugins && window.plugins.emailComposer) {
-           var emailBody = Offenses.composeEmail($scope.form);
-           window.plugins.emailComposer.showEmailComposerWithCallback(function(result) {
-              console.log(emailBody);
-           },
-           "Feedback for your App", // Subject
-           emailBody,                      // Body
-           ["martin.dzhonov@gmail.com"],    // To
-           null,                    // CC
-           null,                    // BCC
-           false,                   // isHTML
-           null,                    // Attachments
-           null);                   // Attachment Data
-       }
+        if(window.plugins && window.plugins.emailComposer) {
+            var emailBody = Offenses.composeEmail($scope.form);
+            window.plugins.emailComposer.showEmailComposerWithCallback(function(result) {
+                console.log(emailBody);
+            },
+            "Feedback for your App", // Subject
+            emailBody,                      // Body
+            ["martin.dzhonov@gmail.com"],    // To
+            null,                    // CC
+            null,                    // BCC
+            false,                   // isHTML
+            null,                    // Attachments
+            null);                   // Attachment Data
+        }
     };
     $scope.showConfirm = function() {
         var confirmPopup = $ionicPopup.confirm({
@@ -154,6 +160,9 @@ angular.module('starter.controllers', [])
             }
         });
     };
+    $scope.goBack = function() {
+        $ionicHistory.goBack();  // This takes you back to the last view state.
+    }
 })
 
 .controller("CalcFineController", function($scope, $ionicPopup, $location, Offenses, Questions, Others) {
@@ -269,10 +278,16 @@ angular.module('starter.controllers', [])
     $scope.isGroupShown = function(group) {
         return $scope.shownGroup === group;
     };
+    $scope.goBack = function() {
+        $ionicHistory.goBack();  // This takes you back to the last view state.
+    }
 })
 
 .controller("ResultController", function($scope, $ionicPopup, Offenses) {
     $scope.items = Offenses.all();
+    $scope.goBack = function() {
+        $ionicHistory.goBack();  // This takes you back to the last view state.
+    }
 })
 
 .controller("ResultDetailController", function($scope,$stateParams, $ionicPopup, Offenses, ResultTexts) {
@@ -281,15 +296,21 @@ angular.module('starter.controllers', [])
     $scope.title = "Overtreding " + offenseDisplayId + " " + offense.type;
     $scope.items = [];
     $scope.items = ResultTexts.getTexts(offense);
+    $scope.goBack = function() {
+        $ionicHistory.goBack();  // This takes you back to the last view state.
+    }
 })
 .controller("TakePictureController", function($scope, Camera) {
     $scope.getPhoto = function() {
         Camera.getPicture().then(function(imageURI) {
             $scope.src =  imageURI;
-$scope.$apply();
-          console.log(imageURI);
+            $scope.$apply();
+            console.log(imageURI);
         }, function(err) {
-          console.log(err);
+            console.log(err);
         });
-      };
+    };
+    $scope.goBack = function() {
+        $ionicHistory.goBack();  // This takes you back to the last view state.
+    }
 });
