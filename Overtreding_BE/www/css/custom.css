@@ -1,18 +1,63 @@
 @font-face {
     font-family: "AvenrirNext";
-    src: url("../fonts/AvenirNextLTPro-Demi.otf") format("opentype");
+    src: url("../fonts/Florsn01.ttf") format("opentype");
     font-weight: normal;
     font-style: normal;
 }
 
-.bar-subheader-custom{
-
-}
-.background-nav-bar{
+.button-underline, .button-noline, .item-underline, .item-noline, .item-group-underline, .item-group-noline, .background-nav-bar{
     font-family: "AvenrirNext";
     color:white;
+}
+
+.button-underline, .button-noline, .item-underline, .item-noline, .item-group-underline, .item-group-noline{
+    background-color: transparent;
+    border-color: white;
+}
+
+.button-underline{
+    border-top: none;
+    border-left: none;
+    border-right: none;
+}
+
+.button-noline{
+    border:none;
+}
+
+.item-underline{
+    border-top: none;
+    border-left: none;
+    border-right: none;
+}
+
+.item-noline{
+    border:none;
+}
+
+.item-group-underline{
+    border-top: none;
+    border-left: none;
+    border-right: none;
+}
+
+.item-group-noline{
+    border:none;
+}
+
+.button-custom-2 {
+    margin-left: 20px;
+    margin-right: 10px;
+    width: 40%;
+    height: 75px;
+    border-color: white;
+    color: white;
+    background-color: #1E91D5;
+}
+
+.background-nav-bar{
+    font-size: 18px;
     background-color: #0089D2;
-    border-bottom: none;
 }
 .background-medium{
     color: white;
@@ -22,79 +67,6 @@
     color:white;
     background-color: #68B3E2;
 }
-.button-underline{
-    font-family: "AvenrirNext";
-    color:white;
-    background-color: transparent;
-    border-top: none;
-    border-left: none;
-    border-right: none;
-    border-color: white;
-}
-.button-noline{
-    font-family: "AvenrirNext";
-    color:white;
-    background-color: transparent;
-    border:none;
-}
-.item-underline{
-    background-color: transparent;
-    border-top: none;
-    border-left: none;
-    border-right: none;
-    color:white;
-    border-color: white;
-}
-.item-noline{
-    background-color: transparent;
-    border: none;
-    color:white;
-}
-.item-group-underline{
-    border:1px solid white;
-    color:white;
-    border-color: white;
-}
-.item-group-noline{
-    border-bottom:none;
-    color:white;
-}
-.button-custom-2 {
-    border-color: white;
-    color: white;
-    background-color: #1E91D5;
-}
-.button-custom-3{
-    background-color: #68B3E2;
-}
-.ion-chevron-left{
-    color: white;
-}
-.card-custom{
-    background-color: transparent;
-    border-top: none;
-    border-left: none;
-    border-right: none;
-    color:white;
-}
-.item-subgroups{
-    border-top: none;
-    border-left: none;
-    border-right: none;
-    border-color:white;
-}
-
-.item-custom{
-    background-color: #43A0DC;
-}
-.item-custom-2{
-    background-color: #68B3E2
-    border-top: none;
-}
-
 .background-transp{
     background-color: transparent;
-}
-.item-accordion{
-    border: 2px solid black;
 }
