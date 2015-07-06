@@ -4,6 +4,7 @@
     font-weight: normal;
     font-style: normal;
 }
+
 .bar-subheader-custom{
 
 }
@@ -14,9 +15,11 @@
     border-bottom: none;
 }
 .background-medium{
+    color: white;
     background-color: #43A0DC;
 }
 .background-light{
+    color:white;
     background-color: #68B3E2;
 }
 .button-underline{

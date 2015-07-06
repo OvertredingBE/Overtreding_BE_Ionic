@@ -166,13 +166,13 @@ angular.module('starter.controllers', [])
 })
 
 .controller("CalcFineController", function($scope, $ionicHistory, $ionicPopup, $location, Offenses, Questions, Others) {
-    var offense = null;
     $scope.offenses = [];
     $scope.searchResults = [];
-    $scope.menu = Questions.getMenu();
     $scope.inputs = {};
+    var offense = {type: ""};
+    $scope.offenses.push(offense);
+    $scope.menu = Questions.getMenu();
 
-    $scope.offenses.push({type: ""});
 
     $scope.menuItemTapped = function(menuItem){
         $scope.menu = [];
@@ -194,14 +194,17 @@ angular.module('starter.controllers', [])
         offense[fieldName] = index;
     };
 
-    $scope.addOffense = function(){
-        var valid = Offenses.validateOffense(offense);
-
-        if(valid){
+    $scope.createNewOffense = function(){
+        var valid = offense != null && offense.type != "";
+        if(valid && Offenses.validateOffense(offense))
+        {
+            $scope.menu = Questions.getMenu();
             $scope.groups = [];
             $scope.showInput2 = false;
             $scope.showInput = false;
             Offenses.add(offense);
+            offense = {type: ""};
+            $scope.offenses.push(offense);
         }
         else{
             var confirmPopup = $ionicPopup.confirm({
@@ -216,14 +219,6 @@ angular.module('starter.controllers', [])
                 }
             });
         }
-    };
-
-    $scope.createNewOffense = function() {
-        $scope.groups = [];
-        $scope.showInput2 = false;
-        $scope.showInput = false;
-        $scope.menu = Questions.getMenu();
-        $scope.offenses.push({type: ""});
     };
 
     $scope.search = function() {
@@ -332,6 +327,6 @@ angular.module('starter.controllers', [])
         });
     };
     $scope.goBack = function() {
-         // This takes you back to the last view state.
+        // This takes you back to the last view state.
     }
 });

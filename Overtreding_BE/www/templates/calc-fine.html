@@ -37,18 +37,18 @@
 
 
         <div ng-repeat="group in groups"
-            ng-class="$last ? 'item item-group-noline background-medium' : 'item item-group-underline background-medium'">
-            <div ng-click="toggleGroup(group)">
+        ng-class="$last ? 'item item-group-noline background-medium' : 'item item-group-underline background-medium'">
+        <div ng-click="toggleGroup(group)">
             {{group.name}}
             <i class="icon" style="float: right" ng-class="isGroupShown(group) ? 'ion-chevron-left' : 'ion-chevron-down'"></i>
-            </div>
-            <ion-item class="item item-group-underline background-medium"
-          ng-repeat="item in group.items"
-          ng-click="subgroupTapped(item, group, $index); toggleGroup(group)"
-          ng-show="isGroupShown(group)">
-          {{item}}
-          </ion-item>
-    </div>
+        </div>
+        <ion-item class="item item-group-underline background-medium"
+        ng-repeat="item in group.items"
+        ng-click="subgroupTapped(item, group, $index); toggleGroup(group)"
+        ng-show="isGroupShown(group)">
+        {{item}}
+    </ion-item>
+</div>
 
 <div ng-show="showInput">
     <label class="item item-input">
@@ -59,18 +59,22 @@
     </label>
 </div>
 
-
-<button class="button button-full background-light" ng-click="addOffense()">
-    ADD
-</button>
-<button class="button button-full background-light" ng-click="createNewOffense()">
-    VOEG EEN OVERTREDING TOE
-</button>
 </ion-content>
 </ion-view>
-<ion-footer-bar class="bar-positive" align-title="left">
-    <h1 class="title">BOETE BEREKENEN</h1>
 
-    <button class="button" ng-click="resultTapped()">BEVESTIG ->></button>
+<ion-footer-bar class="bar-subfooter background-light" ng-click="createNewOffense()">
+            <div class="background-light">
+                VOEG EEN OVERTREDING TOE
+            </div>
+</ion-footer-bar>
+
+<ion-footer-bar class="bar bar-footer background-light">
+    <div class="background-light">
+        BOETE BEREKENEN
+    </div>
+    <a class="button icon-right ion-chevron-right" ng-click="resultTapped()">BEVESTIG</a>
+
+    <!-- <button class="button" >BEVESTIG ->></button> -->
+
 </ion-footer-bar>
 </ion-view>
