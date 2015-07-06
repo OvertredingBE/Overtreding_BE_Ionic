@@ -4,10 +4,14 @@
     font-weight: normal;
     font-style: normal;
 }
+.bar-subheader-custom{
+
+}
 .background-nav-bar{
     font-family: "AvenrirNext";
     color:white;
     background-color: #0089D2;
+    border-bottom: none;
 }
 .background-medium{
     background-color: #43A0DC;
@@ -77,8 +81,6 @@
     border-color:white;
 }
 
-.bar-subheader-custom{
-}
 .item-custom{
     background-color: #43A0DC;
 }

@@ -129,7 +129,7 @@ angular.module('starter.controllers', [])
     }
 })
 
-.controller("ContactController", function($scope, $ionicPopup, Offenses) {
+.controller("ContactController", function($scope, $ionicHistory, $ionicPopup, Offenses) {
     $scope.form = {};
     $scope.sendEmail = function() {
         if(window.plugins && window.plugins.emailComposer) {
@@ -165,7 +165,7 @@ angular.module('starter.controllers', [])
     }
 })
 
-.controller("CalcFineController", function($scope, $ionicPopup, $location, Offenses, Questions, Others) {
+.controller("CalcFineController", function($scope, $ionicHistory, $ionicPopup, $location, Offenses, Questions, Others) {
     var offense = null;
     $scope.offenses = [];
     $scope.searchResults = [];
@@ -244,6 +244,7 @@ angular.module('starter.controllers', [])
 
     $scope.calcSpeed = function() {
         var speedDriven = $scope.inputs.speed_driven;
+
         if(isNaN(speedDriven)){
             $scope.inputs.speed_corrected = "";
         }
@@ -281,16 +282,36 @@ angular.module('starter.controllers', [])
     $scope.goBack = function() {
         $ionicHistory.goBack();  // This takes you back to the last view state.
     }
+    $scope.resultTapped = function() {
+        var valid = Offenses.validateOffense(offense);
+
+        if(valid){
+            $location.path("/result");
+        }
+        else{
+            var confirmPopup = $ionicPopup.confirm({
+                title: 'Invliad input',
+                template: 'Please enter all fields'
+            });
+            confirmPopup.then(function(res) {
+                if(res) {
+                    console.log('You are sure');
+                } else {
+                    console.log('You are not sure');
+                }
+            });
+        }
+    }
 })
 
-.controller("ResultController", function($scope, $ionicPopup, Offenses) {
+.controller("ResultController", function($scope, $ionicHistory, $ionicPopup, Offenses) {
     $scope.items = Offenses.all();
     $scope.goBack = function() {
         $ionicHistory.goBack();  // This takes you back to the last view state.
     }
 })
 
-.controller("ResultDetailController", function($scope,$stateParams, $ionicPopup, Offenses, ResultTexts) {
+.controller("ResultDetailController", function($scope, $ionicHistory, $stateParams, $ionicPopup, Offenses, ResultTexts) {
     var offense = Offenses.findById($stateParams.offenseId);
     var offenseDisplayId = parseInt($stateParams.offenseId) + 1;
     $scope.title = "Overtreding " + offenseDisplayId + " " + offense.type;
@@ -300,7 +321,7 @@ angular.module('starter.controllers', [])
         $ionicHistory.goBack();  // This takes you back to the last view state.
     }
 })
-.controller("TakePictureController", function($scope, Camera) {
+.controller("TakePictureController", function($scope, $ionicHistory, Camera) {
     $scope.getPhoto = function() {
         Camera.getPicture().then(function(imageURI) {
             $scope.src =  imageURI;
@@ -311,6 +332,6 @@ angular.module('starter.controllers', [])
         });
     };
     $scope.goBack = function() {
-        $ionicHistory.goBack();  // This takes you back to the last view state.
+         // This takes you back to the last view state.
     }
 });
