@@ -4,8 +4,6 @@
         <h1 class="title background-nav-bar">BOETE BEREKENEN</h1>
     </ion-header-bar>
     <ion-content>
-        <div>{{test}}</div>
-
         <div ng-repeat="offense in offenses track by $index">
             <ion-item class="item background-medium">Overtreding {{$index+1}}: {{offense.type}}</ion-item>
             <!-- <ion-item>{{item.licence}}</ion-item>
@@ -36,7 +34,7 @@
 
 
         <div ng-repeat="group in groups">
-        <div class="item background-light" ng-click="toggleGroup(group)">
+        <div class="item item-group background-light" ng-click="toggleGroup(group)">
             {{group.name}}
             <i class="icon" style="float: right" ng-class="isGroupShown(group) ? 'ion-chevron-left' : 'ion-chevron-down'"></i>
         </div>
@@ -50,13 +48,24 @@
         </div>
 </div>
 
-<div ng-show="showInput">
-    <label class="item item-input">
-        <input type="text" placeholder="Speed Driven" ng-model="inputs.speed_driven" ng-change="calcSpeed()">
-    </label>
-    <label class="item item-input">
-        <input type="text" placeholder="Speed Corrected" ng-model="inputs.speed_corrected">
-    </label>
+<div ng-show="showInput" class="test-3">
+    <div class="item item-input background-light">
+      <div class="input-label">
+        GEREDEN SNELHEID
+      </div>
+      <div>
+          <input class="input-custom" type="text" ng-model="inputs.speed_driven" ng-change="calcSpeed()">
+      </div>
+    </div>
+    <div class="item item-input background-light">
+      <div class="input-label">
+        GECORRIGEERDE SNELHEID
+      </div>
+      <div>
+          <input class="input-custom" type="text" ng-model="inputs.speed_corrected">
+      </div>
+    </div>
+
 </div>
 
 </ion-content>

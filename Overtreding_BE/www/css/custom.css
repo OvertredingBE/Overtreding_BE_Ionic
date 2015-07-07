@@ -5,16 +5,21 @@
     font-style: normal;
 }
 
-.button-underline, .button-noline, .item-underline, .item-noline, .item-group-underline, .item-group-noline, .background-nav-bar{
+.button-underline, .button-noline, .item-underline, .item-noline, .background-nav-bar, .item-group, .input-label{
     font-family: "AvenrirNext";
     color:white;
 }
 
-.button-underline, .button-noline, .item-underline, .item-noline, .item-group-underline, .item-group-noline{
+.button-underline, .button-noline, .item-underline, .item-noline {
     background-color: transparent;
     border-color: white;
 }
 
+.input-custom{
+    background-color: white !important;
+    width: 60px !important;
+    border-radius: 0px;
+}
 .button-underline{
     border-top: none;
     border-left: none;
@@ -54,15 +59,16 @@
 }
 
 .item-subgroup-underline{
+    text-align: center;
     border:1px solid black;
     border-left: none;
     border-right: none;
     border-bottom: none;
 }
 .item-subgroup-noline{
+    text-align: center;
     border:none;
 }
-
 
 .button-custom-2 {
     margin-left: 20px;
@@ -74,8 +80,18 @@
     background-color: #1E91D5;
 }
 
+.cn {
+  position: relative;
+  width: 500px;
+  height: 500px;
+}
+
+.inner {
+  align-self: center;
+}
+
 .background-nav-bar{
-    font-size: 18px;
+    font-size: 17px;
     background-color: #0089D2;
 }
 .background-medium{
