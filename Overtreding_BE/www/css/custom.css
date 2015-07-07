@@ -34,16 +34,35 @@
 .item-noline{
     border:none;
 }
-
+.test{
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: white;
+}
+.test-2{
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: #68B3E2;
+}
 .item-group-underline{
     border-top: none;
     border-left: none;
     border-right: none;
 }
-
 .item-group-noline{
     border:none;
 }
+
+.item-subgroup-underline{
+    border:1px solid black;
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+}
+.item-subgroup-noline{
+    border:none;
+}
+
 
 .button-custom-2 {
     margin-left: 20px;

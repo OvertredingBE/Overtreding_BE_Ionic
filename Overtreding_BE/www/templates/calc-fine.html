@@ -35,19 +35,19 @@
         </div>
 
 
-
-        <div ng-repeat="group in groups"
-        ng-class="$last ? 'item item-group-noline background-medium' : 'item item-group-underline background-medium'">
-        <div ng-click="toggleGroup(group)">
+        <div ng-repeat="group in groups">
+        <div class="item background-light" ng-click="toggleGroup(group)">
             {{group.name}}
             <i class="icon" style="float: right" ng-class="isGroupShown(group) ? 'ion-chevron-left' : 'ion-chevron-down'"></i>
         </div>
-        <ion-item class="item item-group-underline background-medium"
+        <div class="test">
+        <ion-item ng-class="$first ? 'item-subgroup-noline' : 'item-subgroup-underline'"
         ng-repeat="item in group.items"
         ng-click="subgroupTapped(item, group, $index); toggleGroup(group)"
         ng-show="isGroupShown(group)">
         {{item}}
-    </ion-item>
+        </ion-item>
+        </div>
 </div>
 
 <div ng-show="showInput">
@@ -68,13 +68,12 @@
             </div>
 </ion-footer-bar>
 
-<ion-footer-bar class="bar bar-footer background-light">
-    <div class="background-light">
+<ion-footer-bar class="bar-footer background-nav-bar">
+    <div>
         BOETE BEREKENEN
     </div>
     <a class="button icon-right ion-chevron-right" ng-click="resultTapped()">BEVESTIG</a>
 
     <!-- <button class="button" >BEVESTIG ->></button> -->
-
 </ion-footer-bar>
 </ion-view>
