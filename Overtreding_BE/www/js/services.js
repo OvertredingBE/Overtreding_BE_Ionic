@@ -27,6 +27,10 @@ angular.module('starter.services', [])
         },
         getQuestions: function(name) {
             switch (name) {
+                case "Menu":
+                var names = ["KIES UW TYPE OVERTREDING"];
+                var subgroups = [["Speed", "Alchohol", "Drugs", "Other"]];
+                break;
                 case "Alchohol":
                 var names = ["RIJBEWIJS","LEEFTIJD", "BESTRUUDER", "INTOXICATIE"];
                 var subgroups = [['Ik bezit mijn rijbewijs minder dan 2 jaar', "Ik bezit mijn rijbewijs langer dan 2 jaar"],
@@ -64,7 +68,9 @@ angular.module('starter.services', [])
                 var names = ["RIJBEWIJS","LEEFTIJD"];
                 var subgroups = [['Ik bezit mijn rijbewijs minder dan 2 jaar', "Ik bezit mijn rijbewijs langer dan 2 jaar"],
                 ["Jonger dan 18 jaar","18 jaar of ouder"]];
+                break;
                 default:
+
 
             }
             var groups = [];

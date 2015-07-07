@@ -171,8 +171,7 @@ angular.module('starter.controllers', [])
     $scope.inputs = {};
     var offense = {type: ""};
     $scope.offenses.push(offense);
-    $scope.menu = Questions.getMenu();
-
+    $scope.menu = Questions.getQuestions("Menu");
 
     $scope.menuItemTapped = function(menuItem){
         $scope.menu = [];
@@ -198,7 +197,7 @@ angular.module('starter.controllers', [])
         var valid = offense != null && offense.type != "";
         if(valid && Offenses.validateOffense(offense))
         {
-            $scope.menu = Questions.getMenu();
+            $scope.menu = Questions.getQuestions("Menu");
             $scope.groups = [];
             $scope.showInput2 = false;
             $scope.showInput = false;
