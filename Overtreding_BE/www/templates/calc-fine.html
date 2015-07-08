@@ -16,16 +16,14 @@
                 {{menuItem.name}}
                 <i class="icon" style="float: right" ng-class="isGroupShown(group) ? 'ion-chevron-left' : 'ion-chevron-down'"></i>
             </div>
+            <div class="test">
             <ion-item ng-class="$first ? 'item-subgroup-noline' : 'item-subgroup-underline'"
                 ng-repeat="item in menuItem.items"
                 ng-click="menuItemTapped(item)"
                 ng-show="isGroupShown(group)">
                 {{item}}
             </ion-item>
-
-            <!-- <ion-item class="item-stable" ng-click="menuItemTapped(menuItem)">
-                {{menuItem}}
-            </ion-item> -->
+        </div>
         </div>
 
         <div ng-show="showInput2">

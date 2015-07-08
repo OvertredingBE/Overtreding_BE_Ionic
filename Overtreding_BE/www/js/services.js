@@ -20,16 +20,13 @@ angular.module('starter.services', [])
   }
 }])
 .factory('Questions', function($cordovaSQLite) {
-    var menu = ["Speed", "Alchohol", "Drugs", "Other"];
+
     return {
-        getMenu: function() {
-            return menu;
-        },
         getQuestions: function(name) {
             switch (name) {
                 case "Menu":
                 var names = ["KIES UW TYPE OVERTREDING"];
-                var subgroups = [["Speed", "Alchohol", "Drugs", "Other"]];
+                var subgroups = [["SNELHEID", "ALCOHOL", "DRUGS", "ANDERE"]];
                 break;
                 case "Alchohol":
                 var names = ["RIJBEWIJS","LEEFTIJD", "BESTRUUDER", "INTOXICATIE"];

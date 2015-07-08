@@ -18,7 +18,7 @@ app.run(function($ionicPlatform) {
     $stateProvider
     .state("config", {
         url:"/config",
-        templateUrl: "templates/config.html",
+        templateUrl: "templates/home.html",
         controller: "ConfigController"
     })
     .state("home", {

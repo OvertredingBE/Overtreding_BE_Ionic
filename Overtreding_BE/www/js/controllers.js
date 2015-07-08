@@ -16,6 +16,7 @@ angular.module('starter.controllers', [])
         // var url = 'http://localhost/overtreding_api/v1/db';
 
         $http.get(url).then(function(resp) {
+            console.log("Fetching database");
             db = window.openDatabase("test2", "1.0", "Test DB", 1000000);
             db.transaction(function (tx) {
                 tx.executeSql("DROP TABLE IF EXISTS Texts");
@@ -93,6 +94,7 @@ angular.module('starter.controllers', [])
             $scope.succ = resp.statusText;
             $scope.log = items.length;
             $ionicLoading.hide();
+            console.log("Database populated.");
 
         }, function(err) {
             $ionicLoading.hide();
@@ -174,6 +176,14 @@ angular.module('starter.controllers', [])
     $scope.menu = Questions.getQuestions("Menu");
 
     $scope.menuItemTapped = function(menuItem){
+        var translations = {
+            "SNELHEID": "Speed",
+            "ALCOHOL": "Alchohol",
+            "DRUGS": "Drugs",
+            "ANDERE": "Other"
+        };
+        menuItem = translations[menuItem];
+
         $scope.menu = [];
         offense = Offenses.createDefault(menuItem);
         $scope.offenses.splice($scope.offenses.length -1, 1, offense);
