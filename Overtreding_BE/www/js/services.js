@@ -283,16 +283,29 @@ angular.module('starter.services', [])
     var fines = [];
     var otherTexts = [];
     db = window.openDatabase("test2", "1.0", "Test DB", 1000000);
-    var query = "SELECT * FROM Texts WHERE id = ? OR id = ? OR id = ?";
-    $cordovaSQLite.execute(db, query, [9, 10, 11]).then(function(res){
-        if(res.rows.length > 0){
-            for(var i = 0; i < res.rows.length; i++){
-                otherTexts.push(res.rows.item(i).body);
+    var values = [10,11,9];
+    var query = "SELECT * FROM Texts WHERE id = ?";
+    for (var i = 0; i < values.length; i++) {
+        $cordovaSQLite.execute(db, query, [values[i]]).then(function(res){
+            if(res.rows.length > 0){
+                for(var i = 0; i < res.rows.length; i++){
+                    otherTexts.push(res.rows.item(0).body);
+                }
             }
-        }
-    }, function(err){
-        console.error(err);
-    });
+        }, function(err){
+            console.error(err);
+        });
+    }
+    // var query = "SELECT * FROM Texts WHERE id = ? OR id = ? OR id = ? ORDER BY id";
+    // $cordovaSQLite.execute(db, query, [9, 10, 11]).then(function(res){
+    //     if(res.rows.length > 0){
+    //         for(var i = 0; i < res.rows.length; i++){
+    //             otherTexts.push(res.rows.item(i).body);
+    //         }
+    //     }
+    // }, function(err){
+    //     console.error(err);
+    // });
     return {
         getTexts: function(offense) {
             texts.length = 0;
@@ -341,7 +354,8 @@ angular.module('starter.services', [])
                 var queries = ["SELECT * FROM Texts a INNER JOIN Drugs b ON a.id=b.text_id_1",
                 "SELECT * FROM Texts a INNER JOIN Drugs b ON a.id=b.text_id_2",
                 "SELECT * FROM Texts a INNER JOIN Drugs b ON a.id=b.text_id_3"];
-                    var query = querries[0];
+                for (var i = 0; i < queries.length; i++) {
+                    var query = queries[i];
                     $cordovaSQLite.execute(db, query, []).then(function(res){
                         if(res.rows.length > 0){
                             for(var i = 0; i < res.rows.length; i++){
@@ -351,6 +365,8 @@ angular.module('starter.services', [])
                     }, function(err){
                         console.error(err);
                     });
+                }
+
                 break;
 
                 case "Speed":
@@ -385,7 +401,7 @@ angular.module('starter.services', [])
 
             for (var key in fines) {
                 if (fines.hasOwnProperty(key)) {
-                    texts.push(key + " -> " + fines[key])
+                    // texts.push(key + " -> " + fines[key])
                 }
             }
         }

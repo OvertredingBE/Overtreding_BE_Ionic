@@ -4,7 +4,10 @@
     font-weight: normal;
     font-style: normal;
 }
-
+.test{
+    padding: 5px !important;
+    padding-left: 15px !important;
+}
 .button-underline, .button-noline, .item-underline, .item-noline, .background-nav-bar, .background-medium, .background-light, .item-group, .item-group-small, .input-label{
     font-family: "AvenrirNext";
     color:white;
