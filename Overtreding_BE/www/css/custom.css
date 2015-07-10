@@ -5,7 +5,7 @@
     font-style: normal;
 }
 
-.button-underline, .button-noline, .item-underline, .item-noline, .background-nav-bar, .item-group, .input-label{
+.button-underline, .button-noline, .item-underline, .item-noline, .background-nav-bar, .background-medium, .background-light, .item-group, .item-group-small, .input-label{
     font-family: "AvenrirNext";
     color:white;
 }
@@ -15,47 +15,26 @@
     border-color: white;
 }
 
-.input-custom{
-    background-color: white !important;
-    width: 60px !important;
-    border-radius: 0px;
-}
-.button-underline{
+.button-underline, .item-underline, .item-group-underline{
     border-top: none;
     border-left: none;
     border-right: none;
 }
 
-.button-noline{
+.button-noline, .item-noline, .item-group-noline{
     border:none;
 }
 
-.item-underline{
-    border-top: none;
+.item-group{
     border-left: none;
     border-right: none;
+    padding: 15px;
+    height: 45px;
 }
 
-.item-noline{
-    border:none;
-}
-.test{
-    padding-left: 10px;
-    padding-right: 10px;
-    background-color: white;
-}
-.test-2{
-    padding-left: 10px;
-    padding-right: 10px;
-    background-color: #68B3E2;
-}
-.item-group-underline{
-    border-top: none;
-    border-left: none;
-    border-right: none;
-}
-.item-group-noline{
-    border:none;
+.item-small{
+    height: 35px;
+    padding: 8px;
 }
 
 .item-subgroup-underline{
@@ -65,10 +44,23 @@
     border-right: none;
     border-bottom: none;
 }
+
 .item-subgroup-noline{
     text-align: center;
     border:none;
 }
+
+.padded{
+    padding: 10px;
+}
+
+.paddded-horizontal{
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: white;
+}
+
+
 
 .button-custom-2 {
     margin-left: 20px;
@@ -80,22 +72,15 @@
     background-color: #1E91D5;
 }
 
-.cn {
-  position: relative;
-  width: 500px;
-  height: 500px;
-}
-
-.inner {
-  align-self: center;
+.img-custom{
+    width: 30px;
+    height: 30px;
 }
 
 .background-nav-bar{
-    font-size: 17px;
     background-color: #0089D2;
 }
 .background-medium{
-    color: white;
     background-color: #43A0DC;
 }
 .background-light{

@@ -6,12 +6,11 @@
     <ion-content class="padding">
         <!-- <div class="card">Lenght: {{offenseType}}</div> -->
         <div ng-repeat="item in items track by $index" ng-class="$last ? 'item item-text-wrap item-noline' : 'item item-text-wrap item-underline'">
+            <div>{{titles[$index]}}</div>
                 {{item}}
         </div>
     </ion-content>
-    <ion-footer-bar align-title="left" class="bar-positive">
-        <div class="buttons" ng-click="showConfirm()">
-            <button class="button" ui-sref="contact">VAAG GRATIS JURIDISCH ADVIES</button>
-        </div>
+    <ion-footer-bar align-title="left" class="background-nav-bar">
+            <div class="inner" ui-sref="contact">VAAG GRATIS JURIDISCH ADVIES</button>
     </ion-footer-bar>
 </ion-view>

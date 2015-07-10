@@ -1,22 +1,23 @@
 <ion-view view-title="OVERTREDING.BE">
     <ion-header-bar class="bar bar-subheader background-nav-bar bar-subheader-custom">
-        <i class="button-icon ion-chevron-left" ng-click="goBack()"></i>
+        <img src="../img/arrow.png" class="img-custom"></img>
+        <!-- <i class="button-icon ion-chevron-left" ng-click="goBack()"></i> -->
         <h1 class="title background-nav-bar">BOETE BEREKENEN</h1>
     </ion-header-bar>
 
     <ion-content>
 
         <div ng-repeat="offense in offenses track by $index">
-            <ion-item class="item background-medium">Overtreding {{$index+1}}: {{offense.type}}</ion-item>
+            <ion-item class="item-small background-medium">Overtreding {{$index+1}}: {{offense.type}}</ion-item>
         </div>
 
 
         <div ng-repeat="menuItem in menu track by $index">
-            <div class="item item-group background-light" ng-click="toggleGroup(group)">
+            <div class="item-group background-light" ng-click="toggleGroup(group)">
                 {{menuItem.name}}
                 <i class="icon" style="float: right" ng-class="isGroupShown(group) ? 'ion-chevron-left' : 'ion-chevron-down'"></i>
             </div>
-            <div class="test">
+            <div class="paddded-horizontal">
             <ion-item ng-class="$first ? 'item-subgroup-noline' : 'item-subgroup-underline'"
                 ng-repeat="item in menuItem.items"
                 ng-click="menuItemTapped(item)"
@@ -40,12 +41,14 @@
             </div>
         </div>
 
-        <div ng-repeat="group in groups">
+        <div ng-repeat="group in questions">
+            <div class="paddded-horizontal background-light">
             <div class="item item-group background-light" ng-click="toggleGroup(group)">
                 {{group.name}}
                 <i class="icon" style="float: right" ng-class="isGroupShown(group) ? 'ion-chevron-left' : 'ion-chevron-down'"></i>
             </div>
-            <div class="test">
+        </div>
+            <div class="paddded-horizontal">
                 <ion-item ng-class="$first ? 'item-subgroup-noline' : 'item-subgroup-underline'"
                 ng-repeat="item in group.items"
                 ng-click="subgroupTapped(item, group, $index); toggleGroup(group)"
@@ -56,35 +59,39 @@
     </div>
 
     <div ng-show="showInput" class="background-light">
-        <div class="item item-input background-light">
-            <div class="input-label">
+        <div class="paddded-horizontal background-light">
+        <div class="item item-group background-light">
+            <!-- <div style="label-custom">
                 GEREDEN SNELHEID
-            </div>
+            </div> -->
             <div>
-                <input class="input-custom" type="text" ng-model="inputs.speed_driven" ng-change="calcSpeed()">
+                <input class="label-custom" type="text" ng-model="inputs.speed_driven" ng-change="calcSpeed()">
             </div>
         </div>
-        <div class="item item-input background-light">
-            <div class="input-label">
+    </div>
+    <div class="paddded-horizontal background-light">
+    <div class="item item-group background-light">
+                    <!-- <div class="input-label">
                 GECORRIGEERDE SNELHEID
-            </div>
+            </div> -->
             <div>
-                <input class="input-custom" type="text" ng-model="inputs.speed_corrected">
+                <input type="text" ng-model="inputs.speed_corrected">
             </div>
         </div>
+    </div>
     </div>
 
 </ion-content>
 </ion-view>
 
 <ion-footer-bar class="bar-subfooter background-light" ng-click="createNewOffense()">
-    <div class="background-light">
+    <div class="padded background-light">
         VOEG EEN OVERTREDING TOE
     </div>
 </ion-footer-bar>
 
 <ion-footer-bar class="bar-footer background-nav-bar">
-    <div>
+    <div class="padded">
         BOETE BEREKENEN
     </div>
     <a class="button icon-right ion-chevron-right" ng-click="resultTapped()">BEVESTIG</a>

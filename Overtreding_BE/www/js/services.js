@@ -338,16 +338,19 @@ angular.module('starter.services', [])
                 break;
 
                 case "Drugs":
-                var query = "SELECT * FROM Texts a INNER JOIN Drugs b ON a.id=b.text_id_1 or a.id = b.text_id_2 or a.id = b.text_id_3";
-                $cordovaSQLite.execute(db, query, []).then(function(res){
-                    if(res.rows.length > 0){
-                        for(var i = 0; i < res.rows.length; i++){
-                            texts.push(res.rows.item(i).body);
+                var queries = ["SELECT * FROM Texts a INNER JOIN Drugs b ON a.id=b.text_id_1",
+                "SELECT * FROM Texts a INNER JOIN Drugs b ON a.id=b.text_id_2",
+                "SELECT * FROM Texts a INNER JOIN Drugs b ON a.id=b.text_id_3"];
+                    var query = querries[0];
+                    $cordovaSQLite.execute(db, query, []).then(function(res){
+                        if(res.rows.length > 0){
+                            for(var i = 0; i < res.rows.length; i++){
+                                texts.push(res.rows.item(0).body);
+                            }
                         }
-                    }
-                }, function(err){
-                    console.error(err);
-                });
+                    }, function(err){
+                        console.error(err);
+                    });
                 break;
 
                 case "Speed":

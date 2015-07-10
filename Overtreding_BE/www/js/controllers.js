@@ -169,24 +169,27 @@ angular.module('starter.controllers', [])
 
 .controller("CalcFineController", function($scope, $ionicHistory, $ionicPopup, $location, Offenses, Questions, Others) {
     $scope.offenses = [];
+    $scope.menu = Questions.getQuestions("Menu");
+    $scope.questions = [];
     $scope.searchResults = [];
     $scope.inputs = {};
     var offense = {type: ""};
     $scope.offenses.push(offense);
-    $scope.menu = Questions.getQuestions("Menu");
 
     $scope.menuItemTapped = function(menuItem){
+        $scope.menu = [];
         var translations = {
             "SNELHEID": "Speed",
             "ALCOHOL": "Alchohol",
             "DRUGS": "Drugs",
             "ANDERE": "Other"
         };
-        menuItem = translations[menuItem];
 
-        $scope.menu = [];
+        menuItem = translations[menuItem];
         offense = Offenses.createDefault(menuItem);
         $scope.offenses.splice($scope.offenses.length -1, 1, offense);
+
+        $scope.questions = Questions.getQuestions(menuItem);
 
         if(menuItem === "Other"){
             $scope.showInput2 = true;
@@ -194,11 +197,10 @@ angular.module('starter.controllers', [])
         if(menuItem === "Speed"){
             $scope.showInput = true;
         }
-        $scope.groups = Questions.getQuestions(menuItem);
     };
 
     $scope.subgroupTapped = function(item, group, index) {
-        $scope.groups[group.id].name =  item;
+        $scope.questions[group.id].name =  item;
         var fieldName = Offenses.getFieldName(group.id, offense["type"]);
         offense[fieldName] = index;
     };
@@ -208,7 +210,7 @@ angular.module('starter.controllers', [])
         if(valid && Offenses.validateOffense(offense))
         {
             $scope.menu = Questions.getQuestions("Menu");
-            $scope.groups = [];
+            $scope.questions = [];
             $scope.showInput2 = false;
             $scope.showInput = false;
             Offenses.add(offense);
@@ -243,7 +245,7 @@ angular.module('starter.controllers', [])
         $scope.searchResults.length = 0;
         $scope.searchResults.push(item);
 
-        $scope.groups = Questions.getQuestions("Test");
+        $scope.questions = Questions.getQuestions("Test");
     };
 
     $scope.calcSpeed = function() {
@@ -316,6 +318,8 @@ angular.module('starter.controllers', [])
 })
 
 .controller("ResultDetailController", function($scope, $ionicHistory, $stateParams, $ionicPopup, Offenses, ResultTexts) {
+    var titles = ["ONMIDDELLIJKE INNING", "MINNELIJKE SCHIKKING", "BEVEL TOT BETALING/RECHTBANK"];
+    $scope.titles = titles;
     var offense = Offenses.findById($stateParams.offenseId);
     var offenseDisplayId = parseInt($stateParams.offenseId) + 1;
     $scope.title = "Overtreding " + offenseDisplayId + " " + offense.type;
