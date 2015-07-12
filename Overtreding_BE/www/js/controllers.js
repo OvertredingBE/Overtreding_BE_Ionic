@@ -175,7 +175,7 @@ angular.module('starter.controllers', [])
     $scope.inputs = {};
     var offense = {type: ""};
     $scope.offenses.push(offense);
-
+    $scope.test = true;
     $scope.menuItemTapped = function(menuItem){
         $scope.menu = [];
         var translations = {
@@ -203,6 +203,18 @@ angular.module('starter.controllers', [])
         $scope.questions[group.id].name =  item;
         var fieldName = Offenses.getFieldName(group.id, offense["type"]);
         offense[fieldName] = index;
+    };
+    $scope.removeOffense = function(index){
+        if(index === $scope.offenses.length -1){
+            var confirmPopup = $ionicPopup.confirm({
+                title: 'Error',
+                template: 'Cannot remove uncompleted offense'
+            });
+        }
+        else{
+            $scope.offenses.splice(index, 1);
+            Offenses.remove(index);
+        }
     };
 
     $scope.createNewOffense = function(){
@@ -326,7 +338,7 @@ angular.module('starter.controllers', [])
     $scope.items = [];
     $scope.items = ResultTexts.getTexts(offense);
     $scope.goBack = function() {
-        $ionicHistory.goBack();  // This takes you back to the last view state.
+        $ionicHistory.goBack();
     }
 })
 .controller("TakePictureController", function($scope, $ionicHistory, Camera) {
@@ -340,6 +352,6 @@ angular.module('starter.controllers', [])
         });
     };
     $scope.goBack = function() {
-        // This takes you back to the last view state.
+        $ionicHistory.goBack();
     }
 });

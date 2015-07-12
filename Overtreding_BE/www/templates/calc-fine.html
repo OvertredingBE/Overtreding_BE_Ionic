@@ -1,6 +1,6 @@
 <ion-view view-title="OVERTREDING.BE">
-    <ion-header-bar class="bar bar-subheader background-nav-bar bar-subheader-custom">
-        <img src="../img/arrow.png" class="img-custom"></img>
+    <ion-header-bar class="bar bar-subheader background-nav-bar">
+        <img src="../img/arrow-circle-left.png" class="img-custom"></img>
         <!-- <i class="button-icon ion-chevron-left" ng-click="goBack()"></i> -->
         <h1 class="title background-nav-bar">BOETE BEREKENEN</h1>
     </ion-header-bar>
@@ -8,14 +8,16 @@
     <ion-content>
 
         <div ng-repeat="offense in offenses track by $index">
-            <ion-item class="item-small background-medium">Overtreding {{$index+1}}: {{offense.type}}</ion-item>
+            <ion-item class="item-small background-medium test-1">Overtreding {{$index+1}}: {{offense.type}}
+                 <i class="button-icon ion-close test-2" ng-click="removeOffense($index)"></i>
+             </ion-item>
         </div>
 
 
         <div ng-repeat="menuItem in menu track by $index">
             <div class="item-group background-light" ng-click="toggleGroup(group)">
                 {{menuItem.name}}
-                <i class="icon" style="float: right" ng-class="isGroupShown(group) ? 'ion-chevron-left' : 'ion-chevron-down'"></i>
+                <img class="img-custom" ng-src="{{isGroupShown(group) && '../img/arrow-square-down.png' || '../img/arrow-square-left.png'}}"></img>
             </div>
             <div class="paddded-horizontal">
             <ion-item ng-class="$first ? 'item-subgroup-noline' : 'item-subgroup-underline'"
@@ -45,7 +47,7 @@
             <div class="paddded-horizontal background-light">
             <div class="item item-group background-light" ng-click="toggleGroup(group)">
                 {{group.name}}
-                <i class="icon" style="float: right" ng-class="isGroupShown(group) ? 'ion-chevron-left' : 'ion-chevron-down'"></i>
+                <img class="img-custom" ng-src="{{isGroupShown(group) && '../img/arrow-square-down.png' || '../img/arrow-square-left.png'}}"></img>
             </div>
         </div>
             <div class="paddded-horizontal">
@@ -59,24 +61,25 @@
     </div>
 
     <div ng-show="showInput" class="background-light">
-        <div class="paddded-horizontal background-light">
+        <div class="paddded-horizontal background-light test-1">
         <div class="item item-group background-light">
-            <!-- <div style="label-custom">
-                GEREDEN SNELHEID
-            </div> -->
             <div>
-                <input class="label-custom" type="text" ng-model="inputs.speed_driven" ng-change="calcSpeed()">
+                GEREDEN SNELHEID
+            </div>
+            <div>
+                <input class="test-2 input-custom" type="text" ng-model="inputs.speed_driven" ng-change="calcSpeed()">
             </div>
         </div>
     </div>
     <div class="paddded-horizontal background-light">
-    <div class="item item-group background-light">
-                    <!-- <div class="input-label">
+    <div class="item item-group background-light test-1">
+                    <div>
                 GECORRIGEERDE SNELHEID
-            </div> -->
-            <div>
-                <input type="text" ng-model="inputs.speed_corrected">
             </div>
+            <div>
+                <input class="test-2 input-custom" type="text" ng-model="inputs.speed_corrected">
+            </div>
+
         </div>
     </div>
     </div>
