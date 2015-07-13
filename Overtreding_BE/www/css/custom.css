@@ -5,15 +5,11 @@
     font-style: normal;
 }
 .icon-circle-left,.icon-square, .icon-square-down-white, .icon-square-left-white{
-    width: 18px;
-    height: 18px;
+    width: 16px;
+    height: 16px;
 }
 .icon-square{
     float: right;
-}
-
-.test-1{
-    position: relative;
 }
 
 .input-custom{
@@ -21,15 +17,22 @@
     border-radius: 0px;
 }
 
+.test-1{
+    position: relative;
+}
+
 .test-2{
     position: absolute;
     top:8px;
-    right:30px;
+    right:90px;
 }
-.test{
-    padding: 5px !important;
-    padding-left: 15px !important;
+
+.test-3{
+    position: absolute;
+    top:8px;
+    right:40px;
 }
+
 .button-underline, .button-noline, .item-underline, .item-noline, .background-nav-bar, .background-medium, .background-light, .item-group, .item-group-small, .input-label{
     font-family: "AvenrirNext";
     color:white;
@@ -52,11 +55,12 @@
 
 .item-group{
     font-size: 13px;
-    border-bottom: none;
+    border: 1px solid white;
+    border-top: none;
     border-left: none;
     border-right: none;
-    padding: 15px;
-    height: 45px;
+    padding: 12px;
+    height: 40px;
 }
 
 .item-menu{
@@ -67,10 +71,15 @@
     padding: 8px 15px 8px 15px;
 }
 
-.item-subgroup-underline{
+.item-subgroup-underline, .item-subgroup-noline{
     font-family: "AvenrirNext";
-    font-size: 12px;
+    font-size: 13px;
+    font-weight: 500;
     text-align: center;
+    padding: 10px 0px 5px 0px;
+}
+
+.item-subgroup-underline{
     border:1px solid black;
     border-left: none;
     border-right: none;
@@ -78,10 +87,10 @@
 }
 
 .item-subgroup-noline{
-    font-family: "AvenrirNext";
-    font-size: 12px;
     text-align: center;
-    border:none;
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
 }
 
 .padded{
@@ -89,6 +98,7 @@
 }
 
 .paddded-horizontal{
+    border:none;
     padding-left: 20px;
     padding-right: 20px;
     background-color: white;

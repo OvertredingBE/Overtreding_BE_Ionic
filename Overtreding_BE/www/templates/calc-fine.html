@@ -12,22 +12,24 @@
              </div>
         </div>
 
+
         <div ng-repeat="menuItem in menu track by $index">
             <div class="item-group background-light" ng-click="toggleGroup(group)">
                 {{menuItem.name}}
                 <img class="icon-square" ng-src="{{isGroupShown(group) && '../img/arrow-square-down.png' || '../img/arrow-square-left.png'}}"></img>
             </div>
             <div class="paddded-horizontal">
-            <ion-item ng-class="$first ? 'item-subgroup-noline' : 'item-subgroup-underline'"
+            <div ng-class="$first ? 'item-subgroup-noline' : 'item-subgroup-underline'"
                 ng-repeat="item in menuItem.items"
                 ng-click="menuItemTapped(item)"
                 ng-show="isGroupShown(group)">
                 {{item}}
-            </ion-item>
+            </div>
         </div>
         </div>
 
         <div ng-show="showInput2">
+             
             <label class="item item-input">
                 <input type="text" placeholder="Search"  ng-model="inputs.searchWord">
             </label>
@@ -43,34 +45,46 @@
 
         <div ng-repeat="group in questions">
             <div class="paddded-horizontal background-light">
-            <div class="item item-group background-light" ng-click="toggleGroup(group)">
+            <div class="item-group background-light" ng-click="toggleGroup(group)">
                 {{group.name}}
                 <img class="icon-square" ng-src="{{isGroupShown(group) && '../img/arrow-square-down.png' || '../img/arrow-square-left.png'}}"></img>
             </div>
         </div>
             <div class="paddded-horizontal">
-                <ion-item ng-class="$first ? 'item-subgroup-noline item-text-wrap' : 'item-subgroup-underline item-text-wrap'"
+                <div ng-class="$first ? 'item-subgroup-noline item-text-wrap' : 'item-subgroup-underline item-text-wrap'"
                 ng-repeat="item in group.items"
                 ng-click="subgroupTapped(item, group, $index); toggleGroup(group)"
                 ng-show="isGroupShown(group)">
                 {{item}}
-            </ion-item>
+            </div>
         </div>
     </div>
 
     <div ng-show="showInput" class="background-light">
         <div class="paddded-horizontal background-light test-1">
-        <div class="item item-group background-light">
+        <div class="item-group background-light">
             <div>
                 GEREDEN SNELHEID
             </div>
             <div>
                 <input class="test-2 input-custom" type="text" ng-model="inputs.speed_driven" ng-change="calcSpeed()">
             </div>
+            <div class="test-3">KM/H</div>
         </div>
     </div>
-    <div class="paddded-horizontal background-light">
-    <div class="item item-group background-light test-1">
+    <div class="paddded-horizontal background-light test-1">
+    <div class="item-group background-light">
+        <div>
+            GECORRIGEERDE SNELHEID
+        </div>
+        <div>
+            <input class="test-2 input-custom" type="text" ng-model="inputs.speed_corrected">
+        </div>
+        <div class="test-3">KM/H</div>
+    </div>
+</div>
+    <!-- <div class="paddded-horizontal background-light">
+    <div class="item-group background-light test-1">
                     <div>
                 GECORRIGEERDE SNELHEID
             </div>
@@ -79,14 +93,14 @@
             </div>
 
         </div>
-    </div>
+    </div> -->
     </div>
 
 </ion-content>
 </ion-view>
 
 <ion-footer-bar class="bar-subfooter background-light" ng-click="createNewOffense()">
-    <div class="padded background-light">
+    <div class="item-group background-light">
         VOEG EEN OVERTREDING TOE
         <img class="icon-square" src="../img/arrow-circle-left.png" ng-click="removeOffense($index)"></img>
 

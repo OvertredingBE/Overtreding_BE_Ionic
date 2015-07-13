@@ -30,30 +30,30 @@ angular.module('starter.services', [])
                 case "Alchohol":
                 var names = ["RIJBEWIJS","LEEFTIJD", "BESTRUUDER", "INTOXICATIE"];
                 var subgroups = [["IK BEZIT MIJN RIJBEWIJS MINDER DAN 2 JAAR", "IK BEZIT MIJN RIJBEWIJS LANGER DAN 2 JAAR"],
-                ["Jonger dan 18 jaar","18 jaar of ouder"],
-                ["Professionele bestuurder", "Gewone bestuurder"],
-                ["0,20 - 0,50 promille",
-                "0,50 – 0,80 Promille",
-                "0,80 – 1,00 Promille",
-                "1,00 – 1,14 Promille",
-                "1,14 – 1,48 Promille",
-                "1,48 - ... Promille",
-                "Weigering ademtest of analyse zonder wettige reden",
-                "Dronkenschap",
-                "Eerder betrapt op alcoholintoxicatie van meer dan 0,8 Promille of dronkenschap en nu opnieuw betrapt op alcoholintoxicatie van meerdan 0,8 Promille.",
-                "Eerder betrapt op alcoholintoxicatie van meer dan 0,8 Promille of dronkenschap en nu opnieuw betrapt op dronkenschap"]];
+                ["JONGER DAN 18 JAAR","18 JAAR OF OUDER"],
+                ["PROFESSIONELE BESTUURDER", "GEWONE BESTUURDER"],
+                ["0,20 - 0,50 PROMILLE",
+                "0,50 – 0,80 PROMILLE",
+                "0,80 – 1,00 PROMILLE",
+                "1,00 – 1,14 PROMILLE",
+                "1,14 – 1,48 PROMILLE",
+                "1,48 - ... PROMILLE",
+                "WEIGERING ADEMTEST OF ANALYSE ZONDER WETTIGE REDEN",
+                "DRONKENSCHAP",
+                "EERDER BETRAPT OP ALCOHOLINTOXICATIE VAN MEER DAN 0,8 PROMILLE OF DRONKENSCHAP EN NU OPNIEUW BETRAPT OP ALCOHOLINTOXICATIE VAN MEERDAN 0,8 PROMILLE.",
+                "EERDER BETRAPT OP ALCOHOLINTOXICATIE VAN MEER DAN 0,8 PROMILLE OF DRONKENSCHAP EN NU OPNIEUW BETRAPT OP DRONKENSCHAP"]];
                 break;
                 case "Drugs":
                 var names = ["RIJBEWIJS","LEEFTIJD", "TYPE OVERTREDING"];
-                var subgroups = [['Ik bezit mijn rijbewijs minder dan 2 jaar', "Ik bezit mijn rijbewijs langer dan 2 jaar"],
-                ["Jonger dan 18 jaar","18 jaar of ouder"],
-                ["Blood test", "Refused test"]];
+                var subgroups = [['IK BEZIT MIJN RIJBEWIJS MINDER DAN 2 JAAR', "IK BEZIT MIJN RIJBEWIJS LANGER DAN 2 JAAR"],
+                ["JONGER DAN 18 JAAR","18 JAAR OF OUDER"],
+                ["BLOOD TEST", "REFUSED TEST"]];
                 break;
                 case "Speed":
                 var names = ["RIJBEWIJS","LEEFTIJD", "TYPE RUJBAAN", "SNEIHELDSLIMIET"];
-                var subgroups = [['Ik bezit mijn rijbewijs minder dan 2 jaar', "Ik bezit mijn rijbewijs langer dan 2 jaar"],
-                ["Jonger dan 18 jaar","18 jaar of ouder"],
-                ["Woonerf, zone 30, etc", "Andere wegen"],
+                var subgroups = [['IK BEZIT MIJN RIJBEWIJS MINDER DAN 2 JAAR', "IK BEZIT MIJN RIJBEWIJS LANGER DAN 2 JAAR"],
+                ["JONGER DAN 18 JAAR","18 JAAR OF OUDER"],
+                ["WOONERF, ZONE 30, ETC", "ANDERE WEGEN"],
                 ["10","20","30","40","50","60","70","80","90","100","110","120",]];
                 break;
                 case "Other":
@@ -62,8 +62,8 @@ angular.module('starter.services', [])
                 break;
                 case "Test":
                 var names = ["RIJBEWIJS","LEEFTIJD"];
-                var subgroups = [['Ik bezit mijn rijbewijs minder dan 2 jaar', "Ik bezit mijn rijbewijs langer dan 2 jaar"],
-                ["Jonger dan 18 jaar","18 jaar of ouder"]];
+                var subgroups = [['IK BEZIT MIJN RIJBEWIJS MINDER DAN 2 JAAR', "IK BEZIT MIJN RIJBEWIJS LANGER DAN 2 JAAR"],
+                ["JONGER DAN 18 JAAR","18 JAAR OF OUDER"]];
                 break;
                 default:
 
