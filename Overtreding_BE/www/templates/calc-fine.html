@@ -1,23 +1,21 @@
 <ion-view view-title="OVERTREDING.BE">
     <ion-header-bar class="bar bar-subheader background-nav-bar">
-        <img src="../img/arrow-circle-left.png" class="img-custom"></img>
-        <!-- <i class="button-icon ion-chevron-left" ng-click="goBack()"></i> -->
+        <img src="../img/arrow-circle-left.png" class="icon-circle-left" ng-click="goBack()"></img>
         <h1 class="title background-nav-bar">BOETE BEREKENEN</h1>
     </ion-header-bar>
 
     <ion-content>
 
         <div ng-repeat="offense in offenses track by $index">
-            <ion-item class="item-small background-medium test-1">Overtreding {{$index+1}}: {{offense.type}}
-                 <i class="button-icon ion-close test-2" ng-click="removeOffense($index)"></i>
-             </ion-item>
+            <div class="item-menu background-medium">OVERTREDING {{$index+1}}: {{offense.type}}
+                 <img class="icon-square" src="../img/arrow-circle-left.png" ng-click="removeOffense($index)"></img>
+             </div>
         </div>
-
 
         <div ng-repeat="menuItem in menu track by $index">
             <div class="item-group background-light" ng-click="toggleGroup(group)">
                 {{menuItem.name}}
-                <img class="img-custom" ng-src="{{isGroupShown(group) && '../img/arrow-square-down.png' || '../img/arrow-square-left.png'}}"></img>
+                <img class="icon-square" ng-src="{{isGroupShown(group) && '../img/arrow-square-down.png' || '../img/arrow-square-left.png'}}"></img>
             </div>
             <div class="paddded-horizontal">
             <ion-item ng-class="$first ? 'item-subgroup-noline' : 'item-subgroup-underline'"
@@ -47,11 +45,11 @@
             <div class="paddded-horizontal background-light">
             <div class="item item-group background-light" ng-click="toggleGroup(group)">
                 {{group.name}}
-                <img class="img-custom" ng-src="{{isGroupShown(group) && '../img/arrow-square-down.png' || '../img/arrow-square-left.png'}}"></img>
+                <img class="icon-square" ng-src="{{isGroupShown(group) && '../img/arrow-square-down.png' || '../img/arrow-square-left.png'}}"></img>
             </div>
         </div>
             <div class="paddded-horizontal">
-                <ion-item ng-class="$first ? 'item-subgroup-noline' : 'item-subgroup-underline'"
+                <ion-item ng-class="$first ? 'item-subgroup-noline item-text-wrap' : 'item-subgroup-underline item-text-wrap'"
                 ng-repeat="item in group.items"
                 ng-click="subgroupTapped(item, group, $index); toggleGroup(group)"
                 ng-show="isGroupShown(group)">
@@ -90,6 +88,8 @@
 <ion-footer-bar class="bar-subfooter background-light" ng-click="createNewOffense()">
     <div class="padded background-light">
         VOEG EEN OVERTREDING TOE
+        <img class="icon-square" src="../img/arrow-circle-left.png" ng-click="removeOffense($index)"></img>
+
     </div>
 </ion-footer-bar>
 
@@ -97,7 +97,8 @@
     <div class="padded">
         BOETE BEREKENEN
     </div>
-    <a class="button icon-right ion-chevron-right" ng-click="resultTapped()">BEVESTIG</a>
+    <div ui-sref="result" class="button-custom-2">BEVESTIG         <img class="icon-square" src="../img/arrow-circle-left.png"></img>
+</div>
 
     <!-- <button class="button" >BEVESTIG ->></button> -->
 </ion-footer-bar>

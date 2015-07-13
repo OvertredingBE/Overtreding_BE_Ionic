@@ -29,7 +29,7 @@ angular.module('starter.services', [])
                 break;
                 case "Alchohol":
                 var names = ["RIJBEWIJS","LEEFTIJD", "BESTRUUDER", "INTOXICATIE"];
-                var subgroups = [['Ik bezit mijn rijbewijs minder dan 2 jaar', "Ik bezit mijn rijbewijs langer dan 2 jaar"],
+                var subgroups = [["IK BEZIT MIJN RIJBEWIJS MINDER DAN 2 JAAR", "IK BEZIT MIJN RIJBEWIJS LANGER DAN 2 JAAR"],
                 ["Jonger dan 18 jaar","18 jaar of ouder"],
                 ["Professionele bestuurder", "Gewone bestuurder"],
                 ["0,20 - 0,50 promille",
