@@ -1,12 +1,13 @@
 <ion-view view-title="OVERTREDING.BE" class="background-light">
     <ion-header-bar class="bar bar-subheader background-nav-bar bar-subheader-custom">
-        <i class="button-icon ion-chevron-left" ng-click="goBack()"></i>
+        <img src="../img/arrow-circle-left.png" class="icon-big icon-back" ng-click="goBack()"></img>
         <h1 class="title background-nav-bar">BOETE BEREKENEN - RESULTAAT</h1>
     </ion-header-bar>
 
     <ion-content>
             <a href="#/result/{{$index}}" ng-repeat="item in items track by $index" class="button button-full button-underline">
                  Overtreding {{$index+1}}: {{item.type}}
+                 <img class="icon-big" src="../img/arrow-circle-left.png" ng-click="removeOffense($index)"></img>
                 <!-- <ion-item>{{item.licence}}</ion-item>
                 <ion-item>{{item.age}}</ion-item>
                 <ion-item>{{item.degree}}</ion-item>
