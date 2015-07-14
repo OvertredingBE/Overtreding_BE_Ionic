@@ -192,7 +192,7 @@ angular.module('starter.controllers', [])
         $scope.questions = Questions.getQuestions(menuItem);
 
         if(menuItem === "Other"){
-            $scope.showInput2 = true;
+            $scope.showSearch = true;
         }
         if(menuItem === "Speed"){
             $scope.showInput = true;
@@ -223,7 +223,7 @@ angular.module('starter.controllers', [])
         {
             $scope.menu = Questions.getQuestions("Menu");
             $scope.questions = [];
-            $scope.showInput2 = false;
+            $scope.showSearch = false;
             $scope.showInput = false;
             Offenses.add(offense);
             offense = {type: ""};
