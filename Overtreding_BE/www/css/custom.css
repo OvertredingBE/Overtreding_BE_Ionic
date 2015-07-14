@@ -5,6 +5,20 @@
     font-style: normal;
 }
 
+.text-undeline{
+    margin-bottom: 10px;
+    margin-top: 15px;
+    padding:5px;
+    border: 1px solid white;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    font-family: "AvenrirNext";
+    color:white;
+}
+.textarea-custom{
+    height: 100px;
+}
 .button-home{
     font-size: 17px;
     padding: 20px 0px 20px 0px;

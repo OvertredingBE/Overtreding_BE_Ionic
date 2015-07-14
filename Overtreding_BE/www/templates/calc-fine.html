@@ -1,6 +1,6 @@
 <ion-view view-title="OVERTREDING.BE">
     <ion-header-bar class="bar bar-subheader background-nav-bar">
-        <img src="../img/arrow-circle-left.png" class="icon-big" ng-click="goBack()"></img>
+        <img src="img/arrow-circle-left.png" class="icon-big" ng-click="goBack()"></img>
         <h1 class="title background-nav-bar">BOETE BEREKENEN</h1>
     </ion-header-bar>
 
@@ -8,14 +8,14 @@
 
         <div ng-repeat="offense in offenses track by $index">
             <div class="item-menu background-medium">OVERTREDING {{$index+1}}: {{offense.type}}
-                <img class="icon-small icon-square" src="../img/arrow-circle-left.png" ng-click="removeOffense($index)"></img>
+                <img class="icon-small icon-square" src="img/cross.png" ng-click="removeOffense($index)"></img>
             </div>
         </div>
 
         <div ng-repeat="menuItem in menu track by $index">
             <div class="item-group background-light" ng-click="toggleGroup(group)">
                 {{menuItem.name}}
-                <img class="icon-small icon-square" ng-src="{{isGroupShown(group) && '../img/arrow-square-down.png' || '../img/arrow-square-left.png'}}"></img>
+                <img class="icon-small icon-square" ng-src="{{isGroupShown(group) && 'img/arrow-square-down.png' || 'img/arrow-square-left.png'}}"></img>
             </div>
             <div class="paddded-horizontal">
                 <div ng-class="$first ? 'item-subgroup-noline' : 'item-subgroup-underline'"
@@ -34,7 +34,7 @@
             </div>
             <div ng-click="search()" class="button-custom-3 test-4">
                 ZOEK
-                <img class="icon-small icon-square" src="../img/arrow-circle-left.png"></img>
+                <img class="icon-small icon-square" src="img/arrow-circle-left.png"></img>
             </div>
         </div>
 
@@ -51,7 +51,7 @@
     <div class="paddded-horizontal background-light">
         <div class="item-group background-light" ng-click="toggleGroup(group)">
             {{group.name}}
-            <img class="icon-small icon-square" ng-src="{{isGroupShown(group) && '../img/arrow-square-down.png' || '../img/arrow-square-left.png'}}"></img>
+            <img class="icon-small icon-square" ng-src="{{isGroupShown(group) && 'img/arrow-square-down.png' || 'img/arrow-square-left.png'}}"></img>
         </div>
     </div>
     <div class="paddded-horizontal">
@@ -94,7 +94,7 @@
 <ion-footer-bar class="bar-subfooter background-light" ng-click="createNewOffense()">
     <div class="item-group background-light">
         VOEG EEN OVERTREDING TOE
-        <img class="icon-small icon-square" src="../img/arrow-circle-left.png" ng-click="removeOffense($index)"></img>
+        <img class="icon-small icon-square" src="img/plus.png" ng-click="removeOffense($index)"></img>
     </div>
 </ion-footer-bar>
 
@@ -102,7 +102,9 @@
     <div class="padded">
         BOETE BEREKENEN
     </div>
-    <div ui-sref="result" class="button-custom-3 test-4">BEVESTIG         <img class="icon-small icon-square" src="../img/arrow-circle-left.png"></img>
+    <div ui-sref="result" class="button-custom-3 test-4">
+        BEVESTIG
+        <img class="icon-small icon-square" src="img/arrow-square-right-blue.png"></img>
     </div>
 
     <!-- <button class="button" >BEVESTIG ->></button> -->
