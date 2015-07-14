@@ -8,14 +8,14 @@
 
         <div ng-repeat="offense in offenses track by $index">
             <div class="item-menu background-medium">OVERTREDING {{$index+1}}: {{offense.type}}
-                <img class="icon-small icon-square" src="img/cross.png" ng-click="removeOffense($index)"></img>
+                <img class="icon-square icon-small" src="img/cross.png" ng-click="removeOffense($index)"></img>
             </div>
         </div>
 
         <div ng-repeat="menuItem in menu track by $index">
             <div class="item-group background-light" ng-click="toggleGroup(group)">
                 {{menuItem.name}}
-                <img class="icon-small icon-square" ng-src="{{isGroupShown(group) && 'img/arrow-square-down.png' || 'img/arrow-square-left.png'}}"></img>
+                <img class="icon-square icon-small" ng-src="{{isGroupShown(group) && 'img/arrow-square-down.png' || 'img/arrow-square-left.png'}}"></img>
             </div>
             <div class="paddded-horizontal">
                 <div ng-class="$first ? 'item-subgroup-noline' : 'item-subgroup-underline'"
@@ -64,8 +64,8 @@
 </div>
 </div>
 
-<div ng-show="showInput" class="background-light">
-    <div class="paddded-horizontal background-light test-1">
+<div ng-show="showSpeed" class="background-light">
+    <div class="paddded-horizontal background-light container-relative">
         <div class="item-group background-light">
             <div>
                 GEREDEN SNELHEID
@@ -98,13 +98,13 @@
     </div>
 </ion-footer-bar>
 
-<ion-footer-bar class="bar-footer background-nav-bar">
+<ion-footer-bar class="bar-footer background-nav-bar nav-bar-text">
     <div class="padded">
         BOETE BEREKENEN
     </div>
     <div ui-sref="result" class="button-custom-3 test-4">
         BEVESTIG
-        <img class="icon-small icon-square" src="img/arrow-square-right-blue.png"></img>
+        <img style="margin-left: 10px;" class="icon-small icon-square" src="img/arrow-square-right-blue.png"></img>
     </div>
 
     <!-- <button class="button" >BEVESTIG ->></button> -->
