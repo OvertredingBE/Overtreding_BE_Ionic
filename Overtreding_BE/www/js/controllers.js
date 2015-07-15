@@ -131,23 +131,30 @@ angular.module('starter.controllers', [])
     }
 })
 
-.controller("ContactController", function($scope, $ionicHistory, $ionicPopup, Offenses) {
+.controller("ContactController", function($scope, $ionicHistory, $ionicPopup, $http, Offenses) {
     $scope.form = {};
     $scope.sendEmail = function() {
-        if(window.plugins && window.plugins.emailComposer) {
-            var emailBody = Offenses.composeEmail($scope.form);
-            window.plugins.emailComposer.showEmailComposerWithCallback(function(result) {
-                console.log(emailBody);
-            },
-            "Feedback for your App", // Subject
-            emailBody,                      // Body
-            ["martin.dzhonov@gmail.com"],    // To
-            null,                    // CC
-            null,                    // BCC
-            false,                   // isHTML
-            null,                    // Attachments
-            null);                   // Attachment Data
-        }
+        // var url = 'http://www.martindzhonov.podserver.info/overtreding_api/v1/db';
+        var url = 'http://localhost/overtreding_api/v1/email';
+        $http.post(url, {msg: "test"}).then(function(resp){
+            console.log(resp);
+        }, function(err){
+
+        });
+        // if(window.plugins && window.plugins.emailComposer) {
+        //     var emailBody = Offenses.composeEmail($scope.form);
+        //     window.plugins.emailComposer.showEmailComposerWithCallback(function(result) {
+        //         console.log(emailBody);
+        //     },
+        //     "Feedback for your App", // Subject
+        //     emailBody,                      // Body
+        //     ["martin.dzhonov@gmail.com"],    // To
+        //     null,                    // CC
+        //     null,                    // BCC
+        //     false,                   // isHTML
+        //     null,                    // Attachments
+        //     null);                   // Attachment Data
+        // }
     };
     $scope.showConfirm = function() {
         var confirmPopup = $ionicPopup.confirm({
