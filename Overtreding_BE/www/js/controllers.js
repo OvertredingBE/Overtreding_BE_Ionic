@@ -107,7 +107,8 @@ angular.module('starter.controllers', [])
     });
 })
 
-.controller("HomeController", function($scope, $ionicPlatform, $ionicHistory, $cordovaSQLite, $http){
+.controller("HomeController", function($scope, $ionicPlatform, $ionicHistory, Offenses){
+    Offenses.clear();
     $scope.goBack = function() {
         $ionicHistory.goBack();  // This takes you back to the last view state.
     }
@@ -134,52 +135,40 @@ angular.module('starter.controllers', [])
 .controller("ContactController", function($scope, $ionicHistory, $ionicPopup, $http, Offenses) {
     $scope.form = {};
     $scope.sendEmail = function() {
-        // var confirmPopup = $ionicPopup.confirm({
-        //     title: 'This is a popup',
-        //     template: 'Send email ?'
-        // });
-        // var url = 'http://www.martindzhonov.podserver.info/overtreding_api/v1/db';
-        var url = 'http://localhost/overtreding_api/v1/email';
-        $http.post(url, {msg:'hello word!'}).
-        success(function(data, status, headers, config) {
-            console.log('wtf2');
-            console.log(data);
-        }).
-        error(function(data, status, headers, config) {
-            console.log('wtf');
-            console.log(status);
-            // called asynchronously if an error occurs
-            // or server returns response with an error status.
-        });
-
-        // if(window.plugins && window.plugins.emailComposer) {
-        //     var emailBody = Offenses.composeEmail($scope.form);
-        //     window.plugins.emailComposer.showEmailComposerWithCallback(function(result) {
-        //         console.log(emailBody);
-        //     },
-        //     "Feedback for your App", // Subject
-        //     emailBody,                      // Body
-        //     ["martin.dzhonov@gmail.com"],    // To
-        //     null,                    // CC
-        //     null,                    // BCC
-        //     false,                   // isHTML
-        //     null,                    // Attachments
-        //     null);                   // Attachment Data
-        // }
-    };
-    $scope.showConfirm = function() {
-        var confirmPopup = $ionicPopup.confirm({
-            title: 'This is a popup',
-            template: 'Send email ?'
-        });
-        confirmPopup.then(function(res) {
-            if(res) {
-                console.log('You are sure');
-            } else {
-                console.log('You are not sure');
+        var counter = 0;
+        for (var key in $scope.form) {
+            if ($scope.form.hasOwnProperty(key)) {
+                if(key != "comments"){
+                    counter++;
+                }
             }
-        });
+        }
+        if(counter != 4){
+            var confirmPopup = $ionicPopup.confirm({
+                title: 'Error',
+                template: 'Gelieve alle verplichte velden in te vullen (*)"'
+            });
+        }
+        else{
+            var confirmPopup = $ionicPopup.confirm({
+                title: 'Bedankt voor uw aanvraag.',
+                template: 'U zal zo snel mogelijk een mail ontvangen met de benodigde informatie"'
+            });
+            var url = 'http://localhost/overtreding_api/v1/email';
+            $http.post(url, {msg:'hello word!'}).
+            success(function(data, status, headers, config) {
+                console.log('wtf2');
+                console.log(data);
+            }).
+            error(function(data, status, headers, config) {
+                console.log('wtf');
+                console.log(status);
+                // called asynchronously if an error occurs
+                // or server returns response with an error status.
+            });
+        }
     };
+
     $scope.goBack = function() {
         $ionicHistory.goBack();  // This takes you back to the last view state.
     }

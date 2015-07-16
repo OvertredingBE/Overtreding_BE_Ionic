@@ -4,6 +4,27 @@
     font-weight: normal;
     font-style: normal;
 }
+.item-big, .item-menu, .button-home, .button-underline, .button-noline, .item-underline, .item-noline, .background-nav-bar, .background-medium, .background-light, .item-group, .item-group-small, .input-label{
+    font-family: "AvenrirNext";
+    color:white;
+}
+
+.home-container{
+    padding: 0px 15px 0px 15px;
+    position: absolute;
+    top:250px;
+}
+
+.button-home{
+    font-size: 17px;
+    padding: 15px 0px 15px 0px;
+    border: 1px solid white;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    color:white;
+}
+
 .nav-bar-text{
     font-size: 17px;
 }
@@ -22,16 +43,6 @@
 
 .textarea-custom{
     height: 100px;
-}
-
-.button-home{
-    font-size: 17px;
-    padding: 20px 0px 20px 0px;
-    border: 1px solid white;
-    border-top: none;
-    border-left: none;
-    border-right: none;
-    color:white;
 }
 
 .icon-small{
@@ -76,15 +87,6 @@
     position: absolute;
     top:10px;
     right:15px;
-}
-
-.test-5{
-    position: absolute;
-    top:250px;
-}
-.item-big, .item-menu, .button-home, .button-underline, .button-noline, .item-underline, .item-noline, .background-nav-bar, .background-medium, .background-light, .item-group, .item-group-small, .input-label{
-    font-family: "AvenrirNext";
-    color:white;
 }
 
 .button-underline, .button-noline, .item-underline, .item-noline {
