@@ -32,7 +32,7 @@ angular.module('starter.services', [])
                 var subgroups = [["IK BEZIT MIJN RIJBEWIJS MINDER DAN 2 JAAR", "IK BEZIT MIJN RIJBEWIJS LANGER DAN 2 JAAR"],
                 ["JONGER DAN 18 JAAR","18 JAAR OF OUDER"],
                 ["PROFESSIONELE BESTUURDER", "GEWONE BESTUURDER"],
-                ["0,20 - 0,50 PROMILLE",
+                [
                 "0,50 – 0,80 PROMILLE",
                 "0,80 – 1,00 PROMILLE",
                 "1,00 – 1,14 PROMILLE",
@@ -50,10 +50,10 @@ angular.module('starter.services', [])
                 ["BLOOD TEST", "REFUSED TEST"]];
                 break;
                 case "Speed":
-                var names = ["RIJBEWIJS","LEEFTIJD", "TYPE RUJBAAN", "SNEIHELDSLIMIET"];
+                var names = ["RIJBEWIJS","LEEFTIJD", "TYPE RIJBAAN", "SNELHEIDSLIMIET"];
                 var subgroups = [['IK BEZIT MIJN RIJBEWIJS MINDER DAN 2 JAAR', "IK BEZIT MIJN RIJBEWIJS LANGER DAN 2 JAAR"],
                 ["JONGER DAN 18 JAAR","18 JAAR OF OUDER"],
-                ["WOONERF, ZONE 30, ETC", "ANDERE WEGEN"],
+                ["WOONERF, ZONE 30, SCHOOL, BEBOUWDE KOM", "ANDERE WEGEN"],
                 ["10","20","30","40","50","60","70","80","90","100","110","120",]];
                 break;
                 case "Other":
@@ -304,6 +304,8 @@ angular.module('starter.services', [])
             fines.length = 0;
             var flag = true;
 
+            fines = FinesCalculator.getFines(offense);
+
             if(offense.age === 0){
                 texts = otherTexts;
                 flag = false;
@@ -338,7 +340,7 @@ angular.module('starter.services', [])
                     $cordovaSQLite.execute(db, query, [offense.intoxication]).then(function(res){
                         if(res.rows.length > 0){
                             for(var i = 0; i < res.rows.length; i++){
-                                texts.push(res.rows.item(0).body);
+                                texts.push(replaceFines(res.rows.item(0).body, fines));
                             }
                         }
                     }, function(err){
@@ -405,14 +407,32 @@ angular.module('starter.services', [])
                 break;
                 default:
             }
-            fines = FinesCalculator.getFines(offense);
 
+        }
+
+        function replaceFines(str, fines){
+            var asd = str;
             for (var key in fines) {
                 if (fines.hasOwnProperty(key)) {
-                    // texts.push(key + " -> " + fines[key])
+                    asd = replaceAll(asd, key, fines[key]);
                 }
             }
+            return asd;
         }
+
+        function replaceAll(str, find, replace) {
+            var i = str.indexOf(find);
+            if (i > -1){
+                str = str.replace(find, replace);
+                i = i + replace.length;
+                var st2 = str.substring(i);
+                if(st2.indexOf(find) > -1){
+                    str = str.substring(0,i) + replaceAll(st2, find, replace);
+                }
+            }
+            return str;
+        }
+
         return texts;
         }
     }

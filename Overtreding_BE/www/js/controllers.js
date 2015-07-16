@@ -134,13 +134,24 @@ angular.module('starter.controllers', [])
 .controller("ContactController", function($scope, $ionicHistory, $ionicPopup, $http, Offenses) {
     $scope.form = {};
     $scope.sendEmail = function() {
+        // var confirmPopup = $ionicPopup.confirm({
+        //     title: 'This is a popup',
+        //     template: 'Send email ?'
+        // });
         // var url = 'http://www.martindzhonov.podserver.info/overtreding_api/v1/db';
         var url = 'http://localhost/overtreding_api/v1/email';
-        $http.post(url, {msg: "test"}).then(function(resp){
-            console.log(resp);
-        }, function(err){
-
+        $http.post(url, {msg:'hello word!'}).
+        success(function(data, status, headers, config) {
+            console.log('wtf2');
+            console.log(data);
+        }).
+        error(function(data, status, headers, config) {
+            console.log('wtf');
+            console.log(status);
+            // called asynchronously if an error occurs
+            // or server returns response with an error status.
         });
+
         // if(window.plugins && window.plugins.emailComposer) {
         //     var emailBody = Offenses.composeEmail($scope.form);
         //     window.plugins.emailComposer.showEmailComposerWithCallback(function(result) {
@@ -180,9 +191,10 @@ angular.module('starter.controllers', [])
     $scope.questions = [];
     $scope.searchResults = [];
     $scope.inputs = {};
+
     var offense = {type: ""};
     $scope.offenses.push(offense);
-    $scope.test = true;
+
     $scope.menuItemTapped = function(menuItem){
         $scope.menu = [];
         var translations = {
@@ -210,7 +222,21 @@ angular.module('starter.controllers', [])
         $scope.questions[group.id].name =  item;
         var fieldName = Offenses.getFieldName(group.id, offense["type"]);
         offense[fieldName] = index;
+        if(offense.type === "Speed"){
+            if(offense.road === 0){
+                $scope.questions[3].items = ["10", "20", "30", "40", "50"];
+            }
+        }
+        if(offense.type === "Alchohol"){
+            if(offense.driver == 0){
+                $scope.questions[3].items.unshift("0,20 - 0,50 PROMILLE");
+            }
+            else{
+                offense[fieldName] = index + 1;
+            }
+        }
     };
+
     $scope.removeOffense = function(index){
         if(index === $scope.offenses.length -1){
             var confirmPopup = $ionicPopup.confirm({
