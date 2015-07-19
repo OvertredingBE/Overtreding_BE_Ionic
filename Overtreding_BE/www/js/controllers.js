@@ -183,6 +183,7 @@ angular.module('starter.controllers', [])
 
     var offense = {type: ""};
     $scope.offenses.push(offense);
+
     $scope.menuItemTapped = function(menuItem){
         $scope.menu = [];
         var translations = {
@@ -312,6 +313,8 @@ angular.module('starter.controllers', [])
     };
 
     $scope.toggleGroup = function(group) {
+        group.toggled = !group.toggled;
+
         if ($scope.isGroupShown(group)) {
             $scope.shownGroup = null;
         } else {

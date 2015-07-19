@@ -4,9 +4,10 @@
     font-weight: normal;
     font-style: normal;
 }
-@media only screen and (max-device-width: 480px) {
-
+.bg-black{
+    background-color: black;
 }
+
 .item-big, .item-menu, .button-home, .button-underline, .button-noline, .item-underline, .item-noline, .background-nav-bar, .background-medium, .background-light, .item-group, .item-group-small, .input-label{
     font-family: "AvenrirNext";
     color:white;
@@ -121,6 +122,12 @@
     border-top: none;
     border-left: none;
     border-right: none;
+        padding: 12px;
+    height: 40px;
+}
+.item-group-2{
+    font-size: 13px;
+    border: none;
         padding: 12px;
     height: 40px;
 }
