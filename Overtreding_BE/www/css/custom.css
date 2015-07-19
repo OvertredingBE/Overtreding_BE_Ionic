@@ -4,6 +4,9 @@
     font-weight: normal;
     font-style: normal;
 }
+@media only screen and (max-device-width: 480px) {
+
+}
 .item-big, .item-menu, .button-home, .button-underline, .button-noline, .item-underline, .item-noline, .background-nav-bar, .background-medium, .background-light, .item-group, .item-group-small, .input-label{
     font-family: "AvenrirNext";
     color:white;
@@ -44,7 +47,9 @@
 .textarea-custom{
     height: 100px;
 }
-
+.asdf{
+    background-color: black;
+}
 .icon-small{
     width: 16px;
     height: 16px;
@@ -107,13 +112,16 @@
     border:none;
 }
 
+.asdf{
+    text-overflow: ellipsis;
+}
 .item-group{
     font-size: 13px;
     border: 1px solid white;
     border-top: none;
     border-left: none;
     border-right: none;
-    padding: 12px;
+        padding: 12px;
     height: 40px;
 }
 
@@ -147,9 +155,6 @@
 
 .item-subgroup-noline{
     text-align: center;
-    border-left: none;
-    border-right: none;
-    border-bottom: none;
 }
 
 .padded{

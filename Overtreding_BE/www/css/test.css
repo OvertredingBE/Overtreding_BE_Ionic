@@ -1,0 +1,15 @@
+@media(max-width:375px) and (max-height:667px){
+    .icon-small{
+        width: 16px;
+        height: 16px;
+    }
+
+    .icon-big{
+        width: 22px;
+        height: 22px;
+    }
+
+    .icon-back{
+        margin:5px;
+    }
+ }

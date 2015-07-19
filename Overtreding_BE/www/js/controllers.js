@@ -183,7 +183,6 @@ angular.module('starter.controllers', [])
 
     var offense = {type: ""};
     $scope.offenses.push(offense);
-
     $scope.menuItemTapped = function(menuItem){
         $scope.menu = [];
         var translations = {
@@ -214,6 +213,10 @@ angular.module('starter.controllers', [])
         if(offense.type === "Speed"){
             if(offense.road === 0){
                 $scope.questions[3].items = ["10", "20", "30", "40", "50"];
+            }
+            else if(offense.road === 1){
+                $scope.questions[3].items = ["10","20","30","40","50","60","70","80","90","100","110","120"];
+
             }
         }
         if(offense.type === "Alchohol"){
