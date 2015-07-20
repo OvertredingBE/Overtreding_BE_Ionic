@@ -14,7 +14,7 @@ app.run(function($ionicPlatform) {
     });
 })
 
-.config(function($stateProvider, $urlRouterProvider){
+.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider){
     $stateProvider
     .state("config", {
         url:"/config",
@@ -57,6 +57,7 @@ app.run(function($ionicPlatform) {
         controller: "TakePictureController"
     });
     $urlRouterProvider.otherwise("/config");
+    $ionicConfigProvider.navBar.alignTitle('center');
 });
 app.filter('strLimit', ['$filter', function($filter) {
    return function(input, limit) {
