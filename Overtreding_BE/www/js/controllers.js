@@ -150,6 +150,7 @@ angular.module('starter.controllers', [])
             });
         }
         else{
+            if(validateEmail($scope.form.email)){
             var confirmPopup = $ionicPopup.confirm({
                 title: 'Bedankt voor uw aanvraag.',
                 template: 'U zal zo snel mogelijk een mail ontvangen met de benodigde informatie"'
@@ -166,6 +167,18 @@ angular.module('starter.controllers', [])
                 // called asynchronously if an error occurs
                 // or server returns response with an error status.
             });
+            }
+            else{
+                var confirmPopup = $ionicPopup.confirm({
+                    title: 'Error.',
+                    template: 'Invalid email adress'
+                });
+            }
+        }
+
+        function validateEmail(email) {
+            var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+            return re.test(email);
         }
     };
 
