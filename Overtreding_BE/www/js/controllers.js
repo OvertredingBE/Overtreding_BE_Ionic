@@ -311,9 +311,10 @@ angular.module('starter.controllers', [])
         var fieldName = Offenses.getFieldName(5, offense["type"]);
         offense[fieldName] = parseInt($scope.inputs.speed_corrected);
     };
-
-    $scope.toggleGroup = function(group) {
+    $scope.toggleBorder = function(group){
         group.toggled = !group.toggled;
+    }
+    $scope.toggleGroup = function(group) {
 
         if ($scope.isGroupShown(group)) {
             $scope.shownGroup = null;

@@ -49,7 +49,8 @@
 
 <div ng-repeat="group in questions">
     <div class="paddded-horizontal background-light">
-        <div ng-class="{'item-group-2 background-light' : group.toggled, 'item-group background-light' : !group.toggled}" ng-click="toggleGroup(group)">
+        <div ng-class="{'item-group-2 background-light' : group.toggled, 'item-group background-light' : !group.toggled}"
+        ng-click="toggleGroup(group); toggleBorder(group)">
             {{group.name | strLimit: 34 }}
             <img class="icon-small icon-square" ng-src="{{isGroupShown(group) && 'img/arrow-square-down.png' || 'img/arrow-square-left.png'}}"></img>
         </div>
@@ -57,7 +58,7 @@
     <div class="paddded-horizontal">
         <div ng-class="$first ? 'item-subgroup-noline item-text-wrap' : 'item-subgroup-underline item-text-wrap'"
         ng-repeat="item in group.items"
-        ng-click="subgroupTapped(item, group, $index); toggleGroup(group);"
+        ng-click="subgroupTapped(item, group, $index); toggleGroup(group); toggleBorder(group)"
         ng-show="isGroupShown(group)">
         {{item}}
     </div>
