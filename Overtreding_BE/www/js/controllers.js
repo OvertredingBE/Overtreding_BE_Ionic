@@ -144,7 +144,7 @@ angular.module('starter.controllers', [])
             }
         }
         if(counter != 4){
-            var confirmPopup = $ionicPopup.confirm({
+            var confirmPopup = $ionicPopup.alert({
                 title: 'Error',
                 template: 'Gelieve alle verplichte velden in te vullen (*)"'
             });
@@ -158,11 +158,9 @@ angular.module('starter.controllers', [])
             var url = 'http://localhost/overtreding_api/v1/email';
             $http.post(url, {msg:'hello word!'}).
             success(function(data, status, headers, config) {
-                console.log('wtf2');
                 console.log(data);
             }).
             error(function(data, status, headers, config) {
-                console.log('wtf');
                 console.log(status);
                 // called asynchronously if an error occurs
                 // or server returns response with an error status.
