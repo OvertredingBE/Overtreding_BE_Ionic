@@ -8,6 +8,9 @@
   background-color : #0089D2;
   color:white;
 }
+.icon-right{
+    float:right;
+}
 
 .popup-title{
     color:white;

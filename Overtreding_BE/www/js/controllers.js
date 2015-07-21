@@ -144,30 +144,31 @@ angular.module('starter.controllers', [])
             }
         }
         if(counter != 4){
-            var confirmPopup = $ionicPopup.alert({
+            $ionicPopup.alert({
                 title: 'Error',
                 template: 'Gelieve alle verplichte velden in te vullen (*)"'
             });
         }
         else{
             if(validateEmail($scope.form.email)){
-            var confirmPopup = $ionicPopup.confirm({
-                title: 'Bedankt voor uw aanvraag.',
-                template: 'U zal zo snel mogelijk een mail ontvangen met de benodigde informatie"'
-            });
-            var url = 'http://localhost/overtreding_api/v1/email';
-            $http.post(url, {msg:'hello word!'}).
-            success(function(data, status, headers, config) {
-                console.log(data);
-            }).
-            error(function(data, status, headers, config) {
-                console.log(status);
-                // called asynchronously if an error occurs
-                // or server returns response with an error status.
-            });
+                $ionicPopup.alert({
+                    title: 'Bedankt voor uw aanvraag.',
+                    template: 'U zal zo snel mogelijk een mail ontvangen met de benodigde informatie"'
+                });
+
+                var url = 'http://localhost/overtreding_api/v1/email';
+                $http.post(url, {msg:'hello word!'}).
+                success(function(data, status, headers, config) {
+                    console.log(data);
+                }).
+                error(function(data, status, headers, config) {
+                    console.log(status);
+                    // called asynchronously if an error occurs
+                    // or server returns response with an error status.
+                });
             }
             else{
-                var confirmPopup = $ionicPopup.confirm({
+                $ionicPopup.alert({
                     title: 'Error.',
                     template: 'Invalid email adress'
                 });
@@ -243,7 +244,7 @@ angular.module('starter.controllers', [])
 
     $scope.removeOffense = function(index){
         if(index === $scope.offenses.length -1){
-            var confirmPopup = $ionicPopup.confirm({
+            $ionicPopup.alert({
                 title: 'Error',
                 template: 'Cannot remove uncompleted offense'
             });
@@ -267,16 +268,9 @@ angular.module('starter.controllers', [])
             $scope.offenses.push(offense);
         }
         else{
-            var confirmPopup = $ionicPopup.confirm({
+            $ionicPopup.alert({
                 title: 'Invliad input',
                 template: 'Please enter all fields'
-            });
-            confirmPopup.then(function(res) {
-                if(res) {
-                    console.log('You are sure');
-                } else {
-                    console.log('You are not sure');
-                }
             });
         }
     };
@@ -341,32 +335,41 @@ angular.module('starter.controllers', [])
         $ionicHistory.goBack();  // This takes you back to the last view state.
     }
     $scope.resultTapped = function() {
+        var offenses = Offenses.all();
+        if(offenses.length === 0){
+            $ionicPopup.alert({
+                title: 'Error',
+                template: 'No offense composed'
+            });
+        }
+        else{
         var valid = Offenses.validateOffense(offense);
 
         if(valid){
-            $location.path("/result");
+            if(offenses.length === 1){
+                $location.path("/result/0");
+            }
+            else{
+                $location.path("/result");
+            }
         }
         else{
-            var confirmPopup = $ionicPopup.confirm({
+            $ionicPopup.alert({
                 title: 'Invliad input',
                 template: 'Please enter all fields'
             });
-            confirmPopup.then(function(res) {
-                if(res) {
-                    console.log('You are sure');
-                } else {
-                    console.log('You are not sure');
-                }
-            });
+        }
         }
     }
 })
 
-.controller("ResultController", function($scope, $ionicHistory, $ionicPopup, Offenses) {
+.controller("ResultController", function($scope, $ionicHistory, $ionicPopup, $location, Offenses) {
+
     $scope.items = Offenses.all();
     $scope.goBack = function() {
         $ionicHistory.goBack();  // This takes you back to the last view state.
     }
+
 })
 
 .controller("ResultDetailController", function($scope, $ionicHistory, $stateParams, $ionicPopup, Offenses, ResultTexts) {
@@ -381,6 +384,7 @@ angular.module('starter.controllers', [])
         $ionicHistory.goBack();
     }
 })
+
 .controller("TakePictureController", function($scope, $ionicHistory, Camera) {
     $scope.getPhoto = function() {
         Camera.getPicture().then(function(imageURI) {
