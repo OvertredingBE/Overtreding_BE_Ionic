@@ -19,7 +19,7 @@
             </div>
             <div class="paddded-horizontal">
                 <div ng-class="$first ? 'item-subgroup-noline' : 'item-subgroup-underline'"
-                ng-repeat="item in menuItem.items"
+                ng-repeat="item in menuItem.items track by $index"
                 ng-click="menuItemTapped(item)"
                 ng-show="isGroupShown(group)">
                 {{item}}
@@ -47,10 +47,9 @@
     </div>
 </div>
 
-<div ng-repeat="group in questions">
+<div ng-repeat="group in questions" ng-init="groupIndex = $index">
     <div class="paddded-horizontal background-light">
-        <div ng-class="{'item-group-2 background-light' : group.toggled, 'item-group background-light' : !group.toggled}"
-        ng-click="toggleGroup(group); toggleBorder(group)">
+        <div ng-class="{'item-group-2 background-light' : group.toggled, 'item-group background-light' : !group.toggled}">
             {{group.name | strLimit: 30 }}
             <img class="icon-small icon-square" ng-src="{{isGroupShown(group) && 'img/arrow-square-down.png' || 'img/arrow-square-left.png'}}"></img>
         </div>
@@ -58,8 +57,8 @@
     <div class="paddded-horizontal">
         <div ng-class="$first ? 'item-subgroup-noline item-text-wrap' : 'item-subgroup-underline item-text-wrap'"
         ng-repeat="item in group.items"
-        ng-click="subgroupTapped(item, group, $index); toggleGroup(group); toggleBorder(group)"
-        ng-show="isGroupShown(group)">
+        ng-click="subgroupTapped(item, group, $index); toggleBorder(group); changeShownGroup(groupIndex)"
+        ng-show="groupShown(groupIndex)">
         {{item}}
     </div>
 </div>

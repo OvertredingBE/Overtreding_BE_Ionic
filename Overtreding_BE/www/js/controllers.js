@@ -191,9 +191,11 @@ angular.module('starter.controllers', [])
     $scope.questions = [];
     $scope.searchResults = [];
     $scope.inputs = {};
-
     var offense = {type: ""};
     $scope.offenses.push(offense);
+
+    var counter = 0;
+
 
     $scope.menuItemTapped = function(menuItem){
         $scope.menu = [];
@@ -201,13 +203,18 @@ angular.module('starter.controllers', [])
         offense = Offenses.createDefault(type);
         $scope.offenses.splice($scope.offenses.length -1, 1, offense);
 
-        $scope.questions = Questions.getQuestions(type);
 
         if(type === "Other"){
             $scope.showSearch = true;
         }
-        if(type === "Speed"){
+        else if(type === "Speed"){
             $scope.showInput = true;
+            $scope.questions = Questions.getQuestions(type);
+            $scope.toggleBorder($scope.questions[0]);
+        }
+        else{
+            $scope.questions = Questions.getQuestions(type);
+            $scope.toggleBorder($scope.questions[0]);
         }
     };
 
@@ -257,6 +264,7 @@ angular.module('starter.controllers', [])
             $scope.showInput = false;
             Offenses.add(offense);
             offense = {type: ""};
+            counter = 0;
             $scope.offenses.push(offense);
         }
         else{
@@ -266,6 +274,9 @@ angular.module('starter.controllers', [])
             });
         }
     };
+    $scope.test = function(asd){
+        console.log(asd);
+    }
 
     $scope.search = function() {
         $scope.searchResults.length = 0;
@@ -313,12 +324,32 @@ angular.module('starter.controllers', [])
     $scope.toggleBorder = function(group){
         group.toggled = !group.toggled;
     }
+
     $scope.toggleGroup = function(group) {
 
         if ($scope.isGroupShown(group)) {
             $scope.shownGroup = null;
         } else {
             $scope.shownGroup = group;
+        }
+    };
+
+    $scope.groupShown = function(groupIndex){
+        if(groupIndex === counter){
+            return 1;
+        }
+        else{
+            return 0;
+        }
+    }
+    $scope.changeShownGroup = function(groupIndex) {
+        counter++;
+        if(counter === $scope.questions.length){
+            $scope.toggleBorder($scope.questions[counter-1]);
+            counter = -1;
+        }
+        else{
+            $scope.toggleBorder($scope.questions[counter]);
         }
     };
 
