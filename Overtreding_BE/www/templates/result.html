@@ -6,7 +6,7 @@
 
     <ion-content class="padding">
             <a href="#/result/{{$index}}" ng-repeat="item in items track by $index" class="button button-full button-underline">
-                 Overtreding {{$index+1}}: {{item.type}}
+                 Overtreding {{$index+1}}: {{item.type | translateToDutch}}
                  <img class="icon-right icon-small" src="img/arrow-square-right-white.png" ng-click="removeOffense($index)"></img>
                 <!-- <ion-item>{{item.licence}}</ion-item>
                 <ion-item>{{item.age}}</ion-item>

@@ -59,6 +59,18 @@ app.run(function($ionicPlatform) {
     $urlRouterProvider.otherwise("/config");
     $ionicConfigProvider.navBar.alignTitle('center');
 });
+app.filter('translateToDutch', ['TranslateService', function(TranslateService) {
+   return function(input) {
+      if (! input) return;
+      return TranslateService.englishToDutch(input);
+      if (input.length <= 5) {
+          return input;
+      }
+
+      return $filter('limitTo')(input, 5) + '...';
+   };
+}]);
+
 app.filter('strLimit', ['$filter', function($filter) {
    return function(input, limit) {
       if (! input) return;

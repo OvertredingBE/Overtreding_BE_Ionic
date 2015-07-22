@@ -7,7 +7,7 @@
     <ion-content>
 
         <div ng-repeat="offense in offenses track by $index">
-            <div class="item-menu background-medium">OVERTREDING {{$index+1}}: {{offense.type}}
+            <div class="item-menu background-medium">OVERTREDING {{$index+1}}: {{offense.type | translateToDutch}}
                 <img class="icon-square icon-small" src="img/cross.png" ng-click="removeOffense($index)"></img>
             </div>
         </div>

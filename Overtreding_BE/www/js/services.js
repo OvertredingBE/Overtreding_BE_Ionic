@@ -562,3 +562,25 @@ angular.module('starter.services', [])
         return y + (x * z);
     };
 })
+.factory('TranslateService', function($cordovaSQLite){
+    return{
+        dutchToEnglish: function(word) {
+            var translations = {
+                "SNELHEID": "Speed",
+                "ALCOHOL": "Alchohol",
+                "DRUGS": "Drugs",
+                "ANDERE": "Other"
+            };
+          return translations[word];
+      },
+      englishToDutch: function(word) {
+          var translations = {
+              "Speed": "SNELHEID",
+              "Alchohol": "ALCOHOL",
+              "Drugs": "DRUGS",
+              "Other": "ANDERE"
+          };
+        return translations[word];
+      }
+    }
+})

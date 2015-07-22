@@ -4,8 +4,8 @@
 
 angular.module('starter.controllers', [])
 
-.controller("ConfigController", function($scope, $ionicPlatform, $ionicLoading, $cordovaSQLite, $http, $ionicPopup){
-    $scope.title = "ConfigCntlr";
+.controller("ConfigController", function($scope, $ionicPlatform, $ionicLoading, $cordovaSQLite, $http, $ionicPopup, Offenses){
+    Offenses.clear();
     $ionicPlatform.ready(function() {
         $ionicLoading.show({
             template: 'Loading...'
@@ -108,7 +108,6 @@ angular.module('starter.controllers', [])
 })
 
 .controller("HomeController", function($scope, $ionicPlatform, $ionicHistory, Offenses){
-    Offenses.clear();
     $scope.goBack = function() {
         $ionicHistory.goBack();  // This takes you back to the last view state.
     }
@@ -186,7 +185,7 @@ angular.module('starter.controllers', [])
     }
 })
 
-.controller("CalcFineController", function($scope, $ionicHistory, $ionicPopup, $location, Offenses, Questions, Others) {
+.controller("CalcFineController", function($scope, $ionicHistory, $ionicPopup, $location, Offenses, Questions, Others, TranslateService) {
     $scope.offenses = [];
     $scope.menu = Questions.getQuestions("Menu");
     $scope.questions = [];
@@ -198,23 +197,16 @@ angular.module('starter.controllers', [])
 
     $scope.menuItemTapped = function(menuItem){
         $scope.menu = [];
-        var translations = {
-            "SNELHEID": "Speed",
-            "ALCOHOL": "Alchohol",
-            "DRUGS": "Drugs",
-            "ANDERE": "Other"
-        };
-
-        menuItem = translations[menuItem];
-        offense = Offenses.createDefault(menuItem);
+        type = TranslateService.dutchToEnglish(menuItem);
+        offense = Offenses.createDefault(type);
         $scope.offenses.splice($scope.offenses.length -1, 1, offense);
 
-        $scope.questions = Questions.getQuestions(menuItem);
+        $scope.questions = Questions.getQuestions(type);
 
-        if(menuItem === "Other"){
+        if(type === "Other"){
             $scope.showSearch = true;
         }
-        if(menuItem === "Speed"){
+        if(type === "Speed"){
             $scope.showInput = true;
         }
     };
