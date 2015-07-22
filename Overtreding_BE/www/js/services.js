@@ -28,7 +28,7 @@ angular.module('starter.services', [])
                 var subgroups = [["SNELHEID", "ALCOHOL", "DRUGS", "ANDERE"]];
                 break;
                 case "Alchohol":
-                var names = ["RIJBEWIJS","LEEFTIJD", "BESTUUDER", "INTOXICATIE"];
+                var names = ["RIJBEWIJS","LEEFTIJD", "BESTRUUDER", "INTOXICATIE"];
                 var subgroups = [["IK BEZIT MIJN RIJBEWIJS MINDER DAN 2 JAAR", "IK BEZIT MIJN RIJBEWIJS LANGER DAN 2 JAAR"],
                 ["JONGER DAN 18 JAAR","18 JAAR OF OUDER"],
                 ["PROFESSIONELE BESTUURDER", "GEWONE BESTUURDER"],
@@ -47,7 +47,7 @@ angular.module('starter.services', [])
                 var names = ["RIJBEWIJS","LEEFTIJD", "TYPE OVERTREDING"];
                 var subgroups = [['IK BEZIT MIJN RIJBEWIJS MINDER DAN 2 JAAR', "IK BEZIT MIJN RIJBEWIJS LANGER DAN 2 JAAR"],
                 ["JONGER DAN 18 JAAR","18 JAAR OF OUDER"],
-                ["U WORDT POSITIEF BEVONDEN OP DE AANWEZIGHEID VAN DRUGS IN UW BLOED", "WEIGERT ZONDER WETTIGE REDEN DE SPEEKSELTEST OF -ANALYSE"]];
+                ["U WORDT POSITIEF BEVONDEN OP DE AANWEZIGHEID VAN DRUGS IN UW BLOED", "U WEIGERT ZONDER WETTIGE REDEN DE SPEEKSELTEST OF ANALYSE"]];
                 break;
                 case "Speed":
                 var names = ["RIJBEWIJS","LEEFTIJD", "TYPE RIJBAAN", "SNELHEIDSLIMIET"];

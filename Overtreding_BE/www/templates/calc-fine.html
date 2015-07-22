@@ -51,7 +51,7 @@
     <div class="paddded-horizontal background-light">
         <div ng-class="{'item-group-2 background-light' : group.toggled, 'item-group background-light' : !group.toggled}"
         ng-click="toggleGroup(group); toggleBorder(group)">
-            {{group.name | strLimit: 34 }}
+            {{group.name | strLimit: 30 }}
             <img class="icon-small icon-square" ng-src="{{isGroupShown(group) && 'img/arrow-square-down.png' || 'img/arrow-square-left.png'}}"></img>
         </div>
     </div>

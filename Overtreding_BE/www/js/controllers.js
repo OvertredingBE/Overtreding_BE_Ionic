@@ -12,8 +12,8 @@ angular.module('starter.controllers', [])
         });
         var db = null;
         $scope.items = [];
-        var url = 'http://www.martindzhonov.podserver.info/overtreding_api/v1/db';
-        // var url = 'http://localhost/overtreding_api/v1/db';
+        var url = 'http://www.martindzhonov.podserver.info/overtreding_api/v1/getDB';
+        // var url = 'http://localhost/overtreding_api/v1/getDB';
 
         $http.get(url).then(function(resp) {
             console.log("Fetching database");
@@ -277,7 +277,9 @@ angular.module('starter.controllers', [])
 
     $scope.search = function() {
         $scope.searchResults.length = 0;
-        $scope.searchResults = Others.searchOthers($scope.inputs.searchWord);
+        var searchWords = $scope.inputs.searchWord;
+        searchWords = searchWords.toLowerCase();
+        $scope.searchResults = Others.searchOthers(searchWords);
     };
 
     $scope.otherTapped = function(item) {
