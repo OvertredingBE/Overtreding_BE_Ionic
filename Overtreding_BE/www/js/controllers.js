@@ -187,30 +187,29 @@ angular.module('starter.controllers', [])
     $scope.offenses = [];
     $scope.searchResults = [];
     $scope.menu = Questions.getQuestions("Menu");
+    $scope.questionsShown = false;
     $scope.inputs = {};
 
-    var counter = 0;
+    var indexShown = 0;
     var offense = {type: ""};
     $scope.offenses.push(offense);
 
-    $scope.menuItemTapped = function(menuItem){
-        counter = 0;
+    $scope.menuSubgroupTapped = function(menuItem){
         $scope.menu = [];
-
         var type = TranslateService.dutchToEnglish(menuItem);
+
         offense = Offenses.createDefault(type);
         $scope.offenses.splice($scope.offenses.length -1, 1, offense);
+        $scope.questions = Questions.getQuestions(type);
+        $scope.toggleBorder($scope.questions[0]);
+        $scope.questionsShown = true;
 
         if(type === "Other"){
             $scope.showSearch = true;
+            $scope.questionsShown = false;
         }
         else if(type === "Speed"){
             $scope.showInput = true;
-            $scope.toggleBorder($scope.questions[0]);
-        }
-        else{
-            $scope.questions = Questions.getQuestions(type);
-            $scope.toggleBorder($scope.questions[0]);
         }
     };
 
@@ -222,10 +221,6 @@ angular.module('starter.controllers', [])
             if(offense.road === 0){
                 $scope.questions[3].items = ["10", "20", "30", "40", "50"];
             }
-            else if(offense.road === 1){
-                $scope.questions[3].items = ["10","20","30","40","50","60","70","80","90","100","110","120"];
-
-            }
         }
         if(offense.type === "Alchohol"){
             if(offense.driver == 0){
@@ -234,6 +229,56 @@ angular.module('starter.controllers', [])
             else{
                 offense[fieldName] = index + 1;
             }
+        }
+    };
+
+    $scope.toggleBorder = function(group){
+        group.toggled = !group.toggled;
+    }
+
+    $scope.groupShown = function(groupIndex){
+        if(groupIndex === indexShown){
+            return 1;
+        }
+        else{
+            return 0;
+        }
+    }
+    $scope.changeShownGroup = function(groupIndex) {
+        indexShown++;
+        if(indexShown === $scope.questions.length){
+            if(offense.type != "Speed"){
+                $scope.toggleBorder($scope.questions[indexShown-1]);
+                indexShown = -1;
+            }
+        }
+        else{
+            $scope.toggleBorder($scope.questions[indexShown]);
+        }
+    };
+
+    $scope.createNewOffense = function(){
+        var valid = offense != null && offense.type != "";
+        if(valid && Offenses.validateOffense(offense))
+        {
+            $scope.menu = Questions.getQuestions("Menu");
+            $scope.questions = [];
+            indexShown = 0;
+            $scope.showSearch = false;
+            $scope.showInput = false;
+            $scope.inputs.speed_driven = "";
+            $scope.inputs.speed_corrected = "";
+
+            Offenses.add(offense);
+            offense = {type: ""};
+            $scope.offenses.push(offense);
+
+        }
+        else{
+            $ionicPopup.alert({
+                title: 'Invliad input',
+                template: 'Please enter all fields'
+            });
         }
     };
 
@@ -248,102 +293,6 @@ angular.module('starter.controllers', [])
             $scope.offenses.splice(index, 1);
             Offenses.remove(index);
         }
-    };
-
-    $scope.createNewOffense = function(){
-        var valid = offense != null && offense.type != "";
-        if(valid && Offenses.validateOffense(offense))
-        {
-            $scope.menu = Questions.getQuestions("Menu");
-            $scope.questions = [];
-            $scope.showSearch = false;
-            $scope.showInput = false;
-            Offenses.add(offense);
-            offense = {type: ""};
-            counter = 0;
-            $scope.offenses.push(offense);
-        }
-        else{
-            $ionicPopup.alert({
-                title: 'Invliad input',
-                template: 'Please enter all fields'
-            });
-        }
-    };
-
-    $scope.search = function() {
-        $scope.searchResults.length = 0;
-        var searchWords = $scope.inputs.searchWord;
-        searchWords = searchWords.toLowerCase();
-        $scope.searchResults = Others.searchOthers(searchWords);
-    };
-
-    $scope.otherTapped = function(item) {
-        offense.id = item.id;
-        offense.degree = item.degree;
-        offense.age = 1;
-        offense.searchResults = 1;
-        $scope.searchResults.length = 0;
-        $scope.searchResults.push(item);
-
-        $scope.questions = Questions.getQuestions("Test");
-        $scope.toggleBorder($scope.questions[0]);
-
-    };
-
-    $scope.calcSpeed = function() {
-        var speedDriven = $scope.inputs.speed_driven;
-
-        if(isNaN(speedDriven)){
-            $scope.inputs.speed_corrected = "";
-        }
-        else{
-            speedDriven = parseInt(speedDriven);
-            if(speedDriven > 10){
-                if(speedDriven <= 100){
-                    $scope.inputs.speed_corrected = speedDriven - 6;
-                }
-                else{
-                    $scope.inputs.speed_corrected = Math.floor(speedDriven - 0.06*speedDriven);
-                }
-            }
-            else {
-                $scope.inputs.speed_corrected = "";
-            }
-        }
-        var fieldName = Offenses.getFieldName(4, offense["type"]);
-        offense[fieldName] = parseInt($scope.inputs.speed_driven);
-        var fieldName = Offenses.getFieldName(5, offense["type"]);
-        offense[fieldName] = parseInt($scope.inputs.speed_corrected);
-    };
-
-    $scope.toggleBorder = function(group){
-        group.toggled = !group.toggled;
-    }
-
-    $scope.groupShown = function(groupIndex){
-        if(groupIndex === counter){
-            return 1;
-        }
-        else{
-            return 0;
-        }
-    }
-    $scope.changeShownGroup = function(groupIndex) {
-        counter++;
-        if(counter === $scope.questions.length){
-            if(offense.type != "Speed"){
-                $scope.toggleBorder($scope.questions[counter-1]);
-                counter = -1;
-            }
-        }
-        else{
-            $scope.toggleBorder($scope.questions[counter]);
-        }
-    };
-
-    $scope.goBack = function() {
-        $ionicHistory.goBack();
     };
 
     $scope.resultTapped = function() {
@@ -373,6 +322,51 @@ angular.module('starter.controllers', [])
             }
         }
     }
+
+    $scope.calcSpeed = function() {
+        var speedDriven = $scope.inputs.speed_driven;
+
+        if(isNaN(speedDriven)){
+            $scope.inputs.speed_corrected = "";
+        }
+        else{
+            speedDriven = parseInt(speedDriven);
+            if(speedDriven > 10){
+                if(speedDriven <= 100){
+                    $scope.inputs.speed_corrected = speedDriven - 6;
+                }
+                else{
+                    $scope.inputs.speed_corrected = Math.floor(speedDriven - 0.06*speedDriven);
+                }
+            }
+            else {
+                $scope.inputs.speed_corrected = "";
+            }
+        }
+        var fieldName = Offenses.getFieldName(4, offense["type"]);
+        offense[fieldName] = parseInt($scope.inputs.speed_driven);
+        var fieldName = Offenses.getFieldName(5, offense["type"]);
+        offense[fieldName] = parseInt($scope.inputs.speed_corrected);
+    };
+
+    $scope.search = function() {
+        $scope.searchResults.length = 0;
+        var searchWords = $scope.inputs.searchWord;
+        searchWords = searchWords.toLowerCase();
+        $scope.searchResults = Others.searchOthers(searchWords);
+    };
+
+    $scope.otherTapped = function(item) {
+        $scope.searchResults.length = 0;
+        $scope.searchResults.push(item);
+        offense.id = item.id;
+        offense.degree = item.degree;
+        $scope.questionsShown = true;
+    };
+
+    $scope.goBack = function() {
+        $ionicHistory.goBack();
+    };
 })
 
 .controller("ResultController", function($scope, $ionicHistory, $ionicPopup, $location, Offenses) {
@@ -380,7 +374,7 @@ angular.module('starter.controllers', [])
 
     $scope.goBack = function() {
         $ionicHistory.goBack();
-    }
+    };
 })
 
 .controller("ResultDetailController", function($scope, $ionicHistory, $stateParams, $ionicPopup, Offenses, ResultTexts) {

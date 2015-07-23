@@ -57,8 +57,9 @@ angular.module('starter.services', [])
                 ["10","20","30","40","50","60","70","80","90","100","110","120"]];
                 break;
                 case "Other":
-                var names = [];
-                var subgroups = [];
+                var names = ["RIJBEWIJS","LEEFTIJD"];
+                var subgroups = [['IK BEZIT MIJN RIJBEWIJS MINDER DAN 2 JAAR', "IK BEZIT MIJN RIJBEWIJS LANGER DAN 2 JAAR"],
+                ["JONGER DAN 18 JAAR","18 JAAR OF OUDER"]];
                 break;
                 case "Test":
                 var names = ["RIJBEWIJS","LEEFTIJD"];
