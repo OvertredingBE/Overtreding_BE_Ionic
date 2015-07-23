@@ -296,31 +296,54 @@ angular.module('starter.controllers', [])
     };
 
     $scope.resultTapped = function() {
-        var offenses = Offenses.all();
-        if(offenses.length === 0){
-            $ionicPopup.alert({
-                title: 'Error',
-                template: 'No offense composed'
-            });
-        }
-        else{
-            var valid = Offenses.validateOffense(offense);
+        var valid = offense != null && offense.type != "";
+        if(valid && Offenses.validateOffense(offense))
+        {
+            $scope.menu = Questions.getQuestions("Menu");
+            $scope.questions = [];
+            indexShown = 0;
+            $scope.showSearch = false;
+            $scope.showInput = false;
+            $scope.inputs.speed_driven = "";
+            $scope.inputs.speed_corrected = "";
 
-            if(valid){
-                if(offenses.length === 1){
-                    $location.path("/result/0");
-                }
-                else{
-                    $location.path("/result");
-                }
-            }
-            else{
+            Offenses.add(offense);
+            offense = {type: ""};
+            $scope.offenses.push(offense);
+
+            var offenses = Offenses.all();
+            if(offenses.length === 0){
                 $ionicPopup.alert({
-                    title: 'Invliad input',
-                    template: 'Please enter all fields'
+                    title: 'Error',
+                    template: 'No offense composed'
                 });
             }
+            else{
+                var valid = Offenses.validateOffense(offense);
+
+                if(valid){
+                    if(offenses.length === 1){
+                        $location.path("/result/0");
+                    }
+                    else{
+                        $location.path("/result");
+                    }
+                }
+                else{
+                    $ionicPopup.alert({
+                        title: 'Invliad input',
+                        template: 'Please enter all fields'
+                    });
+                }
+            }
         }
+        else{
+            $ionicPopup.alert({
+                title: 'Invliad input',
+                template: 'Please enter all fields'
+            });
+        }
+
     }
 
     $scope.calcSpeed = function() {
@@ -369,9 +392,13 @@ angular.module('starter.controllers', [])
     };
 })
 
-.controller("ResultController", function($scope, $ionicHistory, $ionicPopup, $location, Offenses) {
-    $scope.items = Offenses.all();
-
+.controller("ResultController", function($scope, $ionicHistory, $ionicPopup, $location, Offenses, ExceptionsService) {
+    var offenses = Offenses.all();
+    $scope.offenses = offenses;
+    var qualifyOI = ExceptionsService.qualifyOI(offenses);
+    if(qualifyOI){
+        $scope.message = "ASDASDASD";
+    }
     $scope.goBack = function() {
         $ionicHistory.goBack();
     };

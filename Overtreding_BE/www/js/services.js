@@ -32,8 +32,7 @@ angular.module('starter.services', [])
                 var subgroups = [["IK BEZIT MIJN RIJBEWIJS MINDER DAN 2 JAAR", "IK BEZIT MIJN RIJBEWIJS LANGER DAN 2 JAAR"],
                 ["JONGER DAN 18 JAAR","18 JAAR OF OUDER"],
                 ["PROFESSIONELE BESTUURDER", "GEWONE BESTUURDER"],
-                [
-                "0,50 – 0,80 PROMILLE",
+                ["0,50 – 0,80 PROMILLE",
                 "0,80 – 1,00 PROMILLE",
                 "1,00 – 1,14 PROMILLE",
                 "1,14 – 1,48 PROMILLE",
@@ -344,7 +343,8 @@ angular.module('starter.services', [])
                     $cordovaSQLite.execute(db, query, [offense.intoxication]).then(function(res){
                         if(res.rows.length > 0){
                             for(var i = 0; i < res.rows.length; i++){
-                                texts.push(replaceFines(res.rows.item(0).body, fines));
+                                texts.push(res.rows.item(0).body);
+                                // texts.push(replaceFines(res.rows.item(0).body, fines));
                             }
                         }
                     }, function(err){
@@ -582,6 +582,16 @@ angular.module('starter.services', [])
               "Other": "ANDERE"
           };
         return translations[word];
+      }
+    }
+})
+.factory('ExceptionsService', function($cordovaSQLite, Offenses){
+    return{
+        qualifyOI: function(offenses) {
+            return true;
+      },
+      qualifyMS: function(offenses) {
+
       }
     }
 })
