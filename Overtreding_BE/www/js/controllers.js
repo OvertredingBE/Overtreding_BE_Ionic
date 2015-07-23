@@ -185,29 +185,27 @@ angular.module('starter.controllers', [])
 
 .controller("CalcFineController", function($scope, $ionicHistory, $ionicPopup, $location, Offenses, Questions, Others, TranslateService) {
     $scope.offenses = [];
-    $scope.menu = Questions.getQuestions("Menu");
-    $scope.questions = [];
     $scope.searchResults = [];
+    $scope.menu = Questions.getQuestions("Menu");
     $scope.inputs = {};
+
+    var counter = 0;
     var offense = {type: ""};
     $scope.offenses.push(offense);
 
-    var counter = 0;
-
-
     $scope.menuItemTapped = function(menuItem){
+        counter = 0;
         $scope.menu = [];
-        type = TranslateService.dutchToEnglish(menuItem);
+
+        var type = TranslateService.dutchToEnglish(menuItem);
         offense = Offenses.createDefault(type);
         $scope.offenses.splice($scope.offenses.length -1, 1, offense);
-
 
         if(type === "Other"){
             $scope.showSearch = true;
         }
         else if(type === "Speed"){
             $scope.showInput = true;
-            $scope.questions = Questions.getQuestions(type);
             $scope.toggleBorder($scope.questions[0]);
         }
         else{
@@ -272,9 +270,6 @@ angular.module('starter.controllers', [])
             });
         }
     };
-    $scope.test = function(asd){
-        console.log(asd);
-    }
 
     $scope.search = function() {
         $scope.searchResults.length = 0;
@@ -292,6 +287,8 @@ angular.module('starter.controllers', [])
         $scope.searchResults.push(item);
 
         $scope.questions = Questions.getQuestions("Test");
+        $scope.toggleBorder($scope.questions[0]);
+
     };
 
     $scope.calcSpeed = function() {
@@ -319,18 +316,10 @@ angular.module('starter.controllers', [])
         var fieldName = Offenses.getFieldName(5, offense["type"]);
         offense[fieldName] = parseInt($scope.inputs.speed_corrected);
     };
+
     $scope.toggleBorder = function(group){
         group.toggled = !group.toggled;
     }
-
-    $scope.toggleGroup = function(group) {
-
-        if ($scope.isGroupShown(group)) {
-            $scope.shownGroup = null;
-        } else {
-            $scope.shownGroup = group;
-        }
-    };
 
     $scope.groupShown = function(groupIndex){
         if(groupIndex === counter){
@@ -353,12 +342,10 @@ angular.module('starter.controllers', [])
         }
     };
 
-    $scope.isGroupShown = function(group) {
-        return $scope.shownGroup === group;
-    };
     $scope.goBack = function() {
         $ionicHistory.goBack();
-    }
+    };
+
     $scope.resultTapped = function() {
         var offenses = Offenses.all();
         if(offenses.length === 0){
