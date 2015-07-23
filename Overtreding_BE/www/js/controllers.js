@@ -345,8 +345,10 @@ angular.module('starter.controllers', [])
     $scope.changeShownGroup = function(groupIndex) {
         counter++;
         if(counter === $scope.questions.length){
+            if(offense.type != "Speed"){
             $scope.toggleBorder($scope.questions[counter-1]);
             counter = -1;
+        }
         }
         else{
             $scope.toggleBorder($scope.questions[counter]);
@@ -402,7 +404,9 @@ angular.module('starter.controllers', [])
     $scope.titles = titles;
     var offense = Offenses.findById($stateParams.offenseId);
     var offenseDisplayId = parseInt($stateParams.offenseId) + 1;
-    $scope.title = "Overtreding " + offenseDisplayId + " " + offense.type;
+    $scope.offenseId = offenseDisplayId;
+    $scope.offenseType = offense.type;
+    // $scope.title = "Overtreding " + offenseDisplayId + " " + offense.type;
     $scope.items = [];
     $scope.items = ResultTexts.getTexts(offense);
     $scope.goBack = function() {
