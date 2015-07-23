@@ -109,13 +109,12 @@ angular.module('starter.controllers', [])
 
 .controller("HomeController", function($scope, $ionicPlatform, $ionicHistory, Offenses){
     $scope.goBack = function() {
-        $ionicHistory.goBack();  // This takes you back to the last view state.
+        $ionicHistory.goBack();
     }
 })
 
 .controller("RightsController", function($scope, $ionicHistory, Rights) {
     $scope.items = Rights.alchRights();
-    $scope.last = "item-underline";
 
     $scope.showAlch = function() {
         $scope.items = [];
@@ -127,12 +126,13 @@ angular.module('starter.controllers', [])
         $scope.items = Rights.drugRights();
     };
     $scope.goBack = function() {
-        $ionicHistory.goBack();  // This takes you back to the last view state.
+        $ionicHistory.goBack();
     }
 })
 
 .controller("ContactController", function($scope, $ionicHistory, $ionicPopup, $http, Offenses) {
     $scope.form = {};
+
     $scope.sendEmail = function() {
         var counter = 0;
         for (var key in $scope.form) {
@@ -162,8 +162,6 @@ angular.module('starter.controllers', [])
                 }).
                 error(function(data, status, headers, config) {
                     console.log(status);
-                    // called asynchronously if an error occurs
-                    // or server returns response with an error status.
                 });
             }
             else{
@@ -181,7 +179,7 @@ angular.module('starter.controllers', [])
     };
 
     $scope.goBack = function() {
-        $ionicHistory.goBack();  // This takes you back to the last view state.
+        $ionicHistory.goBack();
     }
 })
 
@@ -346,9 +344,9 @@ angular.module('starter.controllers', [])
         counter++;
         if(counter === $scope.questions.length){
             if(offense.type != "Speed"){
-            $scope.toggleBorder($scope.questions[counter-1]);
-            counter = -1;
-        }
+                $scope.toggleBorder($scope.questions[counter-1]);
+                counter = -1;
+            }
         }
         else{
             $scope.toggleBorder($scope.questions[counter]);
@@ -359,7 +357,7 @@ angular.module('starter.controllers', [])
         return $scope.shownGroup === group;
     };
     $scope.goBack = function() {
-        $ionicHistory.goBack();  // This takes you back to the last view state.
+        $ionicHistory.goBack();
     }
     $scope.resultTapped = function() {
         var offenses = Offenses.all();
@@ -370,45 +368,47 @@ angular.module('starter.controllers', [])
             });
         }
         else{
-        var valid = Offenses.validateOffense(offense);
+            var valid = Offenses.validateOffense(offense);
 
-        if(valid){
-            if(offenses.length === 1){
-                $location.path("/result/0");
+            if(valid){
+                if(offenses.length === 1){
+                    $location.path("/result/0");
+                }
+                else{
+                    $location.path("/result");
+                }
             }
             else{
-                $location.path("/result");
+                $ionicPopup.alert({
+                    title: 'Invliad input',
+                    template: 'Please enter all fields'
+                });
             }
-        }
-        else{
-            $ionicPopup.alert({
-                title: 'Invliad input',
-                template: 'Please enter all fields'
-            });
-        }
         }
     }
 })
 
 .controller("ResultController", function($scope, $ionicHistory, $ionicPopup, $location, Offenses) {
-
     $scope.items = Offenses.all();
-    $scope.goBack = function() {
-        $ionicHistory.goBack();  // This takes you back to the last view state.
-    }
 
+    $scope.goBack = function() {
+        $ionicHistory.goBack();
+    }
 })
 
 .controller("ResultDetailController", function($scope, $ionicHistory, $stateParams, $ionicPopup, Offenses, ResultTexts) {
     var titles = ["ONMIDDELLIJKE INNING", "MINNELIJKE SCHIKKING", "BEVEL TOT BETALING/RECHTBANK"];
     $scope.titles = titles;
+
     var offense = Offenses.findById($stateParams.offenseId);
     var offenseDisplayId = parseInt($stateParams.offenseId) + 1;
+
     $scope.offenseId = offenseDisplayId;
     $scope.offenseType = offense.type;
-    // $scope.title = "Overtreding " + offenseDisplayId + " " + offense.type;
+
     $scope.items = [];
     $scope.items = ResultTexts.getTexts(offense);
+
     $scope.goBack = function() {
         $ionicHistory.goBack();
     }
