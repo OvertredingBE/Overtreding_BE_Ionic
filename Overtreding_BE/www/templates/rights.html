@@ -4,10 +4,10 @@
         <h1 class="title background-nav-bar">UW RECHTEN</h1>
     </ion-header-bar>
     <ion-content class="padding">
-        <button class="button-custom-2" ng-click="showAlch()">
+        <button ng-class="{'button-custom-2': selected == 2, 'button-custom-4': selected ==1}" ng-click="showAlch()">
             ALCHOHOL CONTROLE
         </button>
-        <button class="button-custom-2" ng-click="showDrugs()">
+        <button ng-class="{'button-custom-2': selected == 1, 'button-custom-4': selected ==2}" ng-click="showDrugs()">
             DRUGS CONTROLE
         </button>
         <div ng-repeat="item in items" ng-class="$last ? 'item item-text-wrap item-noline' : 'item item-text-wrap item-underline'">

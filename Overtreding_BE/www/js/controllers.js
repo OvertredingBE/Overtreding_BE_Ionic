@@ -6,6 +6,13 @@ angular.module('starter.controllers', [])
 
 .controller("ConfigController", function($scope, $ionicPlatform, $ionicLoading, $cordovaSQLite, $http, $ionicPopup, Offenses){
     Offenses.clear();
+    var split = 'john smith~123 Street~Apt 4~New York~NY~12345'.split('~');
+
+    // var fineString = fines[key];
+    // var fineAmounts = fineString.split(" ");
+    for (var j = 0; j < split.length; j++) {
+        console.log(split[j]);
+    }
     $ionicPlatform.ready(function() {
         $ionicLoading.show({
             template: 'Loading...'
@@ -115,16 +122,23 @@ angular.module('starter.controllers', [])
 
 .controller("RightsController", function($scope, $ionicHistory, Rights) {
     $scope.items = Rights.alchRights();
-
+    $scope.selected = 1;
     $scope.showAlch = function() {
         $scope.items = [];
         $scope.items = Rights.alchRights();
+        $scope.selected = 1;
     };
 
     $scope.showDrugs = function() {
         $scope.items = [];
         $scope.items = Rights.drugRights();
+        $scope.selected = 2;
     };
+
+    $scope.test = function() {
+        $scope.selected = 2;
+    };
+
     $scope.goBack = function() {
         $ionicHistory.goBack();
     }
@@ -392,19 +406,25 @@ angular.module('starter.controllers', [])
     };
 })
 
-.controller("ResultController", function($scope, $ionicHistory, $ionicPopup, $location, Offenses, ExceptionsService) {
+.controller("ResultController", function($scope, $ionicHistory, $ionicPopup, $location, Offenses, ExceptionsService, FinesCalculator) {
     var offenses = Offenses.all();
     $scope.offenses = offenses;
+
+
+
     var qualifyOI = ExceptionsService.qualifyOI(offenses);
     if(qualifyOI){
-        $scope.message = "ASDASDASD";
+        $scope.message = "Qualifies for OI";
+    }
+    else{
+        $scope.message = "Does not qualify for OI";
     }
     $scope.goBack = function() {
         $ionicHistory.goBack();
     };
 })
 
-.controller("ResultDetailController", function($scope, $ionicHistory, $stateParams, $ionicPopup, Offenses, ResultTexts) {
+.controller("ResultDetailController", function($scope, $ionicHistory, $stateParams, $ionicPopup, Offenses, ResultTexts, FinesCalculator) {
     var titles = ["ONMIDDELLIJKE INNING", "MINNELIJKE SCHIKKING", "BEVEL TOT BETALING/RECHTBANK"];
     $scope.titles = titles;
 
@@ -416,6 +436,7 @@ angular.module('starter.controllers', [])
 
     $scope.items = [];
     $scope.items = ResultTexts.getTexts(offense);
+
 
     $scope.goBack = function() {
         $ionicHistory.goBack();

@@ -152,6 +152,9 @@
     padding: 12px;
     height: 40px;
 }
+.iii{
+    background-color: black;
+}
 
 .item-big{
     font-size: 13px;
@@ -204,6 +207,15 @@
     border-color: white;
     color: white;
     background-color: #1E91D5;
+}
+.button-custom-4{
+    margin-left: 20px;
+    margin-right: 10px;
+    width: 40%;
+    height: 55px;
+    border-color: white;
+    color: #1E91D5;
+    background-color: white;
 }
 .button-custom-3 {
     font-family: "AvenrirNext";

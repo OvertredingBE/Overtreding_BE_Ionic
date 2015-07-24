@@ -585,13 +585,44 @@ angular.module('starter.services', [])
       }
     }
 })
-.factory('ExceptionsService', function($cordovaSQLite, Offenses){
+.factory('ExceptionsService', function($cordovaSQLite, Offenses, FinesCalculator){
+    var fines = [];
+
     return{
         qualifyOI: function(offenses) {
+            for (var i = 0; i < offenses.length; i++) {
+                var offense = offenses[i];
+                for (var key in offense) {
+                    if (offense.hasOwnProperty(key)) {
+                        if(offense.type === "Other"){
+                            if(offense.degree === 3 || offense.degree === 4){
+                                return false;
+                            }
+                        }
+                    }
+                }
+            }
             return true;
       },
       qualifyMS: function(offenses) {
-
+          var finesAmounts = 0;
+          for (var i = 0; i < offenses.length; i++) {
+              var offense = offenses[i];
+              var fines = FinesCalculator.getFines(offense);
+              for (var key in fines) {
+                  if (fines.hasOwnProperty(key)) {
+                      console.log(key + " -> " + fines[key]);
+                      var fineString = fines[key].toString();
+                      var fineAmounts = fineString.split(" tot ");
+                      for (var j = 0; j < fineAmounts.length; j++) {
+                          if(parseInt(fineAmounts[j]) > 1500){
+                              return false;
+                          }
+                      }
+                  }
+              }
+          }
+          return true;
       }
     }
 })
