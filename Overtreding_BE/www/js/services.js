@@ -590,38 +590,66 @@ angular.module('starter.services', [])
 
     return{
         qualifyOI: function(offenses) {
+            var finesAmounts = 0;
+            var minSum = 0;
+
             for (var i = 0; i < offenses.length; i++) {
                 var offense = offenses[i];
                 for (var key in offense) {
                     if (offense.hasOwnProperty(key)) {
                         if(offense.type === "Other"){
                             if(offense.degree === 3 || offense.degree === 4){
+                                console.log("Offense degree: " + offense.degree);
                                 return false;
                             }
                         }
                     }
                 }
+
+                var currSum = 0;
+                var fines = FinesCalculator.getFines(offense);
+                for (var key in fines) {
+                    if (fines.hasOwnProperty(key)) {
+                        console.log(key + " -> " + fines[key]);
+                        var fineString = fines[key].toString();
+                        var fineAmounts = fineString.split(" tot ");
+                        currSum +=parseInt(fineAmounts[0]);
+                    }
+                }
+                minSum += currSum;
+                if(currSum > 330){
+                    if(offense.type != "Alchohol"){
+                        console.log(currSum);
+                        return false;
+                    }
+                }
+                console.log(currSum);
             }
             return true;
       },
       qualifyMS: function(offenses) {
           var finesAmounts = 0;
+          var minSum = 0;
+
           for (var i = 0; i < offenses.length; i++) {
               var offense = offenses[i];
+              var currSum = 0;
               var fines = FinesCalculator.getFines(offense);
               for (var key in fines) {
                   if (fines.hasOwnProperty(key)) {
-                      console.log(key + " -> " + fines[key]);
+                    //   console.log(key + " -> " + fines[key]);
                       var fineString = fines[key].toString();
                       var fineAmounts = fineString.split(" tot ");
-                      for (var j = 0; j < fineAmounts.length; j++) {
-                          if(parseInt(fineAmounts[j]) > 1500){
-                              return false;
-                          }
-                      }
+                      currSum +=parseInt(fineAmounts[0]);
                   }
               }
+              minSum += currSum;
           }
+          if(minSum > 1500){
+              console.log(minSum);
+              return false;
+          }
+          console.log(minSum);
           return true;
       }
     }

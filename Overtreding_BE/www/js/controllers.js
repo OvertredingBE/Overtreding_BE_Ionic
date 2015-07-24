@@ -6,13 +6,7 @@ angular.module('starter.controllers', [])
 
 .controller("ConfigController", function($scope, $ionicPlatform, $ionicLoading, $cordovaSQLite, $http, $ionicPopup, Offenses){
     Offenses.clear();
-    var split = 'john smith~123 Street~Apt 4~New York~NY~12345'.split('~');
 
-    // var fineString = fines[key];
-    // var fineAmounts = fineString.split(" ");
-    for (var j = 0; j < split.length; j++) {
-        console.log(split[j]);
-    }
     $ionicPlatform.ready(function() {
         $ionicLoading.show({
             template: 'Loading...'
@@ -414,11 +408,25 @@ angular.module('starter.controllers', [])
 
     var qualifyOI = ExceptionsService.qualifyOI(offenses);
     if(qualifyOI){
+        console.log("Qualifies for OI");
         $scope.message = "Qualifies for OI";
     }
     else{
+        console.log("Does not qualify for OI");
         $scope.message = "Does not qualify for OI";
     }
+
+    var qualifyMS = ExceptionsService.qualifyMS(offenses);
+
+    if(qualifyMS){
+        console.log("Qualifies for MS");
+        $scope.message = "Qualifies for MS";
+    }
+    else{
+        console.log("Does not qualify for MS");
+        $scope.message = "Does not qualify for MS";
+    }
+
     $scope.goBack = function() {
         $ionicHistory.goBack();
     };

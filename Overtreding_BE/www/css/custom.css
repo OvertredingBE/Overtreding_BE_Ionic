@@ -4,12 +4,13 @@
     font-weight: normal;
     font-style: normal;
 }
+.icon-right{
+    float:right;
+}
+
 .popup-head {
   background-color : #0089D2;
   color:white;
-}
-.icon-right{
-    float:right;
 }
 
 .popup-title{
