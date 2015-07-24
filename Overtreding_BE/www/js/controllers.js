@@ -406,7 +406,7 @@ angular.module('starter.controllers', [])
 
 
 
-    var qualifyOI = ExceptionsService.qualifyOI(offenses);
+    var qualifyOI = ExceptionsService.qualifyOI();
     if(qualifyOI){
         console.log("Qualifies for OI");
         $scope.message = "Qualifies for OI";

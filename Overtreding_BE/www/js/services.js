@@ -283,7 +283,27 @@ angular.module('starter.services', [])
         }
     }
 })
-.factory('ResultTexts', function($cordovaSQLite, FinesCalculator) {
+.factory('Texts', function($cordovaSQLite){
+    var texts = [];
+    var query = "SELECT * FROM Texts";
+    db = window.openDatabase("test2", "1.0", "Test DB", 1000000);
+        $cordovaSQLite.execute(db, query,[]).then(function(res){
+            if(res.rows.length > 0){
+                for(var i = 0; i < res.rows.length; i++){
+                    texts.push(res.rows.item(0).body);
+                }
+            }
+        }, function(err){
+            console.error(err);
+        });
+    return{
+        getTextById: function(id) {
+            console.log(texts.length);
+            return texts[id-1];
+        }
+    }
+})
+.factory('ResultTexts', function($cordovaSQLite, FinesCalculator, ExceptionsService, Texts) {
     var texts = [];
     var fines = [];
     var otherTexts = [];
@@ -329,16 +349,26 @@ angular.module('starter.services', [])
                         }
                         break;
                     default:
-
                 }
             }
             if(flag){
+                var len = 0;
+                var qualifyOI = ExceptionsService.qualifyOI();
+                var qualifyMS = ExceptionsService.qualifyMS();
+                if(!qualifyOI){
+                    len = 1;
+                    texts.push("U komt niet in aanmerking voor een onmiddellijke inning.");
+                }
+                if(!qualifyMS){
+                    len = 2;
+                    texts.push("U komt niet in aanmerking voor een onmiddellijke inning.");
+                }
                 switch (offense.type) {
                 case "Alchohol":
                 var queries = ["SELECT * FROM Texts a INNER JOIN Alchohol b ON a.id=b.text_id_1 WHERE b.intoxication=?",
                 "SELECT * FROM Texts a INNER JOIN Alchohol b ON a.id=b.text_id_2 WHERE b.intoxication=?",
                 "SELECT * FROM Texts a INNER JOIN Alchohol b ON a.id=b.text_id_3 WHERE b.intoxication=?"];
-                for (var i = 0; i < queries.length; i++) {
+                for (var i = len; i < queries.length; i++) {
                     var query = queries[i];
                     $cordovaSQLite.execute(db, query, [offense.intoxication]).then(function(res){
                         if(res.rows.length > 0){
@@ -357,7 +387,7 @@ angular.module('starter.services', [])
                 var queries = ["SELECT * FROM Texts a INNER JOIN Drugs b ON a.id=b.text_id_1",
                 "SELECT * FROM Texts a INNER JOIN Drugs b ON a.id=b.text_id_2",
                 "SELECT * FROM Texts a INNER JOIN Drugs b ON a.id=b.text_id_3"];
-                for (var i = 0; i < queries.length; i++) {
+                for (var i = len; i < queries.length; i++) {
                     var query = queries[i];
                     $cordovaSQLite.execute(db, query, []).then(function(res){
                         if(res.rows.length > 0){
@@ -377,7 +407,7 @@ angular.module('starter.services', [])
                 "SELECT * FROM Texts a INNER JOIN Speed b ON a.id=b.text_id_3 WHERE b.exceed = ? AND b.road = ?"];
                  var exceed = FinesCalculator.calculateExceed(offense.speed_limit, offense.speed_corrected);
 
-                for (var i = 0; i < queries.length; i++) {
+                for (var i = len; i < queries.length; i++) {
                     var query = queries[i];
                     $cordovaSQLite.execute(db, query, [exceed, offense.road]).then(function(res){
                         if(res.rows.length > 0){
@@ -396,7 +426,7 @@ angular.module('starter.services', [])
                 "SELECT * FROM Texts a INNER JOIN Other b ON a.id=b.text_id_2 WHERE b.id = ?",
                 "SELECT * FROM Texts a INNER JOIN Other b ON a.id=b.text_id_3 WHERE b.id = ?"];
 
-                for (var i = 0; i < queries.length; i++) {
+                for (var i = len; i < queries.length; i++) {
                     var query = queries[i];
                     $cordovaSQLite.execute(db, query, [offense.id]).then(function(res){
                         if(res.rows.length > 0){
@@ -587,9 +617,10 @@ angular.module('starter.services', [])
 })
 .factory('ExceptionsService', function($cordovaSQLite, Offenses, FinesCalculator){
     var fines = [];
-
+    var offenses = [];
     return{
-        qualifyOI: function(offenses) {
+        qualifyOI: function() {
+            offenses = Offenses.all();
             var finesAmounts = 0;
             var minSum = 0;
 
@@ -628,6 +659,7 @@ angular.module('starter.services', [])
             return true;
       },
       qualifyMS: function(offenses) {
+          offenses = Offenses.all();
           var finesAmounts = 0;
           var minSum = 0;
 
