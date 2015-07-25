@@ -184,24 +184,6 @@ angular.module('starter.services', [])
             }
             return valid;
         },
-        composeEmail: function(form){
-            var texts = [];
-            for (var key in form) {
-                if (form.hasOwnProperty(key)) {
-                    texts.push(key + ": " + form[key])
-                }
-            }
-            for (var i = 0; i < offenses.length; i++) {
-            texts.push("OFFENSE " + i);
-             var offense =   offenses[i];
-             for (var key in offense) {
-                 if (offense.hasOwnProperty(key)) {
-                     texts.push(key + ": " + offense[key])
-                 }
-             }
-            }
-            return texts.join("\n")
-        },
         createDefault: function(type){
             var offense = {};
             offense.licence = -1;
@@ -373,8 +355,7 @@ angular.module('starter.services', [])
                     $cordovaSQLite.execute(db, query, [offense.intoxication]).then(function(res){
                         if(res.rows.length > 0){
                             for(var i = 0; i < res.rows.length; i++){
-                                texts.push(res.rows.item(0).body);
-                                // texts.push(replaceFines(res.rows.item(0).body, fines));
+                                texts.push(replaceFines(res.rows.item(0).body, fines));
                             }
                         }
                     }, function(err){
@@ -392,7 +373,7 @@ angular.module('starter.services', [])
                     $cordovaSQLite.execute(db, query, []).then(function(res){
                         if(res.rows.length > 0){
                             for(var i = 0; i < res.rows.length; i++){
-                                texts.push(res.rows.item(0).body);
+                                texts.push(replaceFines(res.rows.item(0).body, fines));
                             }
                         }
                     }, function(err){
@@ -412,7 +393,7 @@ angular.module('starter.services', [])
                     $cordovaSQLite.execute(db, query, [exceed, offense.road]).then(function(res){
                         if(res.rows.length > 0){
                             for(var i = 0; i < res.rows.length; i++){
-                                texts.push(res.rows.item(0).body);
+                                texts.push(replaceFines(res.rows.item(0).body, fines));
                             }
                         }
                     }, function(err){
@@ -431,7 +412,7 @@ angular.module('starter.services', [])
                     $cordovaSQLite.execute(db, query, [offense.id]).then(function(res){
                         if(res.rows.length > 0){
                             for(var i = 0; i < res.rows.length; i++){
-                                texts.push(res.rows.item(0).body);
+                                texts.push(replaceFines(res.rows.item(0).body, fines));
                             }
                         }
                     }, function(err){

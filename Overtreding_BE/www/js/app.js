@@ -14,7 +14,7 @@ app.run(function($ionicPlatform) {
     });
 })
 
-.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider){
+.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider, $compileProvider){
     $stateProvider
     .state("config", {
         url:"/config",
@@ -58,6 +58,7 @@ app.run(function($ionicPlatform) {
     });
     $urlRouterProvider.otherwise("/config");
     $ionicConfigProvider.navBar.alignTitle('center');
+    $compileProvider.imgSrcSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|tel):/);
 });
 app.filter('translateToDutch', ['TranslateService', function(TranslateService) {
    return function(input) {

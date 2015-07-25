@@ -451,17 +451,13 @@ angular.module('starter.controllers', [])
     }
 })
 
-.controller("TakePictureController", function($scope, $ionicHistory, Camera) {
+.controller("TakePictureController", function($scope, Camera) {
     $scope.getPhoto = function() {
         Camera.getPicture().then(function(imageURI) {
             $scope.src =  imageURI;
-            $scope.$apply();
-            console.log(imageURI);
+          console.log(imageURI);
         }, function(err) {
-            console.log(err);
+          console.log(err);
         });
-    };
-    $scope.goBack = function() {
-        $ionicHistory.goBack();
-    }
+      };
 });

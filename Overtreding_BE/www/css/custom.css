@@ -4,6 +4,10 @@
     font-weight: normal;
     font-style: normal;
 }
+.img-large{
+    width: 100px;
+    height: 100px;
+}
 .icon-right{
     float:right;
 }
