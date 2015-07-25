@@ -56,7 +56,7 @@ app.run(function($ionicPlatform) {
         templateUrl: "templates/takepic.html",
         controller: "TakePictureController"
     });
-    $urlRouterProvider.otherwise("/config");
+    $urlRouterProvider.otherwise("/home");
     $ionicConfigProvider.navBar.alignTitle('center');
     $compileProvider.imgSrcSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|tel):/);
 });

@@ -40,6 +40,7 @@
         </div>
 
         <div class="paddded-horizontal">
+            <div class="item-subgroup-noline item-text-wrap" ng-show="searchResults.length == 0">{{searchMessage}}</div>
             <div ng-class="$first ? 'item-subgroup-noline item-text-wrap' : 'item-subgroup-underline item-text-wrap'"
             ng-repeat="item in searchResults track by $index"
             ng-click="otherTapped(item)">

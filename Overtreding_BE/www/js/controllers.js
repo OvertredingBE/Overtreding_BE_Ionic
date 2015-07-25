@@ -215,6 +215,7 @@ angular.module('starter.controllers', [])
         if(type === "Other"){
             $scope.showSearch = true;
             $scope.questionsShown = false;
+            $scope.searchMessage = "Vul hierboven een trefwoord of artikelnummer in en zoek uw overtreding. Voeg een komma toe om te zoeken door middel van meerdere trefwoorden.";
         }
         else if(type === "Speed"){
             $scope.showInput = true;
@@ -453,8 +454,8 @@ angular.module('starter.controllers', [])
 
 .controller("TakePictureController", function($scope, Camera) {
     $scope.getPhoto = function() {
-        Camera.getPicture().then(function(imageURI) {
-            $scope.src =  imageURI;
+    Camera.getPicture().then(function(imageURI) {
+        $scope.src = imageURI;
           console.log(imageURI);
         }, function(err) {
           console.log(err);
