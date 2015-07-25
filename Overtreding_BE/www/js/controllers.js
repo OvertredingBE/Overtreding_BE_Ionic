@@ -270,6 +270,10 @@ angular.module('starter.controllers', [])
         var valid = offense != null && offense.type != "";
         if(valid && Offenses.validateOffense(offense))
         {
+            Offenses.add(offense);
+
+            offense = {type: ""};
+            $scope.offenses.push(offense);
             $scope.menu = Questions.getQuestions("Menu");
             $scope.questions = [];
             indexShown = 0;
@@ -277,11 +281,6 @@ angular.module('starter.controllers', [])
             $scope.showInput = false;
             $scope.inputs.speed_driven = "";
             $scope.inputs.speed_corrected = "";
-
-            Offenses.add(offense);
-            offense = {type: ""};
-            $scope.offenses.push(offense);
-
         }
         else{
             $ionicPopup.alert({
@@ -292,11 +291,19 @@ angular.module('starter.controllers', [])
     };
 
     $scope.removeOffense = function(index){
+        console.log(index);
+        console.log($scope.offenses.length);
         if(index === $scope.offenses.length -1){
-            $ionicPopup.alert({
-                title: 'Error',
-                template: 'Cannot remove uncompleted offense'
-            });
+            offense = {type: ""};
+            $scope.offenses.splice($scope.offenses.length -1, 1, offense);
+
+            $scope.menu = Questions.getQuestions("Menu");
+            $scope.questions = [];
+            indexShown = 0;
+            $scope.showSearch = false;
+            $scope.showInput = false;
+            $scope.inputs.speed_driven = "";
+            $scope.inputs.speed_corrected = "";
         }
         else{
             $scope.offenses.splice(index, 1);
