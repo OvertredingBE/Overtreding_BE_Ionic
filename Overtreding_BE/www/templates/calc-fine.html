@@ -8,14 +8,14 @@
 
         <div ng-repeat="offense in offenses track by $index">
             <div class="item-menu background-medium">OVERTREDING {{$index+1}}: {{offense.type | translateToDutch}}
-                <img class="icon-square icon-small" src="img/cross.png" ng-click="removeOffense($index)"></img>
+                <img class="icon-right icon-small" src="img/cross.png" ng-click="removeOffense($index)"></img>
             </div>
         </div>
 
         <div ng-repeat="menuItem in menu track by $index" ng-init="currIndex = $index">
             <div class="item-group background-light">
                 {{menuItem.name}}
-                <img class="icon-square icon-small"
+                <img class="icon-right icon-small"
                 ng-src="{{isGroupShown(group) && 'img/arrow-square-down.png' || 'img/arrow-square-left.png'}}"></img>
             </div>
             <div class="paddded-horizontal">
@@ -35,7 +35,7 @@
             </div>
             <div ng-click="search()" class="button-custom-3 test-4">
                 ZOEK
-                <img class="icon-small icon-square" src="img/arrow-circle-left.png"></img>
+                <img class="icon-right icon-small" src="img/arrow-square-right-blue.png"></img>
             </div>
         </div>
 
@@ -50,10 +50,10 @@
 </div>
 
 <div ng-show="questionsShown" ng-repeat="group in questions" ng-init="groupIndex = $index">
-    <div class="paddded-horizontal background-light">
+    <div style="background-color: #68B3E2" class="paddded-horizontal background-light">
         <div ng-class="{'item-group-2 background-light' : group.toggled, 'item-group background-light' : !group.toggled}">
             {{group.name | strLimit: 30 }}
-            <img class="icon-small icon-square" ng-src="{{isGroupShown(group) && 'img/arrow-square-down.png' || 'img/arrow-square-left.png'}}"></img>
+            <img class="icon-right icon-small" ng-src="{{isGroupShown(group) && 'img/arrow-square-down.png' || 'img/arrow-square-left.png'}}"></img>
         </div>
     </div>
     <div class="paddded-horizontal">
@@ -73,7 +73,7 @@
                 GEREDEN SNELHEID
             </div>
             <div>
-                <input class="test-2 input-custom" type="text" ng-model="inputs.speed_driven" ng-change="calcSpeed()">
+                <input class="input-custom" type="text" ng-model="inputs.speed_driven" ng-change="calcSpeed()">
             </div>
             <div class="test-3">KM/H</div>
         </div>
@@ -84,7 +84,7 @@
                 GECORRIGEERDE SNELHEID
             </div>
             <div>
-                <input class="test-2 input-custom" type="text" ng-model="inputs.speed_corrected">
+                <input class="input-custom" type="text" ng-model="inputs.speed_corrected">
             </div>
             <div class="test-3">KM/H</div>
         </div>
@@ -96,19 +96,17 @@
 <ion-footer-bar class="bar-subfooter background-light" ng-click="createNewOffense()">
     <div class="item-group background-light">
         VOEG EEN OVERTREDING TOE
-        <img class="icon-small icon-square" src="img/plus.png" ng-click="removeOffense($index)"></img>
+        <img class="icon-right icon-small" src="img/plus.png" ng-click="removeOffense($index)"></img>
     </div>
 </ion-footer-bar>
 
-<ion-footer-bar class="bar-footer background-nav-bar nav-bar-text">
+<ion-footer-bar class="bar-footer footer-custom background-nav-bar">
     <div class="padded">
         BOETE BEREKENEN
     </div>
-    <div ng-click="resultTapped()" class="button-custom-3 test-4">
+    <div ng-click="resultTapped()" class="button-footer">
         BEVESTIG
-        <img style="margin-left: 10px;" class="icon-small icon-square" src="img/arrow-square-right-blue.png"></img>
+        <img class="icon-small icon-square" src="img/arrow-square-right-blue.png"></img>
     </div>
-
-    <!-- <button class="button" >BEVESTIG ->></button> -->
 </ion-footer-bar>
 </ion-view>

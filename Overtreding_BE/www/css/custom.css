@@ -4,23 +4,11 @@
     font-weight: normal;
     font-style: normal;
 }
-.img-large{
-    width: 100px;
-    height: 100px;
-}
-.icon-right{
-    float:right;
-}
-
-.popup-head {
-  background-color : #0089D2;
-  color:white;
-}
-
-.popup-title{
+.popup-body, .popup-head, .popup-title{
     color:white;
 }
-.popup-buttons{
+
+.popup-body, .popup-head, .popup-buttons{
     background-color : #0089D2;
 }
 
@@ -29,14 +17,35 @@
     color: black;
 }
 
-.popup-body {
-  background-color : #0089D2;
-  color:white;
+.icon-right{
+    float:right;
 }
 
-.item-big, .item-menu, .button-home, .button-underline, .button-noline, .item-underline, .item-noline, .background-nav-bar, .background-medium, .background-light, .item-group, .item-group-small, .input-label{
+.icon-small{
+    width: 16px;
+    height: 16px;
+}
+
+.icon-big{
+    width: 22px;
+    height: 22px;
+}
+
+.icon-back{
+    margin:5px;
+}
+
+.item-big, .item-menu, .button-home, .button-underline, .button-noline, .item-underline, .item-noline, .background-nav-bar, .background-light, .item-group, .item-group-small, .input-label{
     font-family: "AvenrirNext";
     color:white;
+}
+
+.background-nav-bar{
+    background-color: #0089D2;
+}
+
+.background-medium{
+    background-color: #43A0DC;
 }
 
 .home-container{
@@ -52,11 +61,94 @@
     border-top: none;
     border-left: none;
     border-right: none;
-    color:white;
 }
 
-.nav-bar-text{
+.item-menu{
+    font-size: 14px;
+    position: relative;
+    height: 35px;
+    padding: 8px 15px 8px 15px;
+}
+
+.item-group{
+    font-size: 13px;
+    border: 1px solid white;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    padding: 12px;
+    height: 40px;
+}
+
+.item-group-2{
+    font-size: 13px;
+    border: none;
+    padding: 12px;
+    height: 40px;
+}
+
+.item-subgroup-underline, .item-subgroup-noline{
+    font-family: "AvenrirNext";
+    font-size: 13px;
+    font-weight: 500;
+    text-align: center;
+    padding: 10px 0px 5px 0px;
+}
+
+.item-subgroup-underline{
+    border:1px solid black;
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+}
+
+.paddded-horizontal{
+    border:none;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.container-relative{
+    position: relative;
+}
+
+.item-big{
+    font-size: 13px;
+    padding: 12px;
+    height: 60px;
+}
+
+.input-custom{
+    position: absolute;
+    top:8px;
+    right:90px;
+    width: 50px;
+    border-radius: 0px;
+}
+
+.test-3{
+    position: absolute;
+    top:8px;
+    right:40px;
+}
+.footer-custom{
     font-size: 17px;
+}
+
+.button-footer{
+    font-family: "AvenrirNext";
+    font-size: 13px;
+    padding: 5px 10px 5px 10px;
+    height: 25px;
+    color: black;
+    background-color: white;
+    position: absolute;
+    top:10px;
+    right:15px;
+}
+
+.button-footer img{
+    margin-left: 10px;
 }
 
 .text-undeline{
@@ -73,52 +165,6 @@
 
 .textarea-custom{
     height: 100px;
-}
-.asdf{
-    background-color: black;
-}
-.icon-small{
-    width: 16px;
-    height: 16px;
-}
-
-.icon-big{
-    width: 22px;
-    height: 22px;
-}
-
-.icon-back{
-    margin:5px;
-}
-
-.icon-square{
-    float: right;
-}
-
-.input-custom{
-    width: 50px;
-    border-radius: 0px;
-}
-
-.container-relative{
-    position: relative;
-}
-
-.test-2{
-    position: absolute;
-    top:8px;
-    right:90px;
-}
-
-.test-3{
-    position: absolute;
-    top:8px;
-    right:40px;
-}
-.test-4{
-    position: absolute;
-    top:10px;
-    right:15px;
 }
 
 .button-underline, .button-noline, .item-underline, .item-noline {
@@ -139,71 +185,6 @@
     border:none;
 }
 
-.asdf{
-    text-overflow: ellipsis;
-}
-.item-group{
-    font-size: 13px;
-    border: 1px solid white;
-    border-top: none;
-    border-left: none;
-    border-right: none;
-        padding: 12px;
-    height: 40px;
-}
-.item-group-2{
-    font-size: 13px;
-    border: none;
-    padding: 12px;
-    height: 40px;
-}
-.iii{
-    background-color: black;
-}
-
-.item-big{
-    font-size: 13px;
-    padding: 12px;
-    height: 60px;
-}
-
-.item-menu{
-    font-size: 14px;
-    position: relative;
-    height: 35px;
-    padding: 8px 15px 8px 15px;
-}
-
-.item-subgroup-underline, .item-subgroup-noline{
-    font-family: "AvenrirNext";
-    font-size: 13px;
-    font-weight: 500;
-    text-align: center;
-    padding: 10px 0px 5px 0px;
-}
-
-.item-subgroup-underline{
-    border:1px solid black;
-    border-left: none;
-    border-right: none;
-    border-bottom: none;
-}
-
-.item-subgroup-noline{
-    text-align: center;
-}
-
-.padded{
-    padding: 10px;
-}
-
-.paddded-horizontal{
-    border:none;
-    padding-left: 20px;
-    padding-right: 20px;
-    background-color: white;
-}
-
 .button-custom-2 {
     margin-left: 20px;
     margin-right: 10px;
@@ -222,25 +203,12 @@
     color: #1E91D5;
     background-color: white;
 }
-.button-custom-3 {
-    font-family: "AvenrirNext";
-    font-size: 13px;
-    padding: 5px 10px 5px 10px;
-    height: 25px;
-    color: black;
-    background-color: white;
+
+.padded{
+    padding: 10px;
 }
 
-.background-nav-bar{
-    background-color: #0089D2;
-}
-.background-medium{
-    background-color: #43A0DC;
-}
 .background-light{
-    color:white;
     background-color: #68B3E2;
-}
-.background-transp{
-    background-color: transparent;
+    color:white;
 }
