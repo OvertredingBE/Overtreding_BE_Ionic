@@ -4,6 +4,84 @@
     font-weight: normal;
     font-style: normal;
 }
+
+.item-big, .item-menu, .button-home-underline, .button-underline, .item-underline, .item-noline, .background-nav-bar, .background-light, .item-group-underline, .item-group-noline{
+    font-family: "AvenrirNext";
+    color:white;
+}
+
+.home-container{
+    padding: 0px 15px 0px 15px;
+    position: absolute;
+    top:250px;
+}
+
+.button-home-underline{
+    font-size: 17px;
+    padding: 15px 0px 15px 0px;
+    border: 1px solid white;
+}
+
+.item-menu{
+    font-size: 14px;
+    height: 35px;
+    padding: 8px 15px 8px 15px;
+}
+
+.item-group-underline{
+    font-size: 13px;
+    border: 1px solid white;
+    padding: 12px;
+    height: 40px;
+}
+
+.item-group-noline{
+    font-size: 13px;
+    padding: 12px;
+    height: 40px;
+}
+
+.item-subgroup-underline, .item-subgroup-noline{
+    font-family: "AvenrirNext";
+    font-size: 13px;
+    font-weight: 500;
+    text-align: center;
+    padding: 10px 0px 5px 0px;
+    border:1px solid black;
+}
+
+.button-underline, .item-underline, .item-noline {
+    text-align: center;
+    background-color: transparent;
+    border-color: white;
+}
+
+.button-underline, .button-home-underline, .item-underline, .item-group-underline, .item-subgroup-underline{
+    border-top: none;
+    border-left: none;
+    border-right: none;
+}
+
+.item-noline, .item-group-noline, .item-subgroup-noline{
+    border:none;
+}
+
+.button-footer{
+    font-family: "AvenrirNext";
+    font-size: 13px;
+    padding: 5px 10px 5px 10px;
+    height: 25px;
+    color: black;
+    background-color: white;
+    position: absolute;
+    top:10px;
+    right:15px;
+}
+
+.button-footer img{
+    margin-left: 10px;
+}
+
 .popup-body, .popup-head, .popup-title{
     color:white;
 }
@@ -35,11 +113,6 @@
     margin:5px;
 }
 
-.item-big, .item-menu, .button-home, .button-underline, .button-noline, .item-underline, .item-noline, .background-nav-bar, .background-light, .item-group, .item-group-small, .input-label{
-    font-family: "AvenrirNext";
-    color:white;
-}
-
 .background-nav-bar{
     background-color: #0089D2;
 }
@@ -48,58 +121,8 @@
     background-color: #43A0DC;
 }
 
-.home-container{
-    padding: 0px 15px 0px 15px;
-    position: absolute;
-    top:250px;
-}
-
-.button-home{
-    font-size: 17px;
-    padding: 15px 0px 15px 0px;
-    border: 1px solid white;
-    border-top: none;
-    border-left: none;
-    border-right: none;
-}
-
-.item-menu{
-    font-size: 14px;
-    position: relative;
-    height: 35px;
-    padding: 8px 15px 8px 15px;
-}
-
-.item-group{
-    font-size: 13px;
-    border: 1px solid white;
-    border-top: none;
-    border-left: none;
-    border-right: none;
-    padding: 12px;
-    height: 40px;
-}
-
-.item-group-2{
-    font-size: 13px;
-    border: none;
-    padding: 12px;
-    height: 40px;
-}
-
-.item-subgroup-underline, .item-subgroup-noline{
-    font-family: "AvenrirNext";
-    font-size: 13px;
-    font-weight: 500;
-    text-align: center;
-    padding: 10px 0px 5px 0px;
-}
-
-.item-subgroup-underline{
-    border:1px solid black;
-    border-left: none;
-    border-right: none;
-    border-bottom: none;
+.background-light{
+    background-color: #68B3E2;
 }
 
 .paddded-horizontal{
@@ -135,54 +158,8 @@
     font-size: 17px;
 }
 
-.button-footer{
-    font-family: "AvenrirNext";
-    font-size: 13px;
-    padding: 5px 10px 5px 10px;
-    height: 25px;
-    color: black;
-    background-color: white;
-    position: absolute;
-    top:10px;
-    right:15px;
-}
-
-.button-footer img{
-    margin-left: 10px;
-}
-
-.text-undeline{
-    margin-bottom: 10px;
-    margin-top: 15px;
-    padding:5px;
-    border: 1px solid white;
-    border-top: none;
-    border-left: none;
-    border-right: none;
-    font-family: "AvenrirNext";
-    color:white;
-}
-
 .textarea-custom{
     height: 100px;
-}
-
-.button-underline, .button-noline, .item-underline, .item-noline {
-    background-color: transparent;
-    border-color: white;
-}
-
-.button-underline, .item-underline, .item-group-underline{
-    border-top: none;
-    border-left: none;
-    border-right: none;
-}
-.item-underline, .item-noline{
-    text-align: center;
-}
-
-.button-noline, .item-noline, .item-group-noline{
-    border:none;
 }
 
 .button-custom-2 {
@@ -206,9 +183,4 @@
 
 .padded{
     padding: 10px;
-}
-
-.background-light{
-    background-color: #68B3E2;
-    color:white;
 }

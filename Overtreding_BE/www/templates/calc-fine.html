@@ -13,13 +13,13 @@
         </div>
 
         <div ng-repeat="menuItem in menu track by $index" ng-init="currIndex = $index">
-            <div class="item-group background-light">
+            <div class="item-group-underline background-light">
                 {{menuItem.name}}
                 <img class="icon-right icon-small"
                 ng-src="{{isGroupShown(group) && 'img/arrow-square-down.png' || 'img/arrow-square-left.png'}}"></img>
             </div>
             <div class="paddded-horizontal">
-                <div ng-class="$first ? 'item-subgroup-noline' : 'item-subgroup-underline'"
+                <div ng-class="$last ? 'item-subgroup-noline item-text-wrap' : 'item-subgroup-underline item-text-wrap'"
                 ng-repeat="item in menuItem.items"
                 ng-click="menuSubgroupTapped(item)"
                 ng-show="groupShown(currIndex)">
@@ -51,13 +51,13 @@
 
 <div ng-show="questionsShown" ng-repeat="group in questions" ng-init="groupIndex = $index">
     <div style="background-color: #68B3E2" class="paddded-horizontal background-light">
-        <div ng-class="{'item-group-2 background-light' : group.toggled, 'item-group background-light' : !group.toggled}">
+        <div ng-class="{'item-group-noline background-light' : group.toggled, 'item-group-underline background-light' : !group.toggled}">
             {{group.name | strLimit: 30 }}
             <img class="icon-right icon-small" ng-src="{{isGroupShown(group) && 'img/arrow-square-down.png' || 'img/arrow-square-left.png'}}"></img>
         </div>
     </div>
     <div class="paddded-horizontal">
-        <div ng-class="$first ? 'item-subgroup-noline item-text-wrap' : 'item-subgroup-underline item-text-wrap'"
+        <div ng-class="$last ? 'item-subgroup-noline item-text-wrap' : 'item-subgroup-underline item-text-wrap'"
         ng-repeat="item in group.items"
         ng-click="subgroupTapped(item, group, $index); toggleBorder(group); changeShownGroup(groupIndex)"
         ng-show="groupShown(groupIndex)">
@@ -68,7 +68,7 @@
 
 <div ng-show="showInput" class="background-light">
     <div class="paddded-horizontal background-light container-relative">
-        <div class="item-group background-light">
+        <div class="item-group-underline background-light">
             <div>
                 GEREDEN SNELHEID
             </div>
@@ -79,7 +79,7 @@
         </div>
     </div>
     <div class="paddded-horizontal background-light container-relative">
-        <div class="item-group background-light">
+        <div class="item-group-underline background-light">
             <div>
                 GECORRIGEERDE SNELHEID
             </div>
@@ -94,7 +94,7 @@
 </ion-view>
 
 <ion-footer-bar class="bar-subfooter background-light" ng-click="createNewOffense()">
-    <div class="item-group background-light">
+    <div class="item-group-underline background-light">
         VOEG EEN OVERTREDING TOE
         <img class="icon-right icon-small" src="img/plus.png" ng-click="removeOffense($index)"></img>
     </div>
