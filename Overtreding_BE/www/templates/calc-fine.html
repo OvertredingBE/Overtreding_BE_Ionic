@@ -33,15 +33,15 @@
             <div class="item-big background-light">
                 <input type="text" ng-model="inputs.searchWord">
             </div>
-            <div ng-click="search()" class="button-custom-3 test-4">
+            <div ng-click="search()" class="button-footer">
                 ZOEK
-                <img class="icon-right icon-small" src="img/arrow-square-right-blue.png"></img>
+                <img class="icon-small icon-square" src="img/arrow-square-right-blue.png"></img>
             </div>
         </div>
 
         <div class="paddded-horizontal">
             <div class="item-subgroup-noline item-text-wrap" ng-show="searchResults.length == 0">{{searchMessage}}</div>
-            <div ng-class="$first ? 'item-subgroup-noline item-text-wrap' : 'item-subgroup-underline item-text-wrap'"
+            <div ng-class="$last ? 'item-subgroup-noline item-text-wrap' : 'item-subgroup-underline item-text-wrap'"
             ng-repeat="item in searchResults track by $index"
             ng-click="otherTapped(item)">
             {{item.description}}
@@ -79,7 +79,7 @@
         </div>
     </div>
     <div class="paddded-horizontal background-light container-relative">
-        <div class="item-group-underline background-light">
+        <div class="item-group-noline background-light">
             <div>
                 GECORRIGEERDE SNELHEID
             </div>
@@ -101,7 +101,7 @@
 </ion-footer-bar>
 
 <ion-footer-bar class="bar-footer footer-custom background-nav-bar">
-    <div class="padded">
+    <div class="text-footer">
         BOETE BEREKENEN
     </div>
     <div ng-click="resultTapped()" class="button-footer">

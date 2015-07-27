@@ -335,12 +335,14 @@ angular.module('starter.services', [])
                 var qualifyOI = ExceptionsService.qualifyOI();
                 var qualifyMS = ExceptionsService.qualifyMS();
                 if(!qualifyOI){
-                    len = 1;
+                    len =1;
                     texts.push("U komt niet in aanmerking voor een onmiddellijke inning.");
                 }
                 if(!qualifyMS){
+                    texts.length = 0;
                     len = 2;
                     texts.push("U komt niet in aanmerking voor een onmiddellijke inning.");
+                    texts.push("U komt niet in aanmerking voor een minnelijke schikking.");
                 }
                 switch (offense.type) {
                 case "Alchohol":
@@ -619,7 +621,7 @@ angular.module('starter.services', [])
                 var fines = FinesCalculator.getFines(offense);
                 for (var key in fines) {
                     if (fines.hasOwnProperty(key)) {
-                        console.log(key + " -> " + fines[key]);
+                        // console.log(key + " -> " + fines[key]);
                         var fineString = fines[key].toString();
                         var fineAmounts = fineString.split(" tot ");
                         currSum +=parseInt(fineAmounts[0]);

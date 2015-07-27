@@ -210,6 +210,9 @@ angular.module('starter.controllers', [])
         $scope.offenses.splice($scope.offenses.length -1, 1, offense);
         $scope.questions = Questions.getQuestions(type);
         $scope.toggleBorder($scope.questions[0]);
+        if(type != "Speed"){
+        $scope.toggleBorder($scope.questions[$scope.questions.length - 1]);
+        }
         $scope.questionsShown = true;
 
         if(type === "Other"){
@@ -255,14 +258,17 @@ angular.module('starter.controllers', [])
     }
     $scope.changeShownGroup = function(groupIndex) {
         indexShown++;
+
         if(indexShown === $scope.questions.length){
-            if(offense.type != "Speed"){
-                $scope.toggleBorder($scope.questions[indexShown-1]);
+            $scope.toggleBorder($scope.questions[indexShown-1]);
+
                 indexShown = -1;
-            }
         }
-        else{
+
+        else {
+            if(indexShown != $scope.questions.length-1){
             $scope.toggleBorder($scope.questions[indexShown]);
+        }
         }
     };
 
@@ -279,6 +285,7 @@ angular.module('starter.controllers', [])
             indexShown = 0;
             $scope.showSearch = false;
             $scope.showInput = false;
+            $scope.searchResults.length = 0;
             $scope.inputs.speed_driven = "";
             $scope.inputs.speed_corrected = "";
         }
@@ -415,24 +422,19 @@ angular.module('starter.controllers', [])
 
 
     var qualifyOI = ExceptionsService.qualifyOI();
-    if(qualifyOI){
-        console.log("Qualifies for OI");
-        $scope.message = "Qualifies for OI";
-    }
-    else{
-        console.log("Does not qualify for OI");
-        $scope.message = "Does not qualify for OI";
-    }
-
     var qualifyMS = ExceptionsService.qualifyMS(offenses);
-
-    if(qualifyMS){
-        console.log("Qualifies for MS");
-        $scope.message = "Qualifies for MS";
+    console.log(qualifyOI);
+    console.log(qualifyMS);
+    if(qualifyOI && qualifyMS){
+        $scope.message = "Maak uw keuze uit de onderstaande samengestelde overtredingen en ontdek welke gevolgen elke overtreding met zih meebrengt.\nWelt u graag meer informatie over deze overtrendigen aarzel niet en vraag GRATIS juridisch advies aan via onderstaande button.";
     }
-    else{
-        console.log("Does not qualify for MS");
-        $scope.message = "Does not qualify for MS";
+    if(!qualifyMS){
+        $scope.message = "De door u samengestelde overtredingen zorgen ervoor dat u niet in aanmerking komt voor een onmiddellijke inning of minnnelijke schikking. U zal sowieso voor de rechtbank moeten verschijnen.\nMaak uw keuze uit de onderstaande samengestelde overtredingen en ontdek welke gevolgen elke overtreding met zih meebrengt.\nWelt u graag meer informatie over deze overtrendigen aarzel niet en vraag GRATIS juridisch advies aan via onderstaande button.";
+    }
+    if(!qualifyOI) {
+        if(qualifyMS){
+            $scope.message = "De door u samengestelde overtredingen zorgen ervoor dat u niet in aanmerking komt voor een onmiddellijke inning. U komt wel in aanmerking voor een minnelijke schikking.\nMaak uw keuze uit de onderstaande samengestelde overtredingen en ontdek welke gevolgen elke overtreding met zich meebrengt.\nWilt u meer informatie over de gevolgen die zich kunnen voordoen als u voor de rechtbank moet verschijnen, aarzel niet en vraag GRATIS juridisch advies aan via onderstaande button.";
+        }
     }
 
     $scope.goBack = function() {
@@ -459,7 +461,23 @@ angular.module('starter.controllers', [])
     }
 })
 
-.controller("TakePictureController", function($scope, Camera) {
+.controller("TakePictureController", function($scope, Camera, $ionicPopup) {
+    var confirmPopup = $ionicPopup.alert({
+     title: 'INFORMATIE',
+     template: 'Gelieve een foto te nemen van de brief die u ontvig en deze door te sturen via de button "Vragg GRATIS juridisch advies".\n Wij bekijen dan wat wij voor u kennen does en nemen contact met u op. Alvast bedankt !'
+   });
+   confirmPopup.then(function(res) {
+     if(res) {
+         Camera.getPicture().then(function(imageURI) {
+             $scope.src = imageURI;
+               console.log(imageURI);
+             }, function(err) {
+               console.log(err);
+             });
+     } else {
+       console.log('You are not sure');
+     }
+   });
     $scope.getPhoto = function() {
     Camera.getPicture().then(function(imageURI) {
         $scope.src = imageURI;
