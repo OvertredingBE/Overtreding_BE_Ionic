@@ -1,0 +1,46 @@
+<ion-view view-title="OVERTREDING.BE" class="background-light">
+    <ion-header-bar class="bar bar-subheader background-nav-bar bar-subheader-custom">
+        <img src="img/arrow-circle-left.png" class="icon-big icon-back" ng-click="goBack()"></img>
+        <h1 class="title background-nav-bar">VRAAG JURIDISCH ADVIES</h1>
+    </ion-header-bar>
+    <ion-content class="padding">
+
+        <div class="item item-text-wrap item-noline">Vul onderstaand formulier in en verzend uw persoonlijke gegevens.
+        U wordt zo snel mogelijk gecontaceerd door een advocaat, die uw vraag of dossier ten laste zal nemen.</div>
+
+        <div class="text-undeline">Naam en Voornaam*</div>
+        <label class="item item-input">
+            <input type="text" ng-model="form.name">
+        </label>
+
+        <div class="text-undeline">Telefoonnummer*</div>
+        <label class="item item-input">
+            <input type="text" ng-model="form.phone">
+        </label>
+
+        <div class="text-undeline">E-Mail*</div>
+        <label class="item item-input">
+            <input type="text" ng-model="form.email">
+        </label>
+
+        <div class="text-undeline">Postcode*</div>
+        <label class="item item-input">
+            <input type="text" ng-model="form.postcode">
+        </label>
+
+        <div class="text-undeline">Bericht</div>
+        <label class="item item-input">
+            <textarea class="textarea-custom" ng-model="form.comments"></textarea>
+        </label>
+
+    </ion-content>
+    <ion-footer-bar class="bar-footer background-light">
+
+        <div ng-click="resultTapped()" class="button-footer">
+            BEVESTIG
+            <img class="icon-small icon-square" src="img/arrow-square-right-blue.png"></img>
+        </div>
+
+        <!-- <button class="button" >BEVESTIG ->></button> -->
+    </ion-footer-bar>
+</ion-view>

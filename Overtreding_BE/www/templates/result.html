@@ -1,0 +1,23 @@
+<ion-view view-title="OVERTREDING.BE" class="background-light">
+    <ion-header-bar class="bar bar-subheader background-nav-bar">
+        <img src="img/arrow-circle-left.png" class="icon-big icon-back" ng-click="goBack()"></img>
+        <h1 class="title background-nav-bar">RESULTAAT</h1>
+    </ion-header-bar>
+
+    <ion-content class="padding">
+            <div class="item item-text-wrap item-noline">{{message}}</div>
+            <a href="#/result/{{$index}}" ng-repeat="offense in offenses track by $index" class="button button-full button-underline">
+                 Overtreding {{$index+1}}: {{offense.type | translateToDutch}}
+                 <img class="icon-right icon-small" src="img/arrow-square-right-white.png" ng-click="removeOffense($index)"></img>
+            </a>
+    </ion-content>
+
+    <ion-footer-bar class="bar-footer footer-custom background-nav-bar">
+        <div ui-sref="contact" class="text-footer">
+            VRAAG GRATIS JURIDISCH ADVIES
+        </div>
+        <div ui-sref="contact">
+            <img class="icon-right icon-big icon-footer" src="img/arrow-square-right-white.png"></img>
+        </div>
+    </ion-footer-bar>
+</ion-view>

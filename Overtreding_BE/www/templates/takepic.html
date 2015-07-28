@@ -1,0 +1,20 @@
+<ion-view view-title="OVERTREDING.BE">
+    <ion-header-bar class="bar bar-subheader background-nav-bar bar-subheader-custom">
+        <img src="img/arrow-circle-left.png" class="icon-big icon-back" ng-click="goBack()"></img>
+        <h1 class="title background-nav-bar">BRIEF</h1>
+    </ion-header-bar>
+    <ion-content>
+      <!-- <button class="button button-full button-positive" ng-click="getPhoto()">
+          Take pic
+      </button> -->
+      <img class = "picImg" ng-src="{{src}}" id="smallimage">
+  </ion-content>
+  <ion-footer-bar class="bar-footer footer-custom background-nav-bar">
+      <div ui-sref="contact" class="text-footer">
+          VRAAG GRATIS JURIDISCH ADVIES
+      </div>
+      <div ui-sref="contact">
+          <img class="icon-right icon-big icon-footer" src="img/arrow-square-right-white.png"></img>
+      </div>
+  </ion-footer-bar>
+</ion-view>
