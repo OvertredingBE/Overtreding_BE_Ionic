@@ -33,7 +33,7 @@
             <div class="item-big background-light">
                 <input type="text" ng-model="inputs.searchWord">
             </div>
-            <div ng-click="search()" class="button-footer">
+            <div ng-click="search()" style="margin-top:8px" class="button-footer">
                 ZOEK
                 <img class="icon-small icon-square" src="img/arrow-square-right-blue.png"></img>
             </div>
@@ -84,7 +84,7 @@
                 GECORRIGEERDE SNELHEID
             </div>
             <div>
-                <input class="input-custom" type="text" ng-model="inputs.speed_corrected">
+                <input class="input-custom" type="text" ng-model="inputs.speed_corrected" ng-change="calcSpeed2()">
             </div>
             <div class="test-3">KM/H</div>
         </div>

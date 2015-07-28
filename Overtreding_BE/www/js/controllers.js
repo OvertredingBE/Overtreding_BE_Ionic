@@ -261,10 +261,8 @@ angular.module('starter.controllers', [])
 
         if(indexShown === $scope.questions.length){
             $scope.toggleBorder($scope.questions[indexShown-1]);
-
                 indexShown = -1;
         }
-
         else {
             if(indexShown != $scope.questions.length-1){
             $scope.toggleBorder($scope.questions[indexShown]);
@@ -394,6 +392,31 @@ angular.module('starter.controllers', [])
         var fieldName = Offenses.getFieldName(5, offense["type"]);
         offense[fieldName] = parseInt($scope.inputs.speed_corrected);
     };
+    $scope.calcSpeed2 = function() {
+        var speedDriven = $scope.inputs.speed_corrected;
+
+        if(isNaN(speedDriven)){
+            $scope.inputs.speed_driven = "";
+        }
+        else{
+            speedDriven = parseInt(speedDriven);
+            if(speedDriven > 10){
+                if(speedDriven <= 100){
+                    $scope.inputs.speed_driven = speedDriven + 6;
+                }
+                else{
+                    $scope.inputs.speed_driven = Math.floor(speedDriven + 0.06*speedDriven);
+                }
+            }
+            else {
+                $scope.inputs.speed_driven = "";
+            }
+        }
+        var fieldName = Offenses.getFieldName(4, offense["type"]);
+        offense[fieldName] = parseInt($scope.inputs.speed_driven);
+        var fieldName = Offenses.getFieldName(5, offense["type"]);
+        offense[fieldName] = parseInt($scope.inputs.speed_corrected);
+    };
 
     $scope.search = function() {
         $scope.searchResults.length = 0;
@@ -420,12 +443,10 @@ angular.module('starter.controllers', [])
     var offenses = Offenses.all();
     $scope.offenses = offenses;
 
-
-
     var qualifyOI = ExceptionsService.qualifyOI();
-    var qualifyMS = ExceptionsService.qualifyMS(offenses);
-    console.log(qualifyOI);
-    console.log(qualifyMS);
+
+    var qualifyMS = ExceptionsService.qualifyMS();
+
     if(qualifyOI && qualifyMS){
         $scope.message = "Maak uw keuze uit de onderstaande samengestelde overtredingen en ontdek welke gevolgen elke overtreding met zih meebrengt.\nWelt u graag meer informatie over deze overtrendigen aarzel niet en vraag GRATIS juridisch advies aan via onderstaande button.";
     }
@@ -479,15 +500,4 @@ angular.module('starter.controllers', [])
        console.log('You are not sure');
      }
    });
-    // $scope.getPhoto = function() {
-    // Camera.getPicture({
-    //     quality: 5,
-    //     targetWidth: 300
-    // }).then(function(imageURI) {
-    //     $scope.src = imageURI;
-    //       console.log(imageURI);
-    //     }, function(err) {
-    //       console.log(err);
-    //     });
-    //   };
 });

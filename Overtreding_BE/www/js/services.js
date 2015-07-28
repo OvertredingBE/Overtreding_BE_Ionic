@@ -312,7 +312,14 @@ angular.module('starter.services', [])
             var len = 0;
 
             var qualifyOI = ExceptionsService.qualifyOI();
+            console.log("Qualify OI: " +qualifyOI);
+            console.log("-----------------------");
+
             var qualifyMS = ExceptionsService.qualifyMS();
+            console.log("Qualify MS: " +qualifyMS);
+            console.log("-----------------------");
+
+
             if(!qualifyOI){
                 texts.length = 0;
                 len =1;
@@ -331,17 +338,18 @@ angular.module('starter.services', [])
                 texts.push("U komt niet in aanmerking voor een onmiddellijke inning.");
             }
             if(offense.licence === 0){
-                texts.length = 0;
                 switch (offense.type) {
                     case "Speed":
                     var exceed = FinesCalculator.calculateExceed(offense.speed_limit, offense.speed_corrected);
                     if(exceed >= 2){
+                        texts.length = 0;
                         len = 3;
                         texts = otherTexts;
                     }
                     break;
                     case "Alchohol":
                     if(offense.intoxication <= 5){
+                        texts.length = 0;
                         len = 3;
                         texts = otherTexts;
                     }
@@ -433,7 +441,7 @@ angular.module('starter.services', [])
                 var asd = str;
                 for (var key in fines) {
                     if (fines.hasOwnProperty(key)) {
-                        asd = replaceAll(asd, key, fines[key]);
+                        asd = replaceAll(asd, key, fines[key] + " EUR");
                     }
                 }
                 return asd;
@@ -633,13 +641,14 @@ angular.module('starter.services', [])
                     }
                 }
                 minSum += currSum;
+                console.log("Offense fine: " + currSum);
+
                 if(currSum > 330){
                     if(offense.type != "Alchohol"){
-                        console.log(currSum);
+                        console.log("Sum over 330");
                         return false;
                     }
                 }
-                console.log(currSum);
             }
             return true;
       },
@@ -654,7 +663,7 @@ angular.module('starter.services', [])
               var fines = FinesCalculator.getFines(offense);
               for (var key in fines) {
                   if (fines.hasOwnProperty(key)) {
-                    //   console.log(key + " -> " + fines[key]);
+                      console.log(key + " -> " + fines[key]);
                       var fineString = fines[key].toString();
                       var fineAmounts = fineString.split(" tot ");
                       currSum +=parseInt(fineAmounts[0]);
@@ -663,10 +672,9 @@ angular.module('starter.services', [])
               minSum += currSum;
           }
           if(minSum > 1500){
-              console.log(minSum);
+              console.log("Sum over 1550");
               return false;
           }
-          console.log(minSum);
           return true;
       }
     }
