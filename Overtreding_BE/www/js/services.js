@@ -119,30 +119,34 @@ angular.module('starter.services', [])
 .factory('Others', function($cordovaSQLite) {
     var others = [];
     return {
-        searchOthers: function(tag){
+        searchOthers: function(tags){
             db = window.openDatabase("test2", "1.0", "Test DB", 1000000);
             var query = "SELECT * FROM Other_Tags where tag_name = ?";
-            $cordovaSQLite.execute(db, query, [tag]).then(function(res){
-                if(res.rows.length > 0){
-                    for(var i = 0; i < res.rows.length; i++){
-                        var query = "SELECT * FROM Other where id = ?";
-                        $cordovaSQLite.execute(db, query, [res.rows.item(i).offense_id]).then(function(res){
-                            if(res.rows.length > 0){
-                                for(var i = 0; i < res.rows.length; i++){
-                                    others.push({
-                                        id: res.rows.item(i).id,
-                                        degree: res.rows.item(i).degree,
-                                        description: res.rows.item(i).description});
+            for (var i = 0; i < tags.length; i++) {
+                var tag = tags[i];
+                $cordovaSQLite.execute(db, query, [tag]).then(function(res){
+                    if(res.rows.length > 0){
+                        for(var i = 0; i < res.rows.length; i++){
+                            var query = "SELECT * FROM Other where id = ?";
+                            $cordovaSQLite.execute(db, query, [res.rows.item(i).offense_id]).then(function(res){
+                                if(res.rows.length > 0){
+                                    for(var i = 0; i < res.rows.length; i++){
+                                        others.push({
+                                            id: res.rows.item(i).id,
+                                            degree: res.rows.item(i).degree,
+                                            description: res.rows.item(i).description});
+                                    }
                                 }
-                            }
-                        }, function(err){
-                            console.error(err);
-                        });
+                            }, function(err){
+                                console.error(err);
+                            });
+                        }
                     }
-                }
-            }, function(err){
-                console.error(err);
-            });
+                }, function(err){
+                    console.error(err);
+                });
+            }
+
             return others;
         }
     }
@@ -304,47 +308,48 @@ angular.module('starter.services', [])
         getTexts: function(offense) {
             texts.length = 0;
             fines.length = 0;
-            var flag = true;
-
             fines = FinesCalculator.getFines(offense);
+            var len = 0;
+
+            var qualifyOI = ExceptionsService.qualifyOI();
+            var qualifyMS = ExceptionsService.qualifyMS();
+            if(!qualifyOI){
+                texts.length = 0;
+                len =1;
+                texts.push("U komt niet in aanmerking voor een onmiddellijke inning.");
+            }
+            if(!qualifyMS){
+                texts.length = 0;
+                len = 2;
+                texts.push("U komt niet in aanmerking voor een onmiddellijke inning.");
+                texts.push("U komt niet in aanmerking voor een minnelijke schikking.");
+            }
 
             if(offense.age === 0){
-                texts = otherTexts;
-                flag = false;
+                texts.length = 0;
+                len =1;
+                texts.push("U komt niet in aanmerking voor een onmiddellijke inning.");
             }
             if(offense.licence === 0){
+                texts.length = 0;
                 switch (offense.type) {
-                        case "Speed":
-                        var exceed = FinesCalculator.calculateExceed(offense.speed_limit, offense.speed_corrected);
-                        if(exceed >= 2){
-                            texts = otherTexts;
-                            flag = false;
-                        }
-                        break;
-                        case "Alchohol":
-                        if(offense.intoxication <= 5){
-                            texts = otherTexts;
-                            flag = false;
-                        }
-                        break;
+                    case "Speed":
+                    var exceed = FinesCalculator.calculateExceed(offense.speed_limit, offense.speed_corrected);
+                    if(exceed >= 2){
+                        len = 3;
+                        texts = otherTexts;
+                    }
+                    break;
+                    case "Alchohol":
+                    if(offense.intoxication <= 5){
+                        len = 3;
+                        texts = otherTexts;
+                    }
+                    break;
                     default:
                 }
             }
-            if(flag){
-                var len = 0;
-                var qualifyOI = ExceptionsService.qualifyOI();
-                var qualifyMS = ExceptionsService.qualifyMS();
-                if(!qualifyOI){
-                    len =1;
-                    texts.push("U komt niet in aanmerking voor een onmiddellijke inning.");
-                }
-                if(!qualifyMS){
-                    texts.length = 0;
-                    len = 2;
-                    texts.push("U komt niet in aanmerking voor een onmiddellijke inning.");
-                    texts.push("U komt niet in aanmerking voor een minnelijke schikking.");
-                }
-                switch (offense.type) {
+            switch (offense.type) {
                 case "Alchohol":
                 var queries = ["SELECT * FROM Texts a INNER JOIN Alchohol b ON a.id=b.text_id_1 WHERE b.intoxication=?",
                 "SELECT * FROM Texts a INNER JOIN Alchohol b ON a.id=b.text_id_2 WHERE b.intoxication=?",
@@ -385,7 +390,7 @@ angular.module('starter.services', [])
                 var queries = ["SELECT * FROM Texts a INNER JOIN Speed b ON a.id=b.text_id_1 WHERE b.exceed = ? AND b.road = ?",
                 "SELECT * FROM Texts a INNER JOIN Speed b ON a.id=b.text_id_2 WHERE b.exceed = ? AND b.road = ?",
                 "SELECT * FROM Texts a INNER JOIN Speed b ON a.id=b.text_id_3 WHERE b.exceed = ? AND b.road = ?"];
-                 var exceed = FinesCalculator.calculateExceed(offense.speed_limit, offense.speed_corrected);
+                var exceed = FinesCalculator.calculateExceed(offense.speed_limit, offense.speed_corrected);
 
                 for (var i = len; i < queries.length; i++) {
                     var query = queries[i];
@@ -420,34 +425,34 @@ angular.module('starter.services', [])
                 }
                 break;
                 default:
+
+
             }
 
-        }
-
-        function replaceFines(str, fines){
-            var asd = str;
-            for (var key in fines) {
-                if (fines.hasOwnProperty(key)) {
-                    asd = replaceAll(asd, key, fines[key]);
+            function replaceFines(str, fines){
+                var asd = str;
+                for (var key in fines) {
+                    if (fines.hasOwnProperty(key)) {
+                        asd = replaceAll(asd, key, fines[key]);
+                    }
                 }
+                return asd;
             }
-            return asd;
-        }
 
-        function replaceAll(str, find, replace) {
-            var i = str.indexOf(find);
-            if (i > -1){
-                str = str.replace(find, replace);
-                i = i + replace.length;
-                var st2 = str.substring(i);
-                if(st2.indexOf(find) > -1){
-                    str = str.substring(0,i) + replaceAll(st2, find, replace);
+            function replaceAll(str, find, replace) {
+                var i = str.indexOf(find);
+                if (i > -1){
+                    str = str.replace(find, replace);
+                    i = i + replace.length;
+                    var st2 = str.substring(i);
+                    if(st2.indexOf(find) > -1){
+                        str = str.substring(0,i) + replaceAll(st2, find, replace);
+                    }
                 }
+                return str;
             }
-            return str;
-        }
 
-        return texts;
+            return texts;
         }
     }
 })
@@ -621,7 +626,7 @@ angular.module('starter.services', [])
                 var fines = FinesCalculator.getFines(offense);
                 for (var key in fines) {
                     if (fines.hasOwnProperty(key)) {
-                        // console.log(key + " -> " + fines[key]);
+                        console.log(key + " -> " + fines[key]);
                         var fineString = fines[key].toString();
                         var fineAmounts = fineString.split(" tot ");
                         currSum +=parseInt(fineAmounts[0]);

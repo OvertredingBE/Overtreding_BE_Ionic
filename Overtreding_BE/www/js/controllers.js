@@ -160,7 +160,7 @@ angular.module('starter.controllers', [])
             if(validateEmail($scope.form.email)){
                 $ionicPopup.alert({
                     title: 'Bedankt voor uw aanvraag.',
-                    template: 'U zal zo snel mogelijk een mail ontvangen met de benodigde informatie"'
+                    template: 'We nemen zo snel mogelijk contact met u op.'
                 });
 
                 var url = 'http://localhost/overtreding_api/v1/email';
@@ -291,8 +291,8 @@ angular.module('starter.controllers', [])
         }
         else{
             $ionicPopup.alert({
-                title: 'Invliad input',
-                template: 'Please enter all fields'
+                title: 'INFO',
+                template: 'Gelieve alle velden van een antwoord te voorzien'
             });
         }
     };
@@ -399,7 +399,8 @@ angular.module('starter.controllers', [])
         $scope.searchResults.length = 0;
         var searchWords = $scope.inputs.searchWord;
         searchWords = searchWords.toLowerCase();
-        $scope.searchResults = Others.searchOthers(searchWords);
+        var searchArr = searchWords.split(',');
+        $scope.searchResults = Others.searchOthers(searchArr);
     };
 
     $scope.otherTapped = function(item) {
