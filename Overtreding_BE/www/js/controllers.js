@@ -163,14 +163,17 @@ angular.module('starter.controllers', [])
                     template: 'We nemen zo snel mogelijk contact met u op.'
                 });
 
-                var url = 'http://localhost/overtreding_api/v1/email';
-                $http.post(url, {msg:'hello word!'}).
-                success(function(data, status, headers, config) {
-                    console.log(data);
-                }).
-                error(function(data, status, headers, config) {
-                    console.log(status);
-                });
+                var url = 'http://www.martindzhonov.podserver.info/overtreding_api/v1/email';
+                
+                $http.post(url,{test:"MSGS"}).then(function(resp){console.log(resp)},function(err){console.log(err)});
+                //
+                // $http.post(url, {msg:'hello word!'}).
+                // success(function(data, status, headers, config) {
+                //     console.log(data);
+                // }).
+                // error(function(data, status, headers, config) {
+                //     console.log(status);
+                // });
             }
             else{
                 $ionicPopup.alert({
