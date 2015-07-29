@@ -109,6 +109,7 @@ angular.module('starter.controllers', [])
 })
 
 .controller("HomeController", function($scope, $ionicPlatform, $ionicHistory, Offenses){
+    Offenses.clear();
     $scope.goBack = function() {
         $ionicHistory.goBack();
     }
@@ -152,7 +153,7 @@ angular.module('starter.controllers', [])
         }
         if(counter != 4){
             $ionicPopup.alert({
-                title: 'Error',
+                title: 'Fout',
                 template: 'Gelieve alle verplichte velden in te vullen (*)"'
             });
         }
@@ -164,7 +165,7 @@ angular.module('starter.controllers', [])
                 });
 
                 var url = 'http://www.martindzhonov.podserver.info/overtreding_api/v1/email';
-                
+
                 $http.post(url,{test:"MSGS"}).then(function(resp){console.log(resp)},function(err){console.log(err)});
                 //
                 // $http.post(url, {msg:'hello word!'}).
@@ -438,6 +439,7 @@ angular.module('starter.controllers', [])
     };
 
     $scope.goBack = function() {
+        Offenses.clear();
         $ionicHistory.goBack();
     };
 })
@@ -489,7 +491,7 @@ angular.module('starter.controllers', [])
 .controller("TakePictureController", function($scope, Camera, $ionicPopup) {
     var confirmPopup = $ionicPopup.alert({
      title: 'INFORMATIE',
-     template: 'Gelieve een foto te nemen van de brief die u ontvig en deze door te sturen via de button "Vragg GRATIS juridisch advies".\n Wij bekijen dan wat wij voor u kennen does en nemen contact met u op. Alvast bedankt !'
+     template:  "Gelieve een foto te nemen van de brief die u ontving en deze door te sturen via de button vraag GRATIS juridisch advies.\n Wij bekijken dan wat wij voor u kunnen doen en nemen contact met u op. Alvast bedankt!"
    });
    confirmPopup.then(function(res) {
      if(res) {

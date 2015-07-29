@@ -165,7 +165,8 @@ angular.module('starter.services', [])
             offenses.splice(index, 1);
         },
         clear: function(){
-            offenses.length = 0;
+            console.log("clearing offenses");
+            offenses = [];
         },
         findById: function(offenseId){
             return offenses[offenseId];
