@@ -135,11 +135,11 @@ angular.module('starter.controllers', [])
         var url = 'http://www.martindzhonov.podserver.info/overtreding_api/v1/test';
 
         $http.post(url, { params: { "test": "value1", "test2": "value2" } })
-           .success(function(data) {
-           })
-           .error(function(data) {
-               alert("ERROR");
-           });
+        .success(function(data) {
+        })
+        .error(function(data) {
+            alert("ERROR");
+        });
 
 
         $http.post(url,{'test': 'asdf'}).then(function(resp){
@@ -258,31 +258,6 @@ angular.module('starter.controllers', [])
         }
     };
 
-    function addDummyOffense(){
-        offense = {type: ""};
-        $scope.offenses.push(offense);
-    }
-
-    function resetFields(){
-        indexShown = 0;
-        $scope.showSearch = false;
-        $scope.showInput = false;
-        $scope.questionsShown = false;
-        $scope.searchResults.length = 0;
-        $scope.inputs.speed_driven = "";
-        $scope.inputs.speed_corrected = "";
-    }
-
-    function addCurrOffense(){
-        var valid = Offenses.validateOffense(offense) && offense.type != "";
-        if(valid){
-            Offenses.add(offense);
-            return true;
-        }
-        return false;
-    }
-
-
     $scope.subgroupTapped = function(item, group, index) {
         $scope.questions[group.id].name =  item;
         var fieldName = Offenses.getFieldName(group.id, offense["type"]);
@@ -319,12 +294,12 @@ angular.module('starter.controllers', [])
 
         if(indexShown === $scope.questions.length){
             $scope.toggleBorder($scope.questions[indexShown-1]);
-                indexShown = -1;
+            indexShown = -1;
         }
         else {
             if(indexShown != $scope.questions.length-1){
-            $scope.toggleBorder($scope.questions[indexShown]);
-        }
+                $scope.toggleBorder($scope.questions[indexShown]);
+            }
         }
     };
 
@@ -343,19 +318,12 @@ angular.module('starter.controllers', [])
     };
 
     $scope.removeOffense = function(index){
-        console.log(index);
-        console.log($scope.offenses.length);
+
         if(index === $scope.offenses.length -1){
             offense = {type: ""};
             $scope.offenses.splice($scope.offenses.length -1, 1, offense);
-
-            $scope.menu = Questions.getQuestions("Menu");
-            $scope.questions = [];
-            indexShown = 0;
-            $scope.showSearch = false;
-            $scope.showInput = false;
-            $scope.inputs.speed_driven = "";
-            $scope.inputs.speed_corrected = "";
+            resetFields();
+            $scope.menuShown = true;
         }
         else{
             $scope.offenses.splice(index, 1);
@@ -364,60 +332,26 @@ angular.module('starter.controllers', [])
     };
 
     $scope.resultTapped = function() {
-        // if(addCurrOffense()){
-        //     addDummyOffense();
-        //     resetFields();
-        //     $scope.menuShown = true;
-        // }
-        var valid = offense != null && offense.type != "";
-        if(valid && Offenses.validateOffense(offense))
-        {
-            $scope.menu = Questions.getQuestions("Menu");
-            $scope.questions = [];
-            indexShown = 0;
-            $scope.showSearch = false;
-            $scope.showInput = false;
-            $scope.menuShown = true;
-            $scope.inputs.speed_driven = "";
-            $scope.inputs.speed_corrected = "";
-
-            Offenses.add(offense);
-            offense = {type: ""};
-            $scope.offenses.push(offense);
-
-            var offenses = Offenses.all();
-            if(offenses.length === 0){
-                $ionicPopup.alert({
-                    title: 'Error',
-                    template: 'No offense composed'
-                });
-            }
-            else{
-                var valid = Offenses.validateOffense(offense);
-
-                if(valid){
-                    if(offenses.length === 1){
-                        $location.path("/result/0");
-                    }
-                    else{
-                        $location.path("/result");
-                    }
+        var offenses = Offenses.all();
+        if(addCurrOffense()){
+            {
+                addDummyOffense();
+                resetFields();
+                $scope.menuShown = true;
+                if(offenses.length === 1){
+                    $location.path("/result/0");
                 }
                 else{
-                    $ionicPopup.alert({
-                        title: 'Invliad input',
-                        template: 'Please enter all fields'
-                    });
+                    $location.path("/result");
                 }
             }
         }
         else{
             $ionicPopup.alert({
-                title: 'Invliad input',
-                template: 'Please enter all fields'
+                title: 'INFO',
+                template: 'Gelieve alle velden van een antwoord te voorzien'
             });
         }
-
     }
 
     $scope.calcSpeed = function() {
@@ -445,6 +379,7 @@ angular.module('starter.controllers', [])
         var fieldName = Offenses.getFieldName(5, offense["type"]);
         offense[fieldName] = parseInt($scope.inputs.speed_corrected);
     };
+
     $scope.calcSpeed2 = function() {
         var speedDriven = $scope.inputs.speed_corrected;
 
@@ -473,6 +408,7 @@ angular.module('starter.controllers', [])
 
     $scope.search = function() {
         $scope.searchResults.length = 0;
+        $scope.questionsShown = false;
         var searchWords = $scope.inputs.searchWord;
         searchWords = searchWords.toLowerCase();
         var searchArr = searchWords.split(',');
@@ -491,6 +427,31 @@ angular.module('starter.controllers', [])
         Offenses.clear();
         $ionicHistory.goBack();
     };
+
+    function addDummyOffense(){
+        offense = {type: ""};
+        $scope.offenses.push(offense);
+    }
+
+    function addCurrOffense(){
+        var valid = Offenses.validateOffense(offense) && offense.type != "";
+        if(valid){
+            Offenses.add(offense);
+            return true;
+        }
+        return false;
+    }
+
+    function resetFields(){
+        indexShown = 0;
+        $scope.showSearch = false;
+        $scope.showInput = false;
+        $scope.questionsShown = false;
+        $scope.searchResults.length = 0;
+        $scope.inputs.speed_driven = "";
+        $scope.inputs.speed_corrected = "";
+        $scope.inputs.searchWord = "";
+    }
 })
 
 .controller("ResultController", function($scope, $ionicHistory, $ionicPopup, $location, Offenses, ExceptionsService, FinesCalculator) {
@@ -539,19 +500,19 @@ angular.module('starter.controllers', [])
 
 .controller("TakePictureController", function($scope, Camera, $ionicPopup) {
     var confirmPopup = $ionicPopup.alert({
-     title: 'INFORMATIE',
-     template:  "Gelieve een foto te nemen van de brief die u ontving en deze door te sturen via de button vraag GRATIS juridisch advies.\n Wij bekijken dan wat wij voor u kunnen doen en nemen contact met u op. Alvast bedankt!"
-   });
-   confirmPopup.then(function(res) {
-     if(res) {
-         Camera.getPicture().then(function(imageURI) {
-             $scope.src = imageURI;
-               console.log(imageURI);
-             }, function(err) {
-               console.log(err);
-             });
-     } else {
-       console.log('You are not sure');
-     }
-   });
+        title: 'INFORMATIE',
+        template:  "Gelieve een foto te nemen van de brief die u ontving en deze door te sturen via de button vraag GRATIS juridisch advies.\n Wij bekijken dan wat wij voor u kunnen doen en nemen contact met u op. Alvast bedankt!"
+    });
+    confirmPopup.then(function(res) {
+        if(res) {
+            Camera.getPicture().then(function(imageURI) {
+                $scope.src = imageURI;
+                console.log(imageURI);
+            }, function(err) {
+                console.log(err);
+            });
+        } else {
+            console.log('You are not sure');
+        }
+    });
 });
