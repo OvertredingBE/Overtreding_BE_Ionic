@@ -657,10 +657,12 @@ angular.module('starter.services', [])
                 var fines = FinesCalculator.getFines(offense);
                 for (var key in fines) {
                     if (fines.hasOwnProperty(key)) {
+                        if(key === "#TOTALAMOUNT3#" || key === "#TOTALAMOUNT5#"){
                         console.log(key + " -> " + fines[key]);
                         var fineString = fines[key].toString();
                         var fineAmounts = fineString.split(" tot ");
                         currSum +=parseInt(fineAmounts[0]);
+                    }
                     }
                 }
                 minSum += currSum;
