@@ -176,7 +176,7 @@ angular.module('starter.controllers', [])
         if(counter != 4){
             $ionicPopup.alert({
                 title: 'Fout',
-                template: 'Gelieve alle verplichte velden in te vullen (*)"'
+                template: 'Gelieve alle verplichte velden in te vullen (*)'
             });
         }
         else{
