@@ -175,12 +175,13 @@
     top:8px;
     right:90px;
     width: 50px;
+    height: 25px;
     border-radius: 0px;
 }
 
 .test-3{
     position: absolute;
-    top:8px;
+    top:12px;
     right:40px;
 }
 .footer-custom{

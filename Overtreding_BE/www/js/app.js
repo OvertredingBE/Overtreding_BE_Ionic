@@ -15,6 +15,9 @@ app.run(function($ionicPlatform) {
 })
 
 .config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider, $compileProvider){
+    if (!ionic.Platform.isIOS()) {
+   $ionicConfigProvider.scrolling.jsScrolling(false);
+    }
     $stateProvider
     .state("config", {
         url:"/config",
