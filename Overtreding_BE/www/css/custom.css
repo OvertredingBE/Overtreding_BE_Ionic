@@ -10,6 +10,14 @@
     color:white;
 }
 
+.button-underline{
+    font-size: 16px;
+    text-align: left;
+}
+
+.item-noline, .item-underline{
+    font-size: 15px;
+}
 .icon-back{
     height: 25px;
     width: 25px;

@@ -437,7 +437,7 @@ angular.module('starter.controllers', [])
                     $scope.inputs.speed_driven = speedDriven + 6;
                 }
                 else{
-                    $scope.inputs.speed_driven = Math.floor(speedDriven + 0.06*speedDriven);
+                    $scope.inputs.speed_driven = Math.floor(speedDriven + 0.07*speedDriven);
                 }
             }
             else {
