@@ -250,7 +250,7 @@ and (orientation : portrait) {
          width: 100%
     }
     .test{
-        width: 70%;
+        width: 50%;
         position: absolute;
         top:0px;
         overflow: hidden;

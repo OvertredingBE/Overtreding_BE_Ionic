@@ -115,7 +115,7 @@ angular.module('starter.controllers', [])
     }
 })
 
-.controller("RightsController", function($scope, $ionicHistory, Rights) {
+.controller("RightsController", function($scope, $ionicHistory, Rights, $http, $ionicPopup) {
     $scope.items = Rights.alchRights();
     $scope.selected = 1;
     $scope.showAlch = function() {
@@ -131,7 +131,29 @@ angular.module('starter.controllers', [])
     };
 
     $scope.test = function() {
-        $scope.selected = 2;
+        // var url = 'http://localhost/overtreding_api/v1/test';
+        var url = 'http://www.martindzhonov.podserver.info/overtreding_api/v1/test';
+
+        $http.post(url, { params: { "test": "value1", "test2": "value2" } })
+           .success(function(data) {
+           })
+           .error(function(data) {
+               alert("ERROR");
+           });
+
+
+        $http.post(url,{'test': 'asdf'}).then(function(resp){
+            $ionicPopup.alert({
+                title: "Success",
+                template: resp
+            });
+            console.log(resp)
+        },function(err){
+            $ionicPopup.alert({
+                title: "Error",
+                template: err
+            });
+        });
     };
 
     $scope.goBack = function() {
@@ -166,7 +188,7 @@ angular.module('starter.controllers', [])
 
                 var url = 'http://www.martindzhonov.podserver.info/overtreding_api/v1/email';
 
-                $http.post(url,{test:"MSGS"}).then(function(resp){console.log(resp)},function(err){console.log(err)});
+                $http.post(url,{test: 'test'}).then(function(resp){console.log(resp)},function(err){console.log(err)});
                 //
                 // $http.post(url, {msg:'hello word!'}).
                 // success(function(data, status, headers, config) {

@@ -541,6 +541,24 @@ angular.module('starter.services', [])
                     default:
                 }
                 break;
+                case "Other":
+                formulaIds.push(2);
+                switch (offense.degree) {
+
+                    case 1:
+                    formulaIds.push(11);
+                    break;
+                    case 2:
+                    formulaIds.push(12);
+                    break;
+                    case 3:
+                    formulaIds.push(13);
+                    break;
+                    case 4:
+                    formulaIds.push(14);
+                    break;
+                }
+                break;
                 default:
             }
 
@@ -548,7 +566,6 @@ angular.module('starter.services', [])
             for (var i = 0; i < formulaIds.length; i++) {
                 var key = "#TOTALAMOUNT" + formulaIds[i] + "#";
                 obj[key] = Formulas.getResultForFormula(formulaIds[i], offense);
-
             }
             return obj;
         },
@@ -573,7 +590,12 @@ angular.module('starter.services', [])
                 calc1(25) + " tot " + calc1(500),
                 calc1(200) + " tot " + calc1(2000),
                 calc1(400) + " tot " + calc1(5000),
-                calc1(800) + " tot " + calc1(10000)];
+                calc1(800) + " tot " + calc1(10000),
+                calc1(10) + " tot " + calc1(250),
+                calc1(20) + " tot " + calc1(250),
+                calc1(30) + " tot " + calc1(250),
+                calc1(40) + " tot " + calc1(250)
+                ];
             return formulas[formulaId -1];
         }
     }
