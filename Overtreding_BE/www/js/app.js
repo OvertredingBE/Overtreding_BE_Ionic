@@ -64,6 +64,13 @@ app.filter('translateToDutch', ['TranslateService', function(TranslateService) {
    return function(input) {
       if (! input) return;
       return TranslateService.englishToDutch(input);
+   };
+}]);
+
+app.filter('zipCodeTranslate', ['ZipCodes', function(ZipCodes) {
+   return function(input) {
+      if (! input) return;
+      return ZipCodes.getNameForZipCode(input);
       if (input.length <= 5) {
           return input;
       }

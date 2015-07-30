@@ -702,3 +702,19 @@ angular.module('starter.services', [])
       }
     }
 })
+.factory('ZipCodes', ['$q', function() {
+  return {
+    getNameForZipCode: function(code) {
+
+
+for (var i = 0; i < zipcodes.length; i++) {
+    if(zipcodes[i]["zip"] === code){
+        return zipcodes[i]["city"] + " - " + code;
+        // return code + " - " + zipcodes[i]["city"];
+    }
+}
+
+return code;
+}
+}
+}])

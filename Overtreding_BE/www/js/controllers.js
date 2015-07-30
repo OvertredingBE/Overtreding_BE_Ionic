@@ -161,7 +161,7 @@ angular.module('starter.controllers', [])
     }
 })
 
-.controller("ContactController", function($scope, $ionicHistory, $ionicPopup, $http, Offenses) {
+.controller("ContactController", function($scope, $ionicHistory, $ionicPopup, $http, Offenses, ZipCodes) {
     $scope.form = {};
 
     $scope.resultTapped = function() {
@@ -214,6 +214,12 @@ angular.module('starter.controllers', [])
 
     $scope.goBack = function() {
         $ionicHistory.goBack();
+    }
+
+    $scope.getCity = function(){
+        var code = $scope.form.postcode;
+        var asd = ZipCodes.getNameForZipCode(code);
+        $scope.form.postcode = asd;
     }
 })
 
