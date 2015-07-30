@@ -226,36 +226,62 @@ angular.module('starter.controllers', [])
 .controller("CalcFineController", function($scope, $ionicHistory, $ionicPopup, $location, Offenses, Questions, Others, TranslateService) {
     $scope.offenses = [];
     $scope.searchResults = [];
-    $scope.menu = Questions.getQuestions("Menu");
-    $scope.questionsShown = false;
     $scope.inputs = {};
-
+    $scope.menu = Questions.getQuestions("Menu");
     var indexShown = 0;
-    var offense = {type: ""};
-    $scope.offenses.push(offense);
+    var offense = null;
+    addDummyOffense();
+    resetFields();
+    $scope.menuShown = true;
 
     $scope.menuSubgroupTapped = function(menuItem){
-        $scope.menu = [];
         var type = TranslateService.dutchToEnglish(menuItem);
-
         offense = Offenses.createDefault(type);
         $scope.offenses.splice($scope.offenses.length -1, 1, offense);
+
         $scope.questions = Questions.getQuestions(type);
         $scope.toggleBorder($scope.questions[0]);
-        if(type != "Speed"){
-        $scope.toggleBorder($scope.questions[$scope.questions.length - 1]);
-        }
+        $scope.menuShown = false;
         $scope.questionsShown = true;
 
-        if(type === "Other"){
-            $scope.showSearch = true;
-            $scope.questionsShown = false;
-            $scope.searchMessage = "Vul hierboven een trefwoord of artikelnummer in en zoek uw overtreding. Voeg een komma toe om te zoeken door middel van meerdere trefwoorden.";
-        }
-        else if(type === "Speed"){
+        if(type === "Speed"){
             $scope.showInput = true;
         }
+        else{
+            $scope.toggleBorder($scope.questions[$scope.questions.length - 1]);
+        }
+
+        if(type === "Other"){
+            $scope.questionsShown = false;
+            $scope.showSearch = true;
+            $scope.searchMessage = "Vul hierboven een trefwoord of artikelnummer in en zoek uw overtreding. Voeg een komma toe om te zoeken door middel van meerdere trefwoorden.";
+        }
     };
+
+    function addDummyOffense(){
+        offense = {type: ""};
+        $scope.offenses.push(offense);
+    }
+
+    function resetFields(){
+        indexShown = 0;
+        $scope.showSearch = false;
+        $scope.showInput = false;
+        $scope.questionsShown = false;
+        $scope.searchResults.length = 0;
+        $scope.inputs.speed_driven = "";
+        $scope.inputs.speed_corrected = "";
+    }
+
+    function addCurrOffense(){
+        var valid = Offenses.validateOffense(offense) && offense.type != "";
+        if(valid){
+            Offenses.add(offense);
+            return true;
+        }
+        return false;
+    }
+
 
     $scope.subgroupTapped = function(item, group, index) {
         $scope.questions[group.id].name =  item;
@@ -303,21 +329,10 @@ angular.module('starter.controllers', [])
     };
 
     $scope.createNewOffense = function(){
-        var valid = offense != null && offense.type != "";
-        if(valid && Offenses.validateOffense(offense))
-        {
-            Offenses.add(offense);
-
-            offense = {type: ""};
-            $scope.offenses.push(offense);
-            $scope.menu = Questions.getQuestions("Menu");
-            $scope.questions = [];
-            indexShown = 0;
-            $scope.showSearch = false;
-            $scope.showInput = false;
-            $scope.searchResults.length = 0;
-            $scope.inputs.speed_driven = "";
-            $scope.inputs.speed_corrected = "";
+        if(addCurrOffense()){
+            addDummyOffense();
+            resetFields();
+            $scope.menuShown = true;
         }
         else{
             $ionicPopup.alert({
@@ -349,6 +364,11 @@ angular.module('starter.controllers', [])
     };
 
     $scope.resultTapped = function() {
+        // if(addCurrOffense()){
+        //     addDummyOffense();
+        //     resetFields();
+        //     $scope.menuShown = true;
+        // }
         var valid = offense != null && offense.type != "";
         if(valid && Offenses.validateOffense(offense))
         {
@@ -357,6 +377,7 @@ angular.module('starter.controllers', [])
             indexShown = 0;
             $scope.showSearch = false;
             $scope.showInput = false;
+            $scope.menuShown = true;
             $scope.inputs.speed_driven = "";
             $scope.inputs.speed_corrected = "";
 

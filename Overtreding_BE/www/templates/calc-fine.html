@@ -12,7 +12,7 @@
             </div>
         </div>
 
-        <div ng-repeat="menuItem in menu track by $index" ng-init="currIndex = $index">
+        <div ng-repeat="menuItem in menu track by $index" ng-init="currIndex = $index" ng-show="menuShown">
             <div class="item-group-underline background-light">
                 {{menuItem.name}}
                 <img class="icon-right icon-small"
