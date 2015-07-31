@@ -200,8 +200,8 @@ angular.module('starter.controllers', [])
             }
             else{
                 $ionicPopup.alert({
-                    title: 'Error.',
-                    template: 'Invalid email adress'
+                    title: 'Fout.',
+                    template: 'Gelieve een geldig e-mail adres in te vullen.'
                 });
             }
         }
@@ -363,12 +363,25 @@ angular.module('starter.controllers', [])
         else{
             speedDriven = parseInt(speedDriven);
             if(speedDriven > 10){
+                if(speedDriven - 6 < ((offense.speed_limit+1) * 10)){
+                    $ionicPopup.alert({
+                        title: 'INFORMATIE',
+                        template: 'De gecorrigeerde snelheid kan niet lager zijn dan snelheidslimiet". Gelieve opnieuw te proberen.'
+                    });
+                    $scope.inputs.speed_corrected = "";
+                    $scope.inputs.speed_driven = "";
+                }
+                else{
+
+
                 if(speedDriven <= 100){
                     $scope.inputs.speed_corrected = speedDriven - 6;
                 }
                 else{
                     $scope.inputs.speed_corrected = Math.floor(speedDriven - 0.06*speedDriven);
                 }
+            }
+
             }
             else {
                 $scope.inputs.speed_corrected = "";
@@ -389,12 +402,22 @@ angular.module('starter.controllers', [])
         else{
             speedDriven = parseInt(speedDriven);
             if(speedDriven > 10){
+                if(speedDriven < ((offense.speed_limit+1) * 10)){
+                    $ionicPopup.alert({
+                        title: 'INFORMATIE',
+                        template: 'De gecorrigeerde snelheid kan niet lager zijn dan snelheidslimiet". Gelieve opnieuw te proberen.'
+                    });
+                    $scope.inputs.speed_corrected = "";
+                    $scope.inputs.speed_driven = "";
+                }
+                else{
                 if(speedDriven <= 100){
                     $scope.inputs.speed_driven = speedDriven + 6;
                 }
                 else{
                     $scope.inputs.speed_driven = Math.floor(speedDriven + 0.07*speedDriven);
                 }
+            }
             }
             else {
                 $scope.inputs.speed_driven = "";
@@ -463,7 +486,7 @@ angular.module('starter.controllers', [])
     var qualifyMS = ExceptionsService.qualifyMS();
 
     if(qualifyOI && qualifyMS){
-        $scope.message = "Maak uw keuze uit de onderstaande samengestelde overtredingen en ontdek welke gevolgen elke overtreding met zih meebrengt.\nWelt u graag meer informatie over deze overtrendigen aarzel niet en vraag GRATIS juridisch advies aan via onderstaande button.";
+        $scope.message = "Maak uw keuze uit de onderstaande samengestelde overtredingen en ontdek welke gevolgen elke overtreding met zich meebrengt.\n Wenst u graag meer informatie over deze overtredingen, aarzel niet en vraag GRATIS juridisch advies aan via onderstaande button.";
     }
     if(!qualifyMS){
         $scope.message = "De door u samengestelde overtredingen zorgen ervoor dat u niet in aanmerking komt voor een onmiddellijke inning of minnnelijke schikking. U zal sowieso voor de rechtbank moeten verschijnen.\nMaak uw keuze uit de onderstaande samengestelde overtredingen en ontdek welke gevolgen elke overtreding met zih meebrengt.\nWelt u graag meer informatie over deze overtrendigen aarzel niet en vraag GRATIS juridisch advies aan via onderstaande button.";

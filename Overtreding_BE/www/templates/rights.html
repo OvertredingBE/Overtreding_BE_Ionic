@@ -10,8 +10,9 @@
         <button ng-class="{'button-custom-2': selected == 1, 'button-custom-4': selected ==2}" ng-click="showDrugs()">
             DRUGS CONTROLE
         </button>
-        <button ng-class="button" ng-click="test()">
-test        </button>
+        <!-- <button ng-class="button" ng-click="test()">
+            test
+                </button> -->
         <div ng-repeat="item in items" ng-class="$last ? 'item item-text-wrap item-noline' : 'item item-text-wrap item-underline'">
             <div>
                 {{item.body}}

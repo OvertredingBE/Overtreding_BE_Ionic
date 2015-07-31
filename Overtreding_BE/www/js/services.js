@@ -25,7 +25,7 @@ angular.module('starter.services', [])
                 var subgroups = [["SNELHEID", "ALCOHOL", "DRUGS", "ANDERE"]];
                 break;
                 case "Alchohol":
-                var names = ["RIJBEWIJS","LEEFTIJD", "BESTRUUDER", "INTOXICATIE"];
+                var names = ["RIJBEWIJS","LEEFTIJD", "BESTUURDER", "INTOXICATIE"];
                 var subgroups = [["IK BEZIT MIJN RIJBEWIJS MINDER DAN 2 JAAR", "IK BEZIT MIJN RIJBEWIJS LANGER DAN 2 JAAR"],
                 ["JONGER DAN 18 JAAR","18 JAAR OF OUDER"],
                 ["PROFESSIONELE BESTUURDER", "GEWONE BESTUURDER"],
@@ -688,10 +688,12 @@ angular.module('starter.services', [])
               var fines = FinesCalculator.getFines(offense);
               for (var key in fines) {
                   if (fines.hasOwnProperty(key)) {
+                      if(key === "#TOTALAMOUNT4#" || key === "#TOTALAMOUNT6#"){
                       console.log(key + " -> " + fines[key]);
                       var fineString = fines[key].toString();
                       var fineAmounts = fineString.split(" tot ");
                       currSum +=parseInt(fineAmounts[0]);
+                  }
                   }
               }
               minSum += currSum;
