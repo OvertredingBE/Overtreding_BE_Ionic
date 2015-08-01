@@ -597,6 +597,14 @@ angular.module('starter.services', [])
                 calc1(40) + " tot " + calc1(250)
                 ];
             return formulas[formulaId -1];
+        },
+        getCorrectedSpeed: function(speedDriven){
+                if(speedDriven <= 100){
+                    return speedDriven - 6;
+                }
+                else{
+                    return Math.floor(speedDriven - 0.06*speedDriven);
+                }
         }
     }
     function calc1(y){

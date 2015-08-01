@@ -223,7 +223,7 @@ angular.module('starter.controllers', [])
     }
 })
 
-.controller("CalcFineController", function($scope, $ionicHistory, $ionicPopup, $location, Offenses, Questions, Others, TranslateService) {
+.controller("CalcFineController", function($scope, $ionicHistory, $ionicPopup, $location, Offenses, Questions, Others, TranslateService, Formulas) {
     $scope.offenses = [];
     $scope.searchResults = [];
     $scope.inputs = {};
@@ -355,15 +355,18 @@ angular.module('starter.controllers', [])
     }
 
     $scope.calcSpeed = function() {
-        var speedDriven = $scope.inputs.speed_driven;
+        var input = $scope.inputs.speed_driven;
 
-        if(isNaN(speedDriven)){
+        if(isNaN(input)){
             $scope.inputs.speed_corrected = "";
         }
         else{
-            speedDriven = parseInt(speedDriven);
+            var speedDriven = parseInt(input);
+            var speedCorrected = Formulas.getCorrectedSpeed(speedDriven);
+            var speedLimit = (offense.speed_limit+1) * 10;
+
             if(speedDriven > 10){
-                if(speedDriven - 6 < ((offense.speed_limit+1) * 10)){
+                if(speedCorrected < speedLimit){
                     $ionicPopup.alert({
                         title: 'INFORMATIE',
                         template: 'De gecorrigeerde snelheid kan niet lager zijn dan snelheidslimiet". Gelieve opnieuw te proberen.'
@@ -372,21 +375,12 @@ angular.module('starter.controllers', [])
                     $scope.inputs.speed_driven = "";
                 }
                 else{
-
-
-                if(speedDriven <= 100){
-                    $scope.inputs.speed_corrected = speedDriven - 6;
+                    $scope.inputs.speed_corrected = speedCorrected;
                 }
-                else{
-                    $scope.inputs.speed_corrected = Math.floor(speedDriven - 0.06*speedDriven);
-                }
-            }
-
-            }
-            else {
-                $scope.inputs.speed_corrected = "";
             }
         }
+
+        console.log($scope.inputs.speed_corrected === "");
         var fieldName = Offenses.getFieldName(4, offense["type"]);
         offense[fieldName] = parseInt($scope.inputs.speed_driven);
         var fieldName = Offenses.getFieldName(5, offense["type"]);
@@ -411,13 +405,13 @@ angular.module('starter.controllers', [])
                     $scope.inputs.speed_driven = "";
                 }
                 else{
-                if(speedDriven <= 100){
-                    $scope.inputs.speed_driven = speedDriven + 6;
+                    if(speedDriven <= 100){
+                        $scope.inputs.speed_driven = speedDriven + 6;
+                    }
+                    else{
+                        $scope.inputs.speed_driven = Math.floor(speedDriven + 0.07*speedDriven);
+                    }
                 }
-                else{
-                    $scope.inputs.speed_driven = Math.floor(speedDriven + 0.07*speedDriven);
-                }
-            }
             }
             else {
                 $scope.inputs.speed_driven = "";
@@ -521,7 +515,7 @@ angular.module('starter.controllers', [])
     }
 })
 
-.controller("TakePictureController", function($scope, Camera, $ionicPopup) {
+.controller("TakePictureController", function($scope, Camera, $ionicPopup, $ionicHistory) {
     var confirmPopup = $ionicPopup.alert({
         title: 'INFORMATIE',
         template:  "Gelieve een foto te nemen van de brief die u ontving en deze door te sturen via de button vraag GRATIS juridisch advies.\n Wij bekijken dan wat wij voor u kunnen doen en nemen contact met u op. Alvast bedankt!"
@@ -538,4 +532,7 @@ angular.module('starter.controllers', [])
             console.log('You are not sure');
         }
     });
+    $scope.goBack = function() {
+        $ionicHistory.goBack();
+    }
 });
