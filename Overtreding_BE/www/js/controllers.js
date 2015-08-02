@@ -115,7 +115,7 @@ angular.module('starter.controllers', [])
     }
 })
 
-.controller("RightsController", function($scope, $ionicHistory, Rights, $http, $ionicPopup) {
+.controller("RightsController", function($scope, $ionicHistory, Rights, $http, $ionicPopup, Test) {
     $scope.items = Rights.alchRights();
     $scope.selected = 1;
     $scope.showAlch = function() {
@@ -131,29 +131,30 @@ angular.module('starter.controllers', [])
     };
 
     $scope.test = function() {
+
         // var url = 'http://localhost/overtreding_api/v1/test';
-        var url = 'http://www.martindzhonov.podserver.info/overtreding_api/v1/test';
-
-        $http.post(url, { params: { "test": "value1", "test2": "value2" } })
-        .success(function(data) {
-        })
-        .error(function(data) {
-            alert("ERROR");
-        });
-
-
-        $http.post(url,{'test': 'asdf'}).then(function(resp){
-            $ionicPopup.alert({
-                title: "Success",
-                template: resp
-            });
-            console.log(resp)
-        },function(err){
-            $ionicPopup.alert({
-                title: "Error",
-                template: err
-            });
-        });
+        // var url = 'http://www.martindzhonov.podserver.info/overtreding_api/v1/test';
+        //
+        // $http.post(url, { params: { "test": "value1", "test2": "value2" } })
+        // .success(function(data) {
+        // })
+        // .error(function(data) {
+        //     alert("ERROR");
+        // });
+        //
+        //
+        // $http.post(url,{'test': 'asdf'}).then(function(resp){
+        //     $ionicPopup.alert({
+        //         title: "Success",
+        //         template: resp
+        //     });
+        //     console.log(resp)
+        // },function(err){
+        //     $ionicPopup.alert({
+        //         title: "Error",
+        //         template: err
+        //     });
+        // });
     };
 
     $scope.goBack = function() {
@@ -356,71 +357,85 @@ angular.module('starter.controllers', [])
 
     $scope.calcSpeed = function() {
         var input = $scope.inputs.speed_driven;
+        var valid = true;
 
         if(isNaN(input)){
-            $scope.inputs.speed_corrected = "";
+            valid = false;
         }
         else{
             var speedDriven = parseInt(input);
             var speedCorrected = Formulas.getCorrectedSpeed(speedDriven);
             var speedLimit = (offense.speed_limit+1) * 10;
 
-            if(speedDriven > 10){
-                if(speedCorrected < speedLimit){
-                    $ionicPopup.alert({
-                        title: 'INFORMATIE',
-                        template: 'De gecorrigeerde snelheid kan niet lager zijn dan snelheidslimiet". Gelieve opnieuw te proberen.'
-                    });
-                    $scope.inputs.speed_corrected = "";
-                    $scope.inputs.speed_driven = "";
-                }
-                else{
-                    $scope.inputs.speed_corrected = speedCorrected;
-                }
+            if(speedCorrected < 10 || speedDriven < 10){
+                valid = false;
+            }
+            else if(speedCorrected <= speedLimit){
+                valid = false;
+                $ionicPopup.alert({
+                    title: 'INFORMATIE',
+                    template: 'De gecorrigeerde snelheid kan niet lager zijn dan snelheidslimiet". Gelieve opnieuw te proberen.'
+                });
+            }
+            if(valid){
+                $scope.inputs.speed_corrected = speedCorrected;
             }
         }
-
-        console.log($scope.inputs.speed_corrected === "");
-        var fieldName = Offenses.getFieldName(4, offense["type"]);
-        offense[fieldName] = parseInt($scope.inputs.speed_driven);
-        var fieldName = Offenses.getFieldName(5, offense["type"]);
-        offense[fieldName] = parseInt($scope.inputs.speed_corrected);
+        console.log(valid);
+        if(valid){
+            var fieldName = Offenses.getFieldName(4, offense["type"]);
+            offense[fieldName] = parseInt($scope.inputs.speed_driven);
+            var fieldName = Offenses.getFieldName(5, offense["type"]);
+            offense[fieldName] = parseInt($scope.inputs.speed_corrected);
+        }
+        else{
+            var fieldName = Offenses.getFieldName(4, offense["type"]);
+            offense[fieldName] = -1;
+            var fieldName = Offenses.getFieldName(5, offense["type"]);
+            offense[fieldName] = -1
+            $scope.inputs.speed_corrected = "";
+        }
     };
 
     $scope.calcSpeed2 = function() {
-        var speedDriven = $scope.inputs.speed_corrected;
+        var input = $scope.inputs.speed_corrected;
+        var valid = true;
 
-        if(isNaN(speedDriven)){
-            $scope.inputs.speed_driven = "";
+        if(isNaN(input)){
+            valid = false;
         }
         else{
-            speedDriven = parseInt(speedDriven);
-            if(speedDriven > 10){
-                if(speedDriven < ((offense.speed_limit+1) * 10)){
-                    $ionicPopup.alert({
-                        title: 'INFORMATIE',
-                        template: 'De gecorrigeerde snelheid kan niet lager zijn dan snelheidslimiet". Gelieve opnieuw te proberen.'
-                    });
-                    $scope.inputs.speed_corrected = "";
-                    $scope.inputs.speed_driven = "";
-                }
-                else{
-                    if(speedDriven <= 100){
-                        $scope.inputs.speed_driven = speedDriven + 6;
-                    }
-                    else{
-                        $scope.inputs.speed_driven = Math.floor(speedDriven + 0.07*speedDriven);
-                    }
-                }
+            var speedCorrected = parseInt(input);
+            var speedDriven = Formulas.getDrivenSpeed(speedCorrected);
+            var speedLimit = (offense.speed_limit+1) * 10;
+            if(speedCorrected < 10){
+                valid = false;
             }
-            else {
-                $scope.inputs.speed_driven = "";
+            else if(speedCorrected <= speedLimit){
+                valid = false;
+                $ionicPopup.alert({
+                    title: 'INFORMATIE',
+                    template: 'De gecorrigeerde snelheid kan niet lager zijn dan snelheidslimiet". Gelieve opnieuw te proberen.'
+                });
+            }
+            if(valid){
+                $scope.inputs.speed_driven = speedDriven;
             }
         }
-        var fieldName = Offenses.getFieldName(4, offense["type"]);
-        offense[fieldName] = parseInt($scope.inputs.speed_driven);
-        var fieldName = Offenses.getFieldName(5, offense["type"]);
-        offense[fieldName] = parseInt($scope.inputs.speed_corrected);
+        console.log(valid);
+        if(valid){
+            var fieldName = Offenses.getFieldName(4, offense["type"]);
+            offense[fieldName] = parseInt($scope.inputs.speed_driven);
+            var fieldName = Offenses.getFieldName(5, offense["type"]);
+            offense[fieldName] = parseInt($scope.inputs.speed_corrected);
+        }
+        else{
+            var fieldName = Offenses.getFieldName(4, offense["type"]);
+            offense[fieldName] = -1;
+            var fieldName = Offenses.getFieldName(5, offense["type"]);
+            offense[fieldName] = -1
+            $scope.inputs.speed_driven = "";
+        }
     };
 
     $scope.search = function() {
@@ -496,13 +511,18 @@ angular.module('starter.controllers', [])
     };
 })
 
-.controller("ResultDetailController", function($scope, $ionicHistory, $stateParams, $ionicPopup, Offenses, ResultTexts, FinesCalculator) {
+.controller("ResultDetailController", function($scope, $ionicHistory, $stateParams, $ionicPopup, Offenses, ResultTexts, FinesCalculator, Texts2) {
+
     var titles = ["ONMIDDELLIJKE INNING", "MINNELIJKE SCHIKKING", "BEVEL TOT BETALING/RECHTBANK"];
     $scope.titles = titles;
 
     var offense = Offenses.findById($stateParams.offenseId);
     var offenseDisplayId = parseInt($stateParams.offenseId) + 1;
-
+    Texts2.getTexts(offense).then(function(res){
+        for (var i = 0; i < res.length; i++) {
+            console.log(res.item(i).body);
+        }
+    });
     $scope.offenseId = offenseDisplayId;
     $scope.offenseType = offense.type;
 

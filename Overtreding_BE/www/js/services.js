@@ -16,6 +16,75 @@ angular.module('starter.services', [])
     }
   }
 }])
+.factory('Texts2', function($cordovaSQLite, FinesCalculator){
+    var arr = [];
+    db = window.openDatabase("test2", "1.0", "Test DB", 1000000);
+    return {
+        getTexts: function(offense) {
+            // var query = "SELECT * from Rights where type = 1";
+            // return $cordovaSQLite.execute(db, query, []).then(function(res){
+            //     arr = res.rows;
+            //     return arr;
+            // }, function(err){
+            //     console.error(err);
+            // });
+            switch (offense.type) {
+                case "Speed":
+                var query = "SELECT * FROM Texts a INNER JOIN Speed b ON a.id=b.text_id_1 OR a.id=b.text_id_2 OR a.id=b.text_id_3 WHERE b.exceed = ? AND b.road = ?";
+                var exceed = FinesCalculator.calculateExceed(offense.speed_limit, offense.speed_corrected);
+                return $cordovaSQLite.execute(db, query, [exceed, offense.road]).then(function(res){
+                    arr = res.rows;
+                    return arr;
+                }, function(err){
+                    console.error(err);
+                });
+                break;
+                case "Alchohol":
+                var query = "SELECT * FROM Texts a INNER JOIN Alchohol b ON a.id=b.text_id_1 OR a.id=b.text_id_2 OR a.id=b.text_id_3 WHERE b.intoxication=?";
+                return $cordovaSQLite.execute(db, query, [offense.intoxication]).then(function(res){
+                    arr = res.rows;
+                    return arr;
+                }, function(err){
+                    console.error(err);
+                });
+                break;
+                case "Drugs":
+                var query = "SELECT * FROM Texts a INNER JOIN Alchohol b ON a.id=b.text_id_1 OR a.id=b.text_id_2 OR a.id=b.text_id_3 WHERE b.intoxication=?";
+                return $cordovaSQLite.execute(db, query, [offense.intoxication]).then(function(res){
+                    arr = res.rows;
+                    return arr;
+                }, function(err){
+                    console.error(err);
+                });
+                break;
+                case "Other":
+                var query = "SELECT * FROM Texts a INNER JOIN Alchohol b ON a.id=b.text_id_1 OR a.id=b.text_id_2 OR a.id=b.text_id_3 WHERE b.intoxication=?";
+                return $cordovaSQLite.execute(db, query, [offense.intoxication]).then(function(res){
+                    arr = res.rows;
+                    return arr;
+                }, function(err){
+                    console.error(err);
+                });
+                break;
+            }
+        }
+    }
+})
+.factory('Test', function($cordovaSQLite){
+    var texts = [];
+    db = window.openDatabase("test2", "1.0", "Test DB", 1000000);
+    return {
+        getArr: function() {
+            var query = "SELECT * from Rights where type = 1";
+            return $cordovaSQLite.execute(db, query, []).then(function(res){
+                arr = res.rows;
+                return arr;
+            }, function(err){
+                console.error(err);
+            });
+        }
+    }
+})
 .factory('Questions', function($cordovaSQLite) {
     return {
         getQuestions: function(name) {
@@ -605,6 +674,14 @@ angular.module('starter.services', [])
                 else{
                     return Math.floor(speedDriven - 0.06*speedDriven);
                 }
+        },
+        getDrivenSpeed: function(speedCorrected){
+            if(speedCorrected <= 100){
+                return speedCorrected + 6;
+            }
+            else{
+                return Math.floor(speedCorrected + 0.06*speedCorrected);
+            }
         }
     }
     function calc1(y){
@@ -642,6 +719,7 @@ angular.module('starter.services', [])
 .factory('ExceptionsService', function($cordovaSQLite, Offenses, FinesCalculator){
     var fines = [];
     var offenses = [];
+    var texts = [];
     return{
         qualifyOI: function() {
             offenses = Offenses.all();
@@ -715,18 +793,14 @@ angular.module('starter.services', [])
     }
 })
 .factory('ZipCodes', ['$q', function() {
-  return {
-    getNameForZipCode: function(code) {
-
-
-for (var i = 0; i < zipcodes.length; i++) {
-    if(zipcodes[i]["zip"] === code){
-        return zipcodes[i]["city"] + " - " + code;
-        // return code + " - " + zipcodes[i]["city"];
+    return {
+        getNameForZipCode: function(code) {
+            for (var i = 0; i < zipcodes.length; i++) {
+                if(zipcodes[i]["zip"] === code){
+                    return zipcodes[i]["city"] + " - " + code;
+                }
+            }
+            return code;
+        }
     }
-}
-
-return code;
-}
-}
 }])
