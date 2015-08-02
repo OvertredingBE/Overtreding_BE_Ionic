@@ -30,7 +30,7 @@ angular.module('starter.services', [])
             // });
             switch (offense.type) {
                 case "Speed":
-                var query = "SELECT * FROM Texts a INNER JOIN Speed b ON a.id=b.text_id_1 OR a.id=b.text_id_2 OR a.id=b.text_id_3 WHERE b.exceed = ? AND b.road = ?";
+                var query = "SELECT * FROM Texts a INNER JOIN Speed b ON a.id=b.text_id_1 OR a.id=b.text_id_2 OR a.id=b.text_id_3 WHERE b.exceed = ? AND b.road = ? ORDER BY CASE WHEN a.id=b.text_id_1 THEN 1 WHEN a.id=b.text_id_2 THEN 2 ELSE 3 END";
                 var exceed = FinesCalculator.calculateExceed(offense.speed_limit, offense.speed_corrected);
                 return $cordovaSQLite.execute(db, query, [exceed, offense.road]).then(function(res){
                     arr = res.rows;
@@ -40,9 +40,8 @@ angular.module('starter.services', [])
                 });
                 break;
                 case "Alchohol":
-                var query = "SELECT * FROM Texts a INNER JOIN Alchohol b ON a.id=b.text_id_1 OR a.id=b.text_id_2 OR a.id=b.text_id_3 WHERE b.intoxication=?  Order by case when a.id=b.text_id_1 then 1 when a.id=b.text_id_2 then 2 else 3 end";
+                var query = "SELECT * FROM Texts a INNER JOIN Alchohol b ON a.id=b.text_id_1 OR a.id=b.text_id_2 OR a.id=b.text_id_3 WHERE b.intoxication=? ORDER BY CASE WHEN a.id=b.text_id_1 THEN 1 WHEN a.id=b.text_id_2 THEN 2 ELSE 3 END";
                 return $cordovaSQLite.execute(db, query, [offense.intoxication]).then(function(res){
-                    console.log("Querry succesfull");
                     arr = res.rows;
                     return arr;
                 }, function(err){
@@ -50,8 +49,8 @@ angular.module('starter.services', [])
                 });
                 break;
                 case "Drugs":
-                var query = "SELECT * FROM Texts a INNER JOIN Alchohol b ON a.id=b.text_id_1 OR a.id=b.text_id_2 OR a.id=b.text_id_3 WHERE b.intoxication=?";
-                return $cordovaSQLite.execute(db, query, [offense.intoxication]).then(function(res){
+                var query = "SELECT * FROM Texts a INNER JOIN Drugs b ON a.id=b.text_id_1 OR a.id=b.text_id_2 OR a.id=b.text_id_3 ORDER BY CASE WHEN a.id=b.text_id_1 THEN 1 WHEN a.id=b.text_id_2 THEN 2 ELSE 3 END";
+                return $cordovaSQLite.execute(db, query, []).then(function(res){
                     arr = res.rows;
                     return arr;
                 }, function(err){
@@ -59,7 +58,7 @@ angular.module('starter.services', [])
                 });
                 break;
                 case "Other":
-                var query = "SELECT * FROM Texts a INNER JOIN Alchohol b ON a.id=b.text_id_1 OR a.id=b.text_id_2 OR a.id=b.text_id_3 WHERE b.intoxication=?";
+                var query = "SELECT * FROM Texts a INNER JOIN Alchohol b ON a.id=b.text_id_1 OR a.id=b.text_id_2 OR a.id=b.text_id_3 WHERE b.intoxication=? ORDER BY CASE WHEN a.id=b.text_id_1 THEN 1 WHEN a.id=b.text_id_2 THEN 2 ELSE 3 END";
                 return $cordovaSQLite.execute(db, query, [offense.intoxication]).then(function(res){
                     arr = res.rows;
                     return arr;
