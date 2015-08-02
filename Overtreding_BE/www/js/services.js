@@ -40,8 +40,9 @@ angular.module('starter.services', [])
                 });
                 break;
                 case "Alchohol":
-                var query = "SELECT * FROM Texts a INNER JOIN Alchohol b ON a.id=b.text_id_1 OR a.id=b.text_id_2 OR a.id=b.text_id_3 WHERE b.intoxication=?";
+                var query = "SELECT * FROM Texts a INNER JOIN Alchohol b ON a.id=b.text_id_1 OR a.id=b.text_id_2 OR a.id=b.text_id_3 WHERE b.intoxication=?  Order by case when a.id=b.text_id_1 then 1 when a.id=b.text_id_2 then 2 else 3 end";
                 return $cordovaSQLite.execute(db, query, [offense.intoxication]).then(function(res){
+                    console.log("Querry succesfull");
                     arr = res.rows;
                     return arr;
                 }, function(err){

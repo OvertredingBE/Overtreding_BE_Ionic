@@ -520,7 +520,7 @@ angular.module('starter.controllers', [])
     var offenseDisplayId = parseInt($stateParams.offenseId) + 1;
     Texts2.getTexts(offense).then(function(res){
         for (var i = 0; i < res.length; i++) {
-            console.log(res.item(i).body);
+            console.log("\n" + "ID: " + res.item(i).id + "\n" + res.item(i).body);
         }
     });
     $scope.offenseId = offenseDisplayId;
