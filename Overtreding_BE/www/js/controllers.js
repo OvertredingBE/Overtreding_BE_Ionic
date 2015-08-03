@@ -228,7 +228,7 @@ angular.module('starter.controllers', [])
     }
 })
 
-.controller("CalcFineController", function($scope, $ionicHistory, $ionicPopup, $location, Offenses, Questions, Others, TranslateService, Formulas, Others2) {
+.controller("CalcFineController", function($scope, $ionicHistory, $ionicPopup, $location, Offenses, Questions, TranslateService, Formulas, Others2) {
     $scope.offenses = [];
     $scope.searchResults = [];
     $scope.inputs = {};
@@ -453,7 +453,6 @@ angular.module('starter.controllers', [])
         // $scope.searchResults = Others.searchOthers(searchArr);
         Others2.searchOthers(searchArr[0]).then(function(res){
             $scope.spinnerShown = false;
-
             for (var i = 0; i < res.length; i++) {
                 $scope.searchResults.push({
                     id: res.item(i).id,
@@ -463,7 +462,7 @@ angular.module('starter.controllers', [])
             if(res.length === 0){
                 $scope.spinnerShown = true;
 
-                $scope.searchMessage = "No results found";
+                $scope.searchMessage = "Er is geen resultaat voor uw zoekopdracht. Gelieve opnieuw te proberen met andere trefwoorden";
             }
         });
     };
@@ -511,28 +510,24 @@ angular.module('starter.controllers', [])
 .controller("ResultController", function($scope, $ionicHistory, $ionicPopup, $location, Offenses, ExceptionsService, FinesCalculator, Texts2, ExceptionTexts) {
     var offenses = Offenses.all();
     $scope.offenses = offenses;
-    var texts = [];
-    var qualifyOI = ExceptionsService.qualifyOI();
 
+    var qualifyOI = ExceptionsService.qualifyOI();
     var qualifyMS = ExceptionsService.qualifyMS();
 
     for (var i = 0; i < offenses.length; i++) {
         var offense  = offenses[i];
+        var texts = [];
         Texts2.getTexts(offense).then(function(res){
             for (var i = 0; i < res.length; i++) {
                 console.log(res.item(i).body);
                 texts.push(res.item(i).body);
-                // texts.push(res.item(i).body);
-                // console.log("\n" + "ID: " + res.item(i).id + "\n" + res.item(i).body);
             }
             ExceptionTexts.getExceptionTexts().then(function(res2){
                 for (var i = 0; i < res2.length; i++) {
-                    // console.log(res2.item(i).body);
                     if(texts[1] === res2.item(i).body){
-                        qualifyMS = false;
                         console.log("Exception found");
+                        qualifyMS = false;
                     }
-                    // console.log("\n" + "ID: " + res.item(i).id + "\n" + res.item(i).body);
                 }
             });
         });
@@ -555,7 +550,7 @@ angular.module('starter.controllers', [])
     };
 })
 
-.controller("ResultDetailController", function($scope, $ionicHistory, $stateParams, $ionicPopup, Offenses, ResultTexts, FinesCalculator, Texts2, Exceptions) {
+.controller("ResultDetailController", function($scope, $ionicHistory, $stateParams, $ionicPopup, Offenses, FinesCalculator, Texts2, Exceptions) {
     $scope.items = [];
     var titles = ["ONMIDDELLIJKE INNING", "MINNELIJKE SCHIKKING", "BEVEL TOT BETALING/RECHTBANK"];
     $scope.titles = titles;
@@ -566,8 +561,6 @@ angular.module('starter.controllers', [])
     Texts2.getTexts(offense).then(function(res){
         for (var i = 0; i < res.length; i++) {
             texts.push(replaceFines(res.item(i).body, fines));
-
-            // texts.push(res.item(i).body);
             // console.log("\n" + "ID: " + res.item(i).id + "\n" + res.item(i).body);
         }
         Exceptions.evaluateConditionals(texts, offense);
