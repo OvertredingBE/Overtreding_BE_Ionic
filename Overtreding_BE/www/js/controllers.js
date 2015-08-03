@@ -115,7 +115,7 @@ angular.module('starter.controllers', [])
     }
 })
 
-.controller("RightsController", function($scope, $ionicHistory, Rights, $http, $ionicPopup) {
+.controller("RightsController", function($scope, $ionicHistory, Rights, $http, $ionicPopup, Others2) {
     $scope.items = Rights.alchRights();
     $scope.selected = 1;
     $scope.showAlch = function() {
@@ -131,7 +131,11 @@ angular.module('starter.controllers', [])
     };
 
     $scope.test = function() {
-
+        Others2.searchOthers("bevel").then(function(res){
+            for (var i = 0; i < res.length; i++) {
+                console.log(res.item(i).description);
+            }
+        });
         // var url = 'http://localhost/overtreding_api/v1/test';
         // var url = 'http://www.martindzhonov.podserver.info/overtreding_api/v1/test';
         //
@@ -176,7 +180,7 @@ angular.module('starter.controllers', [])
         }
         if(counter != 4){
             $ionicPopup.alert({
-                title: 'Fout',
+                title: 'FOUT',
                 template: 'Gelieve alle verplichte velden in te vullen (*)'
             });
         }
@@ -201,7 +205,7 @@ angular.module('starter.controllers', [])
             }
             else{
                 $ionicPopup.alert({
-                    title: 'Fout.',
+                    title: 'FOUT',
                     template: 'Gelieve een geldig e-mail adres in te vullen.'
                 });
             }
@@ -224,7 +228,7 @@ angular.module('starter.controllers', [])
     }
 })
 
-.controller("CalcFineController", function($scope, $ionicHistory, $ionicPopup, $location, Offenses, Questions, Others, TranslateService, Formulas) {
+.controller("CalcFineController", function($scope, $ionicHistory, $ionicPopup, $location, Offenses, Questions, Others, TranslateService, Formulas, Others2) {
     $scope.offenses = [];
     $scope.searchResults = [];
     $scope.inputs = {};
@@ -313,7 +317,7 @@ angular.module('starter.controllers', [])
         }
         else{
             $ionicPopup.alert({
-                title: 'INFO',
+                title: 'INFORMATIE',
                 template: 'Gelieve alle velden van een antwoord te voorzien'
             });
         }
@@ -350,7 +354,7 @@ angular.module('starter.controllers', [])
         }
         else{
             $ionicPopup.alert({
-                title: 'INFO',
+                title: 'INFORMATIE',
                 template: 'Gelieve alle velden van een antwoord te voorzien'
             });
         }
@@ -445,7 +449,18 @@ angular.module('starter.controllers', [])
         var searchWords = $scope.inputs.searchWord;
         searchWords = searchWords.toLowerCase();
         var searchArr = searchWords.split(',');
-        $scope.searchResults = Others.searchOthers(searchArr);
+        // $scope.searchResults = Others.searchOthers(searchArr);
+        Others2.searchOthers(searchArr[0]).then(function(res){
+            for (var i = 0; i < res.length; i++) {
+                $scope.searchResults.push({
+                    id: res.item(i).id,
+                    degree: res.item(i).degree,
+                    description: res.item(i).description});
+            }
+            if(res.length === 0){
+                $scope.searchMessage = "No results found";
+            }
+        });
     };
 
     $scope.otherTapped = function(item) {
@@ -586,7 +601,8 @@ angular.module('starter.controllers', [])
     }
 })
 
-.controller("TakePictureController", function($scope, Camera, $ionicPopup, $ionicHistory) {
+.controller("TakePictureController", function($scope, Camera, $ionicPopup, $ionicHistory, $location) {
+    $scope.src = "";
     var confirmPopup = $ionicPopup.alert({
         title: 'INFORMATIE',
         template:  "Gelieve een foto te nemen van de brief die u ontving en deze door te sturen via de button vraag GRATIS juridisch advies.\n Wij bekijken dan wat wij voor u kunnen doen en nemen contact met u op. Alvast bedankt!"
@@ -603,6 +619,30 @@ angular.module('starter.controllers', [])
             console.log('You are not sure');
         }
     });
+    $scope.goToContact = function(){
+        if($scope.src === ""){
+            var confirmPopup = $ionicPopup.alert({
+                title: 'INFORMATIE',
+                template:  "Gelieve een foto te nemen van de brief die u ontving en deze door te sturen via de button vraag GRATIS juridisch advies.\n Wij bekijken dan wat wij voor u kunnen doen en nemen contact met u op. Alvast bedankt!"
+            });
+            confirmPopup.then(function(res) {
+                if(res) {
+                    Camera.getPicture().then(function(imageURI) {
+                        $scope.src = imageURI;
+                        console.log(imageURI);
+                    }, function(err) {
+                        console.log(err);
+                    });
+                } else {
+                    console.log('You are not sure');
+                }
+            });
+        }
+        else{
+            $location.path("/contact");
+        }
+        console.log($scope.src);
+    }
     $scope.goBack = function() {
         $ionicHistory.goBack();
     }

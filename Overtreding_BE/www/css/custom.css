@@ -10,13 +10,16 @@
     color:white;
 }
 
+.textarea-custom-2{
+    height: 25px;
+}
 .button-underline{
-    font-size: 16px;
+    font-size: 15px;
     text-align: left;
 }
 
 .item-noline, .item-underline{
-    font-size: 15px;
+    font-size: 14px;
 }
 .icon-back{
     height: 25px;
@@ -101,7 +104,7 @@
 }
 .text-undeline{
     margin-bottom: 10px;
-    margin-top: 15px;
+    margin-top: 10px;
     padding:5px;
     border: 1px solid white;
     border-top: none;

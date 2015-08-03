@@ -586,6 +586,22 @@ angular.module('starter.services', [])
         }
     };
 })
+.factory('Others2', function($cordovaSQLite) {
+    var arr = [];
+    db = window.openDatabase("test2", "1.0", "Test DB", 1000000);
+    return {
+        searchOthers: function(tag){
+            var query = "SELECT * FROM Other a INNER JOIN Other_Tags b ON a.id = b.offense_id WHERE b.tag_name=?";
+            // var query = "SELECT * FROM Texts a INNER JOIN Speed b ON a.id=b.text_id_1 OR a.id=b.text_id_2 OR a.id=b.text_id_3";
+            return $cordovaSQLite.execute(db, query, [tag]).then(function(res){
+                arr = res.rows;
+                return arr;
+            }, function(err){
+                console.error(err);
+            });
+        }
+    }
+})
 .factory('Others', function($cordovaSQLite) {
     var others = [];
     return {
@@ -776,7 +792,7 @@ angular.module('starter.services', [])
                 return speedCorrected + 6;
             }
             else{
-                return Math.floor(speedCorrected + 0.06*speedCorrected);
+                return Math.ceil(speedCorrected + 0.06*speedCorrected);
             }
         }
     }
