@@ -318,16 +318,16 @@ angular.module('starter.services', [])
             var qualifyMS = ExceptionsService.qualifyMS();
             console.log("Qualify MS: " + qualifyMS);
 
-            console.log("------EXCEPTIONS TEXTS-----");
-            ExceptionTexts.getExceptionTexts().then(function(res){
-                for (var i = 0; i < res.length; i++) {
-                    console.log(res.item(i).body);
-                    if(texts[1] === res.item(i).body){
-                        console.log("Exception found");
-                    }
-                    // console.log("\n" + "ID: " + res.item(i).id + "\n" + res.item(i).body);
-                }
-            });
+            // console.log("------EXCEPTIONS TEXTS-----");
+            // ExceptionTexts.getExceptionTexts().then(function(res){
+            //     for (var i = 0; i < res.length; i++) {
+            //         console.log(res.item(i).body);
+            //         if(texts[1] === res.item(i).body){
+            //             console.log("Exception found");
+            //         }
+            //         // console.log("\n" + "ID: " + res.item(i).id + "\n" + res.item(i).body);
+            //     }
+            // });
 
         }
     }

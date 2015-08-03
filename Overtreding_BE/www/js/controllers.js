@@ -487,25 +487,47 @@ angular.module('starter.controllers', [])
     }
 })
 
-.controller("ResultController", function($scope, $ionicHistory, $ionicPopup, $location, Offenses, ExceptionsService, FinesCalculator) {
+.controller("ResultController", function($scope, $ionicHistory, $ionicPopup, $location, Offenses, ExceptionsService, FinesCalculator, Texts2, ExceptionTexts) {
     var offenses = Offenses.all();
     $scope.offenses = offenses;
+    var texts = [];
+    var qualifyOI = ExceptionsService.qualifyOI();
 
-    // var qualifyOI = ExceptionsService.qualifyOI();
-    //
-    // var qualifyMS = ExceptionsService.qualifyMS();
-    //
-    // if(qualifyOI && qualifyMS){
-    //     $scope.message = "Maak uw keuze uit de onderstaande samengestelde overtredingen en ontdek welke gevolgen elke overtreding met zich meebrengt.\n Wenst u graag meer informatie over deze overtredingen, aarzel niet en vraag GRATIS juridisch advies aan via onderstaande button.";
-    // }
-    // if(!qualifyMS){
-    //     $scope.message = "De door u samengestelde overtredingen zorgen ervoor dat u niet in aanmerking komt voor een onmiddellijke inning of minnnelijke schikking. U zal sowieso voor de rechtbank moeten verschijnen.\nMaak uw keuze uit de onderstaande samengestelde overtredingen en ontdek welke gevolgen elke overtreding met zih meebrengt.\nWelt u graag meer informatie over deze overtrendigen aarzel niet en vraag GRATIS juridisch advies aan via onderstaande button.";
-    // }
-    // if(!qualifyOI) {
-    //     if(qualifyMS){
-    //         $scope.message = "De door u samengestelde overtredingen zorgen ervoor dat u niet in aanmerking komt voor een onmiddellijke inning. U komt wel in aanmerking voor een minnelijke schikking.\nMaak uw keuze uit de onderstaande samengestelde overtredingen en ontdek welke gevolgen elke overtreding met zich meebrengt.\nWilt u meer informatie over de gevolgen die zich kunnen voordoen als u voor de rechtbank moet verschijnen, aarzel niet en vraag GRATIS juridisch advies aan via onderstaande button.";
-    //     }
-    // }
+    var qualifyMS = ExceptionsService.qualifyMS();
+
+    for (var i = 0; i < offenses.length; i++) {
+        var offense  = offenses[i];
+        Texts2.getTexts(offense).then(function(res){
+            for (var i = 0; i < res.length; i++) {
+                console.log(res.item(i).body);
+                texts.push(res.item(i).body);
+                // texts.push(res.item(i).body);
+                // console.log("\n" + "ID: " + res.item(i).id + "\n" + res.item(i).body);
+            }
+            ExceptionTexts.getExceptionTexts().then(function(res2){
+                for (var i = 0; i < res2.length; i++) {
+                    // console.log(res2.item(i).body);
+                    if(texts[1] === res2.item(i).body){
+                        qualifyMS = false;
+                        console.log("Exception found");
+                    }
+                    // console.log("\n" + "ID: " + res.item(i).id + "\n" + res.item(i).body);
+                }
+            });
+        });
+    }
+
+    if(qualifyOI && qualifyMS){
+        $scope.message = "Maak uw keuze uit de onderstaande samengestelde overtredingen en ontdek welke gevolgen elke overtreding met zich meebrengt.\n Wenst u graag meer informatie over deze overtredingen, aarzel niet en vraag GRATIS juridisch advies aan via onderstaande button.";
+    }
+    if(!qualifyMS){
+        $scope.message = "De door u samengestelde overtredingen zorgen ervoor dat u niet in aanmerking komt voor een onmiddellijke inning of minnnelijke schikking. U zal sowieso voor de rechtbank moeten verschijnen.\nMaak uw keuze uit de onderstaande samengestelde overtredingen en ontdek welke gevolgen elke overtreding met zih meebrengt.\nWelt u graag meer informatie over deze overtrendigen aarzel niet en vraag GRATIS juridisch advies aan via onderstaande button.";
+    }
+    if(!qualifyOI) {
+        if(qualifyMS){
+            $scope.message = "De door u samengestelde overtredingen zorgen ervoor dat u niet in aanmerking komt voor een onmiddellijke inning. U komt wel in aanmerking voor een minnelijke schikking.\nMaak uw keuze uit de onderstaande samengestelde overtredingen en ontdek welke gevolgen elke overtreding met zich meebrengt.\nWilt u meer informatie over de gevolgen die zich kunnen voordoen als u voor de rechtbank moet verschijnen, aarzel niet en vraag GRATIS juridisch advies aan via onderstaande button.";
+        }
+    }
 
     $scope.goBack = function() {
         $ionicHistory.goBack();
