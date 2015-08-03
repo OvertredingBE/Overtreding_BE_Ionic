@@ -189,7 +189,7 @@ angular.module('starter.services', [])
             offenses = Offenses.all();
             var finesAmounts = 0;
             var minSum = 0;
-            console.log("----------OI------------")
+            console.log("----------QUALIFY OI------------")
 
             for (var i = 0; i < offenses.length; i++) {
                 var offense = offenses[i];
@@ -206,6 +206,7 @@ angular.module('starter.services', [])
 
                 var currSum = 0;
                 var fines = FinesCalculator.getFines(offense);
+                console.log("Fine " + i);
                 for (var key in fines) {
                     if (fines.hasOwnProperty(key)) {
                         console.log(key + " -> " + fines[key]);
@@ -228,15 +229,16 @@ angular.module('starter.services', [])
             }
             return true;
       },
-      qualifyMS: function(offenses) {
+      qualifyMS: function() {
           offenses = Offenses.all();
           var finesAmounts = 0;
           var minSum = 0;
-          console.log("----------MS------------")
+          console.log("----------QUALIFY MS------------")
           for (var i = 0; i < offenses.length; i++) {
               var offense = offenses[i];
               var currSum = 0;
               var fines = FinesCalculator.getFines(offense);
+              console.log("Fine " + i);
               for (var key in fines) {
                   if (fines.hasOwnProperty(key)) {
                       console.log(key + " -> " + fines[key]);
@@ -250,6 +252,7 @@ angular.module('starter.services', [])
               }
               minSum += currSum;
           }
+          console.log("Fines sum: " + minSum);
           if(minSum > 1500){
               console.log("Sum over 1550");
               return false;
@@ -258,7 +261,7 @@ angular.module('starter.services', [])
       }
     }
 })
-.factory('Exceptions', function($cordovaSQLite, Offenses, FinesCalculator){
+.factory('Exceptions', function($cordovaSQLite, Offenses, FinesCalculator, ExceptionsService){
     var offenses = [];
 
     return{
@@ -293,8 +296,13 @@ angular.module('starter.services', [])
                 }
             }
         },
-        evaluateException: function(texts){
-            
+        evaluateExceptions: function(texts){
+            var qualifyOI = ExceptionsService.qualifyOI();
+            console.log("Qualify OI: " + qualifyOI);
+
+            var qualifyMS = ExceptionsService.qualifyMS();
+            console.log("Qualify MS: " + qualifyMS);
+
         }
     }
 })
