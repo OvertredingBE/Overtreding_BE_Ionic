@@ -58,7 +58,7 @@
         </div>
     </div>
     <div class="paddded-horizontal">
-        <div ng-class="$last ? 'item-subgroup-noline item-text-wrap' : 'item-subgroup-underline item-text-wrap'"
+        <div ng-class="$last ? 'item-subgroup-noline item-text-wrap fadein' : 'item-subgroup-underline item-text-wrap fadein'"
         ng-repeat="item in group.items"
         ng-click="subgroupTapped(item, group, $index); toggleBorder(group); changeShownGroup(groupIndex)"
         ng-show="groupShown(groupIndex)">

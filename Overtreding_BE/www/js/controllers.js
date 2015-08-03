@@ -118,6 +118,7 @@ angular.module('starter.controllers', [])
 .controller("RightsController", function($scope, $ionicHistory, Rights, $http, $ionicPopup, Others2) {
     $scope.items = Rights.alchRights();
     $scope.selected = 1;
+
     $scope.showAlch = function() {
         $scope.items = [];
         $scope.items = Rights.alchRights();
@@ -324,17 +325,25 @@ angular.module('starter.controllers', [])
     };
 
     $scope.removeOffense = function(index){
-
-        if(index === $scope.offenses.length -1){
-            offense = {type: ""};
-            $scope.offenses.splice($scope.offenses.length -1, 1, offense);
-            resetFields();
-            $scope.menuShown = true;
-        }
-        else{
-            $scope.offenses.splice(index, 1);
-            Offenses.remove(index);
-        }
+        var confirmPopup = $ionicPopup.confirm({
+            title: 'INFORMATIE',
+            template: 'Bent u zeker dat u deze overtreding wil verwijderen ?'
+        });
+        confirmPopup.then(function(res) {
+            if(res) {
+                if(index === $scope.offenses.length -1){
+                    offense = {type: ""};
+                    $scope.offenses.splice($scope.offenses.length -1, 1, offense);
+                    resetFields();
+                    $scope.menuShown = true;
+                }
+                else{
+                    $scope.offenses.splice(index, 1);
+                    Offenses.remove(index);
+                }            } else {
+                    console.log('You are not sure');
+                }
+        });
     };
 
     $scope.resultTapped = function() {
