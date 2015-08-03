@@ -115,7 +115,7 @@ angular.module('starter.controllers', [])
     }
 })
 
-.controller("RightsController", function($scope, $ionicHistory, Rights, $http, $ionicPopup, Test) {
+.controller("RightsController", function($scope, $ionicHistory, Rights, $http, $ionicPopup) {
     $scope.items = Rights.alchRights();
     $scope.selected = 1;
     $scope.showAlch = function() {
@@ -262,6 +262,7 @@ angular.module('starter.controllers', [])
     $scope.subgroupTapped = function(item, group, index) {
         $scope.questions[group.id].name =  item;
         var fieldName = Offenses.getFieldName(group.id, offense["type"]);
+        console.log(fieldName + " - " + index);
         offense[fieldName] = index;
         if(offense.type === "Speed"){
             if(offense.road === 0){
@@ -273,7 +274,7 @@ angular.module('starter.controllers', [])
                 $scope.questions[3].items.unshift("0,20 - 0,50 PROMILLE");
             }
             else{
-                offense[fieldName] = index + 1;
+                offense["intoxication"] = index + 1;
             }
         }
     };
@@ -511,23 +512,26 @@ angular.module('starter.controllers', [])
     };
 })
 
-.controller("ResultDetailController", function($scope, $ionicHistory, $stateParams, $ionicPopup, Offenses, ResultTexts, FinesCalculator, Texts2) {
-
+.controller("ResultDetailController", function($scope, $ionicHistory, $stateParams, $ionicPopup, Offenses, ResultTexts, FinesCalculator, Texts2, Exceptions) {
+    $scope.items = [];
     var titles = ["ONMIDDELLIJKE INNING", "MINNELIJKE SCHIKKING", "BEVEL TOT BETALING/RECHTBANK"];
     $scope.titles = titles;
-
+    var texts = [];
     var offense = Offenses.findById($stateParams.offenseId);
     var offenseDisplayId = parseInt($stateParams.offenseId) + 1;
     Texts2.getTexts(offense).then(function(res){
         for (var i = 0; i < res.length; i++) {
+            texts.push(res.item(i).body);
             console.log("\n" + "ID: " + res.item(i).id + "\n" + res.item(i).body);
         }
+        Exceptions.evaluateConditionals(texts, offense);
     });
     $scope.offenseId = offenseDisplayId;
     $scope.offenseType = offense.type;
 
-    $scope.items = [];
-    $scope.items = ResultTexts.getTexts(offense);
+    // texts[0] = "asdasda";
+    $scope.items = texts;
+    // $scope.items = ResultTexts.getTexts(offense);
 
 
     $scope.goBack = function() {
