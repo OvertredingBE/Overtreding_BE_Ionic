@@ -519,9 +519,12 @@ angular.module('starter.controllers', [])
     var texts = [];
     var offense = Offenses.findById($stateParams.offenseId);
     var offenseDisplayId = parseInt($stateParams.offenseId) + 1;
+    var fines = FinesCalculator.getFines(offense);
     Texts2.getTexts(offense).then(function(res){
         for (var i = 0; i < res.length; i++) {
-            texts.push(res.item(i).body);
+            texts.push(replaceFines(res.item(i).body, fines));
+
+            // texts.push(res.item(i).body);
             // console.log("\n" + "ID: " + res.item(i).id + "\n" + res.item(i).body);
         }
         Exceptions.evaluateConditionals(texts, offense);
@@ -534,7 +537,28 @@ angular.module('starter.controllers', [])
     $scope.items = texts;
     // $scope.items = ResultTexts.getTexts(offense);
 
+    function replaceFines(str, fines){
+        var asd = str;
+        for (var key in fines) {
+            if (fines.hasOwnProperty(key)) {
+                asd = replaceAll(asd, key, fines[key] + " EUR");
+            }
+        }
+        return asd;
+    }
 
+    function replaceAll(str, find, replace) {
+        var i = str.indexOf(find);
+        if (i > -1){
+            str = str.replace(find, replace);
+            i = i + replace.length;
+            var st2 = str.substring(i);
+            if(st2.indexOf(find) > -1){
+                str = str.substring(0,i) + replaceAll(st2, find, replace);
+            }
+        }
+        return str;
+    }
     $scope.goBack = function() {
         $ionicHistory.goBack();
     }

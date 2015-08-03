@@ -261,7 +261,22 @@ angular.module('starter.services', [])
       }
     }
 })
-.factory('Exceptions', function($cordovaSQLite, Offenses, FinesCalculator, ExceptionsService){
+.factory('ExceptionTexts', function($cordovaSQLite){
+    var arr = [];
+    return{
+        getExceptionTexts: function(){
+            db = window.openDatabase("test2", "1.0", "Test DB", 1000000);
+            var query = "SELECT * FROM Texts WHERE id = 11 OR id = 15 OR id = 30 OR id = 31 OR id = 51 OR id = 59 OR id = 65";
+            return  $cordovaSQLite.execute(db, query, []).then(function(res){
+                arr = res.rows;
+                return arr;
+            }, function(err){
+                console.error(err);
+            });
+        }
+    }
+})
+.factory('Exceptions', function($cordovaSQLite, Offenses, FinesCalculator, ExceptionsService, ExceptionTexts){
     var offenses = [];
 
     return{
@@ -302,6 +317,17 @@ angular.module('starter.services', [])
 
             var qualifyMS = ExceptionsService.qualifyMS();
             console.log("Qualify MS: " + qualifyMS);
+
+            console.log("------EXCEPTIONS TEXTS-----");
+            ExceptionTexts.getExceptionTexts().then(function(res){
+                for (var i = 0; i < res.length; i++) {
+                    console.log(res.item(i).body);
+                    if(texts[1] === res.item(i).body){
+                        console.log("Exception found");
+                    }
+                    // console.log("\n" + "ID: " + res.item(i).id + "\n" + res.item(i).body);
+                }
+            });
 
         }
     }
