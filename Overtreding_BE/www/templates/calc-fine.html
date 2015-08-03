@@ -4,7 +4,7 @@
         <h1 class="title background-nav-bar">BOETE BEREKENEN</h1>
     </ion-header-bar>
 
-    <ion-content>
+    <ion-content class="has-subfooter">
 
         <div ng-repeat="offense in offenses track by $index">
             <div class="item-menu background-medium">OVERTREDING {{$index+1}}: {{offense.type | translateToDutch}}
@@ -98,7 +98,7 @@
 </ion-view>
 
 <ion-footer-bar class="bar-subfooter background-light" ng-click="createNewOffense()">
-    <div class="item-group-underline background-light">
+    <div class="item-group-underline background-light" style="margin-top:0px">
         VOEG EEN OVERTREDING TOE
         <img class="icon-right icon-small" src="img/plus.png" ng-click="removeOffense($index)"></img>
     </div>

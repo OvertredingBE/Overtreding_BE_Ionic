@@ -87,6 +87,8 @@
     height: 60px;
 }
 .fadein{
+    /*-webkit-transition:top linear 0.1s;
+    transition:top linear 0.1s;*/
 }
 .fadeout {
 }
@@ -98,7 +100,6 @@
 
 .fadeout.ng-hide-add,
 .fadein.ng-hide-remove.ng-hide-remove-active {
-
 }
 
 .button-footer{
