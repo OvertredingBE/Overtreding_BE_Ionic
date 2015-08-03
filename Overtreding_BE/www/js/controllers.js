@@ -444,6 +444,7 @@ angular.module('starter.controllers', [])
     };
 
     $scope.search = function() {
+        $scope.spinnerShown = true;
         $scope.searchResults.length = 0;
         $scope.questionsShown = false;
         var searchWords = $scope.inputs.searchWord;
@@ -451,6 +452,8 @@ angular.module('starter.controllers', [])
         var searchArr = searchWords.split(',');
         // $scope.searchResults = Others.searchOthers(searchArr);
         Others2.searchOthers(searchArr[0]).then(function(res){
+            $scope.spinnerShown = false;
+
             for (var i = 0; i < res.length; i++) {
                 $scope.searchResults.push({
                     id: res.item(i).id,
@@ -458,6 +461,8 @@ angular.module('starter.controllers', [])
                     description: res.item(i).description});
             }
             if(res.length === 0){
+                $scope.spinnerShown = true;
+
                 $scope.searchMessage = "No results found";
             }
         });
@@ -494,6 +499,7 @@ angular.module('starter.controllers', [])
         indexShown = 0;
         $scope.showSearch = false;
         $scope.showInput = false;
+        $scope.spinnerShown = false;
         $scope.questionsShown = false;
         $scope.searchResults.length = 0;
         $scope.inputs.speed_driven = "";

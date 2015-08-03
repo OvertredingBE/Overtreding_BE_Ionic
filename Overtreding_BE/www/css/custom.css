@@ -82,7 +82,10 @@
 .item-noline, .item-group-noline, .item-subgroup-noline, .button-home-noline{
     border:none;
 }
-
+.spinner-custom{
+    width: 60px;
+    height: 60px;
+}
 
 .button-footer{
     font-family: "AvenrirNext";
