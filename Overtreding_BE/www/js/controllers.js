@@ -388,7 +388,7 @@ angular.module('starter.controllers', [])
                 valid = false;
                 $ionicPopup.alert({
                     title: 'INFORMATIE',
-                    template: 'De gecorrigeerde snelheid kan niet lager zijn dan snelheidslimiet". Gelieve opnieuw te proberen.'
+                    template: 'De gecorrigeerde snelheid kan niet lager zijn dan snelheidslimiet. Gelieve opnieuw te proberen.'
                 });
             }
             if(valid){

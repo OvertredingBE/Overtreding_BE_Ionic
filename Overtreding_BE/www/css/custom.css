@@ -21,16 +21,28 @@
 .item-noline, .item-underline{
     font-size: 14px;
 }
+.icon-home{
+    width: 50%;
+    height: auto;
+    background-color: white;
+}
+.icon-home-container{
+    width: 100%;
+    height: auto;
+    background-color: white;
+    text-align: center;
+    padding: 15px 0px 10px 0px;
+}
 .icon-back{
     height: 25px;
     width: 25px;
 }
 
 .home-container{
+    margin-top: 25px;
     padding: 0px 15px 0px 15px;
     position: absolute;
     width: 100%;
-    top:250px;
 }
 
 .button-home-underline{
