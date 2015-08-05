@@ -108,7 +108,7 @@ angular.module('starter.controllers', [])
     });
 })
 
-.controller("HomeController", function($scope, $ionicPlatform, $ionicHistory, Offenses){
+.controller("HomeController", function($scope, $ionicPlatform, $ionicHistory, Offenses, $location){
     Offenses.clear();
 
     $scope.goBack = function() {
@@ -116,7 +116,7 @@ angular.module('starter.controllers', [])
     }
 })
 
-.controller("RightsController", function($scope, $ionicHistory, Rights, $http, $ionicPopup, Others2) {
+.controller("RightsController", function($scope, $ionicHistory, Rights, $http, $ionicPopup, Others2, $location, ContactService) {
     $scope.items = Rights.alchRights();
     $scope.selected = 1;
 
@@ -135,12 +135,17 @@ angular.module('starter.controllers', [])
     $scope.test = function() {
     };
 
+    $scope.goToContact = function(){
+        ContactService.setFunctionality("Rights");
+        $location.path("/contact");
+    };
+
     $scope.goBack = function() {
         $ionicHistory.goBack();
     }
 })
 
-.controller("ContactController", function($scope, $ionicHistory, $ionicPopup, $http, Offenses, ZipCodes) {
+.controller("ContactController", function($scope, $ionicHistory, $ionicPopup, $http, Offenses, ZipCodes, ContactService) {
     $scope.form = {};
 
     $scope.resultTapped = function() {
@@ -159,22 +164,39 @@ angular.module('starter.controllers', [])
             });
         }
         else{
-            if(validateEmail($scope.form.email)){
-                var url = 'http://www.martindzhonov.podserver.info/overtreding_api/v1/test';
+            // if(validateEmail($scope.form.email)){
+                var url = 'http://www.martindzhonov.podserver.info/overtreding_api/v1/email2';
                 var data = $scope.form;
+                var functionalityTypeStr = ContactService.getFunctionality();
+                switch (functionalityTypeStr) {
+                    case "CalcFine":
+                        var offenses = Offenses.parsed();
+                        break;
+                    default:
 
-                $http.post(url, data).then(function (res){
-                    $ionicPopup.alert({
-                        title: 'Bedankt voor uw aanvraag.',
-                        template: 'We nemen zo snel mogelijk contact met u op.'
-                    });                });
                 }
-                else{
-                    $ionicPopup.alert({
-                        title: 'FOUT',
-                        template: 'Gelieve een geldig e-mail adres in te vullen.'
-                    });
-                }
+                console.log(functionalityTypeStr);
+                var functionalityType = {functionality: functionalityTypeStr};
+                var offensesJson = {offenses: offenses};
+                var result={};
+                for(var key in data) result[key]=data[key];
+                for(var key in functionalityType) result[key]=functionalityType[key];
+                for(var key in offensesJson) result[key]=offensesJson[key];
+
+                $http.post(url, result).then(function (res){
+                    $scope.response = res.data;
+                    // $ionicPopup.alert({
+                    //     title: 'Bedankt voor uw aanvraag.',
+                    //     template: 'We nemen zo snel mogelijk contact met u op.'
+                    // });
+                });
+                // }
+                // else{
+                //     $ionicPopup.alert({
+                //         title: 'FOUT',
+                //         template: 'Gelieve een geldig e-mail adres in te vullen.'
+                //     });
+                // }
             }
 
             function validateEmail(email) {
@@ -194,7 +216,7 @@ angular.module('starter.controllers', [])
         }
     })
 
-.controller("CalcFineController", function($scope, $ionicHistory, $ionicPopup, $location, Offenses, Questions, TranslateService, Formulas, Others2) {
+.controller("CalcFineController", function($scope, $ionicHistory, $ionicPopup, $location, Offenses, Questions, TranslateService, Formulas, Others2, ContactService) {
     $scope.offenses = [];
     $scope.searchResults = [];
     $scope.inputs = {};
@@ -216,6 +238,7 @@ angular.module('starter.controllers', [])
         $scope.questionsShown = true;
 
         if(type === "Speed"){
+            $scope.questionsShown = true;
             $scope.showInput = true;
         }
         else{
@@ -480,7 +503,7 @@ angular.module('starter.controllers', [])
     };
 })
 
-.controller("ResultController", function($scope, $ionicHistory, $ionicPopup, $location, Offenses, ExceptionsService, FinesCalculator, Texts2, ExceptionTexts) {
+.controller("ResultController", function($scope, $ionicHistory, $ionicPopup, $location, Offenses, ExceptionsService, FinesCalculator, Texts2, ExceptionTexts, ContactService) {
     var offenses = Offenses.all();
     $scope.offenses = offenses;
 
@@ -518,12 +541,17 @@ angular.module('starter.controllers', [])
         }
     }
 
+    $scope.goToContact = function(){
+        ContactService.setFunctionality("CalcFine");
+        $location.path("/contact");
+    };
+
     $scope.goBack = function() {
         $ionicHistory.goBack();
     };
 })
 
-.controller("ResultDetailController", function($scope, $ionicHistory, $stateParams, $ionicPopup, Offenses, FinesCalculator, Texts2, Exceptions) {
+.controller("ResultDetailController", function($scope, $ionicHistory, $stateParams, $ionicPopup, Offenses, FinesCalculator, Texts2, Exceptions, $location, ContactService) {
     $scope.items = [];
     var titles = ["ONMIDDELLIJKE INNING", "MINNELIJKE SCHIKKING", "BEVEL TOT BETALING/RECHTBANK"];
     $scope.titles = titles;
@@ -542,9 +570,7 @@ angular.module('starter.controllers', [])
     $scope.offenseId = offenseDisplayId;
     $scope.offenseType = offense.type;
 
-    // texts[0] = "asdasda";
     $scope.items = texts;
-    // $scope.items = ResultTexts.getTexts(offense);
 
     function replaceFines(str, fines){
         var asd = str;
@@ -568,12 +594,18 @@ angular.module('starter.controllers', [])
         }
         return str;
     }
+
+    $scope.goToContact = function(){
+        ContactService.setFunctionality("CalcFine");
+        $location.path("/contact");
+    };
+
     $scope.goBack = function() {
         $ionicHistory.goBack();
     }
 })
 
-.controller("TakePictureController", function($scope, Camera, $ionicPopup, $ionicHistory, $location) {
+.controller("TakePictureController", function($scope, Camera, $ionicPopup, $ionicHistory, $location, ContactService) {
     $scope.src = "";
     var confirmPopup = $ionicPopup.alert({
         title: 'INFORMATIE',
@@ -611,6 +643,7 @@ angular.module('starter.controllers', [])
             });
         }
         else{
+            ContactService.setFunctionality("TakePicture");
             $location.path("/contact");
         }
         console.log($scope.src);

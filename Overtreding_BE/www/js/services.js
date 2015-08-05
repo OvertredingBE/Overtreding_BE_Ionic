@@ -2,6 +2,17 @@
 * Created by MartinDzhonov on 6/1/15.
 */
 angular.module('starter.services', [])
+.factory('ContactService', function($cordovaSQLite){
+    var functionalityType = "";
+    return{
+        setFunctionality: function(functionality){
+            functionalityType = functionality;
+        },
+        getFunctionality: function(){
+            return functionalityType;
+        }
+    }
+})
 .factory('Texts2', function($cordovaSQLite, FinesCalculator){
     var arr = [];
     db = window.openDatabase("test2", "1.0", "Test DB", 1000000);
@@ -11,6 +22,7 @@ angular.module('starter.services', [])
                 case "Speed":
                 var query = "SELECT * FROM Texts a INNER JOIN Speed b ON a.id=b.text_id_1 OR a.id=b.text_id_2 OR a.id=b.text_id_3 WHERE b.exceed = ? AND b.road = ? ORDER BY CASE WHEN a.id=b.text_id_1 THEN 1 WHEN a.id=b.text_id_2 THEN 2 ELSE 3 END";
                 var exceed = FinesCalculator.calculateExceed(offense.speed_limit, offense.speed_corrected);
+                console.log("Exceed: " + exceed);
                 return $cordovaSQLite.execute(db, query, [exceed, offense.road]).then(function(res){
                     arr = res.rows;
                     return arr;
@@ -349,12 +361,20 @@ angular.module('starter.services', [])
         }
     }
 })
-.factory('Offenses', function($cordovaSQLite) {
+.factory('Offenses', function($cordovaSQLite, TranslateService) {
     var offenses = [];
 
     return {
         all: function() {
             return offenses;
+        },
+        parsed: function(){
+            var offenses2 = [];
+            for (var i = 0; i < offenses.length; i++) {
+                var offense = offenses[i];
+                offenses2.push(TranslateService.parseOffense(offense));
+            }
+            return offenses2;
         },
         add: function(offense) {
             offenses.push(offense);
@@ -471,7 +491,7 @@ angular.module('starter.services', [])
             var diff = -1;
             if(offense["type"] === "Speed"){
                 speedLimit = (offense.speed_limit+1)*10;
-                diff = offense.speed_corrected - speedLimit;
+                diff = offense.speed_corrected - speedLimit-10;
             }
             var formulas = [
                 calc1(10) + " tot " + calc1(500),
@@ -518,7 +538,7 @@ angular.module('starter.services', [])
         return y + (x * z);
     };
 })
-.factory('TranslateService', function($cordovaSQLite){
+.factory('TranslateService', function($cordovaSQLite, Questions){
     return{
         dutchToEnglish: function(word) {
             var translations = {
@@ -527,17 +547,70 @@ angular.module('starter.services', [])
                 "DRUGS": "Drugs",
                 "ANDERE": "Other"
             };
-          return translations[word];
-      },
-      englishToDutch: function(word) {
-          var translations = {
-              "Speed": "SNELHEID",
-              "Alchohol": "ALCOHOL",
-              "Drugs": "DRUGS",
-              "Other": "ANDERE"
-          };
-        return translations[word];
-      }
+            return translations[word];
+        },
+        englishToDutch: function(word) {
+            var translations = {
+                "Speed": "SNELHEID",
+                "Alchohol": "ALCOHOL",
+                "Drugs": "DRUGS",
+                "Other": "ANDERE",
+                "Rights": "Uw rechten bij een politiecontrole",
+                "CalcFine": "Boete berekenen",
+                "TakePicture": "U ontving een brief"
+            };
+            return translations[word];
+        },
+        parseOffense: function(offense){
+            var strArr = [];
+            strArr.push(offense.type);
+            for (var key in offense) {
+                if (offense.hasOwnProperty(key)) {
+                    if(key === "licence"){
+                        var arr = ["IK BEZIT MIJN RIJBEWIJS MINDER DAN 2 JAAR", "IK BEZIT MIJN RIJBEWIJS LANGER DAN 2 JAAR"];
+                        strArr.push(arr[offense[key]]);
+                    }
+                    if(key === "age"){
+                        var arr = ["JONGER DAN 18 JAAR","18 JAAR OF OUDER"];
+                        strArr.push(arr[offense[key]]);
+                    }
+                    if(key === "road"){
+                        var arr = ["WOONERF, ZONE 30, SCHOOL, BEBOUWDE KOM", "ANDERE WEGEN"];
+                        strArr.push(arr[offense[key]]);
+                    }
+                    if(key === "speed_limit"){
+                        strArr.push("Snelheidslimiet: " + (offense[key]+1)*10);
+                    }
+                    if(key === "speed_driven"){
+                        strArr.push("Gereden snelheid: " + offense[key]);
+                    }
+                    if(key === "speed_corrected"){
+                        strArr.push("Gecorrigeerde snelheid: " + offense[key]);
+                    }
+                    if(key === "driver"){
+                        var arr = ["PROFESSIONELE BESTUURDER", "GEWONE BESTUURDER"]
+                        strArr.push(arr[offense[key]]);
+                    }
+                    if(key === "intoxication"){
+                        var arr = ["0,50 – 0,80 PROMILLE",
+                        "0,80 – 1,00 PROMILLE",
+                        "1,00 – 1,14 PROMILLE",
+                        "1,14 – 1,48 PROMILLE",
+                        "1,48 - ... PROMILLE",
+                        "WEIGERING ADEMTEST OF ANALYSE ZONDER WETTIGE REDEN",
+                        "DRONKENSCHAP",
+                        "EERDER BETRAPT OP ALCOHOLINTOXICATIE VAN MEER DAN 0,8 PROMILLE OF DRONKENSCHAP EN NU OPNIEUW BETRAPT OP ALCOHOLINTOXICATIE VAN MEERDAN 0,8 PROMILLE.",
+                        "EERDER BETRAPT OP ALCOHOLINTOXICATIE VAN MEER DAN 0,8 PROMILLE OF DRONKENSCHAP EN NU OPNIEUW BETRAPT OP DRONKENSCHAP"];
+                        strArr.push(arr[offense[key]]);
+                    }
+                    if(key === "blood_test"){
+                        var arr = ["U WORDT POSITIEF BEVONDEN OP DE AANWEZIGHEID VAN DRUGS IN UW BLOED", "U WEIGERT ZONDER WETTIGE REDEN DE SPEEKSELTEST OF ANALYSE"];
+                        strArr.push(arr[offense[key]]);
+                    }
+                }
+            }
+            return strArr;
+        }
     }
 })
 .factory('ZipCodes', ['$q', function() {
