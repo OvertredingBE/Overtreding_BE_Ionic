@@ -110,6 +110,7 @@ angular.module('starter.controllers', [])
 
 .controller("HomeController", function($scope, $ionicPlatform, $ionicHistory, Offenses){
     Offenses.clear();
+
     $scope.goBack = function() {
         $ionicHistory.goBack();
     }
@@ -132,34 +133,6 @@ angular.module('starter.controllers', [])
     };
 
     $scope.test = function() {
-        Others2.searchOthers("bevel").then(function(res){
-            for (var i = 0; i < res.length; i++) {
-                console.log(res.item(i).description);
-            }
-        });
-        // var url = 'http://localhost/overtreding_api/v1/test';
-        // var url = 'http://www.martindzhonov.podserver.info/overtreding_api/v1/test';
-        //
-        // $http.post(url, { params: { "test": "value1", "test2": "value2" } })
-        // .success(function(data) {
-        // })
-        // .error(function(data) {
-        //     alert("ERROR");
-        // });
-        //
-        //
-        // $http.post(url,{'test': 'asdf'}).then(function(resp){
-        //     $ionicPopup.alert({
-        //         title: "Success",
-        //         template: resp
-        //     });
-        //     console.log(resp)
-        // },function(err){
-        //     $ionicPopup.alert({
-        //         title: "Error",
-        //         template: err
-        //     });
-        // });
     };
 
     $scope.goBack = function() {
@@ -187,47 +160,39 @@ angular.module('starter.controllers', [])
         }
         else{
             if(validateEmail($scope.form.email)){
-                $ionicPopup.alert({
-                    title: 'Bedankt voor uw aanvraag.',
-                    template: 'We nemen zo snel mogelijk contact met u op.'
-                });
+                var url = 'http://www.martindzhonov.podserver.info/overtreding_api/v1/test';
+                var data = $scope.form;
 
-                var url = 'http://www.martindzhonov.podserver.info/overtreding_api/v1/email';
+                $http.post(url, data).then(function (res){
+                    $ionicPopup.alert({
+                        title: 'Bedankt voor uw aanvraag.',
+                        template: 'We nemen zo snel mogelijk contact met u op.'
+                    });                });
+                }
+                else{
+                    $ionicPopup.alert({
+                        title: 'FOUT',
+                        template: 'Gelieve een geldig e-mail adres in te vullen.'
+                    });
+                }
+            }
 
-                $http.post(url,{test: 'test'}).then(function(resp){console.log(resp)},function(err){console.log(err)});
-                //
-                // $http.post(url, {msg:'hello word!'}).
-                // success(function(data, status, headers, config) {
-                //     console.log(data);
-                // }).
-                // error(function(data, status, headers, config) {
-                //     console.log(status);
-                // });
+            function validateEmail(email) {
+                var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+                return re.test(email);
             }
-            else{
-                $ionicPopup.alert({
-                    title: 'FOUT',
-                    template: 'Gelieve een geldig e-mail adres in te vullen.'
-                });
-            }
+        };
+
+        $scope.getCity = function(){
+            var code = $scope.form.postcode;
+            var asd = ZipCodes.getNameForZipCode(code);
+            $scope.form.postcode = asd;
         }
 
-        function validateEmail(email) {
-            var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
-            return re.test(email);
+        $scope.goBack = function() {
+            $ionicHistory.goBack();
         }
-    };
-
-    $scope.goBack = function() {
-        $ionicHistory.goBack();
-    }
-
-    $scope.getCity = function(){
-        var code = $scope.form.postcode;
-        var asd = ZipCodes.getNameForZipCode(code);
-        $scope.form.postcode = asd;
-    }
-})
+    })
 
 .controller("CalcFineController", function($scope, $ionicHistory, $ionicPopup, $location, Offenses, Questions, TranslateService, Formulas, Others2) {
     $scope.offenses = [];
@@ -459,7 +424,7 @@ angular.module('starter.controllers', [])
         var searchWords = $scope.inputs.searchWord;
         searchWords = searchWords.toLowerCase();
         var searchArr = searchWords.split(',');
-        // $scope.searchResults = Others.searchOthers(searchArr);
+
         Others2.searchOthers(searchArr[0]).then(function(res){
             $scope.spinnerShown = false;
             for (var i = 0; i < res.length; i++) {
@@ -469,8 +434,7 @@ angular.module('starter.controllers', [])
                     description: res.item(i).description});
             }
             if(res.length === 0){
-                $scope.spinnerShown = true;
-
+                $scope.spinnerShown = false;
                 $scope.searchMessage = "Er is geen resultaat voor uw zoekopdracht. Gelieve opnieuw te proberen met andere trefwoorden";
             }
         });
@@ -482,11 +446,6 @@ angular.module('starter.controllers', [])
         offense.id = item.id;
         offense.degree = item.degree;
         $scope.questionsShown = true;
-    };
-
-    $scope.goBack = function() {
-        Offenses.clear();
-        $ionicHistory.goBack();
     };
 
     function addDummyOffense(){
@@ -514,6 +473,11 @@ angular.module('starter.controllers', [])
         $scope.inputs.speed_corrected = "";
         $scope.inputs.searchWord = "";
     }
+
+    $scope.goBack = function() {
+        Offenses.clear();
+        $ionicHistory.goBack();
+    };
 })
 
 .controller("ResultController", function($scope, $ionicHistory, $ionicPopup, $location, Offenses, ExceptionsService, FinesCalculator, Texts2, ExceptionTexts) {

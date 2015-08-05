@@ -41,7 +41,7 @@
 
         <div class="paddded-horizontal">
             <div class="item-subgroup-noline item-text-wrap" ng-show="searchResults.length == 0">{{searchMessage}}</div>
-            <div style="text-align:center"><ion-spinner class="spinner-custom" ng-show="spinnerShown" icon="spiral"></ion-spinner></div>
+            <!-- <div style="text-align:center"><ion-spinner class="spinner-custom" ng-show="spinnerShown" icon="spiral"></ion-spinner></div> -->
             <div ng-class="$last ? 'item-subgroup-noline item-text-wrap' : 'item-subgroup-underline item-text-wrap'"
             ng-repeat="item in searchResults track by $index"
             ng-click="otherTapped(item)">
@@ -74,7 +74,7 @@
                 GEREDEN SNELHEID
             </div>
             <div>
-                <textarea class="input-custom" ng-model="inputs.speed_driven" ng-change="calcSpeed()"></textarea>
+                <textarea class="input-custom" type="tel" ng-model="inputs.speed_driven" ng-change="calcSpeed()"></textarea>
                 <!-- <input class="input-custom" type="text" ng-model="inputs.speed_driven" ng-change="calcSpeed()"> -->
             </div>
             <div class="test-3">KM/H</div>
