@@ -322,7 +322,7 @@ angular.module('starter.services', [])
             if(difference > 10){
                 return 1;
             }
-            if(difference > 1){
+            if(difference >= 1){
                 return 0;
             }
             return - 1;

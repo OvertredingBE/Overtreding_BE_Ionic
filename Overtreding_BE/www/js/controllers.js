@@ -108,15 +108,11 @@ angular.module('starter.controllers', [])
     });
 })
 
-.controller("HomeController", function($scope, $ionicPlatform, $ionicHistory, Offenses, $location){
+.controller("HomeController", function($scope, Offenses){
     Offenses.clear();
-
-    $scope.goBack = function() {
-        $ionicHistory.goBack();
-    }
 })
 
-.controller("RightsController", function($scope, $ionicHistory, Rights, $http, $ionicPopup, Others2, $location, ContactService) {
+.controller("RightsController", function($scope, $ionicHistory, $location, Rights, ContactService) {
     $scope.items = Rights.alchRights();
     $scope.selected = 1;
 
@@ -145,7 +141,7 @@ angular.module('starter.controllers', [])
     }
 })
 
-.controller("ContactController", function($scope, $ionicHistory, $ionicPopup, $http, Offenses, ContactService,TranslateService, Utils) {
+.controller("ContactController", function($scope, $ionicHistory, $ionicPopup, $http, Offenses, ContactService, TranslateService, Utils) {
     $scope.form = {};
 
     $scope.resultTapped = function() {
@@ -203,7 +199,7 @@ angular.module('starter.controllers', [])
         }
     })
 
-.controller("CalcFineController", function($scope, $ionicHistory, $ionicPopup, $location, Offenses,Utils, Questions, TranslateService, Formulas, Others2, ContactService) {
+.controller("CalcFineController", function($scope, $ionicHistory, $ionicPopup, $location, Questions, Offenses, Utils, TranslateService, Formulas, Others2, ContactService) {
     $scope.offenses = [];
     $scope.searchResults = [];
     $scope.inputs = {};
@@ -491,7 +487,7 @@ angular.module('starter.controllers', [])
     };
 })
 
-.controller("ResultController", function($scope, $ionicHistory, $ionicPopup, $location, Offenses, CombinedFines, FinesCalculator, Texts, ExceptionTexts, ContactService) {
+.controller("ResultController", function($scope, $ionicHistory, $location, Offenses, CombinedFines, FinesCalculator, Texts, ExceptionTexts, ContactService) {
     var offenses = Offenses.all();
     $scope.offenses = offenses;
 
@@ -541,23 +537,23 @@ angular.module('starter.controllers', [])
 
 .controller("ResultDetailController", function($scope, $ionicHistory, $stateParams, $ionicPopup, Offenses, FinesCalculator,Utils, Texts, OffenseEvaluator, $location, ContactService) {
     $scope.items = [];
+    var texts = [];
     var titles = ["ONMIDDELLIJKE INNING", "MINNELIJKE SCHIKKING", "BEVEL TOT BETALING/RECHTBANK"];
     $scope.titles = titles;
-    var texts = [];
+
     var offense = Offenses.findById($stateParams.offenseId);
     var offenseDisplayId = parseInt($stateParams.offenseId) + 1;
+    $scope.offenseId = offenseDisplayId;
+    $scope.offenseType = offense.type;
+
     var fines = FinesCalculator.getFines(offense);
     Texts.getTexts(offense).then(function(res){
         for (var i = 0; i < res.length; i++) {
             texts.push(Utils.replaceFines(res.item(i).body, fines));
-            // console.log("\n" + "ID: " + res.item(i).id + "\n" + res.item(i).body);
         }
         OffenseEvaluator.evaluateOffense(texts, offense);
         OffenseEvaluator.evaluateCombined(texts);
     });
-    $scope.offenseId = offenseDisplayId;
-    $scope.offenseType = offense.type;
-
     $scope.items = texts;
 
     $scope.goToContact = function(){
@@ -570,7 +566,7 @@ angular.module('starter.controllers', [])
     }
 })
 
-.controller("TakePictureController", function($scope, Camera, $ionicPopup, $ionicHistory, $location, ContactService, Utils) {
+.controller("TakePictureController", function($scope, $ionicHistory, $ionicPopup, $location,Camera, ContactService, Utils) {
     $scope.src = "";
     var confirmPopup = $ionicPopup.alert({
         title: 'INFORMATIE',
