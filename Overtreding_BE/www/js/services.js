@@ -2,25 +2,7 @@
 * Created by MartinDzhonov on 6/1/15.
 */
 angular.module('starter.services', [])
-.factory('ContactService', function($cordovaSQLite){
-    var functionalityType = "";
-    var imageData = "";
-    return{
-        setFunctionality: function(functionality){
-            functionalityType = functionality;
-        },
-        getFunctionality: function(){
-            return functionalityType;
-        },
-        setImageData: function(data){
-            imageData = data;
-        },
-        getImageData: function(){
-            return imageData;
-        }
-    }
-})
-.factory('Texts', function($cordovaSQLite, FinesCalculator){
+.factory('Texts', function($cordovaSQLite, FinesCalculator, Formulas){
     var arr = [];
     db = window.openDatabase("test2", "1.0", "Test DB", 1000000);
     return {
@@ -28,7 +10,7 @@ angular.module('starter.services', [])
             switch (offense.type) {
                 case "Speed":
                 var query = "SELECT * FROM Texts a INNER JOIN Speed b ON a.id=b.text_id_1 OR a.id=b.text_id_2 OR a.id=b.text_id_3 WHERE b.exceed = ? AND b.road = ? ORDER BY CASE WHEN a.id=b.text_id_1 THEN 1 WHEN a.id=b.text_id_2 THEN 2 ELSE 3 END";
-                var exceed = FinesCalculator.calculateExceed(offense.speed_limit, offense.speed_corrected);
+                var exceed = Formulas.calculateExceed(offense.speed_limit, offense.speed_corrected);
                 console.log("Exceed: " + exceed);
                 return $cordovaSQLite.execute(db, query, [exceed, offense.road]).then(function(res){
                     arr = res.rows;
@@ -149,22 +131,8 @@ angular.module('starter.services', [])
       }
     }
 })
-.factory('ExceptionTexts', function($cordovaSQLite){
-    var arr = [];
-    return{
-        getExceptionTexts: function(){
-            db = window.openDatabase("test2", "1.0", "Test DB", 1000000);
-            var query = "SELECT * FROM Texts WHERE id = 11 OR id = 15 OR id = 30 OR id = 31 OR id = 51 OR id = 59 OR id = 65";
-            return  $cordovaSQLite.execute(db, query, []).then(function(res){
-                arr = res.rows;
-                return arr;
-            }, function(err){
-                console.error(err);
-            });
-        }
-    }
-})
-.factory('OffenseEvaluator', function($cordovaSQLite, Offenses, FinesCalculator, CombinedFines, ExceptionTexts){
+
+.factory('OffenseEvaluator', function($cordovaSQLite, Offenses, FinesCalculator, CombinedFines, ExceptionTexts, Formulas){
     var offenses = [];
     return{
         evaluateOffense: function(texts, offense) {
@@ -179,7 +147,7 @@ angular.module('starter.services', [])
             if(offense.licence === 0){
                 switch (offense.type) {
                     case "Speed":
-                    var exceed = FinesCalculator.calculateExceed(offense.speed_limit, offense.speed_corrected);
+                    var exceed = Formulas.calculateExceed(offense.speed_limit, offense.speed_corrected);
                     if(exceed >= 2){
                         texts[0] = "U komt niet in aanmerking voor een onmiddellijke inning.";
                         texts[1] = "U komt niet in aanmerking voor een minnelijke schikking.";
@@ -213,26 +181,6 @@ angular.module('starter.services', [])
     }
 })
 .factory('FinesCalculator', function($cordovaSQLite, Formulas) {
-    var calculateExceed =  function(speedLimit, speedDriven){
-        speedLimit = (speedLimit+1)*10;
-        var difference = speedDriven - speedLimit;
-        if(difference > 40){
-            return 4;
-        }
-        if(difference > 30){
-            return 3;
-        }
-        if(difference > 20){
-            return 2;
-        }
-        if(difference > 10){
-            return 1;
-        }
-        if(difference > 1){
-            return 0;
-        }
-        return - 1;
-    }
     return {
         getFines: function(offense) {
             var formulaIds = [];
@@ -266,7 +214,7 @@ angular.module('starter.services', [])
                 formulaIds.push(8);
                 break;
                 case "Speed":
-                var exceed = calculateExceed(offense.speed_limit, offense.speed_corrected);
+                var exceed = Formulas.calculateExceed(offense.speed_limit, offense.speed_corrected);
                 formulaIds.push(1);
                 formulaIds.push(2);
                 switch (exceed) {
@@ -314,56 +262,98 @@ angular.module('starter.services', [])
                 obj[key] = Formulas.getResultForFormula(formulaIds[i], offense);
             }
             return obj;
-        },
-        calculateExceed: calculateExceed
+        }
     }
 })
-.factory('Rights', function($cordovaSQLite) {
-    var alchRights = [];
-    var drugsRights = [];
-    db = window.openDatabase("test2", "1.0", "Test DB", 1000000);
-    var query = "SELECT * from Rights where type = 1";
-    $cordovaSQLite.execute(db, query, []).then(function(res){
-        if(res.rows.length > 0){
-            for(var i = 0; i < res.rows.length; i++){
-                drugsRights.push({id: res.rows.item(i).id, body: res.rows.item(i).body});
+.factory('Formulas', function($cordovaSQLite){
+    return{
+        getResultForFormula: function(formulaId, offense){
+            var diff = -1;
+            if(offense["type"] === "Speed"){
+                speedLimit = (offense.speed_limit+1)*10;
+                diff = offense.speed_corrected - speedLimit-10;
             }
-        }
-    }, function(err){
-        console.error(err);
-    });
-    query = "SELECT * from Rights where type = 0";
-    $cordovaSQLite.execute(db, query, []).then(function(res){
-        if(res.rows.length > 0){
-            for(var i = 0; i < res.rows.length; i++){
-                alchRights.push({id: res.rows.item(i).id, body: res.rows.item(i).body});
-            }
-        }
-    }, function(err){
-        console.error(err);
-    });
-
-    return {
-        alchRights: function() {
-            return alchRights;
+            var formulas = [
+                calc1(10) + " tot " + calc1(500),
+                calc2(25),
+                calc3(50, 10, diff),
+                calc3(60,10, diff),
+                calc3(50,5, diff),
+                calc3(60,5, diff),
+                calc1(25) + " tot " + calc1(500),
+                calc1(200) + " tot " + calc1(2000),
+                calc1(400) + " tot " + calc1(5000),
+                calc1(800) + " tot " + calc1(10000),
+                calc1(10) + " tot " + calc1(250),
+                calc1(20) + " tot " + calc1(250),
+                calc1(30) + " tot " + calc1(250),
+                calc1(40) + " tot " + calc1(250)
+                ];
+            return formulas[formulaId -1];
         },
-        drugRights: function() {
-            return drugsRights;
+        getCorrectedSpeed: function(speedDriven){
+                if(speedDriven <= 100){
+                    return speedDriven - 6;
+                }
+                else{
+                    return Math.floor(speedDriven - 0.06*speedDriven);
+                }
+        },
+        getDrivenSpeed: function(speedCorrected){
+            if(speedCorrected <= 100){
+                return speedCorrected + 6;
+            }
+            else{
+                return Math.ceil(speedCorrected + 0.064*speedCorrected);
+            }
+        },
+        calculateExceed: function(speedLimit, speedDriven){
+            speedLimit = (speedLimit+1)*10;
+            var difference = speedDriven - speedLimit;
+            if(difference > 40){
+                return 4;
+            }
+            if(difference > 30){
+                return 3;
+            }
+            if(difference > 20){
+                return 2;
+            }
+            if(difference > 10){
+                return 1;
+            }
+            if(difference > 1){
+                return 0;
+            }
+            return - 1;
         }
+    }
+    function calc1(y){
+        return y*6 + 100;
+    };
+    function calc2(y){
+        return y*6;;
+    };
+    function calc3(y,x,z){
+        return y + (x * z);
     };
 })
-.factory('Others2', function($cordovaSQLite) {
-    var arr = [];
-    db = window.openDatabase("test2", "1.0", "Test DB", 1000000);
-    return {
-        searchOthers: function(tag){
-            var query = "SELECT * FROM Other a INNER JOIN Other_Tags b ON a.id = b.offense_id WHERE b.tag_name=?";
-            return $cordovaSQLite.execute(db, query, [tag]).then(function(res){
-                arr = res.rows;
-                return arr;
-            }, function(err){
-                console.error(err);
-            });
+
+.factory('ContactService', function($cordovaSQLite){
+    var functionalityType = "";
+    var imageData = "";
+    return{
+        setFunctionality: function(functionality){
+            functionalityType = functionality;
+        },
+        getFunctionality: function(){
+            return functionalityType;
+        },
+        setImageData: function(data){
+            imageData = data;
+        },
+        getImageData: function(){
+            return imageData;
         }
     }
 })
@@ -394,21 +384,6 @@ angular.module('starter.services', [])
         },
         findById: function(offenseId){
             return offenses[offenseId];
-        },
-        validateOffense: function(offense){
-            var valid = true;
-            for (var key in offense) {
-                if (offense.hasOwnProperty(key)) {
-                    if(key === "type"){
-
-                    }else{
-                        if(offense[key] === -1){
-                            valid = false;
-                        }
-                    }
-                }
-            }
-            return valid;
         },
         createDefault: function(type){
             var offense = {};
@@ -491,59 +466,56 @@ angular.module('starter.services', [])
         }
     }
 })
-.factory('Formulas', function($cordovaSQLite){
-    return{
-        getResultForFormula: function(formulaId, offense){
-            var diff = -1;
-            if(offense["type"] === "Speed"){
-                speedLimit = (offense.speed_limit+1)*10;
-                diff = offense.speed_corrected - speedLimit-10;
-            }
-            var formulas = [
-                calc1(10) + " tot " + calc1(500),
-                calc2(25),
-                calc3(50, 10, diff),
-                calc3(60,10, diff),
-                calc3(50,5, diff),
-                calc3(60,5, diff),
-                calc1(25) + " tot " + calc1(500),
-                calc1(200) + " tot " + calc1(2000),
-                calc1(400) + " tot " + calc1(5000),
-                calc1(800) + " tot " + calc1(10000),
-                calc1(10) + " tot " + calc1(250),
-                calc1(20) + " tot " + calc1(250),
-                calc1(30) + " tot " + calc1(250),
-                calc1(40) + " tot " + calc1(250)
-                ];
-            return formulas[formulaId -1];
-        },
-        getCorrectedSpeed: function(speedDriven){
-                if(speedDriven <= 100){
-                    return speedDriven - 6;
-                }
-                else{
-                    return Math.floor(speedDriven - 0.06*speedDriven);
-                }
-        },
-        getDrivenSpeed: function(speedCorrected){
-            if(speedCorrected <= 100){
-                return speedCorrected + 6;
-            }
-            else{
-                return Math.ceil(speedCorrected + 0.064*speedCorrected);
+.factory('Rights', function($cordovaSQLite) {
+    var alchRights = [];
+    var drugsRights = [];
+    db = window.openDatabase("test2", "1.0", "Test DB", 1000000);
+    var query = "SELECT * from Rights where type = 1";
+    $cordovaSQLite.execute(db, query, []).then(function(res){
+        if(res.rows.length > 0){
+            for(var i = 0; i < res.rows.length; i++){
+                drugsRights.push({id: res.rows.item(i).id, body: res.rows.item(i).body});
             }
         }
-    }
-    function calc1(y){
-        return y*6 + 100;
-    };
-    function calc2(y){
-        return y*6;;
-    };
-    function calc3(y,x,z){
-        return y + (x * z);
+    }, function(err){
+        console.error(err);
+    });
+    query = "SELECT * from Rights where type = 0";
+    $cordovaSQLite.execute(db, query, []).then(function(res){
+        if(res.rows.length > 0){
+            for(var i = 0; i < res.rows.length; i++){
+                alchRights.push({id: res.rows.item(i).id, body: res.rows.item(i).body});
+            }
+        }
+    }, function(err){
+        console.error(err);
+    });
+
+    return {
+        alchRights: function() {
+            return alchRights;
+        },
+        drugRights: function() {
+            return drugsRights;
+        }
     };
 })
+.factory('Others2', function($cordovaSQLite) {
+    var arr = [];
+    db = window.openDatabase("test2", "1.0", "Test DB", 1000000);
+    return {
+        searchOthers: function(tag){
+            var query = "SELECT * FROM Other a INNER JOIN Other_Tags b ON a.id = b.offense_id WHERE b.tag_name=?";
+            return $cordovaSQLite.execute(db, query, [tag]).then(function(res){
+                arr = res.rows;
+                return arr;
+            }, function(err){
+                console.error(err);
+            });
+        }
+    }
+})
+
 .factory('TranslateService', function($cordovaSQLite, Questions){
     return{
         dutchToEnglish: function(word) {
@@ -626,18 +598,6 @@ angular.module('starter.services', [])
         }
     }
 })
-.factory('ZipCodes', ['$q', function() {
-    return {
-        getNameForZipCode: function(code) {
-            for (var i = 0; i < zipcodes.length; i++) {
-                if(zipcodes[i]["zip"] === code){
-                    return zipcodes[i]["city"] + " - " + code;
-                }
-            }
-            return code;
-        }
-    }
-}])
 .factory('Camera', ['$q', function($q) {
   return {
     getPicture: function(options) {
@@ -718,216 +678,84 @@ angular.module('starter.services', [])
         }
     }
 })
-// .factory('Others', function($cordovaSQLite) {
-//     var others = [];
-//     return {
-//         searchOthers: function(tags){
-//             db = window.openDatabase("test2", "1.0", "Test DB", 1000000);
-//             var query = "SELECT * FROM Other_Tags where tag_name = ?";
-//             for (var i = 0; i < tags.length; i++) {
-//                 var tag = tags[i];
-//                 $cordovaSQLite.execute(db, query, [tag]).then(function(res){
-//                     if(res.rows.length > 0){
-//                         for(var i = 0; i < res.rows.length; i++){
-//                             var query = "SELECT * FROM Other where id = ?";
-//                             $cordovaSQLite.execute(db, query, [res.rows.item(i).offense_id]).then(function(res){
-//                                 if(res.rows.length > 0){
-//                                     for(var i = 0; i < res.rows.length; i++){
-//                                         others.push({
-//                                             id: res.rows.item(i).id,
-//                                             degree: res.rows.item(i).degree,
-//                                             description: res.rows.item(i).description});
-//                                     }
-//                                 }
-//                             }, function(err){
-//                                 console.error(err);
-//                             });
-//                         }
-//                     }
-//                 }, function(err){
-//                     console.error(err);
-//                 });
-//             }
-//
-//             return others;
-//         }
-//     }
-// })
-// .factory('ResultTexts', function($cordovaSQLite, FinesCalculator, CombinedFines) {
-//     var texts = [];
-//     var fines = [];
-//     var otherTexts = [];
-//     db = window.openDatabase("test2", "1.0", "Test DB", 1000000);
-//     var values = [10,11,9];
-//     var query = "SELECT * FROM Texts WHERE id = ?";
-//     for (var i = 0; i < values.length; i++) {
-//         $cordovaSQLite.execute(db, query, [values[i]]).then(function(res){
-//             if(res.rows.length > 0){
-//                 for(var i = 0; i < res.rows.length; i++){
-//                     otherTexts.push(res.rows.item(0).body);
-//                 }
-//             }
-//         }, function(err){
-//             console.error(err);
-//         });
-//     }
-//     return {
-//         getTexts: function(offense) {
-//             texts.length = 0;
-//             fines.length = 0;
-//             fines = FinesCalculator.getFines(offense);
-//             var len = 0;
-//
-//             var qualifyOI = CombinedFines.qualifyOI();
-//             console.log("Qualify OI: " +qualifyOI);
-//             console.log("-----------------------");
-//
-//             var qualifyMS = CombinedFines.qualifyMS();
-//             console.log("Qualify MS: " +qualifyMS);
-//             console.log("-----------------------");
-//
-//
-//             if(!qualifyOI){
-//                 texts.length = 0;
-//                 len =1;
-//                 texts.push("U komt niet in aanmerking voor een onmiddellijke inning.");
-//             }
-//             if(!qualifyMS){
-//                 texts.length = 0;
-//                 len = 2;
-//                 texts.push("U komt niet in aanmerking voor een onmiddellijke inning.");
-//                 texts.push("U komt niet in aanmerking voor een minnelijke schikking.");
-//             }
-//
-//             if(offense.age === 0){
-//                 texts.length = 0;
-//                 len =1;
-//                 texts.push("U komt niet in aanmerking voor een onmiddellijke inning.");
-//             }
-//             if(offense.licence === 0){
-//                 switch (offense.type) {
-//                     case "Speed":
-//                     var .p0 = FinesCalculator.calculateExceed(offense.speed_limit, offense.speed_corrected);
-//                     if(exceed >= 2){
-//                         texts.length = 0;
-//                         len = 3;
-//                         texts = otherTexts;
-//                     }
-//                     break;
-//                     case "Alchohol":
-//                     if(offense.intoxication <= 5){
-//                         texts.length = 0;
-//                         len = 3;
-//                         texts = otherTexts;
-//                     }
-//                     break;
-//                     default:
-//                 }
-//             }
-//             switch (offense.type) {
-//                 case "Alchohol":
-//                 var queries = ["SELECT * FROM Texts a INNER JOIN Alchohol b ON a.id=b.text_id_1 WHERE b.intoxication=?",
-//                 "SELECT * FROM Texts a INNER JOIN Alchohol b ON a.id=b.text_id_2 WHERE b.intoxication=?",
-//                 "SELECT * FROM Texts a INNER JOIN Alchohol b ON a.id=b.text_id_3 WHERE b.intoxication=?"];
-//                 for (var i = len; i < queries.length; i++) {
-//                     var query = queries[i];
-//                     $cordovaSQLite.execute(db, query, [offense.intoxication]).then(function(res){
-//                         if(res.rows.length > 0){
-//                             for(var i = 0; i < res.rows.length; i++){
-//                                 texts.push(replaceFines(res.rows.item(0).body, fines));
-//                             }
-//                         }
-//                     }, function(err){
-//                         console.error(err);
-//                     });
-//                 }
-//                 break;
-//
-//                 case "Drugs":
-//                 var queries = ["SELECT * FROM Texts a INNER JOIN Drugs b ON a.id=b.text_id_1",
-//                 "SELECT * FROM Texts a INNER JOIN Drugs b ON a.id=b.text_id_2",
-//                 "SELECT * FROM Texts a INNER JOIN Drugs b ON a.id=b.text_id_3"];
-//                 for (var i = len; i < queries.length; i++) {
-//                     var query = queries[i];
-//                     $cordovaSQLite.execute(db, query, []).then(function(res){
-//                         if(res.rows.length > 0){
-//                             for(var i = 0; i < res.rows.length; i++){
-//                                 texts.push(replaceFines(res.rows.item(0).body, fines));
-//                             }
-//                         }
-//                     }, function(err){
-//                         console.error(err);
-//                     });
-//                 }
-//                 break;
-//
-//                 case "Speed":
-//                 var queries = ["SELECT * FROM Texts a INNER JOIN Speed b ON a.id=b.text_id_1 WHERE b.exceed = ? AND b.road = ?",
-//                 "SELECT * FROM Texts a INNER JOIN Speed b ON a.id=b.text_id_2 WHERE b.exceed = ? AND b.road = ?",
-//                 "SELECT * FROM Texts a INNER JOIN Speed b ON a.id=b.text_id_3 WHERE b.exceed = ? AND b.road = ?"];
-//                 var exceed = FinesCalculator.calculateExceed(offense.speed_limit, offense.speed_corrected);
-//
-//                 for (var i = len; i < queries.length; i++) {
-//                     var query = queries[i];
-//                     $cordovaSQLite.execute(db, query, [exceed, offense.road]).then(function(res){
-//                         if(res.rows.length > 0){
-//                             for(var i = 0; i < res.rows.length; i++){
-//                                 texts.push(replaceFines(res.rows.item(0).body, fines));
-//                             }
-//                         }
-//                     }, function(err){
-//                         console.error(err);
-//                     });
-//                 }
-//                 break;
-//
-//                 case "Other":
-//                 var queries = ["SELECT * FROM Texts a INNER JOIN Other b ON a.id=b.text_id_1 WHERE b.id = ?",
-//                 "SELECT * FROM Texts a INNER JOIN Other b ON a.id=b.text_id_2 WHERE b.id = ?",
-//                 "SELECT * FROM Texts a INNER JOIN Other b ON a.id=b.text_id_3 WHERE b.id = ?"];
-//
-//                 for (var i = len; i < queries.length; i++) {
-//                     var query = queries[i];
-//                     $cordovaSQLite.execute(db, query, [offense.id]).then(function(res){
-//                         if(res.rows.length > 0){
-//                             for(var i = 0; i < res.rows.length; i++){
-//                                 texts.push(replaceFines(res.rows.item(0).body, fines));
-//                             }
-//                         }
-//                     }, function(err){
-//                         console.error(err);
-//                     });
-//                 }
-//                 break;
-//                 default:
-//
-//
-//             }
-//
-//             function replaceFines(str, fines){
-//                 var asd = str;
-//                 for (var key in fines) {
-//                     if (fines.hasOwnProperty(key)) {
-//                         asd = replaceAll(asd, key, fines[key] + " EUR");
-//                     }
-//                 }
-//                 return asd;
-//             }
-//
-//             function replaceAll(str, find, replace) {
-//                 var i = str.indexOf(find);
-//                 if (i > -1){
-//                     str = str.replace(find, replace);
-//                     i = i + replace.length;
-//                     var st2 = str.substring(i);
-//                     if(st2.indexOf(find) > -1){
-//                         str = str.substring(0,i) + replaceAll(st2, find, replace);
-//                     }
-//                 }
-//                 return str;
-//             }
-//
-//             return texts;
-//         }
-//     }
-// })
+.factory('ExceptionTexts', function($cordovaSQLite){
+    var arr = [];
+    return{
+        getExceptionTexts: function(){
+            db = window.openDatabase("test2", "1.0", "Test DB", 1000000);
+            var query = "SELECT * FROM Texts WHERE id = 11 OR id = 15 OR id = 30 OR id = 31 OR id = 51 OR id = 59 OR id = 65";
+            return  $cordovaSQLite.execute(db, query, []).then(function(res){
+                arr = res.rows;
+                return arr;
+            }, function(err){
+                console.error(err);
+            });
+        }
+    }
+})
+.factory('Utils', function(){
+    return{
+        validateOffense: function(offense){
+            var valid = true;
+            for (var key in offense) {
+                if (offense.hasOwnProperty(key)) {
+                    if(key === "type"){
+
+                    }else{
+                        if(offense[key] === -1){
+                            valid = false;
+                        }
+                    }
+                }
+            }
+            return valid;
+        },
+        validateEmail: function(email) {
+            var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+            return re.test(email);
+        },
+        replaceFines: function (str, fines){
+            var asd = str;
+            for (var key in fines) {
+                if (fines.hasOwnProperty(key)) {
+                    asd = replaceAll(asd, key, fines[key] + " EUR");
+                }
+            }
+            return asd;
+        },
+        encodeImageUri: function(imageUri)
+        {
+            var c=document.createElement('canvas');
+            var ctx=c.getContext("2d");
+            var img=new Image();
+            img.onload = function(){
+                c.width=this.width;
+                c.height=this.height;
+                ctx.drawImage(img, 0,0);
+            };
+            img.src=imageUri;
+            var dataURL = c.toDataURL("image/jpeg");
+            return dataURL;
+        },
+        getNameForZipCode: function(code) {
+            for (var i = 0; i < zipcodes.length; i++) {
+                if(zipcodes[i]["zip"] === code){
+                    return zipcodes[i]["city"] + " - " + code;
+                }
+            }
+            return code;
+        }
+    }
+    function replaceAll(str, find, replace) {
+        var i = str.indexOf(find);
+        if (i > -1){
+            str = str.replace(find, replace);
+            i = i + replace.length;
+            var st2 = str.substring(i);
+            if(st2.indexOf(find) > -1){
+                str = str.substring(0,i) + replaceAll(st2, find, replace);
+            }
+        }
+        return str;
+    }
+})

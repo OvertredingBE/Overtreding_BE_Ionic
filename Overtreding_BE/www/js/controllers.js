@@ -145,7 +145,7 @@ angular.module('starter.controllers', [])
     }
 })
 
-.controller("ContactController", function($scope, $ionicHistory, $ionicPopup, $http, Offenses, ZipCodes, ContactService) {
+.controller("ContactController", function($scope, $ionicHistory, $ionicPopup, $http, Offenses, ContactService,TranslateService, Utils) {
     $scope.form = {};
 
     $scope.resultTapped = function() {
@@ -164,7 +164,7 @@ angular.module('starter.controllers', [])
             });
         }
         else{
-            // if(validateEmail($scope.form.email)){
+            // if(Utils.validateEmail($scope.form.email)){
                 var url = 'http://www.martindzhonov.podserver.info/overtreding_api/v1/email2';
                 var data = $scope.form;
                 var functionalityTypeStr = ContactService.getFunctionality();
@@ -177,8 +177,7 @@ angular.module('starter.controllers', [])
                     default:
 
                 }
-                console.log(functionalityTypeStr);
-                var functionalityType = {functionality: functionalityTypeStr};
+                var functionalityType = {functionality: TranslateService.englishToDutch(functionalityTypeStr)};
                 var imageDataJson = {imageData: imageData};
                 var offensesJson = {offenses: offenses};
                 var result={};
@@ -189,29 +188,13 @@ angular.module('starter.controllers', [])
 
                 $http.post(url, result).then(function (res){
                     $scope.response = res.data;
-                    // $ionicPopup.alert({
-                    //     title: 'Bedankt voor uw aanvraag.',
-                    //     template: 'We nemen zo snel mogelijk contact met u op.'
-                    // });
                 });
-                // }
-                // else{
-                //     $ionicPopup.alert({
-                //         title: 'FOUT',
-                //         template: 'Gelieve een geldig e-mail adres in te vullen.'
-                //     });
-                // }
-            }
-
-            function validateEmail(email) {
-                var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
-                return re.test(email);
             }
         };
 
         $scope.getCity = function(){
             var code = $scope.form.postcode;
-            var asd = ZipCodes.getNameForZipCode(code);
+            var asd = Utils.getNameForZipCode(code);
             $scope.form.postcode = asd;
         }
 
@@ -220,7 +203,7 @@ angular.module('starter.controllers', [])
         }
     })
 
-.controller("CalcFineController", function($scope, $ionicHistory, $ionicPopup, $location, Offenses, Questions, TranslateService, Formulas, Others2, ContactService) {
+.controller("CalcFineController", function($scope, $ionicHistory, $ionicPopup, $location, Offenses,Utils, Questions, TranslateService, Formulas, Others2, ContactService) {
     $scope.offenses = [];
     $scope.searchResults = [];
     $scope.inputs = {};
@@ -332,9 +315,8 @@ angular.module('starter.controllers', [])
                 else{
                     $scope.offenses.splice(index, 1);
                     Offenses.remove(index);
-                }            } else {
-                    console.log('You are not sure');
                 }
+            }
         });
     };
 
@@ -483,7 +465,7 @@ angular.module('starter.controllers', [])
     }
 
     function addCurrOffense(){
-        var valid = Offenses.validateOffense(offense) && offense.type != "";
+        var valid = Utils.validateOffense(offense) && offense.type != "";
         if(valid){
             Offenses.add(offense);
             return true;
@@ -557,7 +539,7 @@ angular.module('starter.controllers', [])
     };
 })
 
-.controller("ResultDetailController", function($scope, $ionicHistory, $stateParams, $ionicPopup, Offenses, FinesCalculator, Texts, OffenseEvaluator, $location, ContactService) {
+.controller("ResultDetailController", function($scope, $ionicHistory, $stateParams, $ionicPopup, Offenses, FinesCalculator,Utils, Texts, OffenseEvaluator, $location, ContactService) {
     $scope.items = [];
     var titles = ["ONMIDDELLIJKE INNING", "MINNELIJKE SCHIKKING", "BEVEL TOT BETALING/RECHTBANK"];
     $scope.titles = titles;
@@ -567,7 +549,7 @@ angular.module('starter.controllers', [])
     var fines = FinesCalculator.getFines(offense);
     Texts.getTexts(offense).then(function(res){
         for (var i = 0; i < res.length; i++) {
-            texts.push(replaceFines(res.item(i).body, fines));
+            texts.push(Utils.replaceFines(res.item(i).body, fines));
             // console.log("\n" + "ID: " + res.item(i).id + "\n" + res.item(i).body);
         }
         OffenseEvaluator.evaluateOffense(texts, offense);
@@ -577,29 +559,6 @@ angular.module('starter.controllers', [])
     $scope.offenseType = offense.type;
 
     $scope.items = texts;
-
-    function replaceFines(str, fines){
-        var asd = str;
-        for (var key in fines) {
-            if (fines.hasOwnProperty(key)) {
-                asd = replaceAll(asd, key, fines[key] + " EUR");
-            }
-        }
-        return asd;
-    }
-
-    function replaceAll(str, find, replace) {
-        var i = str.indexOf(find);
-        if (i > -1){
-            str = str.replace(find, replace);
-            i = i + replace.length;
-            var st2 = str.substring(i);
-            if(st2.indexOf(find) > -1){
-                str = str.substring(0,i) + replaceAll(st2, find, replace);
-            }
-        }
-        return str;
-    }
 
     $scope.goToContact = function(){
         ContactService.setFunctionality("CalcFine");
@@ -611,7 +570,7 @@ angular.module('starter.controllers', [])
     }
 })
 
-.controller("TakePictureController", function($scope, Camera, $ionicPopup, $ionicHistory, $location, ContactService) {
+.controller("TakePictureController", function($scope, Camera, $ionicPopup, $ionicHistory, $location, ContactService, Utils) {
     $scope.src = "";
     var confirmPopup = $ionicPopup.alert({
         title: 'INFORMATIE',
@@ -628,20 +587,7 @@ angular.module('starter.controllers', [])
             console.log('You are not sure');
         }
     });
-    function encodeImageUri(imageUri)
-{
-     var c=document.createElement('canvas');
-     var ctx=c.getContext("2d");
-     var img=new Image();
-     img.onload = function(){
-       c.width=this.width;
-       c.height=this.height;
-       ctx.drawImage(img, 0,0);
-     };
-     img.src=imageUri;
-     var dataURL = c.toDataURL("image/jpeg");
-     return dataURL;
-}
+
     $scope.goToContact = function(){
         if($scope.src === ""){
             var confirmPopup = $ionicPopup.alert({
@@ -663,7 +609,7 @@ angular.module('starter.controllers', [])
         }
         else{
             ContactService.setFunctionality("TakePicture");
-            ContactService.setImageData(encodeImageUri($scope.src));
+            ContactService.setImageData(Utils.encodeImageUri($scope.src));
             $location.path("/contact");
         }
         console.log($scope.src);
