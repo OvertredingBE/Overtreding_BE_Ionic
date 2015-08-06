@@ -172,16 +172,20 @@ angular.module('starter.controllers', [])
                     case "CalcFine":
                         var offenses = Offenses.parsed();
                         break;
+                    case "TakePicture":
+                        var imageData = ContactService.getImageData();
                     default:
 
                 }
                 console.log(functionalityTypeStr);
                 var functionalityType = {functionality: functionalityTypeStr};
+                var imageDataJson = {imageData: imageData};
                 var offensesJson = {offenses: offenses};
                 var result={};
                 for(var key in data) result[key]=data[key];
                 for(var key in functionalityType) result[key]=functionalityType[key];
                 for(var key in offensesJson) result[key]=offensesJson[key];
+                for(var key in imageDataJson) result[key]=imageDataJson[key];
 
                 $http.post(url, result).then(function (res){
                     $scope.response = res.data;
@@ -447,20 +451,21 @@ angular.module('starter.controllers', [])
         var searchWords = $scope.inputs.searchWord;
         searchWords = searchWords.toLowerCase();
         var searchArr = searchWords.split(',');
-
-        Others2.searchOthers(searchArr[0]).then(function(res){
-            $scope.spinnerShown = false;
-            for (var i = 0; i < res.length; i++) {
-                $scope.searchResults.push({
-                    id: res.item(i).id,
-                    degree: res.item(i).degree,
-                    description: res.item(i).description});
-            }
-            if(res.length === 0){
+        for (var i = 0; i < searchArr.length; i++) {
+            Others2.searchOthers(searchArr[i]).then(function(res){
                 $scope.spinnerShown = false;
-                $scope.searchMessage = "Er is geen resultaat voor uw zoekopdracht. Gelieve opnieuw te proberen met andere trefwoorden";
-            }
-        });
+                for (var i = 0; i < res.length; i++) {
+                    $scope.searchResults.push({
+                        id: res.item(i).id,
+                        degree: res.item(i).degree,
+                        description: res.item(i).description});
+                }
+                if(res.length === 0){
+                    $scope.spinnerShown = false;
+                    $scope.searchMessage = "Er is geen resultaat voor uw zoekopdracht. Gelieve opnieuw te proberen met andere trefwoorden";
+                }
+            });
+        }
     };
 
     $scope.otherTapped = function(item) {
@@ -468,6 +473,7 @@ angular.module('starter.controllers', [])
         $scope.searchResults.push(item);
         offense.id = item.id;
         offense.degree = item.degree;
+        offense.description = item.description;
         $scope.questionsShown = true;
     };
 
@@ -615,7 +621,6 @@ angular.module('starter.controllers', [])
         if(res) {
             Camera.getPicture().then(function(imageURI) {
                 $scope.src = imageURI;
-                console.log(imageURI);
             }, function(err) {
                 console.log(err);
             });
@@ -623,6 +628,20 @@ angular.module('starter.controllers', [])
             console.log('You are not sure');
         }
     });
+    function encodeImageUri(imageUri)
+{
+     var c=document.createElement('canvas');
+     var ctx=c.getContext("2d");
+     var img=new Image();
+     img.onload = function(){
+       c.width=this.width;
+       c.height=this.height;
+       ctx.drawImage(img, 0,0);
+     };
+     img.src=imageUri;
+     var dataURL = c.toDataURL("image/jpeg");
+     return dataURL;
+}
     $scope.goToContact = function(){
         if($scope.src === ""){
             var confirmPopup = $ionicPopup.alert({
@@ -644,6 +663,7 @@ angular.module('starter.controllers', [])
         }
         else{
             ContactService.setFunctionality("TakePicture");
+            ContactService.setImageData(encodeImageUri($scope.src));
             $location.path("/contact");
         }
         console.log($scope.src);

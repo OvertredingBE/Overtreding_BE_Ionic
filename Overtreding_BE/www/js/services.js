@@ -4,12 +4,19 @@
 angular.module('starter.services', [])
 .factory('ContactService', function($cordovaSQLite){
     var functionalityType = "";
+    var imageData = "";
     return{
         setFunctionality: function(functionality){
             functionalityType = functionality;
         },
         getFunctionality: function(){
             return functionalityType;
+        },
+        setImageData: function(data){
+            imageData = data;
+        },
+        getImageData: function(){
+            return imageData;
         }
     }
 })
@@ -563,7 +570,8 @@ angular.module('starter.services', [])
         },
         parseOffense: function(offense){
             var strArr = [];
-            strArr.push(offense.type);
+            var self = this;
+            strArr.push(self.englishToDutch(offense.type));
             for (var key in offense) {
                 if (offense.hasOwnProperty(key)) {
                     if(key === "licence"){
@@ -606,6 +614,12 @@ angular.module('starter.services', [])
                     if(key === "blood_test"){
                         var arr = ["U WORDT POSITIEF BEVONDEN OP DE AANWEZIGHEID VAN DRUGS IN UW BLOED", "U WEIGERT ZONDER WETTIGE REDEN DE SPEEKSELTEST OF ANALYSE"];
                         strArr.push(arr[offense[key]]);
+                    }
+                    if(key === "description"){
+                        strArr.push(offense[key]);
+                    }
+                    if(key === "degree"){
+                        strArr.push(offense[key]);
                     }
                 }
             }
