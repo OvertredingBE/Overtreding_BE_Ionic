@@ -509,17 +509,17 @@ angular.module('starter.controllers', [])
     };
 })
 
-.controller("ResultController", function($scope, $ionicHistory, $ionicPopup, $location, Offenses, ExceptionsService, FinesCalculator, Texts2, ExceptionTexts, ContactService) {
+.controller("ResultController", function($scope, $ionicHistory, $ionicPopup, $location, Offenses, CombinedFines, FinesCalculator, Texts, ExceptionTexts, ContactService) {
     var offenses = Offenses.all();
     $scope.offenses = offenses;
 
-    var qualifyOI = ExceptionsService.qualifyOI();
-    var qualifyMS = ExceptionsService.qualifyMS();
+    var qualifyOI = CombinedFines.qualifyOI();
+    var qualifyMS = CombinedFines.qualifyMS();
 
     for (var i = 0; i < offenses.length; i++) {
         var offense  = offenses[i];
         var texts = [];
-        Texts2.getTexts(offense).then(function(res){
+        Texts.getTexts(offense).then(function(res){
             for (var i = 0; i < res.length; i++) {
                 console.log(res.item(i).body);
                 texts.push(res.item(i).body);
@@ -557,7 +557,7 @@ angular.module('starter.controllers', [])
     };
 })
 
-.controller("ResultDetailController", function($scope, $ionicHistory, $stateParams, $ionicPopup, Offenses, FinesCalculator, Texts2, Exceptions, $location, ContactService) {
+.controller("ResultDetailController", function($scope, $ionicHistory, $stateParams, $ionicPopup, Offenses, FinesCalculator, Texts, OffenseEvaluator, $location, ContactService) {
     $scope.items = [];
     var titles = ["ONMIDDELLIJKE INNING", "MINNELIJKE SCHIKKING", "BEVEL TOT BETALING/RECHTBANK"];
     $scope.titles = titles;
@@ -565,13 +565,13 @@ angular.module('starter.controllers', [])
     var offense = Offenses.findById($stateParams.offenseId);
     var offenseDisplayId = parseInt($stateParams.offenseId) + 1;
     var fines = FinesCalculator.getFines(offense);
-    Texts2.getTexts(offense).then(function(res){
+    Texts.getTexts(offense).then(function(res){
         for (var i = 0; i < res.length; i++) {
             texts.push(replaceFines(res.item(i).body, fines));
             // console.log("\n" + "ID: " + res.item(i).id + "\n" + res.item(i).body);
         }
-        Exceptions.evaluateConditionals(texts, offense);
-        Exceptions.evaluateExceptions(texts);
+        OffenseEvaluator.evaluateOffense(texts, offense);
+        OffenseEvaluator.evaluateCombined(texts);
     });
     $scope.offenseId = offenseDisplayId;
     $scope.offenseType = offense.type;

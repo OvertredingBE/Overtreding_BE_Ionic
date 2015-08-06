@@ -20,7 +20,7 @@ angular.module('starter.services', [])
         }
     }
 })
-.factory('Texts2', function($cordovaSQLite, FinesCalculator){
+.factory('Texts', function($cordovaSQLite, FinesCalculator){
     var arr = [];
     db = window.openDatabase("test2", "1.0", "Test DB", 1000000);
     return {
@@ -68,7 +68,7 @@ angular.module('starter.services', [])
         }
     }
 })
-.factory('ExceptionsService', function($cordovaSQLite, Offenses, FinesCalculator){
+.factory('CombinedFines', function($cordovaSQLite, Offenses, FinesCalculator){
     var fines = [];
     var offenses = [];
     var texts = [];
@@ -142,7 +142,7 @@ angular.module('starter.services', [])
           }
           console.log("Fines sum: " + minSum);
           if(minSum > 1500){
-              console.log("Sum over 1550");
+              console.log("Sum over 1500");
               return false;
           }
           return true;
@@ -164,10 +164,10 @@ angular.module('starter.services', [])
         }
     }
 })
-.factory('Exceptions', function($cordovaSQLite, Offenses, FinesCalculator, ExceptionsService, ExceptionTexts){
+.factory('OffenseEvaluator', function($cordovaSQLite, Offenses, FinesCalculator, CombinedFines, ExceptionTexts){
     var offenses = [];
     return{
-        evaluateConditionals: function(texts, offense) {
+        evaluateOffense: function(texts, offense) {
             for (var key in offense) {
                 if (offense.hasOwnProperty(key)) {
                     console.log(key + " -> " + offense[key]);
@@ -197,13 +197,13 @@ angular.module('starter.services', [])
                 }
             }
         },
-        evaluateExceptions: function(texts){
-            var qualifyOI = ExceptionsService.qualifyOI();
+        evaluateCombined: function(texts){
+            var qualifyOI = CombinedFines.qualifyOI();
             console.log("Qualify OI: " + qualifyOI);
             if(!qualifyOI){
                 texts[0] = "U komt niet in aanmerking voor een onmiddellijke inning.";
             }
-            var qualifyMS = ExceptionsService.qualifyMS();
+            var qualifyMS = CombinedFines.qualifyMS();
             console.log("Qualify MS: " + qualifyMS);
             if(!qualifyMS){
                 texts[0] = "U komt niet in aanmerking voor een onmiddellijke inning.";
@@ -358,7 +358,6 @@ angular.module('starter.services', [])
     return {
         searchOthers: function(tag){
             var query = "SELECT * FROM Other a INNER JOIN Other_Tags b ON a.id = b.offense_id WHERE b.tag_name=?";
-            // var query = "SELECT * FROM Texts a INNER JOIN Speed b ON a.id=b.text_id_1 OR a.id=b.text_id_2 OR a.id=b.text_id_3";
             return $cordovaSQLite.execute(db, query, [tag]).then(function(res){
                 arr = res.rows;
                 return arr;
@@ -754,7 +753,7 @@ angular.module('starter.services', [])
 //         }
 //     }
 // })
-// .factory('ResultTexts', function($cordovaSQLite, FinesCalculator, ExceptionsService) {
+// .factory('ResultTexts', function($cordovaSQLite, FinesCalculator, CombinedFines) {
 //     var texts = [];
 //     var fines = [];
 //     var otherTexts = [];
@@ -779,11 +778,11 @@ angular.module('starter.services', [])
 //             fines = FinesCalculator.getFines(offense);
 //             var len = 0;
 //
-//             var qualifyOI = ExceptionsService.qualifyOI();
+//             var qualifyOI = CombinedFines.qualifyOI();
 //             console.log("Qualify OI: " +qualifyOI);
 //             console.log("-----------------------");
 //
-//             var qualifyMS = ExceptionsService.qualifyMS();
+//             var qualifyMS = CombinedFines.qualifyMS();
 //             console.log("Qualify MS: " +qualifyMS);
 //             console.log("-----------------------");
 //
@@ -808,7 +807,7 @@ angular.module('starter.services', [])
 //             if(offense.licence === 0){
 //                 switch (offense.type) {
 //                     case "Speed":
-//                     var exceed = FinesCalculator.calculateExceed(offense.speed_limit, offense.speed_corrected);
+//                     var .p0 = FinesCalculator.calculateExceed(offense.speed_limit, offense.speed_corrected);
 //                     if(exceed >= 2){
 //                         texts.length = 0;
 //                         len = 3;
