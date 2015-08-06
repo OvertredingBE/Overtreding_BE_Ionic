@@ -236,7 +236,14 @@ angular.module('starter.controllers', [])
     };
 
     $scope.subgroupTapped = function(item, group, index) {
-        $scope.questions[group.id].name =  item;
+        $scope.questions[group.id].name = item;
+        if(group.id === 0){
+            if(index === 1){
+                indexShown++;
+                offense.age = 1;
+                $scope.questions[1].name = "18 JAAR OF OUDER";
+            }
+        }
         var fieldName = Offenses.getFieldName(group.id, offense["type"]);
         console.log(fieldName + " - " + index);
         offense[fieldName] = index;
@@ -329,26 +336,26 @@ angular.module('starter.controllers', [])
                     template: 'De gecorrigeerde snelheid kan niet lager zijn dan snelheidslimiet. Gelieve opnieuw te proberen.'
                 });
             }
-            else{
-                if(addCurrOffense()){
-                    {
-                        addDummyOffense();
-                        resetFields();
-                        $scope.menuShown = true;
-                        if(offenses.length === 1){
-                            $location.path("/result/0");
-                        }
-                        else{
-                            $location.path("/result");
-                        }
+        }
+        else{
+            if(addCurrOffense()){
+                {
+                    addDummyOffense();
+                    resetFields();
+                    $scope.menuShown = true;
+                    if(offenses.length === 1){
+                        $location.path("/result/0");
+                    }
+                    else{
+                        $location.path("/result");
                     }
                 }
-                else{
-                    $ionicPopup.alert({
-                        title: 'INFORMATIE',
-                        template: 'Gelieve alle velden van een antwoord te voorzien'
-                    });
-                }
+            }
+            else{
+                $ionicPopup.alert({
+                    title: 'INFORMATIE',
+                    template: 'Gelieve alle velden van een antwoord te voorzien'
+                });
             }
         }
     }
@@ -438,8 +445,10 @@ angular.module('starter.controllers', [])
         $scope.questionsShown = false;
         var searchWords = $scope.inputs.searchWord;
         searchWords = searchWords.toLowerCase();
-        var searchArr = searchWords.split(',');
+        var searchArr = Utils.multiSplit(searchWords,[',', ', ', ' ,', ' ']);
+        console.log(searchArr.length);
         for (var i = 0; i < searchArr.length; i++) {
+            console.log(searchArr[i]);
             Others2.searchOthers(searchArr[i]).then(function(res){
                 $scope.spinnerShown = false;
                 for (var i = 0; i < res.length; i++) {
