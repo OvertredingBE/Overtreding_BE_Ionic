@@ -318,24 +318,38 @@ angular.module('starter.controllers', [])
 
     $scope.resultTapped = function() {
         var offenses = Offenses.all();
-        if(addCurrOffense()){
-            {
-                addDummyOffense();
-                resetFields();
-                $scope.menuShown = true;
-                if(offenses.length === 1){
-                    $location.path("/result/0");
+        if(offense.type === "Speed"){
+            var input = $scope.inputs.speed_driven;
+            var speedDriven = parseInt(input);
+            var speedCorrected = Formulas.getCorrectedSpeed(speedDriven);
+            var speedLimit = (offense.speed_limit+1) * 10;
+            if(speedCorrected <= speedLimit){
+                $ionicPopup.alert({
+                    title: 'INFORMATIE',
+                    template: 'De gecorrigeerde snelheid kan niet lager zijn dan snelheidslimiet. Gelieve opnieuw te proberen.'
+                });
+            }
+            else{
+                if(addCurrOffense()){
+                    {
+                        addDummyOffense();
+                        resetFields();
+                        $scope.menuShown = true;
+                        if(offenses.length === 1){
+                            $location.path("/result/0");
+                        }
+                        else{
+                            $location.path("/result");
+                        }
+                    }
                 }
                 else{
-                    $location.path("/result");
+                    $ionicPopup.alert({
+                        title: 'INFORMATIE',
+                        template: 'Gelieve alle velden van een antwoord te voorzien'
+                    });
                 }
             }
-        }
-        else{
-            $ionicPopup.alert({
-                title: 'INFORMATIE',
-                template: 'Gelieve alle velden van een antwoord te voorzien'
-            });
         }
     }
 
@@ -345,6 +359,7 @@ angular.module('starter.controllers', [])
 
         if(isNaN(input)){
             valid = false;
+            $scope.inputs.speed_driven = "";
         }
         else{
             var speedDriven = parseInt(input);
@@ -356,14 +371,12 @@ angular.module('starter.controllers', [])
             }
             else if(speedCorrected <= speedLimit){
                 valid = false;
-                $ionicPopup.alert({
-                    title: 'INFORMATIE',
-                    template: 'De gecorrigeerde snelheid kan niet lager zijn dan snelheidslimiet. Gelieve opnieuw te proberen.'
-                });
-            }
-            if(valid){
                 $scope.inputs.speed_corrected = speedCorrected;
             }
+            else{
+            $scope.inputs.speed_corrected = speedCorrected;
+        }
+
         }
         console.log(valid);
         if(valid){
@@ -377,7 +390,6 @@ angular.module('starter.controllers', [])
             offense[fieldName] = -1;
             var fieldName = Offenses.getFieldName(5, offense["type"]);
             offense[fieldName] = -1
-            $scope.inputs.speed_corrected = "";
         }
     };
 
@@ -387,6 +399,7 @@ angular.module('starter.controllers', [])
 
         if(isNaN(input)){
             valid = false;
+            $scope.inputs.speed_driven = "";
         }
         else{
             var speedCorrected = parseInt(input);
@@ -397,13 +410,11 @@ angular.module('starter.controllers', [])
             }
             else if(speedCorrected <= speedLimit){
                 valid = false;
-                $ionicPopup.alert({
-                    title: 'INFORMATIE',
-                    template: 'De gecorrigeerde snelheid kan niet lager zijn dan snelheidslimiet". Gelieve opnieuw te proberen.'
-                });
-            }
-            if(valid){
                 $scope.inputs.speed_driven = speedDriven;
+            }
+            else{
+                $scope.inputs.speed_driven = speedDriven;
+
             }
         }
         console.log(valid);
@@ -418,7 +429,6 @@ angular.module('starter.controllers', [])
             offense[fieldName] = -1;
             var fieldName = Offenses.getFieldName(5, offense["type"]);
             offense[fieldName] = -1
-            $scope.inputs.speed_driven = "";
         }
     };
 
