@@ -183,7 +183,7 @@ angular.module('starter.controllers', [])
                 for(var key in imageDataJson) result[key]=imageDataJson[key];
 
                 $http.post(url, result).then(function (res){
-                    $scope.response = res.data;
+                    // $scope.response = res.data;
                 });
             }
         };
@@ -335,6 +335,27 @@ angular.module('starter.controllers', [])
                     title: 'INFORMATIE',
                     template: 'De gecorrigeerde snelheid kan niet lager zijn dan snelheidslimiet. Gelieve opnieuw te proberen.'
                 });
+            }
+            else{
+                if(addCurrOffense()){
+                    {
+                        addDummyOffense();
+                        resetFields();
+                        $scope.menuShown = true;
+                        if(offenses.length === 1){
+                            $location.path("/result/0");
+                        }
+                        else{
+                            $location.path("/result");
+                        }
+                    }
+                }
+                else{
+                    $ionicPopup.alert({
+                        title: 'INFORMATIE',
+                        template: 'Gelieve alle velden van een antwoord te voorzien'
+                    });
+                }
             }
         }
         else{
@@ -513,36 +534,36 @@ angular.module('starter.controllers', [])
     var qualifyOI = CombinedFines.qualifyOI();
     var qualifyMS = CombinedFines.qualifyMS();
 
-    for (var i = 0; i < offenses.length; i++) {
-        var offense  = offenses[i];
-        var texts = [];
-        Texts.getTexts(offense).then(function(res){
-            for (var i = 0; i < res.length; i++) {
-                console.log(res.item(i).body);
-                texts.push(res.item(i).body);
-            }
-            ExceptionTexts.getExceptionTexts().then(function(res2){
-                for (var i = 0; i < res2.length; i++) {
-                    if(texts[1] === res2.item(i).body){
-                        console.log("Exception found");
-                        qualifyMS = false;
+    ExceptionTexts.getExceptionTexts().then(function(res2){
+        var excTexts = [];
+        for (var i = 0; i < res2.length; i++) {
+            excTexts.push(res2.item(i).body);
+        }
+        for (var i = 0; i < offenses.length; i++) {
+            var offense  = offenses[i];
+            var texts = [];
+            Texts.getTexts(offense).then(function(res){
+                for (var i = 0; i < res.length; i++) {
+                    for (var j = 0; j < excTexts.length; j++) {
+                        if(excTexts[j] === res.item(i).body){
+                             qualifyMS = false;
+                             if(qualifyOI && qualifyMS){
+                                 $scope.message = "Maak uw keuze uit de onderstaande samengestelde overtredingen en ontdek welke gevolgen elke overtreding met zich meebrengt.\n Wenst u graag meer informatie over deze overtredingen, aarzel niet en vraag GRATIS juridisch advies aan via onderstaande button.";
+                             }
+                             if(!qualifyMS){
+                                 $scope.message = "De door u samengestelde overtredingen zorgen ervoor dat u niet in aanmerking komt voor een onmiddellijke inning of minnnelijke schikking. U zal sowieso voor de rechtbank moeten verschijnen.\nMaak uw keuze uit de onderstaande samengestelde overtredingen en ontdek welke gevolgen elke overtreding met zih meebrengt.\nWelt u graag meer informatie over deze overtrendigen aarzel niet en vraag GRATIS juridisch advies aan via onderstaande button.";
+                             }
+                             if(!qualifyOI) {
+                                 if(qualifyMS){
+                                     $scope.message = "De door u samengestelde overtredingen zorgen ervoor dat u niet in aanmerking komt voor een onmiddellijke inning. U komt wel in aanmerking voor een minnelijke schikking.\nMaak uw keuze uit de onderstaande samengestelde overtredingen en ontdek welke gevolgen elke overtreding met zich meebrengt.\nWilt u meer informatie over de gevolgen die zich kunnen voordoen als u voor de rechtbank moet verschijnen, aarzel niet en vraag GRATIS juridisch advies aan via onderstaande button.";
+                                 }
+                             }
+                        }
                     }
                 }
             });
-        });
-    }
-
-    if(qualifyOI && qualifyMS){
-        $scope.message = "Maak uw keuze uit de onderstaande samengestelde overtredingen en ontdek welke gevolgen elke overtreding met zich meebrengt.\n Wenst u graag meer informatie over deze overtredingen, aarzel niet en vraag GRATIS juridisch advies aan via onderstaande button.";
-    }
-    if(!qualifyMS){
-        $scope.message = "De door u samengestelde overtredingen zorgen ervoor dat u niet in aanmerking komt voor een onmiddellijke inning of minnnelijke schikking. U zal sowieso voor de rechtbank moeten verschijnen.\nMaak uw keuze uit de onderstaande samengestelde overtredingen en ontdek welke gevolgen elke overtreding met zih meebrengt.\nWelt u graag meer informatie over deze overtrendigen aarzel niet en vraag GRATIS juridisch advies aan via onderstaande button.";
-    }
-    if(!qualifyOI) {
-        if(qualifyMS){
-            $scope.message = "De door u samengestelde overtredingen zorgen ervoor dat u niet in aanmerking komt voor een onmiddellijke inning. U komt wel in aanmerking voor een minnelijke schikking.\nMaak uw keuze uit de onderstaande samengestelde overtredingen en ontdek welke gevolgen elke overtreding met zich meebrengt.\nWilt u meer informatie over de gevolgen die zich kunnen voordoen als u voor de rechtbank moet verschijnen, aarzel niet en vraag GRATIS juridisch advies aan via onderstaande button.";
         }
-    }
+    });
 
     $scope.goToContact = function(){
         ContactService.setFunctionality("CalcFine");
