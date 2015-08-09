@@ -1,3 +1,15410 @@
+var dbJson = {
+    "rights": [
+        {
+            "id": 1,
+            "type": 0,
+            "body": "Soms gebeurt het dat de politie een eerste test uitvoert met een alco-sensor. Deze maakt eigenlijk geen deel uit van de eigenlijke alcoholcontrole."
+        },
+        {
+            "id": 2,
+            "type": 0,
+            "body": "U wordt tegengehouden voor een ademtest. Deze geeft een eerste idee of u gedronken hebt. U kan meteen vragen om een wachttijd van 15 minuten.\nDe politie dient u dan een verpakt mondstuk te tonen en dit mondstuk, zonder dit aan te raken, op het toestel te monteren. De politie dient het resultaat te tonen én luidop te lezen.\nEen S (safe) betekent dat u mag doorrijden. Een A (alarm) of P (positief) betekent dat u teveel gedronken hebt. Weigert u de test, dan wordt dat gelijkgesteld met een P en krijgt u een rijverbod van 6 uur."
+        },
+        {
+            "id": 3,
+            "type": 0,
+            "body": "Blies u een A of een P, dan moet ook een ademanalyse worden verricht. Deze geeft de precieze concentratie van alcohol weer.\nAls er meteen een ademanalyse wordt afgenomen (zonder ademtest), heeft u eveneens recht op een wachttijd van 15 minuten. De politie dient u mee te delen dat u recht heeft op een tweede analyse.\nAls u kiest voor een tweede analyse en de resultaten verschillen aanzienlijk, moet eventueel een derde analyse worden verricht.\nBlies u meer dan 0,22 mg/l lucht, maar minder dan 0,35 mg/l, dan krijgt u een rijverbod van 3 uur. Later wordt een boete thuisgestuurd.\nBlies u meer dan 0,35 mg/l lucht, dan krijgt u een rijverbod van minstens 6 uur. Nadien moet u opnieuw blazen. Later wordt een boete thuisgestuurd of wordt u gedagvaard.\nAls u meer dan 0,22 mg/l blaast, moet u een kopie ontvangen van elk ticket dat door het toestel wordt afgedrukt en dit uiterlijk binnen de 14 dagen.\nBlies u meer dan 0,35, dan dient de politie u mee te delen dat u steeds een tegenexpertise kan laten verrichten."
+        },
+        {
+            "id": 4,
+            "type": 0,
+            "body": "Een bloedproef wordt afgenomen wanneer ademtest en ademanalyse onmogelijk zijn of wanneer u er zelf om verzoekt. Ze kan enkel worden afgenomen door een dokter."
+        },
+        {
+            "id": 5,
+            "type": 0,
+            "body": "Uiterlijk 14 dagen na de vaststelling, moet u een kopie van het PV worden toegestuurd."
+        },
+        {
+            "id": 6,
+            "type": 1,
+            "body": "Behalve in geval van een ongeval, zal de politie eerst uiterlijk nagaan of u recent drugs gebruikte. Voldoet u aan minstens 3 kenmerken, dan wordt een speekseltest uitgevoerd."
+        },
+        {
+            "id": 7,
+            "type": 1,
+            "body": "Ingeval van een ongeval (of na de uiterlijke test), zal meteen een speekseltest worden afgenomen. Is de test negatief, dan mag u doorrijden.\nIs de test positief, dan moet een bloedproef worden afgelegd.\nOok wanneer u een wettige reden heeft om de speekseltest te weigeren, dan wordt een dokter opgevorderd voor een bloedonderzoek.\nWeigert u de speekseltest zonder wettige reden, dan wordt u bestraft alsof u een positieve test aflegde. U moet uw voertuig minstens 12 uur laten staan."
+        },
+        {
+            "id": 8,
+            "type": 1,
+            "body": "De opgevorderde dokter vraagt waarom u de speekseltest weigerde of voert de bloedproef uit (tenzij u deze ook om een wettige reden weigert).\nHad u geen wettige reden om de speekseltest of bloedproef te weigeren, dan wordt u bestraft alsof u positief testte. \nIs de bloedproef positief, dan moet u uw voertuig minstens 12 uur laten staan. U wordt normaal gezien gedagvaard voor de politierechtbank.\nHad u wel een wettige reden om de bloedproef te weigeren, dan moet u alleszins uw rijbewijs afgeven voor 12 uur. De procureur beslist."
+        },
+        {
+            "id": 9,
+            "type": 1,
+            "body": "Uiterlijk 14 dagen na de vaststelling, moet u een kopie van het PV worden toegestuurd."
+        }
+    ],
+    "texts": [
+        {
+            "id": 1,
+            "body": "Uw rijbewijs kan niet onmiddellijk worden ingetrokken. U ontvangt een onmiddellijke inning van 50 EUR."
+        },
+        {
+            "id": 2,
+            "body": "Wanneer de onmiddellijke inning niet wordt betaald, ontvangt u een minnelijke schikking van 60 EUR."
+        },
+        {
+            "id": 3,
+            "body": "Wanneer ook de minnelijke schikking niet wordt betaald, ontvangt u een bevel tot betalen of een dagvaarding voor het gerecht. Ontvangt u een bevel tot betalen dan moet u binnen de 45 dagen betalen. Gaat u niet akkoord met het bevel, dan moet u binnen de 30 dagen bezwaar instellen. Werd geen bezwaar ingesteld en niet (tijdig) betaald, dan kan het bedrag worden afgehouden van de belastingen. Wordt u gedagvaard voor de rechtbank, dan bedraagt de boete #TOTALAMOUNT1#. Deze geldboetes worden verdubbeld wanneer u minder dan 3 jaar eerder reeds voor gelijkaardige feiten werd veroordeeld. Bedraagt de boete meer dan #TOTALAMOUNT2#, dan betaalt u bovendien een bijdrage aan het Slachtofferfonds van #TOTALAMOUNT2#. De rechter kan geen verval van het recht tot sturen uitspreken.  Opmerking: als u wordt veroordeeld voor overdreven snelheid én een ongeval met gekwetsten, dan moet een rijverbod van minstens 3 maanden worden uitgesproken"
+        },
+        {
+            "id": 4,
+            "body": "Uw rijbewijs kan niet onmiddellijk worden ingetrokken. U ontvangt een onmiddellijke inning van #TOTALAMOUNT3#."
+        },
+        {
+            "id": 5,
+            "body": "Wanneer de onmiddellijke inning niet wordt betaald, ontvangt u een minnelijke schikking van #TOTALAMOUNT4#."
+        },
+        {
+            "id": 6,
+            "body": "Uw rijbewijs kan niet onmiddellijk worden ingetrokken. U ontvangt een onmiddellijke inning van #TOTALAMOUNT5#."
+        },
+        {
+            "id": 7,
+            "body": "Wanneer de onmiddellijke inning niet wordt betaald, ontvangt u een minnelijke schikking van #TOTALAMOUNT6#."
+        },
+        {
+            "id": 8,
+            "body": "Uw rijbewijs kan wel onmiddellijk worden ingetrokken. U ontvangt een onmiddellijke inning van #TOTALAMOUNT3#. Werd de overtreding begaan met een bus, een autocar of een vrachtwagen, of bij slechte weersomstandigheden, dan komt u in principe niet in aanmerking voor een onmiddellijke inning. De politiediensten moeten contact opnemen met de procureur, die in se uw rijbewijs moet intrekken."
+        },
+        {
+            "id": 9,
+            "body": "Heeft u uw rijbewijs minder dan 2 jaar op het ogenblik van de overtreding, dan kan uw rijbewijs onmiddellijk worden ingetrokken. U komt niet in aanmerking voor een onmiddellijke inning of minnelijke schikking. In principe wordt u sowieso gedagvaard voor de politierechtbank. Bovendien is de rechter verplicht u een rijverbod van minstens 8 dagen op te leggen. Bovendien dient u te kiezen of u uw praktisch of uw theoretisch examen opnieuw wenst af te leggen."
+        },
+        {
+            "id": 10,
+            "body": "U komt niet in aanmerking voor een onmiddellijke inning."
+        },
+        {
+            "id": 11,
+            "body": "U komt niet in aanmerking voor een minnelijke schikking."
+        },
+        {
+            "id": 12,
+            "body": "Uw rijbewijs kan niet onmiddellijk worden ingetrokken, tenzij de overtreding werd  begaan bij slechte weersomstandigheden. U ontvangt een onmiddellijke inning van #TOTALAMOUNT5#. Werd de overtreding begaan met een bus, een autocar of een vrachtwagen, of bij slechte weersomstandigheden, dan komt u in principe niet in aanmerking voor een onmiddellijke inning. De politiediensten moeten contact opnemen met de procureur, die in se uw rijbewijs moet intrekken."
+        },
+        {
+            "id": 13,
+            "body": "Uw rijbewijs kan wel onmiddellijk worden ingetrokken. U komt niet in aanmerking voor een onmiddellijke inning, tenzij u niet bent ingeschreven in België."
+        },
+        {
+            "id": 14,
+            "body": "Uw rijbewijs kan wel onmiddellijk worden ingetrokken. U ontvangt een onmiddellijke inning van #TOTALAMOUNT5#."
+        },
+        {
+            "id": 15,
+            "body": "In principe komt u niet in aanmerking voor een minnelijke schikking, tenzij u niet bent ingeschreven in België."
+        },
+        {
+            "id": 16,
+            "body": "Normaal gezien wordt u gedagvaard voor de rechtbank. In dat geval bedraagt de boete #TOTALAMOUNT1#. Deze geldboetes worden verdubbeld wanneer u minder dan 3 jaar eerder reeds voor gelijkaardige feiten werd veroordeeld. Bedraagt de boete meer dan #TOTALAMOUNT2#, dan betaalt u bovendien een bijdrage aan het Slachtofferfonds van #TOTALAMOUNT2#. De rechter moet een verval van het recht tot sturen uitspreken, tenzij hij de beslissing uitdrukkelijk motiveert. Opmerking: als u wordt veroordeeld voor overdreven snelheid én een ongeval met gekwetsten, dan moet een rijverbod van minstens 3 maanden worden uitgesproken"
+        },
+        {
+            "id": 17,
+            "body": "Uw rijbewijs kan wel onmiddellijk worden ingetrokken. In principe komt u niet in aanmerking voor een onmiddellijke inning."
+        },
+        {
+            "id": 18,
+            "body": "U ontvangt een onmiddellijke inning van 170 EUR, tenzij u een ongeval hebt veroorzaakt. De politie kan u een tijdelijk rijverbod opleggen van 3 uur."
+        },
+        {
+            "id": 19,
+            "body": "Wanneer de onmiddellijke inning niet wordt betaald, ontvangt u een minnelijke schikking van 170 EUR wanneer een bloedanalyse werd uitgevoerd of 200 EUR wanneer een ademanalyse werd uitgevoerd."
+        },
+        {
+            "id": 20,
+            "body": "U ontvangt een onmiddellijke inning van 100 EUR. De politie kan u een tijdelijk rijverbod opleggen van 2 uur."
+        },
+        {
+            "id": 21,
+            "body": "Wanneer de onmiddellijke inning niet wordt betaald, ontvangt u een minnelijke schikking van 110 EUR."
+        },
+        {
+            "id": 22,
+            "body": "Wanneer ook de minnelijke schikking niet wordt betaald, ontvangt u een bevel tot betalen of een dagvaarding voor het gerecht. Ontvangt u een bevel tot betalen dan moet u binnen de 45 dagen betalen. Gaat u niet akkoord met het bevel, dan moet u binnen de 30 dagen bezwaar instellen. Werd geen bezwaar ingesteld en niet (tijdig) betaald, dan kan het bedrag worden afgehouden van de belastingen. Wordt u gedagvaard voor de rechtbank, dan bedraagt de boete #TOTALAMOUNT7#. Bedraagt de boete meer dan #TOTALAMOUNT2#, dan betaalt u bovendien een bijdrage aan het Slachtofferfonds van #TOTALAMOUNT2#. De rechter kan verval van het recht tot sturen van minimaal 8 dagen uitspreken."
+        },
+        {
+            "id": 23,
+            "body": "U ontvangt een onmiddellijke inning van 400 EUR, tenzij u een ongeval hebt veroorzaakt. De politie kan u een tijdelijk rijverbod opleggen van 6 uur."
+        },
+        {
+            "id": 24,
+            "body": "Wanneer de onmiddellijke inning niet wordt betaald, ontvangt u een minnelijke schikking tot 600 EUR, tenzij bij verkeersonveilig gedrag, een ongeval of dronkenschap. Uw rijbewijs kan door het parket worden ingetrokken voor een duur van minimaal 15 dagen."
+        },
+        {
+            "id": 25,
+            "body": "Wanneer ook de minnelijke schikking niet wordt betaald, ontvangt u een bevel tot betalen of een dagvaarding voor het gerecht. Ontvangt u een bevel tot betalen dan moet u binnen de 45 dagen betalen. Gaat u niet akkoord met het bevel, dan moet u binnen de 30 dagen bezwaar instellen. Werd geen bezwaar ingesteld en niet (tijdig) betaald, dan kan het bedrag worden afgehouden van de belastingen. Wordt u gedagvaard voor de rechtbank, dan bedraagt de boete #TOTALAMOUNT8#. Bedraagt de boete meer dan #TOTALAMOUNT2#, dan betaalt u bovendien een bijdrage aan het Slachtofferfonds van #TOTALAMOUNT2#. De rechter kan verval van het recht tot sturen van minimaal 8 dagen uitspreken."
+        },
+        {
+            "id": 26,
+            "body": "U ontvangt een onmiddellijke inning van 550 EUR, tenzij u een ongeval hebt veroorzaakt. De politie kan u een tijdelijk rijverbod opleggen van 6 uur."
+        },
+        {
+            "id": 27,
+            "body": "U komt niet in aanmerking voor een onmiddellijke inning, tenzij u geen vaste woonplaats heeft in België. De politie kan u een tijdelijk rijverbod opleggen van 6 uur."
+        },
+        {
+            "id": 28,
+            "body": "U ontvangt een minnelijke schikking van 1200 EUR. Uw rijbewijs kan door het parket worden ingetrokken voor een duur van minimaal 15 dagen."
+        },
+        {
+            "id": 29,
+            "body": "U komt niet in aanmerking voor onmiddellijke inning. De politie kan u een tijdelijk rijverbod opleggen van 6 uur."
+        },
+        {
+            "id": 30,
+            "body": "U komt niet in aanmerking voor een minnelijke schikking, maar dient u wel een som van 1200 EUR in consignatie te geven. Uw rijbewijs kan door het parket worden ingetrokken voor een duur van minimaal 15 dagen."
+        },
+        {
+            "id": 31,
+            "body": "In principe komt u niet in aanmerking voor een minnelijke schikking. Uw rijbewijs kan door het parket worden ingetrokken voor een duur van minimaal 15 dagen."
+        },
+        {
+            "id": 32,
+            "body": "Omdat u principieel niet in aanmerking komt voor een minnelijke schikking, ontvangt u een bevel tot betalen of een dagvaarding voor het gerecht. Ontvangt u een bevel tot betalen dan moet u binnen de 45 dagen betalen.  Gaat u niet akkoord met het bevel, dan moet u binnen de 30 dagen bezwaar instellen. Werd geen bezwaar ingesteld en niet (tijdig) betaald, dan kan het bedrag worden afgehouden van de belastingen. Wordt u gedagvaard voor de rechtbank, dan bedraagt de boete #TOTALAMOUNT8#. Bedraagt de boete meer dan #TOTALAMOUNT2#, dan betaalt u bovendien een bijdrage aan het Slachtofferfonds van #TOTALAMOUNT2#. De rechter kan verval van het recht tot sturen van minimaal 8 dagen uitspreken."
+        },
+        {
+            "id": 33,
+            "body": "U komt in principe niet in aanmerking voor een onmiddellijke inning. De politie kan u een tijdelijk rijverbod opleggen van 12 uur."
+        },
+        {
+            "id": 34,
+            "body": "Omdat u principieel niet in aanmerking komt voor een minnelijke schikking, ontvangt u een bevel tot betalen of een dagvaarding voor het gerecht. Ontvangt u een bevel tot betalen dan moet u binnen de 45 dagen betalen. Gaat u niet akkoord met het bevel, dan moet u binnen de 30 dagen bezwaar instellen. Werd geen bezwaar ingesteld en niet (tijdig) betaald, dan kan het bedrag worden afgehouden van de belastingen. Wordt u gedagvaard voor de rechtbank, dan bedraagt de boete #TOTALAMOUNT8#. Bedraagt de boete meer dan #TOTALAMOUNT2#, dan betaalt u bovendien een bijdrage aan het Slachtofferfonds van #TOTALAMOUNT2#. De rechter moet verval van het recht tot sturen van minimaal 1 maand uitspreken."
+        },
+        {
+            "id": 35,
+            "body": "U komt in principe niet in aanmerking voor een onmiddellijke inning. De politie kan u een tijdelijk rijverbod opleggen van 6 uur."
+        },
+        {
+            "id": 36,
+            "body": "Omdat u principieel niet in aanmerking komt voor een minnelijke schikking, ontvangt u een bevel tot betalen of een dagvaarding voor het gerecht. Ontvangt u een bevel tot betalen dan moet u binnen de 45 dagen betalen. Gaat u niet akkoord met het bevel, dan moet u binnen de 30 dagen bezwaar instellen. Werd geen bezwaar ingesteld en niet (tijdig) betaald, dan kan het bedrag worden afgehouden van de belastingen. Wordt u gedagvaard voor de rechtbank, dan bedraagt de boete #TOTALAMOUNT9#. Bedraagt de boete meer dan #TOTALAMOUNT2#, dan betaalt u bovendien een bijdrage aan het Slachtofferfonds van #TOTALAMOUNT2#. De rechter moet verval van het recht tot sturen van minimaal 3 maand uitspreken."
+        },
+        {
+            "id": 37,
+            "body": "Omdat u principieel niet in aanmerking komt voor een minnelijke schikking, ontvangt u een bevel tot betalen of een dagvaarding voor het gerecht. Ontvangt u een bevel tot betalen dan moet u binnen de 45 dagen betalen. Gaat u niet akkoord met het bevel, dan moet u binnen de 30 dagen bezwaar instellen. Werd geen bezwaar ingesteld en niet (tijdig) betaald, dan kan het bedrag worden afgehouden van de belastingen. Wordt u gedagvaard voor de rechtbank, dan bedraagt de boete #TOTALAMOUNT10#. Bedraagt de boete meer dan #TOTALAMOUNT2#, dan betaalt u bovendien een bijdrage aan het Slachtofferfonds van #TOTALAMOUNT2#. De rechter moet verval van het recht tot sturen van minimaal 6 maand uitspreken."
+        },
+        {
+            "id": 38,
+            "body": "U ontvangt een onmiddellijke inning van 55 EUR. Uw rijbewijs kan niet onmiddellijk worden ingetrokken"
+        },
+        {
+            "id": 39,
+            "body": "U ontvangt een onmiddellijke inning van 110 EUR. Uw rijbewijs kan wel onmiddellijk worden ingetrokken, wanneer u een gevaar voor andere weggebruikers inhoudt."
+        },
+        {
+            "id": 40,
+            "body": "U ontvangt een onmiddellijke inning van 165 EUR. Uw rijbewijs kan wel onmiddellijk worden ingetrokken, wanneer u een gevaar voor andere weggebruikers inhoudt."
+        },
+        {
+            "id": 41,
+            "body": "U komt niet in aanmerking voor een onmiddellijke inning, tenzij u niet bent ingeschreven in België. In dat geval ontvangt u een onmiddellijke inning van 450 EUR. Uw rijbewijs kan wel onmiddellijk worden ingetrokken."
+        },
+        {
+            "id": 42,
+            "body": "Wanneer de onmiddellijke inning niet wordt betaald, ontvangt u een minnelijke schikking van 65 EUR"
+        },
+        {
+            "id": 43,
+            "body": "Wanneer de onmiddellijke inning niet wordt betaald, ontvangt u een minnelijke schikking van 120 EUR"
+        },
+        {
+            "id": 44,
+            "body": "Wanneer de onmiddellijke inning niet wordt betaald, ontvangt u een minnelijke schikking van 175 EUR"
+        },
+        {
+            "id": 45,
+            "body": "U komt in principe niet in aanmerking voor een onmiddellijke inning, tenzij u niet bent ingeschreven in België. In dat geval ontvangt u een onmiddellijke inning van 450 EUR."
+        },
+        {
+            "id": 46,
+            "body": "Wanneer ook de minnelijke schikking niet wordt betaald, ontvangt u een bevel tot betalen of een dagvaarding voor het gerecht. Ontvangt u een bevel tot betalen dan moet u binnen de 45 dagen betalen. Gaat u niet akkoord met het bevel, dan moet u binnen de 30 dagen bezwaar instellen. Werd geen bezwaar ingesteld en niet (tijdig) betaald, dan kan het bedrag worden afgehouden van de belastingen. Wordt u gedagvaard voor de rechtbank, dan bedraagt de boete #TOTALAMOUNT11#. Deze geldboetes worden verdubbeld wanneer u minder dan 3 jaar eerder reeds voor gelijkaardige feiten werd veroordeeld. Bedraagt de boete meer dan #TOTALAMOUNT2#, dan betaalt u bovendien een bijdrage aan het Slachtofferfonds van #TOTALAMOUNT2#. De rechter kan geen verval van het recht tot sturen uitspreken"
+        },
+        {
+            "id": 47,
+            "body": "Wanneer ook de minnelijke schikking niet wordt betaald, ontvangt u een bevel tot betalen of een dagvaarding voor het gerecht. Ontvangt u een bevel tot betalen dan moet u binnen de 45 dagen betalen. Gaat u niet akkoord met het bevel, dan moet u binnen de 30 dagen bezwaar instellen. Werd geen bezwaar ingesteld en niet (tijdig) betaald, dan kan het bedrag worden afgehouden van de belastingen. - Wordt u gedagvaard voor de rechtbank, dan bedraagt de boete #TOTALAMOUNT12#. Deze geldboetes worden verdubbeld wanneer u minder dan 3 jaar eerder reeds voor gelijkaardige feiten werd veroordeeld. Bedraagt de boete meer dan #TOTALAMOUNT2#, dan betaalt u bovendien een bijdrage aan het Slachtofferfonds van #TOTALAMOUNT2#. De rechter kan wel een verval van het recht tot sturen uitspreken"
+        },
+        {
+            "id": 48,
+            "body": "Wanneer ook de minnelijke schikking niet wordt betaald, ontvangt u een bevel tot betalen of een dagvaarding voor het gerecht. Ontvangt u een bevel tot betalen dan moet u binnen de 45 dagen betalen. Gaat u niet akkoord met het bevel, dan moet u binnen de 30 dagen bezwaar instellen. Werd geen bezwaar ingesteld en niet (tijdig) betaald, dan kan het bedrag worden afgehouden van de belastingen. Wordt u gedagvaard voor de rechtbank, dan bedraagt de boete #TOTALAMOUNT13#. Deze geldboetes worden verdubbeld wanneer u minder dan 3 jaar eerder reeds voor gelijkaardige feiten werd veroordeeld. Bedraagt de boete meer dan #TOTALAMOUNT2#, dan betaalt u bovendien een bijdrage aan het Slachtofferfonds van #TOTALAMOUNT2#. De rechter kan wel een verval van het recht tot sturen uitspreken."
+        },
+        {
+            "id": 49,
+            "body": "Wanneer ook de minnelijke schikking niet wordt betaald, ontvangt u een bevel tot betalen of een dagvaarding voor het gerecht. Ontvangt u een bevel tot betalen dan moet u binnen de 45 dagen betalen. Gaat u niet akkoord met het bevel, dan moet u binnen de 30 dagen bezwaar instellen. Werd geen bezwaar ingesteld en niet (tijdig) betaald, dan kan het bedrag worden afgehouden van de belastingen. Wordt u gedagvaard voor de rechtbank, dan bedraagt de boete #TOTALAMOUNT14#. Deze geldboetes worden verdubbeld wanneer u minder dan 3 jaar eerder reeds voor gelijkaardige feiten werd veroordeeld. Bedraagt de boete meer dan #TOTALAMOUNT2#, dan betaalt u bovendien een bijdrage aan het Slachtofferfonds van #TOTALAMOUNT2#. De rechter kan wel een verval van het recht tot sturen uitspreken."
+        },
+        {
+            "id": 50,
+            "body": "Uw rijbewijs kan wel onmiddellijk worden ingetrokken. U komt niet in aanmerking voor een onmiddellijke inning."
+        },
+        {
+            "id": 51,
+            "body": "Uw rijbewijs kan wel onmiddellijk worden ingetrokken. U komt niet in aanmerking voor een minnelijke schikking."
+        },
+        {
+            "id": 52,
+            "body": "Omdat u principieel niet in aanmerking komt voor een minnelijke schikking, ontvangt u een bevel tot betalen of een dagvaarding voor het gerecht. Ontvangt u een bevel tot betalen dan moet u binnen de 45 dagen betalen. Gaat u niet akkoord met het bevel, dan moet u binnen de 30 dagen bezwaar instellen. Werd geen bezwaar ingesteld en niet (tijdig) betaald, dan kan het bedrag worden afgehouden van de belastingen. Wordt u gedagvaard voor de rechtbank, dan bedraagt de boete #TOTALAMOUNT15#. De rechtbank kan u ook een gevangenisstraf van 15 dagen tot 3 maanden opleggen. Deze straffen worden verdubbeld bij herhaling binnen de 3 jaar. Bedraagt de boete meer dan #TOTALAMOUNT2#, dan betaalt u bovendien een bijdrage aan het Slachtofferfonds van #TOTALAMOUNT2#. De rechter kan verval van het recht tot sturen van minimaal 8 dagen uitspreken (bij een ongeval met gewonden is een rijverbod van minstens 3 maanden verplicht). De verklikker wordt verbeurd verklaard en vernietigd."
+        },
+        {
+            "id": 53,
+            "body": "Omdat u principieel niet in aanmerking komt voor een minnelijke schikking, ontvangt u een bevel tot betalen of een dagvaarding voor het gerecht. Ontvangt u een bevel tot betalen dan moet u binnen de 45 dagen betalen. Gaat u niet akkoord met het bevel, dan moet u binnen de 30 dagen bezwaar instellen. Werd geen bezwaar ingesteld en niet (tijdig) betaald, dan kan het bedrag worden afgehouden van de belastingen. Wordt u gedagvaard voor de rechtbank, dan bedraagt de boete #TOTALAMOUNT16#. De rechtbank kan u ook een gevangenisstraf van 15 dagen tot 6 maanden opleggen. Deze straffen worden verdubbeld bij herhaling binnen de 3 jaar. Bedraagt de boete meer dan #TOTALAMOUNT2#, dan betaalt u bovendien een bijdrage aan het Slachtofferfonds van #TOTALAMOUNT2#. De rechter kan geen verval van het recht tot sturen uitspreken."
+        },
+        {
+            "id": 54,
+            "body": "U ontvangt een minnelijke schikking van 990 EUR."
+        },
+        {
+            "id": 55,
+            "body": "Wanneer ook de minnelijke schikking niet wordt betaald, ontvangt u een bevel tot betalen of een dagvaarding voor het gerecht. Ontvangt u een bevel tot betalen dan moet u binnen de 45 dagen betalen. Gaat u niet akkoord met het bevel, dan moet u binnen de 30 dagen bezwaar instellen. Werd geen bezwaar ingesteld en niet (tijdig) betaald, dan kan het bedrag worden afgehouden van de belastingen. Wordt u gedagvaard voor de rechtbank, dan bedraagt de boete #TOTALAMOUNT17#. Bovendien kan de rechtbank een gevangenisstraf van 8 dagen tot 3 maanden opleggen. Bedraagt de boete meer dan #TOTALAMOUNT2#, dan betaalt u bovendien een bijdrage aan het Slachtofferfonds van #TOTALAMOUNT2#. De rechtbank kan de overtreder bovendien verbieden voertuigen te verkopen of verhuren in België. De opgelegde straf wordt verdubbeld bij herhaling binnen de 2 jaar."
+        },
+        {
+            "id": 56,
+            "body": "U ontvangt een minnelijke schikking van 55 EUR."
+        },
+        {
+            "id": 57,
+            "body": "U ontvangt een minnelijke schikking van 1980 EUR."
+        },
+        {
+            "id": 58,
+            "body": "U komt niet in aanmerking voor een onmiddellijke inning. Het voertuig kan in beslag genomen/geïmmobiliseerd worden."
+        },
+        {
+            "id": 59,
+            "body": "In principe komt u niet in aanmerking voor een minnelijke schikking. Uw rijbewijs kan wel onmiddellijk worden ingetrokken."
+        },
+        {
+            "id": 60,
+            "body": "Wanneer ook de minnelijke schikking niet wordt betaald, ontvangt u een bevel tot betalen of een dagvaarding voor het gerecht. Ontvangt u een bevel tot betalen dan moet u binnen de 45 dagen betalen. Gaat u niet akkoord met het bevel, dan moet u binnen de 30 dagen bezwaar instellen. Werd geen bezwaar ingesteld en niet (tijdig) betaald, dan kan het bedrag worden afgehouden van de belastingen. Wordt u gedagvaard voor de rechtbank, dan bedraagt de boete #TOTALAMOUNT18#. De rechtbank kan ook een gevangenisstraf van 8 dagen tot 6 maanden opleggen. Bedraagt de boete meer dan #TOTALAMOUNT2#, dan betaalt u bovendien een bijdrage aan het Slachtofferfonds van #TOTALAMOUNT2#. De rechter kan verval van het recht tot sturen van minimaal 8 dagen uitspreken."
+        },
+        {
+            "id": 61,
+            "body": "U krijgt een PV van waarschuwing"
+        },
+        {
+            "id": 62,
+            "body": "Wanneer u het verzekeringsbewijs niet toont, kan u een minnelijke schikking worden voorgesteld. "
+        },
+        {
+            "id": 63,
+            "body": "Wanneer ook de minnelijke schikking niet wordt betaald, ontvangt u een bevel tot betalen of een dagvaarding voor het gerecht. Ontvangt u een bevel tot betalen dan moet u binnen de 45 dagen betalen. Gaat u niet akkoord met het bevel, dan moet u binnen de 30 dagen bezwaar instellen. Werd geen bezwaar ingesteld en niet (tijdig) betaald, dan kan het bedrag worden afgehouden van de belastingen. Wordt u gedagvaard voor de rechtbank, dan bedraagt de boete #TOTALAMOUNT11#. Bedraagt de boete meer dan #TOTALAMOUNT2#, dan betaalt u bovendien een bijdrage aan het Slachtofferfonds van #TOTALAMOUNT2#."
+        },
+        {
+            "id": 64,
+            "body": "In principe komt u niet in aanmerking voor een minnelijke schikking. Uw rijbewijs kan niet worden ingetrokken (tenzij u geïntoxiceerd of dronken was)."
+        },
+        {
+            "id": 65,
+            "body": "In principe komt u niet in aanmerking voor een minnelijke schikking"
+        },
+        {
+            "id": 66,
+            "body": "Wanneer ook de minnelijke schikking niet wordt betaald, ontvangt u een bevel tot betalen of een dagvaarding voor het gerecht. Ontvangt u een bevel tot betalen dan moet u binnen de 45 dagen betalen. Gaat u niet akkoord met het bevel, dan moet u binnen de 30 dagen bezwaar instellen. Werd geen bezwaar ingesteld en niet (tijdig) betaald, dan kan het bedrag worden afgehouden van de belastingen. Wordt u gedagvaard voor de rechtbank, dan bedraagt de boete #TOTALAMOUNT8#. De rechtbank kan ook een gevangenisstraf van 15 dagen tot 6 maanden opleggen. Bedraagt de boete meer dan #TOTALAMOUNT2#, dan betaalt u bovendien een bijdrage aan het Slachtofferfonds van #TOTALAMOUNT2#. De rechter kan verval van het recht tot sturen van minimaal 8 dagen uitspreken."
+        },
+        {
+            "id": 67,
+            "body": "Wanneer ook de minnelijke schikking niet wordt betaald, ontvangt u een bevel tot betalen of een dagvaarding voor het gerecht. Ontvangt u een bevel tot betalen dan moet u binnen de 45 dagen betalen. Gaat u niet akkoord met het bevel, dan moet u binnen de 30 dagen bezwaar instellen. Werd geen bezwaar ingesteld en niet (tijdig) betaald, dan kan het bedrag worden afgehouden van de belastingen. Wordt u gedagvaard voor de rechtbank, dan bedraagt de boete #TOTALAMOUNT19#. De rechtbank kan ook een gevangenisstraf van 15 dagen tot 2 jaar opleggen. Bedraagt de boete meer dan #TOTALAMOUNT2#, dan betaalt u bovendien een bijdrage aan het Slachtofferfonds van #TOTALAMOUNT2#. De rechter moet verval van het recht tot sturen van minimaal 3 maand uitspreken en minstens een praktische, theoretische en psychologische proef opleggen."
+        },
+        {
+            "id": 68,
+            "body": "Wanneer ook de minnelijke schikking niet wordt betaald, ontvangt u een bevel tot betalen of een dagvaarding voor het gerecht. Ontvangt u een bevel tot betalen dan moet u binnen de 45 dagen betalen. Gaat u niet akkoord met het bevel, dan moet u binnen de 30 dagen bezwaar instellen. Werd geen bezwaar ingesteld en niet (tijdig) betaald, dan kan het bedrag worden afgehouden van de belastingen. Wordt u gedagvaard voor de rechtbank, dan bedraagt de boete #TOTALAMOUNT8#. De rechtbank kan ook een gevangenisstraf van 15 dagen tot 2 jaar opleggen. Bedraagt de boete meer dan #TOTALAMOUNT2#, dan betaalt u bovendien een bijdrage aan het Slachtofferfonds van #TOTALAMOUNT2#. De rechter kan verval van het recht tot sturen van minimaal 8 dagen uitspreken."
+        },
+        {
+            "id": 69,
+            "body": "Wanneer ook de minnelijke schikking niet wordt betaald, ontvangt u een bevel tot betalen of een dagvaarding voor het gerecht. Ontvangt u een bevel tot betalen dan moet u binnen de 45 dagen betalen. Gaat u niet akkoord met het bevel, dan moet u binnen de 30 dagen bezwaar instellen.  Werd geen bezwaar ingesteld en niet (tijdig) betaald, dan kan het bedrag worden afgehouden van de belastingen. Wordt u gedagvaard voor de rechtbank, dan bedraagt de boete #TOTALAMOUNT20#.  De rechtbank kan ook een gevangenisstraf van 15 dagen tot 2 jaar opleggen. Bedraagt de boete meer dan #TOTALAMOUNT2#, dan betaalt u bovendien een bijdrage aan het Slachtofferfonds van #TOTALAMOUNT2#. De rechter kan geen verval van het recht tot sturen uitspreken."
+        },
+        {
+            "id": 70,
+            "body": "Wanneer ook de minnelijke schikking niet wordt betaald, ontvangt u een bevel tot betalen of een dagvaarding voor het gerecht. Ontvangt u een bevel tot betalen dan moet u binnen de 45 dagen betalen. Gaat u niet akkoord met het bevel, dan moet u binnen de 30 dagen bezwaar instellen. Werd geen bezwaar ingesteld en niet (tijdig) betaald, dan kan het bedrag worden afgehouden van de belastingen. Wordt u gedagvaard voor de rechtbank, dan bedraagt de boete #TOTALAMOUNT8#. De rechtbank kan ook een gevangenisstraf van 3 maanden tot 2 jaar opleggen. Bedraagt de boete meer dan #TOTALAMOUNT2#, dan betaalt u bovendien een bijdrage aan het Slachtofferfonds van #TOTALAMOUNT2#. De rechter moet verval van het recht tot sturen van minimaal 3 maand uitspreken."
+        }
+    ],
+    "alcohol": [
+        {
+            "id": 1,
+            "intoxication": 0,
+            "text_id_1": 20,
+            "text_id_2": 21,
+            "text_id_3": 22
+        },
+        {
+            "id": 2,
+            "intoxication": 1,
+            "text_id_1": 18,
+            "text_id_2": 19,
+            "text_id_3": 22
+        },
+        {
+            "id": 3,
+            "intoxication": 2,
+            "text_id_1": 23,
+            "text_id_2": 24,
+            "text_id_3": 25
+        },
+        {
+            "id": 4,
+            "intoxication": 3,
+            "text_id_1": 26,
+            "text_id_2": 24,
+            "text_id_3": 25
+        },
+        {
+            "id": 5,
+            "intoxication": 4,
+            "text_id_1": 27,
+            "text_id_2": 28,
+            "text_id_3": 25
+        },
+        {
+            "id": 6,
+            "intoxication": 5,
+            "text_id_1": 29,
+            "text_id_2": 30,
+            "text_id_3": 25
+        },
+        {
+            "id": 7,
+            "intoxication": 6,
+            "text_id_1": 29,
+            "text_id_2": 31,
+            "text_id_3": 32
+        },
+        {
+            "id": 8,
+            "intoxication": 7,
+            "text_id_1": 33,
+            "text_id_2": 31,
+            "text_id_3": 34
+        },
+        {
+            "id": 9,
+            "intoxication": 8,
+            "text_id_1": 35,
+            "text_id_2": 31,
+            "text_id_3": 36
+        },
+        {
+            "id": 10,
+            "intoxication": 9,
+            "text_id_1": 33,
+            "text_id_2": 31,
+            "text_id_3": 37
+        }
+    ],
+    "drugs": [
+        {
+            "id": 1,
+            "blood_test": -1,
+            "driver": 0,
+            "text_id_1": 33,
+            "text_id_2": 31,
+            "text_id_3": 32
+        }
+    ],
+    "speed": [
+        {
+            "id": 1,
+            "exceed": 0,
+            "road": 0,
+            "text_id_1": 1,
+            "text_id_2": 2,
+            "text_id_3": 3
+        },
+        {
+            "id": 2,
+            "exceed": 0,
+            "road": 1,
+            "text_id_1": 1,
+            "text_id_2": 2,
+            "text_id_3": 3
+        },
+        {
+            "id": 3,
+            "exceed": 1,
+            "road": 0,
+            "text_id_1": 4,
+            "text_id_2": 5,
+            "text_id_3": 3
+        },
+        {
+            "id": 4,
+            "exceed": 1,
+            "road": 1,
+            "text_id_1": 6,
+            "text_id_2": 7,
+            "text_id_3": 3
+        },
+        {
+            "id": 5,
+            "exceed": 2,
+            "road": 0,
+            "text_id_1": 8,
+            "text_id_2": 5,
+            "text_id_3": 3
+        },
+        {
+            "id": 6,
+            "exceed": 2,
+            "road": 1,
+            "text_id_1": 12,
+            "text_id_2": 7,
+            "text_id_3": 3
+        },
+        {
+            "id": 7,
+            "exceed": 3,
+            "road": 0,
+            "text_id_1": 13,
+            "text_id_2": 15,
+            "text_id_3": 16
+        },
+        {
+            "id": 8,
+            "exceed": 3,
+            "road": 1,
+            "text_id_1": 14,
+            "text_id_2": 7,
+            "text_id_3": 3
+        },
+        {
+            "id": 9,
+            "exceed": 4,
+            "road": 0,
+            "text_id_1": 13,
+            "text_id_2": 15,
+            "text_id_3": 16
+        },
+        {
+            "id": 10,
+            "exceed": 4,
+            "road": 1,
+            "text_id_1": 17,
+            "text_id_2": 15,
+            "text_id_3": 16
+        }
+    ],
+    "other": [
+        {
+            "id": 1,
+            "text_id_1": 40,
+            "text_id_2": 44,
+            "text_id_3": 48,
+            "degree": 3,
+            "description": "4.1 De weggebruikers moeten onmiddellijk gevolg geven aan de bevelen van een bevoegd persoon"
+        },
+        {
+            "id": 2,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "4.2.1 Wanneer een bevoegd persoon de arm opsteekt, moet men stoppen tenzij men zich reeds op het kruispunt bevindt. In dat geval moet men het kruispunt vrijmaken"
+        },
+        {
+            "id": 3,
+            "text_id_1": 41,
+            "text_id_2": 45,
+            "text_id_3": 49,
+            "degree": 4,
+            "description": "4.2.2° Wanneer een bevoegd persoon de armen uitgestrekt houdt, moeten de weggebruikers die deze richting dwarsen, stoppen"
+        },
+        {
+            "id": 4,
+            "text_id_1": 41,
+            "text_id_2": 45,
+            "text_id_3": 49,
+            "degree": 4,
+            "description": "4.2.3° Wanneer een bevoegd persoon zwaait met een rood licht, moet de weggebruikers stoppen wanneer het rode licht naar hen gericht is"
+        },
+        {
+            "id": 5,
+            "text_id_1": 40,
+            "text_id_2": 44,
+            "text_id_3": 48,
+            "degree": 3,
+            "description": "4.4. lid 1 Elke bestuurder moet zijn voertuig verplaatsen zodra hij daarom wordt gevraagd door een bevoegd persoon."
+        },
+        {
+            "id": 6,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "7.1 Men mag geen kwetsbare weggebruikers in gevaar brengen en moet dubbel voorzichtig zijn in de buurt van fietsers, voetgangers, kinderen, bejaarden of andersvaliden"
+        },
+        {
+            "id": 7,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "7.2 Men mag geen gevaar veroorzaken aan andere weggebruikers, daarin begrepen het personeel van wegenwerken"
+        },
+        {
+            "id": 8,
+            "text_id_1": 39,
+            "text_id_2": 43,
+            "text_id_3": 47,
+            "degree": 2,
+            "description": "7.3. Men mag geen zwerfvuil, stoffen, rook of stoom achterlaten of verspreiden op de openbare weg"
+        },
+        {
+            "id": 9,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "7.4 Men mag geen schade toebrengen aan de openbare weg door overdreven snelheid of overlading "
+        },
+        {
+            "id": 10,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "8.1 Elk voertuig in beweging, maar ook elk trekdier of rijdier, moet steeds een bestuurder hebben"
+        },
+        {
+            "id": 11,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "8.2.1° Men moet minstens 21 jaar zijn om een autobus, trolleybus of autocar te besturen of andere voertuigen bestemd voor betaald vervoer van personen"
+        },
+        {
+            "id": 12,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "8.2.1° a) Men moet echter minstens 17 jaar zijn om een autobus, trolleybus of autocar of andere voertuigen bestemd voor betaald vervoer van personen te besturen indien men de opleiding “bestuurder van autobussen en autocars” volgt in het secundair onderwijs"
+        },
+        {
+            "id": 13,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "8.2.1° b) Men moet echter minstens 18 jaar zijn om een voertuig te besturen van categorie D en D+E, bestemd voor geregeld vervoer, indien het traject ten hoogste 50 km bedraagt en de bestuurder een bewijs van vakbekwaamheid D bij zich heeft "
+        },
+        {
+            "id": 14,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "8.2.1° c) Men moet minstens 18 jaar zijn, wanneer men opleiding volgt en het praktische examen aflegt voor het rijbewijs D1, D1+E, D of D+E of houder is van een voorlopig rijbewijs voor deze categorieën "
+        },
+        {
+            "id": 15,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "8.2.1° d) Men moet minstens 20 jaar zijn om voertuigen van de categorieën D en D+E voor personenvervoer te besturen, indien men een bewijs van vakbekwaamheid D bij zich heeft"
+        },
+        {
+            "id": 16,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "8.2.2° Men moet minstens 21 jaar zijn om voertuigen te besturen met een MTM van meer dan 7,5 ton"
+        },
+        {
+            "id": 17,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "8.2.2° a) Men moet echter minstens 17 jaar zijn om een voertuig met een MTM van meer dan 7,5 ton te besturen indien men de opleiding “bestuurder van vrachtwagens” volgt in het secundair onderwijs"
+        },
+        {
+            "id": 18,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "8.2.2° b) Men moet echter minstens 18 jaar zijn om een voertuig met een MTM van meer dan 7,5 ton te besturen, indien men een bewijs van vakbekwaamheid C bij zich heeft, indien men examen aflegt voor de categorieën C of C+E, of wanneer men een voorlopig rijbewijs heeft voor deze categorieën"
+        },
+        {
+            "id": 19,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "8.2.2° c) Men moet minstens 18 jaar zijn, om een voertuig te besturen van de categorie G met een MTM van meer dan 20 ton"
+        },
+        {
+            "id": 20,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "8.2.2° d) Men moet minstens 16 jaar zijn om een voertuig te besturen van de categorie G met een MTM van maximaal 20 ton of voor voertuigen van de categorie G in het algemeen wanneer men daarvoor een opleiding volgt en praktisch examen aflegt"
+        },
+        {
+            "id": 21,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "8.2.3° a) men moet minstens 16 jaar zijn om een bromfiets te besturen wanneer daarop enkel de bestuurder en de instructeur van de rijschool of de examinator zit of voor voertuigen van categorie A1;"
+        },
+        {
+            "id": 22,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "8.2.3° b) men moet minstens 17 jaar zijn om een voertuig te besturen wanneer men rijlessen volgt of wanneer men een voorlopig rijbewijs B heeft"
+        },
+        {
+            "id": 23,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "8.2.3° c) men moet minstens 17 jaar zijn om deze voertuigen te besturen indien men de beroepsopleiding \"bestuurders van vrachtwagens\" of \"bestuurders van autobussen en autocars\" volgt"
+        },
+        {
+            "id": 24,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "8.2.3° d) Men moet minstens 20 jaar oud zijn om motorfietsen te besturen van de categorie A"
+        },
+        {
+            "id": 25,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "8.2.3° e) Men moet minstens 21 jaar zijn om driewielers te besturen van de categorie A, tenzij men over een rijbewijs van de categorie B beschikt, dat is afgegeven vóór 1 mei 2013;"
+        },
+        {
+            "id": 26,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "8.2.4° Men moet minstens 16 jaar zijn om een bespannen voertuig te besturen"
+        },
+        {
+            "id": 27,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "8.2.5° Men moet minstens 14 jaar zijn om trekdieren, lastdieren, rijdieren of vee te besturen wanneer deze dieren niet zijn ingespannen en men moet minstens 12 jaar zijn wanneer men begeleid wordt door een ruiter van ten minste 21 jaar oud."
+        },
+        {
+            "id": 28,
+            "text_id_1": 39,
+            "text_id_2": 43,
+            "text_id_3": 47,
+            "degree": 2,
+            "description": "8.3. Elke bestuurder moet steeds in staat zijn te sturen en moet steeds zijn voertuig of dieren in de hand houden. "
+        },
+        {
+            "id": 29,
+            "text_id_1": 39,
+            "text_id_2": 43,
+            "text_id_3": 47,
+            "degree": 2,
+            "description": "8.4. Men mag geen gebruik maken van een draagbare telefoon in de hand, tenzij wanneer men stilstaat of geparkeerd is."
+        },
+        {
+            "id": 30,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "8.5. Men mag zijn voertuig enkel achterlaten wanneer daarmee geen ongevallen kunnen gebeuren of het voertuig niet kan worden misbruikt door derden."
+        },
+        {
+            "id": 31,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "8.5. Wanneer het voertuig voorzien is van een bescherming tegen diefstal, moet dat worden gebruikt. "
+        },
+        {
+            "id": 32,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "8.6. eerste lid Men mag de motor niet herhaaldelijk in neutraal laten versnellen."
+        },
+        {
+            "id": 33,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "8.7. Men mag de motor enkel in neutraal laten draaien indien dat noodzakelijk is."
+        },
+        {
+            "id": 34,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "9.1.1. De bestuurders moeten de openbare weg volgen"
+        },
+        {
+            "id": 35,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "9.1.2.1° ten eerste. Wordt het fietspad aangeduid met onderbroken witte strepen, dan moeten fietsers en bromfietsers klasse het fietspad volgen dat rechts in hun rijrichting ligt "
+        },
+        {
+            "id": 36,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "9.1.2.1° ten tweede. Wordt het fietspad in hun richting aangeduid met een verkeersbord D7 of D9 dan moeten fietsers en bromfietsers klasse A dit fietspad volgen, behalve in bijzondere omstandigheden "
+        },
+        {
+            "id": 37,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "9.1.2.1° ten derde Wanneer een deel van de weg is voorbehouden aan voetgangers en fietsers D9 dan moeten de fietsers dit deel van de rijbaan volgen"
+        },
+        {
+            "id": 38,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "9.1.2.2° ten eerste Wanneer een bromfietser klasse B het fietspad volgt mag deze de fietsers en voetgangers niet in gevaar brengen "
+        },
+        {
+            "id": 39,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "9.1.2.2° ten tweede Waar een maximumsnelheid geldt van meer dan 50 km/u, moeten de bromfietsers klasse B het verplichte fietspad volgen."
+        },
+        {
+            "id": 40,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "9.1.2.2° ten derde Bromfietsers klasse B moeten het fietspad volgen wanneer dit door een verkeersbord M6 wordt verplicht "
+        },
+        {
+            "id": 41,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "9.1.2.2° ten vierde Bromfietsers mogen het fietspad niet volgen wanneer dit door een verkeersbord M7 wordt verboden"
+        },
+        {
+            "id": 42,
+            "text_id_1": 40,
+            "text_id_2": 44,
+            "text_id_3": 48,
+            "degree": 3,
+            "description": "9.2 Wanneer verschillende rijbanen van elkaar worden gescheiden door een effen grond, een voor voertuigen verboden ruimte of een verschil in niveau, mag men de linkse rijbaan enkel volgen wanneer dat uitdrukkelijk wordt toegestaan."
+        },
+        {
+            "id": 43,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "9.3.1. Men moet steeds zo dicht mogelijk bij de rechterrand van de rijbaan rijden, behalve op pleinen, op plaatsen waar men mag/moet voorsorteren of op rotondes. Wie heeft voorgesorteerd, moet daarna wel zo snel mogelijk weer rechts gaan rijden."
+        },
+        {
+            "id": 44,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "9.3.2. Op een rijbaan met twee rijrichtingen mogen de motorrijders enkel hun  rechterhelft van de rijbaan gebruiken. "
+        },
+        {
+            "id": 45,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "9.4. Binnen de bebouwde kom, mag men op de rijbanen die zijn voorzien van meerdere rijstroken in dezelfde rijrichting, de rijstrook volgen die het best aan zijn bestemming beantwoordt"
+        },
+        {
+            "id": 46,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "9.5. Waar er meerdere rijstroken zijn voorzien in dezelfde rijrichting, mag men enkel bij drukte in meerdere files naaste elkaar rijden"
+        },
+        {
+            "id": 47,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "9.6. Tenzij anders aangegeven, moet men verkeersgeleiders en vluchtheuvels steeds langs rechts voorbijrijden. Enkel wanneer het noodzakelijk is, mogen vluchtheuvels langs rechts voorbij gereden worden."
+        },
+        {
+            "id": 48,
+            "text_id_1": 39,
+            "text_id_2": 43,
+            "text_id_3": 47,
+            "degree": 2,
+            "description": "10.1.1° Men moet zijn snelheid steeds aanpassen aan de omstandigheden"
+        },
+        {
+            "id": 49,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "10.1.2. Men moet steeds voldoende afstand bewaren ten opzichte van de voorligger"
+        },
+        {
+            "id": 50,
+            "text_id_1": 39,
+            "text_id_2": 43,
+            "text_id_3": 47,
+            "degree": 2,
+            "description": "10.1.3° Men moet steeds kunnen stoppen voor een voorzienbare hindernis"
+        },
+        {
+            "id": 51,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "10.2, al. 1 Men mag abnormaal traag rijden of plots stoppen zonder dat daar een reden voor is"
+        },
+        {
+            "id": 52,
+            "text_id_1": 39,
+            "text_id_2": 43,
+            "text_id_3": 47,
+            "degree": 2,
+            "description": "10.2, al. 2 Wie wil stoppen moet dit duidelijk maken door middel van de stoplichten of een teken met de arm"
+        },
+        {
+            "id": 53,
+            "text_id_1": 39,
+            "text_id_2": 43,
+            "text_id_3": 47,
+            "degree": 2,
+            "description": "10.3  Men moet vertragen wanneer men op de openbare weg lastdieren, rijdieren of vee nadert en stoppen wanneer deze dieren tekenen van angst vertonen."
+        },
+        {
+            "id": 54,
+            "text_id_1": 41,
+            "text_id_2": 45,
+            "text_id_3": 49,
+            "degree": 4,
+            "description": "10.4 Men mag een andere bestuurder niet aansporen of uitdagen om overdreven snel te rijden"
+        },
+        {
+            "id": 55,
+            "text_id_1": 39,
+            "text_id_2": 43,
+            "text_id_3": 47,
+            "degree": 2,
+            "description": "12.1 Men moet steeds voorrang verlenen aan spoorvoertuigen zoals tram of trolleybus. Men moet zich daarvoor ook zo snel mogelijk van de sporen verwijderen"
+        },
+        {
+            "id": 56,
+            "text_id_1": 39,
+            "text_id_2": 43,
+            "text_id_3": 47,
+            "degree": 2,
+            "description": "12.2 Men moet dubbel voorzichtig zijn bij het oprijden van een kruispunt"
+        },
+        {
+            "id": 57,
+            "text_id_1": 39,
+            "text_id_2": 43,
+            "text_id_3": 47,
+            "degree": 2,
+            "description": "12.3.1 Men moet voorrang verlenen aan de bestuurder die van rechts komt, behalve op een rotonde, wanneer de ander uit een verboden richting komt of wanneer een verkeersbord een andere voorrangsregeling oplegt een "
+        },
+        {
+            "id": 58,
+            "text_id_1": 39,
+            "text_id_2": 43,
+            "text_id_3": 47,
+            "degree": 2,
+            "description": "12.4 bis Wie een trottoir of een fietspad oversteekt, moet voorrang verlenen aan de weggebruikers die daar moeten rijden"
+        },
+        {
+            "id": 59,
+            "text_id_1": 39,
+            "text_id_2": 43,
+            "text_id_3": 47,
+            "degree": 2,
+            "description": "12.4 lid 1 Wie een manoeuvre uitvoert, moet voorrang verlenen aan de andere weggebruikers."
+        },
+        {
+            "id": 60,
+            "text_id_1": 39,
+            "text_id_2": 43,
+            "text_id_3": 47,
+            "degree": 2,
+            "description": "12.5 Wie voorrang moet verlenen, mag pas doorrijden wanneer het veilig is. "
+        },
+        {
+            "id": 61,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "13 Wie afslaat, moet dat aankondigen met de richtingaanwijzers of een teken met de arm. "
+        },
+        {
+            "id": 62,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "14.2. Men mag het kruispunt niet oprijden wanneer dit kruispunt niet vrij is en men de andere bestuurders zou hinderen. "
+        },
+        {
+            "id": 63,
+            "text_id_1": 40,
+            "text_id_2": 44,
+            "text_id_3": 48,
+            "degree": 3,
+            "description": "15.1 Men moet steeds rechts van mekaar kruisen"
+        },
+        {
+            "id": 64,
+            "text_id_1": 40,
+            "text_id_2": 44,
+            "text_id_3": 48,
+            "degree": 3,
+            "description": "15.2 ten eerste Bij het kruisen moet men steeds voldoende ruimte laten en zo nodig uitwijken"
+        },
+        {
+            "id": 65,
+            "text_id_1": 40,
+            "text_id_2": 44,
+            "text_id_3": 48,
+            "degree": 3,
+            "description": "15.2. ten tweede Wanneer de weg belemmerd is door een hindernis of tegenligger, moet men vertragen en eventueel nodig stoppen om doorgang te verlenen"
+        },
+        {
+            "id": 66,
+            "text_id_1": 40,
+            "text_id_2": 44,
+            "text_id_3": 48,
+            "degree": 3,
+            "description": "15.3 Wanneer men door de breedte van de rijbaan niet gemakkelijk kan kruisen, mag men over de berm rijden, maar men mag de andere weggebruikers daarbij niet in gevaar brengen."
+        },
+        {
+            "id": 67,
+            "text_id_1": 40,
+            "text_id_2": 44,
+            "text_id_3": 48,
+            "degree": 3,
+            "description": "15.4 Indien nodig, mag men spoorvoertuigen links kruisen, maar men daarbij de tegenliggers niet in gevaar brengen."
+        },
+        {
+            "id": 68,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "16.2bis ten tweede Bij file mogen motorrijders die tussen de rijstroken rijden, niet sneller rijden dan 50 km/u of meer dan 20 km/u sneller dan de andere voertuigen "
+        },
+        {
+            "id": 69,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "16.2bis ten derde Bij files op autosnelwegen en autowegen mogen motorrijders enkel tussen de linkse en de middelste rijstrook rijden."
+        },
+        {
+            "id": 70,
+            "text_id_1": 39,
+            "text_id_2": 43,
+            "text_id_3": 47,
+            "degree": 2,
+            "description": "16.3 Men mag enkel links inhalen, tenzij de bestuurder die men wilt inhalen, reeds naar links is uitgeweken en de richtingaanwijzers heeft gebruikt."
+        },
+        {
+            "id": 71,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "16.4 Men mag slechts inhalen wanneer men dit op een veilige manier kan doen en nadat men daarvoor de richtingaanwijzers of een teken met de arm heeft gebruikt. "
+        },
+        {
+            "id": 72,
+            "text_id_1": 40,
+            "text_id_2": 44,
+            "text_id_3": 48,
+            "degree": 3,
+            "description": "16.5 Wanneer men inhaalt, moet men zich zo ver als nodig verwijderen van de bestuurder die men inhaalt. "
+        },
+        {
+            "id": 73,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "16.6. Na het inhalen moet men zo snel mogelijk weer naar rechts, tenzij op banen met 4 rijstroken of met enkelrichtingsverkeer. Na het inhalen moet men de richtingaanwijzers of een teken met de arm gebruiken. "
+        },
+        {
+            "id": 74,
+            "text_id_1": 40,
+            "text_id_2": 44,
+            "text_id_3": 48,
+            "degree": 3,
+            "description": "16.7 Wanneer men wordt ingehaald moet men zo ver mogelijk naar rechts uitwijken en mag men niet versnellen."
+        },
+        {
+            "id": 75,
+            "text_id_1": 39,
+            "text_id_2": 43,
+            "text_id_3": 47,
+            "degree": 2,
+            "description": "16.9 Een spoorvoertuig moet men rechts inhalen, tenzij wanneer dit onmogelijk is. Bij het rechts inhalen mag men de tegenliggers in geen geval in gevaar brengen. "
+        },
+        {
+            "id": 76,
+            "text_id_1": 40,
+            "text_id_2": 44,
+            "text_id_3": 48,
+            "degree": 3,
+            "description": "17.1 Men mag niet links inhalen wanneer men de tegenliggers niet van ver genoeg kan opmerken."
+        },
+        {
+            "id": 77,
+            "text_id_1": 40,
+            "text_id_2": 44,
+            "text_id_3": 48,
+            "degree": 3,
+            "description": "17.2.1° Het is verboden links in te halen op een overweg zonder slagbomen of verkeerslichten"
+        },
+        {
+            "id": 78,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "17.2.2° a) Het is verboden links in te halen op kruispunten waar de voorrang van rechts geldt"
+        },
+        {
+            "id": 79,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "17.2.2° b) Het is verboden links in te halen op een kruispunt waar een stopbord of een omgekeerde driehoek je verplicht voorrang te verlenen"
+        },
+        {
+            "id": 80,
+            "text_id_1": 41,
+            "text_id_2": 45,
+            "text_id_3": 49,
+            "degree": 4,
+            "description": "17.2.3° Het is verboden links in te halen aan de top van een helling of in een bocht waar men de tegenliggers niet kan zien komen, tenzij men kan inhalen zonder zich op de rijstrook van de tegenliggers te begeven."
+        },
+        {
+            "id": 81,
+            "text_id_1": 40,
+            "text_id_2": 44,
+            "text_id_3": 48,
+            "degree": 3,
+            "description": "17.2.4° Het is verboden een voertuig links in te halen, wanneer dit voertuig zelf reeds bezig is een voertuig met meer dan twee wielen in te halen. "
+        },
+        {
+            "id": 82,
+            "text_id_1": 40,
+            "text_id_2": 44,
+            "text_id_3": 48,
+            "degree": 3,
+            "description": "17.2.5° Het is verboden links in te halen wanneer het in te halen voertuig stopt voor een oversteekplaats of in de buurt van oversteekplaatsen waar het verkeer niet wordt geregeld."
+        },
+        {
+            "id": 83,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "17.2.6° Bij regenweer is het voor voertuigen en slepen met een MTM van meer 7,5 ton verboden links in te halen op snelwegen, autowegen of wegen met minstens 4 rijstroken. Deze bepaling geldt echter niet tegenover landbouwvoertuigen of voertuigen die gebruik maken van een voorbehoud rijstrook voor traag verkeer."
+        },
+        {
+            "id": 84,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "17.2.7° Buiten de bebouwde kom, op rijbanen met twee rijstroken in elke richting is het voor voertuigen bestemd voor het vervoer van zaken met een MTM van meer dan 3,5 ton verboden om links in te halen. Deze bepaling geldt echter niet tegenover landbouwvoertuigen of voertuigen die gebruik maken van een voorbehoud rijstrook voor traag verkeer."
+        },
+        {
+            "id": 85,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "17.2bis Voor voertuigen en slepen voor het vervoer van zaken met een MTM van meer dan 3,5 ton, is het verboden links in te halen buiten de bebouwde kom, op de openbare wegen met twee rijstroken in de gevolgde rijrichting voorzien van een verkeersbord F107. Zelfs wanneer het verkeersbord F107 is aangebracht is het ook voor de bestuurders van voertuigen en slepen gebruikt voor het vervoer van zaken met een MTM van meer dan 7,5 ton verboden om in te halen bij regenval. "
+        },
+        {
+            "id": 86,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "18.1. Op bruggen moeten de bestuurders van voertuigen en slepen met een MTM van 7,5 ton of meer een onderlinge afstand houden van minstens 15 meter."
+        },
+        {
+            "id": 87,
+            "text_id_1": 39,
+            "text_id_2": 43,
+            "text_id_3": 47,
+            "degree": 2,
+            "description": "18.2 Buiten de bebouwde kom moeten de bestuurders van voertuigen en slepen met een maximale toegelaten massa van meer dan 7,5 ton of langer dan 7 meter, een onderlinge afstand houden van minstens 50 meter."
+        },
+        {
+            "id": 88,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "18.3. Buiten de bebouwde kom moeten de bestuurders van auto's die in konvooi rijden voor een gezamenlijk te maken tocht, onderling een afstand houden van ten minste 50 meter."
+        },
+        {
+            "id": 89,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "18.4. Wanneer legervoertuigen in konvooi rijden moeten het eerste voertuig aan de linkerzijde voorzien zijn van een blauwe wimpel of licht en het laatste van een groene licht of wimpel. Bovendien moeten deze voertuigen steeds minstens de dimlichten aanhebben."
+        },
+        {
+            "id": 90,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "19.1. Wanneer men wil afslaan (om de rijbaan te verlaten of te parkeren), mag men dit enkel doen wanneer dit kan zonder gevaar voor de andere weggebruikers, daarbij vooral rekening houdend met de vertragingsmogelijkheden van de achterliggers."
+        },
+        {
+            "id": 91,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "19.2.1° Behalve bij het oprijden van de rotonde, moet men steeds gebruik maken van de richtingaanwijzer of een teken met de arm, wanneer men rechts afslaat."
+        },
+        {
+            "id": 92,
+            "text_id_1": 40,
+            "text_id_2": 44,
+            "text_id_3": 48,
+            "degree": 3,
+            "description": "19.2.2° lid 3 Wie zijn bocht ruim neemt, moet nagaan of er geen achterligger begonnen is in te halen. Bovendien mag men in dat geval ook de andere tegenliggers niet hinderen in de straat die men inrijdt."
+        },
+        {
+            "id": 93,
+            "text_id_1": 39,
+            "text_id_2": 43,
+            "text_id_3": 47,
+            "degree": 2,
+            "description": "19.2.2° lid 1 en 2 Wanneer men rechts afslaat, moet men steeds zo dicht mogelijk bij de rechterrand van de rijbaan blijven, tenzij wanneer dit wegens plaatsgebrek onmogelijk is. "
+        },
+        {
+            "id": 94,
+            "text_id_1": 40,
+            "text_id_2": 44,
+            "text_id_3": 48,
+            "degree": 3,
+            "description": "19.3.3° Wie links afslaat, moet voorrang verlenen aan de tegenliggers op de rijbaan die men gaat verlaten."
+        },
+        {
+            "id": 95,
+            "text_id_1": 40,
+            "text_id_2": 44,
+            "text_id_3": 48,
+            "degree": 3,
+            "description": "19.4 Wie van richting verandert moet voorrang verlenen aan de bestuurders en aan de voetgangers die de andere delen van dezelfde openbare weg volgen."
+        },
+        {
+            "id": 96,
+            "text_id_1": 40,
+            "text_id_2": 44,
+            "text_id_3": 48,
+            "degree": 3,
+            "description": "19.5 Wie van richting verandert, moet voorrang verlenen aan de voetgangers die de rijbaan oversteken die hij gaat oprijden."
+        },
+        {
+            "id": 97,
+            "text_id_1": 41,
+            "text_id_2": 45,
+            "text_id_3": 49,
+            "degree": 4,
+            "description": "20.3.Het is verboden een overweg te betreden wanneer de slagbomen sluiten of gesloten zijn;  wanneer de rode knipperlichten branden of wanneer het geluidssein werkt."
+        },
+        {
+            "id": 98,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "19.6. Wanneer er meerdere rijstroken in dezelfde richting zijn, mag men enkel links afslaan als men zich op de linkse rijstrook bevindt en rechts als men zich op de rechtse rijstrook bevindt "
+        },
+        {
+            "id": 99,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "20.1. Elk verkeer op buiten de rijbaan aangelegde sporen is verboden."
+        },
+        {
+            "id": 100,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "20.2. Wie een overweg nadert, moet dubbel voorzichtig zijn. Bij een overweg zonder slagbomen of zonder (werkende) verkeerslichten mag men zich slechts op de overweg begeven nadat men heeft nagekeken of er geen enkel spoorvoertuig nadert."
+        },
+        {
+            "id": 101,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "20.4. Men mag een overweg niet oprijden wanneer het verkeer zodanig belemmerd is dat men waarschijnlijk op die overweg zou moeten stoppen."
+        },
+        {
+            "id": 102,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "21.1. ten eerste De autosnelwegen zijn verboden voor voetgangers, voor fietsen, bromfietsen of dieren; voor voertuigen of slepen die op een horizontale weg geen snelheid van 70 km per uur halen; voor voertuigen die andere voertuigen slepen met een noodkoppeling of hulpkoppeling; voor vierwielers met motor zonder passagiersruimte."
+        },
+        {
+            "id": 103,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "21.1. ten tweede Men mag de autosnelwegen enkel oprijden of verlaten op plaatsen die daarvoor speciaal ingericht zijn."
+        },
+        {
+            "id": 104,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "21.2. Op autosnelwegen mag men niet trager rijden dan 70 km/u."
+        },
+        {
+            "id": 105,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "21.3 Op autosnelwegen met drie of meer rijstroken, mogen autobussen, autocars en andere voertuigen en slepen met een maximale toegelaten massa van meer dan 3,5 ton enkel de 2 meest rechts gelegen rijstroken gebruiken, tenzij om voor te sorteren."
+        },
+        {
+            "id": 106,
+            "text_id_1": 41,
+            "text_id_2": 45,
+            "text_id_3": 49,
+            "degree": 4,
+            "description": "21.4.1°. Op autosnelwegen is het verboden de dwarsverbindingen te gebruiken;"
+        },
+        {
+            "id": 107,
+            "text_id_1": 41,
+            "text_id_2": 45,
+            "text_id_3": 49,
+            "degree": 4,
+            "description": "21.4.2°.Op autosnelwegen is het verboden te keren"
+        },
+        {
+            "id": 108,
+            "text_id_1": 41,
+            "text_id_2": 45,
+            "text_id_3": 49,
+            "degree": 4,
+            "description": "21.4.3°. Op autosnelwegen is het verboden achteruit of tegen de richting te rijden."
+        },
+        {
+            "id": 109,
+            "text_id_1": 39,
+            "text_id_2": 43,
+            "text_id_3": 47,
+            "degree": 2,
+            "description": "21.4.4° Op autosnelwegen is het verboden stil te staan of te parkeren, behalve op de daarvoor voorziene parkeerstroken."
+        },
+        {
+            "id": 110,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "21.5. Voertuigen die worden gesleept met een noodkoppeling of met een hulpkoppeling moeten de autosnelweg verlaten bij de eerste afrit."
+        },
+        {
+            "id": 111,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "21.6.1° Stoeten, betogingen en samenscholingen op de snelweg zijn verboden."
+        },
+        {
+            "id": 112,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "21.6.2° Reclametochten op de snelweg zijn verboden."
+        },
+        {
+            "id": 113,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "21.6.3° Technische proeven met prototypes van voertuigen op de snelweg zijn verboden."
+        },
+        {
+            "id": 114,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "21.6.4° sportwedstrijden op de snelweg zijn verboden. "
+        },
+        {
+            "id": 115,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "21.6.5° Het is verboden om zonder toelating op de snelweg zaken te verkopen."
+        },
+        {
+            "id": 116,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "22.1 Op autowegen zijn alleen motorvoertuigen en hun aanhangwagens behalve bromfietsen, landbouwvoertuigen en slepen van kermisvoertuigen, alsook de vierwielers zonder passagiersruimte toegelaten."
+        },
+        {
+            "id": 117,
+            "text_id_1": 41,
+            "text_id_2": 45,
+            "text_id_3": 49,
+            "degree": 4,
+            "description": "22.2. Op autowegen is het verboden de dwarsverbindingen te gebruiken; te keren; achteruit; tegen de richting te rijden of sportwedstrijden te houden."
+        },
+        {
+            "id": 118,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "22.2. Stoeten, betogingen en samenscholingen; reclametochten en technische proeven met prototypes van voertuigen zijn verboden op autowegen. Bovendien is het verboden om zonder toelating op de autowegen zaken te verkopen."
+        },
+        {
+            "id": 119,
+            "text_id_1": 40,
+            "text_id_2": 44,
+            "text_id_3": 48,
+            "degree": 3,
+            "description": "22.2. Op autowegen is het verboden stil te staan of te parkeren, behalve op de daarvoor voorziene parkeerstroken."
+        },
+        {
+            "id": 120,
+            "text_id_1": 40,
+            "text_id_2": 44,
+            "text_id_3": 48,
+            "degree": 3,
+            "description": "22bis. 2°, eerste en tweede zin. Binnen de (woon)erven mogen de bestuurders de voetgangers niet in gevaar brengen en ze niet hinderen; Indien nodig moeten zij stoppen. Zij moeten bovendien dubbel voorzichtig zijn voor kinderen"
+        },
+        {
+            "id": 121,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "22bis, 2°, derde zin. Binnen de (woon)erven mogen de voetgangers het verkeer niet nodeloos hinderen."
+        },
+        {
+            "id": 122,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "22bis. 4° Binnen de (woon)erven mag men enkel parkeren op de daarvoor voorziene plaatsen, maar dit zowel links als rechts."
+        },
+        {
+            "id": 123,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "22ter.1.1°. Men mag verkeersplateaus die voldoen aan de Wegcode slechts dubbel voorzichtig en met matige snelheid naderen. "
+        },
+        {
+            "id": 124,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "22ter.1.2°. Op verkeersplateaus die voldoen aan de Wegcode is het verboden links in te halen."
+        },
+        {
+            "id": 125,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "22ter.1.3°. Op verkeersplateaus die voldoen aan de Wegcode is het verboden stil te staan of te parkeren, tenzij op de daarvoor voorziene plaatsen."
+        },
+        {
+            "id": 126,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "22quinquies.1. Op wegen voorbehouden voor voetgangers, fietsers en ruiters worden enkel weggebruikers toegelaten die staan afgebeeld op het  verkeersbord, maar ook de omwonenden en hun leveranciers."
+        },
+        {
+            "id": 127,
+            "text_id_1": 40,
+            "text_id_2": 44,
+            "text_id_3": 48,
+            "degree": 3,
+            "description": "22quinquies.2. De gebruikers van de wegen die zijn voorbehouden voor voetgangers, fietsers en ruiters mogen elkaar niet in gevaar brengen, ze mogen elkaar niet hinderen. Ze moeten dubbel voorzichtig zijn voor kinderen en ze mogen het verkeer niet nodeloos belemmeren "
+        },
+        {
+            "id": 128,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "22quinquies.3. Wanneer een deel van de weg door verkeersbord F99b is voorbehouden voor fietsers en voetgangers, mogen de andere weggebruikers hen daar niet hinderen."
+        },
+        {
+            "id": 129,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "22sexies.1.1° In de voetgangerszones mag men enkel rijden indien men daarin een garage heeft, die enkel via deze weg kan worden bereikt; ofwel voor absoluut noodzakelijke leveringen aan handelszaken ofwel voor medische huisbezoeken. In ieder geval dient men over een doorgangkaart te beschikken. "
+        },
+        {
+            "id": 130,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "22sexies.1.2° Wanneer de verkeersborden het toestaan mogen ook taxi’s, fietsers en voertuigen die moeten laden en lossen, in de voetgangerszones rijden."
+        },
+        {
+            "id": 131,
+            "text_id_1": 40,
+            "text_id_2": 44,
+            "text_id_3": 48,
+            "degree": 3,
+            "description": "22sexies 2, lid 2 Wanneer men in de voetgangerszones mag rijden, mag dit enkel stapvoets (aanwijzingsborden). Bovendien moet men de doorgang vrijlaten voor de voetgangers en indien nodig, stoppen om voorrang te verlenen. In geen geval mag men voetgangers in gevaar brengen of hinderen."
+        },
+        {
+            "id": 132,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "22sexies.2, lid 3 Wanneer het druk is in de voetgangerszones, moeten de fietsers afstappen."
+        },
+        {
+            "id": 133,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "22sexies.2, lid 5 In voetgangerszones is het verboden te parkeren."
+        },
+        {
+            "id": 134,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "22septies1. In speelstraten mag men enkel rijden met een motorvoertuig wanneer men in de speelstraat woont; wanneer men er een garage heeft of wanneer men daarvoor een vergunning heeft."
+        },
+        {
+            "id": 135,
+            "text_id_1": 40,
+            "text_id_2": 44,
+            "text_id_3": 48,
+            "degree": 3,
+            "description": "22septies2. Wanneer men in een speelstraat rijdt, moet dat stapvoets, men moet de doorgang vrij laten voor de voetgangers die er spelen, men moet hen voorrang verlenen en zo nodig stoppen. Indien nodig, moeten de fietsers afstappen. Men mag de voetgangers die er spelen, niet in gevaar brengen en hen niet hinderen. Men moet bovendien dubbel voorzichtig zijn voor  kinderen."
+        },
+        {
+            "id": 136,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "22octies.1. Op wegen voorbehouden voor landbouwvoertuigen, voetgangers, fietsers en ruiters, worden enkel die weggebruikers toegelaten die worden afgebeeld op het verkeersbord F99c evenals de weggebruikers die op de aangrenzende percelen moeten zijn. Ook niet-gemotoriseerde drie- en vierwielers zijn toegestaan.   "
+        },
+        {
+            "id": 137,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "22octies.2. Op wegen die voor hen zijn voorbehouden door een verkeersbord F99c, mogen voetgangers, fietsers en ruiters het verkeer niet nodeloos belemmeren. Bovendien mag men er elkaar niet in gevaar brengen of hinderen. De motorvoertuigen moeten dubbel voorzichtig zijn voor voetgangers, fietsers en ruiters."
+        },
+        {
+            "id": 138,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "22novies. Wanneer een fietsstraat in twee richtingen mag worden gebruikt, mag men enkel gebruik maken van zijn rechterhelft van de rijbaan. In fietsstraten is het verboden de fietsers in te halen."
+        },
+        {
+            "id": 139,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "23.1.1°. Op rijbanen in twee rijrichtingen, is het verboden links te parkeren. "
+        },
+        {
+            "id": 140,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "23.1.2°. Wanneer er een gelijkgrondse berm is (of eender welke berm buiten de bebouwde kom) is het verplicht daar te parkeren. Wanneer deze berm ook moet worden gebruikt door voetgangers, moet men steeds een vrije ruimte laten van 1,5 m, zoniet moet men zich deels op de rijbaan parkeren. Enkel wanneer er geen bruikbare berm is, mag men op de rijbaan parkeren.  "
+        },
+        {
+            "id": 141,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "23.2. Wanneer men parkeert op de rijbaan, moet men steeds zo ver mogelijk rechts parkeren, evenwijdig met de rijbaan (tenzij anders aangegeven) en in één enkele rij. Enkel motorfietsen zonder aanhangwagen of zijspan mogen zich haaks parkeren, zonder daarbij de wegmarkeringen te overschrijden."
+        },
+        {
+            "id": 142,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "23.3. Behalve wanneer er parkeerruimte is voorzien voor fietsen, moeten deze buiten de rijbaan en buiten de parkeervakken worden opgesteld, zonder daarbij de andere weggebruikers te hinderen of in gevaar te brengen. "
+        },
+        {
+            "id": 143,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "23.4. Binnen de bebouwde kom mag een motorfiets op het trottoir worden opgesteld. Buiten de bebouwde kom mag dit ook op de verhoogde bermen, zonder daarbij andere weggebruikers te hinderen of in gevaar te brengen. "
+        },
+        {
+            "id": 144,
+            "text_id_1": 39,
+            "text_id_2": 43,
+            "text_id_3": 47,
+            "degree": 2,
+            "description": "24 ten eerste. Het is verboden te parkeren of stil te staan op plaatsen waar dat de andere weggebruikers kan hinderen of in gevaar kan brengen."
+        },
+        {
+            "id": 145,
+            "text_id_1": 39,
+            "text_id_2": 43,
+            "text_id_3": 47,
+            "degree": 2,
+            "description": "24.1° Het is verboden te parkeren of stil te staan op trottoirs of verhoogde bermen tenzij het uitdrukkelijk is toegestaan. "
+        },
+        {
+            "id": 146,
+            "text_id_1": 39,
+            "text_id_2": 43,
+            "text_id_3": 47,
+            "degree": 2,
+            "description": "24.2° Het is verboden te parkeren of stil te staan op fietspaden of op minder dan 5 meter van plaatsen waar fietsers of bromfietsers verplicht het fietspad of de rijbaan moeten oprijden. "
+        },
+        {
+            "id": 147,
+            "text_id_1": 41,
+            "text_id_2": 45,
+            "text_id_3": 49,
+            "degree": 4,
+            "description": "24.3° Het is verboden te parkeren of stil te staan op overwegen"
+        },
+        {
+            "id": 148,
+            "text_id_1": 39,
+            "text_id_2": 43,
+            "text_id_3": 47,
+            "degree": 2,
+            "description": "24.4° Het is verboden te parkeren of stil te staan op (minder dan 5 meter van) de oversteekplaatsen voor voetgangers, fietsers en bromfietsers."
+        },
+        {
+            "id": 149,
+            "text_id_1": 39,
+            "text_id_2": 43,
+            "text_id_3": 47,
+            "degree": 2,
+            "description": "24.5° Het is verboden te parkeren of stil te staan onder bruggen of in tunnels, tenzij dit uitdrukkelijk is toegestaan."
+        },
+        {
+            "id": 150,
+            "text_id_1": 39,
+            "text_id_2": 43,
+            "text_id_3": 47,
+            "degree": 2,
+            "description": "24.6° Het is verboden te parkeren of stil te staan op de rijbaan nabij de top van een helling of in een bocht wanneer de zichtbaarheid onvoldoende is;"
+        },
+        {
+            "id": 151,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "24.7° Het is verboden te parkeren of stil te staan op (minder dan 5 meter van) het kruispunt tenzij het uitdrukkelijk is toegestaan."
+        },
+        {
+            "id": 152,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "24.8° Het is verboden te parkeren of stil te staan op minder dan 20 meter voor de verkeerslichten op de kruispunten, tenzij het uitdrukkelijk is toegestaan."
+        },
+        {
+            "id": 153,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "24.9° Het is verboden te parkeren of stil te staan op minder dan 20 meter voor de verkeerslichten buiten de kruispunten"
+        },
+        {
+            "id": 154,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "24.10° Wanneer het voertuig hoger is dan 1,65m is het verboden te parkeren of stil te staan op minder dan 20 meter voor de verkeersborden van minder dan 2 meter hoog."
+        },
+        {
+            "id": 155,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "25.1.1° Parkeren is verboden op minder dan 1 meter voor of achter een ander stilstaand of geparkeerd voertuig en op elke plaats waar men het instappen of het in wegrijden van een ander voertuig zou verhinderen."
+        },
+        {
+            "id": 156,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "25.1.2° Parkeren is verboden op minder dan 15 meter van een bord dat een tram- of bushalte aanduidt."
+        },
+        {
+            "id": 157,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "25.1.3° Parkeren is verboden voor de inrij van eigendommen, tenzij wanneer de nummerplaat van het voertuig daarop is aangebracht "
+        },
+        {
+            "id": 158,
+            "text_id_1": 39,
+            "text_id_2": 43,
+            "text_id_3": 47,
+            "degree": 2,
+            "description": "25.1.4° Parkeren is verboden op plaatsen waar voetgangers en fietsers op de rijbaan moeten komen om rond een hindernis te gaan"
+        },
+        {
+            "id": 159,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "25.1.5° Parkeren is verboden vóór de toegang tot parkeerplaatsen die zich buiten de rijbaan bevinden."
+        },
+        {
+            "id": 160,
+            "text_id_1": 39,
+            "text_id_2": 43,
+            "text_id_3": 47,
+            "degree": 2,
+            "description": "25.1.6° Parkeren is verboden waar het spoorvoertuigen zou kunnen hinderen "
+        },
+        {
+            "id": 161,
+            "text_id_1": 39,
+            "text_id_2": 43,
+            "text_id_3": 47,
+            "degree": 2,
+            "description": "25.1.7° Parkeren is verboden wanneer daardoor de doorgang op de rijbaan minder dan 3 meter wordt"
+        },
+        {
+            "id": 162,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "25.1.8° Parkeren is verboden buiten de bebouwde kom op de rijbaan met een verkeersbord B9."
+        },
+        {
+            "id": 163,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "25.1.9° Parkeren is verboden op de rijbaan die verdeeld is in rijstroken, behalve wanneer het door een verkeersbord E9a of E9b wordt toegestaan "
+        },
+        {
+            "id": 164,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "25.1.10° Parkeren is verboden langs gele onderbroken strepen "
+        },
+        {
+            "id": 165,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "25.1.11° Parkeren is verboden op een rijbaan met tweerichtingsverkeer tegenover een ander stilstaand of geparkeerd voertuig, wanneer twee andere voertuigen elkaar daardoor moeilijk zouden kunnen kruisen;"
+        },
+        {
+            "id": 166,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "25.1.12° Parkeren is verboden op de middelste rijbaan van een openbare weg met drie rijbanen"
+        },
+        {
+            "id": 167,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "25.1.13° Parkeren is verboden buiten de bebouwde kom, langs de linkerkant van een openbare weg met twee rijbanen of op de middenberm"
+        },
+        {
+            "id": 168,
+            "text_id_1": 39,
+            "text_id_2": 43,
+            "text_id_3": 47,
+            "degree": 2,
+            "description": "25.1.14° Parkeren zonder bijzondere toelating is verboden op plaatsen voorzien voor personen met een handicap"
+        },
+        {
+            "id": 169,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "25.2. Het is verboden om voertuigen voor verkoop of verhuring ten toon te stellen op de openbare weg."
+        },
+        {
+            "id": 170,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "26.1. Wanneer verkeersbord E11 is aangebracht, mag men van de 1e tot 15e van de maand slechts parkeren langs de kant van de huizen met onpare nummers."
+        },
+        {
+            "id": 171,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "27bis. Voertuigen geparkeerd op plaatsen voorbehouden voor personen met een handicap moeten de toelating onder de voorruit hebben"
+        },
+        {
+            "id": 172,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "27ter Parkeren is verboden voor andere voertuigen dan diegene waarvoor parkeren door middel van een parkeerbord wordt toegelaten (autodelen, bewoners, …)"
+        },
+        {
+            "id": 173,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "28 Het is verboden portieren te openen of open te laten of in of uit te stappen wanneer dit andere weggebruikers kan hinderen"
+        },
+        {
+            "id": 174,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "29 Het is verboden andere lichten te gebruiken dan degene die door de wet worden voorgeschreven"
+        },
+        {
+            "id": 175,
+            "text_id_1": 40,
+            "text_id_2": 44,
+            "text_id_3": 48,
+            "degree": 3,
+            "description": "30 Tussen valavond en de ochtend en wanneer de zichtbaarheid minder dan 200 m bedraagt, is het gebruik van de dimlichten of grootlichten vooraan en achteraan verplicht"
+        },
+        {
+            "id": 176,
+            "text_id_1": 39,
+            "text_id_2": 43,
+            "text_id_3": 47,
+            "degree": 2,
+            "description": "30.1.1° a) het is verboden de grootlichten te gebruiken wanneer dit tegemoetkomende weggebruikers zou kunnen verblinden"
+        },
+        {
+            "id": 177,
+            "text_id_1": 39,
+            "text_id_2": 43,
+            "text_id_3": 47,
+            "degree": 2,
+            "description": "30.1.1° b) het is verboden de grootlichten te gebruiken wanneer de bestuurder van een spoorvoertuig of een boot zou kunnen verblinden"
+        },
+        {
+            "id": 178,
+            "text_id_1": 39,
+            "text_id_2": 43,
+            "text_id_3": 47,
+            "degree": 2,
+            "description": "30.1.1° c) het is verboden de grootlichten te gebruiken wanneer men een ander voertuig op minder dan 50 m volgt, behalve bij het inhalen"
+        },
+        {
+            "id": 179,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "30.1.1° d) het is verboden de grootlichten te gebruiken zodra men door de straatverlichting minstens 100 meter ver kan zien"
+        },
+        {
+            "id": 180,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "30.1.2° , eerste zin. Achteraan is het gebruik van rode lichten verplicht"
+        },
+        {
+            "id": 181,
+            "text_id_1": 39,
+            "text_id_2": 43,
+            "text_id_3": 47,
+            "degree": 2,
+            "description": "30.1.2°, tweede zin Wanneer het voertuig daarvan is voorzien, moeten de achterlichtmisten worden gebruikt, wanneer de zichtbaarheid door mist, sneeuwval of felle regen minder dan 100 meter bedraagt. "
+        },
+        {
+            "id": 182,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "30.1.2°, derde zin De achterlichtmisten van het voertuig mogen enkel gebruikt worden wanneer de zichtbaarheid door mist, sneeuwval of felle regen minder dan 100 meter bedraagt."
+        },
+        {
+            "id": 183,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "30.3.1. Tussen valavond en de ochtend en wanneer de zichtbaarheid minder dan 200 m bedraagt, dienen de fietsen vooraan een wit of geel licht te gebruiken en achteraan een rood licht"
+        },
+        {
+            "id": 184,
+            "text_id_1": 40,
+            "text_id_2": 44,
+            "text_id_3": 48,
+            "degree": 3,
+            "description": "30.3.2°, eerste lid. Tussen valavond en de ochtend en wanneer de zichtbaarheid minder dan 200 m bedraagt, moet een aanhangwagen die daarvan is voorzien vooraan 2 witte lichten en achteraan de rode lichten gebruiken"
+        },
+        {
+            "id": 185,
+            "text_id_1": 39,
+            "text_id_2": 43,
+            "text_id_3": 47,
+            "degree": 2,
+            "description": "30.3.2°, tweede lid, eerste zin. Wanneer de aanhangwagen daarvan is voorzien, moeten de achterlichtmisten worden gebruikt, wanneer de zichtbaarheid door mist, sneeuwval of felle regen minder dan 100 meter bedraagt."
+        },
+        {
+            "id": 186,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "30.3.2°, tweede lid, tweede zin. De achterlichtmisten van de aanhangwagens mogen enkel gebruikt worden wanneer de zichtbaarheid door mist, sneeuwval of felle regen minder dan 100 meter bedraagt."
+        },
+        {
+            "id": 187,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "30.3.3° Tussen valavond en de ochtend en wanneer de zichtbaarheid minder dan 200 m bedraagt, moeten (hand)karren en trek-, last- of rijdieren vooraan een wit of geel licht en achteraan een rood licht gebruiken. Deze lichten mogen samen links worden geplaatst, tenzij het gespan een ander voertuig trekt of het meer dan 6 dieren betreft"
+        },
+        {
+            "id": 188,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "30.3.4° Tussen valavond en de ochtend en wanneer de zichtbaarheid minder dan 200 m bedraagt, moeten alle andere voertuigen vooraan een wit of geel licht en achteraan een rood licht gebruiken, tenzij wanneer het voertuig in kwestie alleen maar de rijbaan oversteekt."
+        },
+        {
+            "id": 189,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "30.3.5° Tussen valavond en de ochtend en wanneer de zichtbaarheid minder dan 200 m bedraagt, moeten afdelingen van militaire kolonnes, stoeten en groepen in rijen vooraan links een wit of geel licht en achteraan een rood licht gebruiken. Bij lange rijen moeten ook de zijkanten van deze groepen voorzien zijn van een één of meer witte of gele lichten die in alle richtingen zichtbaar zijn. "
+        },
+        {
+            "id": 190,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "30.3.6° Tussen valavond en de ochtend en wanneer de zichtbaarheid minder dan 200 m bedraagt, moeten de voortbewegingstoestellen (die rijden op andere delen van de weg dan degene die zijn voorbehouden aan voetgangers) vooraan een wit of geel licht en achteraan een rood licht gebruiken. Wanneer de voortbewegingstoestellen links rijden, moeten de lichten worden omgekeerd."
+        },
+        {
+            "id": 191,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "30.3.7° Tussen valavond en de ochtend en wanneer de zichtbaarheid minder dan 200 m bedraagt, moeten de folkloristische voertuigen die slechts uitzonderlijk op de weg komen, en voor zover zij maximaal 25 km/u rijden, moeten vooraan een wit of geel licht en achteraan een rood licht gebruiken en indien ze meer dan 2,5 breed zijn, omtreklichten. Deze regel geldt niet indien de voertuigen een door de gemeente afgebakend traject volgen."
+        },
+        {
+            "id": 192,
+            "text_id_1": 40,
+            "text_id_2": 44,
+            "text_id_3": 48,
+            "degree": 3,
+            "description": "30.4 Tussen valavond en de ochtend en wanneer de zichtbaarheid minder dan 200 m bedraagt, moeten voertuigen van meer dan 2,5m breedte, tevens omtreklichten gebruiken. Deze lichten worden vooraan, achteraan, aan weerszijden en, in voorkomend geval, aan de uiterste zijdelingse uitstekken van het voertuig geplaatst."
+        },
+        {
+            "id": 193,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "30bis Tussen de ochtend en valavond moeten tweewielige bromfietsen en motorfietsen, steeds het dimlicht vooraan en het rode achterlicht gebruiken. Het grootlicht mag dan niet worden gebruikt."
+        },
+        {
+            "id": 194,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "31.1.1 Tussen valavond en de ochtend en wanneer de zichtbaarheid minder dan 200 meter bedraagt, moeten motorvoertuigen (met uitzondering van tweewielige bromfietsen) die stilstaan of parkeren op de openbare weg vooraan één of twee, witte of gele standlichten en achteraan één of twee rode lichten gebruiken. Deze verplichting geldt niet wanneer het voertuig dankzij de openbare verlichting zichtbaar is vanop 100 meter. "
+        },
+        {
+            "id": 195,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "31.1.1.1° Enkel bij mist, sneeuwval of felle regen mogen motorvoertuigen (met uitzondering van tweewielige bromfietsen) die stilstaan of parkeren dimlichten of voormistlichten gebruiken. Deze verplichting geldt niet wanneer het voertuig dankzij de openbare verlichting zichtbaar is vanop 100 meter."
+        },
+        {
+            "id": 196,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "31.1.1.2° Enkel bij mist, sneeuwval of felle regen mogen motorvoertuigen (met uitzondering van tweewielige bromfietsen) die stilstaan of parkeren achtermistlichten gebruiken. Deze verplichting geldt niet wanneer het voertuig dankzij de openbare verlichting zichtbaar is vanop 100 meter."
+        },
+        {
+            "id": 197,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "31.1.1.3° Binnen de bebouwde kom mogen motorvoertuigen (met uitzondering van tweewielige bromfietsen) die evenwijdig met de aslijn van de rijbaan stilstaan of parkeren – tenzij wanneer er een aanhangwagen is aangekoppeld – het parkeerlicht gebruiken aan de kant van de rijbaan. Deze verplichting geldt niet wanneer het voertuig dankzij de openbare verlichting zichtbaar is vanop 100 meter."
+        },
+        {
+            "id": 198,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "31.1.2 Tussen valavond en de ochtend en wanneer de zichtbaarheid minder dan 200 meter bedraagt, moeten alle weggebruikers (met uitzondering van de rijwielen) ofwel dezelfde lichten gebruiken als wanneer ze in beweging zijn, ofwel langs de kant van het midden van de rijbaan een wit of geel licht vooraan en een rood licht achteraan. "
+        },
+        {
+            "id": 199,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "32.1. Zoeklichten en projectoren mogen enkel gebruikt worden wanneer het volstrekt noodzakelijk is. Deze lichten en achteruitrijlichten mogen in geen geval de andere bestuurders hinderen. "
+        },
+        {
+            "id": 200,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "32.2. ten eerste De oranje knipperlichten mogen enkel gebruikt worden wanneer een taak wordt uitgevoerd waarvoor het gebruik van deze lichten is toegestaan of wanneer de aanwezigheid van het voertuig gevaar of hinder veroorzaakt."
+        },
+        {
+            "id": 201,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "32.2. ten tweede  Takelwagens mogen hun oranje knipperlichten slechts gebruiken op de plaats van het depanneren en tijdens het wegslepen."
+        },
+        {
+            "id": 202,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "32.2 ten derde Tussen valavond en de ochtend en wanneer de zichtbaarheid minder dan 200 meter bedraagt, moeten de tractoren één of twee oranje knipperlichten gebruiken die in alle richtingen zichtbaar zijn. Op rijbanen met meer dan 2 rijstroken moeten deze permanent worden gebruikt."
+        },
+        {
+            "id": 203,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "32bis. De 4 richtingaanwijzers mogen enkel gelijktijdig worden gebruikt door schoolbussen die kinderen laten in- of uitstappen of door een defect voertuig."
+        },
+        {
+            "id": 204,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "33.1. Het is verboden andere geluidstoestellen te gebruiken dan degene die zijn opgenomen in de wet "
+        },
+        {
+            "id": 205,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "33.2. Geluidstoestellen mogen enkel worden gebruikt om een ongeval te voorkomen. Buiten de bebouwde kom mogen de geluidstoestellen worden gebruikt om een in te halen bestuurder te waarschuwen. "
+        },
+        {
+            "id": 206,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "33.3. Tussen valavond en de ochtend, mag men het geluidstoestel enkel gebruiken bij dreigend gevaar. In het andere geval moet men de grootlichten en dimlichten gebruiken. "
+        },
+        {
+            "id": 207,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "34. De achteruitkijkspiegels moeten zo zijn afgesteld dat de bestuurder het verkeer achter en links kan zien."
+        },
+        {
+            "id": 208,
+            "text_id_1": 39,
+            "text_id_2": 43,
+            "text_id_3": 47,
+            "degree": 2,
+            "description": "35.1.1, lid 1 Op plaatsen die ermee zijn uitgerust, moeten de inzittenden een veiligheidsgordel dragen. "
+        },
+        {
+            "id": 209,
+            "text_id_1": 40,
+            "text_id_2": 44,
+            "text_id_3": 48,
+            "degree": 3,
+            "description": "35.1.1, lid 2 Kinderen van minder dan 18 jaar en kleiner dan 135 cm moeten worden vervoerd in geschikte kinderzitjes. Deze bepaling geldt niet voor de meeste vormen van personenvervoer."
+        },
+        {
+            "id": 210,
+            "text_id_1": 40,
+            "text_id_2": 44,
+            "text_id_3": 48,
+            "degree": 3,
+            "description": "35.1.1, lid 3 Op plaatsen die niet zijn voorzien van een veiligheidsgordel mogen in geen geval  kinderen worden vervoerd van minder dan 3 jaar. Vooraan mogen op deze plaatsen geen kinderen worden vervoerd van minder dan 18 jaar en 135 cm. Deze bepaling geldt niet voor de meeste vormen van personenvervoer."
+        },
+        {
+            "id": 211,
+            "text_id_1": 40,
+            "text_id_2": 44,
+            "text_id_3": 48,
+            "degree": 3,
+            "description": "35.1.1, lid 4, tweede zin In taxi’s zonder kinderzitjes, mogen kinderen van minder dan 18 jaar en 135 cm niet vooraan zitten."
+        },
+        {
+            "id": 212,
+            "text_id_1": 40,
+            "text_id_2": 44,
+            "text_id_3": 48,
+            "degree": 3,
+            "description": "35.1.1, lid 5 Naar achter gerichte kinderzitjes mogen alleen worden gebruikt wanneer de  airbag op die plaats is uitgeschakeld."
+        },
+        {
+            "id": 213,
+            "text_id_1": 39,
+            "text_id_2": 43,
+            "text_id_3": 47,
+            "degree": 2,
+            "description": "35.1.1, lid 6, eerste zin In andere motorvoertuigen dan auto’s moet de gordel worden gedragen op plaatsen die ermee zijn uitgerust."
+        },
+        {
+            "id": 214,
+            "text_id_1": 40,
+            "text_id_2": 44,
+            "text_id_3": 48,
+            "degree": 3,
+            "description": "35.1.1, lid 6 (met uitzondering van eerste zin) In andere motorvoertuigen dan auto’s, moeten kinderen van minder dan 3 jaar worden vervoerd in een kinderzitje. Kinderen tussen 3 en 8 jaar moeten worden vervoerd in een kinderzitje of de veiligheidsgordel dragen. "
+        },
+        {
+            "id": 215,
+            "text_id_1": 40,
+            "text_id_2": 44,
+            "text_id_3": 48,
+            "degree": 3,
+            "description": "35.1.1, lid 7 Op een bromfiets of een motorfiets van maximaal 125cc moeten kinderen tussen 3 en 8 jaar  worden vervoerd in een geschikt kinderzitje."
+        },
+        {
+            "id": 216,
+            "text_id_1": 40,
+            "text_id_2": 44,
+            "text_id_3": 48,
+            "degree": 3,
+            "description": "35.1.1, lid 8 Kinderen van minder dan 3 jaar mogen niet worden verroerd op een bromfiets of motorfiets. Kinderen van 3 tot 8 jaar mogen niet worden vervoerd op een motorfiets van meer dan 125cc."
+        },
+        {
+            "id": 217,
+            "text_id_1": 40,
+            "text_id_2": 44,
+            "text_id_3": 48,
+            "degree": 3,
+            "description": "35.1.1, lid 9 Kinderen van minder dan acht jaar mogen wel worden vervoerd in een geschikt kinderzitje in de zijspan. "
+        },
+        {
+            "id": 218,
+            "text_id_1": 40,
+            "text_id_2": 44,
+            "text_id_3": 48,
+            "degree": 3,
+            "description": "35.1.2, lid 1 In voertuigen bestemd voor het vervoer van personen met ten hoogste acht zitplaatsen (de bestuurder niet meegerekend) of met een MTM van maximaal 3,5 ton, mag achteraan een derde kind van meer dan 3 jaar oud en minder dan 135 cm worden vervoerd, indien het de gordel draagt."
+        },
+        {
+            "id": 219,
+            "text_id_1": 40,
+            "text_id_2": 44,
+            "text_id_3": 48,
+            "degree": 3,
+            "description": "35.1.2, lid 2 In voertuigen bestemd voor het vervoer van personen met ten hoogste acht zitplaatsen (de bestuurder niet meegerekend) of met een MTM van maximaal 3,5 ton, waarin geen kinderzitjes beschikbaar zijn, mogen kinderen van meer dan 3 jaar en minder dan 135 cm,  occasioneel en over korte afstand achterin het voertuig worden vervoerd op voorwaarde dat zij de gordel dragen. Dit geldt echter niet wanneer een ouder het voertuig bestuurt. "
+        },
+        {
+            "id": 220,
+            "text_id_1": 40,
+            "text_id_2": 44,
+            "text_id_3": 48,
+            "degree": 3,
+            "description": "35.1.3 Het kinderzitje moet worden gebruikt op een manier die de werking ervan niet negatief kan beïnvloeden."
+        },
+        {
+            "id": 221,
+            "text_id_1": 39,
+            "text_id_2": 43,
+            "text_id_3": 47,
+            "degree": 2,
+            "description": "35.1.3 De veiligheidsgordel moet worden gebruikt op een manier die de werking ervan niet negatief kan beïnvloeden."
+        },
+        {
+            "id": 222,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "35.2.2 Wie om medische redenen wordt vrijgesteld van de plicht om de gordel te dragen, moet deze toelating steeds kunnen tonen."
+        },
+        {
+            "id": 223,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "36. lid 1 Bestuurders en passagiers van drie- en vierwielers met een motor en van bromfietsen moeten een helm dragen. "
+        },
+        {
+            "id": 224,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "36. lid 2 Tenzij de wet anders voorschrijft, moeten de bestuurders en passagiers van motorfietsen en van driewielers met een motor zonder passagiersruimte die minstens 400 kg wegen,  eveneens een helm dragen.  "
+        },
+        {
+            "id": 225,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "36. lid 3 De helm moet bovendien indien vereist een homologatieteken hebben waaruit blijkt dat deze overeenstemt met de door de koning uitgevaardigde normen."
+        },
+        {
+            "id": 226,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "36. lid 4 Bestuurder en passagiers van een motorfiets moeten bovendien handschoenen, een jas met lange mouwen en een lange broek of een overall dragen, maar ook laarzen of bottines die de enkels beschermen."
+        },
+        {
+            "id": 227,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "37.1. Prioritaire voertuigen moeten blauwe knipperlichten en een sirene hebben die overeenstemmen met de wet."
+        },
+        {
+            "id": 228,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "37.2 Tijdens dringende opdrachten moeten de prioritaire voertuigen de blauwe knipperlichten gebruiken. Ze mogen ook bij andere opdrachten worden gebruikt."
+        },
+        {
+            "id": 229,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "37.3 De sirene mag enkel worden gebruikt bij dringende opdrachten."
+        },
+        {
+            "id": 230,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "37.4 Wanneer de sirene wordt gebruikt, mag een prioritair voertuig het rode verkeerslicht voorbijrijden nadat het heeft gestopt en op voorwaarde dat de andere weggebruikers niet in gevaar worden gebracht. "
+        },
+        {
+            "id": 231,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "39 Binnen de bebouwde kom moeten de bestuurders voorrang verlenen aan het openbaar vervoer dat door gebruik van de richtingaanwijzers heeft aangegeven dat het opnieuw zal vertrekken. Men moet daarvoor vertragen en indien nodig stoppen. Deze bepaling gaat voor op de voorrangsregel in art. 12.4"
+        },
+        {
+            "id": 232,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "39bis1. Voertuigen voor schoolvervoer die kinderen vervoeren dit duidelijk maken met een duidelijk bord, links vooraan en achteraan."
+        },
+        {
+            "id": 233,
+            "text_id_1": 39,
+            "text_id_2": 43,
+            "text_id_3": 47,
+            "degree": 2,
+            "description": "40.1. De bestuurders mogen de voetgangers op het trottoir, op de berm, in voetgangerszones, in speelstraten of op de rijbaan niet in gevaar brengen "
+        },
+        {
+            "id": 234,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "40.2. Bestuurders moeten dubbel voorzichtig zijn in de buurt van kinderen, bejaarden of personen met een handicap. Men moet vertragen en indien nodig stoppen."
+        },
+        {
+            "id": 235,
+            "text_id_1": 40,
+            "text_id_2": 44,
+            "text_id_3": 48,
+            "degree": 3,
+            "description": "40.3.1 De bestuurder moet vertragen in de buurt van een autocar, een autobus, een trolleybus, een minibus of een spoorvoertuig die stilstaan om reizigers te laten in- of uitstappen."
+        },
+        {
+            "id": 236,
+            "text_id_1": 40,
+            "text_id_2": 44,
+            "text_id_3": 48,
+            "degree": 3,
+            "description": "40.3.2  Als de halte van het openbaar vervoer niet op een vluchtheuvel ligt, moet de bestuurder die rijdt langs de kant waar men in- of uitstapt, de voetgangers veilig laten oversteken naar het deel van de openbare weg dat is voorbehouden voor voetgangers. Daarvoor moeten de bestuurders stoppen en mogen zij slechts opnieuw vertrekken met matige snelheid."
+        },
+        {
+            "id": 237,
+            "text_id_1": 40,
+            "text_id_2": 44,
+            "text_id_3": 48,
+            "degree": 3,
+            "description": "40.4.1 De voetgangers die beginnen oversteken terwijl het voor hen groen is of terwijl een bevoegd persoon daarvoor toelating heeft gegeven, moet men steeds laten oversteken, ook al heeft men intussen toelating gekregen om door te rijden. Als de bestuurder niet langer mag doorrijden, moet hij stoppen voor de oversteekplaatsen voor voetgangers."
+        },
+        {
+            "id": 238,
+            "text_id_1": 40,
+            "text_id_2": 44,
+            "text_id_3": 48,
+            "degree": 3,
+            "description": "40.4.2 Waar er geen verkeerslichten zijn en wanneer het verkeer niet wordt geregeld door een bevoegd persoon, mogen de bestuurders de oversteekplaatsen voor voetgangers slechts met matige snelheid naderen. De bestuurders moeten bovendien voorrang verlenen aan degenen die willen oversteken of aan het oversteken zijn. "
+        },
+        {
+            "id": 239,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "40.5. De bestuurders mogen niet stilstaan op een oversteekplaats voor voetgangers."
+        },
+        {
+            "id": 240,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "40.6. Wanneer de voetgangers door een hindernis op de rijbaan moeten komen, moeten de bestuurders een vrije ruimte laten van minstens 1 m. Wanneer dit onmogelijk is, mag men de voetganger enkel stapvoets voorbijrijden."
+        },
+        {
+            "id": 241,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "40.7. Wanneer de voetgangers zich op basis van de Wegcode op de rijbaan bevinden, moeten de bestuurders een vrije ruimte laten van minstens 1 m. Wanneer dit onmogelijk is, mag men de voetganger enkel stapvoets voorbijrijden."
+        },
+        {
+            "id": 242,
+            "text_id_1": 40,
+            "text_id_2": 44,
+            "text_id_3": 48,
+            "degree": 3,
+            "description": "40bis1 Het is verboden een groep kinderen, scholieren, gehandicapten of bejaarden te doorbreken, wanneer zij in rijen wandelen en vergezeld zijn van een leider of wanneer zij de rijbaan oversteken onder leiding van een jeugdverkeersbrigade, een leider of een gemachtigd opzichter"
+        },
+        {
+            "id": 243,
+            "text_id_1": 40,
+            "text_id_2": 44,
+            "text_id_3": 48,
+            "degree": 3,
+            "description": "40bis2. De weggebruikers moeten de aanwijzingen van de gemachtigde opzichters volgen, wanneer zij daarmee kinderen, scholieren, gehandicapten of bejaarden beveiligen.  "
+        },
+        {
+            "id": 244,
+            "text_id_1": 40,
+            "text_id_2": 44,
+            "text_id_3": 48,
+            "degree": 3,
+            "description": "40ter. Wanneer fietsers of bromfietsers zich op de rijbaan mogen bevinden, mogen de bestuurder van auto’s of andere motorfietsen hen niet in gevaar brengen. Ze moeten dubbel voorzichtig zijn tegenover fietsende kinderen en bejaarden. Tegenover fietsers en bromfietsers moeten ze steeds een zijdelingse afstand laten van minimaal 1m. Ze mogen de oversteekplaatsen voor fietsers en bromfietsers enkel naderen met matige snelheid en de fietsers of bromfietsers niet in gevaar brengen of hinderen wanneer zij oversteken. Indien nodig moeten de bestuurders van auto’s of motorfietsen stoppen. In geen geval mag men stilstaan op een oversteekplaats voor fietsers of bromfietsers."
+        },
+        {
+            "id": 245,
+            "text_id_1": 40,
+            "text_id_2": 44,
+            "text_id_3": 48,
+            "degree": 3,
+            "description": "41.1.1° Het is verboden een troep op mars of een voertuigenkonvooi dat begeleid wordt door bevoegde personen of gemachtigde militairen te doorbreken."
+        },
+        {
+            "id": 246,
+            "text_id_1": 40,
+            "text_id_2": 44,
+            "text_id_3": 48,
+            "degree": 3,
+            "description": "41.1.2° Het is verboden een stoet, een groep voetgangers, een culturele, sportieve of toeristische samenkomst of processie te doorbreken. "
+        },
+        {
+            "id": 247,
+            "text_id_1": 40,
+            "text_id_2": 44,
+            "text_id_3": 48,
+            "degree": 3,
+            "description": "41.1.3° Het is verboden een groep deelnemers aan een wielerwedstrijd of aan een niet-gemotoriseerde sportwedstrijd te doorbreken."
+        },
+        {
+            "id": 248,
+            "text_id_1": 40,
+            "text_id_2": 44,
+            "text_id_3": 48,
+            "degree": 3,
+            "description": "41.2 Bij het naderen van een groep renners die aan een wielerwedstrijd deelnemen, moet elke bestuurder onmiddellijk uitwijken en stoppen."
+        },
+        {
+            "id": 249,
+            "text_id_1": 40,
+            "text_id_2": 44,
+            "text_id_3": 48,
+            "degree": 3,
+            "description": "41.3.1.1° De weggebruikers moeten de aanwijzingen opvolgen die door de gemachtigde militairen gegeven worden ter begeleiding van legerkolonnes."
+        },
+        {
+            "id": 250,
+            "text_id_1": 40,
+            "text_id_2": 44,
+            "text_id_3": 48,
+            "degree": 3,
+            "description": "41.3.1.2° a). De weggebruikers moeten de aanwijzingen van de bevoegde personen opvolgen bij culturele, sportieve en toeristische evenementen, wielerwedstrijden en sportwedstrijden"
+        },
+        {
+            "id": 251,
+            "text_id_1": 40,
+            "text_id_2": 44,
+            "text_id_3": 48,
+            "degree": 3,
+            "description": "41.3.1.2° b). De weggebruikers moeten de aanwijzingen van de bevoegde personen opvolgen die de veiligheid verzekeren van de groepen fietsers en groepen motorfietsers,"
+        },
+        {
+            "id": 252,
+            "text_id_1": 40,
+            "text_id_2": 44,
+            "text_id_3": 48,
+            "degree": 3,
+            "description": "41.3.1.2° c). De weggebruikers moeten de aanwijzingen van de bevoegde personen opvolgen die de veiligheid verzekeren van de groepen voetgangers en groepen ruiters,"
+        },
+        {
+            "id": 253,
+            "text_id_1": 40,
+            "text_id_2": 44,
+            "text_id_3": 48,
+            "degree": 3,
+            "description": "41.3.1.2° d). De weggebruikers moeten de aanwijzingen van de bevoegde personen opvolgen die de veiligheid verzekeren van het personeel van wegenwerken"
+        },
+        {
+            "id": 254,
+            "text_id_1": 40,
+            "text_id_2": 44,
+            "text_id_3": 48,
+            "degree": 3,
+            "description": "41.3.1.2° e). De weggebruikers moeten de aanwijzingen van de bevoegde personen opvolgen die de veiligheid verzekeren van uitzonderlijke voertuigen."
+        },
+        {
+            "id": 255,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "42.1 De voetgangers moeten ofwel het trottoirs, ofwel het deel van de openbare weg dat voor hen door een verkeersbord D7 of D9 wordt voorbehouden, of de begaanbare verhoogde bermen of de begaanbare gelijkgrondse bermen volgen."
+        },
+        {
+            "id": 256,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "42.2.1 Wanneer een fiets, een voortbewegingstoestel of een tweewielige bromfiets veel plaats in beslag neemt en aan de hand wordt geleid, moet men daarmee de rijbaan volgen."
+        },
+        {
+            "id": 257,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "42.2.2. Op plaatsen waar er geen begaanbare trottoirs of bermen zijn, moeten de voetgangers de andere delen van de rijbaan volgen."
+        },
+        {
+            "id": 258,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "42.2.2.1° Wanneer voetgangers het fietspad mogen volgen, moeten zij voorrang verlenen aan fietsers en bromfietsers"
+        },
+        {
+            "id": 259,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "42.2.2.2° Wanneer voetgangers de rijbaan mogen volgen, moeten zij zo dicht mogelijk bij de linker rand van de rijbaan blijven. Wanneer ze een fiets of bromfiets aan de hand leiden, moeten zij rechts houden."
+        },
+        {
+            "id": 260,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "42.3. Een stoet, processie of groep voetgangers vergezeld van een leider, mag de rijbaan volgen. In dat geval moeten zij rechts houden. Groepen voetgangers van 5 of meer, vergezeld van een leider mogen ook links houden, mar dan moeten zij wel achter elkaar lopen. "
+        },
+        {
+            "id": 261,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "42.4.1. Voetgangers moeten de rijbaan steeds loodrecht oversteken. Zij mogen niet slenteren en niet blijven staan, tenzij wanneer het nodig is. Is er een oversteekplaats op minder dan 30 meter, dan is het verplicht deze te gebruiken. Op een verhoogd trottoir over de rijbaan mogen de voetgangers het verkeer niet nodeloos hinderen."
+        },
+        {
+            "id": 262,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "42.4.2. Voetgangers mogen enkel oversteken, wanneer het tweekleurige verkeerlicht voor hen op groen staat."
+        },
+        {
+            "id": 263,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "42.4.3. Bij het oversteken moeten de voetgangers de aanwijzingen van de verkeerslichten of de bevoegde personen volgen. "
+        },
+        {
+            "id": 264,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "42.4.4. Zijn er geen verkeerslichten of bevoegde personen die het verkeer regelen, dan mogen de voetgangers zich slechts voorzichtig op de rijbaan begeven en moeten zij rekening houden met naderende voertuigen."
+        },
+        {
+            "id": 265,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "42.4.6 Bij het naderen van een tram, mogen de voetgangers zich enkel op een oversteekplaats met een tramspoor of trambedding begeven, wanneer het licht voor hen op groen staat."
+        },
+        {
+            "id": 266,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "43.1.1° Fietsers en bromfietsers moeten steeds het stuur vasthouden "
+        },
+        {
+            "id": 267,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "43.1.2° Fietsers en bromfietsers moeten steeds de voeten op de pedalen of voetsteunen hebben"
+        },
+        {
+            "id": 268,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "43.1.3° Fietsers en bromfietsers mogen zich niet laten voorttrekken"
+        },
+        {
+            "id": 269,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "43.1.4° Fietsers en bromfietsers mogen geen dier aan de leiband houden. "
+        },
+        {
+            "id": 270,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "43.2. eerste lid Op de rijbaan mogen fietsers enkel met twee naast elkaar rijden, wanneer zij de tegenliggers niet hinderen. Buiten de bebouwde kom moeten fietsers achter elkaar rijden wanneer een achteropkomende voertuig nadert."
+        },
+        {
+            "id": 271,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "43.2. tweede lid Wanneer zij op de bijzondere overrijdbare bedding mogen rijden, moeten fietsers steeds achter elkaar rijden."
+        },
+        {
+            "id": 272,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "43.2 derde lid Fietsers moeten achter elkaar rijden wanneer er een aanhangwagen aan gekoppeld is."
+        },
+        {
+            "id": 273,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "43.2 vierde lid Gebruikers van het fietspad mogen elkaar of andere weggebruikers  niet hinderen of in gevaar brengen."
+        },
+        {
+            "id": 274,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "43.2 vijfde lid Wanneer bromfietsers de bijzondere overrijdbare bedding mogen volgen, moeten zij achter elkaar rijden."
+        },
+        {
+            "id": 275,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "43.3. Wanneer er een oversteekplaats voor fietsers en bromfietsen is, moeten de fietsers en bromfietsers, dit gebruiken. "
+        },
+        {
+            "id": 276,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "43bis.1. Groepen van meer dan 50 fietsers moeten worden vergezeld door minstens 2 wegkapiteins."
+        },
+        {
+            "id": 277,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "43bis.2.1. Groepen van 15 tot 50 fietsers mogen twee aan twee over de rijbaan indien zij gegroepeerd blijven."
+        },
+        {
+            "id": 278,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "43bis.2.2.Wanneer een groep van 15 tot 50 fietsers wordt begeleid door één auto, moet deze de groep volgen."
+        },
+        {
+            "id": 279,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "43bis.3.1. Groepen van 50 tot 150 fietsers mogen twee aan twee over de rijbaan indien zij gegroepeerd blijven."
+        },
+        {
+            "id": 280,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "43bis.3.2. Groepen van 50 tot 150 fietsers moeten vergezeld worden door twee begeleidende auto’s."
+        },
+        {
+            "id": 281,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "43bis.3.3.1° De wegkapiteins waken over het goed verloop van de tocht. Zij moeten minstens 21 jaar oud zijn en zij moeten om de linkerarm een band dragen met, horizontaal, de nationale kleuren en, , het woord \"wegkapitein\" in zwarte letters op de gele strook."
+        },
+        {
+            "id": 282,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "43bis.3.3.2° Op kruispunten zonder verkeerslichten, mag de wegkapitein het verkeer stilleggen terwijl de groep met de twee begeleidende voertuigen oversteekt."
+        },
+        {
+            "id": 283,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "43bis.4 De fietsers die met twee naast elkaar rijden mogen enkel de rechter rijstrook gebruiken; indien de rijbaan niet in rijstroken verdeeld is, mogen zij slechts de helft van de rijbaan in beslag nemen."
+        },
+        {
+            "id": 284,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "43bis.5 Op het dak van de begeleidende auto's moet een blauw bord aangebracht zijn met daarop een rode driehoek met een uitroepteken en een witte fiets. Vóór de groep moet het bord goed zichtbaar zijn voor de tegenliggers, achter de groep moet het  goed zichtbaar zijn voor het achteropkomend verkeer."
+        },
+        {
+            "id": 285,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "43ter.1 Op wegen verdeeld in rijstroken, mogen motorfietsers in groep (minstens 2), in twee evenwijdige rijen geschrankt op dezelfde rijstrook rijden, met een voldoende veiligheidsafstand onderling. Op wegen zonder rijstroken, mogen ze hoogstens de helft van de rijbaan in beslag nemen. Als het kruisen daardoor onmogelijk is, moeten zij achter elkaar rijden."
+        },
+        {
+            "id": 286,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "43ter.2 Een groep van meer dan 50 motorfietsers, moet steeds vergezeld worden door minstens twee wegkapiteins. "
+        },
+        {
+            "id": 287,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "43ter.3.1° De wegkapiteins waken over het goed verloop van de tocht. Zij zijn minstens 25 jaar oud en dragen een reflecterende veiligheidsvest, met op de rug het woord “wegkapitein” in zwarte letters."
+        },
+        {
+            "id": 288,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "43ter.3.2° Op de kruispunten zonder verkeerslichten, mag de wegkapitein het verkeer in de dwarswegen stilleggen, terwijl de groep oversteekt."
+        },
+        {
+            "id": 289,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "43ter.4 De wegkapiteins moeten in het bezit van een verkeersbord C3, een rode cirkel op een witte achtergrond."
+        },
+        {
+            "id": 290,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "44.1, lid 1 De bestuurdersplaats in een voertuig moet minstens 0,55 m breed zijn."
+        },
+        {
+            "id": 291,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "44.1, lid 2 De bestuurder mag personen enkel laten plaatsnemen op plaatsen in het voertuig moeten minstens 0,40 m breed zijn."
+        },
+        {
+            "id": 292,
+            "text_id_1": 39,
+            "text_id_2": 43,
+            "text_id_3": 47,
+            "degree": 2,
+            "description": "44.1, lid 3 Er mogen nooit meer inzittenden in het voertuig plaatsnemen dan dat er veiligheidsgordels zijn, tenzij wanneer deze niet verplicht zijn."
+        },
+        {
+            "id": 293,
+            "text_id_1": 40,
+            "text_id_2": 44,
+            "text_id_3": 48,
+            "degree": 3,
+            "description": "44.1, lid 3 Er mogen nooit meer inzittenden (van minder dan 18 jaar en 135 cm) in het voertuig plaatsnemen dan dat er kinderzitjes zijn, tenzij wanneer deze niet verplicht zijn"
+        },
+        {
+            "id": 294,
+            "text_id_1": 39,
+            "text_id_2": 43,
+            "text_id_3": 47,
+            "degree": 2,
+            "description": "44.1, lid 4 De plaatsen uitgerust met veiligheidsgordels moeten bij voorrang worden ingenomen."
+        },
+        {
+            "id": 295,
+            "text_id_1": 40,
+            "text_id_2": 44,
+            "text_id_3": 48,
+            "degree": 3,
+            "description": "44.1, lid 4 De plaatsen uitgerust met kinderzitjes moeten bij voorrang worden ingenomen."
+        },
+        {
+            "id": 296,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "44.1 lid 5 In voertuigen bestemd voor personenvervoer met meer dan acht zitplaatsen, zonder die van de bestuurder, moet OF door de bestuurder OF door de controleur, de reisleider of een als groepsleider aangewezen persoon OF met behulp van audiovisuele middelen OF door opschriften en/of een pictogram, duidelijk aangebracht op iedere zitplaats, zijn aangegeven dat de gordel verplicht is."
+        },
+        {
+            "id": 297,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "44.3. Het is verboden personen te vervoeren op de uitwendige delen van de carrosserie van een voertuig."
+        },
+        {
+            "id": 298,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "44.4. Een fiets, een bromfiets, een motorfiets, een drie- of vierwieler met of zonder motor mag niet meer personen vervoeren dan waarvoor er zitplaatsen ingericht zijn. Alleen in aan fietsen gekoppelde aanhangwagens mogen passagiers worden vervoerd. Een aanhangwagen mag slechts twee passagiers vervoeren en moet uitgerust zijn met beveiligde zitplaatsen met een afdoende bescherming van handen, voeten en rug. De fietser mag slechts één aanhangwagen trekken."
+        },
+        {
+            "id": 299,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "44.5. Bestuurders van fietsen, bromfietsen, motorfietsen, driewielers met motor en vierwielers met motor mogen zichzelf of hun passagiers niet in amazonezit vervoeren. Passagiers mogen geen amazonezit aannemen. De passagiers van bromfietsen, motorfietsen, driewielers met motor en vierwielers met motor moeten de voeten op de voetsteunen hebben."
+        },
+        {
+            "id": 300,
+            "text_id_1": 39,
+            "text_id_2": 43,
+            "text_id_3": 47,
+            "degree": 2,
+            "description": "45.1.1° De lading van een voertuig mag bij normale wegomstandigheden de zichtbaarheid van de bestuurder niet hinderen;"
+        },
+        {
+            "id": 301,
+            "text_id_1": 39,
+            "text_id_2": 43,
+            "text_id_3": 47,
+            "degree": 2,
+            "description": "45.1.2° De lading van een voertuig mag bij normale wegomstandigheden geen gevaar voor de bestuurder, de vervoerde personen en de andere weggebruikers vormen."
+        },
+        {
+            "id": 302,
+            "text_id_1": 39,
+            "text_id_2": 43,
+            "text_id_3": 47,
+            "degree": 2,
+            "description": "45.1.3° De lading van een voertuig mag bij normale wegomstandigheden geen schade veroorzaken aan de openbare weg, zijn aanhorigheden, aan de erin liggende kunstwerken of aan de openbare of privé-eigendommen."
+        },
+        {
+            "id": 303,
+            "text_id_1": 39,
+            "text_id_2": 43,
+            "text_id_3": 47,
+            "degree": 2,
+            "description": "45.1.4° De lading van een voertuig mag bij normale wegomstandigheden niet op de openbare weg slepen of vallen."
+        },
+        {
+            "id": 304,
+            "text_id_1": 39,
+            "text_id_2": 43,
+            "text_id_3": 47,
+            "degree": 2,
+            "description": "45.1.5° De lading van een voertuig mag bij normale wegomstandigheden de stabiliteit van het voertuig niet in het gedrang brengen."
+        },
+        {
+            "id": 305,
+            "text_id_1": 39,
+            "text_id_2": 43,
+            "text_id_3": 47,
+            "degree": 2,
+            "description": "45.1.6° De lading van een voertuig mag bij normale wegomstandigheden de lichten, de reflectoren en het inschrijvingsnummer niet onzichtbaar maken."
+        },
+        {
+            "id": 306,
+            "text_id_1": 39,
+            "text_id_2": 43,
+            "text_id_3": 47,
+            "degree": 2,
+            "description": "45.2 De ladingen van graangewassen, vlas, stro, paarden- of veevoeder in bulk of in balen, moeten overdekt worden met een dekzeil of met een net. Tenzij binnen 25 km van de plaats van lading, zolang het niet langs een autosnelweg gebeurt."
+        },
+        {
+            "id": 307,
+            "text_id_1": 39,
+            "text_id_2": 43,
+            "text_id_3": 47,
+            "degree": 2,
+            "description": "45.3. Bestaat de lading uit lange stukken, dan moeten deze onderling en ook aan het voertuig zo stevig vastgemaakt worden dat zij bij het schommelen de buitenkanten van het voertuig niet overschrijden."
+        },
+        {
+            "id": 308,
+            "text_id_1": 39,
+            "text_id_2": 43,
+            "text_id_3": 47,
+            "degree": 2,
+            "description": "45.4. Al wat dient om de lading vast te maken of te beschutten moet in goede staat zijn en correct worden gebruikt. Elk onderdeel dat de lading omsluit, zoals  een ketting, een dekzeil, een net, enz. moet de lading nauw omsluiten."
+        },
+        {
+            "id": 309,
+            "text_id_1": 39,
+            "text_id_2": 43,
+            "text_id_3": 47,
+            "degree": 2,
+            "description": "45.5. De bestuurder moet voorkomen dat de lading en hetgeen dient om deze vast te maken, hem door lawaai hindert, het publiek ongemak aandoet of de dieren doet schrikken."
+        },
+        {
+            "id": 310,
+            "text_id_1": 39,
+            "text_id_2": 43,
+            "text_id_3": 47,
+            "degree": 2,
+            "description": "45.6. Indien zij- of achterdeuren uitzonderlijk moeten openblijven, moeten zij zodanig vastgezet worden dat zij niet uitsteken buiten omtrek van het voertuig."
+        },
+        {
+            "id": 311,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "45bis2. Bestuurders van motorvoertuigen van de categorieën C1, C, C1+E of C+E, (met uitzondering van de voertuigen en samenstellen van voertuigen die uitsluitend door kermiskramers voor hun beroep worden gebruikt), moeten hun lading zekeren met een systeem dat aan de Wegcode voldoet. De bestuurders van deze voertuigen moeten bovendien nagaan of de achterste laaddeuren, de inklapbare laadklep, de deuren, de dekzeilen, het reservewiel en de andere uitrustingen zijn vastgezet, of de lading geen hinder vormt voor het veilig besturen van het voertuig en of het zwaartepunt van de lading zoveel mogelijk gecentreerd wordt op het voertuig."
+        },
+        {
+            "id": 312,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "45bis3. Indien de primaire verpakking van een goed niet voldoende stevig is voor een veilig transport, dan moet de verpakker en/of verlader de goederen bijkomend omhullen met een transportverpakking die stevig genoeg is om een goede ladingzekering mogelijk te maken. De verlader dient de vervoerder waarop hij beroep doet vooraf schriftelijk alle informatie te verschaffen die de vervoerder nodig acht om de goederen te stouwen."
+        },
+        {
+            "id": 313,
+            "text_id_1": 40,
+            "text_id_2": 44,
+            "text_id_3": 48,
+            "degree": 3,
+            "description": "45bis4. Het ladingzekeringssysteem van de motorvoertuigen van de categorieën C1, C, C1+E of C+E, (met uitzondering van de voertuigen en samenstellen van voertuigen die uitsluitend door kermiskramers voor hun beroep worden gebruikt) moet de krachten kunnen weerstaan van een  vertraging van 0,8 g in voorwaartse richting; een vertraging van 0,5 g in achterwaartse richting; een  versnelling van 0,5 g in zijdelingse richting. Wanneer een onderdeel van een ladingzekeringssysteem onderworpen wordt aan deze krachten, mag de uitgeoefende drukkracht de maximale nominale last van dit onderdeel niet overschrijden. De onderdelen van een ladingzekeringssysteem van deze voertuigen moeten correct functioneren; ze moeten geschikt zijn voor het gebruik dat ervan wordt gemaakt; ze mogen geen knopen, beschadigde of verzwakte elementen vertonen die hun werking met het oog op het zekeren van de lading kunnen aantasten; ze mogen geen scheuren, sneden of uitrafelingen vertonen; ze moeten conform de hiervoor geldende Europese en/of internationale productnormen zijn. Het ladingzekeringssysteem dat wordt gebruikt om een lading in of op een voertuig van groep C te omsluiten, vast te zetten of tegen te houden, moet geschikt zijn voor de afmetingen, de vorm, de stevigheid en de kenmerken van de lading."
+        },
+        {
+            "id": 314,
+            "text_id_1": 40,
+            "text_id_2": 44,
+            "text_id_3": 48,
+            "degree": 3,
+            "description": "45bis5. In de motorvoertuigen van de categorieën C1, C, C1+E of C+E, (met uitzondering van de voertuigen en samenstellen van voertuigen die uitsluitend door kermiskramers voor hun beroep worden gebruikt) moet de stouwvoorziening of de geïntegreerde vergrendelvoorziening die wordt gebruikt om een lading vast te maken, moet zelf zodanig worden gezekerd dat ze niet kan ontgrendeld raken of loskomen. De stouwvoorziening of de geïntegreerde vergrendelvoorziening die wordt gebruikt om een lading vast te zetten, moet ontworpen en vervaardigd zijn voor de doeleinden waarvoor ze wordt gebruikt; en gebruikt en onderhouden worden in overeenstemming met de specificaties van de fabrikant en de geldende Europese en/of internationale normen."
+        },
+        {
+            "id": 315,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "45bis6. De lading die in overeenstemming met de voorschriften van de “Europese richtlijnen voor beste praktijken over het zekeren van lading voor wegtransport”, opgesteld onder auspiciën van de Europese Commissie, de motorvoertuigen van de categorieën C1, C, C1+E of C+E, (met uitzondering van de voertuigen en samenstellen van voertuigen die uitsluitend door kermiskramers voor hun beroep worden gebruikt) omsloten, vastgezet of gestouwd wordt, moet de volgende krachten kunnen weerstaan: een vertraging van 0,8 g in voorwaartse richting; een vertraging van 0,5 g in achterwaartse richting; een versnelling van 0,5 g in zijdelingse richting, aan beide zijden."
+        },
+        {
+            "id": 316,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "46.1.1°. Een auto of aanhangwagen mag (lading inbegrepen) mag op alle plaatsen 2,55 meter breed zijn of 2,6 meter als het voertuig zelf 2,6 meter breed is. Wanneer de lading bestaat uit gewassen mogen de auto en zijn lading maximaal 2,70 meter breed zijn. Wordt dezelfde lading vervoerd binnen 25 km van de plaats van lading of 25 km van de Belgische grens, dan mogen de auto en zijn lading maximaal 3 meter breed zijn. bedragen. In geen enkel geval mogen de vaste steunen zich op meer dan 1,25 van de denkbeeldige middellijn van de auto bevinden."
+        },
+        {
+            "id": 317,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "46.1.2°. bij een bromfiets met drie of vier wielen, een drie- of vierwieler met of zonder motor mag de breedte van de lading maximaal 0,30 m meer bedragen dan de breedte van het niet beladen voertuig, met een volstrekt maximum van 2,50 m."
+        },
+        {
+            "id": 318,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "46.1.3°. Een handkar mag maximaal 2,50 meter breed zijn."
+        },
+        {
+            "id": 319,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "46.1.4°. Een fiets, tweewielige bromfiets of hun aanhangwagens mogen maximaal 1,00 m breed zijn."
+        },
+        {
+            "id": 320,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "46.1.5°. Een motorfiets, zonder zijspanwagen of aanhangwagen mag maximaal 1,25 m breed zijn."
+        },
+        {
+            "id": 321,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "46.1.6°. Bij een motorfiets met zijspanwagen mag de breedte van de lading maximaal 0,30 m meer bedragen dan de breedte van het niet beladen voertuig."
+        },
+        {
+            "id": 322,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "46.2.1. In geen geval mag de lading buiten de omtrek van het voertuig uitsteken. De lading van slepen die uitsluitend bestemd zijn voor het vervoer van auto’s mag van voren  hoogstens 0,50 m uitsteken."
+        },
+        {
+            "id": 323,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "46.2.2. De lading van fietsen, bromfietsen, motorfietsen, drie- en vierwielers met of zonder motor en hun aanhangwagens mag van achteren niet meer dan 0,50 meter uitsteken buiten het voertuig of de aanhangwagen. De lengte van aanhangwagens, getrokken door rijwielen zonder motor, mag, lading inbegrepen, niet meer bedragen dan 2,50 meter."
+        },
+        {
+            "id": 324,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "46.2.3. De lading van de andere voertuigen mag niet verder dan 1 meter buiten het achtereinde van het voertuig uitsteken.  De uitstek mag echter 3 meter bedragen, wanneer één van deze voertuigen met lange ondeelbare stukken beladen is of 1,50 meter, voor de ladingen van slepen die uitsluitend bestemd zijn voor het vervoer van auto's."
+        },
+        {
+            "id": 325,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "46.3. De hoogte van een beladen voertuig mag niet meer dan 4 meter bedragen. Die van een rijwiel zonder motor mag, lading inbegrepen, niet meer dan 2,50 meter bedragen."
+        },
+        {
+            "id": 326,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "46.4. De lading van een voortbewegingstoestel mag niet meer dan 0,50 meter vooraan en achteraan en 0,30 meter aan elke kant overschrijden. De hoogte van een beladen voortbewegingstoestel mag niet meer dan 2,50 meter overschrijden."
+        },
+        {
+            "id": 327,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "47.1. Als de voertuigen niet moeten verlicht zijn worden de ladingen die meer dan één meter buiten het achtereinde van het voertuig uitsteken, gesignaleerd door een naar achter gericht vierkant bord van 50 x 50 cm met afwisselende diagonale reflecterende rode en witte strepen van ongeveer 75 mm breed."
+        },
+        {
+            "id": 328,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "47.2. Als de voertuigen moeten verlicht zijn, worden de ladingen die meer dan één meter buiten het achtereinde van het voertuig uitsteken, gesignaleerd door een naar achter gericht vierkant bord van 50 x 50 cm met afwisselende diagonale reflecterende rode en witte strepen van ongeveer 75 mm breed aangevuld met een naar achteren gericht rood licht, en een oranje reflector aan elke zijkant. Het hoogste punt daarvan mag zich maximum 1,60 meter boven de grond bevinden. Het laagste punt moet zich minstens 0,40 meter boven de grond bevinden. Bovendien bij een voertuig dat krachtens het technisch reglement van de auto's zijreflectoren moet voeren, moeten één of meerdere supplementaire oranje zijreflectoren op de lading aangebracht worden wanneer de afstand tussen de buitenrand van de reflector die de grootste uitstek van de lading signaleert, en de buitenrand van de achterste reflector van het voertuig, groter is dan 3 meter. In geen geval mag de afstand tussen de buitenranden van twee opeenvolgende reflectoren groter zijn dan 3 meter. Ten slotte bij een voertuig dat krachtens het technisch reglement van de auto's geen zijreflectoren moet voeren, mogen één of meer oranje zijreflectoren op de lading aangebracht worden."
+        },
+        {
+            "id": 329,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "47.3. Wanneer het voertuig moet verlicht zijn, moeten de ladingen die zodanig buiten de zijkant van het voertuig komen dat hun uiterste zijkant zich op meer dan 0,40 m van de buitenrand van het lichtdoorlatend gedeelte van het standlicht bevindt, door omtreklichten en reflectoren gesignaleerd worden. De lichten en reflectoren die aan de voorzijde zichtbaar zijn moeten wit zijn, deze die aan de achterzijde zichtbaar zijn, moeten rood zijn. Het lichtdoorlatend of het lichtweerkaatsend gedeelte van deze lichten of reflectoren moet zich op minder dan 0,40 meter van de grootste uitstek bevinden."
+        },
+        {
+            "id": 330,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "47bis1. Wanneer gebruik wordt gemaakt van een beweegbaar laadplatform of enig ander achteraan het voertuig bevestigd middel om te laden en lossen, moeten minstens de buitenste hoeken ten voor de andere weggebruikers worden gesignaleerd en dit ofwel met reflecterende stroken die hieraan vastgemaakt zijn ofwel met reflecterende verkeerskegels, ofwel met oranjegele knipperlichten. Deze signalisatiemiddelen mogen samen gebruikt worden. Zij moeten in alle omstandigheden zichtbaar zijn."
+        },
+        {
+            "id": 331,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "47bis2. Wanneer gebruik gemaakt wordt van beweegbare bedieningstoestellen dan moet het werkgebied gesignaleerd worden met reflecterende verkeerskegels of met één of meer draagbare oranjegele knipperlichten. Deze signalisatiemiddelen mogen samen gebruikt worden. Zij moeten in alle omstandigheden zichtbaar zijn."
+        },
+        {
+            "id": 332,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "47bis3. De reflecterende stroken vermeld in de Wegcode, moeten een oppervlakte hebben van minimum 0,120 m² en een breedte van minimum 0,25 m. Zij moeten voorzien zijn van diagonale afwisselend rode en witte strepen van ten minste 0,10 m breedte. De reflecterende verkeerskegels moeten ten minste 0,40 m hoog zijn en voorzien van afwisselend rode en witte strepen van ten minste 0,10 m breedte."
+        },
+        {
+            "id": 333,
+            "text_id_1": 40,
+            "text_id_2": 44,
+            "text_id_3": 48,
+            "degree": 3,
+            "description": "48bis1. Voertuigen die gevaarlijke goederen vervoeren en die volgens de wet voorzien moeten zijn van een oranje bord, moeten, behalve in geval van noodzaak, de autosnelwegen volgen."
+        },
+        {
+            "id": 334,
+            "text_id_1": 40,
+            "text_id_2": 44,
+            "text_id_3": 48,
+            "degree": 3,
+            "description": "48bis2. Vervoerders van gevaarlijke goederen die door de bevoegde Ministers zijn bepaald, zijn niet toegelaten op de wegen waarop hen dat door verkeersborden C24a, C24b of C24c ("
+        },
+        {
+            "id": 335,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "49.1. Een motorvoertuig en een gespan mogen slechts 1 voertuig slepen, MAAR een drie- of vierwielige bromfiets mag geen aanhangwagen trekken; een motorfiets met zijspanwagen mag alleen een aanhangwagen trekken indien het zijspanwiel uitgerust is met een rem; een takelwagen mag een geleed voertuig trekken, uitsluitend om het naar de plaats van herstelling te brengen, wanneer hij beantwoordt aan de daaraan gestelde voorwaarden."
+        },
+        {
+            "id": 336,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "49.2. Alleen in de volgende gevallen mag men meer dan 1 voertuig slepen, indien men niet sneller rijdt dan 25 km/u: slepen van kermisvoertuigen, woonwagens inbegrepen; slepen van voertuigen die door aannemers worden gebezigd en hetzij tussen garage, station of werkterrein, hetzij van het ene werkterrein naar het andere rijden; slepen van landbouwvoertuigen die rijden binnen een straal van 25 km van de hoeve; miniatuurslepen die binnen toeristische centra rijden; slepen van publiciteitsmaterieel. De totale lengte van de slepen mag in geen geval langer zijn dan 25 meter."
+        },
+        {
+            "id": 337,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "49.3. Het is enkel toegestaan een motorvoertuig te slepen wanneer dit zich niet meer op eigen kracht kan verplaatsen of niet meer alle veiligheidswaarborgen biedt."
+        },
+        {
+            "id": 338,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "49.4.1. De koppeling die een aanhangwagen met het trekkend voertuig verbindt moet overeenstemmen met de voorschriften van de technische reglementen van de auto's of van de bromfietsen en motorfietsen."
+        },
+        {
+            "id": 339,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "49.4.2. Zodra de afstand tussen het voorvlak van een aanhangwagen en het achtervlak van het trekkend voertuig groter is dan 3 meter, moet de koppeling gesignaleerd worden door een rode lap als het voertuig niet moet verlicht zijn of als het voertuig verlicht moet zijn, door langs opzij zichtbaar oranje licht, tenzij de koppeling verlicht is. Deze bepaling geldt ook voor gesleepte voertuigen."
+        },
+        {
+            "id": 340,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "49.5. Noodkoppelingen of de toegelaten hulpkoppelingen mogen slechts gebruikt worden om in geval van overmacht en aan maximum 25 km/u de volgende voertuigen naar de plaats van herstelling te rijden: een aanhangwagen waarvan de hoofdkoppeling of de bevestiging ervan niet meer de vereiste veiligheid biedt; een auto of een vierwieler met motor die zich niet meer op eigen kracht kunnen verplaatsen of die niet alle veiligheidswaarborgen biedt. De speciale uitrustingen waarmee sommige voertuigen voorzien zijn om weg te slepen, worden niet als noodkoppelingen beschouwd."
+        },
+        {
+            "id": 341,
+            "text_id_1": 41,
+            "text_id_2": 45,
+            "text_id_3": 49,
+            "degree": 4,
+            "description": "50. Tenzij met speciale toelating, zijn alle snelheids- en sportwedstrijden op de openbare weg verboden."
+        },
+        {
+            "id": 342,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "51.1. De bestuurder van een defect voertuig mag de veiligheid en vlotheid van het andere verkeer niet hinderen. Daarvoor moet hij het voertuig opstellen als een geparkeerd voertuig. Wanneer dit onmogelijk is, moet het voertuig worden gesignaleerd met de gevarendriehoek. De vier richtingaanwijzers of een draagbaar geel knipperlicht mogen eveneens worden gebruikt. Wanneer de lichten van de auto of de aanhangwagen niet meer werken, moet deze eveneens worden gesignaleerd met een gevarendriehoek, de vier richtingaanwijzers of een draagbaar geel knipperlicht."
+        },
+        {
+            "id": 343,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "51.2. De gevarendriehoek moet rechtop worden geplaatst op 30 meter van het voertuig op gewone wegen en 100 meter op de snelweg. Hij moet in elk geval zichtbaar zijn van op 50 meter afstand."
+        },
+        {
+            "id": 344,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "51.3. Wanneer een lading (gedeeltelijk) op de weg valt en niet onmiddellijk kan worden verwijderd, mag men het verkeer niet hinderen of onveilig maken. Bovendien moet de lading worden gesignaleerd op dezelfde manier als een defect voertuig."
+        },
+        {
+            "id": 345,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "51.4. De bestuurder van een voertuig dat in panne valt op de snelweg, moet op de plaatsen waar hij niet mag stilstaan of parkeren, een reflecterende vest dragen, zodra hij zijn voertuig verlaat. "
+        },
+        {
+            "id": 346,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "52.2. Wie betrokken is bij een ongeval met enkel stoffelijke schade, moet zijn identiteitskaart tonen als daarom wordt gevraagd en ter plaatse blijven om de nodige vaststellingen mogelijk te maken. Wanneer de partijen niet akkoord zijn en er geen bevoegd persoon ter plaatse kan komen binnen een redelijke termijn, moet men zo snel mogelijk aangifte doen aan de politie. Wanneer de tegenpartij niet aanwezig is, moet men zijn naam en adres achterlaten en zo snel mogelijk aan de politie meedelen."
+        },
+        {
+            "id": 347,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "52.3. Wie betrokken is bij een ongeval met lichamelijke schade, moet hulp verlenen indien nodig,  zijn identiteitskaart tonen aan wie erom vraagt en ter plaatse blijven om de nodige vaststellingen mogelijk te maken. Wanneer men de plaats van het ongeval verlaat om hulp te verlenen of de politie te verwittigen, moet slechts zijn naam en adres aan één van de aanwezigen meedelen. Wanneer er geen bevoegd persoon ter plaatse kan komen binnen een redelijke termijn, moet men binnen de 24 u aangifte doen aan de politie."
+        },
+        {
+            "id": 348,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "53.1. In een gespan mogen niet meer dan vier dieren achter elkaar en niet meer dan drie naast elkaar lopen."
+        },
+        {
+            "id": 349,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "53.2. De teugels van een gespan moeten de bestuurder toelaten het voertuig steeds goed in de hand te hebben en het voertuig veilig te mennen."
+        },
+        {
+            "id": 350,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "53.3. Gespannen moeten vergezeld zijn van zoveel begeleiders als voor de veiligheid van het verkeer vereist is. Aan de bestuurder van het voertuig dient in ieder geval een begeleider te worden toegevoegd, zodra er meer dan vijf dieren ingespannen zijn."
+        },
+        {
+            "id": 351,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "53.4. Wanneer een gespan een ander voertuig voortbeweegt en de sleep, zonder inbegrip van de dissel van het eerste voertuig, langer dan 16 meter is, moet een begeleider het tweede voertuig vergezellen."
+        },
+        {
+            "id": 352,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "53.5. Wanneer de lading van een mallejan langer dan 12 meter is, moet een begeleider te voet achter de lading volgen."
+        },
+        {
+            "id": 353,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "54. Wanneer een handkar of de lading hiervan niet voldoende zicht naar voren vrijlaat, moet de bestuurder zijn handkar trekken."
+        },
+        {
+            "id": 354,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "55.1. De bestuurder van trek-, last- of rijdieren en van vee moet door een voldoende aantal begeleiders bijgestaan worden."
+        },
+        {
+            "id": 355,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "55.2. De bestuurders en de begeleiders moeten voortdurend bij de dieren blijven, ze kunnen in bedwang houden en kunnen beletten dat zij het verkeer belemmeren en ongevallen veroorzaken."
+        },
+        {
+            "id": 356,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "55.3. Binnen de bebouwde kommen mag men ingespannen of  bereden dieren niet laten galopperen"
+        },
+        {
+            "id": 357,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "55.4. Ruiters die de rijbaan volgen, mogen met tweeën naast elkaar rijden."
+        },
+        {
+            "id": 358,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "55bis2. Groepen van minstens 10 ruiters mogen worden begeleid door een groepsleider. Deze moet minstens 21 jaar oud zijn en aan de linkerarm een zwart-geel-rode band dragen met op de gele band in het zwart “groepsleider” geschreven."
+        },
+        {
+            "id": 359,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "55bis3. Op kruispunten zonder verkeerslichten, mag de groepsleider het verkeer op de dwarswegen stilleggen terwijl de groep oversteekt."
+        },
+        {
+            "id": 360,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "56.2. Voertuigen en dieren die schepen trekken en zich links op de weg bevinden, moeten links worden gekruist en rechts ingehaald."
+        },
+        {
+            "id": 361,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "56.3. Voertuigen en dieren die boten slepen en zich links op de weg bevinden, mogen vooraan geen witte en achteraan geen rode lichten dragen. Tussen valavond en zonsopgang en wanneer de zichtbaarheid minder dan 100 meter bedraagt, moeten zij een geel licht dragen dat in alle richtingen vanop 100 meter zichtbaar is."
+        },
+        {
+            "id": 362,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "59.1. Elke persoon die meer dan 15 jaar oud is moet zijn identiteitskaart vertonen telkens een bevoegd persoon hem daarom vraagt naar aanleiding van een verkeersovertreding of –ongeval."
+        },
+        {
+            "id": 363,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "59.6. Elk voertuig op de openbare weg dient overeen te stemmen met het Wegverkeersreglement en de technische reglementen van de auto’s, bromfietsen of motorfietsen."
+        },
+        {
+            "id": 364,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "59.7 Wanneer de lading van een voertuig niet behoorlijk werd vastgemaakt of de maximaal toegelaten afmetingen overschrijdt, moet de bestuurder het voertuig afladen, opnieuw vastmaken of laten staan, anders kan het worden vastgehouden. Dit geldt ook bij een overtreding van het technisch reglement van de auto's betreffende het hoogste toegelaten gewicht of het gewicht in beladen toestand van de voertuigen"
+        },
+        {
+            "id": 365,
+            "text_id_1": 40,
+            "text_id_2": 44,
+            "text_id_3": 48,
+            "degree": 3,
+            "description": "61.1.1° Rood licht betekent dat het verboden is de stopstreep (of als er geen stopstreep is, het verkeerslicht zelf) voorbij te rijden."
+        },
+        {
+            "id": 366,
+            "text_id_1": 39,
+            "text_id_2": 43,
+            "text_id_3": 47,
+            "degree": 2,
+            "description": "61.1.2° Vast oranje licht betekent dat het verboden is de stopstreep (of als er geen stopstreep is, het verkeerslicht zelf) voorbij te rijden, tenzij er niet meer veilig kan worden gestopt."
+        },
+        {
+            "id": 367,
+            "text_id_1": 40,
+            "text_id_2": 44,
+            "text_id_3": 48,
+            "degree": 3,
+            "description": "61.1.5° Bij bijkomende groene verkeerslichten in de vorm van een pijl, mag er enkel worden voortgereden in de richting van de pijl op voorwaarde dat voorrang wordt verleend aan andere bestuurders en voetgangers. "
+        },
+        {
+            "id": 368,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "62bis. Wanneer boven een rijstrook een oranje pijl schuin naar bewezen wijst, moeten de bestuurders deze rijstrook zo snel mogelijk verlaten "
+        },
+        {
+            "id": 369,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "63.1.2.1° Bij rood licht voor de voetgangers mogen zij zich niet op de rijbaan begeven."
+        },
+        {
+            "id": 370,
+            "text_id_1": 40,
+            "text_id_2": 44,
+            "text_id_3": 48,
+            "degree": 3,
+            "description": "63.2.1.1° Het is verboden te rijden over een rijstrook waarboven zich een rood kruis bevindt, wanneer dit rood kruis naar de bestuurder gericht is. "
+        },
+        {
+            "id": 371,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "64.1. Bestuurders mogen een oranjegeel knipperlicht slechts dubbel voorzichtig voorbij rijden. Het licht verandert niets aan de voorrangsregeling."
+        },
+        {
+            "id": 372,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "64.2. Bij beurtelings knipperende rode lichten aan een overweg, mogen de weggebruikers de stopstreep (of deze lichten) niet voorbij rijden. "
+        },
+        {
+            "id": 373,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "67.3 Een ruitvormig oranje bord met een witte rand en een schuine zwarte streep (verkeersbord B11) kondigt het einde van de voorrangsweg aan."
+        },
+        {
+            "id": 374,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "67.3. Een rond bord met een rode en een zwarte pijl in tegenovergestelde richtingen (verkeersbord B19) betekent dat de bestuurder die rijdt in de richting van de rode pijl, voorrang moet verlenen."
+        },
+        {
+            "id": 375,
+            "text_id_1": 39,
+            "text_id_2": 43,
+            "text_id_3": 47,
+            "degree": 2,
+            "description": "67.3. Een omgekeerde driehoek met rode rand (verkeersbord B1) betekent dat u voorrang moet verlenen"
+        },
+        {
+            "id": 376,
+            "text_id_1": 39,
+            "text_id_2": 43,
+            "text_id_3": 47,
+            "degree": 2,
+            "description": "67.3. Een achthoekig bord met het woord STOP (verkeersbord B5) betekent dat u moet stoppen en voorrang verlenen"
+        },
+        {
+            "id": 377,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "68.3 Een rond wit bord met een rode rand (verkeersbord C3) betekent verboden toegang in beide richtingen voor alle bestuurders."
+        },
+        {
+            "id": 378,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "68.3. Een rond wit bord met een rode rand en de afbeelding van een auto (verkeersbord C5) betekent verboden toegang voor bestuurders van motorvoertuigen met meer dan twee wielen en van motorfietsen met zijspan, tenzij om van richting te veranderen of om de op- of afrit te gebruiken"
+        },
+        {
+            "id": 379,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "68.3. Een rond wit bord met een rode rand en de afbeelding van een quad (verkeersbord C6) betekent verboden toegang voor bestuurders van motorvoertuigen met vier gemaakt voor onverhard terrein, met een open carrosserie, een stuur als een motorfiets en een zadel."
+        },
+        {
+            "id": 380,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "68.3. Een rond wit bord met een rode rand en de afbeelding van een motorfiets (verkeersbord C7) betekent verboden toegang voor bestuurders van motorfietsen"
+        },
+        {
+            "id": 381,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "68.3. Een rond wit bord met een rode rand en de afbeelding van een bromfiets (verkeersbord C9) betekent verboden toegang voor bestuurders van bromfietsen"
+        },
+        {
+            "id": 382,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "68.3. Een rond wit bord met een rode rand en de afbeelding van een fiets (verkeersbord C11) betekent verboden toegang voor bestuurders van rijwielen"
+        },
+        {
+            "id": 383,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "68.3. Een rond wit bord met een rode rand en de afbeelding van een paard en kar (verkeersbord C13) betekent verboden toegang voor bestuurders van gespannen"
+        },
+        {
+            "id": 384,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "68.3. Een rond wit bord met een rode rand en de afbeelding van een ruiter op paard (verkeersbord C15) betekent verboden toegang voor ruiters"
+        },
+        {
+            "id": 385,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "68.3. Een rond wit bord met een rode rand en de afbeelding van een handkar (verkeersbord C17) betekent verboden toegang voor bestuurders van handkarren"
+        },
+        {
+            "id": 386,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "68.3. Een rond wit bord met een rode rand en de afbeelding van een voetganger (verkeersbord C19) betekent verboden toegang voor voetgangers"
+        },
+        {
+            "id": 387,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "68.3. Een rond wit bord met een rode rand en daarop de vermelding van bepaalde massa (verkeersbord C21) betekent verboden toegang voor voertuigen waarvan de massa in beladen toestand hoger is dan aangeduid."
+        },
+        {
+            "id": 388,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "68.3. Een rond wit bord met een rode rand en de afbeelding van een autocar (verkeersbord C22) betekent verboden toegang voor bestuurders van autocars"
+        },
+        {
+            "id": 389,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "68.3. Een rond wit bord met een rode rand en de afbeelding van een vrachtwagen (verkeersbord C23) betekent verboden toegang voor bestuurders van voertuigen bestemd voor het vervoer van zaken."
+        },
+        {
+            "id": 390,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "68.3. Een rond wit bord met een rode rand en daarop de afbeelding van een vrachtwagen en een bepaalde maximale lengte (verkeersbord C25) betekent verboden toegang voor voertuigen of slepen die langer zijn dan vermeld op het verkeersbord."
+        },
+        {
+            "id": 391,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "68.3. Een rond wit bord met een rode rand en daarop de vermelding van een maximale breedte (verkeersbord C27) betekent verboden toegang voor voertuigen (lading inbegrepen) die breder zijn dan vermeld op het verkeersbord."
+        },
+        {
+            "id": 392,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "68.3. Een rond wit bord met een rode rand en daarop een doorstreepte pijl naar links of rechts (verkeersbord C31a of C31b) betekent dat het verboden is aan het volgend kruispunt af te slaan in de richting van de pijl."
+        },
+        {
+            "id": 393,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "68.3. Een rond wit bord met een rode rand en daarop een doorstreepte u-pijl (verkeersbord C33) betekent dat het vanaf het verkeersbord tot het volgend kruispunt verboden is te keren."
+        },
+        {
+            "id": 394,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "68.3. Een rond wit bord met een rode rand en daarop de afbeeldingen het woord TOL of TAKS (verkeersbord C47) betekent dat het verboden is het bord voorbij te rijden zonder te stoppen. Het verbod kan worden beperkt tot een bepaalde categorie van voertuigen.  "
+        },
+        {
+            "id": 395,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "68.3. Een rond wit bord met een rode rand en daarop de woorden cruise control doorstreept (verkeersbord C48) betekent dat het vanaf het verkeersbord tot aan het volgende kruispunt verboden is de cruise control te gebruiken. Het verbod kan worden beperkt tot een bepaalde categorie van voertuigen.  "
+        },
+        {
+            "id": 396,
+            "text_id_1": 39,
+            "text_id_2": 43,
+            "text_id_3": 47,
+            "degree": 2,
+            "description": "68.3. Een rond wit bord met een rode rand en daarop de vermelding van een maximale hoogte (verkeersbord  C29) betekent verboden toegang voor voertuigen (lading inbegrepen) die hoger zijn dan vermeld op het verkeersbord."
+        },
+        {
+            "id": 397,
+            "text_id_1": 40,
+            "text_id_2": 44,
+            "text_id_3": 48,
+            "degree": 3,
+            "description": "68.3 Een rond verkeersbord met een witte horizontale streep op een rode achtergrond (verkeersbord C1) betekent verboden toegang voor iedere bestuurder"
+        },
+        {
+            "id": 398,
+            "text_id_1": 40,
+            "text_id_2": 44,
+            "text_id_3": 48,
+            "degree": 3,
+            "description": "68.3. Een rond wit bord met een rode rand en daarop de afbeelding van een oranje vrachtwagen (verkeersbord C24a) betekent verboden toegang voor gevaarlijke goederen"
+        },
+        {
+            "id": 399,
+            "text_id_1": 40,
+            "text_id_2": 44,
+            "text_id_3": 48,
+            "degree": 3,
+            "description": "68.3. Een rond wit bord met een rode rand en daarop de afbeelding van een voertuig en een explosie (verkeersbord C24b) betekent verboden toegang voor  gevaarlijke ontvlambare of ontplofbare stoffen"
+        },
+        {
+            "id": 400,
+            "text_id_1": 40,
+            "text_id_2": 44,
+            "text_id_3": 48,
+            "degree": 3,
+            "description": "68.3. Een rond wit bord met een rode rand en daarop de afbeelding van een oranje tankwagen (verkeersbord C24c) betekent verboden toegang voor gevaarlijke verontreinigende stoffen"
+        },
+        {
+            "id": 401,
+            "text_id_1": 40,
+            "text_id_2": 44,
+            "text_id_3": 48,
+            "degree": 3,
+            "description": "68.3. Een rond wit bord met een rode rand en daarop de afbeeldingen van een rood en een zwart voertuig (verkeersbord C35) betekent dat het vanaf het verkeersbord tot aan het volgende kruispunt verboden is een voertuig met meer dan 2 wielen in langs links in te halen."
+        },
+        {
+            "id": 402,
+            "text_id_1": 40,
+            "text_id_2": 44,
+            "text_id_3": 48,
+            "degree": 3,
+            "description": "68.3. Een rond wit bord met een rode rand en daarop de afbeeldingen van een rode vrachtwagen en een zwart voertuig (verkeersbord C39) betekent dat het vanaf het verkeersbord tot aan het volgende kruispunt voor voertuigen met een MTM van meer dan 3,5 T verboden is een voertuig met meer dan 2 wielen langs links in te halen. "
+        },
+        {
+            "id": 403,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "69.3. Een rond blauw bord met daarop een of meer witte pijl (verkeersbord D1) betekent dat het verplicht is een door de pijl aangeduide richting(en) te volgen. Een rechte pijl kan eveneens aangeven langs welke kant een hindernis voorbij moet worden gereden."
+        },
+        {
+            "id": 404,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "70.2.1.1°. Een rond blauw verkeersbord met een rode rand en een rode schuine streep (verkeersbord E1) betekent dat het verboden is te parkeren"
+        },
+        {
+            "id": 405,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "70.2.1.1°. Een rond blauw verkeersbord met een rode rand en een rood kruis (verkeersbord E3) betekent dat het verboden is stil te staan of te parkeren"
+        },
+        {
+            "id": 406,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "70.2.1.2°. Een rond blauw verkeersbord met een rode rand en een rode schuine streep en witte getallen (verkeersbord E5 of E7) betekent dat het tussen de vermelde data van elke maand verboden is te parkeren"
+        },
+        {
+            "id": 407,
+            "text_id_1": 40,
+            "text_id_2": 44,
+            "text_id_3": 48,
+            "degree": 3,
+            "description": "72.2. Een doorlopende streep betekent dat het iedere bestuurder verboden is deze te overschrijden."
+        },
+        {
+            "id": 408,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "72.2. De rijstrook die is afgebakend met brede onderbroken strepen, aangeduid door het bord F17 en de markering van het woord « BUS », is voorbehouden aan voertuigen van geregelde diensten voor gemeenschappelijk vervoer, taxi’s en voertuigen voor schoolvervoer bedoeld in artikel 39bis."
+        },
+        {
+            "id": 409,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "72.2. Een of meerdere brede witte doorlopende strepen of een dambordmarkering, bakenen de bijzondere overrijdbare bedding af die voorbehouden is aan voertuigen van geregelde diensten voor gemeenschappelijk vervoer."
+        },
+        {
+            "id": 410,
+            "text_id_1": 40,
+            "text_id_2": 44,
+            "text_id_3": 48,
+            "degree": 3,
+            "description": "73.1. Bij werken vervangen de oranje strepen of spijkers de witte strepen. "
+        },
+        {
+            "id": 411,
+            "text_id_1": 40,
+            "text_id_2": 44,
+            "text_id_3": 48,
+            "degree": 3,
+            "description": "73.2. Een streep gevormd door oranje spijkers op korte afstand van elkaar, heeft dezelfde betekenis als een witte doorlopende streep. "
+        },
+        {
+            "id": 412,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "73.3. Een streep gevormd door oranje spijkers in groepen, heeft dezelfde betekenis als een witte onderbroken streep."
+        },
+        {
+            "id": 413,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "74. Het deel van de openbare weg dat afgebakend is door twee evenwijdige witte onderbroken strepen en dat niet breed genoeg is voor het autoverkeer, is een fietspad."
+        },
+        {
+            "id": 414,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "75.1.2°. Langs een gele onderbroken streep op de rand van de rijbaan is het verboden te parkeren. "
+        },
+        {
+            "id": 415,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "75.2. Rechts van een lijn die de denkbeeldige rand van de rijbaan aanduidt, mag men niet rijden, enkel stilstaan of parkeren (behalve op snelwegen)."
+        },
+        {
+            "id": 416,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "76.1. Een stopstreep duidt aan waar de bestuurder moeten stoppen voor het verkeersbord B5 (\"STOP\"-bord) of het verkeerslicht. "
+        },
+        {
+            "id": 417,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "76.2. Een dwarsstreep gevormd door haaientanden duidt aan waar de bestuurders moeten stoppen voor het verkeersbord B1 (omgekeerde driehoek). "
+        },
+        {
+            "id": 418,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "76.4. Twee onderbroken strepen gevormd door witte vierkanten of parallellogrammen, duiden aan waar de fietsers moeten oversteken. "
+        },
+        {
+            "id": 419,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "77.1. De bestuurders moeten de richtingen volgen die aangegeven zijn op de rijstrook waarin zij zich bevinden."
+        },
+        {
+            "id": 420,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "77.2. Bij rijstrookverminderingspijlen moeten de bestuurders de rijstrook die wegvalt, verlaten "
+        },
+        {
+            "id": 421,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "77.4. Het is verboden te rijden, stil te staan of te parkeren op verkeersgeleiders en verdrijvingsvlakken."
+        },
+        {
+            "id": 422,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "77.5. In een parkeerzone die witte vakken bevat, mag enkel in deze vakken worden geparkeerd."
+        },
+        {
+            "id": 423,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "77.6. Bij rood licht mogen enkel fietsers en bromfietsers plaatsnemen in het opstelvak voor fietsers en bromfietsers."
+        },
+        {
+            "id": 424,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "77.7. Voorsorteringsstroken voor fietsers en bromfietsers zijn enkel voor hen voorbehouden."
+        },
+        {
+            "id": 425,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "77.8. Het is verboden stil te staan of te parkeren op een dambordmarkering"
+        },
+        {
+            "id": 426,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "78.1.1. Wie werken uitvoert op de openbare weg, moet deze signaleren. Daarvoor moet men bovendien een toelating hebben."
+        },
+        {
+            "id": 427,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "78.1.2. Zodra de werken op de openbare weg voorbij zijn, moeten de tijdelijke wegmarkeringen en verkeersborden worden weggenomen"
+        },
+        {
+            "id": 428,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "78.2. Wie een verkeersbelemmering creëert, moet deze signaleren."
+        },
+        {
+            "id": 429,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "80.1. Enkel de overheid is bevoegd om verkeerstekens aan te brengen op de openbare weg"
+        },
+        {
+            "id": 430,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "80.2. Reclamepanelen op de openbare weg mogen de bestuurders niet verblinden of in de war brengen. Zij mogen evenmin op verkeersborden lijken. In de buurt van verkeerslichten zijn groene of rode lichtreclames verboden."
+        },
+        {
+            "id": 431,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "81.1.1. De auto's en de aanhangwagens moeten voldoen aan het Technisch reglement van de auto's"
+        },
+        {
+            "id": 432,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "81.1.2. De bromfietsen, motorfietsen en hun aanhangwagens moeten overeenstemmen met het technisch reglement van de bromfietsen en motorfietsen."
+        },
+        {
+            "id": 433,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "81.1.3. Alle voertuigen moeten steeds goed werken, goed onderhouden zijn en goed geregeld."
+        },
+        {
+            "id": 434,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "81.2. Elke auto moet steeds voorzien zijn van een conforme gevarendriehoek, brandblustoestel en verbandkist. "
+        },
+        {
+            "id": 435,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "81.3.1. De motorvoertuigen moeten zodanig afgewerkt en onderhouden zijn, en bestuurd worden, dat zij de veiligheid van het verkeer niet hinderen of de andere weggebruikers geen ongemak aandoen."
+        },
+        {
+            "id": 436,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "81.3.1.1°. Het is verboden op abnormale wijze olie of brandstoffen op de openbare weg te laten vallen;"
+        },
+        {
+            "id": 437,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "81.3.1.2°. Het is verboden om door het lawaai het publiek ongemak aan te doen of de dieren te doen schrikken; in geen geval mag het geluidsniveau de grenswaarden overschrijden die vastgesteld zijn door de technische reglementen van de auto's of van de bromfietsen en motorfietsen;"
+        },
+        {
+            "id": 438,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "81.3.1.3°. Het is verboden rook te ontwikkelen die de grenswaarden overschrijdt die vastgesteld zijn door het technisch reglement van de auto's;"
+        },
+        {
+            "id": 439,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "81.3.1.4° Het is verboden luchtbezoedelende gassen te verspreiden die de grenswaarden overschrijden die vastgesteld zijn door het technisch reglement van de auto's."
+        },
+        {
+            "id": 440,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "81.4.1. De tekening van de hoofdgroeven van de lucht- of cushionbanden moet ten minste 1,6 mm diep zijn, behalve voor de bromfietsen waarvoor de tekening van de hoofdgroeven ten minste 1 mm diep moet zijn. Met hoofdgroeven worden bedoeld de brede groeven op de middenstrook van het loopvlak die ongeveer driekwart van de breedte van dit vlak omvat. Deze bepalingen gelden niet voor de voertuigen voor traag vervoer zoals omschreven in het technisch reglement van de auto's. Het linnen mag op geen enkele plaats van de band zichtbaar zijn."
+        },
+        {
+            "id": 441,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "81.4.2. De banden gemonteerd op motorvoertuigen beantwoorden aan de voorschriften van het technisch reglement van autovoertuigen en deze van het technisch reglement voor bromfietsen en motorfietsen. Van deze bepalingen kan slechts tijdelijk afgeweken worden bij gebruik van het reservewiel. In dit geval wordt het gebruik van het voertuig aangepast voornamelijk door de snelheid te verminderen."
+        },
+        {
+            "id": 442,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "81.4.4. Wielbanden moeten een loopvlak hebben zonder holten of uitsprongen die de openbare weg kunnen beschadigen. Slechts bij sneeuw of ijzel mogen de banden van sneeuwkettingen voorzien worden. Spijkerbanden zijn verboden."
+        },
+        {
+            "id": 443,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "81.4.5. Voertuigen met metalen rupsbanden mogen niet op de openbare weg rijden."
+        },
+        {
+            "id": 444,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "81.5. Een motorvoertuig dat voorzien is van een pantsering of van enige inrichting waardoor het als aanvals- of als verdedigingsmiddel kan worden gebruikt, mag niet op de openbare weg rijden zonder speciale toelating van de Minister van Verkeerswezen of van zijn gemachtigde."
+        },
+        {
+            "id": 445,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "81.6.1. Het is verboden aan de buitenkant van een motorvoertuig gevaarlijke versierselen of enig toebehoren aan te brengen die de gevolgen van een ongeval kunnen verergeren."
+        },
+        {
+            "id": 446,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "81.6.2. Een motorvoertuig mag aan de buitenkant geen beschadigingen vertonen die de gevolgen van ongevallen kunnen verergeren."
+        },
+        {
+            "id": 447,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "82.1.1.1°. Fietsers moeten tussen het vallen van de avond en het aanbreken van de dag, en in alle omstandigheden wanneer het niet meer mogelijk is duidelijk te zien tot op een afstand van ongeveer 200 meter, vooraan en achteraan een niet verblindend vast licht of knipperlicht voeren. Vooraan moet het licht wit of geel zijn, achteraan rood. Het rode achterlicht moet ‘s nachts, bij helder weer, zichtbaar zijn van op een afstand van 100 meter minimum."
+        },
+        {
+            "id": 448,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "82.1.1.2°. De fietsen moeten altijd vooraan een witte reflector en achteraan een rode reflector voeren. Het lichtgevend gedeelte van de rode reflector moet afzonderlijk zijn van dit van het rode licht."
+        },
+        {
+            "id": 449,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "82.1.1.3°. De pedalen van fietsen moeten altijd voorzien zijn van gele of oranje reflectoren."
+        },
+        {
+            "id": 450,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "82.1.1.4°. De fietsen moeten altijd een zijdelingse signalisatie voeren bestaande uit ofwel een witte reflecterende strook in de vorm van een doorlopende cirkel langs elke kant van de band van het voor- en achterwiel; ofwel, op elk wiel ten minste twee gele of oranje reflectoren met dubbel front, vast bevestigd aan de spaken en symmetrisch aangebracht; ofwel de combinatie van de twee voornoemde types."
+        },
+        {
+            "id": 451,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "82.1.1.5°. Behalve wanneer ermee gereden wordt tussen het vallen van de avond en het aanbreken van de dag en in alle omstandigheden wanneer het niet meer mogelijk is duidelijk te zien tot op een afstand van ongeveer 200 meter, zijn de reflectoren vooraan en achteraan, de reflectoren op de pedalen en de zijdelingse signalisatie niet verplicht voor de fietsen die uitgerust zijn met wielen met een diameter van ten hoogste 500 mm banden niet inbegrepen; de fietsen die uitgerust zijn met een koersstuur alsook met banden met een doorsnede van ten hoogste 25 mm, en die, daarenboven, geen bagagedrager achteraan hebben;  de alle-terreinen-fietsen, uitgerust met banden met een minimumsectie van 38 mm voor de wielen met een diameter van 650 mm en van 32 mm voor de wielen met een diameter van 700 mm, met minimum 2 versnellingsraderen bediend vanaf het stuur en die daarenboven geen spatborden en geen bagagedrager achteraan hebben. In de laatste twee gevallen moeten de fietsen evenwel vooraan een witte reflector en achteraan een rode reflector voeren wanneer ze met ten minste één spatbord uitgerust zijn."
+        },
+        {
+            "id": 452,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "82.1.2.1°. Berijders van een drie- of vierwieler moeten tussen het vallen van de avond en het aanbreken van de dag, en in alle omstandigheden wanneer het niet meer mogelijk is duidelijk te zien tot op een afstand van ongeveer 200 meter, vooraan en achteraan een niet-verblindend vast licht of knipperlicht voeren. Vooraan moet het licht wit of geel zijn, achteraan rood."
+        },
+        {
+            "id": 453,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "82.1.2.2°. De driewielers met één voorwiel moeten altijd vooraan een witte reflector en achteraan twee rode reflectoren voeren."
+        },
+        {
+            "id": 454,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "82.1.2.3°. De driewielers met twee voorwielen moeten altijd vooraan twee witte reflectoren en achteraan één rode reflector voeren."
+        },
+        {
+            "id": 455,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "82.1.2.4°. De vierwielers moeten altijd vooraan twee witte reflectoren en achteraan twee rode reflectoren voeren."
+        },
+        {
+            "id": 456,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "82.1.2.5°. De pedalen van de drie- en vierwielers moeten altijd voorzien zijn van gele of oranje reflectoren."
+        },
+        {
+            "id": 457,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "82.1.3. De door rijwielen getrokken aanhangwagens moeten altijd achteraan twee rode reflectoren voeren. Zij moeten bovendien een rood licht voeren zodra hun omvang het voor het rijwiel gevoerd rood licht onzichtbaar maakt."
+        },
+        {
+            "id": 458,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "82.1.4.1°. De lichten en reflectoren moeten altijd duidelijk zichtbaar zijn en goed uitkomen, goed onderhouden zijn en goed werken."
+        },
+        {
+            "id": 459,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "82.1.4.2°. In geen geval mogen er vooraan rode lichten of rode reflectoren en achteraan witte of gele lichten of witte reflectoren gevoerd worden."
+        },
+        {
+            "id": 460,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "82.1.4.3°. De reflectoren mogen geen driehoekige vorm hebben. Zij moeten vast zijn aangebracht in een vlak, loodrecht op de lengteas van het rijwiel."
+        },
+        {
+            "id": 461,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "82.1.4.4° Wanneer het rijwiel vooraan twee witte reflectoren of achteraan twee rode reflectoren moet voeren, moeten de twee reflectoren dezelfde kleur, dezelfde vorm en dezelfde afmetingen hebben. Ze moeten symmetrisch ten opzichte van de lengteas van het rijwiel en in hetzelfde vlak, loodrecht op deze as aangebracht zijn. De buitenrand van het lichtgevend gedeelte van de twee reflectoren vooraan en achteraan moet zich zo dicht mogelijk en, in ieder geval, op ten hoogste, 0,10 meter van de buitenomtrek van het rijwiel bevinden."
+        },
+        {
+            "id": 462,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "82.1.4.5°. De reflectoren en retro-reflecterende stroken, die door dit artikel voorgeschreven of voorzien zijn, moeten overeenkomstig de normen goedgekeurd zijn, met uitzondering van de witte reflectoren vooraan en de gele of oranje reflectoren op de pedalen, aangebracht voor 1 januari 1985, alsmede van de retro-reflecterende stroken op de banden, aangebracht voor 1 januari 1985. De rode reflectoren achteraan, aangebracht voor 1 januari 1985 en die niet goedgekeurd zijn, mogen bovendien bij de goedgekeurde rode reflectoren achteraan behouden blijven."
+        },
+        {
+            "id": 463,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "82.2. De rijwielen moeten uitgerust zijn met een geluidstoestel dat uit een bel bestaat die kan gehoord worden van op een afstand van 20 meter."
+        },
+        {
+            "id": 464,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "82.3.1. De fietsen moeten voorzien zijn van twee voldoend doelmatige remmen, de ene op het voorwiel werkend en de andere op het achterwiel. De fietsen die uitgerust zijn met wielen met een diameter van ten hoogste 500 mm mogen evenwel voorzien zijn van slechts één enkele doelmatige rem."
+        },
+        {
+            "id": 465,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "82.3.2. De drie- en vierwielers moeten voorzien zijn van een voldoend doelmatige reminrichting."
+        },
+        {
+            "id": 466,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "82.4.1. De maximum breedte van een fiets is vastgesteld op 0,75 meter en deze van een drie- of vierwieler op 2,50 meter."
+        },
+        {
+            "id": 467,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "82.4.2. De breedte, met inbegrip van al de uitstekende delen, van een aanhangwagen getrokken door een fiets mag niet meer bedragen dan 1,00 meter."
+        },
+        {
+            "id": 468,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "82.4.3. De breedte, met inbegrip van al de uitstekende delen, van een aanhangwagen getrokken door een drie- of vierwieler mag niet meer bedragen dan de breedte van het trekkend voertuig."
+        },
+        {
+            "id": 469,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "82.5. De massa van een door een fiets getrokken aanhangwagen mag niet meer bedragen dan 80 kg, lading en passagiers inbegrepen. Een aanhangwagen met een massa van meer dan 80 kg mag evenwel gebruikt worden wanneer hij beschikt over een remsysteem dat automatisch in werking treedt wanneer de fietser remt."
+        },
+        {
+            "id": 470,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "83.1.1. Bespannen voertuigen moeten altijd achteraan twee rode reflectoren voeren. Deze reflectoren moeten een driehoekige vorm hebben; zij moeten vast aangebracht zijn en goedgekeurd zijn. Een der toppen van de driehoek moet naar boven gericht zijn, terwijl de tegenoverliggende zijde horizontaal ligt."
+        },
+        {
+            "id": 471,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "83.1.2. Een of meer oranje reflectoren mogen op de zijkanten van het voertuig aangebracht worden."
+        },
+        {
+            "id": 472,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "83.1.3.1°. De reflectoren moeten zodanig geplaatst zijn dat geen enkel deel van het voertuig de doelmatigheid ervan vermindert. Zij moeten altijd duidelijk zichtbaar zijn en goed uitkomen."
+        },
+        {
+            "id": 473,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "83.1.3.2°. Het hoogste punt van het lichtweerkaatsend gedeelte van de reflectoren mag zich op niet meer dan 1,20 meter boven de grond en het laagste punt op niet minder dan 0,40 meter boven de grond bevinden als het voertuig ledig is."
+        },
+        {
+            "id": 474,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "83.1.3.3°. De twee rode reflectoren achteraan moeten symmetrisch ten opzichte van de lengteas van het voertuig en in eenzelfde vlak, loodrecht op die lengteas aangebracht zijn."
+        },
+        {
+            "id": 475,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "83.1.3.4° De buitenrand van het lichtweerkaatsend gedeelte van de reflectoren achteraan moet zich zo dicht mogelijk bij de buitenomtrek van het voertuig en, in ieder geval, op ten hoogste 0,40 meter hiervan bevinden."
+        },
+        {
+            "id": 476,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "83.2. Bespannen voertuigen moeten voorzien zijn van een voldoend doelmatige reminrichting. Deze bepaling geldt niet voor tweewielige bespannen voertuigen waarvan het gewicht in beladen toestand niet meer dan 1.000 kg bedraagt en waarvan de bespanning zodanig is dat het voertuig terzelfdertijd als het trekdier stilhoudt."
+        },
+        {
+            "id": 477,
+            "text_id_1": 38,
+            "text_id_2": 42,
+            "text_id_3": 46,
+            "degree": 1,
+            "description": "83.3. De afmetingen van bespannen voertuigen mogen niet groter zijn dan deze bepaald door het technisch reglement van de auto's."
+        }
+    ],
+    "other_tags": [
+        {
+            "tag_name": "4.1",
+            "offense_id": 1
+        },
+        {
+            "tag_name": "bevel",
+            "offense_id": 1
+        },
+        {
+            "tag_name": "bevelen",
+            "offense_id": 1
+        },
+        {
+            "tag_name": "bevoegd",
+            "offense_id": 1
+        },
+        {
+            "tag_name": "persoon",
+            "offense_id": 1
+        },
+        {
+            "tag_name": "politieagent",
+            "offense_id": 1
+        },
+        {
+            "tag_name": "4.2.1",
+            "offense_id": 2
+        },
+        {
+            "tag_name": "bevel",
+            "offense_id": 2
+        },
+        {
+            "tag_name": "bevelen",
+            "offense_id": 2
+        },
+        {
+            "tag_name": "bevoegd",
+            "offense_id": 2
+        },
+        {
+            "tag_name": "persoon",
+            "offense_id": 2
+        },
+        {
+            "tag_name": "politieagent",
+            "offense_id": 2
+        },
+        {
+            "tag_name": "arm",
+            "offense_id": 2
+        },
+        {
+            "tag_name": "omhoog",
+            "offense_id": 2
+        },
+        {
+            "tag_name": "stoppen",
+            "offense_id": 2
+        },
+        {
+            "tag_name": "4.2.2",
+            "offense_id": 3
+        },
+        {
+            "tag_name": "bevel",
+            "offense_id": 3
+        },
+        {
+            "tag_name": "bevelen",
+            "offense_id": 3
+        },
+        {
+            "tag_name": "bevoegd",
+            "offense_id": 3
+        },
+        {
+            "tag_name": "persoon",
+            "offense_id": 3
+        },
+        {
+            "tag_name": "politieagent",
+            "offense_id": 3
+        },
+        {
+            "tag_name": "armen",
+            "offense_id": 3
+        },
+        {
+            "tag_name": "uitgestrekt",
+            "offense_id": 3
+        },
+        {
+            "tag_name": "gespreid",
+            "offense_id": 3
+        },
+        {
+            "tag_name": "stoppen",
+            "offense_id": 3
+        },
+        {
+            "tag_name": "4.2.3",
+            "offense_id": 4
+        },
+        {
+            "tag_name": "bevel",
+            "offense_id": 4
+        },
+        {
+            "tag_name": "bevelen",
+            "offense_id": 4
+        },
+        {
+            "tag_name": "bevoegd",
+            "offense_id": 4
+        },
+        {
+            "tag_name": "persoon",
+            "offense_id": 4
+        },
+        {
+            "tag_name": "politieagent",
+            "offense_id": 4
+        },
+        {
+            "tag_name": "rood",
+            "offense_id": 4
+        },
+        {
+            "tag_name": "licht",
+            "offense_id": 4
+        },
+        {
+            "tag_name": "lantaarn",
+            "offense_id": 4
+        },
+        {
+            "tag_name": "stoppen",
+            "offense_id": 4
+        },
+        {
+            "tag_name": "4.4",
+            "offense_id": 5
+        },
+        {
+            "tag_name": "bevel",
+            "offense_id": 5
+        },
+        {
+            "tag_name": "bevelen",
+            "offense_id": 5
+        },
+        {
+            "tag_name": "bevoegd",
+            "offense_id": 5
+        },
+        {
+            "tag_name": "persoon",
+            "offense_id": 5
+        },
+        {
+            "tag_name": "politieagent",
+            "offense_id": 5
+        },
+        {
+            "tag_name": "voertuig",
+            "offense_id": 5
+        },
+        {
+            "tag_name": "auto",
+            "offense_id": 5
+        },
+        {
+            "tag_name": "verplaatsen",
+            "offense_id": 5
+        },
+        {
+            "tag_name": "7.1",
+            "offense_id": 6
+        },
+        {
+            "tag_name": "gevaarlijk",
+            "offense_id": 6
+        },
+        {
+            "tag_name": "rijgedrag",
+            "offense_id": 6
+        },
+        {
+            "tag_name": "7.2",
+            "offense_id": 7
+        },
+        {
+            "tag_name": "gevaarlijk",
+            "offense_id": 7
+        },
+        {
+            "tag_name": "rijgedrag",
+            "offense_id": 7
+        },
+        {
+            "tag_name": "7.3",
+            "offense_id": 8
+        },
+        {
+            "tag_name": "zwerfvuil",
+            "offense_id": 8
+        },
+        {
+            "tag_name": "afval",
+            "offense_id": 8
+        },
+        {
+            "tag_name": "7.4",
+            "offense_id": 9
+        },
+        {
+            "tag_name": "schade",
+            "offense_id": 9
+        },
+        {
+            "tag_name": "wegdek",
+            "offense_id": 9
+        },
+        {
+            "tag_name": "rijbaan",
+            "offense_id": 9
+        },
+        {
+            "tag_name": "8.1",
+            "offense_id": 10
+        },
+        {
+            "tag_name": "bestuurder",
+            "offense_id": 10
+        },
+        {
+            "tag_name": "8.2.1",
+            "offense_id": 11
+        },
+        {
+            "tag_name": "minimumleeftijd",
+            "offense_id": 11
+        },
+        {
+            "tag_name": "bestuurder",
+            "offense_id": 11
+        },
+        {
+            "tag_name": "chauffeur",
+            "offense_id": 11
+        },
+        {
+            "tag_name": "bus",
+            "offense_id": 11
+        },
+        {
+            "tag_name": "8.2.1",
+            "offense_id": 12
+        },
+        {
+            "tag_name": "minimumleeftijd",
+            "offense_id": 12
+        },
+        {
+            "tag_name": "bestuurder",
+            "offense_id": 12
+        },
+        {
+            "tag_name": "chauffeur",
+            "offense_id": 12
+        },
+        {
+            "tag_name": "bus",
+            "offense_id": 12
+        },
+        {
+            "tag_name": "opleiding",
+            "offense_id": 12
+        },
+        {
+            "tag_name": "rijschool",
+            "offense_id": 12
+        },
+        {
+            "tag_name": "rijles",
+            "offense_id": 12
+        },
+        {
+            "tag_name": "rijlessen",
+            "offense_id": 12
+        },
+        {
+            "tag_name": "8.2.1",
+            "offense_id": 13
+        },
+        {
+            "tag_name": "minimumleeftijd",
+            "offense_id": 13
+        },
+        {
+            "tag_name": "bestuurder",
+            "offense_id": 13
+        },
+        {
+            "tag_name": "chauffeur",
+            "offense_id": 13
+        },
+        {
+            "tag_name": "betaald",
+            "offense_id": 13
+        },
+        {
+            "tag_name": "personenvervoer",
+            "offense_id": 13
+        },
+        {
+            "tag_name": "maximale",
+            "offense_id": 13
+        },
+        {
+            "tag_name": "afstand",
+            "offense_id": 13
+        },
+        {
+            "tag_name": "8.2.1",
+            "offense_id": 14
+        },
+        {
+            "tag_name": "minimumleeftijd",
+            "offense_id": 14
+        },
+        {
+            "tag_name": "bestuurder",
+            "offense_id": 14
+        },
+        {
+            "tag_name": "chauffeur",
+            "offense_id": 14
+        },
+        {
+            "tag_name": "betaald",
+            "offense_id": 14
+        },
+        {
+            "tag_name": "personenvervoer",
+            "offense_id": 14
+        },
+        {
+            "tag_name": "opleiding",
+            "offense_id": 14
+        },
+        {
+            "tag_name": "rijschool",
+            "offense_id": 14
+        },
+        {
+            "tag_name": "rijles",
+            "offense_id": 14
+        },
+        {
+            "tag_name": "8.2.1",
+            "offense_id": 15
+        },
+        {
+            "tag_name": "minimumleeftijd",
+            "offense_id": 15
+        },
+        {
+            "tag_name": "bestuurder",
+            "offense_id": 15
+        },
+        {
+            "tag_name": "chauffeur",
+            "offense_id": 15
+        },
+        {
+            "tag_name": "betaald",
+            "offense_id": 15
+        },
+        {
+            "tag_name": "personenvervoer",
+            "offense_id": 15
+        },
+        {
+            "tag_name": "bewijs",
+            "offense_id": 15
+        },
+        {
+            "tag_name": "vakbekwaamheid",
+            "offense_id": 15
+        },
+        {
+            "tag_name": "8.2.2",
+            "offense_id": 16
+        },
+        {
+            "tag_name": "minimumleeftijd",
+            "offense_id": 16
+        },
+        {
+            "tag_name": "bestuurder",
+            "offense_id": 16
+        },
+        {
+            "tag_name": "chauffeur",
+            "offense_id": 16
+        },
+        {
+            "tag_name": "mtm",
+            "offense_id": 16
+        },
+        {
+            "tag_name": "maximum",
+            "offense_id": 16
+        },
+        {
+            "tag_name": "maximaal",
+            "offense_id": 16
+        },
+        {
+            "tag_name": "maximale",
+            "offense_id": 16
+        },
+        {
+            "tag_name": "toegelaten",
+            "offense_id": 16
+        },
+        {
+            "tag_name": "massa",
+            "offense_id": 16
+        },
+        {
+            "tag_name": "gewicht",
+            "offense_id": 16
+        },
+        {
+            "tag_name": "8.2.2",
+            "offense_id": 17
+        },
+        {
+            "tag_name": "minimumleeftijd",
+            "offense_id": 17
+        },
+        {
+            "tag_name": "bestuurder",
+            "offense_id": 17
+        },
+        {
+            "tag_name": "chauffeur",
+            "offense_id": 17
+        },
+        {
+            "tag_name": "mtm",
+            "offense_id": 17
+        },
+        {
+            "tag_name": "maximum",
+            "offense_id": 17
+        },
+        {
+            "tag_name": "maximaal",
+            "offense_id": 17
+        },
+        {
+            "tag_name": "maximale",
+            "offense_id": 17
+        },
+        {
+            "tag_name": "toegelaten",
+            "offense_id": 17
+        },
+        {
+            "tag_name": "massa",
+            "offense_id": 17
+        },
+        {
+            "tag_name": "gewicht",
+            "offense_id": 17
+        },
+        {
+            "tag_name": "opleiding",
+            "offense_id": 17
+        },
+        {
+            "tag_name": "rijschool",
+            "offense_id": 17
+        },
+        {
+            "tag_name": "rijles",
+            "offense_id": 17
+        },
+        {
+            "tag_name": "8.2.2",
+            "offense_id": 18
+        },
+        {
+            "tag_name": "minimumleeftijd",
+            "offense_id": 18
+        },
+        {
+            "tag_name": "bestuurder",
+            "offense_id": 18
+        },
+        {
+            "tag_name": "chauffeur",
+            "offense_id": 18
+        },
+        {
+            "tag_name": "mtm",
+            "offense_id": 18
+        },
+        {
+            "tag_name": "maximum",
+            "offense_id": 18
+        },
+        {
+            "tag_name": "maximaal",
+            "offense_id": 18
+        },
+        {
+            "tag_name": "maximale",
+            "offense_id": 18
+        },
+        {
+            "tag_name": "toegelaten",
+            "offense_id": 18
+        },
+        {
+            "tag_name": "massa",
+            "offense_id": 18
+        },
+        {
+            "tag_name": "gewicht",
+            "offense_id": 18
+        },
+        {
+            "tag_name": "opleiding",
+            "offense_id": 18
+        },
+        {
+            "tag_name": "rijschool",
+            "offense_id": 18
+        },
+        {
+            "tag_name": "rijles",
+            "offense_id": 18
+        },
+        {
+            "tag_name": "8.2.2",
+            "offense_id": 19
+        },
+        {
+            "tag_name": "minimumleeftijd",
+            "offense_id": 19
+        },
+        {
+            "tag_name": "bestuurder",
+            "offense_id": 19
+        },
+        {
+            "tag_name": "chauffeur",
+            "offense_id": 19
+        },
+        {
+            "tag_name": "mtm",
+            "offense_id": 19
+        },
+        {
+            "tag_name": "maximum",
+            "offense_id": 19
+        },
+        {
+            "tag_name": "maximaal",
+            "offense_id": 19
+        },
+        {
+            "tag_name": "maximale",
+            "offense_id": 19
+        },
+        {
+            "tag_name": "toegelaten",
+            "offense_id": 19
+        },
+        {
+            "tag_name": "massa",
+            "offense_id": 19
+        },
+        {
+            "tag_name": "tractor",
+            "offense_id": 19
+        },
+        {
+            "tag_name": "maaimachine",
+            "offense_id": 19
+        },
+        {
+            "tag_name": "dorsmachine",
+            "offense_id": 19
+        },
+        {
+            "tag_name": "eg",
+            "offense_id": 19
+        },
+        {
+            "tag_name": "ploegmachine",
+            "offense_id": 19
+        },
+        {
+            "tag_name": "8.2.2",
+            "offense_id": 20
+        },
+        {
+            "tag_name": "minimumleeftijd",
+            "offense_id": 20
+        },
+        {
+            "tag_name": "bestuurder",
+            "offense_id": 20
+        },
+        {
+            "tag_name": "chauffeur",
+            "offense_id": 20
+        },
+        {
+            "tag_name": "mtm",
+            "offense_id": 20
+        },
+        {
+            "tag_name": "maximum",
+            "offense_id": 20
+        },
+        {
+            "tag_name": "maximaal",
+            "offense_id": 20
+        },
+        {
+            "tag_name": "maximale",
+            "offense_id": 20
+        },
+        {
+            "tag_name": "toegelaten",
+            "offense_id": 20
+        },
+        {
+            "tag_name": "massa",
+            "offense_id": 20
+        },
+        {
+            "tag_name": "tractor",
+            "offense_id": 20
+        },
+        {
+            "tag_name": "maaimachine",
+            "offense_id": 20
+        },
+        {
+            "tag_name": "dorsmachine",
+            "offense_id": 20
+        },
+        {
+            "tag_name": "eg",
+            "offense_id": 20
+        },
+        {
+            "tag_name": "ploegmachine",
+            "offense_id": 20
+        },
+        {
+            "tag_name": "opleiding",
+            "offense_id": 20
+        },
+        {
+            "tag_name": "rijschool",
+            "offense_id": 20
+        },
+        {
+            "tag_name": "rijles",
+            "offense_id": 20
+        },
+        {
+            "tag_name": "8.2.3",
+            "offense_id": 21
+        },
+        {
+            "tag_name": "minimumleeftijd",
+            "offense_id": 21
+        },
+        {
+            "tag_name": "bestuurder",
+            "offense_id": 21
+        },
+        {
+            "tag_name": "chauffeur",
+            "offense_id": 21
+        },
+        {
+            "tag_name": "bromfiets",
+            "offense_id": 21
+        },
+        {
+            "tag_name": "brommer",
+            "offense_id": 21
+        },
+        {
+            "tag_name": "scooter",
+            "offense_id": 21
+        },
+        {
+            "tag_name": "opleiding",
+            "offense_id": 21
+        },
+        {
+            "tag_name": "rijschool",
+            "offense_id": 21
+        },
+        {
+            "tag_name": "rijles",
+            "offense_id": 21
+        },
+        {
+            "tag_name": "8.2.3",
+            "offense_id": 22
+        },
+        {
+            "tag_name": "minimumleeftijd",
+            "offense_id": 22
+        },
+        {
+            "tag_name": "bestuurder",
+            "offense_id": 22
+        },
+        {
+            "tag_name": "chauffeur",
+            "offense_id": 22
+        },
+        {
+            "tag_name": "auto",
+            "offense_id": 22
+        },
+        {
+            "tag_name": "opleiding",
+            "offense_id": 22
+        },
+        {
+            "tag_name": "rijschool",
+            "offense_id": 22
+        },
+        {
+            "tag_name": "rijles",
+            "offense_id": 22
+        },
+        {
+            "tag_name": "8.2.3",
+            "offense_id": 23
+        },
+        {
+            "tag_name": "minimumleeftijd",
+            "offense_id": 23
+        },
+        {
+            "tag_name": "bestuurder",
+            "offense_id": 23
+        },
+        {
+            "tag_name": "chauffeur",
+            "offense_id": 23
+        },
+        {
+            "tag_name": "vrachtwagen",
+            "offense_id": 23
+        },
+        {
+            "tag_name": "camion",
+            "offense_id": 23
+        },
+        {
+            "tag_name": "autobus",
+            "offense_id": 23
+        },
+        {
+            "tag_name": "bus",
+            "offense_id": 23
+        },
+        {
+            "tag_name": "opleiding",
+            "offense_id": 23
+        },
+        {
+            "tag_name": "rijschool",
+            "offense_id": 23
+        },
+        {
+            "tag_name": "rijles",
+            "offense_id": 23
+        },
+        {
+            "tag_name": "8.2.3",
+            "offense_id": 24
+        },
+        {
+            "tag_name": "minimumleeftijd",
+            "offense_id": 24
+        },
+        {
+            "tag_name": "bestuurder",
+            "offense_id": 24
+        },
+        {
+            "tag_name": "chauffeur",
+            "offense_id": 24
+        },
+        {
+            "tag_name": "motorfiets",
+            "offense_id": 24
+        },
+        {
+            "tag_name": "moto",
+            "offense_id": 24
+        },
+        {
+            "tag_name": "opleiding",
+            "offense_id": 24
+        },
+        {
+            "tag_name": "rijschool",
+            "offense_id": 24
+        },
+        {
+            "tag_name": "rijles",
+            "offense_id": 24
+        },
+        {
+            "tag_name": "8.2.3",
+            "offense_id": 25
+        },
+        {
+            "tag_name": "minimumleeftijd",
+            "offense_id": 25
+        },
+        {
+            "tag_name": "bestuurder",
+            "offense_id": 25
+        },
+        {
+            "tag_name": "chauffeur",
+            "offense_id": 25
+        },
+        {
+            "tag_name": "driewieler",
+            "offense_id": 25
+        },
+        {
+            "tag_name": "moto",
+            "offense_id": 25
+        },
+        {
+            "tag_name": "opleiding",
+            "offense_id": 25
+        },
+        {
+            "tag_name": "rijschool",
+            "offense_id": 25
+        },
+        {
+            "tag_name": "rijles",
+            "offense_id": 25
+        },
+        {
+            "tag_name": "8.2.4",
+            "offense_id": 26
+        },
+        {
+            "tag_name": "minimumleeftijd",
+            "offense_id": 26
+        },
+        {
+            "tag_name": "bestuurder",
+            "offense_id": 26
+        },
+        {
+            "tag_name": "chauffeur",
+            "offense_id": 26
+        },
+        {
+            "tag_name": "gespan",
+            "offense_id": 26
+        },
+        {
+            "tag_name": "",
+            "offense_id": 26
+        },
+        {
+            "tag_name": "8.2.5",
+            "offense_id": 27
+        },
+        {
+            "tag_name": "minimumleeftijd",
+            "offense_id": 27
+        },
+        {
+            "tag_name": "bestuurder",
+            "offense_id": 27
+        },
+        {
+            "tag_name": "chauffeur",
+            "offense_id": 27
+        },
+        {
+            "tag_name": "trekdieren",
+            "offense_id": 27
+        },
+        {
+            "tag_name": "lastdieren",
+            "offense_id": 27
+        },
+        {
+            "tag_name": "paard",
+            "offense_id": 27
+        },
+        {
+            "tag_name": "koe",
+            "offense_id": 27
+        },
+        {
+            "tag_name": "8.3",
+            "offense_id": 28
+        },
+        {
+            "tag_name": "voertuig",
+            "offense_id": 28
+        },
+        {
+            "tag_name": "onder",
+            "offense_id": 28
+        },
+        {
+            "tag_name": "controle",
+            "offense_id": 28
+        },
+        {
+            "tag_name": "",
+            "offense_id": 28
+        },
+        {
+            "tag_name": "8.4",
+            "offense_id": 29
+        },
+        {
+            "tag_name": "rijden",
+            "offense_id": 29
+        },
+        {
+            "tag_name": "bellen",
+            "offense_id": 29
+        },
+        {
+            "tag_name": "gsm",
+            "offense_id": 29
+        },
+        {
+            "tag_name": "telefoon",
+            "offense_id": 29
+        },
+        {
+            "tag_name": "8.5",
+            "offense_id": 30
+        },
+        {
+            "tag_name": "slotvast",
+            "offense_id": 30
+        },
+        {
+            "tag_name": "op",
+            "offense_id": 30
+        },
+        {
+            "tag_name": "slot",
+            "offense_id": 30
+        },
+        {
+            "tag_name": "",
+            "offense_id": 30
+        },
+        {
+            "tag_name": "8.5",
+            "offense_id": 31
+        },
+        {
+            "tag_name": "alarm",
+            "offense_id": 31
+        },
+        {
+            "tag_name": "alarminstallatie",
+            "offense_id": 31
+        },
+        {
+            "tag_name": "8.6",
+            "offense_id": 32
+        },
+        {
+            "tag_name": "gas",
+            "offense_id": 32
+        },
+        {
+            "tag_name": "geven",
+            "offense_id": 32
+        },
+        {
+            "tag_name": "tijdens",
+            "offense_id": 32
+        },
+        {
+            "tag_name": "stilstaan",
+            "offense_id": 32
+        },
+        {
+            "tag_name": "",
+            "offense_id": 32
+        },
+        {
+            "tag_name": "8.7",
+            "offense_id": 33
+        },
+        {
+            "tag_name": "motor",
+            "offense_id": 33
+        },
+        {
+            "tag_name": "laten",
+            "offense_id": 33
+        },
+        {
+            "tag_name": "draaien",
+            "offense_id": 33
+        },
+        {
+            "tag_name": "9.1.1",
+            "offense_id": 34
+        },
+        {
+            "tag_name": "op",
+            "offense_id": 34
+        },
+        {
+            "tag_name": "de",
+            "offense_id": 34
+        },
+        {
+            "tag_name": "weg",
+            "offense_id": 34
+        },
+        {
+            "tag_name": "blijven",
+            "offense_id": 34
+        },
+        {
+            "tag_name": "9.1.2.1",
+            "offense_id": 35
+        },
+        {
+            "tag_name": "fietser",
+            "offense_id": 35
+        },
+        {
+            "tag_name": "fietspad",
+            "offense_id": 35
+        },
+        {
+            "tag_name": "rechts",
+            "offense_id": 35
+        },
+        {
+            "tag_name": "spookrijden",
+            "offense_id": 35
+        },
+        {
+            "tag_name": "9.1.2.1",
+            "offense_id": 36
+        },
+        {
+            "tag_name": "fietser",
+            "offense_id": 36
+        },
+        {
+            "tag_name": "fietspad",
+            "offense_id": 36
+        },
+        {
+            "tag_name": "richting",
+            "offense_id": 36
+        },
+        {
+            "tag_name": "verplicht",
+            "offense_id": 36
+        },
+        {
+            "tag_name": "9.1.2.1",
+            "offense_id": 37
+        },
+        {
+            "tag_name": "fietser",
+            "offense_id": 37
+        },
+        {
+            "tag_name": "plaats",
+            "offense_id": 37
+        },
+        {
+            "tag_name": "op",
+            "offense_id": 37
+        },
+        {
+            "tag_name": "de",
+            "offense_id": 37
+        },
+        {
+            "tag_name": "weg",
+            "offense_id": 37
+        },
+        {
+            "tag_name": "9.1.2.2",
+            "offense_id": 38
+        },
+        {
+            "tag_name": "bromfietsers",
+            "offense_id": 38
+        },
+        {
+            "tag_name": "brommer",
+            "offense_id": 38
+        },
+        {
+            "tag_name": "scooter",
+            "offense_id": 38
+        },
+        {
+            "tag_name": "bromfiets",
+            "offense_id": 38
+        },
+        {
+            "tag_name": "gevaar",
+            "offense_id": 38
+        },
+        {
+            "tag_name": "9.1.2.2",
+            "offense_id": 39
+        },
+        {
+            "tag_name": "bromfietser",
+            "offense_id": 39
+        },
+        {
+            "tag_name": "bromfiets",
+            "offense_id": 39
+        },
+        {
+            "tag_name": "brommer",
+            "offense_id": 39
+        },
+        {
+            "tag_name": "scooter",
+            "offense_id": 39
+        },
+        {
+            "tag_name": "verplicht",
+            "offense_id": 39
+        },
+        {
+            "tag_name": "fietspad",
+            "offense_id": 39
+        },
+        {
+            "tag_name": "9.1.2.2",
+            "offense_id": 40
+        },
+        {
+            "tag_name": "bromfietser",
+            "offense_id": 40
+        },
+        {
+            "tag_name": "bromfiets",
+            "offense_id": 40
+        },
+        {
+            "tag_name": "brommer",
+            "offense_id": 40
+        },
+        {
+            "tag_name": "scooter",
+            "offense_id": 40
+        },
+        {
+            "tag_name": "verplicht",
+            "offense_id": 40
+        },
+        {
+            "tag_name": "fietspad",
+            "offense_id": 40
+        },
+        {
+            "tag_name": "9.1.2.2",
+            "offense_id": 41
+        },
+        {
+            "tag_name": "bromfiets",
+            "offense_id": 41
+        },
+        {
+            "tag_name": "brommer",
+            "offense_id": 41
+        },
+        {
+            "tag_name": "scooter",
+            "offense_id": 41
+        },
+        {
+            "tag_name": "verboden",
+            "offense_id": 41
+        },
+        {
+            "tag_name": "9.2",
+            "offense_id": 42
+        },
+        {
+            "tag_name": "spookrijden",
+            "offense_id": 42
+        },
+        {
+            "tag_name": "rechts",
+            "offense_id": 42
+        },
+        {
+            "tag_name": "rijden",
+            "offense_id": 42
+        },
+        {
+            "tag_name": "rechter",
+            "offense_id": 42
+        },
+        {
+            "tag_name": "middenberm",
+            "offense_id": 42
+        },
+        {
+            "tag_name": "9.3.1",
+            "offense_id": 43
+        },
+        {
+            "tag_name": "uiterst",
+            "offense_id": 43
+        },
+        {
+            "tag_name": "rechts",
+            "offense_id": 43
+        },
+        {
+            "tag_name": "rechterrand",
+            "offense_id": 43
+        },
+        {
+            "tag_name": "rechter",
+            "offense_id": 43
+        },
+        {
+            "tag_name": "",
+            "offense_id": 43
+        },
+        {
+            "tag_name": "9.3.2",
+            "offense_id": 44
+        },
+        {
+            "tag_name": "moto",
+            "offense_id": 44
+        },
+        {
+            "tag_name": "motorfiets",
+            "offense_id": 44
+        },
+        {
+            "tag_name": "rechts",
+            "offense_id": 44
+        },
+        {
+            "tag_name": "plaats",
+            "offense_id": 44
+        },
+        {
+            "tag_name": "rijvak",
+            "offense_id": 44
+        },
+        {
+            "tag_name": "9.4",
+            "offense_id": 45
+        },
+        {
+            "tag_name": "rijvak",
+            "offense_id": 45
+        },
+        {
+            "tag_name": "rijstrook",
+            "offense_id": 45
+        },
+        {
+            "tag_name": "",
+            "offense_id": 45
+        },
+        {
+            "tag_name": "9.5",
+            "offense_id": 46
+        },
+        {
+            "tag_name": "naast",
+            "offense_id": 46
+        },
+        {
+            "tag_name": "elkaar",
+            "offense_id": 46
+        },
+        {
+            "tag_name": "links",
+            "offense_id": 46
+        },
+        {
+            "tag_name": "rijden",
+            "offense_id": 46
+        },
+        {
+            "tag_name": "9.6",
+            "offense_id": 47
+        },
+        {
+            "tag_name": "vluchtheuvel",
+            "offense_id": 47
+        },
+        {
+            "tag_name": "verkeerseiland",
+            "offense_id": 47
+        },
+        {
+            "tag_name": "rechts",
+            "offense_id": 47
+        },
+        {
+            "tag_name": "10.1.1",
+            "offense_id": 48
+        },
+        {
+            "tag_name": "onaangepaste",
+            "offense_id": 48
+        },
+        {
+            "tag_name": "aangepaste",
+            "offense_id": 48
+        },
+        {
+            "tag_name": "snelheid",
+            "offense_id": 48
+        },
+        {
+            "tag_name": "10.1.2",
+            "offense_id": 49
+        },
+        {
+            "tag_name": "stopafstand",
+            "offense_id": 49
+        },
+        {
+            "tag_name": "afstand",
+            "offense_id": 49
+        },
+        {
+            "tag_name": "voorligger",
+            "offense_id": 49
+        },
+        {
+            "tag_name": "10.1.3",
+            "offense_id": 50
+        },
+        {
+            "tag_name": "veilig",
+            "offense_id": 50
+        },
+        {
+            "tag_name": "kunnen",
+            "offense_id": 50
+        },
+        {
+            "tag_name": "stoppen",
+            "offense_id": 50
+        },
+        {
+            "tag_name": "voorzienbaar",
+            "offense_id": 50
+        },
+        {
+            "tag_name": "",
+            "offense_id": 50
+        },
+        {
+            "tag_name": "10.2",
+            "offense_id": 51
+        },
+        {
+            "tag_name": "snelheid",
+            "offense_id": 51
+        },
+        {
+            "tag_name": "te",
+            "offense_id": 51
+        },
+        {
+            "tag_name": "traag",
+            "offense_id": 51
+        },
+        {
+            "tag_name": "noodstop",
+            "offense_id": 51
+        },
+        {
+            "tag_name": "veilig",
+            "offense_id": 51
+        },
+        {
+            "tag_name": "10.2",
+            "offense_id": 52
+        },
+        {
+            "tag_name": "stoplichten",
+            "offense_id": 52
+        },
+        {
+            "tag_name": "10.3",
+            "offense_id": 53
+        },
+        {
+            "tag_name": "gedrag",
+            "offense_id": 53
+        },
+        {
+            "tag_name": "dieren",
+            "offense_id": 53
+        },
+        {
+            "tag_name": "op",
+            "offense_id": 53
+        },
+        {
+            "tag_name": "de",
+            "offense_id": 53
+        },
+        {
+            "tag_name": "rijbaan",
+            "offense_id": 53
+        },
+        {
+            "tag_name": "10.4",
+            "offense_id": 54
+        },
+        {
+            "tag_name": "uitdagen",
+            "offense_id": 54
+        },
+        {
+            "tag_name": "snelheidswedstrijd",
+            "offense_id": 54
+        },
+        {
+            "tag_name": "",
+            "offense_id": 54
+        },
+        {
+            "tag_name": "12.1",
+            "offense_id": 55
+        },
+        {
+            "tag_name": "voorrang",
+            "offense_id": 55
+        },
+        {
+            "tag_name": "tram",
+            "offense_id": 55
+        },
+        {
+            "tag_name": "12.2",
+            "offense_id": 56
+        },
+        {
+            "tag_name": "dubbel",
+            "offense_id": 56
+        },
+        {
+            "tag_name": "voorzichtig",
+            "offense_id": 56
+        },
+        {
+            "tag_name": "kruispunt",
+            "offense_id": 56
+        },
+        {
+            "tag_name": "12.3.1",
+            "offense_id": 57
+        },
+        {
+            "tag_name": "voorrang",
+            "offense_id": 57
+        },
+        {
+            "tag_name": "van",
+            "offense_id": 57
+        },
+        {
+            "tag_name": "rechts",
+            "offense_id": 57
+        },
+        {
+            "tag_name": "12.4",
+            "offense_id": 58
+        },
+        {
+            "tag_name": "voorrang",
+            "offense_id": 58
+        },
+        {
+            "tag_name": "fietsers",
+            "offense_id": 58
+        },
+        {
+            "tag_name": "12.4",
+            "offense_id": 59
+        },
+        {
+            "tag_name": "voorrang",
+            "offense_id": 59
+        },
+        {
+            "tag_name": "manoevre",
+            "offense_id": 59
+        },
+        {
+            "tag_name": "maneuvre",
+            "offense_id": 59
+        },
+        {
+            "tag_name": "manoeuvreren",
+            "offense_id": 59
+        },
+        {
+            "tag_name": "parkeren",
+            "offense_id": 59
+        },
+        {
+            "tag_name": "achteruitrijden",
+            "offense_id": 59
+        },
+        {
+            "tag_name": "12.5",
+            "offense_id": 60
+        },
+        {
+            "tag_name": "doorrijden",
+            "offense_id": 60
+        },
+        {
+            "tag_name": "na",
+            "offense_id": 60
+        },
+        {
+            "tag_name": "voorrang",
+            "offense_id": 60
+        },
+        {
+            "tag_name": "13",
+            "offense_id": 61
+        },
+        {
+            "tag_name": "pinkers",
+            "offense_id": 61
+        },
+        {
+            "tag_name": "afslaan",
+            "offense_id": 61
+        },
+        {
+            "tag_name": "afslagen",
+            "offense_id": 61
+        },
+        {
+            "tag_name": "",
+            "offense_id": 61
+        },
+        {
+            "tag_name": "14.2",
+            "offense_id": 62
+        },
+        {
+            "tag_name": "oprijden",
+            "offense_id": 62
+        },
+        {
+            "tag_name": "druk",
+            "offense_id": 62
+        },
+        {
+            "tag_name": "kruispunt",
+            "offense_id": 62
+        },
+        {
+            "tag_name": "15.1",
+            "offense_id": 63
+        },
+        {
+            "tag_name": "kruisen",
+            "offense_id": 63
+        },
+        {
+            "tag_name": "voorbijrijden",
+            "offense_id": 63
+        },
+        {
+            "tag_name": "15.2",
+            "offense_id": 64
+        },
+        {
+            "tag_name": "kruisen",
+            "offense_id": 64
+        },
+        {
+            "tag_name": "zijdelingse",
+            "offense_id": 64
+        },
+        {
+            "tag_name": "afstand",
+            "offense_id": 64
+        },
+        {
+            "tag_name": "zijafstand",
+            "offense_id": 64
+        },
+        {
+            "tag_name": "15.2",
+            "offense_id": 65
+        },
+        {
+            "tag_name": "hindernis",
+            "offense_id": 65
+        },
+        {
+            "tag_name": "tegenligger",
+            "offense_id": 65
+        },
+        {
+            "tag_name": "stoppen",
+            "offense_id": 65
+        },
+        {
+            "tag_name": "vertragen",
+            "offense_id": 65
+        },
+        {
+            "tag_name": "15.3",
+            "offense_id": 66
+        },
+        {
+            "tag_name": "smalle",
+            "offense_id": 66
+        },
+        {
+            "tag_name": "rijbaan",
+            "offense_id": 66
+        },
+        {
+            "tag_name": "berm",
+            "offense_id": 66
+        },
+        {
+            "tag_name": "gebruiken",
+            "offense_id": 66
+        },
+        {
+            "tag_name": "15.4",
+            "offense_id": 67
+        },
+        {
+            "tag_name": "kruisen",
+            "offense_id": 67
+        },
+        {
+            "tag_name": "tram",
+            "offense_id": 67
+        },
+        {
+            "tag_name": "trein",
+            "offense_id": 67
+        },
+        {
+            "tag_name": "trolley",
+            "offense_id": 67
+        },
+        {
+            "tag_name": "16.2",
+            "offense_id": 68
+        },
+        {
+            "tag_name": "splitlane",
+            "offense_id": 68
+        },
+        {
+            "tag_name": "splitlanen",
+            "offense_id": 68
+        },
+        {
+            "tag_name": "file",
+            "offense_id": 68
+        },
+        {
+            "tag_name": "motorfiets",
+            "offense_id": 68
+        },
+        {
+            "tag_name": "motor",
+            "offense_id": 68
+        },
+        {
+            "tag_name": "moto",
+            "offense_id": 68
+        },
+        {
+            "tag_name": "16.2",
+            "offense_id": 69
+        },
+        {
+            "tag_name": "splitlane",
+            "offense_id": 69
+        },
+        {
+            "tag_name": "snelweg",
+            "offense_id": 69
+        },
+        {
+            "tag_name": "autostrade",
+            "offense_id": 69
+        },
+        {
+            "tag_name": "moto",
+            "offense_id": 69
+        },
+        {
+            "tag_name": "motorfiets",
+            "offense_id": 69
+        },
+        {
+            "tag_name": "motor",
+            "offense_id": 69
+        },
+        {
+            "tag_name": "16.3",
+            "offense_id": 70
+        },
+        {
+            "tag_name": "links",
+            "offense_id": 70
+        },
+        {
+            "tag_name": "inhalen",
+            "offense_id": 70
+        },
+        {
+            "tag_name": "voorbijsteken",
+            "offense_id": 70
+        },
+        {
+            "tag_name": "pinker",
+            "offense_id": 70
+        },
+        {
+            "tag_name": "uitwijken",
+            "offense_id": 70
+        },
+        {
+            "tag_name": "uitgeweken",
+            "offense_id": 70
+        },
+        {
+            "tag_name": "16.4",
+            "offense_id": 71
+        },
+        {
+            "tag_name": "inhalen",
+            "offense_id": 71
+        },
+        {
+            "tag_name": "voorbijsteken",
+            "offense_id": 71
+        },
+        {
+            "tag_name": "pinken",
+            "offense_id": 71
+        },
+        {
+            "tag_name": "pinker",
+            "offense_id": 71
+        },
+        {
+            "tag_name": "veilig",
+            "offense_id": 71
+        },
+        {
+            "tag_name": "afstand",
+            "offense_id": 71
+        },
+        {
+            "tag_name": "",
+            "offense_id": 71
+        },
+        {
+            "tag_name": "16.5",
+            "offense_id": 72
+        },
+        {
+            "tag_name": "inhalen",
+            "offense_id": 72
+        },
+        {
+            "tag_name": "voorbijsteken",
+            "offense_id": 72
+        },
+        {
+            "tag_name": "zijafstand",
+            "offense_id": 72
+        },
+        {
+            "tag_name": "zijdelings",
+            "offense_id": 72
+        },
+        {
+            "tag_name": "16.6",
+            "offense_id": 73
+        },
+        {
+            "tag_name": "inhalen",
+            "offense_id": 73
+        },
+        {
+            "tag_name": "voorbijsteken",
+            "offense_id": 73
+        },
+        {
+            "tag_name": "terug",
+            "offense_id": 73
+        },
+        {
+            "tag_name": "rechts",
+            "offense_id": 73
+        },
+        {
+            "tag_name": "",
+            "offense_id": 73
+        },
+        {
+            "tag_name": "16.7",
+            "offense_id": 74
+        },
+        {
+            "tag_name": "inhalen",
+            "offense_id": 74
+        },
+        {
+            "tag_name": "voorbijsteken",
+            "offense_id": 74
+        },
+        {
+            "tag_name": "ingehaald",
+            "offense_id": 74
+        },
+        {
+            "tag_name": "rechts",
+            "offense_id": 74
+        },
+        {
+            "tag_name": "snelheid",
+            "offense_id": 74
+        },
+        {
+            "tag_name": "16.9",
+            "offense_id": 75
+        },
+        {
+            "tag_name": "tram",
+            "offense_id": 75
+        },
+        {
+            "tag_name": "trolley",
+            "offense_id": 75
+        },
+        {
+            "tag_name": "trein",
+            "offense_id": 75
+        },
+        {
+            "tag_name": "inhalen",
+            "offense_id": 75
+        },
+        {
+            "tag_name": "voorbijsteken",
+            "offense_id": 75
+        },
+        {
+            "tag_name": "17.1",
+            "offense_id": 76
+        },
+        {
+            "tag_name": "links",
+            "offense_id": 76
+        },
+        {
+            "tag_name": "inhalen",
+            "offense_id": 76
+        },
+        {
+            "tag_name": "voorbijsteken",
+            "offense_id": 76
+        },
+        {
+            "tag_name": "tegenliggers",
+            "offense_id": 76
+        },
+        {
+            "tag_name": "afstand",
+            "offense_id": 76
+        },
+        {
+            "tag_name": "17.2.1",
+            "offense_id": 77
+        },
+        {
+            "tag_name": "inhalen",
+            "offense_id": 77
+        },
+        {
+            "tag_name": "voorbijsteken",
+            "offense_id": 77
+        },
+        {
+            "tag_name": "trein",
+            "offense_id": 77
+        },
+        {
+            "tag_name": "overweg",
+            "offense_id": 77
+        },
+        {
+            "tag_name": "17.2.2",
+            "offense_id": 78
+        },
+        {
+            "tag_name": "inhalen",
+            "offense_id": 78
+        },
+        {
+            "tag_name": "voorbijsteken",
+            "offense_id": 78
+        },
+        {
+            "tag_name": "kruispunt",
+            "offense_id": 78
+        },
+        {
+            "tag_name": "rechts",
+            "offense_id": 78
+        },
+        {
+            "tag_name": "17.2.2",
+            "offense_id": 79
+        },
+        {
+            "tag_name": "inhalen",
+            "offense_id": 79
+        },
+        {
+            "tag_name": "voorbijsteken",
+            "offense_id": 79
+        },
+        {
+            "tag_name": "kruispunt",
+            "offense_id": 79
+        },
+        {
+            "tag_name": "stopbord",
+            "offense_id": 79
+        },
+        {
+            "tag_name": "driehoek",
+            "offense_id": 79
+        },
+        {
+            "tag_name": "haaientanden",
+            "offense_id": 79
+        },
+        {
+            "tag_name": "voorrang",
+            "offense_id": 79
+        },
+        {
+            "tag_name": "17.2.3",
+            "offense_id": 80
+        },
+        {
+            "tag_name": "inhalen",
+            "offense_id": 80
+        },
+        {
+            "tag_name": "voorbijsteken",
+            "offense_id": 80
+        },
+        {
+            "tag_name": "helling",
+            "offense_id": 80
+        },
+        {
+            "tag_name": "berg",
+            "offense_id": 80
+        },
+        {
+            "tag_name": "bocht",
+            "offense_id": 80
+        },
+        {
+            "tag_name": "zicht",
+            "offense_id": 80
+        },
+        {
+            "tag_name": "17.2.4",
+            "offense_id": 81
+        },
+        {
+            "tag_name": "inhalen",
+            "offense_id": 81
+        },
+        {
+            "tag_name": "voorbijsteken",
+            "offense_id": 81
+        },
+        {
+            "tag_name": "dubbel",
+            "offense_id": 81
+        },
+        {
+            "tag_name": "17.2.5",
+            "offense_id": 82
+        },
+        {
+            "tag_name": "inhalen",
+            "offense_id": 82
+        },
+        {
+            "tag_name": "voorbijsteken",
+            "offense_id": 82
+        },
+        {
+            "tag_name": "zebrapad",
+            "offense_id": 82
+        },
+        {
+            "tag_name": "",
+            "offense_id": 82
+        },
+        {
+            "tag_name": "17.2.6",
+            "offense_id": 83
+        },
+        {
+            "tag_name": "inhalen",
+            "offense_id": 83
+        },
+        {
+            "tag_name": "voorbijsteken",
+            "offense_id": 83
+        },
+        {
+            "tag_name": "camion",
+            "offense_id": 83
+        },
+        {
+            "tag_name": "vrachtwagen",
+            "offense_id": 83
+        },
+        {
+            "tag_name": "snelweg",
+            "offense_id": 83
+        },
+        {
+            "tag_name": "autostrade",
+            "offense_id": 83
+        },
+        {
+            "tag_name": "17.2.7",
+            "offense_id": 84
+        },
+        {
+            "tag_name": "inhalen",
+            "offense_id": 84
+        },
+        {
+            "tag_name": "voorbijsteken",
+            "offense_id": 84
+        },
+        {
+            "tag_name": "camion",
+            "offense_id": 84
+        },
+        {
+            "tag_name": "vrachtwagen",
+            "offense_id": 84
+        },
+        {
+            "tag_name": "snelweg",
+            "offense_id": 84
+        },
+        {
+            "tag_name": "autostrade",
+            "offense_id": 84
+        },
+        {
+            "tag_name": "17.2",
+            "offense_id": 85
+        },
+        {
+            "tag_name": "inhalen",
+            "offense_id": 85
+        },
+        {
+            "tag_name": "voorbijsteken",
+            "offense_id": 85
+        },
+        {
+            "tag_name": "camion",
+            "offense_id": 85
+        },
+        {
+            "tag_name": "vrachtwagen",
+            "offense_id": 85
+        },
+        {
+            "tag_name": "snelweg",
+            "offense_id": 85
+        },
+        {
+            "tag_name": "autostrade",
+            "offense_id": 85
+        },
+        {
+            "tag_name": "18.1",
+            "offense_id": 86
+        },
+        {
+            "tag_name": "afstand",
+            "offense_id": 86
+        },
+        {
+            "tag_name": "camion",
+            "offense_id": 86
+        },
+        {
+            "tag_name": "vrachtwagen",
+            "offense_id": 86
+        },
+        {
+            "tag_name": "brug",
+            "offense_id": 86
+        },
+        {
+            "tag_name": "18.2",
+            "offense_id": 87
+        },
+        {
+            "tag_name": "afstand",
+            "offense_id": 87
+        },
+        {
+            "tag_name": "camion",
+            "offense_id": 87
+        },
+        {
+            "tag_name": "vrachtwagen",
+            "offense_id": 87
+        },
+        {
+            "tag_name": "snelweg",
+            "offense_id": 87
+        },
+        {
+            "tag_name": "autostrade",
+            "offense_id": 87
+        },
+        {
+            "tag_name": "18.3",
+            "offense_id": 88
+        },
+        {
+            "tag_name": "afstand",
+            "offense_id": 88
+        },
+        {
+            "tag_name": "camion",
+            "offense_id": 88
+        },
+        {
+            "tag_name": "vrachtwagen",
+            "offense_id": 88
+        },
+        {
+            "tag_name": "konvooi",
+            "offense_id": 88
+        },
+        {
+            "tag_name": "colonne",
+            "offense_id": 88
+        },
+        {
+            "tag_name": "18.4",
+            "offense_id": 89
+        },
+        {
+            "tag_name": "afstand",
+            "offense_id": 89
+        },
+        {
+            "tag_name": "camion",
+            "offense_id": 89
+        },
+        {
+            "tag_name": "vrachtwagen",
+            "offense_id": 89
+        },
+        {
+            "tag_name": "leger",
+            "offense_id": 89
+        },
+        {
+            "tag_name": "militair",
+            "offense_id": 89
+        },
+        {
+            "tag_name": "konvooi",
+            "offense_id": 89
+        },
+        {
+            "tag_name": "colonne",
+            "offense_id": 89
+        },
+        {
+            "tag_name": "19.1",
+            "offense_id": 90
+        },
+        {
+            "tag_name": "afslaan",
+            "offense_id": 90
+        },
+        {
+            "tag_name": "snelheid",
+            "offense_id": 90
+        },
+        {
+            "tag_name": "achterligger",
+            "offense_id": 90
+        },
+        {
+            "tag_name": "19.2.1",
+            "offense_id": 91
+        },
+        {
+            "tag_name": "pinker",
+            "offense_id": 91
+        },
+        {
+            "tag_name": "afslaan",
+            "offense_id": 91
+        },
+        {
+            "tag_name": "",
+            "offense_id": 91
+        },
+        {
+            "tag_name": "19.2.2",
+            "offense_id": 92
+        },
+        {
+            "tag_name": "bocht",
+            "offense_id": 92
+        },
+        {
+            "tag_name": "nemen",
+            "offense_id": 92
+        },
+        {
+            "tag_name": "afslaan",
+            "offense_id": 92
+        },
+        {
+            "tag_name": "achterligger",
+            "offense_id": 92
+        },
+        {
+            "tag_name": "tegenligger",
+            "offense_id": 92
+        },
+        {
+            "tag_name": "inhalen",
+            "offense_id": 92
+        },
+        {
+            "tag_name": "voorbijsteken",
+            "offense_id": 92
+        },
+        {
+            "tag_name": "",
+            "offense_id": 92
+        },
+        {
+            "tag_name": "19.2.2",
+            "offense_id": 93
+        },
+        {
+            "tag_name": "afslaan",
+            "offense_id": 93
+        },
+        {
+            "tag_name": "kleine",
+            "offense_id": 93
+        },
+        {
+            "tag_name": "bocht",
+            "offense_id": 93
+        },
+        {
+            "tag_name": "binnenbocht",
+            "offense_id": 93
+        },
+        {
+            "tag_name": "breed",
+            "offense_id": 93
+        },
+        {
+            "tag_name": "rechts",
+            "offense_id": 93
+        },
+        {
+            "tag_name": "",
+            "offense_id": 93
+        },
+        {
+            "tag_name": "19.3.3",
+            "offense_id": 94
+        },
+        {
+            "tag_name": "afslaan",
+            "offense_id": 94
+        },
+        {
+            "tag_name": "links",
+            "offense_id": 94
+        },
+        {
+            "tag_name": "tegenligger",
+            "offense_id": 94
+        },
+        {
+            "tag_name": "19.4",
+            "offense_id": 95
+        },
+        {
+            "tag_name": "afslaan",
+            "offense_id": 95
+        },
+        {
+            "tag_name": "voorrang",
+            "offense_id": 95
+        },
+        {
+            "tag_name": "fietsers",
+            "offense_id": 95
+        },
+        {
+            "tag_name": "fietspad",
+            "offense_id": 95
+        },
+        {
+            "tag_name": "voetgangers",
+            "offense_id": 95
+        },
+        {
+            "tag_name": "voetpad",
+            "offense_id": 95
+        },
+        {
+            "tag_name": "19.5",
+            "offense_id": 96
+        },
+        {
+            "tag_name": "afslaan",
+            "offense_id": 96
+        },
+        {
+            "tag_name": "voorrang",
+            "offense_id": 96
+        },
+        {
+            "tag_name": "voetgangers",
+            "offense_id": 96
+        },
+        {
+            "tag_name": "zebrapad",
+            "offense_id": 96
+        },
+        {
+            "tag_name": "20.3",
+            "offense_id": 97
+        },
+        {
+            "tag_name": "overweg",
+            "offense_id": 97
+        },
+        {
+            "tag_name": "bel",
+            "offense_id": 97
+        },
+        {
+            "tag_name": "lichten",
+            "offense_id": 97
+        },
+        {
+            "tag_name": "bareel",
+            "offense_id": 97
+        },
+        {
+            "tag_name": "barreel",
+            "offense_id": 97
+        },
+        {
+            "tag_name": "trein",
+            "offense_id": 97
+        },
+        {
+            "tag_name": "signaal",
+            "offense_id": 97
+        },
+        {
+            "tag_name": "19.6",
+            "offense_id": 98
+        },
+        {
+            "tag_name": "voorsorteerstroken",
+            "offense_id": 98
+        },
+        {
+            "tag_name": "rijstroken",
+            "offense_id": 98
+        },
+        {
+            "tag_name": "rijvak",
+            "offense_id": 98
+        },
+        {
+            "tag_name": "pijlen",
+            "offense_id": 98
+        },
+        {
+            "tag_name": "afslaan",
+            "offense_id": 98
+        },
+        {
+            "tag_name": "20.1",
+            "offense_id": 99
+        },
+        {
+            "tag_name": "rijden",
+            "offense_id": 99
+        },
+        {
+            "tag_name": "sporen",
+            "offense_id": 99
+        },
+        {
+            "tag_name": "20.2",
+            "offense_id": 100
+        },
+        {
+            "tag_name": "overweg",
+            "offense_id": 100
+        },
+        {
+            "tag_name": "voorzichtig",
+            "offense_id": 100
+        },
+        {
+            "tag_name": "20.4",
+            "offense_id": 101
+        },
+        {
+            "tag_name": "overweg",
+            "offense_id": 101
+        },
+        {
+            "tag_name": "druk",
+            "offense_id": 101
+        },
+        {
+            "tag_name": "stilstaan",
+            "offense_id": 101
+        },
+        {
+            "tag_name": "21.1",
+            "offense_id": 102
+        },
+        {
+            "tag_name": "snelweg",
+            "offense_id": 102
+        },
+        {
+            "tag_name": "autostrade",
+            "offense_id": 102
+        },
+        {
+            "tag_name": "voetgangers",
+            "offense_id": 102
+        },
+        {
+            "tag_name": "brommer",
+            "offense_id": 102
+        },
+        {
+            "tag_name": "scooter",
+            "offense_id": 102
+        },
+        {
+            "tag_name": "dieren",
+            "offense_id": 102
+        },
+        {
+            "tag_name": "snelheid",
+            "offense_id": 102
+        },
+        {
+            "tag_name": "minimum",
+            "offense_id": 102
+        },
+        {
+            "tag_name": "slepen",
+            "offense_id": 102
+        },
+        {
+            "tag_name": "takelen",
+            "offense_id": 102
+        },
+        {
+            "tag_name": "depannage",
+            "offense_id": 102
+        },
+        {
+            "tag_name": "depanneren",
+            "offense_id": 102
+        },
+        {
+            "tag_name": "21.1",
+            "offense_id": 103
+        },
+        {
+            "tag_name": "snelweg",
+            "offense_id": 103
+        },
+        {
+            "tag_name": "autostrade",
+            "offense_id": 103
+        },
+        {
+            "tag_name": "oprit",
+            "offense_id": 103
+        },
+        {
+            "tag_name": "afrit",
+            "offense_id": 103
+        },
+        {
+            "tag_name": "dienstweg",
+            "offense_id": 103
+        },
+        {
+            "tag_name": "21.2",
+            "offense_id": 104
+        },
+        {
+            "tag_name": "minimumsnelheid",
+            "offense_id": 104
+        },
+        {
+            "tag_name": "snelweg",
+            "offense_id": 104
+        },
+        {
+            "tag_name": "autostrade",
+            "offense_id": 104
+        },
+        {
+            "tag_name": "21.3",
+            "offense_id": 105
+        },
+        {
+            "tag_name": "snelweg",
+            "offense_id": 105
+        },
+        {
+            "tag_name": "autostrade",
+            "offense_id": 105
+        },
+        {
+            "tag_name": "bus",
+            "offense_id": 105
+        },
+        {
+            "tag_name": "rechts",
+            "offense_id": 105
+        },
+        {
+            "tag_name": "linker",
+            "offense_id": 105
+        },
+        {
+            "tag_name": "rijstrook",
+            "offense_id": 105
+        },
+        {
+            "tag_name": "linkerrijstrook",
+            "offense_id": 105
+        },
+        {
+            "tag_name": "21.4.1",
+            "offense_id": 106
+        },
+        {
+            "tag_name": "snelweg",
+            "offense_id": 106
+        },
+        {
+            "tag_name": "autostrade",
+            "offense_id": 106
+        },
+        {
+            "tag_name": "midden",
+            "offense_id": 106
+        },
+        {
+            "tag_name": "middelste",
+            "offense_id": 106
+        },
+        {
+            "tag_name": "21.4.2",
+            "offense_id": 107
+        },
+        {
+            "tag_name": "snelweg",
+            "offense_id": 107
+        },
+        {
+            "tag_name": "autostrade",
+            "offense_id": 107
+        },
+        {
+            "tag_name": "keren",
+            "offense_id": 107
+        },
+        {
+            "tag_name": "omdraaien",
+            "offense_id": 107
+        },
+        {
+            "tag_name": "omkeren",
+            "offense_id": 107
+        },
+        {
+            "tag_name": "21.4.3",
+            "offense_id": 108
+        },
+        {
+            "tag_name": "snelweg",
+            "offense_id": 108
+        },
+        {
+            "tag_name": "autostrade",
+            "offense_id": 108
+        },
+        {
+            "tag_name": "achteruitrijden",
+            "offense_id": 108
+        },
+        {
+            "tag_name": "spookrijden",
+            "offense_id": 108
+        },
+        {
+            "tag_name": "21.4.4",
+            "offense_id": 109
+        },
+        {
+            "tag_name": "stilstand",
+            "offense_id": 109
+        },
+        {
+            "tag_name": "pechstrook",
+            "offense_id": 109
+        },
+        {
+            "tag_name": "achterlaten",
+            "offense_id": 109
+        },
+        {
+            "tag_name": "snelweg",
+            "offense_id": 109
+        },
+        {
+            "tag_name": "autostrade",
+            "offense_id": 109
+        },
+        {
+            "tag_name": "21.5",
+            "offense_id": 110
+        },
+        {
+            "tag_name": "slepen",
+            "offense_id": 110
+        },
+        {
+            "tag_name": "takelen",
+            "offense_id": 110
+        },
+        {
+            "tag_name": "depanneren",
+            "offense_id": 110
+        },
+        {
+            "tag_name": "snelweg",
+            "offense_id": 110
+        },
+        {
+            "tag_name": "21.6.1",
+            "offense_id": 111
+        },
+        {
+            "tag_name": "stoeten,",
+            "offense_id": 111
+        },
+        {
+            "tag_name": "betogingen",
+            "offense_id": 111
+        },
+        {
+            "tag_name": "en",
+            "offense_id": 111
+        },
+        {
+            "tag_name": "samenscholingen",
+            "offense_id": 111
+        },
+        {
+            "tag_name": "op",
+            "offense_id": 111
+        },
+        {
+            "tag_name": "de",
+            "offense_id": 111
+        },
+        {
+            "tag_name": "snelweg",
+            "offense_id": 111
+        },
+        {
+            "tag_name": "zijn",
+            "offense_id": 111
+        },
+        {
+            "tag_name": "verboden.",
+            "offense_id": 111
+        },
+        {
+            "tag_name": "21.6.2",
+            "offense_id": 112
+        },
+        {
+            "tag_name": "reclametochten",
+            "offense_id": 112
+        },
+        {
+            "tag_name": "op",
+            "offense_id": 112
+        },
+        {
+            "tag_name": "de",
+            "offense_id": 112
+        },
+        {
+            "tag_name": "snelweg",
+            "offense_id": 112
+        },
+        {
+            "tag_name": "zijn",
+            "offense_id": 112
+        },
+        {
+            "tag_name": "verboden.",
+            "offense_id": 112
+        },
+        {
+            "tag_name": "21.6.3",
+            "offense_id": 113
+        },
+        {
+            "tag_name": "testrit",
+            "offense_id": 113
+        },
+        {
+            "tag_name": "proefrit",
+            "offense_id": 113
+        },
+        {
+            "tag_name": "21.6.4",
+            "offense_id": 114
+        },
+        {
+            "tag_name": "wedstrijd",
+            "offense_id": 114
+        },
+        {
+            "tag_name": "race",
+            "offense_id": 114
+        },
+        {
+            "tag_name": "racen",
+            "offense_id": 114
+        },
+        {
+            "tag_name": "",
+            "offense_id": 114
+        },
+        {
+            "tag_name": "21.6.5",
+            "offense_id": 115
+        },
+        {
+            "tag_name": "verkopen",
+            "offense_id": 115
+        },
+        {
+            "tag_name": "leuren",
+            "offense_id": 115
+        },
+        {
+            "tag_name": "autostrade",
+            "offense_id": 115
+        },
+        {
+            "tag_name": "autosnelweg",
+            "offense_id": 115
+        },
+        {
+            "tag_name": "22.1",
+            "offense_id": 116
+        },
+        {
+            "tag_name": "autoweg",
+            "offense_id": 116
+        },
+        {
+            "tag_name": "gewestweg",
+            "offense_id": 116
+        },
+        {
+            "tag_name": "22.2",
+            "offense_id": 117
+        },
+        {
+            "tag_name": "autoweg",
+            "offense_id": 117
+        },
+        {
+            "tag_name": "gewestweg",
+            "offense_id": 117
+        },
+        {
+            "tag_name": "midden",
+            "offense_id": 117
+        },
+        {
+            "tag_name": "middelste",
+            "offense_id": 117
+        },
+        {
+            "tag_name": "22.2",
+            "offense_id": 118
+        },
+        {
+            "tag_name": "autoweg",
+            "offense_id": 118
+        },
+        {
+            "tag_name": "stoet",
+            "offense_id": 118
+        },
+        {
+            "tag_name": "optocht",
+            "offense_id": 118
+        },
+        {
+            "tag_name": "22.2",
+            "offense_id": 119
+        },
+        {
+            "tag_name": "autoweg",
+            "offense_id": 119
+        },
+        {
+            "tag_name": "stilstand",
+            "offense_id": 119
+        },
+        {
+            "tag_name": "pechstrook",
+            "offense_id": 119
+        },
+        {
+            "tag_name": "achterlaten",
+            "offense_id": 119
+        },
+        {
+            "tag_name": "22bis",
+            "offense_id": 120
+        },
+        {
+            "tag_name": "woonerf",
+            "offense_id": 120
+        },
+        {
+            "tag_name": "voetgangers",
+            "offense_id": 120
+        },
+        {
+            "tag_name": "gevaarlijk",
+            "offense_id": 120
+        },
+        {
+            "tag_name": "22bis",
+            "offense_id": 121
+        },
+        {
+            "tag_name": "woonerf",
+            "offense_id": 121
+        },
+        {
+            "tag_name": "auto's",
+            "offense_id": 121
+        },
+        {
+            "tag_name": "hinderen",
+            "offense_id": 121
+        },
+        {
+            "tag_name": "22bis",
+            "offense_id": 122
+        },
+        {
+            "tag_name": "parkeren",
+            "offense_id": 122
+        },
+        {
+            "tag_name": "woonerf",
+            "offense_id": 122
+        },
+        {
+            "tag_name": "woonerven",
+            "offense_id": 122
+        },
+        {
+            "tag_name": "parkeervak",
+            "offense_id": 122
+        },
+        {
+            "tag_name": "22ter",
+            "offense_id": 123
+        },
+        {
+            "tag_name": "verkeersdrempel",
+            "offense_id": 123
+        },
+        {
+            "tag_name": "plateau",
+            "offense_id": 123
+        },
+        {
+            "tag_name": "verkeersheuvel",
+            "offense_id": 123
+        },
+        {
+            "tag_name": "snelheidsdrempel",
+            "offense_id": 123
+        },
+        {
+            "tag_name": "22ter",
+            "offense_id": 124
+        },
+        {
+            "tag_name": "verkeersdrempel",
+            "offense_id": 124
+        },
+        {
+            "tag_name": "plateau",
+            "offense_id": 124
+        },
+        {
+            "tag_name": "verkeersheuvel",
+            "offense_id": 124
+        },
+        {
+            "tag_name": "snelheidsdrempel",
+            "offense_id": 124
+        },
+        {
+            "tag_name": "inhalen",
+            "offense_id": 124
+        },
+        {
+            "tag_name": "22ter",
+            "offense_id": 125
+        },
+        {
+            "tag_name": "verkeersdrempel",
+            "offense_id": 125
+        },
+        {
+            "tag_name": "plateau",
+            "offense_id": 125
+        },
+        {
+            "tag_name": "verkeersheuvel",
+            "offense_id": 125
+        },
+        {
+            "tag_name": "snelheidsdrempel",
+            "offense_id": 125
+        },
+        {
+            "tag_name": "inhalen",
+            "offense_id": 125
+        },
+        {
+            "tag_name": "stilstaan",
+            "offense_id": 125
+        },
+        {
+            "tag_name": "parkeren",
+            "offense_id": 125
+        },
+        {
+            "tag_name": "22quinquies",
+            "offense_id": 126
+        },
+        {
+            "tag_name": "paardrijden",
+            "offense_id": 126
+        },
+        {
+            "tag_name": "ruiters",
+            "offense_id": 126
+        },
+        {
+            "tag_name": "voetganger",
+            "offense_id": 126
+        },
+        {
+            "tag_name": "fietser",
+            "offense_id": 126
+        },
+        {
+            "tag_name": "fiets",
+            "offense_id": 126
+        },
+        {
+            "tag_name": "landweg",
+            "offense_id": 126
+        },
+        {
+            "tag_name": "verboden",
+            "offense_id": 126
+        },
+        {
+            "tag_name": "22quinquies",
+            "offense_id": 127
+        },
+        {
+            "tag_name": "paardrijden",
+            "offense_id": 127
+        },
+        {
+            "tag_name": "ruiters",
+            "offense_id": 127
+        },
+        {
+            "tag_name": "voetganger",
+            "offense_id": 127
+        },
+        {
+            "tag_name": "fietser",
+            "offense_id": 127
+        },
+        {
+            "tag_name": "fiets",
+            "offense_id": 127
+        },
+        {
+            "tag_name": "landweg",
+            "offense_id": 127
+        },
+        {
+            "tag_name": "gevaar",
+            "offense_id": 127
+        },
+        {
+            "tag_name": "22quinquies",
+            "offense_id": 128
+        },
+        {
+            "tag_name": "voorbehouden",
+            "offense_id": 128
+        },
+        {
+            "tag_name": "zone",
+            "offense_id": 128
+        },
+        {
+            "tag_name": "hinder",
+            "offense_id": 128
+        },
+        {
+            "tag_name": "gevaar",
+            "offense_id": 128
+        },
+        {
+            "tag_name": "22sexies",
+            "offense_id": 129
+        },
+        {
+            "tag_name": "verkeer",
+            "offense_id": 129
+        },
+        {
+            "tag_name": "voetgangerzone",
+            "offense_id": 129
+        },
+        {
+            "tag_name": "eigendom",
+            "offense_id": 129
+        },
+        {
+            "tag_name": "levering",
+            "offense_id": 129
+        },
+        {
+            "tag_name": "22sexies",
+            "offense_id": 130
+        },
+        {
+            "tag_name": "verkeer",
+            "offense_id": 130
+        },
+        {
+            "tag_name": "voetgangerzone",
+            "offense_id": 130
+        },
+        {
+            "tag_name": "eigendom",
+            "offense_id": 130
+        },
+        {
+            "tag_name": "levering",
+            "offense_id": 130
+        },
+        {
+            "tag_name": "taxi",
+            "offense_id": 130
+        },
+        {
+            "tag_name": "",
+            "offense_id": 130
+        },
+        {
+            "tag_name": "22sexies",
+            "offense_id": 131
+        },
+        {
+            "tag_name": "verkeer",
+            "offense_id": 131
+        },
+        {
+            "tag_name": "voetgangerzone",
+            "offense_id": 131
+        },
+        {
+            "tag_name": "snelheid",
+            "offense_id": 131
+        },
+        {
+            "tag_name": "stapvoets",
+            "offense_id": 131
+        },
+        {
+            "tag_name": "22sexies",
+            "offense_id": 132
+        },
+        {
+            "tag_name": "voetgangerszone",
+            "offense_id": 132
+        },
+        {
+            "tag_name": "fiets",
+            "offense_id": 132
+        },
+        {
+            "tag_name": "fietser",
+            "offense_id": 132
+        },
+        {
+            "tag_name": "afstappen",
+            "offense_id": 132
+        },
+        {
+            "tag_name": "wandelen",
+            "offense_id": 132
+        },
+        {
+            "tag_name": "22sexies",
+            "offense_id": 133
+        },
+        {
+            "tag_name": "voetgangerszone",
+            "offense_id": 133
+        },
+        {
+            "tag_name": "parkeren",
+            "offense_id": 133
+        },
+        {
+            "tag_name": "22septies",
+            "offense_id": 134
+        },
+        {
+            "tag_name": "speelstraat",
+            "offense_id": 134
+        },
+        {
+            "tag_name": "doorgang",
+            "offense_id": 134
+        },
+        {
+            "tag_name": "garage",
+            "offense_id": 134
+        },
+        {
+            "tag_name": "toelating",
+            "offense_id": 134
+        },
+        {
+            "tag_name": "vergunning",
+            "offense_id": 134
+        },
+        {
+            "tag_name": "",
+            "offense_id": 134
+        },
+        {
+            "tag_name": "22septies",
+            "offense_id": 135
+        },
+        {
+            "tag_name": "speelstraat",
+            "offense_id": 135
+        },
+        {
+            "tag_name": "rijden",
+            "offense_id": 135
+        },
+        {
+            "tag_name": "snelheid",
+            "offense_id": 135
+        },
+        {
+            "tag_name": "doorgang",
+            "offense_id": 135
+        },
+        {
+            "tag_name": "voorrang",
+            "offense_id": 135
+        },
+        {
+            "tag_name": "22octies",
+            "offense_id": 136
+        },
+        {
+            "tag_name": "landwegen",
+            "offense_id": 136
+        },
+        {
+            "tag_name": "verboden",
+            "offense_id": 136
+        },
+        {
+            "tag_name": "voertuigen",
+            "offense_id": 136
+        },
+        {
+            "tag_name": "22octies",
+            "offense_id": 137
+        },
+        {
+            "tag_name": "landwegen",
+            "offense_id": 137
+        },
+        {
+            "tag_name": "fietsen",
+            "offense_id": 137
+        },
+        {
+            "tag_name": "voetgangers",
+            "offense_id": 137
+        },
+        {
+            "tag_name": "hinder",
+            "offense_id": 137
+        },
+        {
+            "tag_name": "22novies",
+            "offense_id": 138
+        },
+        {
+            "tag_name": "fietsstraat",
+            "offense_id": 138
+        },
+        {
+            "tag_name": "voorbijsteken",
+            "offense_id": 138
+        },
+        {
+            "tag_name": "23.1.1",
+            "offense_id": 139
+        },
+        {
+            "tag_name": "tweerichtingsbaan",
+            "offense_id": 139
+        },
+        {
+            "tag_name": "links",
+            "offense_id": 139
+        },
+        {
+            "tag_name": "parkeren",
+            "offense_id": 139
+        },
+        {
+            "tag_name": "23.1.2",
+            "offense_id": 140
+        },
+        {
+            "tag_name": "parkeren",
+            "offense_id": 140
+        },
+        {
+            "tag_name": "verplicht",
+            "offense_id": 140
+        },
+        {
+            "tag_name": "berm",
+            "offense_id": 140
+        },
+        {
+            "tag_name": "rijbaan",
+            "offense_id": 140
+        },
+        {
+            "tag_name": "voetgangers",
+            "offense_id": 140
+        },
+        {
+            "tag_name": "vrije",
+            "offense_id": 140
+        },
+        {
+            "tag_name": "ruimte",
+            "offense_id": 140
+        },
+        {
+            "tag_name": "23.2",
+            "offense_id": 141
+        },
+        {
+            "tag_name": "parkeren",
+            "offense_id": 141
+        },
+        {
+            "tag_name": "trottoir",
+            "offense_id": 141
+        },
+        {
+            "tag_name": "voetpad",
+            "offense_id": 141
+        },
+        {
+            "tag_name": "symmetrisch",
+            "offense_id": 141
+        },
+        {
+            "tag_name": "moto",
+            "offense_id": 141
+        },
+        {
+            "tag_name": "motorfiets",
+            "offense_id": 141
+        },
+        {
+            "tag_name": "23.3",
+            "offense_id": 142
+        },
+        {
+            "tag_name": "parkeren",
+            "offense_id": 142
+        },
+        {
+            "tag_name": "fietsen",
+            "offense_id": 142
+        },
+        {
+            "tag_name": "23.4",
+            "offense_id": 143
+        },
+        {
+            "tag_name": "parkeren",
+            "offense_id": 143
+        },
+        {
+            "tag_name": "parkeerplaats",
+            "offense_id": 143
+        },
+        {
+            "tag_name": "moto",
+            "offense_id": 143
+        },
+        {
+            "tag_name": "motor",
+            "offense_id": 143
+        },
+        {
+            "tag_name": "24",
+            "offense_id": 144
+        },
+        {
+            "tag_name": "parkeren",
+            "offense_id": 144
+        },
+        {
+            "tag_name": "parking",
+            "offense_id": 144
+        },
+        {
+            "tag_name": "stilstaan",
+            "offense_id": 144
+        },
+        {
+            "tag_name": "gevaar",
+            "offense_id": 144
+        },
+        {
+            "tag_name": "24.1",
+            "offense_id": 145
+        },
+        {
+            "tag_name": "parking",
+            "offense_id": 145
+        },
+        {
+            "tag_name": "stilstaan",
+            "offense_id": 145
+        },
+        {
+            "tag_name": "trottoir",
+            "offense_id": 145
+        },
+        {
+            "tag_name": "voetpad",
+            "offense_id": 145
+        },
+        {
+            "tag_name": "stoep",
+            "offense_id": 145
+        },
+        {
+            "tag_name": "24.2",
+            "offense_id": 146
+        },
+        {
+            "tag_name": "parking",
+            "offense_id": 146
+        },
+        {
+            "tag_name": "stilstaan",
+            "offense_id": 146
+        },
+        {
+            "tag_name": "fietspad",
+            "offense_id": 146
+        },
+        {
+            "tag_name": "fietsers",
+            "offense_id": 146
+        },
+        {
+            "tag_name": "brommers",
+            "offense_id": 146
+        },
+        {
+            "tag_name": "scooter",
+            "offense_id": 146
+        },
+        {
+            "tag_name": "oversteken",
+            "offense_id": 146
+        },
+        {
+            "tag_name": "",
+            "offense_id": 146
+        },
+        {
+            "tag_name": "24.3",
+            "offense_id": 147
+        },
+        {
+            "tag_name": "parking",
+            "offense_id": 147
+        },
+        {
+            "tag_name": "stilstaan",
+            "offense_id": 147
+        },
+        {
+            "tag_name": "overweg",
+            "offense_id": 147
+        },
+        {
+            "tag_name": "24.4",
+            "offense_id": 148
+        },
+        {
+            "tag_name": "parking",
+            "offense_id": 148
+        },
+        {
+            "tag_name": "stilstaan",
+            "offense_id": 148
+        },
+        {
+            "tag_name": "zebrapad",
+            "offense_id": 148
+        },
+        {
+            "tag_name": "24.5",
+            "offense_id": 149
+        },
+        {
+            "tag_name": "parking",
+            "offense_id": 149
+        },
+        {
+            "tag_name": "stilstaan",
+            "offense_id": 149
+        },
+        {
+            "tag_name": "brug",
+            "offense_id": 149
+        },
+        {
+            "tag_name": "tunnel",
+            "offense_id": 149
+        },
+        {
+            "tag_name": "24.6",
+            "offense_id": 150
+        },
+        {
+            "tag_name": "parking",
+            "offense_id": 150
+        },
+        {
+            "tag_name": "stilstaan",
+            "offense_id": 150
+        },
+        {
+            "tag_name": "helling",
+            "offense_id": 150
+        },
+        {
+            "tag_name": "berg",
+            "offense_id": 150
+        },
+        {
+            "tag_name": "bocht",
+            "offense_id": 150
+        },
+        {
+            "tag_name": "24.7",
+            "offense_id": 151
+        },
+        {
+            "tag_name": "parking",
+            "offense_id": 151
+        },
+        {
+            "tag_name": "stilstaan",
+            "offense_id": 151
+        },
+        {
+            "tag_name": "kruispunt",
+            "offense_id": 151
+        },
+        {
+            "tag_name": "24.8",
+            "offense_id": 152
+        },
+        {
+            "tag_name": "parking",
+            "offense_id": 152
+        },
+        {
+            "tag_name": "stilstaan",
+            "offense_id": 152
+        },
+        {
+            "tag_name": "verkeerslicht",
+            "offense_id": 152
+        },
+        {
+            "tag_name": "24.9",
+            "offense_id": 153
+        },
+        {
+            "tag_name": "parking",
+            "offense_id": 153
+        },
+        {
+            "tag_name": "stilstaan",
+            "offense_id": 153
+        },
+        {
+            "tag_name": "verkeerslicht",
+            "offense_id": 153
+        },
+        {
+            "tag_name": "",
+            "offense_id": 153
+        },
+        {
+            "tag_name": "24.10",
+            "offense_id": 154
+        },
+        {
+            "tag_name": "parking",
+            "offense_id": 154
+        },
+        {
+            "tag_name": "stilstaan",
+            "offense_id": 154
+        },
+        {
+            "tag_name": "verkeersbord",
+            "offense_id": 154
+        },
+        {
+            "tag_name": "hoogte",
+            "offense_id": 154
+        },
+        {
+            "tag_name": "laag",
+            "offense_id": 154
+        },
+        {
+            "tag_name": "25.1.1",
+            "offense_id": 155
+        },
+        {
+            "tag_name": "parking",
+            "offense_id": 155
+        },
+        {
+            "tag_name": "stilstaan",
+            "offense_id": 155
+        },
+        {
+            "tag_name": "voorligger",
+            "offense_id": 155
+        },
+        {
+            "tag_name": "voorganger",
+            "offense_id": 155
+        },
+        {
+            "tag_name": "25.1.2",
+            "offense_id": 156
+        },
+        {
+            "tag_name": "parking",
+            "offense_id": 156
+        },
+        {
+            "tag_name": "stilstaan",
+            "offense_id": 156
+        },
+        {
+            "tag_name": "tramhalte",
+            "offense_id": 156
+        },
+        {
+            "tag_name": "bushalte",
+            "offense_id": 156
+        },
+        {
+            "tag_name": "bushokje",
+            "offense_id": 156
+        },
+        {
+            "tag_name": "25.1.3",
+            "offense_id": 157
+        },
+        {
+            "tag_name": "parking",
+            "offense_id": 157
+        },
+        {
+            "tag_name": "stilstaan",
+            "offense_id": 157
+        },
+        {
+            "tag_name": "garage",
+            "offense_id": 157
+        },
+        {
+            "tag_name": "oprit",
+            "offense_id": 157
+        },
+        {
+            "tag_name": "25.1.4",
+            "offense_id": 158
+        },
+        {
+            "tag_name": "parking",
+            "offense_id": 158
+        },
+        {
+            "tag_name": "stilstaan",
+            "offense_id": 158
+        },
+        {
+            "tag_name": "hindernis",
+            "offense_id": 158
+        },
+        {
+            "tag_name": "voetgangers",
+            "offense_id": 158
+        },
+        {
+            "tag_name": "op",
+            "offense_id": 158
+        },
+        {
+            "tag_name": "de",
+            "offense_id": 158
+        },
+        {
+            "tag_name": "baan",
+            "offense_id": 158
+        },
+        {
+            "tag_name": "25.1.5",
+            "offense_id": 159
+        },
+        {
+            "tag_name": "parking",
+            "offense_id": 159
+        },
+        {
+            "tag_name": "stilstaan",
+            "offense_id": 159
+        },
+        {
+            "tag_name": "parkeerplaats",
+            "offense_id": 159
+        },
+        {
+            "tag_name": "25.1.6",
+            "offense_id": 160
+        },
+        {
+            "tag_name": "parking",
+            "offense_id": 160
+        },
+        {
+            "tag_name": "stilstaan",
+            "offense_id": 160
+        },
+        {
+            "tag_name": "tramspoor",
+            "offense_id": 160
+        },
+        {
+            "tag_name": "tramsporen",
+            "offense_id": 160
+        },
+        {
+            "tag_name": "25.1.7",
+            "offense_id": 161
+        },
+        {
+            "tag_name": "parking",
+            "offense_id": 161
+        },
+        {
+            "tag_name": "stilstaan",
+            "offense_id": 161
+        },
+        {
+            "tag_name": "breedte",
+            "offense_id": 161
+        },
+        {
+            "tag_name": "rijbaan",
+            "offense_id": 161
+        },
+        {
+            "tag_name": "25.1.8",
+            "offense_id": 162
+        },
+        {
+            "tag_name": "parking",
+            "offense_id": 162
+        },
+        {
+            "tag_name": "stilstaan",
+            "offense_id": 162
+        },
+        {
+            "tag_name": "gewestweg",
+            "offense_id": 162
+        },
+        {
+            "tag_name": "voorrangsbaan",
+            "offense_id": 162
+        },
+        {
+            "tag_name": "25.1.9",
+            "offense_id": 163
+        },
+        {
+            "tag_name": "parking",
+            "offense_id": 163
+        },
+        {
+            "tag_name": "stilstaan",
+            "offense_id": 163
+        },
+        {
+            "tag_name": "rijstrook",
+            "offense_id": 163
+        },
+        {
+            "tag_name": "rijvak",
+            "offense_id": 163
+        },
+        {
+            "tag_name": "25.1.10",
+            "offense_id": 164
+        },
+        {
+            "tag_name": "parking",
+            "offense_id": 164
+        },
+        {
+            "tag_name": "stilstaan",
+            "offense_id": 164
+        },
+        {
+            "tag_name": "borduur",
+            "offense_id": 164
+        },
+        {
+            "tag_name": "stoep",
+            "offense_id": 164
+        },
+        {
+            "tag_name": "trottoir",
+            "offense_id": 164
+        },
+        {
+            "tag_name": "voetpad",
+            "offense_id": 164
+        },
+        {
+            "tag_name": "geel",
+            "offense_id": 164
+        },
+        {
+            "tag_name": "25.1.11",
+            "offense_id": 165
+        },
+        {
+            "tag_name": "parking",
+            "offense_id": 165
+        },
+        {
+            "tag_name": "stilstaan",
+            "offense_id": 165
+        },
+        {
+            "tag_name": "tweerichtingsbaan",
+            "offense_id": 165
+        },
+        {
+            "tag_name": "kruisen",
+            "offense_id": 165
+        },
+        {
+            "tag_name": "doorgang",
+            "offense_id": 165
+        },
+        {
+            "tag_name": "25.1.12",
+            "offense_id": 166
+        },
+        {
+            "tag_name": "parking",
+            "offense_id": 166
+        },
+        {
+            "tag_name": "stilstaan",
+            "offense_id": 166
+        },
+        {
+            "tag_name": "drievaksbaan",
+            "offense_id": 166
+        },
+        {
+            "tag_name": "middenvak",
+            "offense_id": 166
+        },
+        {
+            "tag_name": "25.1.13",
+            "offense_id": 167
+        },
+        {
+            "tag_name": "parking",
+            "offense_id": 167
+        },
+        {
+            "tag_name": "stilstaan",
+            "offense_id": 167
+        },
+        {
+            "tag_name": "links",
+            "offense_id": 167
+        },
+        {
+            "tag_name": "middenberm",
+            "offense_id": 167
+        },
+        {
+            "tag_name": "25.1.14",
+            "offense_id": 168
+        },
+        {
+            "tag_name": "parking",
+            "offense_id": 168
+        },
+        {
+            "tag_name": "stilstaan",
+            "offense_id": 168
+        },
+        {
+            "tag_name": "gehandicapten",
+            "offense_id": 168
+        },
+        {
+            "tag_name": "mindervaliden",
+            "offense_id": 168
+        },
+        {
+            "tag_name": "invaliden",
+            "offense_id": 168
+        },
+        {
+            "tag_name": "gehandicaptenplaats",
+            "offense_id": 168
+        },
+        {
+            "tag_name": "25.2",
+            "offense_id": 169
+        },
+        {
+            "tag_name": "te",
+            "offense_id": 169
+        },
+        {
+            "tag_name": "koop",
+            "offense_id": 169
+        },
+        {
+            "tag_name": "te",
+            "offense_id": 169
+        },
+        {
+            "tag_name": "huur",
+            "offense_id": 169
+        },
+        {
+            "tag_name": "aanbieden",
+            "offense_id": 169
+        },
+        {
+            "tag_name": "verkopen",
+            "offense_id": 169
+        },
+        {
+            "tag_name": "verhuren",
+            "offense_id": 169
+        },
+        {
+            "tag_name": "affiche",
+            "offense_id": 169
+        },
+        {
+            "tag_name": "",
+            "offense_id": 169
+        },
+        {
+            "tag_name": "26.1",
+            "offense_id": 170
+        },
+        {
+            "tag_name": "beurtelings",
+            "offense_id": 170
+        },
+        {
+            "tag_name": "parkeren",
+            "offense_id": 170
+        },
+        {
+            "tag_name": "afwisselend",
+            "offense_id": 170
+        },
+        {
+            "tag_name": "kalenderparkeren",
+            "offense_id": 170
+        },
+        {
+            "tag_name": "27bis",
+            "offense_id": 171
+        },
+        {
+            "tag_name": "parking",
+            "offense_id": 171
+        },
+        {
+            "tag_name": "stilstaan",
+            "offense_id": 171
+        },
+        {
+            "tag_name": "gehandicapten",
+            "offense_id": 171
+        },
+        {
+            "tag_name": "mindervaliden",
+            "offense_id": 171
+        },
+        {
+            "tag_name": "invaliden",
+            "offense_id": 171
+        },
+        {
+            "tag_name": "gehandicaptenplaats",
+            "offense_id": 171
+        },
+        {
+            "tag_name": "27ter",
+            "offense_id": 172
+        },
+        {
+            "tag_name": "parking",
+            "offense_id": 172
+        },
+        {
+            "tag_name": "stilstaan",
+            "offense_id": 172
+        },
+        {
+            "tag_name": "beperkt",
+            "offense_id": 172
+        },
+        {
+            "tag_name": "parkeren",
+            "offense_id": 172
+        },
+        {
+            "tag_name": "categorieën",
+            "offense_id": 172
+        },
+        {
+            "tag_name": "campingcar",
+            "offense_id": 172
+        },
+        {
+            "tag_name": "mobilhome",
+            "offense_id": 172
+        },
+        {
+            "tag_name": "28",
+            "offense_id": 173
+        },
+        {
+            "tag_name": "deur",
+            "offense_id": 173
+        },
+        {
+            "tag_name": "openen",
+            "offense_id": 173
+        },
+        {
+            "tag_name": "uitladen",
+            "offense_id": 173
+        },
+        {
+            "tag_name": "",
+            "offense_id": 173
+        },
+        {
+            "tag_name": "29lichten",
+            "offense_id": 174
+        },
+        {
+            "tag_name": "lampen",
+            "offense_id": 174
+        },
+        {
+            "tag_name": "verlichting",
+            "offense_id": 174
+        },
+        {
+            "tag_name": "30",
+            "offense_id": 175
+        },
+        {
+            "tag_name": "gebruik",
+            "offense_id": 175
+        },
+        {
+            "tag_name": "lichten",
+            "offense_id": 175
+        },
+        {
+            "tag_name": "lampen",
+            "offense_id": 175
+        },
+        {
+            "tag_name": "koplampen",
+            "offense_id": 175
+        },
+        {
+            "tag_name": "achterlichten",
+            "offense_id": 175
+        },
+        {
+            "tag_name": "",
+            "offense_id": 175
+        },
+        {
+            "tag_name": "30.1.1",
+            "offense_id": 176
+        },
+        {
+            "tag_name": "grootlampen",
+            "offense_id": 176
+        },
+        {
+            "tag_name": "mistlichten",
+            "offense_id": 176
+        },
+        {
+            "tag_name": "mistlampen",
+            "offense_id": 176
+        },
+        {
+            "tag_name": "tegenliggers",
+            "offense_id": 176
+        },
+        {
+            "tag_name": "30.1.1",
+            "offense_id": 177
+        },
+        {
+            "tag_name": "grootlampen",
+            "offense_id": 177
+        },
+        {
+            "tag_name": "mistlichten",
+            "offense_id": 177
+        },
+        {
+            "tag_name": "mistlampen",
+            "offense_id": 177
+        },
+        {
+            "tag_name": "tegenliggers",
+            "offense_id": 177
+        },
+        {
+            "tag_name": "30.1.1",
+            "offense_id": 178
+        },
+        {
+            "tag_name": "grootlampen",
+            "offense_id": 178
+        },
+        {
+            "tag_name": "mistlichten",
+            "offense_id": 178
+        },
+        {
+            "tag_name": "mistlampen",
+            "offense_id": 178
+        },
+        {
+            "tag_name": "voorligger",
+            "offense_id": 178
+        },
+        {
+            "tag_name": "30.1.1",
+            "offense_id": 179
+        },
+        {
+            "tag_name": "grootlampen",
+            "offense_id": 179
+        },
+        {
+            "tag_name": "mistlichten",
+            "offense_id": 179
+        },
+        {
+            "tag_name": "mistlampen",
+            "offense_id": 179
+        },
+        {
+            "tag_name": "zichtbaarheid",
+            "offense_id": 179
+        },
+        {
+            "tag_name": "30.1.2",
+            "offense_id": 180
+        },
+        {
+            "tag_name": "achterlicht",
+            "offense_id": 180
+        },
+        {
+            "tag_name": "achterlamp",
+            "offense_id": 180
+        },
+        {
+            "tag_name": "30.1.2",
+            "offense_id": 181
+        },
+        {
+            "tag_name": "achtermistlichten",
+            "offense_id": 181
+        },
+        {
+            "tag_name": "mistlichten",
+            "offense_id": 181
+        },
+        {
+            "tag_name": "achteraan",
+            "offense_id": 181
+        },
+        {
+            "tag_name": "sneeuw",
+            "offense_id": 181
+        },
+        {
+            "tag_name": "",
+            "offense_id": 181
+        },
+        {
+            "tag_name": "30.1.2",
+            "offense_id": 182
+        },
+        {
+            "tag_name": "achtermistlichten",
+            "offense_id": 182
+        },
+        {
+            "tag_name": "mistlichten",
+            "offense_id": 182
+        },
+        {
+            "tag_name": "achteraan",
+            "offense_id": 182
+        },
+        {
+            "tag_name": "sneeuw",
+            "offense_id": 182
+        },
+        {
+            "tag_name": "",
+            "offense_id": 182
+        },
+        {
+            "tag_name": "30.3.1",
+            "offense_id": 183
+        },
+        {
+            "tag_name": "fietslicht",
+            "offense_id": 183
+        },
+        {
+            "tag_name": "fietslamp",
+            "offense_id": 183
+        },
+        {
+            "tag_name": "fietser",
+            "offense_id": 183
+        },
+        {
+            "tag_name": "fiets",
+            "offense_id": 183
+        },
+        {
+            "tag_name": "30.3.2",
+            "offense_id": 184
+        },
+        {
+            "tag_name": "lampen",
+            "offense_id": 184
+        },
+        {
+            "tag_name": "lichten",
+            "offense_id": 184
+        },
+        {
+            "tag_name": "aanhangwagen",
+            "offense_id": 184
+        },
+        {
+            "tag_name": "remorque",
+            "offense_id": 184
+        },
+        {
+            "tag_name": "",
+            "offense_id": 184
+        },
+        {
+            "tag_name": "30.3.2",
+            "offense_id": 185
+        },
+        {
+            "tag_name": "mistlampen",
+            "offense_id": 185
+        },
+        {
+            "tag_name": "mistlichten",
+            "offense_id": 185
+        },
+        {
+            "tag_name": "aanhangwagen",
+            "offense_id": 185
+        },
+        {
+            "tag_name": "remorque",
+            "offense_id": 185
+        },
+        {
+            "tag_name": "30.3.2",
+            "offense_id": 186
+        },
+        {
+            "tag_name": "mistlampen",
+            "offense_id": 186
+        },
+        {
+            "tag_name": "mistlichten",
+            "offense_id": 186
+        },
+        {
+            "tag_name": "aanhangwagen",
+            "offense_id": 186
+        },
+        {
+            "tag_name": "remorque",
+            "offense_id": 186
+        },
+        {
+            "tag_name": "30.3.3",
+            "offense_id": 187
+        },
+        {
+            "tag_name": "lichten",
+            "offense_id": 187
+        },
+        {
+            "tag_name": "lampen",
+            "offense_id": 187
+        },
+        {
+            "tag_name": "handkar",
+            "offense_id": 187
+        },
+        {
+            "tag_name": "kar",
+            "offense_id": 187
+        },
+        {
+            "tag_name": "30.3.4",
+            "offense_id": 188
+        },
+        {
+            "tag_name": "lichten",
+            "offense_id": 188
+        },
+        {
+            "tag_name": "lampen",
+            "offense_id": 188
+        },
+        {
+            "tag_name": "andere",
+            "offense_id": 188
+        },
+        {
+            "tag_name": "voertuigen",
+            "offense_id": 188
+        },
+        {
+            "tag_name": "30.3.5",
+            "offense_id": 189
+        },
+        {
+            "tag_name": "lichten",
+            "offense_id": 189
+        },
+        {
+            "tag_name": "lampen",
+            "offense_id": 189
+        },
+        {
+            "tag_name": "colonne",
+            "offense_id": 189
+        },
+        {
+            "tag_name": "stoet",
+            "offense_id": 189
+        },
+        {
+            "tag_name": "optocht",
+            "offense_id": 189
+        },
+        {
+            "tag_name": "groep",
+            "offense_id": 189
+        },
+        {
+            "tag_name": "30.3.6",
+            "offense_id": 190
+        },
+        {
+            "tag_name": "lichten",
+            "offense_id": 190
+        },
+        {
+            "tag_name": "lampen",
+            "offense_id": 190
+        },
+        {
+            "tag_name": "voortbewegingstoestel",
+            "offense_id": 190
+        },
+        {
+            "tag_name": "segway",
+            "offense_id": 190
+        },
+        {
+            "tag_name": "30.3.7",
+            "offense_id": 191
+        },
+        {
+            "tag_name": "lichten",
+            "offense_id": 191
+        },
+        {
+            "tag_name": "lampen",
+            "offense_id": 191
+        },
+        {
+            "tag_name": "carnavalswagen",
+            "offense_id": 191
+        },
+        {
+            "tag_name": "30.4",
+            "offense_id": 192
+        },
+        {
+            "tag_name": "lichten",
+            "offense_id": 192
+        },
+        {
+            "tag_name": "lampen",
+            "offense_id": 192
+        },
+        {
+            "tag_name": "omtreklichten",
+            "offense_id": 192
+        },
+        {
+            "tag_name": "omtreklampen",
+            "offense_id": 192
+        },
+        {
+            "tag_name": "brede",
+            "offense_id": 192
+        },
+        {
+            "tag_name": "voertuigen",
+            "offense_id": 192
+        },
+        {
+            "tag_name": "30bis",
+            "offense_id": 193
+        },
+        {
+            "tag_name": "lichten",
+            "offense_id": 193
+        },
+        {
+            "tag_name": "lampen",
+            "offense_id": 193
+        },
+        {
+            "tag_name": "brommer",
+            "offense_id": 193
+        },
+        {
+            "tag_name": "scooter",
+            "offense_id": 193
+        },
+        {
+            "tag_name": "moto",
+            "offense_id": 193
+        },
+        {
+            "tag_name": "motorfiets",
+            "offense_id": 193
+        },
+        {
+            "tag_name": "31.1.1",
+            "offense_id": 194
+        },
+        {
+            "tag_name": "lichten",
+            "offense_id": 194
+        },
+        {
+            "tag_name": "lampen",
+            "offense_id": 194
+        },
+        {
+            "tag_name": "stilstaan",
+            "offense_id": 194
+        },
+        {
+            "tag_name": "parkeren",
+            "offense_id": 194
+        },
+        {
+            "tag_name": "standlicht",
+            "offense_id": 194
+        },
+        {
+            "tag_name": "parkeerlicht",
+            "offense_id": 194
+        },
+        {
+            "tag_name": "31.1.1.1",
+            "offense_id": 195
+        },
+        {
+            "tag_name": "lichten",
+            "offense_id": 195
+        },
+        {
+            "tag_name": "lampen",
+            "offense_id": 195
+        },
+        {
+            "tag_name": "stilstaan",
+            "offense_id": 195
+        },
+        {
+            "tag_name": "parkeren",
+            "offense_id": 195
+        },
+        {
+            "tag_name": "mistlichten",
+            "offense_id": 195
+        },
+        {
+            "tag_name": "vooraan",
+            "offense_id": 195
+        },
+        {
+            "tag_name": "31.1.1.2",
+            "offense_id": 196
+        },
+        {
+            "tag_name": "lichten",
+            "offense_id": 196
+        },
+        {
+            "tag_name": "lampen",
+            "offense_id": 196
+        },
+        {
+            "tag_name": "stilstaan",
+            "offense_id": 196
+        },
+        {
+            "tag_name": "parkeren",
+            "offense_id": 196
+        },
+        {
+            "tag_name": "mistlichten",
+            "offense_id": 196
+        },
+        {
+            "tag_name": "achteraan",
+            "offense_id": 196
+        },
+        {
+            "tag_name": "31.1.1.3",
+            "offense_id": 197
+        },
+        {
+            "tag_name": "lichten",
+            "offense_id": 197
+        },
+        {
+            "tag_name": "lampen",
+            "offense_id": 197
+        },
+        {
+            "tag_name": "stilstaan",
+            "offense_id": 197
+        },
+        {
+            "tag_name": "standlicht",
+            "offense_id": 197
+        },
+        {
+            "tag_name": "parkeerlicht",
+            "offense_id": 197
+        },
+        {
+            "tag_name": "bebouwde",
+            "offense_id": 197
+        },
+        {
+            "tag_name": "kom",
+            "offense_id": 197
+        },
+        {
+            "tag_name": "31.1.2",
+            "offense_id": 198
+        },
+        {
+            "tag_name": "lichten",
+            "offense_id": 198
+        },
+        {
+            "tag_name": "lampen",
+            "offense_id": 198
+        },
+        {
+            "tag_name": "weggebruikers",
+            "offense_id": 198
+        },
+        {
+            "tag_name": "32.1",
+            "offense_id": 199
+        },
+        {
+            "tag_name": "zoeklicht",
+            "offense_id": 199
+        },
+        {
+            "tag_name": "zoeklamp",
+            "offense_id": 199
+        },
+        {
+            "tag_name": "projecten",
+            "offense_id": 199
+        },
+        {
+            "tag_name": "achteruitrijlicht",
+            "offense_id": 199
+        },
+        {
+            "tag_name": "verblinden",
+            "offense_id": 199
+        },
+        {
+            "tag_name": "32.2",
+            "offense_id": 200
+        },
+        {
+            "tag_name": "pinkers",
+            "offense_id": 200
+        },
+        {
+            "tag_name": "knipperlichten",
+            "offense_id": 200
+        },
+        {
+            "tag_name": "richtingaanwijzers",
+            "offense_id": 200
+        },
+        {
+            "tag_name": "32.2",
+            "offense_id": 201
+        },
+        {
+            "tag_name": "pinkers",
+            "offense_id": 201
+        },
+        {
+            "tag_name": "knipperlichten",
+            "offense_id": 201
+        },
+        {
+            "tag_name": "richtingaanwijzers",
+            "offense_id": 201
+        },
+        {
+            "tag_name": "depannage",
+            "offense_id": 201
+        },
+        {
+            "tag_name": "depanneur",
+            "offense_id": 201
+        },
+        {
+            "tag_name": "",
+            "offense_id": 201
+        },
+        {
+            "tag_name": "32.2",
+            "offense_id": 202
+        },
+        {
+            "tag_name": "lichten",
+            "offense_id": 202
+        },
+        {
+            "tag_name": "lampen",
+            "offense_id": 202
+        },
+        {
+            "tag_name": "tractor",
+            "offense_id": 202
+        },
+        {
+            "tag_name": "32bis",
+            "offense_id": 203
+        },
+        {
+            "tag_name": "pinkers",
+            "offense_id": 203
+        },
+        {
+            "tag_name": "knipperlichten",
+            "offense_id": 203
+        },
+        {
+            "tag_name": "richtingaanwijzers",
+            "offense_id": 203
+        },
+        {
+            "tag_name": "33.1",
+            "offense_id": 204
+        },
+        {
+            "tag_name": "claxon",
+            "offense_id": 204
+        },
+        {
+            "tag_name": "toeter",
+            "offense_id": 204
+        },
+        {
+            "tag_name": "geluid",
+            "offense_id": 204
+        },
+        {
+            "tag_name": "33.2",
+            "offense_id": 205
+        },
+        {
+            "tag_name": "gebruik",
+            "offense_id": 205
+        },
+        {
+            "tag_name": "claxon",
+            "offense_id": 205
+        },
+        {
+            "tag_name": "toeter",
+            "offense_id": 205
+        },
+        {
+            "tag_name": "toeteren",
+            "offense_id": 205
+        },
+        {
+            "tag_name": "claxonneren",
+            "offense_id": 205
+        },
+        {
+            "tag_name": "33.3",
+            "offense_id": 206
+        },
+        {
+            "tag_name": "gebruik",
+            "offense_id": 206
+        },
+        {
+            "tag_name": "claxon",
+            "offense_id": 206
+        },
+        {
+            "tag_name": "toeter",
+            "offense_id": 206
+        },
+        {
+            "tag_name": "toeteren",
+            "offense_id": 206
+        },
+        {
+            "tag_name": "claxonneren",
+            "offense_id": 206
+        },
+        {
+            "tag_name": "avond",
+            "offense_id": 206
+        },
+        {
+            "tag_name": "nacht",
+            "offense_id": 206
+        },
+        {
+            "tag_name": "34",
+            "offense_id": 207
+        },
+        {
+            "tag_name": "spiegels",
+            "offense_id": 207
+        },
+        {
+            "tag_name": "35.1.1",
+            "offense_id": 208
+        },
+        {
+            "tag_name": "gordel",
+            "offense_id": 208
+        },
+        {
+            "tag_name": "centuur",
+            "offense_id": 208
+        },
+        {
+            "tag_name": "ceintuur",
+            "offense_id": 208
+        },
+        {
+            "tag_name": "35.1.1",
+            "offense_id": 209
+        },
+        {
+            "tag_name": "kinderstoel",
+            "offense_id": 209
+        },
+        {
+            "tag_name": "babystoel",
+            "offense_id": 209
+        },
+        {
+            "tag_name": "relax",
+            "offense_id": 209
+        },
+        {
+            "tag_name": "",
+            "offense_id": 209
+        },
+        {
+            "tag_name": "35.1.1",
+            "offense_id": 210
+        },
+        {
+            "tag_name": "plaatsen",
+            "offense_id": 210
+        },
+        {
+            "tag_name": "zonder",
+            "offense_id": 210
+        },
+        {
+            "tag_name": "gordel",
+            "offense_id": 210
+        },
+        {
+            "tag_name": "kind",
+            "offense_id": 210
+        },
+        {
+            "tag_name": "kinderen",
+            "offense_id": 210
+        },
+        {
+            "tag_name": "baby",
+            "offense_id": 210
+        },
+        {
+            "tag_name": "35.1.1",
+            "offense_id": 211
+        },
+        {
+            "tag_name": "kinderstoel",
+            "offense_id": 211
+        },
+        {
+            "tag_name": "babystoel",
+            "offense_id": 211
+        },
+        {
+            "tag_name": "relax",
+            "offense_id": 211
+        },
+        {
+            "tag_name": "taxi",
+            "offense_id": 211
+        },
+        {
+            "tag_name": "35.1.1",
+            "offense_id": 212
+        },
+        {
+            "tag_name": "babystoel",
+            "offense_id": 212
+        },
+        {
+            "tag_name": "kinderstoel",
+            "offense_id": 212
+        },
+        {
+            "tag_name": "airbag",
+            "offense_id": 212
+        },
+        {
+            "tag_name": "35.1.1",
+            "offense_id": 213
+        },
+        {
+            "tag_name": "gordel",
+            "offense_id": 213
+        },
+        {
+            "tag_name": "ceintuur",
+            "offense_id": 213
+        },
+        {
+            "tag_name": "centuur",
+            "offense_id": 213
+        },
+        {
+            "tag_name": "ander",
+            "offense_id": 213
+        },
+        {
+            "tag_name": "35.1.1",
+            "offense_id": 214
+        },
+        {
+            "tag_name": "gordel",
+            "offense_id": 214
+        },
+        {
+            "tag_name": "ceintuur",
+            "offense_id": 214
+        },
+        {
+            "tag_name": "centuur",
+            "offense_id": 214
+        },
+        {
+            "tag_name": "baby",
+            "offense_id": 214
+        },
+        {
+            "tag_name": "kleuter",
+            "offense_id": 214
+        },
+        {
+            "tag_name": "peuter",
+            "offense_id": 214
+        },
+        {
+            "tag_name": "35.1.1",
+            "offense_id": 215
+        },
+        {
+            "tag_name": "kinderen",
+            "offense_id": 215
+        },
+        {
+            "tag_name": "kleuter",
+            "offense_id": 215
+        },
+        {
+            "tag_name": "brommer",
+            "offense_id": 215
+        },
+        {
+            "tag_name": "scooter",
+            "offense_id": 215
+        },
+        {
+            "tag_name": "moto",
+            "offense_id": 215
+        },
+        {
+            "tag_name": "",
+            "offense_id": 215
+        },
+        {
+            "tag_name": "35.1.1",
+            "offense_id": 216
+        },
+        {
+            "tag_name": "kinderen",
+            "offense_id": 216
+        },
+        {
+            "tag_name": "baby",
+            "offense_id": 216
+        },
+        {
+            "tag_name": "babies",
+            "offense_id": 216
+        },
+        {
+            "tag_name": "kleuter",
+            "offense_id": 216
+        },
+        {
+            "tag_name": "peuter",
+            "offense_id": 216
+        },
+        {
+            "tag_name": "brommer",
+            "offense_id": 216
+        },
+        {
+            "tag_name": "scooter",
+            "offense_id": 216
+        },
+        {
+            "tag_name": "moto",
+            "offense_id": 216
+        },
+        {
+            "tag_name": "",
+            "offense_id": 216
+        },
+        {
+            "tag_name": "35.1.1",
+            "offense_id": 217
+        },
+        {
+            "tag_name": "kinderen",
+            "offense_id": 217
+        },
+        {
+            "tag_name": "baby",
+            "offense_id": 217
+        },
+        {
+            "tag_name": "babies",
+            "offense_id": 217
+        },
+        {
+            "tag_name": "kleuter",
+            "offense_id": 217
+        },
+        {
+            "tag_name": "peuter",
+            "offense_id": 217
+        },
+        {
+            "tag_name": "brommer",
+            "offense_id": 217
+        },
+        {
+            "tag_name": "scooter",
+            "offense_id": 217
+        },
+        {
+            "tag_name": "moto",
+            "offense_id": 217
+        },
+        {
+            "tag_name": "zijspan",
+            "offense_id": 217
+        },
+        {
+            "tag_name": "sidecar",
+            "offense_id": 217
+        },
+        {
+            "tag_name": "35.1.2",
+            "offense_id": 218
+        },
+        {
+            "tag_name": "kinderen",
+            "offense_id": 218
+        },
+        {
+            "tag_name": "baby",
+            "offense_id": 218
+        },
+        {
+            "tag_name": "babies",
+            "offense_id": 218
+        },
+        {
+            "tag_name": "kleuter",
+            "offense_id": 218
+        },
+        {
+            "tag_name": "peuter",
+            "offense_id": 218
+        },
+        {
+            "tag_name": "camion",
+            "offense_id": 218
+        },
+        {
+            "tag_name": "bus",
+            "offense_id": 218
+        },
+        {
+            "tag_name": "autobus",
+            "offense_id": 218
+        },
+        {
+            "tag_name": "35.1.2",
+            "offense_id": 219
+        },
+        {
+            "tag_name": "kinderen",
+            "offense_id": 219
+        },
+        {
+            "tag_name": "baby",
+            "offense_id": 219
+        },
+        {
+            "tag_name": "babies",
+            "offense_id": 219
+        },
+        {
+            "tag_name": "kleuter",
+            "offense_id": 219
+        },
+        {
+            "tag_name": "peuter",
+            "offense_id": 219
+        },
+        {
+            "tag_name": "camion",
+            "offense_id": 219
+        },
+        {
+            "tag_name": "bus",
+            "offense_id": 219
+        },
+        {
+            "tag_name": "autobus",
+            "offense_id": 219
+        },
+        {
+            "tag_name": "korte",
+            "offense_id": 219
+        },
+        {
+            "tag_name": "rit",
+            "offense_id": 219
+        },
+        {
+            "tag_name": "35.1.3",
+            "offense_id": 220
+        },
+        {
+            "tag_name": "gebruik",
+            "offense_id": 220
+        },
+        {
+            "tag_name": "kinderzitje",
+            "offense_id": 220
+        },
+        {
+            "tag_name": "kinderstoel",
+            "offense_id": 220
+        },
+        {
+            "tag_name": "babyzit",
+            "offense_id": 220
+        },
+        {
+            "tag_name": "babystoel",
+            "offense_id": 220
+        },
+        {
+            "tag_name": "35.1.3",
+            "offense_id": 221
+        },
+        {
+            "tag_name": "gordel",
+            "offense_id": 221
+        },
+        {
+            "tag_name": "ceintuur",
+            "offense_id": 221
+        },
+        {
+            "tag_name": "centuur",
+            "offense_id": 221
+        },
+        {
+            "tag_name": "35.2.2",
+            "offense_id": 222
+        },
+        {
+            "tag_name": "toelating",
+            "offense_id": 222
+        },
+        {
+            "tag_name": "gordel",
+            "offense_id": 222
+        },
+        {
+            "tag_name": "centuur",
+            "offense_id": 222
+        },
+        {
+            "tag_name": "ceintuur",
+            "offense_id": 222
+        },
+        {
+            "tag_name": "ziekte",
+            "offense_id": 222
+        },
+        {
+            "tag_name": "36",
+            "offense_id": 223
+        },
+        {
+            "tag_name": "helm",
+            "offense_id": 223
+        },
+        {
+            "tag_name": "brommer",
+            "offense_id": 223
+        },
+        {
+            "tag_name": "scooter",
+            "offense_id": 223
+        },
+        {
+            "tag_name": "driewieler",
+            "offense_id": 223
+        },
+        {
+            "tag_name": "36",
+            "offense_id": 224
+        },
+        {
+            "tag_name": "helm",
+            "offense_id": 224
+        },
+        {
+            "tag_name": "moto",
+            "offense_id": 224
+        },
+        {
+            "tag_name": "motor",
+            "offense_id": 224
+        },
+        {
+            "tag_name": "driewieler",
+            "offense_id": 224
+        },
+        {
+            "tag_name": "36",
+            "offense_id": 225
+        },
+        {
+            "tag_name": "helm",
+            "offense_id": 225
+        },
+        {
+            "tag_name": "gehomologeerd",
+            "offense_id": 225
+        },
+        {
+            "tag_name": "goedgekeurd",
+            "offense_id": 225
+        },
+        {
+            "tag_name": "36",
+            "offense_id": 226
+        },
+        {
+            "tag_name": "moto",
+            "offense_id": 226
+        },
+        {
+            "tag_name": "motor",
+            "offense_id": 226
+        },
+        {
+            "tag_name": "handschoenen",
+            "offense_id": 226
+        },
+        {
+            "tag_name": "motokleren",
+            "offense_id": 226
+        },
+        {
+            "tag_name": "motokledij",
+            "offense_id": 226
+        },
+        {
+            "tag_name": "motokleding",
+            "offense_id": 226
+        },
+        {
+            "tag_name": "motorkleren",
+            "offense_id": 226
+        },
+        {
+            "tag_name": "motorkledij",
+            "offense_id": 226
+        },
+        {
+            "tag_name": "motorkleren",
+            "offense_id": 226
+        },
+        {
+            "tag_name": "botten",
+            "offense_id": 226
+        },
+        {
+            "tag_name": "bottinen",
+            "offense_id": 226
+        },
+        {
+            "tag_name": "motolaarzen",
+            "offense_id": 226
+        },
+        {
+            "tag_name": "motorlaarzen",
+            "offense_id": 226
+        },
+        {
+            "tag_name": "37.1",
+            "offense_id": 227
+        },
+        {
+            "tag_name": "zwaailichten",
+            "offense_id": 227
+        },
+        {
+            "tag_name": "sirene",
+            "offense_id": 227
+        },
+        {
+            "tag_name": "politie",
+            "offense_id": 227
+        },
+        {
+            "tag_name": "combi",
+            "offense_id": 227
+        },
+        {
+            "tag_name": "ambulance",
+            "offense_id": 227
+        },
+        {
+            "tag_name": "ziekenwagen",
+            "offense_id": 227
+        },
+        {
+            "tag_name": "brandweer",
+            "offense_id": 227
+        },
+        {
+            "tag_name": "pompier",
+            "offense_id": 227
+        },
+        {
+            "tag_name": "37.2",
+            "offense_id": 228
+        },
+        {
+            "tag_name": "zwaailichten",
+            "offense_id": 228
+        },
+        {
+            "tag_name": "sirene",
+            "offense_id": 228
+        },
+        {
+            "tag_name": "politie",
+            "offense_id": 228
+        },
+        {
+            "tag_name": "combi",
+            "offense_id": 228
+        },
+        {
+            "tag_name": "ambulance",
+            "offense_id": 228
+        },
+        {
+            "tag_name": "ziekenwagen",
+            "offense_id": 228
+        },
+        {
+            "tag_name": "brandweer",
+            "offense_id": 228
+        },
+        {
+            "tag_name": "pompier",
+            "offense_id": 228
+        },
+        {
+            "tag_name": "37.3",
+            "offense_id": 229
+        },
+        {
+            "tag_name": "sirene",
+            "offense_id": 229
+        },
+        {
+            "tag_name": "politie",
+            "offense_id": 229
+        },
+        {
+            "tag_name": "combi",
+            "offense_id": 229
+        },
+        {
+            "tag_name": "ambulance",
+            "offense_id": 229
+        },
+        {
+            "tag_name": "ziekenwagen",
+            "offense_id": 229
+        },
+        {
+            "tag_name": "brandweer",
+            "offense_id": 229
+        },
+        {
+            "tag_name": "pompier",
+            "offense_id": 229
+        },
+        {
+            "tag_name": "37.4",
+            "offense_id": 230
+        },
+        {
+            "tag_name": "voorrang",
+            "offense_id": 230
+        },
+        {
+            "tag_name": "rood",
+            "offense_id": 230
+        },
+        {
+            "tag_name": "licht",
+            "offense_id": 230
+        },
+        {
+            "tag_name": "sirene",
+            "offense_id": 230
+        },
+        {
+            "tag_name": "politie",
+            "offense_id": 230
+        },
+        {
+            "tag_name": "combi",
+            "offense_id": 230
+        },
+        {
+            "tag_name": "ambulance",
+            "offense_id": 230
+        },
+        {
+            "tag_name": "ziekenwagen",
+            "offense_id": 230
+        },
+        {
+            "tag_name": "brandweer",
+            "offense_id": 230
+        },
+        {
+            "tag_name": "pompier",
+            "offense_id": 230
+        },
+        {
+            "tag_name": "39",
+            "offense_id": 231
+        },
+        {
+            "tag_name": "voorrang",
+            "offense_id": 231
+        },
+        {
+            "tag_name": "bus",
+            "offense_id": 231
+        },
+        {
+            "tag_name": "bushalte",
+            "offense_id": 231
+        },
+        {
+            "tag_name": "tramhalte",
+            "offense_id": 231
+        },
+        {
+            "tag_name": "pinker",
+            "offense_id": 231
+        },
+        {
+            "tag_name": "39bis",
+            "offense_id": 232
+        },
+        {
+            "tag_name": "schoolbus",
+            "offense_id": 232
+        },
+        {
+            "tag_name": "",
+            "offense_id": 232
+        },
+        {
+            "tag_name": "40.1",
+            "offense_id": 233
+        },
+        {
+            "tag_name": "voetgangers",
+            "offense_id": 233
+        },
+        {
+            "tag_name": "trottoir",
+            "offense_id": 233
+        },
+        {
+            "tag_name": "stoep",
+            "offense_id": 233
+        },
+        {
+            "tag_name": "voetpad",
+            "offense_id": 233
+        },
+        {
+            "tag_name": "voorrang",
+            "offense_id": 233
+        },
+        {
+            "tag_name": "gevaarlijk",
+            "offense_id": 233
+        },
+        {
+            "tag_name": "40.2",
+            "offense_id": 234
+        },
+        {
+            "tag_name": "kinderen",
+            "offense_id": 234
+        },
+        {
+            "tag_name": "ouderen",
+            "offense_id": 234
+        },
+        {
+            "tag_name": "gehandicapten",
+            "offense_id": 234
+        },
+        {
+            "tag_name": "mindervaliden",
+            "offense_id": 234
+        },
+        {
+            "tag_name": "invaliden",
+            "offense_id": 234
+        },
+        {
+            "tag_name": "40.3.1",
+            "offense_id": 235
+        },
+        {
+            "tag_name": "autobus",
+            "offense_id": 235
+        },
+        {
+            "tag_name": "bus",
+            "offense_id": 235
+        },
+        {
+            "tag_name": "reisbus",
+            "offense_id": 235
+        },
+        {
+            "tag_name": "uitstappen",
+            "offense_id": 235
+        },
+        {
+            "tag_name": "halte",
+            "offense_id": 235
+        },
+        {
+            "tag_name": "gestopt",
+            "offense_id": 235
+        },
+        {
+            "tag_name": "40.3.2",
+            "offense_id": 236
+        },
+        {
+            "tag_name": "tramhalte",
+            "offense_id": 236
+        },
+        {
+            "tag_name": "bushalte",
+            "offense_id": 236
+        },
+        {
+            "tag_name": "afstappen",
+            "offense_id": 236
+        },
+        {
+            "tag_name": "instappen",
+            "offense_id": 236
+        },
+        {
+            "tag_name": "opstappen",
+            "offense_id": 236
+        },
+        {
+            "tag_name": "passagiers",
+            "offense_id": 236
+        },
+        {
+            "tag_name": "reizigers",
+            "offense_id": 236
+        },
+        {
+            "tag_name": "40.4.1",
+            "offense_id": 237
+        },
+        {
+            "tag_name": "voetgangerslicht",
+            "offense_id": 237
+        },
+        {
+            "tag_name": "zebrapad",
+            "offense_id": 237
+        },
+        {
+            "tag_name": "rood",
+            "offense_id": 237
+        },
+        {
+            "tag_name": "groen",
+            "offense_id": 237
+        },
+        {
+            "tag_name": "40.4.2",
+            "offense_id": 238
+        },
+        {
+            "tag_name": "zebrapad",
+            "offense_id": 238
+        },
+        {
+            "tag_name": "zonder",
+            "offense_id": 238
+        },
+        {
+            "tag_name": "verkeerslichten",
+            "offense_id": 238
+        },
+        {
+            "tag_name": "lichten",
+            "offense_id": 238
+        },
+        {
+            "tag_name": "voorrang",
+            "offense_id": 238
+        },
+        {
+            "tag_name": "40.5",
+            "offense_id": 239
+        },
+        {
+            "tag_name": "stilstand",
+            "offense_id": 239
+        },
+        {
+            "tag_name": "parking",
+            "offense_id": 239
+        },
+        {
+            "tag_name": "zebrapad",
+            "offense_id": 239
+        },
+        {
+            "tag_name": "40.6",
+            "offense_id": 240
+        },
+        {
+            "tag_name": "voetgangers",
+            "offense_id": 240
+        },
+        {
+            "tag_name": "op",
+            "offense_id": 240
+        },
+        {
+            "tag_name": "baan",
+            "offense_id": 240
+        },
+        {
+            "tag_name": "vrije",
+            "offense_id": 240
+        },
+        {
+            "tag_name": "ruimte",
+            "offense_id": 240
+        },
+        {
+            "tag_name": "40.7",
+            "offense_id": 241
+        },
+        {
+            "tag_name": "voetgangers",
+            "offense_id": 241
+        },
+        {
+            "tag_name": "op",
+            "offense_id": 241
+        },
+        {
+            "tag_name": "baan",
+            "offense_id": 241
+        },
+        {
+            "tag_name": "vrije",
+            "offense_id": 241
+        },
+        {
+            "tag_name": "ruimte",
+            "offense_id": 241
+        },
+        {
+            "tag_name": "40bis",
+            "offense_id": 242
+        },
+        {
+            "tag_name": "schoolgroep",
+            "offense_id": 242
+        },
+        {
+            "tag_name": "klas",
+            "offense_id": 242
+        },
+        {
+            "tag_name": "kinderen",
+            "offense_id": 242
+        },
+        {
+            "tag_name": "leerlingen",
+            "offense_id": 242
+        },
+        {
+            "tag_name": "rij",
+            "offense_id": 242
+        },
+        {
+            "tag_name": "40bis",
+            "offense_id": 243
+        },
+        {
+            "tag_name": "schoolgroep",
+            "offense_id": 243
+        },
+        {
+            "tag_name": "klas",
+            "offense_id": 243
+        },
+        {
+            "tag_name": "kinderen",
+            "offense_id": 243
+        },
+        {
+            "tag_name": "leerlingen",
+            "offense_id": 243
+        },
+        {
+            "tag_name": "rij",
+            "offense_id": 243
+        },
+        {
+            "tag_name": "begeleider",
+            "offense_id": 243
+        },
+        {
+            "tag_name": "40ter",
+            "offense_id": 244
+        },
+        {
+            "tag_name": "afstand",
+            "offense_id": 244
+        },
+        {
+            "tag_name": "fietsen",
+            "offense_id": 244
+        },
+        {
+            "tag_name": "brommer",
+            "offense_id": 244
+        },
+        {
+            "tag_name": "scooter",
+            "offense_id": 244
+        },
+        {
+            "tag_name": "",
+            "offense_id": 244
+        },
+        {
+            "tag_name": "41.1.1",
+            "offense_id": 245
+        },
+        {
+            "tag_name": "breken",
+            "offense_id": 245
+        },
+        {
+            "tag_name": "doorrijden",
+            "offense_id": 245
+        },
+        {
+            "tag_name": "kolonne",
+            "offense_id": 245
+        },
+        {
+            "tag_name": "leger",
+            "offense_id": 245
+        },
+        {
+            "tag_name": "militair",
+            "offense_id": 245
+        },
+        {
+            "tag_name": "41.1.2",
+            "offense_id": 246
+        },
+        {
+            "tag_name": "breken",
+            "offense_id": 246
+        },
+        {
+            "tag_name": "doorrijden",
+            "offense_id": 246
+        },
+        {
+            "tag_name": "optocht",
+            "offense_id": 246
+        },
+        {
+            "tag_name": "mars",
+            "offense_id": 246
+        },
+        {
+            "tag_name": "wandelgroep",
+            "offense_id": 246
+        },
+        {
+            "tag_name": "41.1.3",
+            "offense_id": 247
+        },
+        {
+            "tag_name": "breken",
+            "offense_id": 247
+        },
+        {
+            "tag_name": "koers",
+            "offense_id": 247
+        },
+        {
+            "tag_name": "41.2",
+            "offense_id": 248
+        },
+        {
+            "tag_name": "renners",
+            "offense_id": 248
+        },
+        {
+            "tag_name": "wielerwedstrijd",
+            "offense_id": 248
+        },
+        {
+            "tag_name": "voorrang",
+            "offense_id": 248
+        },
+        {
+            "tag_name": "41.3.1.1",
+            "offense_id": 249
+        },
+        {
+            "tag_name": "gemachtigde",
+            "offense_id": 249
+        },
+        {
+            "tag_name": "toezichter",
+            "offense_id": 249
+        },
+        {
+            "tag_name": "opzichter",
+            "offense_id": 249
+        },
+        {
+            "tag_name": "militair",
+            "offense_id": 249
+        },
+        {
+            "tag_name": "leger",
+            "offense_id": 249
+        },
+        {
+            "tag_name": "41.3.1.2",
+            "offense_id": 250
+        },
+        {
+            "tag_name": "gemachtigde",
+            "offense_id": 250
+        },
+        {
+            "tag_name": "toezichter",
+            "offense_id": 250
+        },
+        {
+            "tag_name": "opzichter",
+            "offense_id": 250
+        },
+        {
+            "tag_name": "sportwedstrijd",
+            "offense_id": 250
+        },
+        {
+            "tag_name": "tocht",
+            "offense_id": 250
+        },
+        {
+            "tag_name": "koers",
+            "offense_id": 250
+        },
+        {
+            "tag_name": "41.1.3.2",
+            "offense_id": 251
+        },
+        {
+            "tag_name": "gemachtigde",
+            "offense_id": 251
+        },
+        {
+            "tag_name": "toezichter",
+            "offense_id": 251
+        },
+        {
+            "tag_name": "opzichter",
+            "offense_id": 251
+        },
+        {
+            "tag_name": "wielertoeristen",
+            "offense_id": 251
+        },
+        {
+            "tag_name": "fietstocht",
+            "offense_id": 251
+        },
+        {
+            "tag_name": "moto",
+            "offense_id": 251
+        },
+        {
+            "tag_name": "motard",
+            "offense_id": 251
+        },
+        {
+            "tag_name": "41.1.3.2",
+            "offense_id": 252
+        },
+        {
+            "tag_name": "gemachtigde",
+            "offense_id": 252
+        },
+        {
+            "tag_name": "toezichter",
+            "offense_id": 252
+        },
+        {
+            "tag_name": "opzichter",
+            "offense_id": 252
+        },
+        {
+            "tag_name": "wandeltocht",
+            "offense_id": 252
+        },
+        {
+            "tag_name": "paarden",
+            "offense_id": 252
+        },
+        {
+            "tag_name": "stoet",
+            "offense_id": 252
+        },
+        {
+            "tag_name": "optocht",
+            "offense_id": 252
+        },
+        {
+            "tag_name": "41.1.3.2",
+            "offense_id": 253
+        },
+        {
+            "tag_name": "gemachtigde",
+            "offense_id": 253
+        },
+        {
+            "tag_name": "toezichter",
+            "offense_id": 253
+        },
+        {
+            "tag_name": "opzichter",
+            "offense_id": 253
+        },
+        {
+            "tag_name": "wegenwerken",
+            "offense_id": 253
+        },
+        {
+            "tag_name": "41.1.3.2",
+            "offense_id": 254
+        },
+        {
+            "tag_name": "gemachtigde",
+            "offense_id": 254
+        },
+        {
+            "tag_name": "toezichter",
+            "offense_id": 254
+        },
+        {
+            "tag_name": "opzichter",
+            "offense_id": 254
+        },
+        {
+            "tag_name": "uitzonderlijk",
+            "offense_id": 254
+        },
+        {
+            "tag_name": "vervoer",
+            "offense_id": 254
+        },
+        {
+            "tag_name": "42.1",
+            "offense_id": 255
+        },
+        {
+            "tag_name": "voetgangers",
+            "offense_id": 255
+        },
+        {
+            "tag_name": "trottoir",
+            "offense_id": 255
+        },
+        {
+            "tag_name": "stoep",
+            "offense_id": 255
+        },
+        {
+            "tag_name": "voetpad",
+            "offense_id": 255
+        },
+        {
+            "tag_name": "berm",
+            "offense_id": 255
+        },
+        {
+            "tag_name": "verharde",
+            "offense_id": 255
+        },
+        {
+            "tag_name": "weg",
+            "offense_id": 255
+        },
+        {
+            "tag_name": "42.2.1",
+            "offense_id": 256
+        },
+        {
+            "tag_name": "fiets",
+            "offense_id": 256
+        },
+        {
+            "tag_name": "brommer",
+            "offense_id": 256
+        },
+        {
+            "tag_name": "scooter",
+            "offense_id": 256
+        },
+        {
+            "tag_name": "segway",
+            "offense_id": 256
+        },
+        {
+            "tag_name": "hand",
+            "offense_id": 256
+        },
+        {
+            "tag_name": "42.2.2",
+            "offense_id": 257
+        },
+        {
+            "tag_name": "voetganger",
+            "offense_id": 257
+        },
+        {
+            "tag_name": "zonder",
+            "offense_id": 257
+        },
+        {
+            "tag_name": "voetpad",
+            "offense_id": 257
+        },
+        {
+            "tag_name": "stoep",
+            "offense_id": 257
+        },
+        {
+            "tag_name": "42.2.2.1",
+            "offense_id": 258
+        },
+        {
+            "tag_name": "voetgangers",
+            "offense_id": 258
+        },
+        {
+            "tag_name": "voorrang",
+            "offense_id": 258
+        },
+        {
+            "tag_name": "fiets",
+            "offense_id": 258
+        },
+        {
+            "tag_name": "brommer",
+            "offense_id": 258
+        },
+        {
+            "tag_name": "scooter",
+            "offense_id": 258
+        },
+        {
+            "tag_name": "42.2.2.2",
+            "offense_id": 259
+        },
+        {
+            "tag_name": "voetganger",
+            "offense_id": 259
+        },
+        {
+            "tag_name": "links",
+            "offense_id": 259
+        },
+        {
+            "tag_name": "rijbaan",
+            "offense_id": 259
+        },
+        {
+            "tag_name": "",
+            "offense_id": 259
+        },
+        {
+            "tag_name": "42.3",
+            "offense_id": 260
+        },
+        {
+            "tag_name": "groep",
+            "offense_id": 260
+        },
+        {
+            "tag_name": "wandelaars",
+            "offense_id": 260
+        },
+        {
+            "tag_name": "rechts",
+            "offense_id": 260
+        },
+        {
+            "tag_name": "42.4.1",
+            "offense_id": 261
+        },
+        {
+            "tag_name": "oversteken",
+            "offense_id": 261
+        },
+        {
+            "tag_name": "zonder",
+            "offense_id": 261
+        },
+        {
+            "tag_name": "zebrapad",
+            "offense_id": 261
+        },
+        {
+            "tag_name": "42.4.2",
+            "offense_id": 262
+        },
+        {
+            "tag_name": "oversteken",
+            "offense_id": 262
+        },
+        {
+            "tag_name": "voetganger",
+            "offense_id": 262
+        },
+        {
+            "tag_name": "zebrapad",
+            "offense_id": 262
+        },
+        {
+            "tag_name": "verkeerslicht",
+            "offense_id": 262
+        },
+        {
+            "tag_name": "42.4.3",
+            "offense_id": 263
+        },
+        {
+            "tag_name": "voetgangers",
+            "offense_id": 263
+        },
+        {
+            "tag_name": "oversteken",
+            "offense_id": 263
+        },
+        {
+            "tag_name": "verkeerslicht",
+            "offense_id": 263
+        },
+        {
+            "tag_name": "politieagent",
+            "offense_id": 263
+        },
+        {
+            "tag_name": "42.4.4",
+            "offense_id": 264
+        },
+        {
+            "tag_name": "oversteken",
+            "offense_id": 264
+        },
+        {
+            "tag_name": "zonder",
+            "offense_id": 264
+        },
+        {
+            "tag_name": "zebrapad",
+            "offense_id": 264
+        },
+        {
+            "tag_name": "voorrang",
+            "offense_id": 264
+        },
+        {
+            "tag_name": "42.4.6",
+            "offense_id": 265
+        },
+        {
+            "tag_name": "oversteken",
+            "offense_id": 265
+        },
+        {
+            "tag_name": "voetganger",
+            "offense_id": 265
+        },
+        {
+            "tag_name": "tram",
+            "offense_id": 265
+        },
+        {
+            "tag_name": "verkeerslicht",
+            "offense_id": 265
+        },
+        {
+            "tag_name": "43.1.1",
+            "offense_id": 266
+        },
+        {
+            "tag_name": "handen",
+            "offense_id": 266
+        },
+        {
+            "tag_name": "aan",
+            "offense_id": 266
+        },
+        {
+            "tag_name": "het",
+            "offense_id": 266
+        },
+        {
+            "tag_name": "stuur",
+            "offense_id": 266
+        },
+        {
+            "tag_name": "43.1.2",
+            "offense_id": 267
+        },
+        {
+            "tag_name": "voeten",
+            "offense_id": 267
+        },
+        {
+            "tag_name": "in",
+            "offense_id": 267
+        },
+        {
+            "tag_name": "pedalen",
+            "offense_id": 267
+        },
+        {
+            "tag_name": "brommer",
+            "offense_id": 267
+        },
+        {
+            "tag_name": "scooter",
+            "offense_id": 267
+        },
+        {
+            "tag_name": "fiets",
+            "offense_id": 267
+        },
+        {
+            "tag_name": "43.1.3",
+            "offense_id": 268
+        },
+        {
+            "tag_name": "slepen",
+            "offense_id": 268
+        },
+        {
+            "tag_name": "voorttrekken",
+            "offense_id": 268
+        },
+        {
+            "tag_name": "brommer",
+            "offense_id": 268
+        },
+        {
+            "tag_name": "scooter",
+            "offense_id": 268
+        },
+        {
+            "tag_name": "fiets",
+            "offense_id": 268
+        },
+        {
+            "tag_name": "43.1.4",
+            "offense_id": 269
+        },
+        {
+            "tag_name": "huisdier",
+            "offense_id": 269
+        },
+        {
+            "tag_name": "hond",
+            "offense_id": 269
+        },
+        {
+            "tag_name": "fiets",
+            "offense_id": 269
+        },
+        {
+            "tag_name": "brommer",
+            "offense_id": 269
+        },
+        {
+            "tag_name": "scooter",
+            "offense_id": 269
+        },
+        {
+            "tag_name": "43.2",
+            "offense_id": 270
+        },
+        {
+            "tag_name": "fiets",
+            "offense_id": 270
+        },
+        {
+            "tag_name": "per",
+            "offense_id": 270
+        },
+        {
+            "tag_name": "twee",
+            "offense_id": 270
+        },
+        {
+            "tag_name": "naast",
+            "offense_id": 270
+        },
+        {
+            "tag_name": "een",
+            "offense_id": 270
+        },
+        {
+            "tag_name": "",
+            "offense_id": 270
+        },
+        {
+            "tag_name": "43.2",
+            "offense_id": 271
+        },
+        {
+            "tag_name": "fietsen",
+            "offense_id": 271
+        },
+        {
+            "tag_name": "busstrook",
+            "offense_id": 271
+        },
+        {
+            "tag_name": "tramstrook",
+            "offense_id": 271
+        },
+        {
+            "tag_name": "openbaar",
+            "offense_id": 271
+        },
+        {
+            "tag_name": "vervoer",
+            "offense_id": 271
+        },
+        {
+            "tag_name": "43.2",
+            "offense_id": 272
+        },
+        {
+            "tag_name": "fiets",
+            "offense_id": 272
+        },
+        {
+            "tag_name": "aanhangwagen",
+            "offense_id": 272
+        },
+        {
+            "tag_name": "remorque",
+            "offense_id": 272
+        },
+        {
+            "tag_name": "43.2",
+            "offense_id": 273
+        },
+        {
+            "tag_name": "fiets",
+            "offense_id": 273
+        },
+        {
+            "tag_name": "fietspad",
+            "offense_id": 273
+        },
+        {
+            "tag_name": "hinder",
+            "offense_id": 273
+        },
+        {
+            "tag_name": "43.2",
+            "offense_id": 274
+        },
+        {
+            "tag_name": "bromfiets",
+            "offense_id": 274
+        },
+        {
+            "tag_name": "brommer",
+            "offense_id": 274
+        },
+        {
+            "tag_name": "scooter",
+            "offense_id": 274
+        },
+        {
+            "tag_name": "busstrook",
+            "offense_id": 274
+        },
+        {
+            "tag_name": "tramstrook",
+            "offense_id": 274
+        },
+        {
+            "tag_name": "43.3",
+            "offense_id": 275
+        },
+        {
+            "tag_name": "verplicht",
+            "offense_id": 275
+        },
+        {
+            "tag_name": "zebrapad",
+            "offense_id": 275
+        },
+        {
+            "tag_name": "fietsen",
+            "offense_id": 275
+        },
+        {
+            "tag_name": "brommer",
+            "offense_id": 275
+        },
+        {
+            "tag_name": "43bis",
+            "offense_id": 276
+        },
+        {
+            "tag_name": "wielertoeristen",
+            "offense_id": 276
+        },
+        {
+            "tag_name": "begeleider",
+            "offense_id": 276
+        },
+        {
+            "tag_name": "kapitein",
+            "offense_id": 276
+        },
+        {
+            "tag_name": "43bis",
+            "offense_id": 277
+        },
+        {
+            "tag_name": "wielertoeristen",
+            "offense_id": 277
+        },
+        {
+            "tag_name": "naast",
+            "offense_id": 277
+        },
+        {
+            "tag_name": "elkaar",
+            "offense_id": 277
+        },
+        {
+            "tag_name": "43bis",
+            "offense_id": 278
+        },
+        {
+            "tag_name": "wielertoeristen",
+            "offense_id": 278
+        },
+        {
+            "tag_name": "volgwagen",
+            "offense_id": 278
+        },
+        {
+            "tag_name": "volgauto",
+            "offense_id": 278
+        },
+        {
+            "tag_name": "43bis",
+            "offense_id": 279
+        },
+        {
+            "tag_name": "wielertoeristen",
+            "offense_id": 279
+        },
+        {
+            "tag_name": "naast",
+            "offense_id": 279
+        },
+        {
+            "tag_name": "elkaar",
+            "offense_id": 279
+        },
+        {
+            "tag_name": "43bis",
+            "offense_id": 280
+        },
+        {
+            "tag_name": "wielertoeristen",
+            "offense_id": 280
+        },
+        {
+            "tag_name": "volgwagen",
+            "offense_id": 280
+        },
+        {
+            "tag_name": "volgauto",
+            "offense_id": 280
+        },
+        {
+            "tag_name": "43bis",
+            "offense_id": 281
+        },
+        {
+            "tag_name": "wegkapitein",
+            "offense_id": 281
+        },
+        {
+            "tag_name": "43bis",
+            "offense_id": 282
+        },
+        {
+            "tag_name": "wegkapitein",
+            "offense_id": 282
+        },
+        {
+            "tag_name": "bevoegdheid",
+            "offense_id": 282
+        },
+        {
+            "tag_name": "43bis",
+            "offense_id": 283
+        },
+        {
+            "tag_name": "wielertoeristen",
+            "offense_id": 283
+        },
+        {
+            "tag_name": "rechts",
+            "offense_id": 283
+        },
+        {
+            "tag_name": "opzij",
+            "offense_id": 283
+        },
+        {
+            "tag_name": "43bis",
+            "offense_id": 284
+        },
+        {
+            "tag_name": "wielertoeristen",
+            "offense_id": 284
+        },
+        {
+            "tag_name": "volgauto",
+            "offense_id": 284
+        },
+        {
+            "tag_name": "volgwagen",
+            "offense_id": 284
+        },
+        {
+            "tag_name": "verkeersbord",
+            "offense_id": 284
+        },
+        {
+            "tag_name": "uitrusting",
+            "offense_id": 284
+        },
+        {
+            "tag_name": "43ter",
+            "offense_id": 285
+        },
+        {
+            "tag_name": "groep",
+            "offense_id": 285
+        },
+        {
+            "tag_name": "moto",
+            "offense_id": 285
+        },
+        {
+            "tag_name": "motor",
+            "offense_id": 285
+        },
+        {
+            "tag_name": "naast",
+            "offense_id": 285
+        },
+        {
+            "tag_name": "elkaar",
+            "offense_id": 285
+        },
+        {
+            "tag_name": "43ter",
+            "offense_id": 286
+        },
+        {
+            "tag_name": "groep",
+            "offense_id": 286
+        },
+        {
+            "tag_name": "moto",
+            "offense_id": 286
+        },
+        {
+            "tag_name": "motor",
+            "offense_id": 286
+        },
+        {
+            "tag_name": "wegkapitein",
+            "offense_id": 286
+        },
+        {
+            "tag_name": "43ter",
+            "offense_id": 287
+        },
+        {
+            "tag_name": "groep",
+            "offense_id": 287
+        },
+        {
+            "tag_name": "moto",
+            "offense_id": 287
+        },
+        {
+            "tag_name": "motor",
+            "offense_id": 287
+        },
+        {
+            "tag_name": "wegkapitein",
+            "offense_id": 287
+        },
+        {
+            "tag_name": "fluovest",
+            "offense_id": 287
+        },
+        {
+            "tag_name": "fluohesje",
+            "offense_id": 287
+        },
+        {
+            "tag_name": "43ter",
+            "offense_id": 288
+        },
+        {
+            "tag_name": "groep",
+            "offense_id": 288
+        },
+        {
+            "tag_name": "moto",
+            "offense_id": 288
+        },
+        {
+            "tag_name": "motor",
+            "offense_id": 288
+        },
+        {
+            "tag_name": "wegkapitein",
+            "offense_id": 288
+        },
+        {
+            "tag_name": "stoppen",
+            "offense_id": 288
+        },
+        {
+            "tag_name": "tegenhouden",
+            "offense_id": 288
+        },
+        {
+            "tag_name": "43ter",
+            "offense_id": 289
+        },
+        {
+            "tag_name": "groep",
+            "offense_id": 289
+        },
+        {
+            "tag_name": "moto",
+            "offense_id": 289
+        },
+        {
+            "tag_name": "motor",
+            "offense_id": 289
+        },
+        {
+            "tag_name": "wegkapitein",
+            "offense_id": 289
+        },
+        {
+            "tag_name": "verkeersbord",
+            "offense_id": 289
+        },
+        {
+            "tag_name": "44.1",
+            "offense_id": 290
+        },
+        {
+            "tag_name": "breedte",
+            "offense_id": 290
+        },
+        {
+            "tag_name": "chauffeur",
+            "offense_id": 290
+        },
+        {
+            "tag_name": "bestuurder",
+            "offense_id": 290
+        },
+        {
+            "tag_name": "44.1",
+            "offense_id": 291
+        },
+        {
+            "tag_name": "breedte",
+            "offense_id": 291
+        },
+        {
+            "tag_name": "passagier",
+            "offense_id": 291
+        },
+        {
+            "tag_name": "inzittende",
+            "offense_id": 291
+        },
+        {
+            "tag_name": "44.1",
+            "offense_id": 292
+        },
+        {
+            "tag_name": "passagier",
+            "offense_id": 292
+        },
+        {
+            "tag_name": "inzittende",
+            "offense_id": 292
+        },
+        {
+            "tag_name": "gordel",
+            "offense_id": 292
+        },
+        {
+            "tag_name": "centuur",
+            "offense_id": 292
+        },
+        {
+            "tag_name": "ceintuur",
+            "offense_id": 292
+        },
+        {
+            "tag_name": "44.1",
+            "offense_id": 293
+        },
+        {
+            "tag_name": "passagier",
+            "offense_id": 293
+        },
+        {
+            "tag_name": "inzittende",
+            "offense_id": 293
+        },
+        {
+            "tag_name": "gordel",
+            "offense_id": 293
+        },
+        {
+            "tag_name": "centuur",
+            "offense_id": 293
+        },
+        {
+            "tag_name": "ceintuur",
+            "offense_id": 293
+        },
+        {
+            "tag_name": "kinderzit",
+            "offense_id": 293
+        },
+        {
+            "tag_name": "kinderstoel",
+            "offense_id": 293
+        },
+        {
+            "tag_name": "babyzit",
+            "offense_id": 293
+        },
+        {
+            "tag_name": "babystoel",
+            "offense_id": 293
+        },
+        {
+            "tag_name": "44.1",
+            "offense_id": 294
+        },
+        {
+            "tag_name": "passagier",
+            "offense_id": 294
+        },
+        {
+            "tag_name": "inzittende",
+            "offense_id": 294
+        },
+        {
+            "tag_name": "gordel",
+            "offense_id": 294
+        },
+        {
+            "tag_name": "centuur",
+            "offense_id": 294
+        },
+        {
+            "tag_name": "ceintuur",
+            "offense_id": 294
+        },
+        {
+            "tag_name": "44.1",
+            "offense_id": 295
+        },
+        {
+            "tag_name": "passagier",
+            "offense_id": 295
+        },
+        {
+            "tag_name": "inzittende",
+            "offense_id": 295
+        },
+        {
+            "tag_name": "gordel",
+            "offense_id": 295
+        },
+        {
+            "tag_name": "centuur",
+            "offense_id": 295
+        },
+        {
+            "tag_name": "ceintuur",
+            "offense_id": 295
+        },
+        {
+            "tag_name": "kinderzit",
+            "offense_id": 295
+        },
+        {
+            "tag_name": "kinderstoel",
+            "offense_id": 295
+        },
+        {
+            "tag_name": "babyzit",
+            "offense_id": 295
+        },
+        {
+            "tag_name": "babystoel",
+            "offense_id": 295
+        },
+        {
+            "tag_name": "44.1",
+            "offense_id": 296
+        },
+        {
+            "tag_name": "bus",
+            "offense_id": 296
+        },
+        {
+            "tag_name": "autobus",
+            "offense_id": 296
+        },
+        {
+            "tag_name": "autocar",
+            "offense_id": 296
+        },
+        {
+            "tag_name": "gordel",
+            "offense_id": 296
+        },
+        {
+            "tag_name": "symbool",
+            "offense_id": 296
+        },
+        {
+            "tag_name": "verplicht",
+            "offense_id": 296
+        },
+        {
+            "tag_name": "44.3",
+            "offense_id": 297
+        },
+        {
+            "tag_name": "dak",
+            "offense_id": 297
+        },
+        {
+            "tag_name": "koffer",
+            "offense_id": 297
+        },
+        {
+            "tag_name": "motorkap",
+            "offense_id": 297
+        },
+        {
+            "tag_name": "zitten",
+            "offense_id": 297
+        },
+        {
+            "tag_name": "liggen",
+            "offense_id": 297
+        },
+        {
+            "tag_name": "44.4",
+            "offense_id": 298
+        },
+        {
+            "tag_name": "aantal",
+            "offense_id": 298
+        },
+        {
+            "tag_name": "personen",
+            "offense_id": 298
+        },
+        {
+            "tag_name": "fiets",
+            "offense_id": 298
+        },
+        {
+            "tag_name": "brommer",
+            "offense_id": 298
+        },
+        {
+            "tag_name": "scooter",
+            "offense_id": 298
+        },
+        {
+            "tag_name": "moto",
+            "offense_id": 298
+        },
+        {
+            "tag_name": "motor",
+            "offense_id": 298
+        },
+        {
+            "tag_name": "44.5",
+            "offense_id": 299
+        },
+        {
+            "tag_name": "amazonezit",
+            "offense_id": 299
+        },
+        {
+            "tag_name": "fiets",
+            "offense_id": 299
+        },
+        {
+            "tag_name": "brommer",
+            "offense_id": 299
+        },
+        {
+            "tag_name": "scooter",
+            "offense_id": 299
+        },
+        {
+            "tag_name": "moto",
+            "offense_id": 299
+        },
+        {
+            "tag_name": "verboden",
+            "offense_id": 299
+        },
+        {
+            "tag_name": "benen",
+            "offense_id": 299
+        },
+        {
+            "tag_name": "gekruist",
+            "offense_id": 299
+        },
+        {
+            "tag_name": "45.1.1",
+            "offense_id": 300
+        },
+        {
+            "tag_name": "lading",
+            "offense_id": 300
+        },
+        {
+            "tag_name": "dakkoffer",
+            "offense_id": 300
+        },
+        {
+            "tag_name": "zichtbaarheid",
+            "offense_id": 300
+        },
+        {
+            "tag_name": "45.1.2",
+            "offense_id": 301
+        },
+        {
+            "tag_name": "lading",
+            "offense_id": 301
+        },
+        {
+            "tag_name": "dakkoffer",
+            "offense_id": 301
+        },
+        {
+            "tag_name": "uitstekend",
+            "offense_id": 301
+        },
+        {
+            "tag_name": "gevaar",
+            "offense_id": 301
+        },
+        {
+            "tag_name": "45.1.3",
+            "offense_id": 302
+        },
+        {
+            "tag_name": "lading",
+            "offense_id": 302
+        },
+        {
+            "tag_name": "dakkoffer",
+            "offense_id": 302
+        },
+        {
+            "tag_name": "gewicht",
+            "offense_id": 302
+        },
+        {
+            "tag_name": "schade",
+            "offense_id": 302
+        },
+        {
+            "tag_name": "45.1.4",
+            "offense_id": 303
+        },
+        {
+            "tag_name": "lading",
+            "offense_id": 303
+        },
+        {
+            "tag_name": "loszitten",
+            "offense_id": 303
+        },
+        {
+            "tag_name": "afvallen",
+            "offense_id": 303
+        },
+        {
+            "tag_name": "45.1.5",
+            "offense_id": 304
+        },
+        {
+            "tag_name": "lading",
+            "offense_id": 304
+        },
+        {
+            "tag_name": "stabiel",
+            "offense_id": 304
+        },
+        {
+            "tag_name": "45.1.6",
+            "offense_id": 305
+        },
+        {
+            "tag_name": "lading",
+            "offense_id": 305
+        },
+        {
+            "tag_name": "dakkoffer",
+            "offense_id": 305
+        },
+        {
+            "tag_name": "bagage",
+            "offense_id": 305
+        },
+        {
+            "tag_name": "lichten",
+            "offense_id": 305
+        },
+        {
+            "tag_name": "45.2",
+            "offense_id": 306
+        },
+        {
+            "tag_name": "vervoer",
+            "offense_id": 306
+        },
+        {
+            "tag_name": "lading",
+            "offense_id": 306
+        },
+        {
+            "tag_name": "stro",
+            "offense_id": 306
+        },
+        {
+            "tag_name": "hooi",
+            "offense_id": 306
+        },
+        {
+            "tag_name": "bulk",
+            "offense_id": 306
+        },
+        {
+            "tag_name": "45.3",
+            "offense_id": 307
+        },
+        {
+            "tag_name": "lange",
+            "offense_id": 307
+        },
+        {
+            "tag_name": "lading",
+            "offense_id": 307
+        },
+        {
+            "tag_name": "beveiligen",
+            "offense_id": 307
+        },
+        {
+            "tag_name": "45.4",
+            "offense_id": 308
+        },
+        {
+            "tag_name": "gespen",
+            "offense_id": 308
+        },
+        {
+            "tag_name": "vastmaken",
+            "offense_id": 308
+        },
+        {
+            "tag_name": "lading",
+            "offense_id": 308
+        },
+        {
+            "tag_name": "45.5",
+            "offense_id": 309
+        },
+        {
+            "tag_name": "lading",
+            "offense_id": 309
+        },
+        {
+            "tag_name": "beveiligen",
+            "offense_id": 309
+        },
+        {
+            "tag_name": "hinder",
+            "offense_id": 309
+        },
+        {
+            "tag_name": "45.6",
+            "offense_id": 310
+        },
+        {
+            "tag_name": "vastzetten",
+            "offense_id": 310
+        },
+        {
+            "tag_name": "schuifdeuren",
+            "offense_id": 310
+        },
+        {
+            "tag_name": "45bis",
+            "offense_id": 311
+        },
+        {
+            "tag_name": "laadklep",
+            "offense_id": 311
+        },
+        {
+            "tag_name": "laaddeur",
+            "offense_id": 311
+        },
+        {
+            "tag_name": "dekzeil",
+            "offense_id": 311
+        },
+        {
+            "tag_name": "middelpunt",
+            "offense_id": 311
+        },
+        {
+            "tag_name": "zwaartepunt",
+            "offense_id": 311
+        },
+        {
+            "tag_name": "45bis",
+            "offense_id": 312
+        },
+        {
+            "tag_name": "bijkomend",
+            "offense_id": 312
+        },
+        {
+            "tag_name": "dekzeil",
+            "offense_id": 312
+        },
+        {
+            "tag_name": "45bis",
+            "offense_id": 313
+        },
+        {
+            "tag_name": "lading",
+            "offense_id": 313
+        },
+        {
+            "tag_name": "gespen",
+            "offense_id": 313
+        },
+        {
+            "tag_name": "dekzeil",
+            "offense_id": 313
+        },
+        {
+            "tag_name": "noodstop",
+            "offense_id": 313
+        },
+        {
+            "tag_name": "45bis",
+            "offense_id": 314
+        },
+        {
+            "tag_name": "vastzetten",
+            "offense_id": 314
+        },
+        {
+            "tag_name": "zekeren",
+            "offense_id": 314
+        },
+        {
+            "tag_name": "lading",
+            "offense_id": 314
+        },
+        {
+            "tag_name": "45bis",
+            "offense_id": 315
+        },
+        {
+            "tag_name": "lading",
+            "offense_id": 315
+        },
+        {
+            "tag_name": "dekzeil",
+            "offense_id": 315
+        },
+        {
+            "tag_name": "noodstop",
+            "offense_id": 315
+        },
+        {
+            "tag_name": "vertraging",
+            "offense_id": 315
+        },
+        {
+            "tag_name": "46.1.1",
+            "offense_id": 316
+        },
+        {
+            "tag_name": "maximale",
+            "offense_id": 316
+        },
+        {
+            "tag_name": "breedte",
+            "offense_id": 316
+        },
+        {
+            "tag_name": "voertuig",
+            "offense_id": 316
+        },
+        {
+            "tag_name": "remorque",
+            "offense_id": 316
+        },
+        {
+            "tag_name": "",
+            "offense_id": 316
+        },
+        {
+            "tag_name": "46.1.2",
+            "offense_id": 317
+        },
+        {
+            "tag_name": "maximale",
+            "offense_id": 317
+        },
+        {
+            "tag_name": "breedte",
+            "offense_id": 317
+        },
+        {
+            "tag_name": "driewieler",
+            "offense_id": 317
+        },
+        {
+            "tag_name": "remorque",
+            "offense_id": 317
+        },
+        {
+            "tag_name": "",
+            "offense_id": 317
+        },
+        {
+            "tag_name": "46.1.3",
+            "offense_id": 318
+        },
+        {
+            "tag_name": "maximale",
+            "offense_id": 318
+        },
+        {
+            "tag_name": "breedte",
+            "offense_id": 318
+        },
+        {
+            "tag_name": "handkar",
+            "offense_id": 318
+        },
+        {
+            "tag_name": "kar",
+            "offense_id": 318
+        },
+        {
+            "tag_name": "46.1.4",
+            "offense_id": 319
+        },
+        {
+            "tag_name": "maximale",
+            "offense_id": 319
+        },
+        {
+            "tag_name": "breedte",
+            "offense_id": 319
+        },
+        {
+            "tag_name": "fiets",
+            "offense_id": 319
+        },
+        {
+            "tag_name": "remorque",
+            "offense_id": 319
+        },
+        {
+            "tag_name": "aanhangwagen",
+            "offense_id": 319
+        },
+        {
+            "tag_name": "kar",
+            "offense_id": 319
+        },
+        {
+            "tag_name": "46.1.5",
+            "offense_id": 320
+        },
+        {
+            "tag_name": "maximale",
+            "offense_id": 320
+        },
+        {
+            "tag_name": "breedte",
+            "offense_id": 320
+        },
+        {
+            "tag_name": "moto",
+            "offense_id": 320
+        },
+        {
+            "tag_name": "motor",
+            "offense_id": 320
+        },
+        {
+            "tag_name": "46.1.6",
+            "offense_id": 321
+        },
+        {
+            "tag_name": "maximale",
+            "offense_id": 321
+        },
+        {
+            "tag_name": "breedte",
+            "offense_id": 321
+        },
+        {
+            "tag_name": "moto",
+            "offense_id": 321
+        },
+        {
+            "tag_name": "motorfiets",
+            "offense_id": 321
+        },
+        {
+            "tag_name": "sidecar",
+            "offense_id": 321
+        },
+        {
+            "tag_name": "zijspan",
+            "offense_id": 321
+        },
+        {
+            "tag_name": "lading",
+            "offense_id": 321
+        },
+        {
+            "tag_name": "46.2.1",
+            "offense_id": 322
+        },
+        {
+            "tag_name": "lading",
+            "offense_id": 322
+        },
+        {
+            "tag_name": "uitsteken",
+            "offense_id": 322
+        },
+        {
+            "tag_name": "rand",
+            "offense_id": 322
+        },
+        {
+            "tag_name": "voertuig",
+            "offense_id": 322
+        },
+        {
+            "tag_name": "camion",
+            "offense_id": 322
+        },
+        {
+            "tag_name": "autotransport",
+            "offense_id": 322
+        },
+        {
+            "tag_name": "46.2.2",
+            "offense_id": 323
+        },
+        {
+            "tag_name": "lading",
+            "offense_id": 323
+        },
+        {
+            "tag_name": "brommer",
+            "offense_id": 323
+        },
+        {
+            "tag_name": "scooter",
+            "offense_id": 323
+        },
+        {
+            "tag_name": "moto",
+            "offense_id": 323
+        },
+        {
+            "tag_name": "driewieler",
+            "offense_id": 323
+        },
+        {
+            "tag_name": "achteraan",
+            "offense_id": 323
+        },
+        {
+            "tag_name": "46.2.3",
+            "offense_id": 324
+        },
+        {
+            "tag_name": "lading",
+            "offense_id": 324
+        },
+        {
+            "tag_name": "achteraan",
+            "offense_id": 324
+        },
+        {
+            "tag_name": "uitsteken",
+            "offense_id": 324
+        },
+        {
+            "tag_name": "overhangen",
+            "offense_id": 324
+        },
+        {
+            "tag_name": "46.3",
+            "offense_id": 325
+        },
+        {
+            "tag_name": "maximale",
+            "offense_id": 325
+        },
+        {
+            "tag_name": "hoogte",
+            "offense_id": 325
+        },
+        {
+            "tag_name": "46.4",
+            "offense_id": 326
+        },
+        {
+            "tag_name": "maximale",
+            "offense_id": 326
+        },
+        {
+            "tag_name": "lengte",
+            "offense_id": 326
+        },
+        {
+            "tag_name": "segway",
+            "offense_id": 326
+        },
+        {
+            "tag_name": "47.1",
+            "offense_id": 327
+        },
+        {
+            "tag_name": "verlichting",
+            "offense_id": 327
+        },
+        {
+            "tag_name": "lading",
+            "offense_id": 327
+        },
+        {
+            "tag_name": "wimpel",
+            "offense_id": 327
+        },
+        {
+            "tag_name": "bord",
+            "offense_id": 327
+        },
+        {
+            "tag_name": "dag",
+            "offense_id": 327
+        },
+        {
+            "tag_name": "47.2",
+            "offense_id": 328
+        },
+        {
+            "tag_name": "verlichting",
+            "offense_id": 328
+        },
+        {
+            "tag_name": "lading",
+            "offense_id": 328
+        },
+        {
+            "tag_name": "wimpel",
+            "offense_id": 328
+        },
+        {
+            "tag_name": "bord",
+            "offense_id": 328
+        },
+        {
+            "tag_name": "rood",
+            "offense_id": 328
+        },
+        {
+            "tag_name": "licht",
+            "offense_id": 328
+        },
+        {
+            "tag_name": "zwaailicht",
+            "offense_id": 328
+        },
+        {
+            "tag_name": "nacht",
+            "offense_id": 328
+        },
+        {
+            "tag_name": "47.3",
+            "offense_id": 329
+        },
+        {
+            "tag_name": "verlichting",
+            "offense_id": 329
+        },
+        {
+            "tag_name": "breedte",
+            "offense_id": 329
+        },
+        {
+            "tag_name": "omtreklichten",
+            "offense_id": 329
+        },
+        {
+            "tag_name": "reflector",
+            "offense_id": 329
+        },
+        {
+            "tag_name": "47bis",
+            "offense_id": 330
+        },
+        {
+            "tag_name": "laadplatform",
+            "offense_id": 330
+        },
+        {
+            "tag_name": "laadtruck",
+            "offense_id": 330
+        },
+        {
+            "tag_name": "heftruck",
+            "offense_id": 330
+        },
+        {
+            "tag_name": "reflecterende",
+            "offense_id": 330
+        },
+        {
+            "tag_name": "stroken",
+            "offense_id": 330
+        },
+        {
+            "tag_name": "kegels",
+            "offense_id": 330
+        },
+        {
+            "tag_name": "zwaailicht",
+            "offense_id": 330
+        },
+        {
+            "tag_name": "47bis",
+            "offense_id": 331
+        },
+        {
+            "tag_name": "kranen",
+            "offense_id": 331
+        },
+        {
+            "tag_name": "kraan",
+            "offense_id": 331
+        },
+        {
+            "tag_name": "ladderlift",
+            "offense_id": 331
+        },
+        {
+            "tag_name": "47bis",
+            "offense_id": 332
+        },
+        {
+            "tag_name": "reflecterende",
+            "offense_id": 332
+        },
+        {
+            "tag_name": "strepen",
+            "offense_id": 332
+        },
+        {
+            "tag_name": "breedte",
+            "offense_id": 332
+        },
+        {
+            "tag_name": "48bis",
+            "offense_id": 333
+        },
+        {
+            "tag_name": "gevaarlijk",
+            "offense_id": 333
+        },
+        {
+            "tag_name": "transport",
+            "offense_id": 333
+        },
+        {
+            "tag_name": "explosief",
+            "offense_id": 333
+        },
+        {
+            "tag_name": "corrosief",
+            "offense_id": 333
+        },
+        {
+            "tag_name": "tanktransport",
+            "offense_id": 333
+        },
+        {
+            "tag_name": "snelweg",
+            "offense_id": 333
+        },
+        {
+            "tag_name": "bebouwde",
+            "offense_id": 333
+        },
+        {
+            "tag_name": "kom",
+            "offense_id": 333
+        },
+        {
+            "tag_name": "48bis",
+            "offense_id": 334
+        },
+        {
+            "tag_name": "gevaarlijk",
+            "offense_id": 334
+        },
+        {
+            "tag_name": "transport",
+            "offense_id": 334
+        },
+        {
+            "tag_name": "explosief",
+            "offense_id": 334
+        },
+        {
+            "tag_name": "corrosief",
+            "offense_id": 334
+        },
+        {
+            "tag_name": "tanktransport",
+            "offense_id": 334
+        },
+        {
+            "tag_name": "snelweg",
+            "offense_id": 334
+        },
+        {
+            "tag_name": "bebouwde",
+            "offense_id": 334
+        },
+        {
+            "tag_name": "kom",
+            "offense_id": 334
+        },
+        {
+            "tag_name": "49.1",
+            "offense_id": 335
+        },
+        {
+            "tag_name": "slepen",
+            "offense_id": 335
+        },
+        {
+            "tag_name": "takelen",
+            "offense_id": 335
+        },
+        {
+            "tag_name": "depanneren",
+            "offense_id": 335
+        },
+        {
+            "tag_name": "maximum",
+            "offense_id": 335
+        },
+        {
+            "tag_name": "49.2",
+            "offense_id": 336
+        },
+        {
+            "tag_name": "slepen",
+            "offense_id": 336
+        },
+        {
+            "tag_name": "takelen",
+            "offense_id": 336
+        },
+        {
+            "tag_name": "depanneren",
+            "offense_id": 336
+        },
+        {
+            "tag_name": "kermis",
+            "offense_id": 336
+        },
+        {
+            "tag_name": "foor",
+            "offense_id": 336
+        },
+        {
+            "tag_name": "woonwagen",
+            "offense_id": 336
+        },
+        {
+            "tag_name": "tractor",
+            "offense_id": 336
+        },
+        {
+            "tag_name": "treintje",
+            "offense_id": 336
+        },
+        {
+            "tag_name": "reclame",
+            "offense_id": 336
+        },
+        {
+            "tag_name": "49.3",
+            "offense_id": 337
+        },
+        {
+            "tag_name": "slepen",
+            "offense_id": 337
+        },
+        {
+            "tag_name": "takelen",
+            "offense_id": 337
+        },
+        {
+            "tag_name": "depanneren",
+            "offense_id": 337
+        },
+        {
+            "tag_name": "depannage",
+            "offense_id": 337
+        },
+        {
+            "tag_name": "panne",
+            "offense_id": 337
+        },
+        {
+            "tag_name": "49.4.1",
+            "offense_id": 338
+        },
+        {
+            "tag_name": "trekhaak",
+            "offense_id": 338
+        },
+        {
+            "tag_name": "sleeptouw",
+            "offense_id": 338
+        },
+        {
+            "tag_name": "koppel",
+            "offense_id": 338
+        },
+        {
+            "tag_name": "49.4.2",
+            "offense_id": 339
+        },
+        {
+            "tag_name": "maximale",
+            "offense_id": 339
+        },
+        {
+            "tag_name": "afstand",
+            "offense_id": 339
+        },
+        {
+            "tag_name": "trekker",
+            "offense_id": 339
+        },
+        {
+            "tag_name": "depanneur",
+            "offense_id": 339
+        },
+        {
+            "tag_name": "depannage",
+            "offense_id": 339
+        },
+        {
+            "tag_name": "takel",
+            "offense_id": 339
+        },
+        {
+            "tag_name": "sleep",
+            "offense_id": 339
+        },
+        {
+            "tag_name": "slepen",
+            "offense_id": 339
+        },
+        {
+            "tag_name": "49.5",
+            "offense_id": 340
+        },
+        {
+            "tag_name": "noodkoppel",
+            "offense_id": 340
+        },
+        {
+            "tag_name": "hulpkoppel",
+            "offense_id": 340
+        },
+        {
+            "tag_name": "slepen",
+            "offense_id": 340
+        },
+        {
+            "tag_name": "takelen",
+            "offense_id": 340
+        },
+        {
+            "tag_name": "depanneren",
+            "offense_id": 340
+        },
+        {
+            "tag_name": "50",
+            "offense_id": 341
+        },
+        {
+            "tag_name": "snelheidswedstrijd",
+            "offense_id": 341
+        },
+        {
+            "tag_name": "race",
+            "offense_id": 341
+        },
+        {
+            "tag_name": "racen",
+            "offense_id": 341
+        },
+        {
+            "tag_name": "dragrace",
+            "offense_id": 341
+        },
+        {
+            "tag_name": "",
+            "offense_id": 341
+        },
+        {
+            "tag_name": "51.1",
+            "offense_id": 342
+        },
+        {
+            "tag_name": "defect",
+            "offense_id": 342
+        },
+        {
+            "tag_name": "voertuig",
+            "offense_id": 342
+        },
+        {
+            "tag_name": "panne",
+            "offense_id": 342
+        },
+        {
+            "tag_name": "gevarendriehoek",
+            "offense_id": 342
+        },
+        {
+            "tag_name": "zwaailicht",
+            "offense_id": 342
+        },
+        {
+            "tag_name": "pinkers",
+            "offense_id": 342
+        },
+        {
+            "tag_name": "richtingaanwijzers",
+            "offense_id": 342
+        },
+        {
+            "tag_name": "51.2",
+            "offense_id": 343
+        },
+        {
+            "tag_name": "gevarendriehoek",
+            "offense_id": 343
+        },
+        {
+            "tag_name": "51.3",
+            "offense_id": 344
+        },
+        {
+            "tag_name": "lading",
+            "offense_id": 344
+        },
+        {
+            "tag_name": "op",
+            "offense_id": 344
+        },
+        {
+            "tag_name": "de",
+            "offense_id": 344
+        },
+        {
+            "tag_name": "weg",
+            "offense_id": 344
+        },
+        {
+            "tag_name": "gevallen",
+            "offense_id": 344
+        },
+        {
+            "tag_name": "signaleren",
+            "offense_id": 344
+        },
+        {
+            "tag_name": "51.4",
+            "offense_id": 345
+        },
+        {
+            "tag_name": "panne",
+            "offense_id": 345
+        },
+        {
+            "tag_name": "stilvallen",
+            "offense_id": 345
+        },
+        {
+            "tag_name": "pechstrook",
+            "offense_id": 345
+        },
+        {
+            "tag_name": "vest",
+            "offense_id": 345
+        },
+        {
+            "tag_name": "fluohesje",
+            "offense_id": 345
+        },
+        {
+            "tag_name": "",
+            "offense_id": 345
+        },
+        {
+            "tag_name": "52.2",
+            "offense_id": 346
+        },
+        {
+            "tag_name": "ongeval",
+            "offense_id": 346
+        },
+        {
+            "tag_name": "stoffelijk",
+            "offense_id": 346
+        },
+        {
+            "tag_name": "zaakschade",
+            "offense_id": 346
+        },
+        {
+            "tag_name": "schade",
+            "offense_id": 346
+        },
+        {
+            "tag_name": "ter",
+            "offense_id": 346
+        },
+        {
+            "tag_name": "plaatse",
+            "offense_id": 346
+        },
+        {
+            "tag_name": "blijven",
+            "offense_id": 346
+        },
+        {
+            "tag_name": "identiteitskaart",
+            "offense_id": 346
+        },
+        {
+            "tag_name": "paspoort",
+            "offense_id": 346
+        },
+        {
+            "tag_name": "",
+            "offense_id": 346
+        },
+        {
+            "tag_name": "52.3",
+            "offense_id": 347
+        },
+        {
+            "tag_name": "ongeval",
+            "offense_id": 347
+        },
+        {
+            "tag_name": "lichamelijke",
+            "offense_id": 347
+        },
+        {
+            "tag_name": "fysieke",
+            "offense_id": 347
+        },
+        {
+            "tag_name": "schade",
+            "offense_id": 347
+        },
+        {
+            "tag_name": "ter",
+            "offense_id": 347
+        },
+        {
+            "tag_name": "plaatse",
+            "offense_id": 347
+        },
+        {
+            "tag_name": "blijven",
+            "offense_id": 347
+        },
+        {
+            "tag_name": "hulp",
+            "offense_id": 347
+        },
+        {
+            "tag_name": "bieden",
+            "offense_id": 347
+        },
+        {
+            "tag_name": "helpen",
+            "offense_id": 347
+        },
+        {
+            "tag_name": "identiteitskaart",
+            "offense_id": 347
+        },
+        {
+            "tag_name": "paspoort",
+            "offense_id": 347
+        },
+        {
+            "tag_name": "",
+            "offense_id": 347
+        },
+        {
+            "tag_name": "53.1",
+            "offense_id": 348
+        },
+        {
+            "tag_name": "gespan",
+            "offense_id": 348
+        },
+        {
+            "tag_name": "aantal",
+            "offense_id": 348
+        },
+        {
+            "tag_name": "trekdieren",
+            "offense_id": 348
+        },
+        {
+            "tag_name": "paarden",
+            "offense_id": 348
+        },
+        {
+            "tag_name": "koeien",
+            "offense_id": 348
+        },
+        {
+            "tag_name": "53.2",
+            "offense_id": 349
+        },
+        {
+            "tag_name": "ruiter",
+            "offense_id": 349
+        },
+        {
+            "tag_name": "paarden",
+            "offense_id": 349
+        },
+        {
+            "tag_name": "kar",
+            "offense_id": 349
+        },
+        {
+            "tag_name": "koets",
+            "offense_id": 349
+        },
+        {
+            "tag_name": "in",
+            "offense_id": 349
+        },
+        {
+            "tag_name": "de",
+            "offense_id": 349
+        },
+        {
+            "tag_name": "hand",
+            "offense_id": 349
+        },
+        {
+            "tag_name": "53.3",
+            "offense_id": 350
+        },
+        {
+            "tag_name": "ruiter",
+            "offense_id": 350
+        },
+        {
+            "tag_name": "paarden",
+            "offense_id": 350
+        },
+        {
+            "tag_name": "kar",
+            "offense_id": 350
+        },
+        {
+            "tag_name": "koets",
+            "offense_id": 350
+        },
+        {
+            "tag_name": "begeleiders",
+            "offense_id": 350
+        },
+        {
+            "tag_name": "53.4",
+            "offense_id": 351
+        },
+        {
+            "tag_name": "paarden",
+            "offense_id": 351
+        },
+        {
+            "tag_name": "kar",
+            "offense_id": 351
+        },
+        {
+            "tag_name": "koets",
+            "offense_id": 351
+        },
+        {
+            "tag_name": "lengte",
+            "offense_id": 351
+        },
+        {
+            "tag_name": "begeleider",
+            "offense_id": 351
+        },
+        {
+            "tag_name": "53.5",
+            "offense_id": 352
+        },
+        {
+            "tag_name": "mallejan",
+            "offense_id": 352
+        },
+        {
+            "tag_name": "lengte",
+            "offense_id": 352
+        },
+        {
+            "tag_name": "begeleider",
+            "offense_id": 352
+        },
+        {
+            "tag_name": "54",
+            "offense_id": 353
+        },
+        {
+            "tag_name": "handkar",
+            "offense_id": 353
+        },
+        {
+            "tag_name": "trekken",
+            "offense_id": 353
+        },
+        {
+            "tag_name": "zicht",
+            "offense_id": 353
+        },
+        {
+            "tag_name": "55.1",
+            "offense_id": 354
+        },
+        {
+            "tag_name": "dieren",
+            "offense_id": 354
+        },
+        {
+            "tag_name": "koeien",
+            "offense_id": 354
+        },
+        {
+            "tag_name": "paarden",
+            "offense_id": 354
+        },
+        {
+            "tag_name": "drijven",
+            "offense_id": 354
+        },
+        {
+            "tag_name": "begeleiders",
+            "offense_id": 354
+        },
+        {
+            "tag_name": "55.2",
+            "offense_id": 355
+        },
+        {
+            "tag_name": "dieren",
+            "offense_id": 355
+        },
+        {
+            "tag_name": "koeien",
+            "offense_id": 355
+        },
+        {
+            "tag_name": "paarden",
+            "offense_id": 355
+        },
+        {
+            "tag_name": "in",
+            "offense_id": 355
+        },
+        {
+            "tag_name": "de",
+            "offense_id": 355
+        },
+        {
+            "tag_name": "hand",
+            "offense_id": 355
+        },
+        {
+            "tag_name": "veilig",
+            "offense_id": 355
+        },
+        {
+            "tag_name": "55.3",
+            "offense_id": 356
+        },
+        {
+            "tag_name": "paarden",
+            "offense_id": 356
+        },
+        {
+            "tag_name": "galop",
+            "offense_id": 356
+        },
+        {
+            "tag_name": "bebouwde",
+            "offense_id": 356
+        },
+        {
+            "tag_name": "kom",
+            "offense_id": 356
+        },
+        {
+            "tag_name": "55.4",
+            "offense_id": 357
+        },
+        {
+            "tag_name": "ruiters",
+            "offense_id": 357
+        },
+        {
+            "tag_name": "paarden",
+            "offense_id": 357
+        },
+        {
+            "tag_name": "naast",
+            "offense_id": 357
+        },
+        {
+            "tag_name": "elkaar",
+            "offense_id": 357
+        },
+        {
+            "tag_name": "55bis",
+            "offense_id": 358
+        },
+        {
+            "tag_name": "groepen",
+            "offense_id": 358
+        },
+        {
+            "tag_name": "ruiters",
+            "offense_id": 358
+        },
+        {
+            "tag_name": "begeleider",
+            "offense_id": 358
+        },
+        {
+            "tag_name": "band",
+            "offense_id": 358
+        },
+        {
+            "tag_name": "55bis",
+            "offense_id": 359
+        },
+        {
+            "tag_name": "groepen",
+            "offense_id": 359
+        },
+        {
+            "tag_name": "ruiters",
+            "offense_id": 359
+        },
+        {
+            "tag_name": "begeleider",
+            "offense_id": 359
+        },
+        {
+            "tag_name": "oversteken",
+            "offense_id": 359
+        },
+        {
+            "tag_name": "verkeer",
+            "offense_id": 359
+        },
+        {
+            "tag_name": "regelen",
+            "offense_id": 359
+        },
+        {
+            "tag_name": "56.2",
+            "offense_id": 360
+        },
+        {
+            "tag_name": "trekdieren",
+            "offense_id": 360
+        },
+        {
+            "tag_name": "links",
+            "offense_id": 360
+        },
+        {
+            "tag_name": "inhalen",
+            "offense_id": 360
+        },
+        {
+            "tag_name": "kruisen",
+            "offense_id": 360
+        },
+        {
+            "tag_name": "56.3",
+            "offense_id": 361
+        },
+        {
+            "tag_name": "trekdieren",
+            "offense_id": 361
+        },
+        {
+            "tag_name": "slepen",
+            "offense_id": 361
+        },
+        {
+            "tag_name": "gele",
+            "offense_id": 361
+        },
+        {
+            "tag_name": "lichten",
+            "offense_id": 361
+        },
+        {
+            "tag_name": "59.1",
+            "offense_id": 362
+        },
+        {
+            "tag_name": "identiteitskaart",
+            "offense_id": 362
+        },
+        {
+            "tag_name": "id-kaart",
+            "offense_id": 362
+        },
+        {
+            "tag_name": "pas",
+            "offense_id": 362
+        },
+        {
+            "tag_name": "paspoort",
+            "offense_id": 362
+        },
+        {
+            "tag_name": "59.6",
+            "offense_id": 363
+        },
+        {
+            "tag_name": "voertuig",
+            "offense_id": 363
+        },
+        {
+            "tag_name": "tunen",
+            "offense_id": 363
+        },
+        {
+            "tag_name": "technisch",
+            "offense_id": 363
+        },
+        {
+            "tag_name": "reglement",
+            "offense_id": 363
+        },
+        {
+            "tag_name": "keuring",
+            "offense_id": 363
+        },
+        {
+            "tag_name": "conformiteit",
+            "offense_id": 363
+        },
+        {
+            "tag_name": "gelijkvormigheid",
+            "offense_id": 363
+        },
+        {
+            "tag_name": "59.7",
+            "offense_id": 364
+        },
+        {
+            "tag_name": "overladen",
+            "offense_id": 364
+        },
+        {
+            "tag_name": "voertuig",
+            "offense_id": 364
+        },
+        {
+            "tag_name": "afladen",
+            "offense_id": 364
+        },
+        {
+            "tag_name": "61.1.1",
+            "offense_id": 365
+        },
+        {
+            "tag_name": "rood",
+            "offense_id": 365
+        },
+        {
+            "tag_name": "licht",
+            "offense_id": 365
+        },
+        {
+            "tag_name": "roodlicht",
+            "offense_id": 365
+        },
+        {
+            "tag_name": "verkeerslicht",
+            "offense_id": 365
+        },
+        {
+            "tag_name": "61.1.2",
+            "offense_id": 366
+        },
+        {
+            "tag_name": "oranje",
+            "offense_id": 366
+        },
+        {
+            "tag_name": "licht",
+            "offense_id": 366
+        },
+        {
+            "tag_name": "verkeerslicht",
+            "offense_id": 366
+        },
+        {
+            "tag_name": "61.1.5",
+            "offense_id": 367
+        },
+        {
+            "tag_name": "groene",
+            "offense_id": 367
+        },
+        {
+            "tag_name": "pijl",
+            "offense_id": 367
+        },
+        {
+            "tag_name": "62bis",
+            "offense_id": 368
+        },
+        {
+            "tag_name": "oranje",
+            "offense_id": 368
+        },
+        {
+            "tag_name": "schuine",
+            "offense_id": 368
+        },
+        {
+            "tag_name": "pijl",
+            "offense_id": 368
+        },
+        {
+            "tag_name": "rijstrookverminderingspijl",
+            "offense_id": 368
+        },
+        {
+            "tag_name": "63.1.2.1",
+            "offense_id": 369
+        },
+        {
+            "tag_name": "rood",
+            "offense_id": 369
+        },
+        {
+            "tag_name": "licht",
+            "offense_id": 369
+        },
+        {
+            "tag_name": "roodlicht",
+            "offense_id": 369
+        },
+        {
+            "tag_name": "voetgangers",
+            "offense_id": 369
+        },
+        {
+            "tag_name": "63.2.1.1",
+            "offense_id": 370
+        },
+        {
+            "tag_name": "rood",
+            "offense_id": 370
+        },
+        {
+            "tag_name": "kruis",
+            "offense_id": 370
+        },
+        {
+            "tag_name": "snelweg",
+            "offense_id": 370
+        },
+        {
+            "tag_name": "64.1",
+            "offense_id": 371
+        },
+        {
+            "tag_name": "oranje",
+            "offense_id": 371
+        },
+        {
+            "tag_name": "knipperlicht",
+            "offense_id": 371
+        },
+        {
+            "tag_name": "64.2",
+            "offense_id": 372
+        },
+        {
+            "tag_name": "rode",
+            "offense_id": 372
+        },
+        {
+            "tag_name": "lichten",
+            "offense_id": 372
+        },
+        {
+            "tag_name": "overweg",
+            "offense_id": 372
+        },
+        {
+            "tag_name": "trein",
+            "offense_id": 372
+        },
+        {
+            "tag_name": "bareel",
+            "offense_id": 372
+        },
+        {
+            "tag_name": "barreel",
+            "offense_id": 372
+        },
+        {
+            "tag_name": "67.3",
+            "offense_id": 373
+        },
+        {
+            "tag_name": "verkeersbord",
+            "offense_id": 373
+        },
+        {
+            "tag_name": "b11",
+            "offense_id": 373
+        },
+        {
+            "tag_name": "ruit",
+            "offense_id": 373
+        },
+        {
+            "tag_name": "voorrangsweg",
+            "offense_id": 373
+        },
+        {
+            "tag_name": "67.3",
+            "offense_id": 374
+        },
+        {
+            "tag_name": "verkeersbord",
+            "offense_id": 374
+        },
+        {
+            "tag_name": "b19",
+            "offense_id": 374
+        },
+        {
+            "tag_name": "voorrang",
+            "offense_id": 374
+        },
+        {
+            "tag_name": "kruisen",
+            "offense_id": 374
+        },
+        {
+            "tag_name": "67.3",
+            "offense_id": 375
+        },
+        {
+            "tag_name": "verkeersbord",
+            "offense_id": 375
+        },
+        {
+            "tag_name": "b1",
+            "offense_id": 375
+        },
+        {
+            "tag_name": "voorrang",
+            "offense_id": 375
+        },
+        {
+            "tag_name": "verlenen",
+            "offense_id": 375
+        },
+        {
+            "tag_name": "67.3",
+            "offense_id": 376
+        },
+        {
+            "tag_name": "verkeersbord",
+            "offense_id": 376
+        },
+        {
+            "tag_name": "b5",
+            "offense_id": 376
+        },
+        {
+            "tag_name": "stopbord",
+            "offense_id": 376
+        },
+        {
+            "tag_name": "voorrang",
+            "offense_id": 376
+        },
+        {
+            "tag_name": "stoppen",
+            "offense_id": 376
+        },
+        {
+            "tag_name": "stilstaan",
+            "offense_id": 376
+        },
+        {
+            "tag_name": "halthouden",
+            "offense_id": 376
+        },
+        {
+            "tag_name": "68.3",
+            "offense_id": 377
+        },
+        {
+            "tag_name": "verkeersbord",
+            "offense_id": 377
+        },
+        {
+            "tag_name": "c3",
+            "offense_id": 377
+        },
+        {
+            "tag_name": "verboden",
+            "offense_id": 377
+        },
+        {
+            "tag_name": "toegang",
+            "offense_id": 377
+        },
+        {
+            "tag_name": "68.3",
+            "offense_id": 378
+        },
+        {
+            "tag_name": "verkeersbord",
+            "offense_id": 378
+        },
+        {
+            "tag_name": "c5",
+            "offense_id": 378
+        },
+        {
+            "tag_name": "voertuig",
+            "offense_id": 378
+        },
+        {
+            "tag_name": "vier",
+            "offense_id": 378
+        },
+        {
+            "tag_name": "wielen",
+            "offense_id": 378
+        },
+        {
+            "tag_name": "sidecar",
+            "offense_id": 378
+        },
+        {
+            "tag_name": "68.3",
+            "offense_id": 379
+        },
+        {
+            "tag_name": "verkeersbord",
+            "offense_id": 379
+        },
+        {
+            "tag_name": "c6",
+            "offense_id": 379
+        },
+        {
+            "tag_name": "quad",
+            "offense_id": 379
+        },
+        {
+            "tag_name": "68.3",
+            "offense_id": 380
+        },
+        {
+            "tag_name": "verkeersbord",
+            "offense_id": 380
+        },
+        {
+            "tag_name": "c7",
+            "offense_id": 380
+        },
+        {
+            "tag_name": "moto",
+            "offense_id": 380
+        },
+        {
+            "tag_name": "motor",
+            "offense_id": 380
+        },
+        {
+            "tag_name": "brommer",
+            "offense_id": 380
+        },
+        {
+            "tag_name": "bromfiets",
+            "offense_id": 380
+        },
+        {
+            "tag_name": "scooter",
+            "offense_id": 380
+        },
+        {
+            "tag_name": "68.3",
+            "offense_id": 381
+        },
+        {
+            "tag_name": "verkeersbord",
+            "offense_id": 381
+        },
+        {
+            "tag_name": "c9",
+            "offense_id": 381
+        },
+        {
+            "tag_name": "brommer",
+            "offense_id": 381
+        },
+        {
+            "tag_name": "bromfiets",
+            "offense_id": 381
+        },
+        {
+            "tag_name": "scooter",
+            "offense_id": 381
+        },
+        {
+            "tag_name": "",
+            "offense_id": 381
+        },
+        {
+            "tag_name": "68.3",
+            "offense_id": 382
+        },
+        {
+            "tag_name": "verkeersbord",
+            "offense_id": 382
+        },
+        {
+            "tag_name": "c11",
+            "offense_id": 382
+        },
+        {
+            "tag_name": "fiets",
+            "offense_id": 382
+        },
+        {
+            "tag_name": "tandem",
+            "offense_id": 382
+        },
+        {
+            "tag_name": "",
+            "offense_id": 382
+        },
+        {
+            "tag_name": "68.3",
+            "offense_id": 383
+        },
+        {
+            "tag_name": "verkeersbord",
+            "offense_id": 383
+        },
+        {
+            "tag_name": "c13",
+            "offense_id": 383
+        },
+        {
+            "tag_name": "gespan",
+            "offense_id": 383
+        },
+        {
+            "tag_name": "paard",
+            "offense_id": 383
+        },
+        {
+            "tag_name": "kar",
+            "offense_id": 383
+        },
+        {
+            "tag_name": "paardenkar",
+            "offense_id": 383
+        },
+        {
+            "tag_name": "68.3",
+            "offense_id": 384
+        },
+        {
+            "tag_name": "verkeersbord",
+            "offense_id": 384
+        },
+        {
+            "tag_name": "c15",
+            "offense_id": 384
+        },
+        {
+            "tag_name": "ruiter",
+            "offense_id": 384
+        },
+        {
+            "tag_name": "bereden",
+            "offense_id": 384
+        },
+        {
+            "tag_name": "paard",
+            "offense_id": 384
+        },
+        {
+            "tag_name": "68.3",
+            "offense_id": 385
+        },
+        {
+            "tag_name": "verkeersbord",
+            "offense_id": 385
+        },
+        {
+            "tag_name": "c17",
+            "offense_id": 385
+        },
+        {
+            "tag_name": "handkar",
+            "offense_id": 385
+        },
+        {
+            "tag_name": "mallejan",
+            "offense_id": 385
+        },
+        {
+            "tag_name": "68.3",
+            "offense_id": 386
+        },
+        {
+            "tag_name": "verkeersbord",
+            "offense_id": 386
+        },
+        {
+            "tag_name": "c19",
+            "offense_id": 386
+        },
+        {
+            "tag_name": "voetganger",
+            "offense_id": 386
+        },
+        {
+            "tag_name": "wandelaar",
+            "offense_id": 386
+        },
+        {
+            "tag_name": "68.3",
+            "offense_id": 387
+        },
+        {
+            "tag_name": "verkeersbord",
+            "offense_id": 387
+        },
+        {
+            "tag_name": "c21",
+            "offense_id": 387
+        },
+        {
+            "tag_name": "maximum",
+            "offense_id": 387
+        },
+        {
+            "tag_name": "gewicht",
+            "offense_id": 387
+        },
+        {
+            "tag_name": "massa",
+            "offense_id": 387
+        },
+        {
+            "tag_name": "",
+            "offense_id": 387
+        },
+        {
+            "tag_name": "68.3",
+            "offense_id": 388
+        },
+        {
+            "tag_name": "verkeersbord",
+            "offense_id": 388
+        },
+        {
+            "tag_name": "c22",
+            "offense_id": 388
+        },
+        {
+            "tag_name": "autocar",
+            "offense_id": 388
+        },
+        {
+            "tag_name": "autobus",
+            "offense_id": 388
+        },
+        {
+            "tag_name": "bus",
+            "offense_id": 388
+        },
+        {
+            "tag_name": "68.3",
+            "offense_id": 389
+        },
+        {
+            "tag_name": "verkeersbord",
+            "offense_id": 389
+        },
+        {
+            "tag_name": "c23",
+            "offense_id": 389
+        },
+        {
+            "tag_name": "vrachtwagen",
+            "offense_id": 389
+        },
+        {
+            "tag_name": "camion",
+            "offense_id": 389
+        },
+        {
+            "tag_name": "68.3",
+            "offense_id": 390
+        },
+        {
+            "tag_name": "verkeersbord",
+            "offense_id": 390
+        },
+        {
+            "tag_name": "c25",
+            "offense_id": 390
+        },
+        {
+            "tag_name": "maximale",
+            "offense_id": 390
+        },
+        {
+            "tag_name": "maximumlengte",
+            "offense_id": 390
+        },
+        {
+            "tag_name": "68.3",
+            "offense_id": 391
+        },
+        {
+            "tag_name": "verkeersbord",
+            "offense_id": 391
+        },
+        {
+            "tag_name": "c27",
+            "offense_id": 391
+        },
+        {
+            "tag_name": "maximale",
+            "offense_id": 391
+        },
+        {
+            "tag_name": "maximumbreedte",
+            "offense_id": 391
+        },
+        {
+            "tag_name": "68.3",
+            "offense_id": 392
+        },
+        {
+            "tag_name": "verkeersbord",
+            "offense_id": 392
+        },
+        {
+            "tag_name": "c31",
+            "offense_id": 392
+        },
+        {
+            "tag_name": "verboden",
+            "offense_id": 392
+        },
+        {
+            "tag_name": "af",
+            "offense_id": 392
+        },
+        {
+            "tag_name": "te",
+            "offense_id": 392
+        },
+        {
+            "tag_name": "slaan",
+            "offense_id": 392
+        },
+        {
+            "tag_name": "afslaan",
+            "offense_id": 392
+        },
+        {
+            "tag_name": "afslagen",
+            "offense_id": 392
+        },
+        {
+            "tag_name": "68.3",
+            "offense_id": 393
+        },
+        {
+            "tag_name": "verkeersbord",
+            "offense_id": 393
+        },
+        {
+            "tag_name": "c33",
+            "offense_id": 393
+        },
+        {
+            "tag_name": "verboden",
+            "offense_id": 393
+        },
+        {
+            "tag_name": "te",
+            "offense_id": 393
+        },
+        {
+            "tag_name": "keren",
+            "offense_id": 393
+        },
+        {
+            "tag_name": "omdraaien",
+            "offense_id": 393
+        },
+        {
+            "tag_name": "terugdraaien",
+            "offense_id": 393
+        },
+        {
+            "tag_name": "68.3",
+            "offense_id": 394
+        },
+        {
+            "tag_name": "verkeersbord",
+            "offense_id": 394
+        },
+        {
+            "tag_name": "c47",
+            "offense_id": 394
+        },
+        {
+            "tag_name": "tol",
+            "offense_id": 394
+        },
+        {
+            "tag_name": "taks",
+            "offense_id": 394
+        },
+        {
+            "tag_name": "",
+            "offense_id": 394
+        },
+        {
+            "tag_name": "68.3",
+            "offense_id": 395
+        },
+        {
+            "tag_name": "verkeersbord",
+            "offense_id": 395
+        },
+        {
+            "tag_name": "c48",
+            "offense_id": 395
+        },
+        {
+            "tag_name": "cruise",
+            "offense_id": 395
+        },
+        {
+            "tag_name": "control",
+            "offense_id": 395
+        },
+        {
+            "tag_name": "68.3",
+            "offense_id": 396
+        },
+        {
+            "tag_name": "verkeersbord",
+            "offense_id": 396
+        },
+        {
+            "tag_name": "c29",
+            "offense_id": 396
+        },
+        {
+            "tag_name": "maximale",
+            "offense_id": 396
+        },
+        {
+            "tag_name": "maximumhoogte",
+            "offense_id": 396
+        },
+        {
+            "tag_name": "68.3",
+            "offense_id": 397
+        },
+        {
+            "tag_name": "verkeersbord",
+            "offense_id": 397
+        },
+        {
+            "tag_name": "enkelrichting",
+            "offense_id": 397
+        },
+        {
+            "tag_name": "eenrichting",
+            "offense_id": 397
+        },
+        {
+            "tag_name": "68.3",
+            "offense_id": 398
+        },
+        {
+            "tag_name": "verkeersbord",
+            "offense_id": 398
+        },
+        {
+            "tag_name": "c24a",
+            "offense_id": 398
+        },
+        {
+            "tag_name": "gevaarlijke",
+            "offense_id": 398
+        },
+        {
+            "tag_name": "stoffen",
+            "offense_id": 398
+        },
+        {
+            "tag_name": "68.3",
+            "offense_id": 399
+        },
+        {
+            "tag_name": "verkeersbord",
+            "offense_id": 399
+        },
+        {
+            "tag_name": "c24b",
+            "offense_id": 399
+        },
+        {
+            "tag_name": "explosieve",
+            "offense_id": 399
+        },
+        {
+            "tag_name": "ontvlambare",
+            "offense_id": 399
+        },
+        {
+            "tag_name": "ontploffing",
+            "offense_id": 399
+        },
+        {
+            "tag_name": "goederen",
+            "offense_id": 399
+        },
+        {
+            "tag_name": "68.3",
+            "offense_id": 400
+        },
+        {
+            "tag_name": "verkeersbord",
+            "offense_id": 400
+        },
+        {
+            "tag_name": "c24c",
+            "offense_id": 400
+        },
+        {
+            "tag_name": "verontreinigende",
+            "offense_id": 400
+        },
+        {
+            "tag_name": "vervuilende",
+            "offense_id": 400
+        },
+        {
+            "tag_name": "stoffen",
+            "offense_id": 400
+        },
+        {
+            "tag_name": "goederen",
+            "offense_id": 400
+        },
+        {
+            "tag_name": "",
+            "offense_id": 400
+        },
+        {
+            "tag_name": "68.3",
+            "offense_id": 401
+        },
+        {
+            "tag_name": "verkeersbord",
+            "offense_id": 401
+        },
+        {
+            "tag_name": "c35",
+            "offense_id": 401
+        },
+        {
+            "tag_name": "inhaalverbod",
+            "offense_id": 401
+        },
+        {
+            "tag_name": "68.3",
+            "offense_id": 402
+        },
+        {
+            "tag_name": "verkeersbord",
+            "offense_id": 402
+        },
+        {
+            "tag_name": "c39",
+            "offense_id": 402
+        },
+        {
+            "tag_name": "inhaalverbod",
+            "offense_id": 402
+        },
+        {
+            "tag_name": "vrachtwagen",
+            "offense_id": 402
+        },
+        {
+            "tag_name": "camion",
+            "offense_id": 402
+        },
+        {
+            "tag_name": "69.3",
+            "offense_id": 403
+        },
+        {
+            "tag_name": "verkeersbord",
+            "offense_id": 403
+        },
+        {
+            "tag_name": "d1",
+            "offense_id": 403
+        },
+        {
+            "tag_name": "verkeersbord",
+            "offense_id": 403
+        },
+        {
+            "tag_name": "verplichte",
+            "offense_id": 403
+        },
+        {
+            "tag_name": "richting",
+            "offense_id": 403
+        },
+        {
+            "tag_name": "70.2.1.1",
+            "offense_id": 404
+        },
+        {
+            "tag_name": "verkeersbord",
+            "offense_id": 404
+        },
+        {
+            "tag_name": "e1",
+            "offense_id": 404
+        },
+        {
+            "tag_name": "parkeerverbod",
+            "offense_id": 404
+        },
+        {
+            "tag_name": "70.2.1.1",
+            "offense_id": 405
+        },
+        {
+            "tag_name": "verkeersbord",
+            "offense_id": 405
+        },
+        {
+            "tag_name": "e3",
+            "offense_id": 405
+        },
+        {
+            "tag_name": "parkeren",
+            "offense_id": 405
+        },
+        {
+            "tag_name": "stilstaan",
+            "offense_id": 405
+        },
+        {
+            "tag_name": "stilstand",
+            "offense_id": 405
+        },
+        {
+            "tag_name": "",
+            "offense_id": 405
+        },
+        {
+            "tag_name": "70.1.2.1",
+            "offense_id": 406
+        },
+        {
+            "tag_name": "verkeersbord",
+            "offense_id": 406
+        },
+        {
+            "tag_name": "e5",
+            "offense_id": 406
+        },
+        {
+            "tag_name": "e7",
+            "offense_id": 406
+        },
+        {
+            "tag_name": "beurtelings",
+            "offense_id": 406
+        },
+        {
+            "tag_name": "kalenderparkeren",
+            "offense_id": 406
+        },
+        {
+            "tag_name": "72.2",
+            "offense_id": 407
+        },
+        {
+            "tag_name": "doorlopende",
+            "offense_id": 407
+        },
+        {
+            "tag_name": "volle",
+            "offense_id": 407
+        },
+        {
+            "tag_name": "witte",
+            "offense_id": 407
+        },
+        {
+            "tag_name": "lijn",
+            "offense_id": 407
+        },
+        {
+            "tag_name": "streep",
+            "offense_id": 407
+        },
+        {
+            "tag_name": "72.2",
+            "offense_id": 408
+        },
+        {
+            "tag_name": "verkeersbord",
+            "offense_id": 408
+        },
+        {
+            "tag_name": "f17",
+            "offense_id": 408
+        },
+        {
+            "tag_name": "busstrook",
+            "offense_id": 408
+        },
+        {
+            "tag_name": "busbedding",
+            "offense_id": 408
+        },
+        {
+            "tag_name": "busbaan",
+            "offense_id": 408
+        },
+        {
+            "tag_name": "trambaan",
+            "offense_id": 408
+        },
+        {
+            "tag_name": "trambedding",
+            "offense_id": 408
+        },
+        {
+            "tag_name": "tramstrook",
+            "offense_id": 408
+        },
+        {
+            "tag_name": "72.2",
+            "offense_id": 409
+        },
+        {
+            "tag_name": "dambord",
+            "offense_id": 409
+        },
+        {
+            "tag_name": "busbaan",
+            "offense_id": 409
+        },
+        {
+            "tag_name": "busstrook",
+            "offense_id": 409
+        },
+        {
+            "tag_name": "trambaan",
+            "offense_id": 409
+        },
+        {
+            "tag_name": "tramstrook",
+            "offense_id": 409
+        },
+        {
+            "tag_name": "busbaan",
+            "offense_id": 409
+        },
+        {
+            "tag_name": "trambaan",
+            "offense_id": 409
+        },
+        {
+            "tag_name": "73.1",
+            "offense_id": 410
+        },
+        {
+            "tag_name": "witte",
+            "offense_id": 410
+        },
+        {
+            "tag_name": "gele",
+            "offense_id": 410
+        },
+        {
+            "tag_name": "oranje",
+            "offense_id": 410
+        },
+        {
+            "tag_name": "volle",
+            "offense_id": 410
+        },
+        {
+            "tag_name": "doorlopende",
+            "offense_id": 410
+        },
+        {
+            "tag_name": "streep",
+            "offense_id": 410
+        },
+        {
+            "tag_name": "wegenwerken",
+            "offense_id": 410
+        },
+        {
+            "tag_name": "73.2",
+            "offense_id": 411
+        },
+        {
+            "tag_name": "volle",
+            "offense_id": 411
+        },
+        {
+            "tag_name": "witte",
+            "offense_id": 411
+        },
+        {
+            "tag_name": "lijn",
+            "offense_id": 411
+        },
+        {
+            "tag_name": "wegenwerken",
+            "offense_id": 411
+        },
+        {
+            "tag_name": "gele",
+            "offense_id": 411
+        },
+        {
+            "tag_name": "oranje",
+            "offense_id": 411
+        },
+        {
+            "tag_name": "spijkers",
+            "offense_id": 411
+        },
+        {
+            "tag_name": "73.3",
+            "offense_id": 412
+        },
+        {
+            "tag_name": "onderbroken",
+            "offense_id": 412
+        },
+        {
+            "tag_name": "witte",
+            "offense_id": 412
+        },
+        {
+            "tag_name": "stippellijn",
+            "offense_id": 412
+        },
+        {
+            "tag_name": "oranje",
+            "offense_id": 412
+        },
+        {
+            "tag_name": "spijkers",
+            "offense_id": 412
+        },
+        {
+            "tag_name": "groepen",
+            "offense_id": 412
+        },
+        {
+            "tag_name": "74",
+            "offense_id": 413
+        },
+        {
+            "tag_name": "fietspad",
+            "offense_id": 413
+        },
+        {
+            "tag_name": "fietsers",
+            "offense_id": 413
+        },
+        {
+            "tag_name": "fietsen",
+            "offense_id": 413
+        },
+        {
+            "tag_name": "75.1.2",
+            "offense_id": 414
+        },
+        {
+            "tag_name": "parking",
+            "offense_id": 414
+        },
+        {
+            "tag_name": "stilstaan",
+            "offense_id": 414
+        },
+        {
+            "tag_name": "borduur",
+            "offense_id": 414
+        },
+        {
+            "tag_name": "stoep",
+            "offense_id": 414
+        },
+        {
+            "tag_name": "trottoir",
+            "offense_id": 414
+        },
+        {
+            "tag_name": "voetpad",
+            "offense_id": 414
+        },
+        {
+            "tag_name": "geel",
+            "offense_id": 414
+        },
+        {
+            "tag_name": "75.2",
+            "offense_id": 415
+        },
+        {
+            "tag_name": "rijden",
+            "offense_id": 415
+        },
+        {
+            "tag_name": "parkeerstrook",
+            "offense_id": 415
+        },
+        {
+            "tag_name": "parkeervak",
+            "offense_id": 415
+        },
+        {
+            "tag_name": "rand",
+            "offense_id": 415
+        },
+        {
+            "tag_name": "rijbaan",
+            "offense_id": 415
+        },
+        {
+            "tag_name": "76.1",
+            "offense_id": 416
+        },
+        {
+            "tag_name": "stoppen",
+            "offense_id": 416
+        },
+        {
+            "tag_name": "stopstreep",
+            "offense_id": 416
+        },
+        {
+            "tag_name": "stopbord",
+            "offense_id": 416
+        },
+        {
+            "tag_name": "76.2",
+            "offense_id": 417
+        },
+        {
+            "tag_name": "haaientanden",
+            "offense_id": 417
+        },
+        {
+            "tag_name": "omgekeerde",
+            "offense_id": 417
+        },
+        {
+            "tag_name": "driehoeken",
+            "offense_id": 417
+        },
+        {
+            "tag_name": "voorrang",
+            "offense_id": 417
+        },
+        {
+            "tag_name": "76.4",
+            "offense_id": 418
+        },
+        {
+            "tag_name": "fietszebrapad",
+            "offense_id": 418
+        },
+        {
+            "tag_name": "fietsoversteekplaats",
+            "offense_id": 418
+        },
+        {
+            "tag_name": "oversteekplaats",
+            "offense_id": 418
+        },
+        {
+            "tag_name": "fietsers",
+            "offense_id": 418
+        },
+        {
+            "tag_name": "77.1",
+            "offense_id": 419
+        },
+        {
+            "tag_name": "voorsorteringspijlen",
+            "offense_id": 419
+        },
+        {
+            "tag_name": "voorsorteerpijlen",
+            "offense_id": 419
+        },
+        {
+            "tag_name": "voorsorteringsstrook",
+            "offense_id": 419
+        },
+        {
+            "tag_name": "voorsorteerstrook",
+            "offense_id": 419
+        },
+        {
+            "tag_name": "pijlen",
+            "offense_id": 419
+        },
+        {
+            "tag_name": "richting",
+            "offense_id": 419
+        },
+        {
+            "tag_name": "77.2",
+            "offense_id": 420
+        },
+        {
+            "tag_name": "rijstrook",
+            "offense_id": 420
+        },
+        {
+            "tag_name": "valt",
+            "offense_id": 420
+        },
+        {
+            "tag_name": "weg",
+            "offense_id": 420
+        },
+        {
+            "tag_name": "wegvallen",
+            "offense_id": 420
+        },
+        {
+            "tag_name": "rijstrookvermindering",
+            "offense_id": 420
+        },
+        {
+            "tag_name": "verdrijving",
+            "offense_id": 420
+        },
+        {
+            "tag_name": "77.4",
+            "offense_id": 421
+        },
+        {
+            "tag_name": "parkeren",
+            "offense_id": 421
+        },
+        {
+            "tag_name": "stilstaan",
+            "offense_id": 421
+        },
+        {
+            "tag_name": "stilstand",
+            "offense_id": 421
+        },
+        {
+            "tag_name": "parking",
+            "offense_id": 421
+        },
+        {
+            "tag_name": "verkeersdrempel",
+            "offense_id": 421
+        },
+        {
+            "tag_name": "vluchtheuvel",
+            "offense_id": 421
+        },
+        {
+            "tag_name": "verdrijvingsvlak",
+            "offense_id": 421
+        },
+        {
+            "tag_name": "77.5",
+            "offense_id": 422
+        },
+        {
+            "tag_name": "parkeervakken",
+            "offense_id": 422
+        },
+        {
+            "tag_name": "parking",
+            "offense_id": 422
+        },
+        {
+            "tag_name": "parkeerstrook",
+            "offense_id": 422
+        },
+        {
+            "tag_name": "77.6",
+            "offense_id": 423
+        },
+        {
+            "tag_name": "opstelvak",
+            "offense_id": 423
+        },
+        {
+            "tag_name": "fietsers",
+            "offense_id": 423
+        },
+        {
+            "tag_name": "fietssluis",
+            "offense_id": 423
+        },
+        {
+            "tag_name": "77.7",
+            "offense_id": 424
+        },
+        {
+            "tag_name": "voorsorteringspijlen",
+            "offense_id": 424
+        },
+        {
+            "tag_name": "voorsorteerpijlen",
+            "offense_id": 424
+        },
+        {
+            "tag_name": "voorsorteringsstrook",
+            "offense_id": 424
+        },
+        {
+            "tag_name": "voorsorteerstrook",
+            "offense_id": 424
+        },
+        {
+            "tag_name": "fietsers",
+            "offense_id": 424
+        },
+        {
+            "tag_name": "bromfiets",
+            "offense_id": 424
+        },
+        {
+            "tag_name": "brommer",
+            "offense_id": 424
+        },
+        {
+            "tag_name": "scooter",
+            "offense_id": 424
+        },
+        {
+            "tag_name": "77.8",
+            "offense_id": 425
+        },
+        {
+            "tag_name": "dambord",
+            "offense_id": 425
+        },
+        {
+            "tag_name": "busbaan",
+            "offense_id": 425
+        },
+        {
+            "tag_name": "busstrook",
+            "offense_id": 425
+        },
+        {
+            "tag_name": "trambaan",
+            "offense_id": 425
+        },
+        {
+            "tag_name": "tramstrook",
+            "offense_id": 425
+        },
+        {
+            "tag_name": "busbaan",
+            "offense_id": 425
+        },
+        {
+            "tag_name": "trambaan",
+            "offense_id": 425
+        },
+        {
+            "tag_name": "parkeren",
+            "offense_id": 425
+        },
+        {
+            "tag_name": "parking",
+            "offense_id": 425
+        },
+        {
+            "tag_name": "stilstaan",
+            "offense_id": 425
+        },
+        {
+            "tag_name": "78.1.1",
+            "offense_id": 426
+        },
+        {
+            "tag_name": "wegenwerken",
+            "offense_id": 426
+        },
+        {
+            "tag_name": "tijdelijke",
+            "offense_id": 426
+        },
+        {
+            "tag_name": "signalisatie",
+            "offense_id": 426
+        },
+        {
+            "tag_name": "toelating",
+            "offense_id": 426
+        },
+        {
+            "tag_name": "omleiding",
+            "offense_id": 426
+        },
+        {
+            "tag_name": "omlegging",
+            "offense_id": 426
+        },
+        {
+            "tag_name": "wegomlegging",
+            "offense_id": 426
+        },
+        {
+            "tag_name": "78.1.2",
+            "offense_id": 427
+        },
+        {
+            "tag_name": "wegenwerken",
+            "offense_id": 427
+        },
+        {
+            "tag_name": "tijdelijke",
+            "offense_id": 427
+        },
+        {
+            "tag_name": "signalisatie",
+            "offense_id": 427
+        },
+        {
+            "tag_name": "omleiding",
+            "offense_id": 427
+        },
+        {
+            "tag_name": "omlegging",
+            "offense_id": 427
+        },
+        {
+            "tag_name": "wegomlegging",
+            "offense_id": 427
+        },
+        {
+            "tag_name": "wegnemen",
+            "offense_id": 427
+        },
+        {
+            "tag_name": "verwijderen",
+            "offense_id": 427
+        },
+        {
+            "tag_name": "78.2",
+            "offense_id": 428
+        },
+        {
+            "tag_name": "verkeersbelemmering",
+            "offense_id": 428
+        },
+        {
+            "tag_name": "wegbelemmering",
+            "offense_id": 428
+        },
+        {
+            "tag_name": "hindernis",
+            "offense_id": 428
+        },
+        {
+            "tag_name": "rijbaan",
+            "offense_id": 428
+        },
+        {
+            "tag_name": "80.1",
+            "offense_id": 429
+        },
+        {
+            "tag_name": "verkeerstekens",
+            "offense_id": 429
+        },
+        {
+            "tag_name": "verkeersborden",
+            "offense_id": 429
+        },
+        {
+            "tag_name": "wegmarkering",
+            "offense_id": 429
+        },
+        {
+            "tag_name": "toelating",
+            "offense_id": 429
+        },
+        {
+            "tag_name": "80.2",
+            "offense_id": 430
+        },
+        {
+            "tag_name": "reclameborden",
+            "offense_id": 430
+        },
+        {
+            "tag_name": "reclamepanelen",
+            "offense_id": 430
+        },
+        {
+            "tag_name": "verwarrend",
+            "offense_id": 430
+        },
+        {
+            "tag_name": "verblinding",
+            "offense_id": 430
+        },
+        {
+            "tag_name": "verkeerstekens",
+            "offense_id": 430
+        },
+        {
+            "tag_name": "lichten",
+            "offense_id": 430
+        },
+        {
+            "tag_name": "81.1.1",
+            "offense_id": 431
+        },
+        {
+            "tag_name": "technische",
+            "offense_id": 431
+        },
+        {
+            "tag_name": "keuring",
+            "offense_id": 431
+        },
+        {
+            "tag_name": "remorque",
+            "offense_id": 431
+        },
+        {
+            "tag_name": "controle",
+            "offense_id": 431
+        },
+        {
+            "tag_name": "81.1.2",
+            "offense_id": 432
+        },
+        {
+            "tag_name": "technische",
+            "offense_id": 432
+        },
+        {
+            "tag_name": "keuring",
+            "offense_id": 432
+        },
+        {
+            "tag_name": "controle",
+            "offense_id": 432
+        },
+        {
+            "tag_name": "bromfiets",
+            "offense_id": 432
+        },
+        {
+            "tag_name": "brommer",
+            "offense_id": 432
+        },
+        {
+            "tag_name": "scooter",
+            "offense_id": 432
+        },
+        {
+            "tag_name": "remorque",
+            "offense_id": 432
+        },
+        {
+            "tag_name": "81.1.3",
+            "offense_id": 433
+        },
+        {
+            "tag_name": "auto",
+            "offense_id": 433
+        },
+        {
+            "tag_name": "in",
+            "offense_id": 433
+        },
+        {
+            "tag_name": "orde",
+            "offense_id": 433
+        },
+        {
+            "tag_name": "onderhoud",
+            "offense_id": 433
+        },
+        {
+            "tag_name": "81.2",
+            "offense_id": 434
+        },
+        {
+            "tag_name": "gevarendriehoek",
+            "offense_id": 434
+        },
+        {
+            "tag_name": "verbandkoffer",
+            "offense_id": 434
+        },
+        {
+            "tag_name": "brandblusapparaat",
+            "offense_id": 434
+        },
+        {
+            "tag_name": "81.3.1",
+            "offense_id": 435
+        },
+        {
+            "tag_name": "auto",
+            "offense_id": 435
+        },
+        {
+            "tag_name": "in",
+            "offense_id": 435
+        },
+        {
+            "tag_name": "orde",
+            "offense_id": 435
+        },
+        {
+            "tag_name": "onderhoud",
+            "offense_id": 435
+        },
+        {
+            "tag_name": "veilig",
+            "offense_id": 435
+        },
+        {
+            "tag_name": "",
+            "offense_id": 435
+        },
+        {
+            "tag_name": "81.3.1.1",
+            "offense_id": 436
+        },
+        {
+            "tag_name": "olie",
+            "offense_id": 436
+        },
+        {
+            "tag_name": "vloeistof",
+            "offense_id": 436
+        },
+        {
+            "tag_name": "wegdek",
+            "offense_id": 436
+        },
+        {
+            "tag_name": "81.3.1.2",
+            "offense_id": 437
+        },
+        {
+            "tag_name": "lawaai",
+            "offense_id": 437
+        },
+        {
+            "tag_name": "geluid",
+            "offense_id": 437
+        },
+        {
+            "tag_name": "hinder",
+            "offense_id": 437
+        },
+        {
+            "tag_name": "schrikken",
+            "offense_id": 437
+        },
+        {
+            "tag_name": "decibels",
+            "offense_id": 437
+        },
+        {
+            "tag_name": "81.3.1.3",
+            "offense_id": 438
+        },
+        {
+            "tag_name": "rook",
+            "offense_id": 438
+        },
+        {
+            "tag_name": "81.1.3.4",
+            "offense_id": 439
+        },
+        {
+            "tag_name": "uitlaatgassen",
+            "offense_id": 439
+        },
+        {
+            "tag_name": "81.1.4.1",
+            "offense_id": 440
+        },
+        {
+            "tag_name": "bandprofiel",
+            "offense_id": 440
+        },
+        {
+            "tag_name": "bandenprofiel",
+            "offense_id": 440
+        },
+        {
+            "tag_name": "groeven",
+            "offense_id": 440
+        },
+        {
+            "tag_name": "81.4.2",
+            "offense_id": 441
+        },
+        {
+            "tag_name": "reservewiel",
+            "offense_id": 441
+        },
+        {
+            "tag_name": "reserveband",
+            "offense_id": 441
+        },
+        {
+            "tag_name": "snelheid",
+            "offense_id": 441
+        },
+        {
+            "tag_name": "81.4.4",
+            "offense_id": 442
+        },
+        {
+            "tag_name": "bobbel",
+            "offense_id": 442
+        },
+        {
+            "tag_name": "band",
+            "offense_id": 442
+        },
+        {
+            "tag_name": "uitstulping",
+            "offense_id": 442
+        },
+        {
+            "tag_name": "bandenketting",
+            "offense_id": 442
+        },
+        {
+            "tag_name": "sneeuwketting",
+            "offense_id": 442
+        },
+        {
+            "tag_name": "81.4.5",
+            "offense_id": 443
+        },
+        {
+            "tag_name": "rupsbanden",
+            "offense_id": 443
+        },
+        {
+            "tag_name": "rupswielen",
+            "offense_id": 443
+        },
+        {
+            "tag_name": "rupsvoertuigen",
+            "offense_id": 443
+        },
+        {
+            "tag_name": "kranen",
+            "offense_id": 443
+        },
+        {
+            "tag_name": "81.5",
+            "offense_id": 444
+        },
+        {
+            "tag_name": "pantservoertuig",
+            "offense_id": 444
+        },
+        {
+            "tag_name": "gepantserd",
+            "offense_id": 444
+        },
+        {
+            "tag_name": "kogelvrij",
+            "offense_id": 444
+        },
+        {
+            "tag_name": "81.6.1",
+            "offense_id": 445
+        },
+        {
+            "tag_name": "gevaarlijke",
+            "offense_id": 445
+        },
+        {
+            "tag_name": "versiering",
+            "offense_id": 445
+        },
+        {
+            "tag_name": "pinnen",
+            "offense_id": 445
+        },
+        {
+            "tag_name": "stekels",
+            "offense_id": 445
+        },
+        {
+            "tag_name": "81.6.2",
+            "offense_id": 446
+        },
+        {
+            "tag_name": "beschadigd",
+            "offense_id": 446
+        },
+        {
+            "tag_name": "voertuig",
+            "offense_id": 446
+        },
+        {
+            "tag_name": "schade",
+            "offense_id": 446
+        },
+        {
+            "tag_name": "blutsen",
+            "offense_id": 446
+        },
+        {
+            "tag_name": "",
+            "offense_id": 446
+        },
+        {
+            "tag_name": "82.1.1.1",
+            "offense_id": 447
+        },
+        {
+            "tag_name": "fietslicht",
+            "offense_id": 447
+        },
+        {
+            "tag_name": "fietslamp",
+            "offense_id": 447
+        },
+        {
+            "tag_name": "fietser",
+            "offense_id": 447
+        },
+        {
+            "tag_name": "fiets",
+            "offense_id": 447
+        },
+        {
+            "tag_name": "82.1.1.2",
+            "offense_id": 448
+        },
+        {
+            "tag_name": "fiets",
+            "offense_id": 448
+        },
+        {
+            "tag_name": "reflector",
+            "offense_id": 448
+        },
+        {
+            "tag_name": "zijreflector",
+            "offense_id": 448
+        },
+        {
+            "tag_name": "82.1.1.3",
+            "offense_id": 449
+        },
+        {
+            "tag_name": "fietspedaal",
+            "offense_id": 449
+        },
+        {
+            "tag_name": "pedaalreflector",
+            "offense_id": 449
+        },
+        {
+            "tag_name": "82.1.1.4",
+            "offense_id": 450
+        },
+        {
+            "tag_name": "fiets",
+            "offense_id": 450
+        },
+        {
+            "tag_name": "spaakreflector",
+            "offense_id": 450
+        },
+        {
+            "tag_name": "82.1.1.5",
+            "offense_id": 451
+        },
+        {
+            "tag_name": "fiets",
+            "offense_id": 451
+        },
+        {
+            "tag_name": "reflector",
+            "offense_id": 451
+        },
+        {
+            "tag_name": "koersfiets",
+            "offense_id": 451
+        },
+        {
+            "tag_name": "kinderfiets",
+            "offense_id": 451
+        },
+        {
+            "tag_name": "mountainbike",
+            "offense_id": 451
+        },
+        {
+            "tag_name": "82.1.2.1",
+            "offense_id": 452
+        },
+        {
+            "tag_name": "reflector",
+            "offense_id": 452
+        },
+        {
+            "tag_name": "driewieler",
+            "offense_id": 452
+        },
+        {
+            "tag_name": "",
+            "offense_id": 452
+        },
+        {
+            "tag_name": "82.1.2.2",
+            "offense_id": 453
+        },
+        {
+            "tag_name": "reflector",
+            "offense_id": 453
+        },
+        {
+            "tag_name": "driewielers",
+            "offense_id": 453
+        },
+        {
+            "tag_name": "82.1.2.3",
+            "offense_id": 454
+        },
+        {
+            "tag_name": "reflector",
+            "offense_id": 454
+        },
+        {
+            "tag_name": "driewielers",
+            "offense_id": 454
+        },
+        {
+            "tag_name": "82.1.2.4",
+            "offense_id": 455
+        },
+        {
+            "tag_name": "vierwielers",
+            "offense_id": 455
+        },
+        {
+            "tag_name": "reflector",
+            "offense_id": 455
+        },
+        {
+            "tag_name": "82.1.2.5",
+            "offense_id": 456
+        },
+        {
+            "tag_name": "driewieler",
+            "offense_id": 456
+        },
+        {
+            "tag_name": "pedaal",
+            "offense_id": 456
+        },
+        {
+            "tag_name": "trapper",
+            "offense_id": 456
+        },
+        {
+            "tag_name": "reflector",
+            "offense_id": 456
+        },
+        {
+            "tag_name": "82.2.3",
+            "offense_id": 457
+        },
+        {
+            "tag_name": "fietsremorque",
+            "offense_id": 457
+        },
+        {
+            "tag_name": "fietskar",
+            "offense_id": 457
+        },
+        {
+            "tag_name": "reflector",
+            "offense_id": 457
+        },
+        {
+            "tag_name": "licht",
+            "offense_id": 457
+        },
+        {
+            "tag_name": "82.1.4.1",
+            "offense_id": 458
+        },
+        {
+            "tag_name": "lichten",
+            "offense_id": 458
+        },
+        {
+            "tag_name": "reflectoren",
+            "offense_id": 458
+        },
+        {
+            "tag_name": "fietsen",
+            "offense_id": 458
+        },
+        {
+            "tag_name": "driewieler",
+            "offense_id": 458
+        },
+        {
+            "tag_name": "werken",
+            "offense_id": 458
+        },
+        {
+            "tag_name": "onderhoud",
+            "offense_id": 458
+        },
+        {
+            "tag_name": "zichtbaar",
+            "offense_id": 458
+        },
+        {
+            "tag_name": "82.1.4.2",
+            "offense_id": 459
+        },
+        {
+            "tag_name": "fiets",
+            "offense_id": 459
+        },
+        {
+            "tag_name": "driewieler",
+            "offense_id": 459
+        },
+        {
+            "tag_name": "vooraan",
+            "offense_id": 459
+        },
+        {
+            "tag_name": "rood",
+            "offense_id": 459
+        },
+        {
+            "tag_name": "achteraan",
+            "offense_id": 459
+        },
+        {
+            "tag_name": "wit",
+            "offense_id": 459
+        },
+        {
+            "tag_name": "geel",
+            "offense_id": 459
+        },
+        {
+            "tag_name": "82.1.4.3",
+            "offense_id": 460
+        },
+        {
+            "tag_name": "fiets",
+            "offense_id": 460
+        },
+        {
+            "tag_name": "driewieler",
+            "offense_id": 460
+        },
+        {
+            "tag_name": "reflector",
+            "offense_id": 460
+        },
+        {
+            "tag_name": "rechthoek",
+            "offense_id": 460
+        },
+        {
+            "tag_name": "vierkant",
+            "offense_id": 460
+        },
+        {
+            "tag_name": "rond",
+            "offense_id": 460
+        },
+        {
+            "tag_name": "82.1.4.4",
+            "offense_id": 461
+        },
+        {
+            "tag_name": "zelfde",
+            "offense_id": 461
+        },
+        {
+            "tag_name": "reflectoren",
+            "offense_id": 461
+        },
+        {
+            "tag_name": "zelfde",
+            "offense_id": 461
+        },
+        {
+            "tag_name": "vorm",
+            "offense_id": 461
+        },
+        {
+            "tag_name": "identiek",
+            "offense_id": 461
+        },
+        {
+            "tag_name": "82.1.4.5",
+            "offense_id": 462
+        },
+        {
+            "tag_name": "reflector",
+            "offense_id": 462
+        },
+        {
+            "tag_name": "",
+            "offense_id": 462
+        },
+        {
+            "tag_name": "82.2",
+            "offense_id": 463
+        },
+        {
+            "tag_name": "fietsbel",
+            "offense_id": 463
+        },
+        {
+            "tag_name": "fietstoeter",
+            "offense_id": 463
+        },
+        {
+            "tag_name": "fietsclaxon",
+            "offense_id": 463
+        },
+        {
+            "tag_name": "82.3.1",
+            "offense_id": 464
+        },
+        {
+            "tag_name": "fietsen",
+            "offense_id": 464
+        },
+        {
+            "tag_name": "driewieler",
+            "offense_id": 464
+        },
+        {
+            "tag_name": "remmen",
+            "offense_id": 464
+        },
+        {
+            "tag_name": "82.3.2",
+            "offense_id": 465
+        },
+        {
+            "tag_name": "driewieler",
+            "offense_id": 465
+        },
+        {
+            "tag_name": "vierwieler",
+            "offense_id": 465
+        },
+        {
+            "tag_name": "remmen",
+            "offense_id": 465
+        },
+        {
+            "tag_name": "82.4.1",
+            "offense_id": 466
+        },
+        {
+            "tag_name": "maximale",
+            "offense_id": 466
+        },
+        {
+            "tag_name": "maximumbreedte",
+            "offense_id": 466
+        },
+        {
+            "tag_name": "fiets",
+            "offense_id": 466
+        },
+        {
+            "tag_name": "driewieler",
+            "offense_id": 466
+        },
+        {
+            "tag_name": "82.4.2",
+            "offense_id": 467
+        },
+        {
+            "tag_name": "maximale",
+            "offense_id": 467
+        },
+        {
+            "tag_name": "maximumbreedte",
+            "offense_id": 467
+        },
+        {
+            "tag_name": "fietskar",
+            "offense_id": 467
+        },
+        {
+            "tag_name": "fietsremorque",
+            "offense_id": 467
+        },
+        {
+            "tag_name": "82.4.3",
+            "offense_id": 468
+        },
+        {
+            "tag_name": "aanhangwagen",
+            "offense_id": 468
+        },
+        {
+            "tag_name": "remorque",
+            "offense_id": 468
+        },
+        {
+            "tag_name": "driewieler",
+            "offense_id": 468
+        },
+        {
+            "tag_name": "remorque",
+            "offense_id": 468
+        },
+        {
+            "tag_name": "82.5",
+            "offense_id": 469
+        },
+        {
+            "tag_name": "gewicht",
+            "offense_id": 469
+        },
+        {
+            "tag_name": "aanhangwagen",
+            "offense_id": 469
+        },
+        {
+            "tag_name": "fiets",
+            "offense_id": 469
+        },
+        {
+            "tag_name": "fietsremorque",
+            "offense_id": 469
+        },
+        {
+            "tag_name": "",
+            "offense_id": 469
+        },
+        {
+            "tag_name": "83.1.1",
+            "offense_id": 470
+        },
+        {
+            "tag_name": "gespan",
+            "offense_id": 470
+        },
+        {
+            "tag_name": "reflector",
+            "offense_id": 470
+        },
+        {
+            "tag_name": "83.1.2",
+            "offense_id": 471
+        },
+        {
+            "tag_name": "reflector",
+            "offense_id": 471
+        },
+        {
+            "tag_name": "zijkant",
+            "offense_id": 471
+        },
+        {
+            "tag_name": "zijreflector",
+            "offense_id": 471
+        },
+        {
+            "tag_name": "83.1.3.1",
+            "offense_id": 472
+        },
+        {
+            "tag_name": "reflector",
+            "offense_id": 472
+        },
+        {
+            "tag_name": "bedekt",
+            "offense_id": 472
+        },
+        {
+            "tag_name": "zichtbaar",
+            "offense_id": 472
+        },
+        {
+            "tag_name": "",
+            "offense_id": 472
+        },
+        {
+            "tag_name": "83.1.3.2",
+            "offense_id": 473
+        },
+        {
+            "tag_name": "reflector",
+            "offense_id": 473
+        },
+        {
+            "tag_name": "hoogte",
+            "offense_id": 473
+        },
+        {
+            "tag_name": "83.1.3.3",
+            "offense_id": 474
+        },
+        {
+            "tag_name": "reflector",
+            "offense_id": 474
+        },
+        {
+            "tag_name": "evenwijdig",
+            "offense_id": 474
+        },
+        {
+            "tag_name": "83.1.3.4",
+            "offense_id": 475
+        },
+        {
+            "tag_name": "reflector",
+            "offense_id": 475
+        },
+        {
+            "tag_name": "rand",
+            "offense_id": 475
+        },
+        {
+            "tag_name": "83.2",
+            "offense_id": 476
+        },
+        {
+            "tag_name": "rem",
+            "offense_id": 476
+        },
+        {
+            "tag_name": "gespan",
+            "offense_id": 476
+        },
+        {
+            "tag_name": "83.3",
+            "offense_id": 477
+        },
+        {
+            "tag_name": "afmetingen",
+            "offense_id": 477
+        },
+        {
+            "tag_name": "omtrek",
+            "offense_id": 477
+        },
+        {
+            "tag_name": "breedte",
+            "offense_id": 477
+        },
+        {
+            "tag_name": "hoogte",
+            "offense_id": 477
+        },
+        {
+            "tag_name": "lengte",
+            "offense_id": 477
+        },
+        {
+            "tag_name": "lading",
+            "offense_id": 477
+        }
+    ]
+}
 var zipcodes = [
   {
     "zip": "1000",

@@ -379,7 +379,7 @@ angular.module('starter.services', [])
             offenses.splice(index, 1);
         },
         clear: function(){
-            console.log("clearing offenses");
+            console.log("Clearing Offenses");
             offenses = [];
         },
         findById: function(offenseId){

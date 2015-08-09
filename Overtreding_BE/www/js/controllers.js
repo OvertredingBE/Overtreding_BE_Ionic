@@ -7,109 +7,264 @@ angular.module('starter.controllers', [])
 .controller("ConfigController", function($scope, $ionicPlatform, $ionicLoading, $cordovaSQLite, $http, $ionicPopup, Offenses){
     Offenses.clear();
 
-    $ionicPlatform.ready(function() {
-        $ionicLoading.show({
-            template: 'Loading...'
-        });
-        var db = null;
-        $scope.items = [];
-        var url = 'http://www.martindzhonov.podserver.info/overtreding_api/v1/getDB';
-        // var url = 'http://localhost/overtreding_api/v1/getDB';
-
-        $http.get(url).then(function(resp) {
-            console.log("Fetching database");
-            db = window.openDatabase("test2", "1.0", "Test DB", 1000000);
-            db.transaction(function (tx) {
-                tx.executeSql("DROP TABLE IF EXISTS Texts");
-                tx.executeSql("CREATE TABLE IF NOT EXISTS Texts(id integer primary key, body text)");
-                tx.executeSql("DROP TABLE IF EXISTS Rights");
-                tx.executeSql("CREATE TABLE IF NOT EXISTS Rights(id integer primary key, type integer, body text)");
-                tx.executeSql("DROP TABLE IF EXISTS Alchohol");
-                tx.executeSql("CREATE TABLE IF NOT EXISTS Alchohol(id integer primary key, intoxication integer, text_id_1 integer, text_id_2 integer, text_id_3 integer)");
-                tx.executeSql("DROP TABLE IF EXISTS Drugs");
-                tx.executeSql("CREATE TABLE IF NOT EXISTS Drugs(id integer primary key, text_id_1 integer, text_id_2 integer, text_id_3 integer)");
-                tx.executeSql("DROP TABLE IF EXISTS Speed");
-                tx.executeSql("CREATE TABLE IF NOT EXISTS Speed(id integer primary key, exceed integer, road integer, text_id_1 integer, text_id_2 integer, text_id_3 integer)");
-                tx.executeSql("DROP TABLE IF EXISTS Other");
-                tx.executeSql("CREATE TABLE IF NOT EXISTS Other(id integer primary key, degree integer, description text, text_id_1 integer, text_id_2 integer, text_id_3 integer)");
-                tx.executeSql("DROP TABLE IF EXISTS Other_Tags");
-                tx.executeSql("CREATE TABLE IF NOT EXISTS Other_Tags(tag_name text, offense_id integer)");
-            });
-
-            var items = resp.data.texts;
-            for(var i = 0; i < items.length; i++){
-                var textBody = items[i].body;
-                $cordovaSQLite.execute(db, "INSERT INTO Texts (body) VALUES (?)", [textBody]);
-            }
-
-            var items = resp.data.rights;
-            for(var i = 0; i < items.length; i++){
-                var textBody = items[i].body;
-                var type = items[i].type;
-                $cordovaSQLite.execute(db, "INSERT INTO Rights (type, body) VALUES (?,?)", [type, textBody]);
-            }
-
-            var items = resp.data.speed;
-            for(var i = 0; i < items.length; i++){
-                var exceed = items[i].exceed;
-                var road = items[i].road;
-                var text_id_1 = items[i].text_id_1;
-                var text_id_2 = items[i].text_id_2;
-                var text_id_3 = items[i].text_id_3;
-                $cordovaSQLite.execute(db, "INSERT INTO Speed (exceed, road, text_id_1,text_id_2,text_id_3) VALUES (?,?,?,?,?)", [exceed, road, text_id_1, text_id_2, text_id_3]);
-            }
-
-            var items = resp.data.alcohol;
-            for(var i = 0; i < items.length; i++){
-                var intoxication = items[i].intoxication;
-                var text_id_1 = items[i].text_id_1;
-                var text_id_2 = items[i].text_id_2;
-                var text_id_3 = items[i].text_id_3;
-                $cordovaSQLite.execute(db, "INSERT INTO Alchohol (intoxication, text_id_1,text_id_2,text_id_3) VALUES (?,?,?,?)", [intoxication, text_id_1, text_id_2, text_id_3]);
-            }
-
-            var items = resp.data.drugs;
-            for(var i = 0; i < items.length; i++){
-                var text_id_1 = items[i].text_id_1;
-                var text_id_2 = items[i].text_id_2;
-                var text_id_3 = items[i].text_id_3;
-                $cordovaSQLite.execute(db, "INSERT INTO Drugs (text_id_1,text_id_2,text_id_3) VALUES (?,?,?)", [text_id_1, text_id_2, text_id_3]);
-            }
-
-            var items = resp.data.other;
-            for(var i = 0; i < items.length; i++){
-                var degree = items[i].degree;
-                var description = items[i].description;
-                var text_id_1 = items[i].text_id_1;
-                var text_id_2 = items[i].text_id_2;
-                var text_id_3 = items[i].text_id_3;
-                $cordovaSQLite.execute(db, "INSERT INTO Other (degree, description, text_id_1,text_id_2,text_id_3) VALUES (?,?,?,?,?)", [degree, description, text_id_1, text_id_2, text_id_3]);
-            }
-
-            var items = resp.data.other_tags;
-            for(var i = 0; i < items.length; i++){
-                var tag_name = items[i].tag_name;
-                var offense_id = items[i].offense_id;
-                $cordovaSQLite.execute(db, "INSERT INTO Other_Tags (tag_name, offense_id) VALUES (?,?)", [tag_name, offense_id]);
-            }
-            $scope.succ = resp.statusText;
-            $scope.log = items.length;
-            $ionicLoading.hide();
-            console.log("Database populated.");
-
-        }, function(err) {
-            $ionicLoading.hide();
-            var confirmPopup = $ionicPopup.confirm({
-                title: 'Error',
-                template: "Could not connect to server"
-            });
-            console.error(err);
-        });
+    db = window.openDatabase("test2", "1.0", "Test DB", 1000000);
+    db.transaction(function (tx) {
+        console.log("Creating Database.");
+        tx.executeSql("DROP TABLE IF EXISTS Texts");
+        tx.executeSql("CREATE TABLE IF NOT EXISTS Texts(id integer primary key, body text)");
+        tx.executeSql("DROP TABLE IF EXISTS Rights");
+        tx.executeSql("CREATE TABLE IF NOT EXISTS Rights(id integer primary key, type integer, body text)");
+        tx.executeSql("DROP TABLE IF EXISTS Alchohol");
+        tx.executeSql("CREATE TABLE IF NOT EXISTS Alchohol(id integer primary key, intoxication integer, text_id_1 integer, text_id_2 integer, text_id_3 integer)");
+        tx.executeSql("DROP TABLE IF EXISTS Drugs");
+        tx.executeSql("CREATE TABLE IF NOT EXISTS Drugs(id integer primary key, text_id_1 integer, text_id_2 integer, text_id_3 integer)");
+        tx.executeSql("DROP TABLE IF EXISTS Speed");
+        tx.executeSql("CREATE TABLE IF NOT EXISTS Speed(id integer primary key, exceed integer, road integer, text_id_1 integer, text_id_2 integer, text_id_3 integer)");
+        tx.executeSql("DROP TABLE IF EXISTS Other");
+        tx.executeSql("CREATE TABLE IF NOT EXISTS Other(id integer primary key, degree integer, description text, text_id_1 integer, text_id_2 integer, text_id_3 integer)");
+        tx.executeSql("DROP TABLE IF EXISTS Other_Tags");
+        tx.executeSql("CREATE TABLE IF NOT EXISTS Other_Tags(tag_name text, offense_id integer)");
     });
+
+    var items = dbJson.texts;
+    for(var i = 0; i < items.length; i++){
+        var textBody = items[i].body;
+        $cordovaSQLite.execute(db, "INSERT INTO Texts (body) VALUES (?)", [textBody]);
+    }
+    var items = dbJson.rights;
+    for(var i = 0; i < items.length; i++){
+        var textBody = items[i].body;
+        var type = items[i].type;
+        $cordovaSQLite.execute(db, "INSERT INTO Rights (type, body) VALUES (?,?)", [type, textBody]);
+    }
+    var items = dbJson.speed;
+    for(var i = 0; i < items.length; i++){
+        var exceed = items[i].exceed;
+        var road = items[i].road;
+        var text_id_1 = items[i].text_id_1;
+        var text_id_2 = items[i].text_id_2;
+        var text_id_3 = items[i].text_id_3;
+        $cordovaSQLite.execute(db, "INSERT INTO Speed (exceed, road, text_id_1,text_id_2,text_id_3) VALUES (?,?,?,?,?)", [exceed, road, text_id_1, text_id_2, text_id_3]);
+    }
+
+    var items = dbJson.alcohol;
+    for(var i = 0; i < items.length; i++){
+        var intoxication = items[i].intoxication;
+        var text_id_1 = items[i].text_id_1;
+        var text_id_2 = items[i].text_id_2;
+        var text_id_3 = items[i].text_id_3;
+        $cordovaSQLite.execute(db, "INSERT INTO Alchohol (intoxication, text_id_1,text_id_2,text_id_3) VALUES (?,?,?,?)", [intoxication, text_id_1, text_id_2, text_id_3]);
+    }
+
+    var items = dbJson.drugs;
+    for(var i = 0; i < items.length; i++){
+        var text_id_1 = items[i].text_id_1;
+        var text_id_2 = items[i].text_id_2;
+        var text_id_3 = items[i].text_id_3;
+        $cordovaSQLite.execute(db, "INSERT INTO Drugs (text_id_1,text_id_2,text_id_3) VALUES (?,?,?)", [text_id_1, text_id_2, text_id_3]);
+    }
+
+    var items = dbJson.other;
+    for(var i = 0; i < items.length; i++){
+        var degree = items[i].degree;
+        var description = items[i].description;
+        var text_id_1 = items[i].text_id_1;
+        var text_id_2 = items[i].text_id_2;
+        var text_id_3 = items[i].text_id_3;
+        $cordovaSQLite.execute(db, "INSERT INTO Other (degree, description, text_id_1,text_id_2,text_id_3) VALUES (?,?,?,?,?)", [degree, description, text_id_1, text_id_2, text_id_3]);
+    }
+
+    var items = dbJson.other_tags;
+    for(var i = 0; i < items.length; i++){
+        var tag_name = items[i].tag_name;
+        var offense_id = items[i].offense_id;
+        $cordovaSQLite.execute(db, "INSERT INTO Other_Tags (tag_name, offense_id) VALUES (?,?)", [tag_name, offense_id]);
+    }
+    $scope.succ = resp.statusText;
+    $scope.log = items.length;
+    console.log("Database populated.");
+    // $ionicPlatform.ready(function() {
+    //     $ionicLoading.show({
+    //         template: 'Loading...'
+    //     });
+    //     var db = null;
+    //     $scope.items = [];
+    //     var url = 'http://www.martindzhonov.podserver.info/overtreding_api/v1/getDB';
+    //     // var url = 'http://localhost/overtreding_api/v1/getDB';
+    //
+    //     $http.get(url).then(function(resp) {
+    //         console.log("Fetching database");
+    //         db = window.openDatabase("test2", "1.0", "Test DB", 1000000);
+    //         db.transaction(function (tx) {
+    //             tx.executeSql("DROP TABLE IF EXISTS Texts");
+    //             tx.executeSql("CREATE TABLE IF NOT EXISTS Texts(id integer primary key, body text)");
+    //             tx.executeSql("DROP TABLE IF EXISTS Rights");
+    //             tx.executeSql("CREATE TABLE IF NOT EXISTS Rights(id integer primary key, type integer, body text)");
+    //             tx.executeSql("DROP TABLE IF EXISTS Alchohol");
+    //             tx.executeSql("CREATE TABLE IF NOT EXISTS Alchohol(id integer primary key, intoxication integer, text_id_1 integer, text_id_2 integer, text_id_3 integer)");
+    //             tx.executeSql("DROP TABLE IF EXISTS Drugs");
+    //             tx.executeSql("CREATE TABLE IF NOT EXISTS Drugs(id integer primary key, text_id_1 integer, text_id_2 integer, text_id_3 integer)");
+    //             tx.executeSql("DROP TABLE IF EXISTS Speed");
+    //             tx.executeSql("CREATE TABLE IF NOT EXISTS Speed(id integer primary key, exceed integer, road integer, text_id_1 integer, text_id_2 integer, text_id_3 integer)");
+    //             tx.executeSql("DROP TABLE IF EXISTS Other");
+    //             tx.executeSql("CREATE TABLE IF NOT EXISTS Other(id integer primary key, degree integer, description text, text_id_1 integer, text_id_2 integer, text_id_3 integer)");
+    //             tx.executeSql("DROP TABLE IF EXISTS Other_Tags");
+    //             tx.executeSql("CREATE TABLE IF NOT EXISTS Other_Tags(tag_name text, offense_id integer)");
+    //         });
+    //
+    //         var items = resp.data.texts;
+    //         for(var i = 0; i < items.length; i++){
+    //             var textBody = items[i].body;
+    //             $cordovaSQLite.execute(db, "INSERT INTO Texts (body) VALUES (?)", [textBody]);
+    //         }
+    //
+            // var items = resp.data.rights;
+            // for(var i = 0; i < items.length; i++){
+            //     var textBody = items[i].body;
+            //     var type = items[i].type;
+            //     $cordovaSQLite.execute(db, "INSERT INTO Rights (type, body) VALUES (?,?)", [type, textBody]);
+            // }
+    //
+            // var items = resp.data.speed;
+            // for(var i = 0; i < items.length; i++){
+            //     var exceed = items[i].exceed;
+            //     var road = items[i].road;
+            //     var text_id_1 = items[i].text_id_1;
+            //     var text_id_2 = items[i].text_id_2;
+            //     var text_id_3 = items[i].text_id_3;
+            //     $cordovaSQLite.execute(db, "INSERT INTO Speed (exceed, road, text_id_1,text_id_2,text_id_3) VALUES (?,?,?,?,?)", [exceed, road, text_id_1, text_id_2, text_id_3]);
+            // }
+            //
+            // var items = resp.data.alcohol;
+            // for(var i = 0; i < items.length; i++){
+            //     var intoxication = items[i].intoxication;
+            //     var text_id_1 = items[i].text_id_1;
+            //     var text_id_2 = items[i].text_id_2;
+            //     var text_id_3 = items[i].text_id_3;
+            //     $cordovaSQLite.execute(db, "INSERT INTO Alchohol (intoxication, text_id_1,text_id_2,text_id_3) VALUES (?,?,?,?)", [intoxication, text_id_1, text_id_2, text_id_3]);
+            // }
+            //
+            // var items = resp.data.drugs;
+            // for(var i = 0; i < items.length; i++){
+            //     var text_id_1 = items[i].text_id_1;
+            //     var text_id_2 = items[i].text_id_2;
+            //     var text_id_3 = items[i].text_id_3;
+            //     $cordovaSQLite.execute(db, "INSERT INTO Drugs (text_id_1,text_id_2,text_id_3) VALUES (?,?,?)", [text_id_1, text_id_2, text_id_3]);
+            // }
+            //
+            // var items = resp.data.other;
+            // for(var i = 0; i < items.length; i++){
+            //     var degree = items[i].degree;
+            //     var description = items[i].description;
+            //     var text_id_1 = items[i].text_id_1;
+            //     var text_id_2 = items[i].text_id_2;
+            //     var text_id_3 = items[i].text_id_3;
+            //     $cordovaSQLite.execute(db, "INSERT INTO Other (degree, description, text_id_1,text_id_2,text_id_3) VALUES (?,?,?,?,?)", [degree, description, text_id_1, text_id_2, text_id_3]);
+            // }
+            //
+            // var items = resp.data.other_tags;
+            // for(var i = 0; i < items.length; i++){
+            //     var tag_name = items[i].tag_name;
+            //     var offense_id = items[i].offense_id;
+            //     $cordovaSQLite.execute(db, "INSERT INTO Other_Tags (tag_name, offense_id) VALUES (?,?)", [tag_name, offense_id]);
+            // }
+            // $scope.succ = resp.statusText;
+            // $scope.log = items.length;
+            // $ionicLoading.hide();
+            // console.log("Database populated.");
+    //
+    //     }, function(err) {
+    //         $ionicLoading.hide();
+    //         var confirmPopup = $ionicPopup.confirm({
+    //             title: 'Error',
+    //             template: "Could not connect to server"
+    //         });
+    //         console.error(err);
+    //     });
+    // });
 })
 
-.controller("HomeController", function($scope, Offenses){
+.controller("HomeController", function($scope, $cordovaSQLite, Offenses){
     Offenses.clear();
+
+    db = window.openDatabase("test2", "1.0", "Test DB", 1000000);
+    db.transaction(function (tx) {
+        console.log("Creating Database.");
+        tx.executeSql("DROP TABLE IF EXISTS Texts");
+        tx.executeSql("CREATE TABLE IF NOT EXISTS Texts(id integer primary key, body text)");
+        tx.executeSql("DROP TABLE IF EXISTS Rights");
+        tx.executeSql("CREATE TABLE IF NOT EXISTS Rights(id integer primary key, type integer, body text)");
+        tx.executeSql("DROP TABLE IF EXISTS Alchohol");
+        tx.executeSql("CREATE TABLE IF NOT EXISTS Alchohol(id integer primary key, intoxication integer, text_id_1 integer, text_id_2 integer, text_id_3 integer)");
+        tx.executeSql("DROP TABLE IF EXISTS Drugs");
+        tx.executeSql("CREATE TABLE IF NOT EXISTS Drugs(id integer primary key, text_id_1 integer, text_id_2 integer, text_id_3 integer)");
+        tx.executeSql("DROP TABLE IF EXISTS Speed");
+        tx.executeSql("CREATE TABLE IF NOT EXISTS Speed(id integer primary key, exceed integer, road integer, text_id_1 integer, text_id_2 integer, text_id_3 integer)");
+        tx.executeSql("DROP TABLE IF EXISTS Other");
+        tx.executeSql("CREATE TABLE IF NOT EXISTS Other(id integer primary key, degree integer, description text, text_id_1 integer, text_id_2 integer, text_id_3 integer)");
+        tx.executeSql("DROP TABLE IF EXISTS Other_Tags");
+        tx.executeSql("CREATE TABLE IF NOT EXISTS Other_Tags(tag_name text, offense_id integer)");
+
+        console.log("Populating Database.");
+
+        var items = dbJson.texts;
+        for(var i = 0; i < items.length; i++){
+            var textBody = items[i].body;
+            $cordovaSQLite.execute(db, "INSERT INTO Texts (body) VALUES (?)", [textBody]);
+        }
+        var items = dbJson.rights;
+        for(var i = 0; i < items.length; i++){
+            var textBody = items[i].body;
+            var type = items[i].type;
+            $cordovaSQLite.execute(db, "INSERT INTO Rights (type, body) VALUES (?,?)", [type, textBody]);
+        }
+        var items = dbJson.speed;
+        for(var i = 0; i < items.length; i++){
+            var exceed = items[i].exceed;
+            var road = items[i].road;
+            var text_id_1 = items[i].text_id_1;
+            var text_id_2 = items[i].text_id_2;
+            var text_id_3 = items[i].text_id_3;
+            $cordovaSQLite.execute(db, "INSERT INTO Speed (exceed, road, text_id_1,text_id_2,text_id_3) VALUES (?,?,?,?,?)", [exceed, road, text_id_1, text_id_2, text_id_3]);
+        }
+
+        var items = dbJson.alcohol;
+        for(var i = 0; i < items.length; i++){
+            var intoxication = items[i].intoxication;
+            var text_id_1 = items[i].text_id_1;
+            var text_id_2 = items[i].text_id_2;
+            var text_id_3 = items[i].text_id_3;
+            $cordovaSQLite.execute(db, "INSERT INTO Alchohol (intoxication, text_id_1,text_id_2,text_id_3) VALUES (?,?,?,?)", [intoxication, text_id_1, text_id_2, text_id_3]);
+        }
+
+        var items = dbJson.drugs;
+        for(var i = 0; i < items.length; i++){
+            var text_id_1 = items[i].text_id_1;
+            var text_id_2 = items[i].text_id_2;
+            var text_id_3 = items[i].text_id_3;
+            $cordovaSQLite.execute(db, "INSERT INTO Drugs (text_id_1,text_id_2,text_id_3) VALUES (?,?,?)", [text_id_1, text_id_2, text_id_3]);
+        }
+
+        var items = dbJson.other;
+        for(var i = 0; i < items.length; i++){
+            var degree = items[i].degree;
+            var description = items[i].description;
+            var text_id_1 = items[i].text_id_1;
+            var text_id_2 = items[i].text_id_2;
+            var text_id_3 = items[i].text_id_3;
+            $cordovaSQLite.execute(db, "INSERT INTO Other (degree, description, text_id_1,text_id_2,text_id_3) VALUES (?,?,?,?,?)", [degree, description, text_id_1, text_id_2, text_id_3]);
+        }
+
+        var items = dbJson.other_tags;
+        for(var i = 0; i < items.length; i++){
+            var tag_name = items[i].tag_name;
+            var offense_id = items[i].offense_id;
+            $cordovaSQLite.execute(db, "INSERT INTO Other_Tags (tag_name, offense_id) VALUES (?,?)", [tag_name, offense_id]);
+        }
+        console.log("Database populated.");
+    });
+
+
 })
 
 .controller("RightsController", function($scope, $ionicHistory, $location, Rights, ContactService) {
