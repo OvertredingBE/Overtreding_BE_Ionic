@@ -22,14 +22,12 @@ app.run(function($ionicPlatform) {
     .state("config", {
         url:"/config",
         templateUrl: "templates/home.html",
-        controller: "ConfigController",
-        cache: false
+        controller: "ConfigController"
     })
     .state("home", {
         url:"/home",
         templateUrl: "templates/home.html",
-        controller: "HomeController",
-        cache: false
+        controller: "HomeController"
     })
     .state("rights", {
         url:"/rights",
@@ -61,7 +59,7 @@ app.run(function($ionicPlatform) {
         templateUrl: "templates/takepic.html",
         controller: "TakePictureController"
     });
-    $urlRouterProvider.otherwise("/config");
+    $urlRouterProvider.otherwise("/home");
     $ionicConfigProvider.navBar.alignTitle('center');
     $compileProvider.imgSrcSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|tel):/);
 });
