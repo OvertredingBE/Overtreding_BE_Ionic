@@ -102,16 +102,16 @@
     /*-webkit-transition:top linear 0.1s;
     transition:top linear 0.1s;*/
 }
-.fadeout {
+.item-animate.ng-hide {
+  height:0;
+  opacity:0;
+  padding:0;
 }
 
-.fadein.ng-hide-remove,
-.fadeout.ng-hide-add.ng-hide-add-active {
-
-}
-
-.fadeout.ng-hide-add,
-.fadein.ng-hide-remove.ng-hide-remove-active {
+.item-animate.ng-hide-remove,
+.item-animate.ng-hide-add {
+  display: block !important;
+  transition: all linear 300ms;
 }
 
 .button-footer{
@@ -221,6 +221,36 @@
     font-size: 17px;
     border: none !important;
 }
+
+.textarea-custom{
+    height: 100px;
+}
+.button-custom-2, .button-custom-4{
+    width:37%;
+    margin-top:5px;
+    margin-bottom: 10px;
+    margin-left: 30px;
+    border:none;
+    height: 60px;
+    font-weight: 600;
+}
+
+.button-custom-2 {
+    color: white;
+    background-color: #1E91D5;
+}
+
+.button-custom-4{
+    color: #1E91D5;
+    background-color: white;
+}
+
+.padded{
+    padding: 10px;
+}
+
+
+/*iPhone-2,3,4*/
 @media only screen
 and (min-device-width : 320px)
 and (max-device-width : 480px)
@@ -229,21 +259,104 @@ and (orientation : portrait) {
 background-color: blue;
 }
 }
+/*iPhone-5,5s*/
 @media only screen
 and (min-device-width : 320px)
 and (max-device-width : 568px)
 and (orientation : portrait) {
      .icon-home-container{
-background-color: black;
+         background-color: black;
+     }
+     .button-footer{
+         font-family: "AvenrirNext";
+         padding: 0px 45px 0px 10px;
+         font-size: 13px;
+         height: 24px;
+         line-height: 28px;
+         color: black;
+         background-color: white;
+         position: absolute;
+         top:11px;
+         right:15px;
+     }
+     .icon-home-container{
+         background-color: black;
+     }
+     .text-footer{
+         font-size: 14px;
+         padding-left: 15px;
+         line-height: 40px;
+     }
+     .icon-footer{
+         margin-left: 20px;
+         margin-top: 8px;
+     }
+     .button-custom-2, .button-custom-4 {
+         font-size:13px;
+     }
+     .item-subgroup-underline, .item-subgroup-noline{
+         font-size: 12px;
+     }
+     .icon-custom{
+         position: absolute;
+         top:40px;
+         right: 15px;
+     }
 }
-}
+/*Android 5nch*/
 @media screen
   and (min-device-width: 320px)
   and (min-device-height: 640px) {
       .icon-home-container{
       background-color: yellow;
       }
+      .picImg{
+       width: 100%;
+       height: 100%;
+       border: none;
+   }
+   .button-home-underline{
+        float: left;
+        width: 100%
+   }
+   .test{
+       width: 80%;
+       position: absolute;
+       top:0px;
+       overflow: hidden;
+   }
+   .text-footer{
+       padding-left: 15px;
+       line-height: 37px;
+   }
+   .icon-footer{
+       margin-left: 20px;
+       margin-top: 8px;
+   }
+   .button-custom-2, .button-custom-4{
+       font-size: 15px;
+       width:37%;
+       margin-top:5px;
+       margin-bottom: 10px;
+       margin-left: 30px;
+       border:none;
+       height: 60px;
+       font-weight: 600;
+   }
+   .text-footer{
+       font-size: 14px;
+       padding-left: 15px;
+       line-height: 36px;
+   }
+   .icon-footer{
+       margin-left: 50px;
+       margin-top: 8px;
+   }
+   .icon-custom{
+       position:inherit;
+   }
 }
+/*iPhone-6*/
 @media only screen
 and (min-device-width : 375px)
 and (max-device-width : 667px)
@@ -251,7 +364,54 @@ and (orientation : portrait) {
     .icon-home-container{
     background-color: red;
     }
+    .text-footer{
+        font-size: 16px;
+        padding-left: 15px;
+        line-height: 40px;
+    }
+    .icon-footer{
+        margin-left: 40px;
+        margin-top: 8px;
+    }
 }
+/*iPhone-6-Plus*/
+@media only screen
+and (min-device-width : 414px)
+and (max-device-width : 736px) {
+    .icon-home-container{
+    background-color: green;
+    }
+}
+/*iPad-1,2*/
+@media only screen
+and (min-device-width : 768px)
+and (max-device-width : 1024px)
+and (-webkit-min-device-pixel-ratio: 1){
+    .text-footer{
+        font-size: 20px;
+        padding-left: 15px;
+        line-height: 40px;
+    }
+    .icon-footer{
+        position: absolute;
+        right: 30px;
+        margin-left: 40px;
+        margin-top: 8px;
+    }
+    .rights-button-container{
+
+    }
+    .button-custom-2{
+        margin-left: 65px;
+
+    }
+    .button-custom-4{
+        margin-left: 65px;
+
+    }
+    .icon-custom{
+     position: inherit;
+ }}
 /*
 @media only screen
 and (min-device-width : 375px)

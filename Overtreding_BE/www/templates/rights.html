@@ -4,7 +4,6 @@
         <h1 class="title background-nav-bar">UW RECHTEN</h1>
     </ion-header-bar>
     <ion-content class="padding">
-        <div>{{response}}</div>
         <button ng-class="{'button-custom-2': selected == 2, 'button-custom-4': selected ==1}" ng-click="showAlch()">
             ALCOHOL CONTROLE
         </button>
@@ -14,7 +13,7 @@
         <!-- <button ng-class="button" ng-click="test()">
             test
                 </button> -->
-        <div ng-repeat="item in items" ng-class="$last ? 'item item-text-wrap item-noline' : 'item item-text-wrap item-underline'">
+        <div style="margin-top:5px" ng-repeat="item in items" ng-class="$last ? 'item item-text-wrap item-noline' : 'item item-text-wrap item-underline'">
             <div>
                 {{item.body}}
             </div>

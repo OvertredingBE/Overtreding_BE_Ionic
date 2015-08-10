@@ -27,7 +27,8 @@ app.run(function($ionicPlatform) {
     .state("home", {
         url:"/home",
         templateUrl: "templates/home.html",
-        controller: "HomeController"
+        controller: "HomeController",
+        cache: false
     })
     .state("rights", {
         url:"/rights",
