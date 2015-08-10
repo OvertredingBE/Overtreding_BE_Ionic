@@ -3,7 +3,8 @@
 */
 
 angular.module('starter.controllers', [])
-.controller("HomeController", function($scope, $cordovaSQLite, $cordovaSplashscreen, $ionicPlatform, Offenses){
+.controller("HomeController", function($scope, $cordovaSQLite, $cordovaSplashscreen, $ionicPlatform, Offenses, FinesCalculator){
+    console.log(FinesCalculator.getFinesForText("U ontvangt een onmiddellijke inning van 55 EUR. Uw rijbewijs kan niet onmiddellijk worden ingetrokken"));
     $scope.calcFineTapped = function(){
         Offenses.clear();
     }
@@ -511,34 +512,32 @@ angular.module('starter.controllers', [])
 
     var qualifyOI = CombinedFines.qualifyOI();
     var qualifyMS = CombinedFines.qualifyMS();
+    var sumOI = 0;
+    var sumMS = 0;
     $scope.message = "Maak uw keuze uit de onderstaande samengestelde overtredingen en ontdek welke gevolgen elke overtreding met zich meebrengt.\n Wenst u graag meer informatie over deze overtredingen, aarzel niet en vraag GRATIS juridisch advies aan via onderstaande button.";
 
-    ExceptionTexts.getExceptionTexts().then(function(res2){
-        var excTexts = [];
-        for (var i = 0; i < res2.length; i++) {
-            console.log(res2.item(i).id);
-            excTexts.push(res2.item(i).body);
-        }
-        for (var i = 0; i < offenses.length; i++) {
-            var offense  = offenses[i];
-            var texts = [];
-            Texts.getTexts(offense).then(function(res){
-                for (var i = 0; i < res.length; i++) {
-                    for (var j = 0; j < excTexts.length; j++) {
-                        if(excTexts[j] === res.item(i).body){
-                             qualifyMS = false;
-                        }
-                    }
-                }
-                if(!qualifyOI){
-                    $scope.message = "De door u samengestelde overtredingen zorgen ervoor dat u niet in aanmerking komt voor een onmiddellijke inning. U komt wel in aanmerking voor een minnelijke schikking.\nMaak uw keuze uit de onderstaande samengestelde overtredingen en ontdek welke gevolgen elke overtreding met zich meebrengt.\nWilt u meer informatie over de gevolgen die zich kunnen voordoen als u voor de rechtbank moet verschijnen, aarzel niet en vraag GRATIS juridisch advies aan via onderstaande button.";
-                }
-                if(!qualifyMS){
-                    $scope.message = "De door u samengestelde overtredingen zorgen ervoor dat u niet in aanmerking komt voor een onmiddellijke inning of minnnelijke schikking. U zal sowieso voor de rechtbank moeten verschijnen.\nMaak uw keuze uit de onderstaande samengestelde overtredingen en ontdek welke gevolgen elke overtreding met zich meebrengt.\n Wenst u graag meer informatie over deze overtrendigen, aarzel niet en vraag GRATIS juridisch advies aan via onderstaande button.";
-                }
-            });
-        }
-    });
+    // ExceptionTexts.getExceptionTexts().then(function(res2){
+    //     var excTexts = [];
+    //     for (var i = 0; i < res2.length; i++) {
+    //         console.log(res2.item(i).id);
+    //         excTexts.push(res2.item(i).body);
+    //     }
+    // });
+
+    for (var i = 0; i < offenses.length; i++) {
+        var offense  = offenses[i];
+        var texts = [];
+        Texts.getTexts(offense).then(function(res){
+            for (var i = 0; i < res.length; i++) {
+            }
+            // if(!qualifyOI){
+            //     $scope.message = "De door u samengestelde overtredingen zorgen ervoor dat u niet in aanmerking komt voor een onmiddellijke inning. U komt wel in aanmerking voor een minnelijke schikking.\nMaak uw keuze uit de onderstaande samengestelde overtredingen en ontdek welke gevolgen elke overtreding met zich meebrengt.\nWilt u meer informatie over de gevolgen die zich kunnen voordoen als u voor de rechtbank moet verschijnen, aarzel niet en vraag GRATIS juridisch advies aan via onderstaande button.";
+            // }
+            // if(!qualifyMS){
+            //     $scope.message = "De door u samengestelde overtredingen zorgen ervoor dat u niet in aanmerking komt voor een onmiddellijke inning of minnnelijke schikking. U zal sowieso voor de rechtbank moeten verschijnen.\nMaak uw keuze uit de onderstaande samengestelde overtredingen en ontdek welke gevolgen elke overtreding met zich meebrengt.\n Wenst u graag meer informatie over deze overtrendigen, aarzel niet en vraag GRATIS juridisch advies aan via onderstaande button.";
+            // }
+        });
+    }
 
     $scope.goToContact = function(){
         ContactService.setFunctionality("CalcFine");

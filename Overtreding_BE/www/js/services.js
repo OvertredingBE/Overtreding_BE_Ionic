@@ -260,6 +260,27 @@ angular.module('starter.services', [])
                 obj[key] = Formulas.getResultForFormula(formulaIds[i], offense);
             }
             return obj;
+        },
+        getFinesForText: function(text){
+            var index = text.indexOf("EUR");
+            if(index === -1){
+                return 0;
+            }
+            else{
+                var end = 0;
+                var beggining = 0;
+                for (var i = index; i >= 0; i--) {
+                    if(text[i] === " "){
+                        if(end === 0){
+                        end = i;
+                        }
+                        else{
+                            beggining = i;
+                            return parseInt(text.substr(beggining+1, end-beggining));
+                        }
+                    }
+                }
+            }
         }
     }
 })
