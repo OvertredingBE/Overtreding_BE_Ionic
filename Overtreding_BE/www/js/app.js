@@ -19,16 +19,10 @@ app.run(function($ionicPlatform) {
    $ionicConfigProvider.scrolling.jsScrolling(false);
     }
     $stateProvider
-    .state("config", {
-        url:"/config",
-        templateUrl: "templates/home.html",
-        controller: "ConfigController"
-    })
     .state("home", {
         url:"/home",
         templateUrl: "templates/home.html",
-        controller: "HomeController",
-        cache: false
+        controller: "HomeController"
     })
     .state("rights", {
         url:"/rights",

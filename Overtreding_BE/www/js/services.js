@@ -63,11 +63,15 @@ angular.module('starter.services', [])
 
             for (var i = 0; i < offenses.length; i++) {
                 var offense = offenses[i];
+                if(offense.age === 0){
+                    return false;
+                }
                 for (var key in offense) {
                     if (offense.hasOwnProperty(key)) {
                         if(offense.type === "Other"){
                             if(offense.degree === 3 || offense.degree === 4){
-                                console.log("Offense degree: " + offense.degree);
+                                console.log("QUALIFY OI: FALSE");
+                                console.log("Offense degree:" + offense.degree);
                                 return false;
                             }
                         }
@@ -76,7 +80,6 @@ angular.module('starter.services', [])
 
                 var currSum = 0;
                 var fines = FinesCalculator.getFines(offense);
-                console.log("Fine " + i);
                 for (var key in fines) {
                     if (fines.hasOwnProperty(key)) {
                         console.log(key + " -> " + fines[key]);
@@ -88,14 +91,11 @@ angular.module('starter.services', [])
                     }
                 }
                 minSum += currSum;
-                console.log("Offense fine: " + currSum);
-
-                if(currSum > 330){
-                    if(offense.type != "Alchohol"){
-                        console.log("Sum over 330");
-                        return false;
-                    }
-                }
+            }
+            if(minSum > 330){
+                console.log("QUALIFY QI: FALSE");
+                console.log("Sum over 330");
+                return false;
             }
             return true;
       },
@@ -108,12 +108,10 @@ angular.module('starter.services', [])
               var offense = offenses[i];
               var currSum = 0;
               var fines = FinesCalculator.getFines(offense);
-              console.log("Fine " + i);
               for (var key in fines) {
                   if (fines.hasOwnProperty(key)) {
                       console.log(key + " -> " + fines[key]);
                       if(key === "#TOTALAMOUNT4#" || key === "#TOTALAMOUNT6#"){
-                      console.log(key + " -> " + fines[key]);
                       var fineString = fines[key].toString();
                       var fineAmounts = fineString.split(" tot ");
                       currSum +=parseInt(fineAmounts[0]);
@@ -122,8 +120,8 @@ angular.module('starter.services', [])
               }
               minSum += currSum;
           }
-          console.log("Fines sum: " + minSum);
           if(minSum > 1500){
+              console.log("QUALIFY MS: FALSE");
               console.log("Sum over 1500");
               return false;
           }
@@ -166,17 +164,17 @@ angular.module('starter.services', [])
             }
         },
         evaluateCombined: function(texts){
-            var qualifyOI = CombinedFines.qualifyOI();
-            console.log("Qualify OI: " + qualifyOI);
-            if(!qualifyOI){
-                texts[0] = "U komt niet in aanmerking voor een onmiddellijke inning.";
-            }
-            var qualifyMS = CombinedFines.qualifyMS();
-            console.log("Qualify MS: " + qualifyMS);
-            if(!qualifyMS){
-                texts[0] = "U komt niet in aanmerking voor een onmiddellijke inning.";
-                texts[1] = "U komt niet in aanmerking voor een minnelijke schikking.";
-            }
+            // var qualifyOI = CombinedFines.qualifyOI();
+            // console.log("Qualify OI: " + qualifyOI);
+            // if(!qualifyOI){
+            //     texts[0] = "U komt niet in aanmerking voor een onmiddellijke inning.";
+            // }
+            // var qualifyMS = CombinedFines.qualifyMS();
+            // console.log("Qualify MS: " + qualifyMS);
+            // if(!qualifyMS){
+            //     texts[0] = "U komt niet in aanmerking voor een onmiddellijke inning.";
+            //     texts[1] = "U komt niet in aanmerking voor een minnelijke schikking.";
+            // }
         }
     }
 })
