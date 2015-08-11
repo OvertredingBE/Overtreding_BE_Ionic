@@ -28,7 +28,7 @@
         </div>
     </div>
 
-    <div ng-show="showSearch">
+    <div ng-init="showSearch=false" ng-show="showSearch" >
         <div class="paddded-horizontal background-light container-relative">
             <div class="item-big background-light">
                 <input type="text" ng-model="inputs.searchWord">
@@ -68,7 +68,7 @@
 
 <div ng-show="showInput" class="background-light">
     <div class="paddded-horizontal background-light container-relative">
-        <div class="item-group-underline background-light" style="border-bottom: none">
+        <div class="item-group-underline background-light asd" style="border-bottom: none">
             <div>
                 GEREDEN SNELHEID
             </div>
@@ -80,7 +80,7 @@
         </div>
     </div>
     <div class="paddded-horizontal background-light container-relative">
-        <div class="item-group-noline background-light">
+        <div class="item-group-noline background-light asd">
             <div>
                 GECORRIGEERDE SNELHEID
             </div>
@@ -97,7 +97,7 @@
 </ion-view>
 
 <ion-footer-bar class="bar-subfooter background-light" ng-click="createNewOffense()">
-    <div class="item-group-underline background-light" style="margin-top:0px">
+    <div class="item-group-underline background-light">
         VOEG EEN OVERTREDING TOE
         <img class="icon-right icon-small" src="img/plus.png" ng-click="createNewOffense()"></img>
     </div>

@@ -6,10 +6,19 @@ angular.module('starter.services', [])
     var arr = [];
     db = window.openDatabase("test2", "1.0", "Test DB", 1000000);
     return {
+        getTest: function(type){
+            var query = "SELECT * FROM Rights WHERE type=?";
+            return $cordovaSQLite.execute(db, query, [type]).then(function(res){
+                arr = res.rows;
+                return arr;
+            }, function(err){
+                console.error(err);
+            });
+        },
         getTexts: function(offense) {
             switch (offense.type) {
                 case "Speed":
-                var query = "SELECT * FROM Texts a INNER JOIN Speed b ON a.id=b.text_id_1 OR a.id=b.text_id_2 OR a.id=b.text_id_3 WHERE b.exceed = ? AND b.road = ? ORDER BY CASE WHEN a.id=b.text_id_1 THEN 1 WHEN a.id=b.text_id_2 THEN 2 ELSE 3 END";
+                var query = "SELECT a.id, a.body FROM Texts a INNER JOIN Speed b ON a.id=b.text_id_1 OR a.id=b.text_id_2 OR a.id=b.text_id_3 WHERE b.exceed = ? AND b.road = ? ORDER BY CASE WHEN a.id=b.text_id_1 THEN 1 WHEN a.id=b.text_id_2 THEN 2 ELSE 3 END";
                 var exceed = Formulas.calculateExceed(offense.speed_limit, offense.speed_corrected);
                 console.log("Exceed: " + exceed);
                 return $cordovaSQLite.execute(db, query, [exceed, offense.road]).then(function(res){
@@ -20,7 +29,7 @@ angular.module('starter.services', [])
                 });
                 break;
                 case "Alchohol":
-                var query = "SELECT * FROM Texts a INNER JOIN Alchohol b ON a.id=b.text_id_1 OR a.id=b.text_id_2 OR a.id=b.text_id_3 WHERE b.intoxication=? ORDER BY CASE WHEN a.id=b.text_id_1 THEN 1 WHEN a.id=b.text_id_2 THEN 2 ELSE 3 END";
+                var query = "SELECT a.id, a.body FROM Texts a INNER JOIN Alchohol b ON a.id=b.text_id_1 OR a.id=b.text_id_2 OR a.id=b.text_id_3 WHERE b.intoxication=? ORDER BY CASE WHEN a.id=b.text_id_1 THEN 1 WHEN a.id=b.text_id_2 THEN 2 ELSE 3 END";
                 return $cordovaSQLite.execute(db, query, [offense.intoxication]).then(function(res){
                     arr = res.rows;
                     return arr;
@@ -29,7 +38,7 @@ angular.module('starter.services', [])
                 });
                 break;
                 case "Drugs":
-                var query = "SELECT * FROM Texts a INNER JOIN Drugs b ON a.id=b.text_id_1 OR a.id=b.text_id_2 OR a.id=b.text_id_3 ORDER BY CASE WHEN a.id=b.text_id_1 THEN 1 WHEN a.id=b.text_id_2 THEN 2 ELSE 3 END";
+                var query = "SELECT a.id, a.body FROM Texts a INNER JOIN Drugs b ON a.id=b.text_id_1 OR a.id=b.text_id_2 OR a.id=b.text_id_3 ORDER BY CASE WHEN a.id=b.text_id_1 THEN 1 WHEN a.id=b.text_id_2 THEN 2 ELSE 3 END";
                 return $cordovaSQLite.execute(db, query, []).then(function(res){
                     arr = res.rows;
                     return arr;
@@ -38,7 +47,7 @@ angular.module('starter.services', [])
                 });
                 break;
                 case "Other":
-                var query = "SELECT * FROM Texts a INNER JOIN Other b ON a.id=b.text_id_1 OR a.id=b.text_id_2 OR a.id=b.text_id_3 WHERE b.id = ? ORDER BY CASE WHEN a.id=b.text_id_1 THEN 1 WHEN a.id=b.text_id_2 THEN 2 ELSE 3 END";
+                var query = "SELECT a.id, a.body FROM Texts a INNER JOIN Other b ON a.id=b.text_id_1 OR a.id=b.text_id_2 OR a.id=b.text_id_3 WHERE b.id = ? ORDER BY CASE WHEN a.id=b.text_id_1 THEN 1 WHEN a.id=b.text_id_2 THEN 2 ELSE 3 END";
                 return $cordovaSQLite.execute(db, query, [offense.id]).then(function(res){
                     arr = res.rows;
                     return arr;
@@ -50,7 +59,7 @@ angular.module('starter.services', [])
         }
     }
 })
-.factory('CombinedFines', function($cordovaSQLite, Offenses, FinesCalculator){
+.factory('CombinedFines', function($cordovaSQLite, Offenses, FinesCalculator,Formulas){
     var fines = [];
     var offenses = [];
     var texts = [];
@@ -77,25 +86,6 @@ angular.module('starter.services', [])
                         }
                     }
                 }
-
-                var currSum = 0;
-                var fines = FinesCalculator.getFines(offense);
-                for (var key in fines) {
-                    if (fines.hasOwnProperty(key)) {
-                        console.log(key + " -> " + fines[key]);
-                        if(key === "#TOTALAMOUNT3#" || key === "#TOTALAMOUNT5#"){
-                        var fineString = fines[key].toString();
-                        var fineAmounts = fineString.split(" tot ");
-                        currSum +=parseInt(fineAmounts[0]);
-                    }
-                    }
-                }
-                minSum += currSum;
-            }
-            if(minSum > 330){
-                console.log("QUALIFY QI: FALSE");
-                console.log("Sum over 330");
-                return false;
             }
             return true;
       },
@@ -103,27 +93,30 @@ angular.module('starter.services', [])
           offenses = Offenses.all();
           var finesAmounts = 0;
           var minSum = 0;
-          console.log("----------QUALIFY MS------------")
+          console.log("----------QUALIFY OI------------")
+
           for (var i = 0; i < offenses.length; i++) {
               var offense = offenses[i];
-              var currSum = 0;
-              var fines = FinesCalculator.getFines(offense);
-              for (var key in fines) {
-                  if (fines.hasOwnProperty(key)) {
-                      console.log(key + " -> " + fines[key]);
-                      if(key === "#TOTALAMOUNT4#" || key === "#TOTALAMOUNT6#"){
-                      var fineString = fines[key].toString();
-                      var fineAmounts = fineString.split(" tot ");
-                      currSum +=parseInt(fineAmounts[0]);
-                  }
+              if(offense.licence === 0){
+                  switch (offense.type) {
+                      case "Speed":
+                      var exceed = Formulas.calculateExceed(offense.speed_limit, offense.speed_corrected);
+                      if(exceed >= 2){
+                         return false;
+                      }
+                      break;
+                      case "Alchohol":
+                      if(offense.intoxication <= 5){
+                         return false;
+                      }
+                      break;
+                      case "Other":
+                      if(offense.degree === 3 || offense.degree === 4){
+                          return false;
+                      }
+                      default:
                   }
               }
-              minSum += currSum;
-          }
-          if(minSum > 1500){
-              console.log("QUALIFY MS: FALSE");
-              console.log("Sum over 1500");
-              return false;
           }
           return true;
       }
@@ -138,9 +131,6 @@ angular.module('starter.services', [])
                 if (offense.hasOwnProperty(key)) {
                     console.log(key + " -> " + offense[key]);
                 }
-            }
-            if(offense.age === 0){
-                texts[0] = "U komt niet in aanmerking voor een onmiddellijke inning.";
             }
             if(offense.licence === 0){
                 switch (offense.type) {
@@ -159,6 +149,12 @@ angular.module('starter.services', [])
                         texts[2] = "Heeft u uw rijbewijs minder dan 2 jaar op het ogenblik van de overtreding, dan kan uw rijbewijs onmiddellijk worden ingetrokken. U komt niet in aanmerking voor een onmiddellijke inning of minnelijke schikking. In principe wordt u sowieso gedagvaard voor de politierechtbank. Bovendien is de rechter verplicht u een rijverbod van minstens 8 dagen op te leggen. Bovendien dient u te kiezen of u uw praktisch of uw theoretisch examen opnieuw wenst af te leggen.";
                     }
                     break;
+                    case "Other":
+                    if(offense.degree === 3 || offense.degree === 4){
+                        texts[0] = "U komt niet in aanmerking voor een onmiddellijke inning.";
+                        texts[1] = "U komt niet in aanmerking voor een minnelijke schikking.";
+                        texts[2] = "Heeft u uw rijbewijs minder dan 2 jaar op het ogenblik van de overtreding, dan kan uw rijbewijs onmiddellijk worden ingetrokken. U komt niet in aanmerking voor een onmiddellijke inning of minnelijke schikking. In principe wordt u sowieso gedagvaard voor de politierechtbank. Bovendien is de rechter verplicht u een rijverbod van minstens 8 dagen op te leggen. Bovendien dient u te kiezen of u uw praktisch of uw theoretisch examen opnieuw wenst af te leggen.";
+                    }
                     default:
                 }
             }

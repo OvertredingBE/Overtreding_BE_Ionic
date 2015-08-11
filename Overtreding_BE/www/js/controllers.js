@@ -3,13 +3,20 @@
 */
 
 angular.module('starter.controllers', [])
-.controller("HomeController", function($scope, $cordovaSQLite, $cordovaSplashscreen, $ionicPlatform, Offenses, FinesCalculator){
-    console.log(FinesCalculator.getFinesForText("U ontvangt een onmiddellijke inning van 55 EUR. Uw rijbewijs kan niet onmiddellijk worden ingetrokken"));
+.controller("HomeController", function($scope, $cordovaSQLite, $cordovaSplashscreen, $ionicPlatform, $ionicPopup, Offenses, FinesCalculator, Texts){
+    // var asd = [];
+    Texts.getTest().then(function(res){
+        for (var i = 0; i < res.length; i++) {
+            console.log(res.item(i).body);
+        }
+    })
+    // console.log(FinesCalculator.getFinesForText("U ontvangt een onmiddellijke inning van 55 EUR. Uw rijbewijs kan niet onmiddellijk worden ingetrokken"));
     $scope.calcFineTapped = function(){
         Offenses.clear();
     }
     ionic.Platform.ready(function(){
-        db = window.openDatabase("test2", "1.0", "Test DB", 1000000);
+        var flag = false;
+        var db = window.openDatabase("test2", "1.0", "Test DB", 1000000);
         db.transaction(function (tx) {
             console.log("Creating Database");
             tx.executeSql("DROP TABLE IF EXISTS Texts");
@@ -40,6 +47,7 @@ angular.module('starter.controllers', [])
                 var type = items[i].type;
                 $cordovaSQLite.execute(db, "INSERT INTO Rights (type, body) VALUES (?,?)", [type, textBody]);
             }
+
             var items = dbJson.speed;
             for(var i = 0; i < items.length; i++){
                 var exceed = items[i].exceed;
@@ -83,26 +91,53 @@ angular.module('starter.controllers', [])
                 var offense_id = items[i].offense_id;
                 $cordovaSQLite.execute(db, "INSERT INTO Other_Tags (tag_name, offense_id) VALUES (?,?)", [tag_name, offense_id]);
             }
-            console.log("Database populated.");
+            flag = true;
             $cordovaSplashscreen.hide();
+            if(!flag){
+                $ionicPopup.alert({
+                    title: 'Error',
+                    template: 'Could not populate Database'
+                });
+            }
+            console.log("Database populated.");
         });
+
     });
 
 })
 
-.controller("RightsController", function($scope, $ionicHistory, $location, Rights, ContactService) {
-    $scope.items = Rights.alchRights();
+.controller("RightsController", function($scope, $ionicHistory, $location, Rights, ContactService, Texts) {
+    $scope.items = [];
+    var asd = ["Soms gebeurt het dat de politie een eerste test uitvoert met een alco-sensor. Deze maakt eigenlijk geen deel uit van de eigenlijke alcoholcontrole.",
+    "U wordt tegengehouden voor een ademtest. Deze geeft een eerste idee of u gedronken hebt. U kan meteen vragen om een wachttijd van 15 minuten. De politie dient u dan een verpakt mondstuk te tonen en dit mondstuk, zonder dit aan te raken, op het toestel te monteren. De politie dient het resultaat te tonen én luidop te lezen. Een S (safe) betekent dat u mag doorrijden. Een A (alarm) of P (positief) betekent dat u teveel gedronken hebt. Weigert u de test, dan wordt dat gelijkgesteld met een P en krijgt u een rijverbod van 6 uur.",
+"Blies u een A of een P, dan moet ook een ademanalyse worden verricht. Deze geeft de precieze concentratie van alcohol weer. Als er meteen een ademanalyse wordt afgenomen (zonder ademtest), heeft u eveneens recht op een wachttijd van 15 minuten. De politie dient u mee te delen dat u recht heeft op een tweede analyse. Als u kiest voor een tweede analyse en de resultaten verschillen aanzienlijk, moet eventueel een derde analyse worden verricht. Blies u meer dan 0,22 mg/l lucht, maar minder dan 0,35 mg/l, dan krijgt u een rijverbod van 3 uur. Later wordt een boete thuisgestuurd. Blies u meer dan 0,35 mg/l lucht, dan krijgt u een rijverbod van minstens 6 uur. Nadien moet u opnieuw blazen. Later wordt een boete thuisgestuurd of wordt u gedagvaard. Als u meer dan 0,22 mg/l blaast, moet u een kopie ontvangen van elk ticket dat door het toestel wordt afgedrukt en dit uiterlijk binnen de 14 dagen. Blies u meer dan 0,35, dan dient de politie u mee te delen dat u steeds een tegenexpertise kan laten verrichten.",
+"Een bloedproef wordt afgenomen wanneer ademtest en ademanalyse onmogelijk zijn of wanneer u er zelf om verzoekt. Ze kan enkel worden afgenomen door een dokter.",
+"Uiterlijk 14 dagen na de vaststelling, moet u een kopie van het PV worden toegestuurd."];
+    Texts.getTest(0).then(function(res){
+        for (var i = 0; i < res.length; i++) {
+            $scope.items.push({body:res.item(i).body});
+        }
+    });
     $scope.selected = 1;
 
     $scope.showAlch = function() {
-        $scope.items = [];
-        $scope.items = Rights.alchRights();
+        $scope.items.length = 0;
+        Texts.getTest(0).then(function(res){
+            for (var i = 0; i < res.length; i++) {
+                $scope.items.push({body:res.item(i).body});
+            }
+        });
         $scope.selected = 1;
     };
 
     $scope.showDrugs = function() {
-        $scope.items = [];
-        $scope.items = Rights.drugRights();
+        $scope.items.length = 0;
+
+        Texts.getTest(1).then(function(res){
+            for (var i = 0; i < res.length; i++) {
+                $scope.items.push({body:res.item(i).body});
+            }
+        });
         $scope.selected = 2;
     };
 
@@ -110,7 +145,7 @@ angular.module('starter.controllers', [])
     };
 
     $scope.goToContact = function(){
-        ContactService.setFunctionality("Rights");
+        ContactService.setFunctionality("Uw rechten bij een politiecontrole");
         $location.path("/contact");
     };
 
@@ -139,7 +174,7 @@ angular.module('starter.controllers', [])
         }
         else{
             // if(Utils.validateEmail($scope.form.email)){
-                var url = 'http://www.martindzhonov.podserver.info/overtreding_api/v1/email2';
+                var url = 'http://www.overtredingbe.podserver.info/overtreding_api/v1/email2';
                 var data = $scope.form;
                 var functionalityTypeStr = ContactService.getFunctionality();
                 switch (functionalityTypeStr) {
@@ -182,6 +217,7 @@ angular.module('starter.controllers', [])
 .controller("CalcFineController", function($scope, $ionicHistory, $ionicPopup, $location, Questions, Offenses, Utils, TranslateService, Formulas, Others2, ContactService) {
     $scope.offenses = [];
     $scope.searchResults = [];
+    $scope.showSearch = false;
     $scope.inputs = {};
     $scope.menu = Questions.getQuestions("Menu");
     var indexShown = 0;
@@ -514,33 +550,77 @@ angular.module('starter.controllers', [])
     var qualifyMS = CombinedFines.qualifyMS();
     var sumOI = 0;
     var sumMS = 0;
+
     $scope.message = "Maak uw keuze uit de onderstaande samengestelde overtredingen en ontdek welke gevolgen elke overtreding met zich meebrengt.\n Wenst u graag meer informatie over deze overtredingen, aarzel niet en vraag GRATIS juridisch advies aan via onderstaande button.";
 
-    // ExceptionTexts.getExceptionTexts().then(function(res2){
-    //     var excTexts = [];
-    //     for (var i = 0; i < res2.length; i++) {
-    //         console.log(res2.item(i).id);
-    //         excTexts.push(res2.item(i).body);
-    //     }
-    // });
+    ExceptionTexts.getExceptionTexts().then(function(res2){
+        var excTexts = [];
+        for (var i = 0; i < res2.length; i++) {
+            excTexts.push(res2.item(i).body);
+        }
+    });
+    var excIdsMS = [11,15,30,31,51,59,65];
+    var excIdsOI = [10,13,17,27,29,33,35,41,50,58];
 
-    for (var i = 0; i < offenses.length; i++) {
-        var offense  = offenses[i];
-        var texts = [];
-        Texts.getTexts(offense).then(function(res){
-            for (var i = 0; i < res.length; i++) {
+        for (var i = 0; i < offenses.length; i++) {
+            var offense  = offenses[i];
+            var texts = [];
+            var fines = FinesCalculator.getFines(offense);
+            for (var key in fines) {
+                if (fines.hasOwnProperty(key)) {
+                    console.log(key + " -> " + fines[key]);
+                    if(key === "#TOTALAMOUNT3#" || key === "#TOTALAMOUNT5#"){
+                    var fineString = fines[key].toString();
+                    var fineAmounts = fineString.split(" tot ");
+                    sumOI +=parseInt(fineAmounts[0]);
+                    }
+                    if(key === "#TOTALAMOUNT4#" || key === "#TOTALAMOUNT6#"){
+                    var fineString = fines[key].toString();
+                    var fineAmounts = fineString.split(" tot ");
+                    sumMS +=parseInt(fineAmounts[0]);
+                    }
+                }
             }
-            // if(!qualifyOI){
-            //     $scope.message = "De door u samengestelde overtredingen zorgen ervoor dat u niet in aanmerking komt voor een onmiddellijke inning. U komt wel in aanmerking voor een minnelijke schikking.\nMaak uw keuze uit de onderstaande samengestelde overtredingen en ontdek welke gevolgen elke overtreding met zich meebrengt.\nWilt u meer informatie over de gevolgen die zich kunnen voordoen als u voor de rechtbank moet verschijnen, aarzel niet en vraag GRATIS juridisch advies aan via onderstaande button.";
-            // }
-            // if(!qualifyMS){
-            //     $scope.message = "De door u samengestelde overtredingen zorgen ervoor dat u niet in aanmerking komt voor een onmiddellijke inning of minnnelijke schikking. U zal sowieso voor de rechtbank moeten verschijnen.\nMaak uw keuze uit de onderstaande samengestelde overtredingen en ontdek welke gevolgen elke overtreding met zich meebrengt.\n Wenst u graag meer informatie over deze overtrendigen, aarzel niet en vraag GRATIS juridisch advies aan via onderstaande button.";
-            // }
-        });
-    }
+            Texts.getTexts(offense).then(function(res){
+                    for (var j = 0; j < excIdsMS.length; j++) {
+                        if(excIdsMS[j] === res.item(1).id){
+                            qualifyMS = false;
+                        }
+                    }
+
+                    for (var k = 0; k < excIdsOI.length; k++) {
+                        if(excIdsOI[k] === res.item(0).id){
+                            qualifyOI = false;
+                        }
+                    }
+
+                if(offense.type != "Alchohol"){
+                sumOI += FinesCalculator.getFinesForText(res.item(0).body);
+                sumMS += FinesCalculator.getFinesForText(res.item(1).body);
+                }
+                console.log(sumOI);
+                console.log(sumMS);
+                if(sumOI > 330){
+                    qualifyOI = false;
+                }
+                if(sumOI > 1500){
+                    qualifyMS = false;
+                }
+                if(sumMS > 1500){
+                    qualifyMS = false;
+                }
+
+                if(!qualifyOI){
+                    $scope.message = "De door u samengestelde overtredingen zorgen ervoor dat u niet in aanmerking komt voor een onmiddellijke inning. U komt wel in aanmerking voor een minnelijke schikking.\nMaak uw keuze uit de onderstaande samengestelde overtredingen en ontdek welke gevolgen elke overtreding met zich meebrengt.\nWilt u meer informatie over de gevolgen die zich kunnen voordoen als u voor de rechtbank moet verschijnen, aarzel niet en vraag GRATIS juridisch advies aan via onderstaande button.";
+                }
+                if(!qualifyMS){
+                    $scope.message = "De door u samengestelde overtredingen zorgen ervoor dat u niet in aanmerking komt voor een onmiddellijke inning of minnnelijke schikking. U zal sowieso voor de rechtbank moeten verschijnen.\nMaak uw keuze uit de onderstaande samengestelde overtredingen en ontdek welke gevolgen elke overtreding met zich meebrengt.\n Wenst u graag meer informatie over deze overtrendigen, aarzel niet en vraag GRATIS juridisch advies aan via onderstaande button.";
+                }
+            });
+        }
 
     $scope.goToContact = function(){
-        ContactService.setFunctionality("CalcFine");
+        ContactService.setFunctionality("Boete berekenen");
         $location.path("/contact");
     };
 
@@ -571,7 +651,7 @@ angular.module('starter.controllers', [])
     $scope.items = texts;
 
     $scope.goToContact = function(){
-        ContactService.setFunctionality("CalcFine");
+        ContactService.setFunctionality("Boete Berekenen");
         $location.path("/contact");
     };
 
@@ -618,7 +698,7 @@ angular.module('starter.controllers', [])
             });
         }
         else{
-            ContactService.setFunctionality("TakePicture");
+            ContactService.setFunctionality("U ontving een brief");
             ContactService.setImageData(Utils.encodeImageUri($scope.src));
             $location.path("/contact");
         }
