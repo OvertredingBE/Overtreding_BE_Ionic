@@ -5,7 +5,9 @@
    url('../fonts/YOXALL__.ttf')  format('truetype'),
    url('../fonts/YOXALL__.svg#svgFontName') format('svg');
 }
-
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
 .item-big, .item-menu, .button-home-underline, .button-underline, .item-underline, .item-noline, .background-nav-bar, .background-light, .item-group-underline, .item-group-noline{
 font-family: 'Nunito', sans-serif;
     color:white;
@@ -255,12 +257,20 @@ font-family: 'Nunito', sans-serif;
     font-weight: 600;
 }
 
-.button-custom-2 {
+.button-custom-2{
+    color: white;
+    background-color: #1E91D5;
+}
+.button-custom-4{
+    color: #1E91D5;
+    background-color: white;
+}
+.button-white {
     color: white;
     background-color: #1E91D5;
 }
 
-.button-custom-4{
+.button-blue{
     color: #1E91D5;
     background-color: white;
 }
