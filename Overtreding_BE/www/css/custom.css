@@ -14,18 +14,13 @@
     color:white;
 }
 
-.search-button{
-    margin-top:8px;
-}
-.icon-result{
-    margin-top:10px;
-}
 .bar-header {
     border: 0px !important;
     border-bottom-color: transparent !important;
     background-image: none;
     border-bottom: none;
 }
+
 .bar-footer {
     border: 0px !important;
     border-bottom-color: transparent !important;
@@ -39,22 +34,12 @@
     border-top: none;
 }
 
-.textarea-custom-2{
-    height: 25px;
-}
-.button-underline{
-    font-size: 15px;
-    text-align: left;
-}
-
-.item-noline, .item-underline{
-    font-size: 14px;
-}
 .icon-home{
     width: 50%;
     height: auto;
     background-color: white;
 }
+
 .icon-home-container{
     width: 100%;
     height: auto;
@@ -62,50 +47,12 @@
     text-align: center;
     padding: 15px 0px 10px 0px;
 }
-.icon-back{
-    height: 25px;
-    width: 25px;
-}
 
 .home-container{
     margin-top: 25px;
     padding: 0px 15px 0px 15px;
     position: absolute;
     width: 100%;
-}
-
-.button-home-underline{
-    font-size: 17px;
-    padding: 20px 0px 20px 0px;
-    border: 1px solid white;
-}
-
-.item-menu{
-    font-size: 14px;
-    height: 35px;
-    padding: 8px 15px 8px 15px;
-}
-
-.item-group-underline{
-    font-size: 13px;
-    border: 1px solid white;
-    padding: 12px;
-    height: 40px;
-}
-
-.item-group-noline{
-    font-size: 13px;
-    padding: 12px;
-    height: 40px;
-}
-
-.item-subgroup-underline, .item-subgroup-noline{
-    font-family: 'Nunito', sans-serif;
-    font-size: 13px;
-    font-weight: 500;
-    text-align: center;
-    padding: 10px 0px 5px 0px;
-    border:1px solid black;
 }
 
 .button-underline, .item-underline, .item-noline {
@@ -123,14 +70,7 @@
 .item-noline, .item-group-noline, .item-subgroup-noline, .button-home-noline{
     border:none;
 }
-.spinner-custom{
-    width: 60px;
-    height: 60px;
-}
-.fadein{
-    /*-webkit-transition:top linear 0.1s;
-    transition:top linear 0.1s;*/
-}
+
 .item-animate.ng-hide {
   height:0;
   opacity:0;
@@ -141,36 +81,6 @@
 .item-animate.ng-hide-add {
   display: block !important;
   transition: all linear 300ms;
-}
-
-.button-footer{
-    font-family: 'Nunito', sans-serif;
-    padding: 0px 45px 0px 10px;
-    font-size: 13px;
-    height: 24px;
-    line-height: 26px;
-    color: black;
-    background-color: white;
-    position: absolute;
-    top:10px;
-    right:15px;
-}
-
-.button-footer img{
-    position: absolute;
-    top:4px;
-    right:10px;
-}
-.text-undeline{
-    margin-bottom: 10px;
-    margin-top: 10px;
-    padding:5px;
-    border: 1px solid white;
-    border-top: none;
-    border-left: none;
-    border-right: none;
-    font-family: 'Nunito', sans-serif;
-    color:white;
 }
 
 .popup-body, .popup-head, .popup-title{
@@ -204,6 +114,10 @@
     margin:5px;
 }
 
+.icon-back{
+    height: 25px;
+    width: 25px;
+}
 .background-nav-bar{
     background-color: #0089D2;
 }
@@ -286,6 +200,90 @@
     padding: 10px;
 }
 
+.textarea-small{
+    height: 25px;
+}
+
+.button-underline{
+    font-size: 15px;
+    text-align: left;
+}
+
+.item-noline, .item-underline{
+    font-size: 14px;
+}
+
+.button-home-underline{
+    font-size: 17px;
+    padding: 20px 0px 20px 0px;
+    border: 1px solid white;
+}
+
+.item-menu{
+    font-size: 14px;
+    height: 35px;
+    padding: 8px 15px 8px 15px;
+}
+
+.item-group-underline{
+    font-size: 13px;
+    border: 1px solid white;
+    padding: 12px;
+    height: 40px;
+}
+
+.item-group-noline{
+    font-size: 13px;
+    padding: 12px;
+    height: 40px;
+}
+
+.search-button{
+    margin-top:8px;
+}
+.icon-result{
+    margin-top:10px;
+}
+
+.item-subgroup-underline, .item-subgroup-noline{
+    font-family: 'Nunito', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    text-align: center;
+    padding: 10px 0px 5px 0px;
+    border:1px solid black;
+}
+
+.button-footer{
+    font-family: 'Nunito', sans-serif;
+    padding: 0px 45px 0px 10px;
+    font-size: 13px;
+    height: 24px;
+    line-height: 26px;
+    color: black;
+    background-color: white;
+    position: absolute;
+    top:10px;
+    right:15px;
+}
+
+.button-footer img{
+    position: absolute;
+    top:4px;
+    right:10px;
+}
+
+.text-undeline{
+    margin-bottom: 10px;
+    margin-top: 10px;
+    padding:5px;
+    border: 1px solid white;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    font-family: 'Nunito', sans-serif;
+    color:white;
+}
 
 /*iPhone-2,3,4*/
 @media only screen
