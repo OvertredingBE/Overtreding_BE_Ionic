@@ -119,13 +119,13 @@
   transition: all linear 300ms;
 }
 
+.icon-right{
+    float:right;
+}
+
 .item-big, .text-undeline, .item-menu, .button-home-underline, .button-underline, .item-underline, .item-noline, .background-nav-bar, .background-light, .item-group-underline, .item-group-noline{
     font-family: 'Nunito', sans-serif;
     color:white;
-}
-
-.icon-right{
-    float:right;
 }
 
 .icon-small{
@@ -150,16 +150,6 @@
     border: 1px solid white;
 }
 
-.button-custom-2, .button-custom-4{
-    width:37%;
-    margin-top:5px;
-    margin-bottom: 10px;
-    margin-left: 30px;
-    border:none;
-    height: 60px;
-    font-weight: 600;
-}
-
 .text-undeline{
     margin-bottom: 10px;
     margin-top: 10px;
@@ -168,6 +158,15 @@
     border-top: none;
     border-left: none;
     border-right: none;
+}
+
+.button-custom-2, .button-custom-4{
+    width:37%;
+    margin-top:5px;
+    margin-bottom: 10px;
+    margin-left: 30px;
+    border:none;
+    height: 60px;
 }
 
 .item-noline, .item-underline{
@@ -279,8 +278,12 @@
 }
 
 .footer-custom{
-    font-size: 17px;
-    border: none !important;
+}
+
+.text-footer{
+    font-size: 16px;
+    padding-left: 15px;
+    line-height: 40px;
 }
 
 /*iPhone-2,3,4*/
@@ -288,7 +291,35 @@
 and (min-device-width : 320px)
 and (max-device-width : 480px)
 and (orientation : portrait) {
-    .item-group-noline, .item-group-underline{
+    .button-home-underline{
+    }
+    .text-undeline{
+    }
+    .button-custom-2, .button-custom-4{
+    }
+    .item-noline, .item-underline{
+    }
+    .button-underline{
+    }
+    .item-menu{
+    }
+    .item-group-underline, .item-group-noline{
+    }
+    .item-subgroup-underline, .item-subgroup-noline{
+    }
+    .item-big{
+    }
+    .input-custom{
+    }
+    .test-3{
+    }
+    .button-footer{
+    }
+    .button-footer img{
+    }
+    .text-footer{
+    }
+    /*.item-group-noline, .item-group-underline{
         font-size: 11px;
     }
     .item-subgroup-noline, .item-subroup-underline{
@@ -307,7 +338,7 @@ and (orientation : portrait) {
     }
     .asd{
         font-size: 10px;
-    }
+    }*/
     /*.icon-home-container{
 background-color: blue;
 }*/
