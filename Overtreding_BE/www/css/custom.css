@@ -8,11 +8,18 @@
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
   display: none !important;
 }
+
 .item-big, .item-menu, .button-home-underline, .button-underline, .item-underline, .item-noline, .background-nav-bar, .background-light, .item-group-underline, .item-group-noline{
-font-family: 'Nunito', sans-serif;
+    font-family: 'Nunito', sans-serif;
     color:white;
 }
 
+.search-button{
+    margin-top:8px;
+}
+.icon-result{
+    margin-top:10px;
+}
 .bar-header {
     border: 0px !important;
     border-bottom-color: transparent !important;
