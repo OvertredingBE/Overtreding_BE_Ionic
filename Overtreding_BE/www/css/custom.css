@@ -8,11 +8,18 @@
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
   display: none !important;
 }
+
 .item-big, .item-menu, .button-home-underline, .button-underline, .item-underline, .item-noline, .background-nav-bar, .background-light, .item-group-underline, .item-group-noline{
-font-family: 'Nunito', sans-serif;
+    font-family: 'Nunito', sans-serif;
     color:white;
 }
 
+.search-button{
+    margin-top:8px;
+}
+.icon-result{
+    margin-top:10px;
+}
 .bar-header {
     border: 0px !important;
     border-bottom-color: transparent !important;
@@ -35,7 +42,14 @@ font-family: 'Nunito', sans-serif;
 .textarea-custom-2{
     height: 25px;
 }
+.button-underline{
+    font-size: 15px;
+    text-align: left;
+}
 
+.item-noline, .item-underline{
+    font-size: 14px;
+}
 .icon-home{
     width: 50%;
     height: auto;
@@ -48,12 +62,50 @@ font-family: 'Nunito', sans-serif;
     text-align: center;
     padding: 15px 0px 10px 0px;
 }
+.icon-back{
+    height: 25px;
+    width: 25px;
+}
 
 .home-container{
     margin-top: 25px;
     padding: 0px 15px 0px 15px;
     position: absolute;
     width: 100%;
+}
+
+.button-home-underline{
+    font-size: 17px;
+    padding: 20px 0px 20px 0px;
+    border: 1px solid white;
+}
+
+.item-menu{
+    font-size: 14px;
+    height: 35px;
+    padding: 8px 15px 8px 15px;
+}
+
+.item-group-underline{
+    font-size: 13px;
+    border: 1px solid white;
+    padding: 12px;
+    height: 40px;
+}
+
+.item-group-noline{
+    font-size: 13px;
+    padding: 12px;
+    height: 40px;
+}
+
+.item-subgroup-underline, .item-subgroup-noline{
+    font-family: 'Nunito', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    text-align: center;
+    padding: 10px 0px 5px 0px;
+    border:1px solid black;
 }
 
 .button-underline, .item-underline, .item-noline {
@@ -71,7 +123,14 @@ font-family: 'Nunito', sans-serif;
 .item-noline, .item-group-noline, .item-subgroup-noline, .button-home-noline{
     border:none;
 }
-
+.spinner-custom{
+    width: 60px;
+    height: 60px;
+}
+.fadein{
+    /*-webkit-transition:top linear 0.1s;
+    transition:top linear 0.1s;*/
+}
 .item-animate.ng-hide {
   height:0;
   opacity:0;
@@ -84,6 +143,35 @@ font-family: 'Nunito', sans-serif;
   transition: all linear 300ms;
 }
 
+.button-footer{
+    font-family: 'Nunito', sans-serif;
+    padding: 0px 45px 0px 10px;
+    font-size: 13px;
+    height: 24px;
+    line-height: 26px;
+    color: black;
+    background-color: white;
+    position: absolute;
+    top:10px;
+    right:15px;
+}
+
+.button-footer img{
+    position: absolute;
+    top:4px;
+    right:10px;
+}
+.text-undeline{
+    margin-bottom: 10px;
+    margin-top: 10px;
+    padding:5px;
+    border: 1px solid white;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    font-family: 'Nunito', sans-serif;
+    color:white;
+}
 
 .popup-body, .popup-head, .popup-title{
     color:white;
@@ -96,6 +184,24 @@ font-family: 'Nunito', sans-serif;
 .popup-buttons .button{
     background-color : white;
     color: black;
+}
+
+.icon-right{
+    float:right;
+}
+
+.icon-small{
+    width: 16px;
+    height: 16px;
+}
+
+.icon-big{
+    width: 20px;
+    height: 20px;
+}
+
+.icon-back{
+    margin:5px;
 }
 
 .background-nav-bar{
@@ -179,90 +285,7 @@ font-family: 'Nunito', sans-serif;
 .padded{
     padding: 10px;
 }
-.icon-back{
-    height: 25px;
-    width: 25px;
-    margin:5px;
-}
 
-.icon-right{
-    float:right;
-}
-
-.icon-small{
-    width: 16px;
-    height: 16px;
-}
-
-.icon-big{
-    width: 20px;
-    height: 20px;
-}
-
-.button-home-underline{
-    font-size: 17px;
-    padding: 20px 0px 20px 0px;
-    border: 1px solid white;
-}
-
-.item-menu{
-    font-size: 14px;
-    height: 35px;
-    padding: 8px 15px 8px 15px;
-}
-
-.item-group-underline{
-    font-size: 13px;
-    border: 1px solid white;
-    padding: 12px;
-    height: 40px;
-}
-
-.item-group-noline{
-    font-size: 13px;
-    padding: 12px;
-    height: 40px;
-}
-
-.item-subgroup-underline, .item-subgroup-noline{
-    font-family: 'Nunito', sans-serif;
-    font-size: 13px;
-    font-weight: 500;
-    text-align: center;
-    padding: 10px 0px 5px 0px;
-    border:1px solid black;
-}
-
-.button-footer{
-    font-family: 'Nunito', sans-serif;
-    padding: 0px 45px 0px 10px;
-    font-size: 13px;
-    height: 24px;
-    line-height: 26px;
-    color: black;
-    background-color: white;
-    position: absolute;
-    top:10px;
-    right:15px;
-}
-
-.button-footer img{
-    position: absolute;
-    top:4px;
-    right:10px;
-}
-
-.text-undeline{
-    margin-bottom: 10px;
-    margin-top: 10px;
-    padding:5px;
-    border: 1px solid white;
-    border-top: none;
-    border-left: none;
-    border-right: none;
-    font-family: 'Nunito', sans-serif;
-    color:white;
-}
 
 /*iPhone-2,3,4*/
 @media only screen
@@ -289,15 +312,9 @@ and (orientation : portrait) {
     .asd{
         font-size: 10px;
     }
-
-    .button-underline{
-        font-size: 15px;
-        text-align: left;
-    }
-
-    .item-noline, .item-underline{
-        font-size: 14px;
-    }
+    /*.icon-home-container{
+background-color: blue;
+}*/
 }
 /*iPhone-5,5s*/
 @media only screen

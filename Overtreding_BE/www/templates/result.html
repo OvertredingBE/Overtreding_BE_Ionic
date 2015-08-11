@@ -8,7 +8,7 @@
             <div class="item item-text-wrap item-noline" style="text-align: center">{{message}}</div>
             <a href="#/result/{{$index}}" ng-repeat="offense in offenses track by $index" class="button button-full button-underline" style="text-align: left">
                  Overtreding {{$index+1}}: {{offense.type | translateToDutch}}
-                 <img class="icon-right icon-big" style="margin-top:10px" src="img/arrow-square-right-white.png" ng-click="removeOffense($index)"></img>
+                 <img class="icon-right icon-big icon-result" src="img/arrow-square-right-white.png" ng-click="removeOffense($index)"></img>
             </a>
     </ion-content>
 
