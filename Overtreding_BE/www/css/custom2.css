@@ -5,21 +5,6 @@
    url('../fonts/YOXALL__.ttf')  format('truetype'),
    url('../fonts/YOXALL__.svg#svgFontName') format('svg');
 }
-.picImg{
- width: 100%;
- height: 100%;
- border: none;
-}
-.button-home-underline{
-     float: left;
-     width: 100%
-}
-.test{
-    width: 80%;
-    position: absolute;
-    top:0px;
-    overflow: hidden;
-}
 
 .button-custom-2{
     color: white;
@@ -159,11 +144,9 @@
     margin:8px;
 }
 
-.icon-result{
-    margin-top:10px;
-}
-
 .button-home-underline{
+    font-size: 17px;
+    padding: 20px 0px 20px 0px;
     border: 1px solid white;
 }
 
@@ -186,6 +169,10 @@
     height: 60px;
 }
 
+.item-noline, .item-underline{
+    font-size: 14px;
+}
+
 .textarea-custom-2{
     height: 25px;
 }
@@ -194,19 +181,39 @@
 }
 
 .button-underline{
+    font-size: 15px;
     text-align: left;
 }
 
+.icon-result{
+    margin-top:10px;
+}
+
 .item-menu{
+    font-size: 14px;
+    height: 35px;
+    padding: 8px 15px 8px 15px;
 }
 
 .item-group-underline{
+    font-size: 13px;
     border: 1px solid white;
+    padding: 12px;
+    height: 40px;
+}
+
+.item-group-noline{
+    font-size: 13px;
+    padding: 12px;
+    height: 40px;
 }
 
 .item-subgroup-underline, .item-subgroup-noline{
     font-family: 'Nunito', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
     text-align: center;
+    padding: 10px 0px 5px 0px;
     border:1px solid black;
 }
 
@@ -227,6 +234,9 @@
 }
 
 .item-big{
+    font-size: 13px;
+    padding: 12px;
+    height: 60px;
 }
 
 .search-button{
@@ -234,26 +244,46 @@
 }
 
 .input-custom{
+    position: absolute;
+    top:10px;
+    right:80px;
+    width: 60px;
+    height: 20px;
     border-radius: 0px;
 }
 
 .test-3{
+    position: absolute;
+    top:12px;
+    right:40px;
 }
 
 .button-footer{
     font-family: 'Nunito', sans-serif;
+    padding: 0px 45px 0px 10px;
+    font-size: 13px;
+    height: 24px;
+    line-height: 26px;
     color: black;
     background-color: white;
+    position: absolute;
+    top:10px;
+    right:15px;
 }
 
 .button-footer img{
+    position: absolute;
+    top:4px;
+    right:10px;
 }
 
 .footer-custom{
 }
 
 .text-footer{
-
+    font-size: 16px;
+    padding-left: 15px;
+    line-height: 40px;
 }
 
 /*iPhone-2,3,4*/
@@ -261,192 +291,149 @@
 and (min-device-width : 320px)
 and (max-device-width : 480px)
 and (orientation : portrait) {
-
-    .button-home-underline{
-        font-size: 17px;
-        padding: 20px 0px 20px 0px;
+    /*.item-group-noline, .item-group-underline{
+        font-size: 11px;
     }
-    .text-undeline{
-    }
-    .button-custom-2, .button-custom-4{
-    }
-    .item-noline, .item-underline{
-        font-size: 14px;
-    }
-    .button-underline{
-        font-size: 15px;
-    }
-    .item-menu{
-        font-size: 14px;
-        height: 35px;
-        padding: 8px 15px 8px 15px;
-    }
-    .item-group-underline, .item-group-noline{
-        font-size: 12px;
-        height: 40px;
-        padding: 12px;
-    }
-    .item-subgroup-underline, .item-subgroup-noline{
-        font-size: 12px;
-        font-weight: 500;
-        padding: 10px 0px 5px 0px;
-    }
-    .item-big{
-        font-size: 13px;
-        height: 60px;
-        padding: 12px;
-    }
-    .speed-input-label{
-        font-size: 10px;
-    }
-    .input-custom{
-        position: absolute;
-        top:10px;
-        right:80px;
-        width: 60px;
-        height: 20px;
-    }
-    .test-3{
-        position: absolute;
-        top:12px;
-        right:40px;
-    }
-    .add-fine-container{
-        line-height: 15px;
+    .item-subgroup-noline, .item-subroup-underline{
+        font-size: 11px;
     }
     .button-footer{
+        font-family: 'Nunito', sans-serif;
+        padding: 0px 45px 0px 10px;
         font-size: 13px;
         height: 24px;
-        line-height: 26px;
-        padding: 0px 45px 0px 10px;
+        color: black;
+        background-color: white;
         position: absolute;
-        top:10px;
+        top:11px;
         right:15px;
     }
-    .button-footer img{
-        position: absolute;
-        top:4px;
-        right:10px;
-    }
-    .text-footer{
-        font-size: 14px;
-        padding-left: 15px;
-        line-height: 38px;
-    }
-    .icon-footer{
-        margin-left: 30px;
-        margin-top: 8px;
-    }
-    .icon-custom{
-        position:inherit;
-    }
+    .asd{
+        font-size: 10px;
+    }*/
+    /*.icon-home-container{
+background-color: blue;
+}*/
 }
-
 /*iPhone-5,5s*/
 @media only screen
 and (min-device-width : 320px)
 and (max-device-width : 568px)
 and (orientation : portrait) {
-    .speed-input-label{
-        font-size: 11px;
-    }
-    .input-custom{
-        position: absolute;
-        top:10px;
-        right:70px;
-        width: 60px;
-        height: 20px;
-    }
-    .test-3{
-        position: absolute;
-        top:12px;
-        right:30px;
-    }
-}
+     /*.icon-home-container{
+         background-color: black;
+     }*/
+     .button-footer{
+         font-family: 'Nunito', sans-serif;
+         padding: 0px 45px 0px 10px;
+         font-size: 13px;
+         height: 24px;
+         line-height: 24px;
+         color: black;
+         background-color: white;
+         position: absolute;
+         top:11px;
+         right:15px;
+     }
 
+     .text-footer{
+         font-size: 14px;
+         padding-left: 15px;
+         line-height: 40px;
+     }
+     .icon-footer{
+         margin-left: 20px;
+         margin-top: 8px;
+     }
+     .button-custom-2, .button-custom-4 {
+         font-size:13px;
+     }
+     .item-subgroup-underline, .item-subgroup-noline{
+         font-size: 12px;
+     }
+     .asd{
+         font-size: 10px;
+     }
+     .icon-custom{
+         position: absolute;
+         top:40px;
+         right: 15px;
+     }
+     .picImg{
+      width: 100%;
+      height: 100%;
+      border: none;
+  }
+}
 /*Android 5nch*/
 @media screen
   and (min-device-width: 320px)
   and (min-device-height: 640px) {
+      /*.icon-home-container{
+      background-color: yellow;
+      }*/
+      .picImg{
+       width: 100%;
+       height: 100%;
+       border: none;
+   }
+   .button-home-underline{
+        float: left;
+        width: 100%
+   }
+   .test{
+       width: 80%;
+       position: absolute;
+       top:0px;
+       overflow: hidden;
+   }
+   .text-footer{
+       padding-left: 15px;
+       line-height: 37px;
+   }
+   .icon-footer{
+       margin-left: 20px;
+       margin-top: 8px;
+   }
+   .button-custom-2, .button-custom-4{
+       font-size: 15px;
+       width:37%;
+       margin-top:5px;
+       margin-bottom: 10px;
+       margin-left: 30px;
+       border:none;
+       height: 60px;
+       font-weight: 600;
+   }
+   .text-footer{
+       font-size: 14px;
+       padding-left: 15px;
+       line-height: 36px;
+   }
+   .icon-footer{
+       margin-left: 50px;
+       margin-top: 8px;
+   }
+   .icon-custom{
+       position:inherit;
+   }
 }
-
 /*iPhone-6*/
 @media only screen
 and (min-device-width : 375px)
 and (max-device-width : 667px)
 and (orientation : portrait) {
-    .icon-footer{
-        margin-left: 50px;
-        margin-top: 8px;
-    }
-
-    .button-home-underline{
-        font-size: 17px;
-        padding: 20px 0px 20px 0px;
-    }
-    .text-undeline{
-    }
-    .button-custom-2, .button-custom-4{
-    }
-    .item-noline, .item-underline{
-        font-size: 14px;
-    }
-    .button-underline{
-        font-size: 15px;
-    }
-    .item-menu{
-        font-size: 14px;
-        height: 35px;
-        padding: 8px 15px 8px 15px;
-    }
-    .item-group-underline, .item-group-noline{
-        font-size: 13px;
-        height: 40px;
-        padding: 12px;
-    }
-    .item-subgroup-underline, .item-subgroup-noline{
-        font-size: 13px;
-        font-weight: 500;
-        padding: 10px 0px 5px 0px;
-    }
-    .item-big{
-        font-size: 13px;
-        height: 60px;
-        padding: 12px;
-    }
-    .input-custom{
-        position: absolute;
-        top:10px;
-        right:80px;
-        width: 60px;
-        height: 20px;
-    }
-    .test-3{
-        position: absolute;
-        top:12px;
-        right:40px;
-    }
-    .button-footer{
-        font-size: 13px;
-        height: 24px;
-        line-height: 26px;
-        padding: 0px 45px 0px 10px;
-        position: absolute;
-        top:10px;
-        right:15px;
-    }
-    .button-footer img{
-        position: absolute;
-        top:4px;
-        right:10px;
-    }
+    /*.icon-home-container{
+    background-color: red;
+    }*/
     .text-footer{
         font-size: 16px;
         padding-left: 15px;
         line-height: 40px;
     }
-    .icon-custom{
-        position:inherit;
+    .icon-footer{
+        margin-left: 40px;
+        margin-top: 8px;
     }
 }
 /*iPhone-6-Plus*/
@@ -462,79 +449,30 @@ and (max-device-width : 736px) {
 and (min-device-width : 768px)
 and (max-device-width : 1024px)
 and (-webkit-min-device-pixel-ratio: 1){
-    .icon-footer{
-        margin-left: 50px;
-        margin-top: 8px;
-    }
-
-    .button-home-underline{
-        font-size: 17px;
-        padding: 20px 0px 20px 0px;
-    }
-    .text-undeline{
-    }
-    .button-custom-2, .button-custom-4{
-    }
-    .item-noline, .item-underline{
-        font-size: 14px;
-    }
-    .button-underline{
-        font-size: 15px;
-    }
-    .item-menu{
-        font-size: 14px;
-        height: 35px;
-        padding: 8px 15px 8px 15px;
-    }
-    .item-group-underline, .item-group-noline{
-        font-size: 13px;
-        height: 40px;
-        padding: 12px;
-    }
-    .item-subgroup-underline, .item-subgroup-noline{
-        font-size: 13px;
-        font-weight: 500;
-        padding: 10px 0px 5px 0px;
-    }
-    .item-big{
-        font-size: 13px;
-        height: 60px;
-        padding: 12px;
-    }
-    .input-custom{
-        position: absolute;
-        top:10px;
-        right:80px;
-        width: 60px;
-        height: 20px;
-    }
-    .test-3{
-        position: absolute;
-        top:12px;
-        right:40px;
-    }
-    .button-footer{
-        font-size: 13px;
-        height: 24px;
-        line-height: 26px;
-        padding: 0px 45px 0px 10px;
-        position: absolute;
-        top:10px;
-        right:15px;
-    }
-    .button-footer img{
-        position: absolute;
-        top:4px;
-        right:10px;
-    }
     .text-footer{
-        font-size: 16px;
+        font-size: 20px;
         padding-left: 15px;
         line-height: 40px;
     }
-    .icon-custom{
-        position:inherit;
+    .icon-footer{
+        position: absolute;
+        right: 30px;
+        margin-left: 40px;
+        margin-top: 8px;
     }
+    .rights-button-container{
+
+    }
+    .button-custom-2{
+        margin-left: 65px;
+
+    }
+    .button-custom-4{
+        margin-left: 65px;
+
+    }
+    .icon-custom{
+     position: inherit;
  }}
 /*
 @media only screen

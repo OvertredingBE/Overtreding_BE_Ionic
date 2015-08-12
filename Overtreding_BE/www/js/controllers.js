@@ -537,7 +537,6 @@ angular.module('starter.controllers', [])
     }
 
     $scope.goBack = function() {
-        Offenses.clear();
         $ionicHistory.goBack();
     };
 })
