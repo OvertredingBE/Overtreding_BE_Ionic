@@ -5,19 +5,21 @@
     </ion-header-bar>
     <ion-content class="padding">
         <button class="button-custom-2" ng-class="{'button-white': selected == 2, 'button-blue': selected ==1}" ng-click="showAlch()">
-            ALCOHOL CONTROLE
+            ALCOHOL<br> CONTROLE
         </button>
         <button  class="button-custom-4" ng-class="{'button-white': selected == 1, 'button-blue': selected ==2}" ng-click="showDrugs()">
-            DRUGS CONTROLE
+            DRUGS<br> CONTROLE
         </button>
         <!-- <button ng-class="button" ng-click="test()">
             test
                 </button> -->
+        <div class="right-text-container">
         <div style="margin-top:5px" ng-repeat="item in items" ng-class="$last ? 'item item-text-wrap item-noline' : 'item item-text-wrap item-underline'">
             <div>
                 {{item.body}}
             </div>
         </div>
+    </div>
     </ion-content>
     <ion-footer-bar class="bar-footer footer-custom background-nav-bar">
         <div ng-click="goToContact()" class="text-footer">

@@ -72,14 +72,16 @@ app.filter('zipCodeTranslate', ['ZipCodes', function(ZipCodes) {
       if (input.length <= 5) {
           return input;
       }
-
-      return $filter('limitTo')(input, 5) + '...';
    };
 }]);
 
-app.filter('strLimit', ['$filter', function($filter) {
+app.filter('strLimit', ['$filter', function($filter, $ionicPlatform) {
    return function(input, limit) {
       if (! input) return;
+      var isIPad = ionic.Platform.isIPad();
+      if(isIPad){
+          limit = 50;
+      }
       if (input.length <= limit) {
           return input;
       }
