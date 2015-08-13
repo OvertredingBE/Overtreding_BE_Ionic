@@ -138,15 +138,17 @@
     float:right;
 }
 
+.icon-small{
+    width: 16px;
+    height: 16px;
+}
+
 .item-big, .text-undeline, .item-menu, .button-home-underline, .button-underline, .item-underline, .item-noline, .background-nav-bar, .background-light, .item-group-underline, .item-group-noline{
     font-family: 'Nunito', sans-serif;
     color:white;
 }
 
-.icon-small{
-    width: 16px;
-    height: 16px;
-}
+
 
 .icon-big{
     width: 20px;
@@ -468,7 +470,8 @@ and (-webkit-min-device-pixel-ratio: 1){
     }
 
     .button-home-underline{
-        font-size: 17px;
+        font-size: 22px;
+        height: auto;
         padding: 20px 0px 20px 0px;
     }
     .text-undeline{
@@ -482,19 +485,23 @@ and (-webkit-min-device-pixel-ratio: 1){
         font-size: 15px;
     }
     .item-menu{
-        font-size: 14px;
-        height: 35px;
-        padding: 8px 15px 8px 15px;
+        font-size: 20px;
+        line-height: 30px;
+        height: 40px;
+        padding: 5px 30px 5px 30px;
     }
     .item-group-underline, .item-group-noline{
-        font-size: 13px;
-        height: 40px;
-        padding: 12px;
+        font-size: 18px;
+        line-height: 40px;
+        height: 60px;
+        padding: 10px 30px 10px 30px;
+
     }
     .item-subgroup-underline, .item-subgroup-noline{
-        font-size: 13px;
-        font-weight: 500;
-        padding: 10px 0px 5px 0px;
+        font-size: 17px;
+        line-height: 30px;
+        height: auto;
+        padding: 5px 30px 5px 30px;
     }
     .item-big{
         font-size: 13px;
@@ -503,38 +510,56 @@ and (-webkit-min-device-pixel-ratio: 1){
     }
     .input-custom{
         position: absolute;
-        top:10px;
-        right:80px;
-        width: 60px;
+        top:18px;
+        right:140px;
+        width: 80px;
         height: 20px;
     }
     .test-3{
         position: absolute;
-        top:12px;
-        right:40px;
+        top:9px;
+        right:60px;
     }
     .button-footer{
-        font-size: 13px;
+        font-size: 17px;
         height: 24px;
         line-height: 26px;
-        padding: 0px 45px 0px 10px;
+        padding: 0px 55px 0px 10px;
         position: absolute;
         top:10px;
-        right:15px;
+        right:25px;
     }
     .button-footer img{
         position: absolute;
-        top:4px;
+        top:-6px;
         right:10px;
     }
     .text-footer{
-        font-size: 16px;
-        padding-left: 15px;
-        line-height: 40px;
+        font-size: 18px;
+        padding-left: 30px;
+        line-height: 35px;
     }
     .icon-custom{
         position:inherit;
     }
+
+    .icon-right{
+        float:right;
+    }
+
+    .icon-small{
+        width: 20px;
+        height: 20px;
+        margin-top: 8px;
+    }
+    .add-fine-container{
+        line-height: 20px;
+    }
+    .icon-add-fine{
+        margin-top:0px;
+        margin-right: -5px;
+    }
+
  }}
 /*
 @media only screen
