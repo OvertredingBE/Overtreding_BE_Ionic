@@ -4,13 +4,7 @@
 
 angular.module('starter.controllers', [])
 .controller("HomeController", function($scope, $cordovaSQLite, $cordovaSplashscreen, $ionicPlatform, $ionicPopup, Offenses, FinesCalculator, Texts){
-    // var asd = [];
-    Texts.getTest().then(function(res){
-        for (var i = 0; i < res.length; i++) {
-            console.log(res.item(i).body);
-        }
-    })
-    // console.log(FinesCalculator.getFinesForText("U ontvangt een onmiddellijke inning van 55 EUR. Uw rijbewijs kan niet onmiddellijk worden ingetrokken"));
+
     $scope.calcFineTapped = function(){
         Offenses.clear();
     }
@@ -227,6 +221,7 @@ angular.module('starter.controllers', [])
     $scope.menuShown = true;
 
     $scope.menuSubgroupTapped = function(menuItem){
+
         var type = TranslateService.dutchToEnglish(menuItem);
         offense = Offenses.createDefault(type);
         $scope.offenses.splice($scope.offenses.length -1, 1, offense);
@@ -234,13 +229,13 @@ angular.module('starter.controllers', [])
         $scope.questions = Questions.getQuestions(type);
         $scope.toggleBorder($scope.questions[0]);
         $scope.menuShown = false;
-        $scope.questionsShown = true;
 
         if(type === "Speed"){
             $scope.questionsShown = true;
             $scope.showInput = true;
         }
         else{
+            $scope.questionsShown = true;
             $scope.toggleBorder($scope.questions[$scope.questions.length - 1]);
         }
 
@@ -526,10 +521,9 @@ angular.module('starter.controllers', [])
 
     function resetFields(){
         indexShown = 0;
+        $scope.questionsShown = false;
         $scope.showSearch = false;
         $scope.showInput = false;
-        $scope.spinnerShown = false;
-        $scope.questionsShown = false;
         $scope.searchResults.length = 0;
         $scope.inputs.speed_driven = "";
         $scope.inputs.speed_corrected = "";

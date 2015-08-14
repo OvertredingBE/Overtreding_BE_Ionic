@@ -1,9 +1,6 @@
-@font-face {
-  font-family: 'AvenrirNext';
-  src: url('../fonts/YOXALL__.eot?#iefix') format('embedded-opentype'),
-   url('../fonts/YOXALL__.woff') format('woff'),
-   url('../fonts/YOXALL__.ttf')  format('truetype'),
-   url('../fonts/YOXALL__.svg#svgFontName') format('svg');
+[ng-cloak]
+{
+  display: none !important;
 }
 .picImg{
  width: 100%;
@@ -148,8 +145,6 @@
     color:white;
 }
 
-
-
 .icon-big{
     width: 20px;
     height: 20px;
@@ -252,6 +247,7 @@
 }
 
 .footer-custom{
+
 }
 
 .text-footer{
