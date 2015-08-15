@@ -74,7 +74,6 @@ app.filter('zipCodeTranslate', ['ZipCodes', function(ZipCodes) {
       }
    };
 }]);
-
 app.filter('strLimit', ['$filter', function($filter, $ionicPlatform) {
    return function(input, limit) {
       if (! input) return;

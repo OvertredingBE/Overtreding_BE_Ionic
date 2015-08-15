@@ -73,8 +73,7 @@
                 GEREDEN SNELHEID
             </div>
             <div>
-                <textarea class="input-custom" type="number" pattern="\d*" ng-model="inputs.speed_driven" ng-change="calcSpeed()"></textarea>
-                <!-- <input class="input-custom" type="text" ng-model="inputs.speed_driven" ng-change="calcSpeed()"> -->
+                <input type="number" pattern="[0-9]*" class="input-custom"  ng-model="inputs.speed_driven" ng-change="calcSpeed()"></input>
             </div>
             <div class="test-3">KM/H</div>
         </div>
@@ -85,9 +84,7 @@
                 GECORRIGEERDE SNELHEID
             </div>
             <div>
-                <textarea class="input-custom" ng-model="inputs.speed_corrected" ng-change="calcSpeed2()"></textarea>
-
-                <!-- <input class="input-custom" type="text" ng-model="inputs.speed_corrected" ng-change="calcSpeed2()"> -->
+                <input type="number" pattern="[0-9]*" class="input-custom" ng-model="inputs.speed_corrected" ng-change="calcSpeed2()"></input>
             </div>
             <div class="test-3">KM/H</div>
         </div>

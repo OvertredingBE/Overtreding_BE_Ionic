@@ -139,7 +139,7 @@ angular.module('starter.controllers', [])
     };
 
     $scope.goToContact = function(){
-        ContactService.setFunctionality("Uw rechten bij een politiecontrole");
+        ContactService.setFunctionality("Rights");
         $location.path("/contact");
     };
 
@@ -168,7 +168,7 @@ angular.module('starter.controllers', [])
         }
         else{
             // if(Utils.validateEmail($scope.form.email)){
-                var url = 'http://www.overtredingbe.podserver.info/overtreding_api/v1/email2';
+                var url = 'http://api.overtreding.be/overtreding_api/v1/test';
                 var data = $scope.form;
                 var functionalityTypeStr = ContactService.getFunctionality();
                 switch (functionalityTypeStr) {
@@ -219,7 +219,12 @@ angular.module('starter.controllers', [])
     addDummyOffense();
     resetFields();
     $scope.menuShown = true;
-
+    $scope.doSomething = function(){
+        $ionicPopup.alert({
+            title: 'INFORMATIE',
+            template: 'Gelieve alle velden van een antwoord te voorzien'
+        });
+    };
     $scope.menuSubgroupTapped = function(menuItem){
 
         var type = TranslateService.dutchToEnglish(menuItem);
@@ -479,21 +484,17 @@ angular.module('starter.controllers', [])
         var searchWords = $scope.inputs.searchWord;
         searchWords = searchWords.toLowerCase();
         var searchArr = Utils.multiSplit(searchWords,[',',' ']);
-        for (var i = 0; i < searchArr.length; i++) {
-            if(searchArr[i] != ""){
-            Others2.searchOthers(searchArr[i]).then(function(res){
-                for (var i = 0; i < res.length; i++) {
-                    $scope.searchResults.push({
-                        id: res.item(i).id,
-                        degree: res.item(i).degree,
-                        description: res.item(i).description});
-                    }
-                    if(res.length === 0){
-                        $scope.searchMessage = "Er is geen resultaat voor uw zoekopdracht. Gelieve opnieuw te proberen met andere trefwoorden";
-                    }
-                });
-            }
-        }
+        Others2.searchOthers(searchArr).then(function(res){
+            for (var i = 0; i < res.length; i++) {
+                $scope.searchResults.push({
+                    id: res.item(i).id,
+                    degree: res.item(i).degree,
+                    description: res.item(i).description});
+                }
+                if(res.length === 0){
+                    $scope.searchMessage = "Er is geen resultaat voor uw zoekopdracht. Gelieve opnieuw te proberen met andere trefwoorden";
+                }
+            });
     };
 
     $scope.otherTapped = function(item) {
@@ -613,7 +614,7 @@ angular.module('starter.controllers', [])
         }
 
     $scope.goToContact = function(){
-        ContactService.setFunctionality("Boete berekenen");
+        ContactService.setFunctionality("CalcFine");
         $location.path("/contact");
     };
 
@@ -644,7 +645,7 @@ angular.module('starter.controllers', [])
     $scope.items = texts;
 
     $scope.goToContact = function(){
-        ContactService.setFunctionality("Boete Berekenen");
+        ContactService.setFunctionality("CalcFine");
         $location.path("/contact");
     };
 
@@ -691,7 +692,7 @@ angular.module('starter.controllers', [])
             });
         }
         else{
-            ContactService.setFunctionality("U ontving een brief");
+            ContactService.setFunctionality("TakePicture");
             ContactService.setImageData(Utils.encodeImageUri($scope.src));
             $location.path("/contact");
         }
