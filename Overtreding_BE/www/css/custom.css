@@ -17,6 +17,12 @@
     top:0px;
     overflow: hidden;
 }
+.hidden{
+    display: none;
+}
+.shown{
+    display: block;
+}
 
 .button-custom-2{
     color: #1E91D5;
