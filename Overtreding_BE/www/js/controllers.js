@@ -109,12 +109,6 @@ angular.module('starter.controllers', [])
 for (var i = 0; i < asd.length; i++) {
     $scope.items.push({body:asd[i]});
 }
-    // Texts.getTest(0).then(function(res){
-    //     for (var i = 0; i < res.length; i++) {
-    //         $scope.items.push({body:res.item(i).body});
-    //     }
-    // });
-    // $scope.selected = 1;
 
     $scope.showAlch = function() {
         $scope.items.length = 0;
