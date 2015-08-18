@@ -3,19 +3,23 @@
  height: auto;
  border: none;
 }
+
 .button-home-underline{
      float: left;
      width: 100%
 }
+
 .test{
     width: 80%;
     position: absolute;
     top:0px;
     overflow: hidden;
 }
+
 .hidden{
     display: none;
 }
+
 .shown{
     display: block;
 }
@@ -52,9 +56,10 @@
 }
 .bar-footer {
     border: 0px !important;
+    border-top-width: 0px !important;
     border-bottom-color: transparent !important;
     background-image: none;
-    border-top: none;
+    border-top: none !important;
 }
 
 .bar-footer .icon-footer-container{
@@ -250,13 +255,44 @@
 .test-3{
 }
 
+#calc-fine-result-button{
+    background-color: white;
+}
+
+#calc-fine-result-button div{
+    font-family: 'Nunito', sans-serif;
+    color: black;
+    font-size: 15px;
+    position: absolute;
+    bottom: 10px;
+    right: 5%;
+    padding: 2px 45px 2px 15px;
+    background-color: white;
+}
+
+#calc-fine-result-button img{
+    position: absolute;
+    bottom: 12px;
+    right: 7%;
+}
+
 .button-footer{
     font-family: 'Nunito', sans-serif;
     color: black;
     background-color: white;
+    font-size: 13px;
+    height: 24px;
+    line-height: 26px;
+    padding: 0px 35px 0px 10px;
+    position: absolute;
+    bottom:22%;
+    right:5%;
 }
 
 .button-footer img{
+    position: absolute;
+    top:4px;
+    right:10px;
 }
 
 .text-footer{
@@ -268,7 +304,6 @@
 and (min-device-width : 320px)
 and (max-device-width : 480px)
 and (orientation : portrait) {
-
     .button-home-underline{
         font-size: 17px;
         padding: 20px 0px 20px 0px;
@@ -321,26 +356,10 @@ and (orientation : portrait) {
     .add-fine-container{
         line-height: 15px;
     }
-    .button-footer{
-        font-size: 13px;
-        height: 24px;
-        line-height: 26px;
-        padding: 0px 45px 0px 10px;
-        position: absolute;
-        top:10px;
-        right:15px;
-    }
-    .button-footer img{
-        position: absolute;
-        top:4px;
-        right:10px;
-    }
     .text-footer{
         font-size: 14px;
         padding-left: 15px;
         line-height: 38px;
-    }
-    .icon-footer{
     }
     .icon-custom{
         position:inherit;
@@ -380,11 +399,6 @@ and (orientation : portrait) {
 and (min-device-width : 375px)
 and (max-device-width : 667px)
 and (orientation : portrait) {
-    /*.icon-footer{
-        margin-right: -50%;
-        margin-top: 8px;
-    }*/
-
     .button-home-underline{
         font-size: 17px;
         padding: 20px 0px 20px 0px;
@@ -431,7 +445,7 @@ and (orientation : portrait) {
         top:12px;
         right:40px;
     }
-    .button-footer{
+    /*.button-footer{
         font-size: 13px;
         height: 24px;
         line-height: 26px;
@@ -444,7 +458,7 @@ and (orientation : portrait) {
         position: absolute;
         top:4px;
         right:10px;
-    }
+    }*/
     .text-footer{
         font-size: 16px;
         padding-left: 15px;
@@ -467,9 +481,6 @@ and (max-device-width : 736px) {
 and (min-device-width : 768px)
 and (max-device-width : 1024px)
 and (-webkit-min-device-pixel-ratio: 1){
-    .icon-footer{
-    }
-
     .button-home-underline{
         font-size: 22px;
         height: auto;
@@ -538,7 +549,7 @@ and (-webkit-min-device-pixel-ratio: 1){
         top:9px;
         right:60px;
     }
-    .button-footer{
+    /*.button-footer{
         font-size: 17px;
         height: 24px;
         line-height: 26px;
@@ -551,14 +562,11 @@ and (-webkit-min-device-pixel-ratio: 1){
         position: absolute;
         top:-6px;
         right:10px;
-    }
+    }*/
     .text-footer{
         font-size: 24px;
         padding-left: 30px;
         line-height: 37px;
-    }
-
-    .icon-footer{
     }
 
     .icon-custom{
@@ -618,10 +626,6 @@ and (max-device-width : 568px) {
         padding-left: 15px;
         line-height: 40px;
     }
-    .icon-footer{
-        margin-left: 20px;
-        margin-top: 8px;
-    }
     .button-custom-2, .button-custom-4 {
         font-size:13px;
     }
@@ -651,10 +655,6 @@ and (orientation : portrait) {
     .text-footer{
         padding-left: 15px;
         line-height: 37px;
-    }
-    .icon-footer{
-        margin-left: 20px;
-        margin-top: 8px;
     }
 }*/
 /*.button-home-underline{
