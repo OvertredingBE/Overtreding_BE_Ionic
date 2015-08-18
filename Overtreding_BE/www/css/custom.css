@@ -251,8 +251,8 @@
     height: 20px !important;
 }
 
-
-.test-3{
+.speed-input-label-2{
+    position: absolute;
 }
 
 #calc-fine-result-button{
@@ -274,29 +274,6 @@
     position: absolute;
     bottom: 12px;
     right: 7%;
-}
-
-.button-footer{
-    font-family: 'Nunito', sans-serif;
-    color: black;
-    background-color: white;
-    font-size: 13px;
-    height: 24px;
-    line-height: 26px;
-    padding: 0px 35px 0px 10px;
-    position: absolute;
-    bottom:22%;
-    right:5%;
-}
-
-.button-footer img{
-    position: absolute;
-    top:4px;
-    right:10px;
-}
-
-.text-footer{
-
 }
 
 /*iPhone-2,3,4*/
@@ -338,18 +315,14 @@ and (orientation : portrait) {
         height: 60px;
         padding: 12px;
     }
+    .input-custom{
+        top:10px;
+        right:80px;
+    }
     .speed-input-label{
         font-size: 10px;
     }
-    .input-custom{
-        position: absolute;
-        top:10px;
-        right:80px;
-        width: 60px;
-        height: 20px;
-    }
-    .test-3{
-        position: absolute;
+    .speed-input-label-2{
         top:12px;
         right:40px;
     }
@@ -381,7 +354,7 @@ and (orientation : portrait) {
         width: 60px;
         height: 20px;
     }
-    .test-3{
+    .speed-input-label-2{
         position: absolute;
         top:12px;
         right:30px;
@@ -400,72 +373,37 @@ and (min-device-width : 375px)
 and (max-device-width : 667px)
 and (orientation : portrait) {
     .button-home-underline{
-        font-size: 17px;
-        padding: 20px 0px 20px 0px;
     }
     .text-undeline{
     }
     .button-custom-2, .button-custom-4{
     }
     .item-noline, .item-underline{
-        font-size: 14px;
     }
     .button-underline{
-        font-size: 15px;
     }
     .item-menu{
-        font-size: 14px;
-        height: 35px;
-        padding: 8px 15px 8px 15px;
     }
     .item-group-underline, .item-group-noline{
         font-size: 13px;
-        height: 40px;
-        padding: 12px;
     }
     .item-subgroup-underline, .item-subgroup-noline{
         font-size: 13px;
-        font-weight: 500;
-        padding: 10px 0px 5px 0px;
     }
     .item-big{
         font-size: 13px;
-        height: 60px;
-        padding: 12px;
     }
     .input-custom{
-        position: absolute;
-        top:10px;
-        right:80px;
-        width: 60px;
-        height: 20px;
     }
-    .test-3{
-        position: absolute;
+    .speed-input-label{
+    }
+    .speed-input-label-2{
         top:12px;
         right:40px;
     }
-    /*.button-footer{
-        font-size: 13px;
-        height: 24px;
-        line-height: 26px;
-        padding: 0px 45px 0px 10px;
-        position: absolute;
-        top:10px;
-        right:15px;
-    }
-    .button-footer img{
-        position: absolute;
-        top:4px;
-        right:10px;
-    }*/
     .text-footer{
         font-size: 16px;
-        padding-left: 15px;
         line-height: 40px;
-    }
-    .icon-custom{
-        position:inherit;
     }
 }
 /*iPhone-6-Plus*/
@@ -544,7 +482,7 @@ and (-webkit-min-device-pixel-ratio: 1){
         width: 80px;
         height: 20px;
     }
-    .test-3{
+    .speed-input-label-2{
         position: absolute;
         top:9px;
         right:60px;
@@ -677,7 +615,7 @@ and (orientation : portrait) {
 }
 .input-custom{
 }
-.test-3{
+.speed-input-label-2{
 }
 .button-footer{
 }

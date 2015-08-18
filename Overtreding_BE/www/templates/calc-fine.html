@@ -68,25 +68,29 @@
 
 <div class="hidden background-light" ng-class="{'shown': showInput}">
     <div class="paddded-horizontal background-light container-relative">
-        <div class="item-group-underline background-light speed-input-label" style="border-bottom: none">
-            <div>
+        <div class="item-group-underline background-light" style="border-bottom: none">
+            <div class="speed-input-label">
                 GEREDEN SNELHEID
             </div>
             <div>
                 <input type="number" pattern="[0-9]*" class="input-custom"  ng-model="inputs.speed_driven" ng-change="calcSpeed()"></input>
             </div>
-            <div class="test-3">KM/H</div>
+            <div class="speed-input-label-2">
+                KM/H
+            </div>
         </div>
     </div>
     <div class="paddded-horizontal background-light container-relative">
-        <div class="item-group-noline background-light speed-input-label">
-            <div>
+        <div class="item-group-noline background-light">
+            <div class="speed-input-label">
                 GECORRIGEERDE SNELHEID
             </div>
             <div>
                 <input type="number" pattern="[0-9]*" class="input-custom" ng-model="inputs.speed_corrected" ng-change="calcSpeed2()"></input>
             </div>
-            <div class="test-3">KM/H</div>
+            <div class="speed-input-label-2">
+                KM/H
+            </div>
         </div>
     </div>
 </div>
