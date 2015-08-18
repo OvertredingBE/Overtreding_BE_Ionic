@@ -1,7 +1,6 @@
 /**
 * Created by MartinDzhonov on 6/1/15.
 */
-
 angular.module('starter.controllers', [])
 .controller("HomeController", function($scope, $cordovaSQLite, $cordovaSplashscreen, $ionicPlatform, $ionicPopup, Offenses, FinesCalculator, Texts){
 
@@ -107,12 +106,15 @@ angular.module('starter.controllers', [])
 "Blies u een A of een P, dan moet ook een ademanalyse worden verricht. Deze geeft de precieze concentratie van alcohol weer. Als er meteen een ademanalyse wordt afgenomen (zonder ademtest), heeft u eveneens recht op een wachttijd van 15 minuten. De politie dient u mee te delen dat u recht heeft op een tweede analyse. Als u kiest voor een tweede analyse en de resultaten verschillen aanzienlijk, moet eventueel een derde analyse worden verricht. Blies u meer dan 0,22 mg/l lucht, maar minder dan 0,35 mg/l, dan krijgt u een rijverbod van 3 uur. Later wordt een boete thuisgestuurd. Blies u meer dan 0,35 mg/l lucht, dan krijgt u een rijverbod van minstens 6 uur. Nadien moet u opnieuw blazen. Later wordt een boete thuisgestuurd of wordt u gedagvaard. Als u meer dan 0,22 mg/l blaast, moet u een kopie ontvangen van elk ticket dat door het toestel wordt afgedrukt en dit uiterlijk binnen de 14 dagen. Blies u meer dan 0,35, dan dient de politie u mee te delen dat u steeds een tegenexpertise kan laten verrichten.",
 "Een bloedproef wordt afgenomen wanneer ademtest en ademanalyse onmogelijk zijn of wanneer u er zelf om verzoekt. Ze kan enkel worden afgenomen door een dokter.",
 "Uiterlijk 14 dagen na de vaststelling, moet u een kopie van het PV worden toegestuurd."];
-    Texts.getTest(0).then(function(res){
-        for (var i = 0; i < res.length; i++) {
-            $scope.items.push({body:res.item(i).body});
-        }
-    });
-    $scope.selected = 1;
+for (var i = 0; i < asd.length; i++) {
+    $scope.items.push({body:asd[i]});
+}
+    // Texts.getTest(0).then(function(res){
+    //     for (var i = 0; i < res.length; i++) {
+    //         $scope.items.push({body:res.item(i).body});
+    //     }
+    // });
+    // $scope.selected = 1;
 
     $scope.showAlch = function() {
         $scope.items.length = 0;
