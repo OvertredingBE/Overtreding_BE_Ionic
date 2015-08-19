@@ -212,6 +212,8 @@ for (var i = 0; i < asd.length; i++) {
     $scope.menu = Questions.getQuestions("Menu");
     var indexShown = 0;
     var offense = null;
+    $scope.isEditting = false;
+    var edittingIndex = -1;
     addDummyOffense();
     resetFields();
     $scope.menuShown = true;
@@ -222,15 +224,34 @@ for (var i = 0; i < asd.length; i++) {
         });
     };
     $scope.menuSubgroupTapped = function(menuItem){
-
         var type = TranslateService.dutchToEnglish(menuItem);
         offense = Offenses.createDefault(type);
         $scope.offenses.splice($scope.offenses.length -1, 1, offense);
 
         $scope.questions = Questions.getQuestions(type);
-        $scope.toggleBorder($scope.questions[0]);
         $scope.menuShown = false;
 
+        var offenses = Offenses.all();
+        if(offenses.length > 0){
+            var firstOffense = Offenses.findById(0);
+            offense.age = firstOffense.age;
+            offense.licence = firstOffense.licence;
+            if(offense.age === 0){
+                $scope.questions[1].name = "JONGER DAN 18 JAAR";
+            }
+            else{
+                $scope.questions[1].name = "18 JAAR OF OUDER";
+
+            }
+            if(offense.licence === 0){
+                $scope.questions[0].name = "IK BEZIT MIJN RIJBEWIJS MINDER DAN 2 JAAR";
+            }
+            else{
+                $scope.questions[0].name = "IK BEZIT MIJN RIJBEWIJS LANGER DAN 2 JAAR";
+            }
+
+            indexShown = 2;
+        }
         if(type === "Speed"){
             $scope.questionsShown = true;
             $scope.showInput = true;
@@ -245,10 +266,20 @@ for (var i = 0; i < asd.length; i++) {
             $scope.showSearch = true;
             $scope.searchMessage = "Vul hierboven een trefwoord of artikelnummer in en zoek uw overtreding. Voeg een komma toe om te zoeken door middel van meerdere trefwoorden.";
         }
+        var questionsLen = $scope.questions.length;
+        if(questionsLen <= indexShown){
+        }
+        else{
+            $scope.toggleBorder($scope.questions[indexShown]);
+            if(offense.type === "Drugs"){
+                $scope.toggleBorder($scope.questions[indexShown]);
+            }
+        }
     };
 
     $scope.subgroupTapped = function(item, group, index) {
         $scope.questions[group.id].name = item;
+
         if(group.id === 0){
             if(index === 1){
                 indexShown++;
@@ -261,7 +292,6 @@ for (var i = 0; i < asd.length; i++) {
         offense[fieldName] = index;
         if(offense.type === "Speed"){
             if(offense.road === 0){
-                $scope.questions[3].items = ["10", "20", "30", "40", "50"];
             }
         }
         if(offense.type === "Alchohol"){
@@ -290,6 +320,10 @@ for (var i = 0; i < asd.length; i++) {
         indexShown++;
 
         if(indexShown === $scope.questions.length){
+            if($scope.isEditting){
+                $scope.questionsShown = false;
+                Offenses.replaceAtIndex(edittingIndex, offense);
+            }
             $scope.toggleBorder($scope.questions[indexShown-1]);
             indexShown = -1;
         }
@@ -299,6 +333,17 @@ for (var i = 0; i < asd.length; i++) {
             }
         }
     };
+    $scope.editOffense = function(index){
+        $scope.isEditting = true;
+        $scope.offenses.pop();
+        edittingIndex = index;
+        var fetchedOffense = Offenses.findById(index);
+        offense = fetchedOffense;
+        resetFields();
+        $scope.menuShown = false;
+        $scope.questions = Questions.getQuestions(fetchedOffense.type);
+        $scope.questionsShown = true;
+    }
 
     $scope.createNewOffense = function(){
         if(addCurrOffense()){
@@ -349,25 +394,27 @@ for (var i = 0; i < asd.length; i++) {
                 });
             }
             else{
-                if(addCurrOffense()){
-                    {
-                        addDummyOffense();
-                        resetFields();
-                        $scope.menuShown = true;
-                        if(offenses.length === 1){
-                            $location.path("/result/0");
-                        }
-                        else{
-                            $location.path("/result");
-                        }
-                    }
-                }
-                else{
-                    $ionicPopup.alert({
-                        title: 'INFORMATIE',
-                        template: 'Gelieve alle velden van een antwoord te voorzien'
-                    });
-                }
+                $location.path("/result");
+
+                // if(addCurrOffense()){
+                //     {
+                //         addDummyOffense();
+                //         resetFields();
+                //         $scope.menuShown = true;
+                //         if(offenses.length === 1){
+                //             $location.path("/result/0");
+                //         }
+                //         else{
+                //             $location.path("/result");
+                //         }
+                //     }
+                // }
+                // else{
+                //     $ionicPopup.alert({
+                //         title: 'INFORMATIE',
+                //         template: 'Gelieve alle velden van een antwoord te voorzien'
+                //     });
+                // }
             }
         }
         else{

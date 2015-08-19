@@ -7,7 +7,7 @@
     <ion-content class="has-subfooter">
 
         <div ng-repeat="offense in offenses track by $index">
-            <div class="item-menu background-medium">OVERTREDING {{$index+1}}: {{offense.type | translateToDutch}}
+            <div ng-click="editOffense($index)" class="item-menu background-medium">OVERTREDING {{$index+1}}: {{offense.type | translateToDutch}}
                 <img class="icon-right icon-small" src="img/cross.png" ng-click="removeOffense($index)"></img>
             </div>
         </div>
@@ -62,10 +62,10 @@
         ng-click="subgroupTapped(item, group, $index); toggleBorder(group); changeShownGroup(groupIndex)"
         ng-show="groupShown(groupIndex)">
         {{item}}
+        </div>
     </div>
 </div>
-</div>
-
+<div class="button button-full hidden" ng-class="{'shown': isEditting}">OK</div>
 <div class="hidden background-light" ng-class="{'shown': showInput}">
     <div class="paddded-horizontal background-light container-relative">
         <div class="item-group-underline background-light" style="border-bottom: none">

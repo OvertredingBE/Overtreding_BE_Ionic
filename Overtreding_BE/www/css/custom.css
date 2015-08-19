@@ -307,7 +307,6 @@ and (orientation : portrait) {
     }
     .item-subgroup-underline, .item-subgroup-noline{
         font-size: 12px;
-        font-weight: 500;
         padding: 10px 0px 5px 0px;
     }
     .item-big{

@@ -400,6 +400,9 @@ angular.module('starter.services', [])
         findById: function(offenseId){
             return offenses[offenseId];
         },
+        replaceAtIndex: function(offense, index){
+            offenses[index] = offense;
+        },
         createDefault: function(type){
             var offense = {};
             offense.licence = -1;
@@ -686,8 +689,6 @@ angular.module('starter.services', [])
                 ["JONGER DAN 18 JAAR","18 JAAR OF OUDER"]];
                 break;
                 default:
-
-
             }
             var groups = [];
 
