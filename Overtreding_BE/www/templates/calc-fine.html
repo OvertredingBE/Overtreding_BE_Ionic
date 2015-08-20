@@ -7,7 +7,8 @@
     <ion-content class="has-subfooter">
 
         <div ng-repeat="offense in offenses track by $index">
-            <div ng-click="editOffense($index)" class="item-menu background-medium">OVERTREDING {{$index+1}}: {{offense.type | translateToDutch}}
+            <div class="item-menu background-medium">
+                <span ng-click="editOffense($index)">OVERTREDING {{$index+1}}: {{offense.type | translateToDutch}}</span>
                 <img class="icon-right icon-small" src="img/cross.png" ng-click="removeOffense($index)"></img>
             </div>
         </div>
@@ -65,7 +66,7 @@
         </div>
     </div>
 </div>
-<div class="button button-full hidden" ng-class="{'shown': isEditting}">OK</div>
+
 <div class="hidden background-light" ng-class="{'shown': showInput}">
     <div class="paddded-horizontal background-light container-relative">
         <div class="item-group-underline background-light" style="border-bottom: none">
@@ -94,6 +95,7 @@
         </div>
     </div>
 </div>
+<div class="button button-full hidden" ng-class="{'shown': isEditting}" ng-click="submitEdit()">OK</div>
 </ion-content>
 </ion-view>
 

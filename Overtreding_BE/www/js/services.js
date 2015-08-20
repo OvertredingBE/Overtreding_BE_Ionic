@@ -643,12 +643,57 @@ angular.module('starter.services', [])
   }
 }])
 .factory('Questions', function($cordovaSQLite) {
+    var getQuestionsForField = function(fieldName){
+        switch (fieldName) {
+            case "licence":
+                return ["IK BEZIT MIJN RIJBEWIJS MINDER DAN 2 JAAR", "IK BEZIT MIJN RIJBEWIJS LANGER DAN 2 JAAR"];
+            break;
+            case "age":
+                return ["JONGER DAN 18 JAAR","18 JAAR OF OUDER"];
+            break;
+            case "road":
+                return ["WOONERF, ZONE 30, SCHOOL, BEBOUWDE KOM", "ANDERE WEGEN"];
+            break;
+            case "speed_limit":
+                return ["10","20","30","40","50","60","70","80","90","100","110","120"];
+            break;
+            case "driver":
+                return ["PROFESSIONELE BESTUURDER", "GEWONE BESTUURDER"];
+            break;
+            case "intoxication":
+                return
+                ["0,50 – 0,80 PROMILLE",
+                "0,80 – 1,00 PROMILLE",
+                "1,00 – 1,14 PROMILLE",
+                "1,14 – 1,48 PROMILLE",
+                "1,48 - ... PROMILLE",
+                "WEIGERING ADEMTEST OF ANALYSE ZONDER WETTIGE REDEN",
+                "DRONKENSCHAP",
+                "EERDER BETRAPT OP ALCOHOLINTOXICATIE VAN MEER DAN 0,8 PROMILLE OF DRONKENSCHAP EN NU OPNIEUW BETRAPT OP ALCOHOLINTOXICATIE VAN MEERDAN 0,8 PROMILLE.",
+                "EERDER BETRAPT OP ALCOHOLINTOXICATIE VAN MEER DAN 0,8 PROMILLE OF DRONKENSCHAP EN NU OPNIEUW BETRAPT OP DRONKENSCHAP"];
+            break;
+            case "blood_test":
+                return ["U WORDT POSITIEF BEVONDEN OP DE AANWEZIGHEID VAN DRUGS IN UW BLOED", "U WEIGERT ZONDER WETTIGE REDEN DE SPEEKSELTEST OF ANALYSE"];
+            break;
+            default:
+
+        }
+    }
     return {
+        getQuestionsForField: getQuestionsForField,
         getQuestions: function(name) {
+            var names = [];
             switch (name) {
                 case "Menu":
                 var names = ["KIES UW TYPE OVERTREDING"];
                 var subgroups = [["SNELHEID", "ALCOHOL", "DRUGS", "ANDERE"]];
+                break;
+                case "Speed":
+                var names = ["RIJBEWIJS","LEEFTIJD", "TYPE RIJBAAN", "SNELHEIDSLIMIET"];
+                var subgroups = [['IK BEZIT MIJN RIJBEWIJS MINDER DAN 2 JAAR', "IK BEZIT MIJN RIJBEWIJS LANGER DAN 2 JAAR"],
+                ["JONGER DAN 18 JAAR","18 JAAR OF OUDER"],
+                ["WOONERF, ZONE 30, SCHOOL, BEBOUWDE KOM", "ANDERE WEGEN"],
+                ["10","20","30","40","50","60","70","80","90","100","110","120"]];
                 break;
                 case "Alchohol":
                 var names = ["RIJBEWIJS","LEEFTIJD", "BESTUURDER", "INTOXICATIE"];
@@ -670,13 +715,6 @@ angular.module('starter.services', [])
                 var subgroups = [['IK BEZIT MIJN RIJBEWIJS MINDER DAN 2 JAAR', "IK BEZIT MIJN RIJBEWIJS LANGER DAN 2 JAAR"],
                 ["JONGER DAN 18 JAAR","18 JAAR OF OUDER"],
                 ["U WORDT POSITIEF BEVONDEN OP DE AANWEZIGHEID VAN DRUGS IN UW BLOED", "U WEIGERT ZONDER WETTIGE REDEN DE SPEEKSELTEST OF ANALYSE"]];
-                break;
-                case "Speed":
-                var names = ["RIJBEWIJS","LEEFTIJD", "TYPE RIJBAAN", "SNELHEIDSLIMIET"];
-                var subgroups = [['IK BEZIT MIJN RIJBEWIJS MINDER DAN 2 JAAR', "IK BEZIT MIJN RIJBEWIJS LANGER DAN 2 JAAR"],
-                ["JONGER DAN 18 JAAR","18 JAAR OF OUDER"],
-                ["WOONERF, ZONE 30, SCHOOL, BEBOUWDE KOM", "ANDERE WEGEN"],
-                ["10","20","30","40","50","60","70","80","90","100","110","120"]];
                 break;
                 case "Other":
                 var names = ["RIJBEWIJS","LEEFTIJD"];
