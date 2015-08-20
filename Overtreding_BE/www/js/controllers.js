@@ -352,69 +352,80 @@ for (var i = 0; i < asd.length; i++) {
                 template: 'Please finish editting your offense'
             });
         }
-        else{
         if(offense != null){
             if(offense.type === "" || !Utils.validateOffense(offense)){
-                $scope.offenses.pop();
+                var confirmPopup = $ionicPopup.confirm({
+                    title: 'INFORMATIE',
+                    template: 'Input will be lost, continue ?'
+                });
+                confirmPopup.then(function(res) {
+                    if(res) {
+                        $scope.offenses.pop();
+                    }
+                    else{
+                        flag = false;
+                    }
+                });
             }
             else{
                 addCurrOffense();
             }
         }
-        $scope.isEditting = true;
-        edittingIndex = index;
-        var fetchedOffense = Offenses.findById(index);
-        offense = fetchedOffense;
-        resetFields();
-        $scope.menuShown = false;
-        $scope.questions = Questions.getQuestions(fetchedOffense.type);
-        $scope.toggleBorder($scope.questions[0]);
-        if(fetchedOffense.type != "Speed"){
-            $scope.toggleBorder($scope.questions[$scope.questions.length-1]);
-        }
-        $scope.questionsShown = true;
+        if(flag){
+            $scope.isEditting = true;
+            edittingIndex = index;
+            var fetchedOffense = Offenses.findById(index);
+            offense = fetchedOffense;
+            resetFields();
+            $scope.menuShown = false;
+            $scope.questions = Questions.getQuestions(fetchedOffense.type);
+            $scope.toggleBorder($scope.questions[0]);
+            if(fetchedOffense.type != "Speed"){
+                $scope.toggleBorder($scope.questions[$scope.questions.length-1]);
+            }
+            $scope.questionsShown = true;
 
-        for (var key in fetchedOffense) {
-            if (fetchedOffense.hasOwnProperty(key)) {
-                if(key === "type" || (key === "speed_corrected" || key==="speed_driven")){
-                }
-                else{
-                    var index = -1;
-                    switch (key) {
-                        case 'licence':
-                        index = 0;
-                        break;
-                        case 'age':
-                        index = 1;
-                        break;
-                        case 'road':
-                        index = 2;
-                        break;
-                        case 'speed_limit':
-                        index = 3;
-                        break;
-                        case 'driver':
-                        index = 2;
-                        break;
-                        case 'intoxication':
-                        index = 3;
-                        break;
-                        case 'blood_test':
-                        index = 2;
-                        break;
-                        default:
+            for (var key in fetchedOffense) {
+                if (fetchedOffense.hasOwnProperty(key)) {
+                    if(key === "type" || (key === "speed_corrected" || key==="speed_driven")){
                     }
-                    $scope.questions[index].name = Questions.getQuestionsForField(key)[fetchedOffense[key]];
+                    else{
+                        var index = -1;
+                        switch (key) {
+                            case 'licence':
+                            index = 0;
+                            break;
+                            case 'age':
+                            index = 1;
+                            break;
+                            case 'road':
+                            index = 2;
+                            break;
+                            case 'speed_limit':
+                            index = 3;
+                            break;
+                            case 'driver':
+                            index = 2;
+                            break;
+                            case 'intoxication':
+                            index = 3;
+                            break;
+                            case 'blood_test':
+                            index = 2;
+                            break;
+                            default:
+                        }
+                        $scope.questions[index].name = Questions.getQuestionsForField(key)[fetchedOffense[key]];
+                    }
                 }
             }
-        }
-        if(offense.type === "Speed"){
-            $scope.showInput = true;
-            $scope.inputs.speed_driven = offense.speed_driven;
-            $scope.inputs.speed_corrected = offense.speed_corrected;
+            if(offense.type === "Speed"){
+                $scope.showInput = true;
+                $scope.inputs.speed_driven = offense.speed_driven;
+                $scope.inputs.speed_corrected = offense.speed_corrected;
 
+            }
         }
-    }
     };
     $scope.submitEdit = function(){
         $scope.questionsShown = false;
@@ -678,7 +689,7 @@ for (var i = 0; i < asd.length; i++) {
     var sumOI = 0;
     var sumMS = 0;
 
-    $scope.message = "Maak uw keuze uit de onderstaande samengestelde overtredingen en ontdek welke gevolgen elke overtreding met zich meebrengt.\n Wenst u graag meer informatie over deze overtredingen, aarzel niet en vraag GRATIS juridisch advies aan via onderstaande button.";
+    $scope.message = "Hieronder vindt u het bedrag per overtreding. Ontdek welke gevolgen elke overtreding met zich meebrengt. Wilt u graag meer informatie over deze overtredingen, aarzel dan niet en vraag GRATIS juridisch advies via onderstaande button.";
 
     ExceptionTexts.getExceptionTexts().then(function(res2){
         var excTexts = [];
@@ -738,10 +749,10 @@ for (var i = 0; i < asd.length; i++) {
                 }
 
                 if(!qualifyOI){
-                    $scope.message = "De door u samengestelde overtredingen zorgen ervoor dat u niet in aanmerking komt voor een onmiddellijke inning. U komt wel in aanmerking voor een minnelijke schikking.\nMaak uw keuze uit de onderstaande samengestelde overtredingen en ontdek welke gevolgen elke overtreding met zich meebrengt.\nWilt u meer informatie over de gevolgen die zich kunnen voordoen als u voor de rechtbank moet verschijnen, aarzel niet en vraag GRATIS juridisch advies aan via onderstaande button.";
+                    $scope.message = "Deze combinatie van overtredingen zorgt ervoor dat u niet in aanmerking komt voor een onmiddellijke inning. U komt wel in aanmerking voor een minnelijke schikking. Hieronder vindt u het bedrag per overtreding. Ontdek welke gevolgen elke overtreding met zich meebrengt. Wilt u graag meer informatie over deze overtredingen, aarzel dan niet en vraag GRATIS juridisch advies via onderstaande button.";
                 }
                 if(!qualifyMS){
-                    $scope.message = "De door u samengestelde overtredingen zorgen ervoor dat u niet in aanmerking komt voor een onmiddellijke inning of minnnelijke schikking. U zal sowieso voor de rechtbank moeten verschijnen.\nMaak uw keuze uit de onderstaande samengestelde overtredingen en ontdek welke gevolgen elke overtreding met zich meebrengt.\n Wenst u graag meer informatie over deze overtrendigen, aarzel niet en vraag GRATIS juridisch advies aan via onderstaande button.";
+                    $scope.message = "Deze combinatie van overtredingen zorgt ervoor dat u niet in aanmerking komt voor een onmiddellijke inning of minnelijke schikking. U zal sowieso voor de rechtbank moeten verschijnen. Wilt u GRATIS advies en bijstand van een jurist of advocaat , klik dan op onderstaand button.";
                 }
             });
         }
