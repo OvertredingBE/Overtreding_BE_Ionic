@@ -527,10 +527,10 @@ angular.module('starter.services', [])
             for (var i = 0; i < tag.length; i++) {
                 if(tag[i] != ""){
                     if(i === 0){
-                        query = query + " b.tag_name="+ "'" + tag[i] + "'";
+                        query = query + " b.tag_name LIKE "+ "'" + tag[i] + "%'";
                     }
                     else{
-                        query = query + " OR b.tag_name="+ "'" + tag[i] + "'";
+                        query = query + " OR b.tag_name LIKE "+ "'" + tag[i] + "%'";
 
                     }
                 }
@@ -546,7 +546,7 @@ angular.module('starter.services', [])
     }
 })
 
-.factory('TranslateService', function($cordovaSQLite, Questions){
+.factory('TranslateService', function($cordovaSQLite){
     return{
         dutchToEnglish: function(word) {
             var translations = {
@@ -565,7 +565,15 @@ angular.module('starter.services', [])
                 "Other": "ANDERE",
                 "Rights": "Uw rechten bij een politiecontrole",
                 "CalcFine": "Boete berekenen",
-                "TakePicture": "U ontving een brief"
+                "TakePicture": "U ontving een brief",
+                "licence": "RIJBEWIJS",
+                "age": "LEEFTIJD",
+                "road": "TYPE RIJBAAN",
+                "speed_limit": "SNELHEIDSLIMIET",
+                "driver": "BESTUURDER",
+                "intoxication": "INTOXICATIE",
+                "blood_test": "TYPE OVERTREDING",
+                "menu": "KIES UW TYPE OVERTREDING"
             };
             return translations[word];
         },
@@ -642,9 +650,11 @@ angular.module('starter.services', [])
     }
   }
 }])
-.factory('Questions', function($cordovaSQLite) {
-    var getQuestionsForField = function(fieldName){
+.factory('Questions', function($cordovaSQLite, TranslateService) {
+    var asdf = function(fieldName){
         switch (fieldName) {
+            case "menu":
+                return ["SNELHEID", "ALCOHOL", "DRUGS", "ANDERE"];
             case "licence":
                 return ["IK BEZIT MIJN RIJBEWIJS MINDER DAN 2 JAAR", "IK BEZIT MIJN RIJBEWIJS LANGER DAN 2 JAAR"];
             break;
@@ -661,8 +671,7 @@ angular.module('starter.services', [])
                 return ["PROFESSIONELE BESTUURDER", "GEWONE BESTUURDER"];
             break;
             case "intoxication":
-                return
-                ["0,50 – 0,80 PROMILLE",
+                return ["0,50 – 0,80 PROMILLE",
                 "0,80 – 1,00 PROMILLE",
                 "1,00 – 1,14 PROMILLE",
                 "1,14 – 1,48 PROMILLE",
@@ -680,60 +689,38 @@ angular.module('starter.services', [])
         }
     }
     return {
-        getQuestionsForField: getQuestionsForField,
+        getQuestionsForField: asdf,
         getQuestions: function(name) {
             var names = [];
+            var groups = [];
+            var subgroups = [];
             switch (name) {
                 case "Menu":
-                var names = ["KIES UW TYPE OVERTREDING"];
-                var subgroups = [["SNELHEID", "ALCOHOL", "DRUGS", "ANDERE"]];
+                names = ["menu"];
                 break;
                 case "Speed":
-                var names = ["RIJBEWIJS","LEEFTIJD", "TYPE RIJBAAN", "SNELHEIDSLIMIET"];
-                var subgroups = [['IK BEZIT MIJN RIJBEWIJS MINDER DAN 2 JAAR', "IK BEZIT MIJN RIJBEWIJS LANGER DAN 2 JAAR"],
-                ["JONGER DAN 18 JAAR","18 JAAR OF OUDER"],
-                ["WOONERF, ZONE 30, SCHOOL, BEBOUWDE KOM", "ANDERE WEGEN"],
-                ["10","20","30","40","50","60","70","80","90","100","110","120"]];
+                names = ["licence","age","road","speed_limit"];
                 break;
                 case "Alchohol":
-                var names = ["RIJBEWIJS","LEEFTIJD", "BESTUURDER", "INTOXICATIE"];
-                var subgroups = [["IK BEZIT MIJN RIJBEWIJS MINDER DAN 2 JAAR", "IK BEZIT MIJN RIJBEWIJS LANGER DAN 2 JAAR"],
-                ["JONGER DAN 18 JAAR","18 JAAR OF OUDER"],
-                ["PROFESSIONELE BESTUURDER", "GEWONE BESTUURDER"],
-                ["0,50 – 0,80 PROMILLE",
-                "0,80 – 1,00 PROMILLE",
-                "1,00 – 1,14 PROMILLE",
-                "1,14 – 1,48 PROMILLE",
-                "1,48 - ... PROMILLE",
-                "WEIGERING ADEMTEST OF ANALYSE ZONDER WETTIGE REDEN",
-                "DRONKENSCHAP",
-                "EERDER BETRAPT OP ALCOHOLINTOXICATIE VAN MEER DAN 0,8 PROMILLE OF DRONKENSCHAP EN NU OPNIEUW BETRAPT OP ALCOHOLINTOXICATIE VAN MEERDAN 0,8 PROMILLE.",
-                "EERDER BETRAPT OP ALCOHOLINTOXICATIE VAN MEER DAN 0,8 PROMILLE OF DRONKENSCHAP EN NU OPNIEUW BETRAPT OP DRONKENSCHAP"]];
+                names = ["licence", "age", "driver", "intoxication"];
                 break;
                 case "Drugs":
-                var names = ["RIJBEWIJS","LEEFTIJD", "TYPE OVERTREDING"];
-                var subgroups = [['IK BEZIT MIJN RIJBEWIJS MINDER DAN 2 JAAR', "IK BEZIT MIJN RIJBEWIJS LANGER DAN 2 JAAR"],
-                ["JONGER DAN 18 JAAR","18 JAAR OF OUDER"],
-                ["U WORDT POSITIEF BEVONDEN OP DE AANWEZIGHEID VAN DRUGS IN UW BLOED", "U WEIGERT ZONDER WETTIGE REDEN DE SPEEKSELTEST OF ANALYSE"]];
+                names = ["licence", "age", "blood_test"];
                 break;
                 case "Other":
-                var names = ["RIJBEWIJS","LEEFTIJD"];
-                var subgroups = [['IK BEZIT MIJN RIJBEWIJS MINDER DAN 2 JAAR', "IK BEZIT MIJN RIJBEWIJS LANGER DAN 2 JAAR"],
-                ["JONGER DAN 18 JAAR","18 JAAR OF OUDER"]];
-                break;
-                case "Test":
-                var names = ["RIJBEWIJS","LEEFTIJD"];
-                var subgroups = [['IK BEZIT MIJN RIJBEWIJS MINDER DAN 2 JAAR', "IK BEZIT MIJN RIJBEWIJS LANGER DAN 2 JAAR"],
-                ["JONGER DAN 18 JAAR","18 JAAR OF OUDER"]];
+                names = ["licence","age"];
                 break;
                 default:
             }
-            var groups = [];
+            for (var k = 0; k < names.length; k++) {
+                var questionsArr = asdf(names[k]);
+                subgroups.push(questionsArr);
+            }
 
             for (var i=0; i<names.length; i++) {
                 groups[i] = {
                     id: i,
-                    name: names[i],
+                    name: TranslateService.englishToDutch(names[i]),
                     items: []
                 };
                 for (var j=0; j<subgroups[i].length; j++) {

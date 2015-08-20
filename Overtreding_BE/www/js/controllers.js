@@ -271,14 +271,13 @@ for (var i = 0; i < asd.length; i++) {
         }
         else{
             $scope.toggleBorder($scope.questions[indexShown]);
-            if(offense.type === "Drugs"){
-                $scope.toggleBorder($scope.questions[indexShown]);
-            }
         }
     };
 
     $scope.subgroupTapped = function(item, group, index) {
         $scope.questions[group.id].name = item;
+        var fieldName = Offenses.getFieldName(group.id, offense["type"]);
+        offense[fieldName] = index;
 
         if(group.id === 0){
             if(index === 1){
@@ -287,10 +286,26 @@ for (var i = 0; i < asd.length; i++) {
                 $scope.questions[1].name = "18 JAAR OF OUDER";
             }
         }
-        var fieldName = Offenses.getFieldName(group.id, offense["type"]);
-        offense[fieldName] = index;
-        if(offense.type === "Speed"){
-            if(offense.road === 0){
+        if($scope.isEditting){
+            if(group.id === 0){
+                var offenses = Offenses.all();
+                for (var i = 0; i < offenses.length; i++) {
+                    var fOffense = offenses[i];
+                    if(index === 1){
+                        fOffense.licence = index;
+                        fOffense.age = index;
+                    }
+                    else{
+                        fOffense.licence = index;
+                    }
+                }
+            }
+            if(group.id === 1){
+                var offenses = Offenses.all();
+                for (var i = 0; i < offenses.length; i++) {
+                    var fOffense = offenses[i];
+                    fOffense.age = index;
+                }
             }
         }
         if(offense.type === "Alchohol"){
@@ -329,6 +344,15 @@ for (var i = 0; i < asd.length; i++) {
         }
     };
     $scope.editOffense = function(index){
+        var flag = true;
+        if($scope.isEditting){
+            flag = false;
+            $ionicPopup.alert({
+                title: 'Error',
+                template: 'Please finish editting your offense'
+            });
+        }
+        else{
         if(offense != null){
             if(offense.type === "" || !Utils.validateOffense(offense)){
                 $scope.offenses.pop();
@@ -344,19 +368,53 @@ for (var i = 0; i < asd.length; i++) {
         resetFields();
         $scope.menuShown = false;
         $scope.questions = Questions.getQuestions(fetchedOffense.type);
+        $scope.toggleBorder($scope.questions[0]);
+        if(fetchedOffense.type != "Speed"){
+            $scope.toggleBorder($scope.questions[$scope.questions.length-1]);
+        }
         $scope.questionsShown = true;
+
+        for (var key in fetchedOffense) {
+            if (fetchedOffense.hasOwnProperty(key)) {
+                if(key === "type" || (key === "speed_corrected" || key==="speed_driven")){
+                }
+                else{
+                    var index = -1;
+                    switch (key) {
+                        case 'licence':
+                        index = 0;
+                        break;
+                        case 'age':
+                        index = 1;
+                        break;
+                        case 'road':
+                        index = 2;
+                        break;
+                        case 'speed_limit':
+                        index = 3;
+                        break;
+                        case 'driver':
+                        index = 2;
+                        break;
+                        case 'intoxication':
+                        index = 3;
+                        break;
+                        case 'blood_test':
+                        index = 2;
+                        break;
+                        default:
+                    }
+                    $scope.questions[index].name = Questions.getQuestionsForField(key)[fetchedOffense[key]];
+                }
+            }
+        }
         if(offense.type === "Speed"){
             $scope.showInput = true;
             $scope.inputs.speed_driven = offense.speed_driven;
             $scope.inputs.speed_corrected = offense.speed_corrected;
 
         }
-
-        for (var key in fetchedOffense) {
-            if (fetchedOffense.hasOwnProperty(key)) {
-                console.log(key + "->" + fetchedOffense[key]);
-            }
-        }
+    }
     };
     $scope.submitEdit = function(){
         $scope.questionsShown = false;
@@ -404,10 +462,10 @@ for (var i = 0; i < asd.length; i++) {
                 }
                 else{
                     if(index === $scope.offenses.length -1){
-                        offense = {type: ""};
-                        $scope.offenses.splice($scope.offenses.length -1, 1, offense);
+                        $scope.offenses.splice(index, 1);
                         resetFields();
-                        $scope.menuShown = true;
+                        $scope.menuShown = false;
+                        offense = null;
                     }
                     else{
                         $scope.offenses.splice(index, 1);
