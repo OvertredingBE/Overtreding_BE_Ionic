@@ -208,6 +208,7 @@ for (var i = 0; i < asd.length; i++) {
     $scope.offenses = [];
     $scope.searchResults = [];
     $scope.showSearch = false;
+    $scope.infoShown = false;
     $scope.inputs = {};
     $scope.menu = Questions.getQuestions("Menu");
     var indexShown = 0;
@@ -648,6 +649,12 @@ for (var i = 0; i < asd.length; i++) {
         offense.degree = item.degree;
         offense.description = item.description;
         $scope.questionsShown = true;
+    };
+    $scope.showInfo = function(){
+        $ionicPopup.alert({
+            title: 'INFORMATIE',
+            template: 'Hoewel deze informatie met de meeste zorg werd samengesteld, is deze informatie louter informatief. De gebruiker aanvaardt dat hieraan geen rechten kunnen worden ontleend.'
+        });
     };
 
     function addDummyOffense(){

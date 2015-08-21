@@ -671,11 +671,11 @@ angular.module('starter.services', [])
                 return ["PROFESSIONELE BESTUURDER", "GEWONE BESTUURDER"];
             break;
             case "intoxication":
-                return ["0,50 – 0,80 PROMILLE",
-                "0,80 – 1,00 PROMILLE",
-                "1,00 – 1,14 PROMILLE",
-                "1,14 – 1,48 PROMILLE",
-                "1,48 - ... PROMILLE",
+                return ["0,50 – 0,80 PROMILLE / 0,22 - 0,35 mg/I UAL",
+                "0,80 – 1,00 PROMILLE / 0,35 - 0,44 mg/I UAL",
+                "1,00 – 1,14 PROMILLE / 0,44 - 0,50 mg/I UAL",
+                "1,14 – 1,48 PROMILLE / 0,50 - 0, 65 mg/I UAL",
+                "1,48 - ... PROMILLE/ 0,65 mg mg/I UAL - ...",
                 "WEIGERING ADEMTEST OF ANALYSE ZONDER WETTIGE REDEN",
                 "DRONKENSCHAP",
                 "EERDER BETRAPT OP ALCOHOLINTOXICATIE VAN MEER DAN 0,8 PROMILLE OF DRONKENSCHAP EN NU OPNIEUW BETRAPT OP ALCOHOLINTOXICATIE VAN MEERDAN 0,8 PROMILLE.",

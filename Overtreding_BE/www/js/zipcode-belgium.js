@@ -3,7 +3,7 @@ var dbJson = {
         {
             "id": 1,
             "type": 0,
-            "body": "Soms gebeurt het dat de politie een eerste test uitvoert met een alco-sensor. Deze maakt eigenlijk geen deel uit van de eigenlijke alcoholcontrole."
+            "body": "Soms gebeurt het dat de politie een eerste test uitvoert met een alco-sensor. Deze maakt eigenlijk geen deel uit van de echte alcoholcontrole."
         },
         {
             "id": 2,
