@@ -349,8 +349,8 @@ for (var i = 0; i < asd.length; i++) {
         if($scope.isEditting){
             flag = false;
             $ionicPopup.alert({
-                title: 'Error',
-                template: 'Please finish editting your offense'
+                title: 'INFORMATIE',
+                template: 'Gelieve het aanpassen van uw overtreding te vervolledigen'
             });
         }
         if(offense != null){
@@ -438,22 +438,30 @@ for (var i = 0; i < asd.length; i++) {
     };
 
     $scope.createNewOffense = function(){
-        if(offense === null){
-            addDummyOffense();
-            resetFields();
-            $scope.menuShown = true;
+        if($scope.isEditting){
+            $ionicPopup.alert({
+                title: 'INFORMATIE',
+                template: 'Gelieve het aanpassen van uw overtreding te vervolledigen'
+            });
         }
         else{
-            if(addCurrOffense()){
+            if(offense === null){
                 addDummyOffense();
                 resetFields();
                 $scope.menuShown = true;
             }
             else{
-                $ionicPopup.alert({
-                    title: 'INFORMATIE',
-                    template: 'Gelieve alle velden van een antwoord te voorzien'
-                });
+                if(addCurrOffense()){
+                    addDummyOffense();
+                    resetFields();
+                    $scope.menuShown = true;
+                }
+                else{
+                    $ionicPopup.alert({
+                        title: 'INFORMATIE',
+                        template: 'Gelieve alle velden van een antwoord te voorzien'
+                    });
+                }
             }
         }
     };
@@ -493,56 +501,56 @@ for (var i = 0; i < asd.length; i++) {
         var flag = false;
 
         if($scope.isEditting){
+            flag = true;
             $ionicPopup.alert({
                 title: 'INFORMATIE',
-                template: 'Gelieve alle velden van een antwoord te voorzien'
+                template: 'Gelieve het aanpassen van uw overtreding te vervolledigen'
             });
         }
-        {
-            if(offense === null){
-                if(offenses.length === 1){
-                    $location.path("/result/0");
-                }
-                else{
-                    $location.path("/result");
-                }
+
+        if(offense === null){
+            if(offenses.length === 1){
+                $location.path("/result/0");
             }
             else{
-                if(offense.type === "Speed"){
-                    var input = $scope.inputs.speed_driven;
-                    var speedDriven = parseInt(input);
-                    var speedCorrected = Formulas.getCorrectedSpeed(speedDriven);
-                    var speedLimit = (offense.speed_limit+1) * 10;
-                    if(speedCorrected <= speedLimit){
-                        flag = true;
-                        $ionicPopup.alert({
-                            title: 'INFORMATIE',
-                            template: 'De gecorrigeerde snelheid kan niet lager zijn dan snelheidslimiet. Gelieve opnieuw te proberen.'
-                        });
-                    }
+                $location.path("/result");
+            }
+        }
+        else{
+            if(offense.type === "Speed"){
+                var input = $scope.inputs.speed_driven;
+                var speedDriven = parseInt(input);
+                var speedCorrected = Formulas.getCorrectedSpeed(speedDriven);
+                var speedLimit = (offense.speed_limit+1) * 10;
+                if(speedCorrected <= speedLimit){
+                    flag = true;
+                    $ionicPopup.alert({
+                        title: 'INFORMATIE',
+                        template: 'De gecorrigeerde snelheid kan niet lager zijn dan snelheidslimiet. Gelieve opnieuw te proberen.'
+                    });
                 }
-                if(!flag){
-                    if(addCurrOffense()){
-                        resetFields();
-                        offense = null;
-                        var offenses = Offenses.all();
-                        if(offenses.length === 1){
-                            $location.path("/result/0");
-                        }
-                        else{
-                            $location.path("/result");
-                        }
-
+            }
+            if(!flag){
+                if(addCurrOffense()){
+                    resetFields();
+                    offense = null;
+                    var offenses = Offenses.all();
+                    if(offenses.length === 1){
+                        $location.path("/result/0");
                     }
                     else{
-                        $ionicPopup.alert({
-                            title: 'INFORMATIE',
-                            template: 'Gelieve alle velden van een antwoord te voorzien'
-                        });
+                        $location.path("/result");
                     }
+                }
+                else{
+                    $ionicPopup.alert({
+                        title: 'INFORMATIE',
+                        template: 'Gelieve alle velden van een antwoord te voorzien'
+                    });
                 }
             }
         }
+
     };
 
     $scope.calcSpeed = function() {
@@ -693,6 +701,7 @@ for (var i = 0; i < asd.length; i++) {
 
     var qualifyOI = CombinedFines.qualifyOI();
     var qualifyMS = CombinedFines.qualifyMS();
+    console.log("ASDASD:" + qualifyOI);
     var sumOI = 0;
     var sumMS = 0;
 
@@ -806,25 +815,20 @@ for (var i = 0; i < asd.length; i++) {
 })
 
 .controller("TakePictureController", function($scope, $ionicHistory, $ionicPopup, $location,Camera, ContactService, Utils) {
-    $scope.src = "";
-    var confirmPopup = $ionicPopup.alert({
-        title: 'INFORMATIE',
-        template:  "Gelieve een foto te nemen van de brief die u ontving en deze door te sturen via de button vraag GRATIS juridisch advies.\n Wij bekijken dan wat wij voor u kunnen doen en nemen contact met u op. Alvast bedankt!"
-    });
-    confirmPopup.then(function(res) {
-        if(res) {
-            Camera.getPicture().then(function(imageURI) {
-                $scope.src = imageURI;
-            }, function(err) {
-                console.log(err);
-            });
-        } else {
-            console.log('You are not sure');
-        }
-    });
-
+    $scope.items = [];
+    $scope.addPhoto = function(){
+        Camera.getPicture().then(function(imageURI) {
+            $scope.items.push(imageURI);
+        }, function(err) {
+            console.log(err);
+        });
+    };
+    $scope.removePhoto = function(index){
+        $scope.items.splice(index, 1);
+    }
     $scope.goToContact = function(){
-        if($scope.src === ""){
+        $scope.imgUris = [];
+        if($scope.items.length === 0){
             var confirmPopup = $ionicPopup.alert({
                 title: 'INFORMATIE',
                 template:  "Gelieve een foto te nemen van de brief die u ontving en deze door te sturen via de button vraag GRATIS juridisch advies.\n Wij bekijken dan wat wij voor u kunnen doen en nemen contact met u op. Alvast bedankt!"
@@ -832,22 +836,19 @@ for (var i = 0; i < asd.length; i++) {
             confirmPopup.then(function(res) {
                 if(res) {
                     Camera.getPicture().then(function(imageURI) {
-                        $scope.src = imageURI;
-                        console.log(imageURI);
+                        $scope.items.push(imageURI);
                     }, function(err) {
                         console.log(err);
                     });
                 } else {
-                    console.log('You are not sure');
                 }
             });
         }
         else{
             ContactService.setFunctionality("TakePicture");
-            ContactService.setImageData(Utils.encodeImageUri($scope.src));
+            ContactService.setImageData(Utils.encodeImageUri($scope.items[0]));
             $location.path("/contact");
         }
-        console.log($scope.src);
     }
     $scope.goBack = function() {
         $ionicHistory.goBack();

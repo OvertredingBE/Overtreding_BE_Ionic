@@ -72,9 +72,6 @@ angular.module('starter.services', [])
 
             for (var i = 0; i < offenses.length; i++) {
                 var offense = offenses[i];
-                if(offense.age === 0){
-                    return false;
-                }
                 for (var key in offense) {
                     if (offense.hasOwnProperty(key)) {
                         if(offense.type === "Other"){
@@ -344,10 +341,10 @@ angular.module('starter.services', [])
         }
     }
     function calc1(y){
-        return y*6 + 100;
+        return y*6;
     };
     function calc2(y){
-        return y*6;;
+        return y*6;
     };
     function calc3(y,x,z){
         return y + (x * z);
