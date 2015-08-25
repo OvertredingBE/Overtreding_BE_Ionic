@@ -87,6 +87,34 @@ app.directive('ngEnter', function () {
         });
     };
 });
+app.directive('keyFocus', function($ionicPopup) {
+  return {
+    restrict: 'A',
+    link: function($scope, element) {
+      element.bind('keydown', function (e) {
+          // up arrow
+        if (e.keyCode == 13) {
+            if($scope.$last){
+                document.activeElement.blur();
+                $("input").blur();
+            }
+            else{
+            var $nextElement = element.next();
+                if($nextElement.length) {
+                    $nextElement[0].focus();
+            }
+            }
+        }
+        // // down arrow
+        // else if (e.keyCode == 66) {
+        //   if(!scope.$last) {
+        //     elem[0].nextElementSibling.focus();
+        //   }
+        // }
+      });
+    }
+  };
+});
 app.filter('strLimit', ['$filter', function($filter, $ionicPlatform) {
    return function(input, limit) {
       if (! input) return;

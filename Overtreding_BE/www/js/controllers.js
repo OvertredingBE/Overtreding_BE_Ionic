@@ -3,6 +3,16 @@
 */
 angular.module('starter.controllers', [])
 .controller("HomeController", function($scope, $cordovaSQLite, $cordovaSplashscreen, $ionicPlatform, $ionicPopup, Offenses, FinesCalculator, Texts){
+    var confirmed = window.localStorage['confirmed'];
+    if(confirmed){
+    }
+    else{
+        $ionicPopup.alert({
+            title: 'INFORMATIE',
+            template: 'Hoewel deze informatie met de meeste zorg werd samengesteld, is deze informatie louter informatief. De gebruiker aanvaardt dat hieraan geen rechten kunnen worden ontleend.'
+        });
+        window.localStorage['confirmed'] = true;
+    }
 
     $scope.calcFineTapped = function(){
         Offenses.clear();
@@ -145,7 +155,7 @@ for (var i = 0; i < asd.length; i++) {
 })
 
 .controller("ContactController", function($scope, $ionicHistory, $ionicPopup, $http, Offenses, ContactService, TranslateService, Utils) {
-    $scope.form = {};
+    $scope.form = {name: "", phone: ""};
 
     $scope.resultTapped = function() {
         var counter = 0;
@@ -163,6 +173,7 @@ for (var i = 0; i < asd.length; i++) {
             });
         }
         else{
+            $scope.spinnerShown = true;
             // if(Utils.validateEmail($scope.form.email)){
                 var url = 'http://api.overtreding.be/overtreding_api/v1/test';
                 var data = $scope.form;
@@ -174,8 +185,8 @@ for (var i = 0; i < asd.length; i++) {
                     case "TakePicture":
                         var imageData = ContactService.getImageData();
                     default:
-
                 }
+
                 var functionalityType = {functionality: TranslateService.englishToDutch(functionalityTypeStr)};
                 var imageDataJson = {imageData: imageData};
                 var offensesJson = {offenses: offenses};
@@ -186,8 +197,18 @@ for (var i = 0; i < asd.length; i++) {
                 for(var key in imageDataJson) result[key]=imageDataJson[key];
 
                 $http.post(url, result).then(function (res){
+                    $scope.spinnerShown = false;
+                    $ionicPopup.alert({
+                        title: 'INFORMATIE',
+                        template: 'Bedankt voor uw aanvraag. U wordt zo snel mogelijk gecontacteerd.'
+                    });
                     $scope.response = res.data;
                 }, function(err){
+                    $scope.spinnerShown = false;
+                    $ionicPopup.alert({
+                        title: 'FOUT',
+                        template: 'Could not connect to server'
+                    });
                     $scope.response = err.code;
                 });
             }
@@ -276,9 +297,59 @@ for (var i = 0; i < asd.length; i++) {
     };
 
     $scope.subgroupTapped = function(item, group, index) {
-        $scope.questions[group.id].name = item;
-        var fieldName = Offenses.getFieldName(group.id, offense["type"]);
-        offense[fieldName] = index;
+
+        var flag = false;
+
+        if($scope.isEditting){
+            if(group.id === 0){
+                var confirmPopup = $ionicPopup.confirm({
+                    title: 'INFORMATIE',
+                    template: 'Door uw antwoord op de vragen "Rijbewijs" en "Leeftijd" te veranderen, veranderen deze antwoorden ook in de andere gecreëerde overtredingen'
+                });
+                confirmPopup.then(function(res) {
+                    if(res) {
+                        $scope.questions[group.id].name = item;
+                        var fieldName = Offenses.getFieldName(group.id, offense["type"]);
+                        offense[fieldName] = index;
+                        var offenses = Offenses.all();
+                        for (var i = 0; i < offenses.length; i++) {
+                            var fOffense = offenses[i];
+                            if(index === 1){
+                                fOffense.licence = index;
+                                fOffense.age = index;
+                            }
+                            else{
+                                fOffense.licence = index;
+                            }
+                        }
+                    }
+                });
+            }
+            if(group.id === 1){
+
+                var confirmPopup = $ionicPopup.confirm({
+                    title: 'INFORMATIE',
+                    template: 'Door uw antwoord op de vragen "Rijbewijs" en "Leeftijd" te veranderen, veranderen deze antwoorden ook in de andere gecreëerde overtredingen'
+                });
+                confirmPopup.then(function(res) {
+                    if(res) {
+                        $scope.questions[group.id].name = item;
+                        var fieldName = Offenses.getFieldName(group.id, offense["type"]);
+                        offense[fieldName] = index;
+                        var offenses = Offenses.all();
+                        for (var i = 0; i < offenses.length; i++) {
+                            var fOffense = offenses[i];
+                            fOffense.age = index;
+                        }
+                    }
+                });
+            }
+        }
+        else{
+            $scope.questions[group.id].name = item;
+            var fieldName = Offenses.getFieldName(group.id, offense["type"]);
+            offense[fieldName] = index;
+        }
 
         if(group.id === 0){
             if(index === 1){
@@ -287,28 +358,7 @@ for (var i = 0; i < asd.length; i++) {
                 $scope.questions[1].name = "18 JAAR OF OUDER";
             }
         }
-        if($scope.isEditting){
-            if(group.id === 0){
-                var offenses = Offenses.all();
-                for (var i = 0; i < offenses.length; i++) {
-                    var fOffense = offenses[i];
-                    if(index === 1){
-                        fOffense.licence = index;
-                        fOffense.age = index;
-                    }
-                    else{
-                        fOffense.licence = index;
-                    }
-                }
-            }
-            if(group.id === 1){
-                var offenses = Offenses.all();
-                for (var i = 0; i < offenses.length; i++) {
-                    var fOffense = offenses[i];
-                    fOffense.age = index;
-                }
-            }
-        }
+
         if(offense.type === "Alchohol"){
             if(offense.driver == 0){
                 $scope.questions[3].items.unshift("0,20 - 0,50 PROMILLE");
