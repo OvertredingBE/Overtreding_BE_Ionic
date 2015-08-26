@@ -94,16 +94,15 @@ app.directive('keyFocus', function($ionicPopup) {
       element.bind('keydown', function (e) {
           // up arrow
         if (e.keyCode == 13) {
-            if($scope.$last){
-                document.activeElement.blur();
-                $("input").blur();
-            }
-            else{
-            var $nextElement = element.next();
+            var $nextElement = element.next().next();
                 if($nextElement.length) {
                     $nextElement[0].focus();
-            }
-            }
+                }
+                else{
+                    document.activeElement.blur();
+                    $("input").blur();
+                }
+
         }
         // // down arrow
         // else if (e.keyCode == 66) {

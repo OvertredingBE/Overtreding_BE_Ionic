@@ -520,7 +520,7 @@ angular.module('starter.services', [])
     db = window.openDatabase("test2", "1.0", "Test DB", 1000000);
     return {
         searchOthers: function(tag){
-            var query = "SELECT * FROM Other a INNER JOIN Other_Tags b ON a.id = b.offense_id WHERE";
+            var query = "SELECT DISTINCT * FROM Other a INNER JOIN Other_Tags b ON a.id = b.offense_id WHERE";
             for (var i = 0; i < tag.length; i++) {
                 if(tag[i] != ""){
                     if(i === 0){
@@ -636,6 +636,10 @@ angular.module('starter.services', [])
 .factory('Camera', ['$q', function($q) {
   return {
     getPicture: function(options) {
+        options = {
+    saveToPhotoAlbum: false,
+    destinationType: Camera.DestinationType.DATA_URL
+};
       var q = $q.defer();
       navigator.camera.getPicture(function(result) {
         q.resolve(result);

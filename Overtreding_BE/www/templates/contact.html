@@ -5,35 +5,24 @@
     </ion-header-bar>
     <ion-content class="padding">
 
-        <textarea ng-repeat="entry in form" value="{{entry}}" key-focus></textarea>
 
         <div class="item item-text-wrap item-noline" style="text-align: center">Gelieve hieronder uw vraag te stellen.</br> U ontvangt dan zo snel mogelijk een gratis juridisch advies van een advocaat of jurist. Vanzelfsprekend worden uw gegevens vertrouwelijk behandeld. Wilt u een bijlage toevoegen, gelieve dan gebruik te maken de module 'u ontving een brief'</div>
-        <!-- <div>{{response}}</div> -->
+        <div>{{response}}</div>
 
         <div class="text-undeline">Naam en Voornaam*</div>
-        <label class="item item-input">
-            <textarea class="textarea-custom-2" ng-model="form.name"></textarea>
-        </label>
+        <textarea class="textarea-custom-2" ng-model="form.name" key-focus></textarea>
 
         <div class="text-undeline">Telefoonnummer*</div>
-        <label class="item item-input">
-            <textarea class="textarea-custom-2" ng-model="form.phone"></textarea>
-        </label>
+        <textarea class="textarea-custom-2" ng-model="form.phone" key-focus></textarea>
 
         <div class="text-undeline">E-Mail*</div>
-        <label class="item item-input">
-            <textarea class="textarea-custom-2" ng-model="form.email"></textarea>
-        </label>
+        <textarea class="textarea-custom-2" ng-model="form.email" key-focus></textarea>
 
         <div class="text-undeline">Postcode*</div>
-        <label class="item item-input">
-            <textarea class="textarea-custom-2" ng-model="form.postcode" ng-change="getCity()"></textarea>
-        </label>
+        <textarea class="textarea-custom-2" ng-model="form.postcode" ng-change="getCity()" key-focus></textarea>
 
         <div class="text-undeline">Bericht</div>
-        <label class="item item-input">
-            <textarea class="textarea-custom" ng-model="form.comments"></textarea>
-        </label>
+        <textarea class="textarea-custom" ng-model="form.comments" key-focus></textarea>
 
     </ion-content>
     <ion-spinner ng-show="spinnerShown" class="s jupinner-custom" icon="android"></ion-spinner>

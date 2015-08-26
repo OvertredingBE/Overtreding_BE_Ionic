@@ -2,7 +2,7 @@
 * Created by MartinDzhonov on 6/1/15.
 */
 angular.module('starter.controllers', [])
-.controller("HomeController", function($scope, $cordovaSQLite, $cordovaSplashscreen, $ionicPlatform, $ionicPopup, Offenses, FinesCalculator, Texts){
+.controller("HomeController", function($scope, $cordovaSQLite, $cordovaSplashscreen, $ionicPlatform, $ionicPopup, $ionicLoading, Offenses, FinesCalculator, Texts){
     var confirmed = window.localStorage['confirmed'];
     if(confirmed){
     }
@@ -18,6 +18,10 @@ angular.module('starter.controllers', [])
         Offenses.clear();
     }
     ionic.Platform.ready(function(){
+        $cordovaSplashscreen.hide();
+        $ionicLoading.show({
+            template: "Loading.."
+        });
         var flag = false;
         var db = window.openDatabase("test2", "1.0", "Test DB", 1000000);
         db.transaction(function (tx) {
@@ -95,7 +99,7 @@ angular.module('starter.controllers', [])
                 $cordovaSQLite.execute(db, "INSERT INTO Other_Tags (tag_name, offense_id) VALUES (?,?)", [tag_name, offense_id]);
             }
             flag = true;
-            $cordovaSplashscreen.hide();
+            $ionicLoading.hide();
             if(!flag){
                 $ionicPopup.alert({
                     title: 'Error',
@@ -155,7 +159,7 @@ for (var i = 0; i < asd.length; i++) {
 })
 
 .controller("ContactController", function($scope, $ionicHistory, $ionicPopup, $http, Offenses, ContactService, TranslateService, Utils) {
-    $scope.form = {name: "", phone: ""};
+    $scope.form = {};
 
     $scope.resultTapped = function() {
         var counter = 0;
@@ -302,7 +306,7 @@ for (var i = 0; i < asd.length; i++) {
 
         if($scope.isEditting){
             if(group.id === 0){
-                var confirmPopup = $ionicPopup.confirm({
+                var confirmPopup = $ionicPopup.alert({
                     title: 'INFORMATIE',
                     template: 'Door uw antwoord op de vragen "Rijbewijs" en "Leeftijd" te veranderen, veranderen deze antwoorden ook in de andere gecreëerde overtredingen'
                 });
@@ -327,7 +331,7 @@ for (var i = 0; i < asd.length; i++) {
             }
             if(group.id === 1){
 
-                var confirmPopup = $ionicPopup.confirm({
+                var confirmPopup = $ionicPopup.alert({
                     title: 'INFORMATIE',
                     template: 'Door uw antwoord op de vragen "Rijbewijs" en "Leeftijd" te veranderen, veranderen deze antwoorden ook in de andere gecreëerde overtredingen'
                 });
@@ -868,7 +872,8 @@ for (var i = 0; i < asd.length; i++) {
     $scope.items = [];
     $scope.addPhoto = function(){
         Camera.getPicture().then(function(imageURI) {
-            $scope.items.push(imageURI);
+            $scope.log = imageURI;
+            $scope.items.push("data:image/jpeg;base64," + imageURI);
         }, function(err) {
             console.log(err);
         });
@@ -896,7 +901,7 @@ for (var i = 0; i < asd.length; i++) {
         }
         else{
             ContactService.setFunctionality("TakePicture");
-            ContactService.setImageData(Utils.encodeImageUri($scope.items[0]));
+            ContactService.setImageData($scope.items);
             $location.path("/contact");
         }
     }
