@@ -25,10 +25,10 @@
         <textarea class="textarea-custom" ng-model="form.comments" key-focus></textarea>
 
     </ion-content>
-    <ion-spinner ng-show="spinnerShown" class="s jupinner-custom" icon="android"></ion-spinner>
+    <ion-spinner ng-show="spinnerShown" class="spinner-custom" icon="android"></ion-spinner>
 
     <ion-footer-bar class="bar-footer background-light">
-        <div ng-click="resultTapped()" class="button-footer">
+        <div ng-click="isDisabled||resultTapped()" class="button-footer" >
             BEVESTIG
             <img class="icon-small icon-square" src="img/arrow-square-right-blue.png"></img>
         </div>

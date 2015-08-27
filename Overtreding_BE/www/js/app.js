@@ -56,7 +56,7 @@ app.run(function($ionicPlatform) {
     });
     $urlRouterProvider.otherwise("/home");
     $ionicConfigProvider.navBar.alignTitle('center');
-    $compileProvider.imgSrcSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|tel):/);
+    $compileProvider.imgSrcSanitizationWhitelist(/^\s*(https|ftp|mailto|file|tel|data)/);
 });
 app.filter('translateToDutch', ['TranslateService', function(TranslateService) {
    return function(input) {

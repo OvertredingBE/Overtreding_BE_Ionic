@@ -158,10 +158,10 @@ for (var i = 0; i < asd.length; i++) {
     }
 })
 
-.controller("ContactController", function($scope, $ionicHistory, $ionicPopup, $http, Offenses, ContactService, TranslateService, Utils) {
+.controller("ContactController", function($scope, $ionicHistory, $ionicPopup, $http, Offenses, ContactService, TranslateService, Utils, SecuredPopups) {
     $scope.form = {};
-
     $scope.resultTapped = function() {
+        $scope.isDisabled =true;
         var counter = 0;
         for (var key in $scope.form) {
             if ($scope.form.hasOwnProperty(key)) {
@@ -179,55 +179,62 @@ for (var i = 0; i < asd.length; i++) {
         else{
             $scope.spinnerShown = true;
             // if(Utils.validateEmail($scope.form.email)){
-                var url = 'http://api.overtreding.be/overtreding_api/v1/test';
-                var data = $scope.form;
-                var functionalityTypeStr = ContactService.getFunctionality();
-                switch (functionalityTypeStr) {
-                    case "CalcFine":
-                        var offenses = Offenses.parsed();
-                        break;
-                    case "TakePicture":
-                        var imageData = ContactService.getImageData();
-                    default:
-                }
-
-                var functionalityType = {functionality: TranslateService.englishToDutch(functionalityTypeStr)};
-                var imageDataJson = {imageData: imageData};
-                var offensesJson = {offenses: offenses};
-                var result={};
-                for(var key in data) result[key]=data[key];
-                for(var key in functionalityType) result[key]=functionalityType[key];
-                for(var key in offensesJson) result[key]=offensesJson[key];
-                for(var key in imageDataJson) result[key]=imageDataJson[key];
-
-                $http.post(url, result).then(function (res){
-                    $scope.spinnerShown = false;
-                    $ionicPopup.alert({
-                        title: 'INFORMATIE',
-                        template: 'Bedankt voor uw aanvraag. U wordt zo snel mogelijk gecontacteerd.'
-                    });
-                    $scope.response = res.data;
-                }, function(err){
-                    $scope.spinnerShown = false;
-                    $ionicPopup.alert({
-                        title: 'FOUT',
-                        template: 'Could not connect to server'
-                    });
-                    $scope.response = err.code;
-                });
+            var url = 'http://api.overtreding.be/overtreding_api/v1/test';
+            var data = $scope.form;
+            var functionalityTypeStr = ContactService.getFunctionality();
+            switch (functionalityTypeStr) {
+                case "CalcFine":
+                var offenses = Offenses.parsed();
+                break;
+                case "TakePicture":
+                var imageData = ContactService.getImageData();
+                default:
             }
-        };
 
-        $scope.getCity = function(){
-            var code = $scope.form.postcode;
-            var asd = Utils.getNameForZipCode(code);
-            $scope.form.postcode = asd;
-        }
+            var functionalityType = {functionality: TranslateService.englishToDutch(functionalityTypeStr)};
+            var imageDataJson = {imageData: imageData};
+            var offensesJson = {offenses: offenses};
+            var result={};
+            for(var key in data) result[key]=data[key];
+            for(var key in functionalityType) result[key]=functionalityType[key];
+            for(var key in offensesJson) result[key]=offensesJson[key];
+            for(var key in imageDataJson) result[key]=imageDataJson[key];
 
-        $scope.goBack = function() {
-            $ionicHistory.goBack();
+            $http.post(url, result).then(function (res){
+                $scope.spinnerShown = false;
+                                  var alertPopup = SecuredPopups.show('alert', {
+                  title: 'INFORMATIE',
+                  template: 'Bedankt voor uw aanvraag. U wordt zo snel mogelijk gecontacteerd.'
+                });
+                alertPopup.then(function(res) {
+                    $scope.isDisabled =false;
+   });
+
+                $scope.response = res.data;
+            }, function(err){
+                $scope.spinnerShown = false;
+                var alertPopup = SecuredPopups.show('alert', {
+                    title: 'FOUT',
+                    template: 'Er is geen internetconnectie gedecteerd. Controleer uw internetconnectie en probeer opnieuw aub.'
+                });
+                alertPopup.then(function(res) {
+                    $scope.isDisabled =false;
+   });
+                $scope.response = err.code;
+            });
         }
-    })
+    };
+
+    $scope.getCity = function(){
+        var code = $scope.form.postcode;
+        var asd = Utils.getNameForZipCode(code);
+        $scope.form.postcode = asd;
+    }
+
+    $scope.goBack = function() {
+        $ionicHistory.goBack();
+    }
+})
 
 .controller("CalcFineController", function($scope, $ionicHistory, $ionicPopup, $location, Questions, Offenses, Utils, TranslateService, Formulas, Others2, ContactService) {
     $scope.offenses = [];
@@ -693,6 +700,7 @@ for (var i = 0; i < asd.length; i++) {
         var searchArr = Utils.multiSplit(searchWords,[',',' ']);
         Others2.searchOthers(searchArr).then(function(res){
             for (var i = 0; i < res.length; i++) {
+                console.log(res.item(i).id);
                 $scope.searchResults.push({
                     id: res.item(i).id,
                     degree: res.item(i).degree,
@@ -872,7 +880,6 @@ for (var i = 0; i < asd.length; i++) {
     $scope.items = [];
     $scope.addPhoto = function(){
         Camera.getPicture().then(function(imageURI) {
-            $scope.log = imageURI;
             $scope.items.push("data:image/jpeg;base64," + imageURI);
         }, function(err) {
             console.log(err);
