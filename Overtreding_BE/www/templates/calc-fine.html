@@ -5,6 +5,7 @@
     </ion-header-bar>
 
     <ion-content class="has-subfooter">
+        <!-- <div ng-click="test()">TEST</div> -->
 
         <div ng-repeat="offense in offenses track by $index">
             <div class="item-menu background-medium">
@@ -30,10 +31,11 @@
     </div>
 
     <div class="hidden" ng-class="{'shown': showSearch}">
-        <div class="paddded-horizontal background-light container-relative">
+        <div class="background-light container-relative">
             <div class="item-big background-light">
                 <input type="text" ng-model="inputs.searchWord">
             </div>
+            <img class="icon-small icon-search" src="img/cross.png" ng-click="clearSearch()"></img>
             <div ng-click="search()" class="button-footer search-button">
                 ZOEK
                 <img class="icon-small icon-square" src="img/arrow-square-right-blue.png"></img>

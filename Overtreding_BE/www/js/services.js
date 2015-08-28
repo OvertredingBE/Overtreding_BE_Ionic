@@ -520,7 +520,7 @@ angular.module('starter.services', [])
     db = window.openDatabase("test2", "1.0", "Test DB", 1000000);
     return {
         searchOthers: function(tag){
-            var query = "SELECT DISTINCT * FROM Other a INNER JOIN Other_Tags b ON a.id = b.offense_id WHERE";
+            var query = "SELECT DISTINCT a.id, a.description, a.degree FROM Other a INNER JOIN Other_Tags b ON a.id = b.offense_id WHERE";
             for (var i = 0; i < tag.length; i++) {
                 if(tag[i] != ""){
                     if(i === 0){
@@ -528,11 +528,19 @@ angular.module('starter.services', [])
                     }
                     else{
                         query = query + " OR b.tag_name LIKE "+ "'" + tag[i] + "%'";
-
                     }
                 }
             }
             console.log(query);
+            return $cordovaSQLite.execute(db, query, []).then(function(res){
+                arr = res.rows;
+                return arr;
+            }, function(err){
+                console.error(err);
+            });
+        },
+        getAllTags:function(){
+            var query = "SELECT * FROM Other_Tags";
             return $cordovaSQLite.execute(db, query, []).then(function(res){
                 arr = res.rows;
                 return arr;

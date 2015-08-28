@@ -2,7 +2,7 @@
 * Created by MartinDzhonov on 6/1/15.
 */
 angular.module('starter.controllers', [])
-.controller("HomeController", function($scope, $cordovaSQLite, $cordovaSplashscreen, $ionicPlatform, $ionicPopup, $ionicLoading, Offenses, FinesCalculator, Texts){
+.controller("HomeController", function($scope, $cordovaSQLite, $cordovaSplashscreen, $ionicPlatform, $timeout, $ionicPopup, $ionicLoading, Offenses, FinesCalculator, Texts, Others2){
     var confirmed = window.localStorage['confirmed'];
     if(confirmed){
     }
@@ -19,9 +19,11 @@ angular.module('starter.controllers', [])
     }
     ionic.Platform.ready(function(){
         $cordovaSplashscreen.hide();
+
         $ionicLoading.show({
             template: "Loading.."
         });
+
         var flag = false;
         var db = window.openDatabase("test2", "1.0", "Test DB", 1000000);
         db.transaction(function (tx) {
@@ -48,6 +50,7 @@ angular.module('starter.controllers', [])
                 var textBody = items[i].body;
                 $cordovaSQLite.execute(db, "INSERT INTO Texts (body) VALUES (?)", [textBody]);
             }
+
             var items = dbJson.rights;
             for(var i = 0; i < items.length; i++){
                 var textBody = items[i].body;
@@ -99,7 +102,20 @@ angular.module('starter.controllers', [])
                 $cordovaSQLite.execute(db, "INSERT INTO Other_Tags (tag_name, offense_id) VALUES (?,?)", [tag_name, offense_id]);
             }
             flag = true;
-            $ionicLoading.hide();
+            Others2.getAllTags().then(function(res){
+                if(res){
+                    if(res.length < 2000){
+                        $timeout(function () {
+                            $ionicLoading.hide();
+                        }, 5000);
+                    }
+                    else{
+                        $ionicLoading.hide();
+                    }
+                }else{
+                    $ionicLoading.hide();
+                }
+            });
             if(!flag){
                 $ionicPopup.alert({
                     title: 'Error',
@@ -108,9 +124,12 @@ angular.module('starter.controllers', [])
             }
             console.log("Database populated.");
         });
-
     });
-
+    $scope.test = function(){
+        Others2.getAllTags().then(function(res){
+            console.log(res.length);
+        });
+    };
 })
 
 .controller("RightsController", function($scope, $ionicHistory, $location, Rights, ContactService, Texts) {
@@ -689,7 +708,12 @@ for (var i = 0; i < asd.length; i++) {
             offense[fieldName] = -1
         }
     };
+    $scope.test = function(){
+        Others2.getAllTags().then(function(res){
+            console.log(res.length);
 
+        });
+    };
     $scope.search = function() {
         offense.age = 0;
         offense.licence = 0;
@@ -700,7 +724,6 @@ for (var i = 0; i < asd.length; i++) {
         var searchArr = Utils.multiSplit(searchWords,[',',' ']);
         Others2.searchOthers(searchArr).then(function(res){
             for (var i = 0; i < res.length; i++) {
-                console.log(res.item(i).id);
                 $scope.searchResults.push({
                     id: res.item(i).id,
                     degree: res.item(i).degree,
@@ -710,6 +733,9 @@ for (var i = 0; i < asd.length; i++) {
                     $scope.searchMessage = "Er is geen resultaat voor uw zoekopdracht. Gelieve opnieuw te proberen met andere trefwoorden";
                 }
             });
+    };
+    $scope.clearSearch = function(){
+        $scope.inputs.searchWord = "";
     };
 
     $scope.otherTapped = function(item) {

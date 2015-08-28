@@ -167,6 +167,11 @@
     width: 20px;
     margin:8px;
 }
+.icon-search{
+    position: absolute;
+    left: 190px;
+    bottom: 22px;
+}
 
 .icon-result{
     margin-top:10px;
