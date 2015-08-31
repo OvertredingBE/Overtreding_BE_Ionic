@@ -5,7 +5,7 @@ angular.module('starter.services', [])
 .factory('Texts', function($cordovaSQLite, FinesCalculator, Formulas){
     var arr = [];
     return {
-        getTest: function(type){
+        getRights: function(type){
             var query = "SELECT * FROM Rights WHERE type=?";
             return $cordovaSQLite.execute(db, query, [type]).then(function(res){
                 arr = res.rows;

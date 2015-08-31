@@ -2,7 +2,7 @@
 * Created by MartinDzhonov on 6/1/15.
 */
 angular.module('starter.controllers', [])
-.controller("HomeController", function($scope, $cordovaSQLite, $cordovaSplashscreen, $ionicPlatform, $timeout, $ionicPopup, $ionicLoading, Others2){
+.controller("HomeController", function($scope, $cordovaSQLite, $cordovaSplashscreen, $ionicPlatform, $timeout, $ionicPopup, $ionicLoading, Others2, Offenses){
     var confirmed = window.localStorage['confirmed'];
     if(!confirmed){
         window.localStorage['confirmed'] = true;
@@ -150,18 +150,15 @@ angular.module('starter.controllers', [])
 })
 .controller("RightsController", function($scope, $ionicHistory, $location, Rights, ContactService, Texts) {
     $scope.items = [];
-    var asd = ["Soms gebeurt het dat de politie een eerste test uitvoert met een alco-sensor. Deze maakt eigenlijk geen deel uit van de eigenlijke alcoholcontrole.",
-    "U wordt tegengehouden voor een ademtest. Deze geeft een eerste idee of u gedronken hebt. U kan meteen vragen om een wachttijd van 15 minuten. De politie dient u dan een verpakt mondstuk te tonen en dit mondstuk, zonder dit aan te raken, op het toestel te monteren. De politie dient het resultaat te tonen én luidop te lezen. Een S (safe) betekent dat u mag doorrijden. Een A (alarm) of P (positief) betekent dat u teveel gedronken hebt. Weigert u de test, dan wordt dat gelijkgesteld met een P en krijgt u een rijverbod van 6 uur.",
-"Blies u een A of een P, dan moet ook een ademanalyse worden verricht. Deze geeft de precieze concentratie van alcohol weer. Als er meteen een ademanalyse wordt afgenomen (zonder ademtest), heeft u eveneens recht op een wachttijd van 15 minuten. De politie dient u mee te delen dat u recht heeft op een tweede analyse. Als u kiest voor een tweede analyse en de resultaten verschillen aanzienlijk, moet eventueel een derde analyse worden verricht. Blies u meer dan 0,22 mg/l lucht, maar minder dan 0,35 mg/l, dan krijgt u een rijverbod van 3 uur. Later wordt een boete thuisgestuurd. Blies u meer dan 0,35 mg/l lucht, dan krijgt u een rijverbod van minstens 6 uur. Nadien moet u opnieuw blazen. Later wordt een boete thuisgestuurd of wordt u gedagvaard. Als u meer dan 0,22 mg/l blaast, moet u een kopie ontvangen van elk ticket dat door het toestel wordt afgedrukt en dit uiterlijk binnen de 14 dagen. Blies u meer dan 0,35, dan dient de politie u mee te delen dat u steeds een tegenexpertise kan laten verrichten.",
-"Een bloedproef wordt afgenomen wanneer ademtest en ademanalyse onmogelijk zijn of wanneer u er zelf om verzoekt. Ze kan enkel worden afgenomen door een dokter.",
-"Uiterlijk 14 dagen na de vaststelling, moet u een kopie van het PV worden toegestuurd."];
-for (var i = 0; i < asd.length; i++) {
-    $scope.items.push({body:asd[i]});
-}
+    Texts.getRights(0).then(function(res){
+        for (var i = 0; i < res.length; i++) {
+            $scope.items.push({body:res.item(i).body});
+        }
+    });
 
     $scope.showAlch = function() {
         $scope.items.length = 0;
-        Texts.getTest(0).then(function(res){
+        Texts.getRights(0).then(function(res){
             for (var i = 0; i < res.length; i++) {
                 $scope.items.push({body:res.item(i).body});
             }
@@ -171,16 +168,12 @@ for (var i = 0; i < asd.length; i++) {
 
     $scope.showDrugs = function() {
         $scope.items.length = 0;
-
-        Texts.getTest(1).then(function(res){
+        Texts.getRights(1).then(function(res){
             for (var i = 0; i < res.length; i++) {
                 $scope.items.push({body:res.item(i).body});
             }
         });
         $scope.selected = 2;
-    };
-
-    $scope.test = function() {
     };
 
     $scope.goToContact = function(){
@@ -195,7 +188,9 @@ for (var i = 0; i < asd.length; i++) {
 
 .controller("ContactController", function($scope, $ionicHistory, $ionicPopup, $http, Offenses, ContactService, TranslateService, Utils, SecuredPopups) {
     $scope.form = {};
+
     $scope.resultTapped = function() {
+
         $scope.isDisabled =true;
         var counter = 0;
         for (var key in $scope.form) {
@@ -237,13 +232,13 @@ for (var i = 0; i < asd.length; i++) {
 
             $http.post(url, result).then(function (res){
                 $scope.spinnerShown = false;
-                                  var alertPopup = SecuredPopups.show('alert', {
-                  title: 'INFORMATIE',
-                  template: 'Bedankt voor uw aanvraag. U wordt zo snel mogelijk gecontacteerd.'
+                var alertPopup = SecuredPopups.show('alert', {
+                    title: 'INFORMATIE',
+                    template: 'Bedankt voor uw aanvraag. U wordt zo snel mogelijk gecontacteerd.'
                 });
                 alertPopup.then(function(res) {
                     $scope.isDisabled =false;
-   });
+                });
 
                 $scope.response = res.data;
             }, function(err){
@@ -254,7 +249,7 @@ for (var i = 0; i < asd.length; i++) {
                 });
                 alertPopup.then(function(res) {
                     $scope.isDisabled =false;
-   });
+                });
                 $scope.response = err.code;
             });
         }
