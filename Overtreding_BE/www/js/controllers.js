@@ -2,15 +2,9 @@
 * Created by MartinDzhonov on 6/1/15.
 */
 angular.module('starter.controllers', [])
-.controller("HomeController", function($scope, $cordovaSQLite, $cordovaSplashscreen, $ionicPlatform, $timeout, $ionicPopup, $ionicLoading, Offenses, FinesCalculator, Texts, Others2){
+.controller("HomeController", function($scope, $cordovaSQLite, $cordovaSplashscreen, $ionicPlatform, $timeout, $ionicPopup, $ionicLoading, Others2){
     var confirmed = window.localStorage['confirmed'];
-    if(confirmed){
-    }
-    else{
-        $ionicPopup.alert({
-            title: 'INFORMATIE',
-            template: 'Hoewel deze informatie met de meeste zorg werd samengesteld, is deze informatie louter informatief. De gebruiker aanvaardt dat hieraan geen rechten kunnen worden ontleend.'
-        });
+    if(!confirmed){
         window.localStorage['confirmed'] = true;
     }
 
@@ -21,29 +15,24 @@ angular.module('starter.controllers', [])
         $cordovaSplashscreen.hide();
 
         $ionicLoading.show({
-            template: "Loading.."
+            template: "Laden.."
         });
 
         var flag = false;
-        var db = window.openDatabase("test2", "1.0", "Test DB", 1000000);
         db.transaction(function (tx) {
             console.log("Creating Database");
-            tx.executeSql("DROP TABLE IF EXISTS Texts");
             tx.executeSql("CREATE TABLE IF NOT EXISTS Texts(id integer primary key, body text)");
-            tx.executeSql("DROP TABLE IF EXISTS Rights");
             tx.executeSql("CREATE TABLE IF NOT EXISTS Rights(id integer primary key, type integer, body text)");
-            tx.executeSql("DROP TABLE IF EXISTS Alchohol");
             tx.executeSql("CREATE TABLE IF NOT EXISTS Alchohol(id integer primary key, intoxication integer, text_id_1 integer, text_id_2 integer, text_id_3 integer)");
-            tx.executeSql("DROP TABLE IF EXISTS Drugs");
             tx.executeSql("CREATE TABLE IF NOT EXISTS Drugs(id integer primary key, text_id_1 integer, text_id_2 integer, text_id_3 integer)");
-            tx.executeSql("DROP TABLE IF EXISTS Speed");
             tx.executeSql("CREATE TABLE IF NOT EXISTS Speed(id integer primary key, exceed integer, road integer, text_id_1 integer, text_id_2 integer, text_id_3 integer)");
-            tx.executeSql("DROP TABLE IF EXISTS Other");
             tx.executeSql("CREATE TABLE IF NOT EXISTS Other(id integer primary key, degree integer, description text, text_id_1 integer, text_id_2 integer, text_id_3 integer)");
-            tx.executeSql("DROP TABLE IF EXISTS Other_Tags");
             tx.executeSql("CREATE TABLE IF NOT EXISTS Other_Tags(tag_name text, offense_id integer)");
 
             console.log("Populating Database");
+
+            if(!confirmed){
+
 
             var items = dbJson.texts;
             for(var i = 0; i < items.length; i++){
@@ -101,19 +90,52 @@ angular.module('starter.controllers', [])
                 var offense_id = items[i].offense_id;
                 $cordovaSQLite.execute(db, "INSERT INTO Other_Tags (tag_name, offense_id) VALUES (?,?)", [tag_name, offense_id]);
             }
+            }
             flag = true;
+            var tagsCount = 0;
             Others2.getAllTags().then(function(res){
-                if(res){
-                    if(res.length < 2000){
-                        $timeout(function () {
-                            $ionicLoading.hide();
-                        }, 5000);
-                    }
-                    else{
-                        $ionicLoading.hide();
-                    }
-                }else{
+                console.log(res.length);
+                if(res.length < 2700){
+                    $timeout(function () {
+                        Others2.getAllTags().then(function(res2){
+                            console.log(res2.length);
+                            if(res2.length < 2700){
+                                $timeout(function () {
+                                    Others2.getAllTags().then(function(res3){
+                                        console.log(res3.length);
+                                        if(res3.length < 2700){
+                                            $timeout(function () {
+                                                Others2.getAllTags().then(function(res4){
+                                                    console.log(res4.length);
+                                                });
+                                            }, 5000);
+                                        }
+                                        else{
+                                            $ionicLoading.hide();
+                                            $ionicPopup.alert({
+                                                title: 'INFORMATIE',
+                                                template: 'Hoewel deze informatie met de meeste zorg werd samengesteld, is deze informatie louter informatief. De gebruiker aanvaardt dat hieraan geen rechten kunnen worden ontleend.'
+                                            });
+                                        }
+                                    });
+                                }, 5000);
+                            }
+                            else{
+                                $ionicLoading.hide();
+                                $ionicPopup.alert({
+                                    title: 'INFORMATIE',
+                                    template: 'Hoewel deze informatie met de meeste zorg werd samengesteld, is deze informatie louter informatief. De gebruiker aanvaardt dat hieraan geen rechten kunnen worden ontleend.'
+                                });
+                            }
+                        });
+                    }, 5000);
+                }
+                else{
                     $ionicLoading.hide();
+                    $ionicPopup.alert({
+                        title: 'INFORMATIE',
+                        template: 'Hoewel deze informatie met de meeste zorg werd samengesteld, is deze informatie louter informatief. De gebruiker aanvaardt dat hieraan geen rechten kunnen worden ontleend.'
+                    });
                 }
             });
             if(!flag){
@@ -125,13 +147,7 @@ angular.module('starter.controllers', [])
             console.log("Database populated.");
         });
     });
-    $scope.test = function(){
-        Others2.getAllTags().then(function(res){
-            console.log(res.length);
-        });
-    };
 })
-
 .controller("RightsController", function($scope, $ionicHistory, $location, Rights, ContactService, Texts) {
     $scope.items = [];
     var asd = ["Soms gebeurt het dat de politie een eerste test uitvoert met een alco-sensor. Deze maakt eigenlijk geen deel uit van de eigenlijke alcoholcontrole.",

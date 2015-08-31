@@ -4,7 +4,6 @@
 angular.module('starter.services', [])
 .factory('Texts', function($cordovaSQLite, FinesCalculator, Formulas){
     var arr = [];
-    db = window.openDatabase("test2", "1.0", "Test DB", 1000000);
     return {
         getTest: function(type){
             var query = "SELECT * FROM Rights WHERE type=?";
@@ -484,7 +483,6 @@ angular.module('starter.services', [])
 .factory('Rights', function($cordovaSQLite) {
     var alchRights = [];
     var drugsRights = [];
-    db = window.openDatabase("test2", "1.0", "Test DB", 1000000);
     var query = "SELECT * from Rights where type = 1";
     $cordovaSQLite.execute(db, query, []).then(function(res){
         if(res.rows.length > 0){
@@ -515,9 +513,22 @@ angular.module('starter.services', [])
         }
     };
 })
+.factory('Test', function($cordovaSQLite){
+    var arr = [];
+    return{
+        getAlchohol:function(){
+            var query = "SELECT * FROM n";
+            return $cordovaSQLite.execute(db, query, []).then(function(res){
+                arr = res.rows;
+                return arr;
+            }, function(err){
+                console.error(err);
+            });
+        }
+    }
+})
 .factory('Others2', function($cordovaSQLite) {
     var arr = [];
-    db = window.openDatabase("test2", "1.0", "Test DB", 1000000);
     return {
         searchOthers: function(tag){
             var query = "SELECT DISTINCT a.id, a.description, a.degree FROM Other a INNER JOIN Other_Tags b ON a.id = b.offense_id WHERE";
@@ -745,7 +756,6 @@ angular.module('starter.services', [])
     var arr = [];
     return{
         getExceptionTexts: function(){
-            db = window.openDatabase("test2", "1.0", "Test DB", 1000000);
             var query = "SELECT * FROM Texts WHERE id = 11 OR id = 15 OR id = 30 OR id = 31 OR id = 51 OR id = 59 OR id = 65";
             return  $cordovaSQLite.execute(db, query, []).then(function(res){
                 arr = res.rows;

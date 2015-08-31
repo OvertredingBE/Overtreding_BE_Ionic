@@ -1,16 +1,15 @@
 var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'ngCordova', 'ngAnimate']);
 
-app.run(function($ionicPlatform) {
-
+app.run(function($ionicPlatform, $cordovaSQLite) {
     $ionicPlatform.ready(function() {
-        // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
-        // for form inputs)
         if(window.cordova && window.cordova.plugins.Keyboard) {
             cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
         }
         if(window.StatusBar) {
             StatusBar.styleDefault();
         }
+        db = window.openDatabase("test2", "1.0", "Test DB", 1000000);
+
     });
 })
 
@@ -104,12 +103,6 @@ app.directive('keyFocus', function($ionicPopup) {
                 }
 
         }
-        // // down arrow
-        // else if (e.keyCode == 66) {
-        //   if(!scope.$last) {
-        //     elem[0].nextElementSibling.focus();
-        //   }
-        // }
       });
     }
   };
