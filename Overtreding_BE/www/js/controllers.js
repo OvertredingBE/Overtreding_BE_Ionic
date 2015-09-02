@@ -12,6 +12,9 @@ angular.module('starter.controllers', [])
                  });
         window.localStorage['confirmed'] = true;
     }
+    $scope.calcFineTapped = function(){
+       Offenses.clear();
+   }
 })
 .controller("RightsController", function($scope, $ionicHistory, $location, Rights, ContactService, Texts) {
     $scope.items = [];
@@ -295,24 +298,19 @@ angular.module('starter.controllers', [])
             });
         }
         if(offense != null){
-            if(offense.type === "" || !Utils.validateOffense(offense)){
-                var confirmPopup = $ionicPopup.confirm({
-                    title: 'INFORMATIE',
-                    template: 'De ingevoerde gegevens zullen verloren gaan. Bent u zeker dat u wilt doorgaan ?'
-                });
-                confirmPopup.then(function(res) {
-                    if(res) {
-                        $scope.offenses.pop();
-                    }
-                    else{
-                        flag = false;
-                    }
-                });
+            if($scope.offenses.length === 1){
+                flag = false;
             }
             else{
-                addCurrOffense();
+                if(offense.type === ""){
+                    $scope.offenses.pop();
+                }
+                else{
+                    addCurrOffense();
+                }
             }
         }
+
         if(flag){
             $scope.isEditting = true;
             edittingIndex = index;
@@ -396,17 +394,10 @@ angular.module('starter.controllers', [])
                 $scope.menuShown = true;
             }
             else{
-                if(addCurrOffense()){
-                    addDummyOffense();
-                    resetFields();
-                    $scope.menuShown = true;
-                }
-                else{
-                    $ionicPopup.alert({
-                        title: 'INFORMATIE',
-                        template: 'Gelieve alle velden van een antwoord te voorzien'
-                    });
-                }
+                addCurrOffense()
+                addDummyOffense();
+                resetFields();
+                $scope.menuShown = true;
             }
         }
     };
@@ -442,18 +433,46 @@ angular.module('starter.controllers', [])
     };
 
     $scope.resultTapped = function() {
-        var offenses = Offenses.all();
-        var flag = false;
-
+        var valid = true;
         if($scope.isEditting){
-            flag = true;
+            valid = false;
             $ionicPopup.alert({
                 title: 'INFORMATIE',
                 template: 'Gelieve het aanpassen van uw overtreding te vervolledigen'
             });
         }
 
-        if(offense === null){
+        if(offense != null){
+            if(offense.type != ""){
+                if(Utils.validateOffense(offense)){
+                    Offenses.add(offense);
+                    resetFields();
+                    offense = null;
+                }
+                else{
+                    valid = false;
+                }
+            }
+        }
+
+        var offenses = Offenses.all();
+        if(offenses.length === 0){
+            valid = false;
+        }
+
+        for (var i = 0; i < offenses.length; i++) {
+            var fOffense = offenses[i];
+            if(!Utils.validateOffense(fOffense)){
+                valid = false;
+            }
+        }
+        if(!valid){
+            $ionicPopup.alert({
+                title: 'INFORMATIE',
+                template: 'Gelieve alle velden van een antwoord te voorzien'
+            });
+        }
+        else{
             if(offenses.length === 1){
                 $location.path("/result/0");
             }
@@ -461,40 +480,51 @@ angular.module('starter.controllers', [])
                 $location.path("/result");
             }
         }
-        else{
-            if(offense.type === "Speed"){
-                var input = $scope.inputs.speed_driven;
-                var speedDriven = parseInt(input);
-                var speedCorrected = Formulas.getCorrectedSpeed(speedDriven);
-                var speedLimit = (offense.speed_limit+1) * 10;
-                if(speedCorrected <= speedLimit){
-                    flag = true;
-                    $ionicPopup.alert({
-                        title: 'INFORMATIE',
-                        template: 'De gecorrigeerde snelheid kan niet lager zijn dan snelheidslimiet. Gelieve opnieuw te proberen.'
-                    });
-                }
-            }
-            if(!flag){
-                if(addCurrOffense()){
-                    resetFields();
-                    offense = null;
-                    var offenses = Offenses.all();
-                    if(offenses.length === 1){
-                        $location.path("/result/0");
-                    }
-                    else{
-                        $location.path("/result");
-                    }
-                }
-                else{
-                    $ionicPopup.alert({
-                        title: 'INFORMATIE',
-                        template: 'Gelieve alle velden van een antwoord te voorzien'
-                    });
-                }
-            }
-        }
+
+        // if(offense === null){
+        //     if(offenses.length === 1){
+        //         $location.path("/result/0");
+        //     }
+        //     else{
+        //         $location.path("/result");
+        //     }
+        // }
+        // else{
+
+            //
+            // if(offense.type === "Speed"){
+            //     var input = $scope.inputs.speed_driven;
+            //     var speedDriven = parseInt(input);
+            //     var speedCorrected = Formulas.getCorrectedSpeed(speedDriven);
+            //     var speedLimit = (offense.speed_limit+1) * 10;
+            //     if(speedCorrected <= speedLimit){
+            //         flag = true;
+            //         $ionicPopup.alert({
+            //             title: 'INFORMATIE',
+            //             template: 'De gecorrigeerde snelheid kan niet lager zijn dan snelheidslimiet. Gelieve opnieuw te proberen.'
+            //         });
+            //     }
+            // }
+            // if(!flag){
+            //     if(addCurrOffense()){
+            //         resetFields();
+            //         offense = null;
+            //         var offenses = Offenses.all();
+            //         if(offenses.length === 1){
+            //             $location.path("/result/0");
+            //         }
+            //         else{
+            //             $location.path("/result");
+            //         }
+            //     }
+            //     else{
+            //         $ionicPopup.alert({
+            //             title: 'INFORMATIE',
+            //             template: 'Gelieve alle velden van een antwoord te voorzien'
+            //         });
+            //     }
+            // }
+
     };
 
     $scope.calcSpeed = function() {
@@ -616,7 +646,9 @@ angular.module('starter.controllers', [])
             template: 'Hoewel deze informatie met de meeste zorg werd samengesteld, is deze informatie louter informatief. De gebruiker aanvaardt dat hieraan geen rechten kunnen worden ontleend.'
         });
     };
-
+    $scope.isGroupShown = function(index) {
+        return indexShown === index;
+    };
     function addDummyOffense(){
         offense = {type: ""};
         $scope.offenses.push(offense);
@@ -625,11 +657,6 @@ angular.module('starter.controllers', [])
     function addCurrOffense(){
         Offenses.add(offense);
         return true;
-        var valid = Utils.validateOffense(offense) && offense.type != "";
-        if(valid){
-            return true;
-        }
-        return false;
     }
 
     function resetFields(){
