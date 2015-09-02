@@ -56,7 +56,7 @@
     <div style="background-color: #68B3E2" class="paddded-horizontal background-light">
         <div ng-class="{'item-group-noline background-light' : group.toggled, 'item-group-underline background-light' : !group.toggled}">
             {{group.name | strLimit: 30 }}
-            <img class="icon-right icon-small" ng-src="{{isGroupShown(group) && 'img/arrow-square-down.png' || 'img/arrow-square-left.png'}}"></img>
+            <img ng-click="editField(groupIndex)" class="icon-right icon-small" ng-src="{{isGroupShown(group) && 'img/arrow-square-down.png' || 'img/arrow-square-left.png'}}"></img>
         </div>
     </div>
     <div class="paddded-horizontal">
@@ -112,11 +112,12 @@
     </div>
 </ion-footer-bar>
 
-<ion-footer-bar class="bar-footer footer-custom">
+<ion-footer-bar class="bar-footer footer-custom background-medium">
+
     <div class="mydiv">
-    <!-- <div class="text-footer">
-        BOETE BEREKENEN
-    </div> -->
+        <div class="text-footer">
+            BOETE BEREKENEN
+        </div>
     <div ng-click="resultTapped()" class="mydiv3">
         <div class="mydiv" style="background-color:white">
         BEVESTIG

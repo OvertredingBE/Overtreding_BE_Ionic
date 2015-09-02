@@ -2,151 +2,16 @@
 * Created by MartinDzhonov on 6/1/15.
 */
 angular.module('starter.controllers', [])
-.controller("HomeController", function($scope, $cordovaSQLite, $cordovaSplashscreen, $ionicPlatform, $timeout, $ionicPopup, $ionicLoading, Others2, Offenses){
+.controller("HomeController", function($scope, $cordovaSQLite, $cordovaFile, $cordovaSplashscreen, $ionicPlatform, $timeout, $ionicPopup, $ionicLoading, Others2, Offenses){
+
     var confirmed = window.localStorage['confirmed'];
     if(!confirmed){
+        $ionicPopup.alert({
+                      title: 'INFORMATIE',
+                      template: 'Hoewel deze informatie met de meeste zorg werd samengesteld, is deze informatie louter informatief. De gebruiker aanvaardt dat hieraan geen rechten kunnen worden ontleend.'
+                 });
         window.localStorage['confirmed'] = true;
     }
-
-    $scope.calcFineTapped = function(){
-        Offenses.clear();
-    }
-    ionic.Platform.ready(function(){
-        $cordovaSplashscreen.hide();
-
-        $ionicLoading.show({
-            template: "Laden.."
-        });
-
-        var flag = false;
-        db.transaction(function (tx) {
-            console.log("Creating Database");
-            tx.executeSql("CREATE TABLE IF NOT EXISTS Texts(id integer primary key, body text)");
-            tx.executeSql("CREATE TABLE IF NOT EXISTS Rights(id integer primary key, type integer, body text)");
-            tx.executeSql("CREATE TABLE IF NOT EXISTS Alchohol(id integer primary key, intoxication integer, text_id_1 integer, text_id_2 integer, text_id_3 integer)");
-            tx.executeSql("CREATE TABLE IF NOT EXISTS Drugs(id integer primary key, text_id_1 integer, text_id_2 integer, text_id_3 integer)");
-            tx.executeSql("CREATE TABLE IF NOT EXISTS Speed(id integer primary key, exceed integer, road integer, text_id_1 integer, text_id_2 integer, text_id_3 integer)");
-            tx.executeSql("CREATE TABLE IF NOT EXISTS Other(id integer primary key, degree integer, description text, text_id_1 integer, text_id_2 integer, text_id_3 integer)");
-            tx.executeSql("CREATE TABLE IF NOT EXISTS Other_Tags(tag_name text, offense_id integer)");
-
-            console.log("Populating Database");
-
-            if(!confirmed){
-
-
-            var items = dbJson.texts;
-            for(var i = 0; i < items.length; i++){
-                var textBody = items[i].body;
-                $cordovaSQLite.execute(db, "INSERT INTO Texts (body) VALUES (?)", [textBody]);
-            }
-
-            var items = dbJson.rights;
-            for(var i = 0; i < items.length; i++){
-                var textBody = items[i].body;
-                var type = items[i].type;
-                $cordovaSQLite.execute(db, "INSERT INTO Rights (type, body) VALUES (?,?)", [type, textBody]);
-            }
-
-            var items = dbJson.speed;
-            for(var i = 0; i < items.length; i++){
-                var exceed = items[i].exceed;
-                var road = items[i].road;
-                var text_id_1 = items[i].text_id_1;
-                var text_id_2 = items[i].text_id_2;
-                var text_id_3 = items[i].text_id_3;
-                $cordovaSQLite.execute(db, "INSERT INTO Speed (exceed, road, text_id_1,text_id_2,text_id_3) VALUES (?,?,?,?,?)", [exceed, road, text_id_1, text_id_2, text_id_3]);
-            }
-
-            var items = dbJson.alcohol;
-            for(var i = 0; i < items.length; i++){
-                var intoxication = items[i].intoxication;
-                var text_id_1 = items[i].text_id_1;
-                var text_id_2 = items[i].text_id_2;
-                var text_id_3 = items[i].text_id_3;
-                $cordovaSQLite.execute(db, "INSERT INTO Alchohol (intoxication, text_id_1,text_id_2,text_id_3) VALUES (?,?,?,?)", [intoxication, text_id_1, text_id_2, text_id_3]);
-            }
-
-            var items = dbJson.drugs;
-            for(var i = 0; i < items.length; i++){
-                var text_id_1 = items[i].text_id_1;
-                var text_id_2 = items[i].text_id_2;
-                var text_id_3 = items[i].text_id_3;
-                $cordovaSQLite.execute(db, "INSERT INTO Drugs (text_id_1,text_id_2,text_id_3) VALUES (?,?,?)", [text_id_1, text_id_2, text_id_3]);
-            }
-
-            var items = dbJson.other;
-            for(var i = 0; i < items.length; i++){
-                var degree = items[i].degree;
-                var description = items[i].description;
-                var text_id_1 = items[i].text_id_1;
-                var text_id_2 = items[i].text_id_2;
-                var text_id_3 = items[i].text_id_3;
-                $cordovaSQLite.execute(db, "INSERT INTO Other (degree, description, text_id_1,text_id_2,text_id_3) VALUES (?,?,?,?,?)", [degree, description, text_id_1, text_id_2, text_id_3]);
-            }
-
-            var items = dbJson.other_tags;
-            for(var i = 0; i < items.length; i++){
-                var tag_name = items[i].tag_name;
-                var offense_id = items[i].offense_id;
-                $cordovaSQLite.execute(db, "INSERT INTO Other_Tags (tag_name, offense_id) VALUES (?,?)", [tag_name, offense_id]);
-            }
-            }
-            flag = true;
-            var tagsCount = 0;
-            Others2.getAllTags().then(function(res){
-                console.log(res.length);
-                if(res.length < 2700){
-                    $timeout(function () {
-                        Others2.getAllTags().then(function(res2){
-                            console.log(res2.length);
-                            if(res2.length < 2700){
-                                $timeout(function () {
-                                    Others2.getAllTags().then(function(res3){
-                                        console.log(res3.length);
-                                        if(res3.length < 2700){
-                                            $timeout(function () {
-                                                Others2.getAllTags().then(function(res4){
-                                                    console.log(res4.length);
-                                                });
-                                            }, 5000);
-                                        }
-                                        else{
-                                            $ionicLoading.hide();
-                                            $ionicPopup.alert({
-                                                title: 'INFORMATIE',
-                                                template: 'Hoewel deze informatie met de meeste zorg werd samengesteld, is deze informatie louter informatief. De gebruiker aanvaardt dat hieraan geen rechten kunnen worden ontleend.'
-                                            });
-                                        }
-                                    });
-                                }, 5000);
-                            }
-                            else{
-                                $ionicLoading.hide();
-                                $ionicPopup.alert({
-                                    title: 'INFORMATIE',
-                                    template: 'Hoewel deze informatie met de meeste zorg werd samengesteld, is deze informatie louter informatief. De gebruiker aanvaardt dat hieraan geen rechten kunnen worden ontleend.'
-                                });
-                            }
-                        });
-                    }, 5000);
-                }
-                else{
-                    $ionicLoading.hide();
-                    $ionicPopup.alert({
-                        title: 'INFORMATIE',
-                        template: 'Hoewel deze informatie met de meeste zorg werd samengesteld, is deze informatie louter informatief. De gebruiker aanvaardt dat hieraan geen rechten kunnen worden ontleend.'
-                    });
-                }
-            });
-            if(!flag){
-                $ionicPopup.alert({
-                    title: 'Error',
-                    template: 'Could not populate Database'
-                });
-            }
-            console.log("Database populated.");
-        });
-    });
 })
 .controller("RightsController", function($scope, $ionicHistory, $location, Rights, ContactService, Texts) {
     $scope.items = [];
@@ -367,7 +232,6 @@ angular.module('starter.controllers', [])
                 });
             }
             if(group.id === 1){
-
                 var confirmPopup = $ionicPopup.alert({
                     title: 'INFORMATIE',
                     template: 'Door uw antwoord op de vragen "Rijbewijs" en "Leeftijd" te veranderen, veranderen deze antwoorden ook in de andere gecreëerde overtredingen'
@@ -385,6 +249,8 @@ angular.module('starter.controllers', [])
                     }
                 });
             }
+            $scope.questions[group.id].name = item;
+
         }
         else{
             $scope.questions[group.id].name = item;
@@ -405,11 +271,16 @@ angular.module('starter.controllers', [])
                 $scope.questions[3].items.unshift("0,20 - 0,50 PROMILLE");
             }
             else{
+                if(offense["intoxication"] != -1){
                 offense["intoxication"] = index + 1;
+            }
             }
         }
     };
 
+    $scope.editField = function(index){
+        indexShown = index;
+    }
     $scope.toggleBorder = function(group){
         group.toggled = !group.toggled;
     }
@@ -448,7 +319,7 @@ angular.module('starter.controllers', [])
             if(offense.type === "" || !Utils.validateOffense(offense)){
                 var confirmPopup = $ionicPopup.confirm({
                     title: 'INFORMATIE',
-                    template: 'Input will be lost, continue ?'
+                    template: 'De ingevoerde gegevens zullen verloren gaan. Bent u zeker dat u wilt doorgaan ?'
                 });
                 confirmPopup.then(function(res) {
                     if(res) {
@@ -507,7 +378,12 @@ angular.module('starter.controllers', [])
                             break;
                             default:
                         }
-                        $scope.questions[index].name = Questions.getQuestionsForField(key)[fetchedOffense[key]];
+                        if(offense[key] === -1){
+                            $scope.questions[index].name = TranslateService.englishToDutch(key);
+                        }
+                        else{
+                            $scope.questions[index].name = Questions.getQuestionsForField(key)[fetchedOffense[key]];
+                        }
                     }
                 }
             }
@@ -515,7 +391,6 @@ angular.module('starter.controllers', [])
                 $scope.showInput = true;
                 $scope.inputs.speed_driven = offense.speed_driven;
                 $scope.inputs.speed_corrected = offense.speed_corrected;
-
             }
         }
     };
@@ -770,9 +645,10 @@ angular.module('starter.controllers', [])
     }
 
     function addCurrOffense(){
+        Offenses.add(offense);
+        return true;
         var valid = Utils.validateOffense(offense) && offense.type != "";
         if(valid){
-            Offenses.add(offense);
             return true;
         }
         return false;
