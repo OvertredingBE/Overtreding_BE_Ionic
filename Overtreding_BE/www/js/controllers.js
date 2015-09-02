@@ -136,6 +136,7 @@ angular.module('starter.controllers', [])
     $scope.searchResults = [];
     $scope.showSearch = false;
     $scope.infoShown = false;
+    $scope.arrowTapped = false;
     $scope.inputs = {};
     $scope.menu = Questions.getQuestions("Menu");
     var indexShown = 0;
@@ -203,60 +204,32 @@ angular.module('starter.controllers', [])
     };
 
     $scope.subgroupTapped = function(item, group, index) {
-
         var flag = false;
 
         if($scope.isEditting){
-            if(group.id === 0){
+            if(group.id === 0 || group.id === 1){
                 var confirmPopup = $ionicPopup.alert({
                     title: 'INFORMATIE',
                     template: 'Door uw antwoord op de vragen "Rijbewijs" en "Leeftijd" te veranderen, veranderen deze antwoorden ook in de andere gecreëerde overtredingen'
                 });
-                confirmPopup.then(function(res) {
-                    if(res) {
-                        $scope.questions[group.id].name = item;
-                        var fieldName = Offenses.getFieldName(group.id, offense["type"]);
-                        offense[fieldName] = index;
-                        var offenses = Offenses.all();
-                        for (var i = 0; i < offenses.length; i++) {
-                            var fOffense = offenses[i];
-                            if(index === 1){
-                                fOffense.licence = index;
-                                fOffense.age = index;
-                            }
-                            else{
-                                fOffense.licence = index;
-                            }
-                        }
-                    }
-                });
-            }
-            if(group.id === 1){
-                var confirmPopup = $ionicPopup.alert({
-                    title: 'INFORMATIE',
-                    template: 'Door uw antwoord op de vragen "Rijbewijs" en "Leeftijd" te veranderen, veranderen deze antwoorden ook in de andere gecreëerde overtredingen'
-                });
-                confirmPopup.then(function(res) {
-                    if(res) {
-                        $scope.questions[group.id].name = item;
-                        var fieldName = Offenses.getFieldName(group.id, offense["type"]);
-                        offense[fieldName] = index;
-                        var offenses = Offenses.all();
-                        for (var i = 0; i < offenses.length; i++) {
-                            var fOffense = offenses[i];
+                var offenses = Offenses.all();
+                for (var i = 0; i < offenses.length; i++) {
+                    var fOffense = offenses[i];
+                    fOffense.licence = index;
+                    if(group.id === 0){
+                        if(index === 1){
                             fOffense.age = index;
                         }
                     }
-                });
+                    if(group.id === 1){
+                        fOffense.age = index;
+                    }
+                }
             }
-            $scope.questions[group.id].name = item;
-
         }
-        else{
-            $scope.questions[group.id].name = item;
-            var fieldName = Offenses.getFieldName(group.id, offense["type"]);
-            offense[fieldName] = index;
-        }
+        var fieldName = Offenses.getFieldName(group.id, offense["type"]);
+        offense[fieldName] = index;
+        $scope.questions[group.id].name = item;
 
         if(group.id === 0){
             if(index === 1){
@@ -272,14 +245,15 @@ angular.module('starter.controllers', [])
             }
             else{
                 if(offense["intoxication"] != -1){
-                offense["intoxication"] = index + 1;
-            }
+                    offense["intoxication"] = index + 1;
+                }
             }
         }
     };
 
     $scope.editField = function(index){
         indexShown = index;
+        $scope.arrowTapped = true;
     }
     $scope.toggleBorder = function(group){
         group.toggled = !group.toggled;
@@ -294,16 +268,21 @@ angular.module('starter.controllers', [])
         }
     }
     $scope.changeShownGroup = function(groupIndex) {
-        indexShown++;
-
-        if(indexShown === $scope.questions.length){
-            $scope.toggleBorder($scope.questions[indexShown-1]);
-            indexShown = -1;
-        }
-        else {
-            if(indexShown != $scope.questions.length-1){
-                $scope.toggleBorder($scope.questions[indexShown]);
+        var fieldName = Offenses.getFieldName(groupIndex, offense["type"]);
+        if(offense[fieldName] === -1){
+            indexShown++;
+            if(indexShown === $scope.questions.length){
+                $scope.toggleBorder($scope.questions[indexShown-1]);
+                indexShown = -2;
             }
+            else {
+                if(indexShown != $scope.questions.length-1){
+                    $scope.toggleBorder($scope.questions[indexShown]);
+                }
+            }
+        }
+        else{
+            indexShown = -2;
         }
     };
     $scope.editOffense = function(index){
@@ -516,7 +495,6 @@ angular.module('starter.controllers', [])
                 }
             }
         }
-
     };
 
     $scope.calcSpeed = function() {
