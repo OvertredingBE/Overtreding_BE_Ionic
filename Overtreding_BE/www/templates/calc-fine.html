@@ -54,7 +54,7 @@
 
 <div ng-show="questionsShown" ng-repeat="group in questions" ng-init="groupIndex = $index">
     <div style="background-color: #68B3E2" class="paddded-horizontal background-light">
-        <div ng-class="{'item-group-noline background-light' : group.toggled, 'item-group-underline background-light' : !group.toggled}">
+        <div class ='item-group-underline background-light' ng-class="{'item-group-noline background-light' : returnTrue(groupIndex)}">
             {{group.name | strLimit: 30 }}
             <img ng-click="editField(groupIndex)" class="icon-right icon-small" ng-src="{{isGroupShown($index) && 'img/arrow-square-down.png' || 'img/arrow-square-left.png'}}"></img>
         </div>

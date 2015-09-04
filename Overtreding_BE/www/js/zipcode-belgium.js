@@ -24,6 +24,26 @@ var dbJson = {
             "id": 5,
             "type": 0,
             "body": "Uiterlijk 14 dagen na de vaststelling, moet u een kopie van het PV worden toegestuurd. "
+        },
+        {
+            "id": 6,
+            "type": 1,
+            "body": "De politie zal altijd eerst uiterlijk nagaan of u onlangs drugs gebruikte (behalve ingeval van een ongeval). Voldoet u aan minstens 3 uiterlijke kenmerken, dan wordt er een speekseltest uitgevoerd."
+        },
+        {
+            "id": 7,
+            "type": 1,
+            "body": "Ingeval van een ongeval (of na een positieve uiterlijke test), zal meteen een speekseltest worden afgenomen. \n- Is de test negatief, dan mag u doorrijden.\n- Is de test positief, dan moet een bloedproef worden afgenomen.\n- Ook wanneer u een wettige reden heeft om de speekseltest te weigeren, dan wordt een dokter opgevorderd voor een bloedonderzoek.\n- Weigert u de speekseltest zonder wettige reden, dan wordt u bestraft alsof u een positieve test aflegde. U moet uw voertuig minstens 12 uur laten staan."
+        },
+        {
+            "id": 8,
+            "type": 1,
+            "body": "De opgevorderde dokter vraagt waarom u de speekseltest weigerde of voert de bloedproef uit (tenzij u deze ook om een wettige reden weigert).\n- Had u geen wettige reden om de speekseltest of bloedproef te weigeren, dan wordt u bestraft alsof u positief testte op drugs. \n- Is de bloedproef positief, dan moet u uw voertuig minstens 12 uur laten staan. U wordt normaal gezien gedagvaard voor de politierechtbank.\n- Had u wel een wettige reden om de bloedproef te weigeren, dan moet u alleszins uw rijbewijs afgeven voor 12 uur. De procureur beslist dan."
+        },
+        {
+            "id": 9,
+            "type": 1,
+            "body": "Uiterlijk 14 dagen na de vaststelling, moet u een kopie van het PV worden toegestuurd."
         }
     ],
     "texts": [

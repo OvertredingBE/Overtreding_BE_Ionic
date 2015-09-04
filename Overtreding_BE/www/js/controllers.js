@@ -102,10 +102,10 @@ angular.module('starter.controllers', [])
     //     });
     // });
     $scope.test= function(){
-        var type = 0;
         var db = window.openDatabase("test3", "1.0", "Test DB", 1000000);
-        var query = "SELECT * FROM Other_Tags";
 
+        var type = 1;
+        var query = "SELECT * FROM Other_Tags";
         $cordovaSQLite.execute(db, query, []).then(function(res){
             console.log(res.rows.length);
         }, function(err){
@@ -371,9 +371,15 @@ angular.module('starter.controllers', [])
     };
 
     $scope.editField = function(index){
+        if($scope.arrowTapped){
+            indexShown = -10;
+            $scope.arrowTapped = false;
+        }
+        else{
             $scope.questions[index].toggled = true;
             indexShown = index;
             $scope.arrowTapped = true;
+        }
     };
 
     $scope.toggleBorder = function(index){
@@ -473,6 +479,19 @@ angular.module('starter.controllers', [])
             }
         }
     };
+    // , 'item-group-underline background-light' : false}"
+    $scope.returnTrue = function(index){
+            if(index === $scope.questions.length -1){
+                return true;
+            }
+
+        if(index === indexShown){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
     $scope.submitEdit = function(){
         $scope.questionsShown = false;
         $scope.showInput = false;
@@ -917,14 +936,11 @@ angular.module('starter.controllers', [])
                 template:  "Gelieve een foto te nemen van de brief die u ontving en deze door te sturen via de button vraag GRATIS juridisch advies.\n Wij bekijken dan wat wij voor u kunnen doen en nemen contact met u op. Alvast bedankt!"
             });
             confirmPopup.then(function(res) {
-                if(res) {
-                    Camera.getPicture().then(function(imageURI) {
-                        $scope.items.push(imageURI);
-                    }, function(err) {
-                        console.log(err);
-                    });
-                } else {
-                }
+                Camera.getPicture().then(function(imageURI) {
+                    $scope.items.push("data:image/jpeg;base64," + imageURI);
+                }, function(err) {
+                    console.log(err);
+                });
             });
         }
         else{
