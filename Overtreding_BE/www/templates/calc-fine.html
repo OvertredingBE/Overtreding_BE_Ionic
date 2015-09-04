@@ -62,7 +62,7 @@
     <div class="paddded-horizontal">
         <div ng-class="$last ? 'item-subgroup-noline item-text-wrap item-animate' : 'item-subgroup-underline item-text-wrap item-animate'"
         ng-repeat="item in group.items"
-        ng-click="changeShownGroup(groupIndex); subgroupTapped(item, group, $index); toggleBorder(group);"
+        ng-click="toggleBorder(groupIndex); changeShownGroup(groupIndex); subgroupTapped(item, group, $index); "
         ng-show="groupShown(groupIndex)">
         {{item}}
         </div>
@@ -71,7 +71,7 @@
 
 <div class="hidden background-light" ng-class="{'shown': showInput}">
     <div class="paddded-horizontal background-light container-relative">
-        <div class="item-group-underline background-light" style="border-bottom: none">
+        <div class="item-group-underline background-light" style="border:1px solid white; border-bottom:none; border-left:none;border-right:none;">
             <div class="speed-input-label">
                 GEREDEN SNELHEID
             </div>

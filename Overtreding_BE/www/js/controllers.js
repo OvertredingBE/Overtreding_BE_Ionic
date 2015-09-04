@@ -7,14 +7,111 @@ angular.module('starter.controllers', [])
     var confirmed = window.localStorage['confirmed'];
     if(!confirmed){
         $ionicPopup.alert({
-                      title: 'INFORMATIE',
-                      template: 'Hoewel deze informatie met de meeste zorg werd samengesteld, is deze informatie louter informatief. De gebruiker aanvaardt dat hieraan geen rechten kunnen worden ontleend.'
-                 });
+            title: 'INFORMATIE',
+            template: 'Hoewel deze informatie met de meeste zorg werd samengesteld, is deze informatie louter informatief. De gebruiker aanvaardt dat hieraan geen rechten kunnen worden ontleend.'
+        });
         window.localStorage['confirmed'] = true;
     }
     $scope.calcFineTapped = function(){
-       Offenses.clear();
-   }
+        Offenses.clear();
+    }
+
+    // ionic.Platform.ready(function(){
+    //     $cordovaSplashscreen.hide();
+    //
+    //     $ionicLoading.show({
+    //         template: "Laden.."
+    //     });
+    //
+    //     db.transaction(function (tx) {
+    //         console.log("Creating Database");
+    //         tx.executeSql("DROP TABLE IF EXISTS Texts");
+    //         tx.executeSql("CREATE TABLE IF NOT EXISTS Texts(id integer primary key, body text)");
+    //         tx.executeSql("DROP TABLE IF EXISTS Rights");
+    //         tx.executeSql("CREATE TABLE IF NOT EXISTS Rights(id integer primary key, type integer, body text)");
+    //         tx.executeSql("DROP TABLE IF EXISTS Alchohol");
+    //         tx.executeSql("CREATE TABLE IF NOT EXISTS Alchohol(id integer primary key, intoxication integer, text_id_1 integer, text_id_2 integer, text_id_3 integer)");
+    //         tx.executeSql("DROP TABLE IF EXISTS Drugs");
+    //         tx.executeSql("CREATE TABLE IF NOT EXISTS Drugs(id integer primary key, text_id_1 integer, text_id_2 integer, text_id_3 integer)");
+    //         tx.executeSql("DROP TABLE IF EXISTS Speed");
+    //         tx.executeSql("CREATE TABLE IF NOT EXISTS Speed(id integer primary key, exceed integer, road integer, text_id_1 integer, text_id_2 integer, text_id_3 integer)");
+    //         tx.executeSql("DROP TABLE IF EXISTS Other");
+    //         tx.executeSql("CREATE TABLE IF NOT EXISTS Other(id integer primary key, degree integer, description text, text_id_1 integer, text_id_2 integer, text_id_3 integer)");
+    //         tx.executeSql("DROP TABLE IF EXISTS Other_Tags");
+    //         tx.executeSql("CREATE TABLE IF NOT EXISTS Other_Tags(tag_name text, offense_id integer)");
+    //
+    //         console.log("Populating Database");
+    //         var items = dbJson.texts;
+    //         for(var i = 0; i < items.length; i++){
+    //             var textBody = items[i].body;
+    //             $cordovaSQLite.execute(db, "INSERT INTO Texts (body) VALUES (?)", [textBody]);
+    //         }
+    //
+    //         var items = dbJson.rights;
+    //         for(var i = 0; i < items.length; i++){
+    //             var textBody = items[i].body;
+    //             var type = items[i].type;
+    //             $cordovaSQLite.execute(db, "INSERT INTO Rights (type, body) VALUES (?,?)", [type, textBody]);
+    //         }
+    //
+    //         var items = dbJson.speed;
+    //         for(var i = 0; i < items.length; i++){
+    //             var exceed = items[i].exceed;
+    //             var road = items[i].road;
+    //             var text_id_1 = items[i].text_id_1;
+    //             var text_id_2 = items[i].text_id_2;
+    //             var text_id_3 = items[i].text_id_3;
+    //             $cordovaSQLite.execute(db, "INSERT INTO Speed (exceed, road, text_id_1,text_id_2,text_id_3) VALUES (?,?,?,?,?)", [exceed, road, text_id_1, text_id_2, text_id_3]);
+    //         }
+    //
+    //         var items = dbJson.alcohol;
+    //         for(var i = 0; i < items.length; i++){
+    //             var intoxication = items[i].intoxication;
+    //             var text_id_1 = items[i].text_id_1;
+    //             var text_id_2 = items[i].text_id_2;
+    //             var text_id_3 = items[i].text_id_3;
+    //             $cordovaSQLite.execute(db, "INSERT INTO Alchohol (intoxication, text_id_1,text_id_2,text_id_3) VALUES (?,?,?,?)", [intoxication, text_id_1, text_id_2, text_id_3]);
+    //         }
+    //
+    //         var items = dbJson.drugs;
+    //         for(var i = 0; i < items.length; i++){
+    //             var text_id_1 = items[i].text_id_1;
+    //             var text_id_2 = items[i].text_id_2;
+    //             var text_id_3 = items[i].text_id_3;
+    //             $cordovaSQLite.execute(db, "INSERT INTO Drugs (text_id_1,text_id_2,text_id_3) VALUES (?,?,?)", [text_id_1, text_id_2, text_id_3]);
+    //         }
+    //
+    //         var items = dbJson.other;
+    //         for(var i = 0; i < items.length; i++){
+    //             var degree = items[i].degree;
+    //             var description = items[i].description;
+    //             var text_id_1 = items[i].text_id_1;
+    //             var text_id_2 = items[i].text_id_2;
+    //             var text_id_3 = items[i].text_id_3;
+    //             $cordovaSQLite.execute(db, "INSERT INTO Other (degree, description, text_id_1,text_id_2,text_id_3) VALUES (?,?,?,?,?)", [degree, description, text_id_1, text_id_2, text_id_3]);
+    //         }
+    //
+    //         var items = dbJson.other_tags;
+    //         for(var i = 0; i < items.length; i++){
+    //             var tag_name = items[i].tag_name;
+    //             var offense_id = items[i].offense_id;
+    //             $cordovaSQLite.execute(db, "INSERT INTO Other_Tags (tag_name, offense_id) VALUES (?,?)", [tag_name, offense_id]);
+    //         }
+    //         $ionicLoading.hide();
+    //         console.log("Database populated.");
+    //     });
+    // });
+    $scope.test= function(){
+        var type = 0;
+        var db = window.openDatabase("test3", "1.0", "Test DB", 1000000);
+        var query = "SELECT * FROM Other_Tags";
+
+        $cordovaSQLite.execute(db, query, []).then(function(res){
+            console.log(res.rows.length);
+        }, function(err){
+            console.error(err);
+        });
+    };
 })
 .controller("RightsController", function($scope, $ionicHistory, $location, Rights, ContactService, Texts) {
     $scope.items = [];
@@ -161,10 +258,14 @@ angular.module('starter.controllers', [])
         $scope.offenses.splice($scope.offenses.length -1, 1, offense);
 
         $scope.questions = Questions.getQuestions(type);
+            $scope.questions[0].toggled = true;
+            $scope.questions[$scope.questions.length-1].toggled = true;
+
         $scope.menuShown = false;
 
         var offenses = Offenses.all();
         if(offenses.length > 0){
+            $scope.questions[0].toggled = false;
             var firstOffense = Offenses.findById(0);
             offense.age = firstOffense.age;
             offense.licence = firstOffense.licence;
@@ -183,6 +284,9 @@ angular.module('starter.controllers', [])
             }
 
             indexShown = 2;
+            if(type != "Other"){
+            $scope.questions[indexShown].toggled = true;
+        }
         }
         if(type === "Speed"){
             $scope.questionsShown = true;
@@ -190,7 +294,6 @@ angular.module('starter.controllers', [])
         }
         else{
             $scope.questionsShown = true;
-            $scope.toggleBorder($scope.questions[$scope.questions.length - 1]);
         }
 
         if(type === "Other"){
@@ -198,17 +301,10 @@ angular.module('starter.controllers', [])
             $scope.showSearch = true;
             $scope.searchMessage = "Vul hierboven een trefwoord of artikelnummer in en zoek uw overtreding. Voeg een komma toe om te zoeken door middel van meerdere trefwoorden.";
         }
-        var questionsLen = $scope.questions.length;
-        if(questionsLen <= indexShown){
-        }
-        else{
-            $scope.toggleBorder($scope.questions[indexShown]);
-        }
     };
 
     $scope.subgroupTapped = function(item, group, index) {
         var flag = false;
-
         if($scope.isEditting){
             if(group.id === 0 || group.id === 1){
                 var confirmPopup = $ionicPopup.alert({
@@ -236,7 +332,13 @@ angular.module('starter.controllers', [])
 
         if(group.id === 0){
             if(index === 1){
-                indexShown++;
+                if(!$scope.arrowTapped)
+                {
+                    indexShown = 1;
+                }
+                else{
+                    indexShown = -10;
+                }
                 offense.age = 1;
                 $scope.questions[1].name = "18 JAAR OF OUDER";
             }
@@ -252,15 +354,33 @@ angular.module('starter.controllers', [])
                 }
             }
         }
+        if($scope.arrowTapped){
+            indexShown = -10;
+        }
+        else{
+            indexShown++;
+            if(indexShown < $scope.questions.length){
+            $scope.questions[indexShown].toggled = true;
+            }
+        }
+        if(group.id != $scope.questions.length -1){
+            $scope.questions[group.id].toggled = false;
+        }
+
+        $scope.arrowTapped = false;
     };
 
     $scope.editField = function(index){
-        indexShown = index;
-        $scope.arrowTapped = true;
-    }
-    $scope.toggleBorder = function(group){
-        group.toggled = !group.toggled;
-    }
+            $scope.questions[index].toggled = true;
+            indexShown = index;
+            $scope.arrowTapped = true;
+    };
+
+    $scope.toggleBorder = function(index){
+    };
+    $scope.changeShownGroup = function(groupIndex) {
+
+    };
 
     $scope.groupShown = function(groupIndex){
         if(groupIndex === indexShown){
@@ -270,24 +390,8 @@ angular.module('starter.controllers', [])
             return 0;
         }
     }
-    $scope.changeShownGroup = function(groupIndex) {
-        var fieldName = Offenses.getFieldName(groupIndex, offense["type"]);
-        if(offense[fieldName] === -1){
-            indexShown++;
-            if(indexShown === $scope.questions.length){
-                $scope.toggleBorder($scope.questions[indexShown-1]);
-                indexShown = -2;
-            }
-            else {
-                if(indexShown != $scope.questions.length-1){
-                    $scope.toggleBorder($scope.questions[indexShown]);
-                }
-            }
-        }
-        else{
-            indexShown = -2;
-        }
-    };
+
+
     $scope.editOffense = function(index){
         var flag = true;
         if($scope.isEditting){
@@ -319,9 +423,7 @@ angular.module('starter.controllers', [])
             resetFields();
             $scope.menuShown = false;
             $scope.questions = Questions.getQuestions(fetchedOffense.type);
-            $scope.toggleBorder($scope.questions[0]);
             if(fetchedOffense.type != "Speed"){
-                $scope.toggleBorder($scope.questions[$scope.questions.length-1]);
             }
             $scope.questionsShown = true;
 
@@ -419,6 +521,7 @@ angular.module('starter.controllers', [])
                 else{
                     if(index === $scope.offenses.length -1){
                         $scope.offenses.splice(index, 1);
+                        Offenses.remove(index);
                         resetFields();
                         $scope.menuShown = false;
                         offense = null;

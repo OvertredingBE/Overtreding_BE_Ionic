@@ -600,7 +600,7 @@ angular.module('starter.services', [])
             for (var key in offense) {
                 if (offense.hasOwnProperty(key)) {
                     if(key === "licence"){
-                        var arr = ["IK BEZIT MIJN RIJBEWIJS MINDER DAN 2 JAAR", "IK BEZIT MIJN RIJBEWIJS LANGER DAN 2 JAAR"];
+                        var arr = ["IK HEB MIJN RIJBEWIJS MINDER DAN 2 JAAR", "IK HEB MIJN RIJBEWIJS LANGER DAN 2 JAAR"];
                         strArr.push(arr[offense[key]]);
                     }
                     if(key === "age"){
@@ -677,7 +677,7 @@ angular.module('starter.services', [])
             case "menu":
                 return ["SNELHEID", "ALCOHOL", "DRUGS", "ANDERE"];
             case "licence":
-                return ["IK BEZIT MIJN RIJBEWIJS MINDER DAN 2 JAAR", "IK BEZIT MIJN RIJBEWIJS LANGER DAN 2 JAAR"];
+                return ["IK HEB MIJN RIJBEWIJS MINDER DAN 2 JAAR", "IK HEB MIJN RIJBEWIJS LANGER DAN 2 JAAR"];
             break;
             case "age":
                 return ["JONGER DAN 18 JAAR","18 JAAR OF OUDER"];

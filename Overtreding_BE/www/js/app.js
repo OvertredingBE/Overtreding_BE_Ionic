@@ -8,38 +8,39 @@ app.run(function($ionicPlatform, $cordovaSQLite, $cordovaFile) {
         if(window.StatusBar) {
             StatusBar.styleDefault();
         }
+        db = window.openDatabase("test3", "1.0", "Test DB", 1000000);
+        // var successFn = function(sql, count){
+        //     console.log("Exported SQL: "+sql);
+        //     alert("Exported SQL contains "+count+" statements");
+        // };
+        // cordova.plugins.sqlitePorter.exportDbToSql(db, {
+        //     successFn: successFn
+        // });
         if (window.File && window.FileReader && window.FileList && window.Blob) {
-            var pathOfFileToReadFrom = "myasdfile.txt";
-                var request = new XMLHttpRequest();
-                request.open("GET", pathOfFileToReadFrom, false);
-                request.send(null);
-                var returnValue = request.responseText;
+            var pathOfFileToReadFrom = "myasdfile2.txt";
+            var request = new XMLHttpRequest();
+            request.open("GET", pathOfFileToReadFrom, false);
+            request.send(null);
+            var returnValue = request.responseText;
+            var sql = returnValue;
+            var successFn = function(count){
+                console.log("Successfully imported "+count+" SQL statements to DB");
+            };
+            var errorFn = function(error){
+                console.log("The following error occurred: "+error.message);
+            };
+            var progressFn = function(current, total){
+            };
+            cordova.plugins.sqlitePorter.importSqlToDb(db, sql, {
+                successFn: successFn,
+                errorFn: errorFn,
+                progressFn: progressFn
+            });
 
-                db = window.openDatabase("test3", "1.0", "Test DB", 1000000);
-
-                var sql = returnValue;
-                var successFn = function(count){
-                    console.log("Successfully imported "+count+" SQL statements to DB");
-                };
-                var errorFn = function(error){
-                    console.log("The following error occurred: "+error.message);
-                };
-                var progressFn = function(current, total){
-                };
-                cordova.plugins.sqlitePorter.importSqlToDb(db, sql, {
-                    successFn: successFn,
-                    errorFn: errorFn,
-                    progressFn: progressFn
-                });
-
-        } else {
-  alert('The File APIs are not fully supported in this browser.');
-}
-
-
-
-
-
+        }
+        else {
+            alert('The File APIs are not fully supported in this browser.');
+        }
     });
 })
 
