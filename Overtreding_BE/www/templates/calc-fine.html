@@ -46,10 +46,9 @@
             src="img/cross.png"
             ng-click="clearSearch()"></img>
         <div class="button-footer search-button"
-        ng-click="search()" >
-        ZOEK
-        <img class="icon-small icon-square"
-            src="img/arrow-square-right-blue.png"></img>
+            ng-click="search()">
+            ZOEK
+        <img class="icon-small icon-square" src="img/arrow-square-right-blue.png"></img>
         </div>
     </div>
 
@@ -70,8 +69,7 @@
 <div ng-repeat="group in questions"
     ng-init="groupIndex = $index"
     ng-show="questionsShown">
-    <div class="paddded-horizontal background-light"
-        style="background-color: #68B3E2" >
+    <div class="paddded-horizontal background-light">
         <div class ='item-group-underline background-light'
             ng-class="{'item-group-noline background-light' : returnTrue(groupIndex)}">
             {{group.name | strLimit: 30 }}
@@ -125,14 +123,14 @@
 </ion-footer-bar>
 
 <ion-footer-bar class="bar-footer footer-custom background-medium">
-    <div class="mydiv">
+    <div class="center-container">
         <div class="text-footer">
             BOETE BEREKENEN
         </div>
-        <div ng-click="resultTapped()" class="mydiv3">
-            <div class="mydiv" style="background-color:white">
+        <div ng-click="resultTapped()" class="button-footer-center">
+            <div class="center-container">
                 BEVESTIG
-                <img class="myimg" src="img/arrow-square-right-blue.png"></img>
+                <img class="img-footer-center" src="img/arrow-square-right-blue.png"></img>
             </div>
         </div>
     </div>

@@ -28,13 +28,14 @@
 </ion-content>
 
 <ion-spinner class="spinner-custom" icon="android" ng-show="spinnerShown"></ion-spinner>
-
-<ion-footer-bar class="bar-footer background-light">
-    <div class="button-footer"
-        ng-click="isDisabled||resultTapped()">
-        BEVESTIG
-        <img class="icon-small icon-square" src="img/arrow-square-right-blue.png"></img>
+<ion-footer-bar class="bar-footer footer-custom background-medium">
+    <div class="center-container">
+        <div ng-click="isDisabled||resultTapped()" class="button-footer-center">
+            <div class="center-container" style="background-color:white; color:black">
+                BEVESTIG
+                <img class="img-footer-center" src="img/arrow-square-right-blue.png"></img>
+            </div>
+        </div>
     </div>
 </ion-footer-bar>
-
 </ion-view>
