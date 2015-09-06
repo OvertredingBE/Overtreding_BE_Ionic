@@ -1,29 +1,37 @@
 <ion-view view-title="OVERTREDING.BE" class="background-light">
-    <ion-header-bar class="bar bar-subheader background-nav-bar bar-subheader-custom">
-        <img src="img/arrow-circle-left.png" class="icon-big icon-back" ng-click="goBack()"></img>
-        <h1 class="title background-nav-bar">UW RECHTEN</h1>
-    </ion-header-bar>
-    <ion-content class="padding">
-        <button class="button-custom-2" ng-class="{'button-white': selected == 2, 'button-blue': selected ==1}" ng-click="showAlch()">
-            ALCOHOL<br> CONTROLE
-        </button>
-        <button  class="button-custom-4" ng-class="{'button-white': selected == 1, 'button-blue': selected ==2}" ng-click="showDrugs()">
-            DRUGS<br> CONTROLE
-        </button>
-        <div class="right-text-container">
-        <div style="margin-top:5px" ng-repeat="item in items" ng-class="$last ? 'item item-text-wrap item-noline' : 'item item-text-wrap item-underline'">
-            <div>
-                {{item.body}}
-            </div>
-        </div>
+<ion-header-bar class="bar bar-subheader background-nav-bar bar-subheader-custom">
+    <img src="img/arrow-circle-left.png" class="icon-big icon-back" ng-click="goBack()"></img>
+    <h1 class="title background-nav-bar">UW RECHTEN</h1>
+</ion-header-bar>
+
+<ion-content class="padding">
+
+<button class="button-rights-white"
+        ng-class="{'button-white' : selected==2, 'button-blue' : selected==1}"
+        ng-click="showAlch()">
+    ALCOHOL<br>CONTROLE
+</button>
+<button class="button-rights-blue"
+        ng-class="{'button-white': selected==1, 'button-blue': selected==2}"
+        ng-click="showDrugs()">
+    DRUGS<br>CONTROLE
+</button>
+<div ng-repeat="item in items"
+    class='item item-text-wrap'
+    ng-class="$last ? 'item-noline' : 'item-underline'">
+    {{item.body}}
+</div>
+
+</ion-content>
+
+<ion-footer-bar class="bar-footer background-nav-bar">
+    <div class="text-footer"
+        ng-click="goToContact()">
+        GRATIS JURIDISCH ADVIES
     </div>
-    </ion-content>
-    <ion-footer-bar class="bar-footer background-nav-bar">
-        <div ng-click="goToContact()" class="text-footer">
-            GRATIS JURIDISCH ADVIES
-        </div>
-        <div ng-click="goToContact()" class="icon-footer-container">
-            <img class="icon-big icon-footer" src="img/arrow-square-right-white.png"></img>
-        </div>
-    </ion-footer-bar>
+    <div class="icon-footer-container"
+        ng-click="goToContact()">
+        <img class="icon-big icon-footer" src="img/arrow-square-right-white.png"></img>
+    </div>
+</ion-footer-bar>
 </ion-view>

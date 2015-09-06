@@ -1,50 +1,65 @@
 <ion-view view-title="OVERTREDING.BE">
-    <ion-header-bar class="bar bar-subheader background-nav-bar">
-        <img src="img/arrow-circle-left.png" class="icon-big icon-back" ng-click="goBack()"></img>
-        <h1 class="title background-nav-bar">BOETE BEREKENEN</h1>
-    </ion-header-bar>
+<ion-header-bar class="bar bar-subheader background-nav-bar">
+    <img class="icon-big icon-back"
+        src="img/arrow-circle-left.png"
+        ng-click="goBack()"></img>
+    <h1 class="title background-nav-bar">BOETE BEREKENEN</h1>
+</ion-header-bar>
 
-    <ion-content class="has-subfooter">
-        <!-- <div ng-click="test()">TEST</div> -->
+<ion-content class="has-subfooter">
 
-        <div ng-repeat="offense in offenses track by $index">
-            <div class="item-menu background-medium">
-                <span ng-click="editOffense($index)">OVERTREDING {{$index+1}}: {{offense.type | translateToDutch}}</span>
-                <img class="icon-right icon-small" src="img/cross.png" ng-click="removeOffense($index)"></img>
-            </div>
+<div ng-repeat="offense in offenses track by $index">
+    <div class="item-menu background-medium">
+        <span ng-click="editOffense($index)">OVERTREDING {{$index+1}}: {{offense.type | translateToDutch}}</span>
+        <img class="icon-right icon-small"
+            src="img/cross.png"
+            ng-click="removeOffense($index)"></img>
+    </div>
+</div>
+
+<div ng-repeat="menuItem in menu track by $index"
+    ng-init="currIndex = $index"
+    ng-show="menuShown">
+    <div class="item-group-underline background-light">
+        {{menuItem.name}}
+        <img class="icon-right icon-small"
+            ng-src="{{isGroupShown(group) && 'img/arrow-square-down.png' || 'img/arrow-square-left.png'}}"></img>
+    </div>
+    <div class="paddded-horizontal">
+        <div class="item-text-wrap"
+            ng-class="$last ? 'item-subgroup-noline' : 'item-subgroup-underline'"
+            ng-repeat="item in menuItem.items"
+            ng-click="menuSubgroupTapped(item)"
+            ng-show="groupShown(currIndex)">
+            {{item}}
         </div>
+    </div>
+</div>
 
-        <div ng-repeat="menuItem in menu track by $index" ng-init="currIndex = $index" ng-show="menuShown">
-            <div class="item-group-underline background-light">
-                {{menuItem.name}}
-                <img class="icon-right icon-small"
-                ng-src="{{isGroupShown(group) && 'img/arrow-square-down.png' || 'img/arrow-square-left.png'}}"></img>
-            </div>
-            <div class="paddded-horizontal">
-                <div ng-class="$last ? 'item-subgroup-noline item-text-wrap' : 'item-subgroup-underline item-text-wrap'"
-                ng-repeat="item in menuItem.items"
-                ng-click="menuSubgroupTapped(item)"
-                ng-show="groupShown(currIndex)">
-                {{item}}
-            </div>
+<div class="hidden"
+    ng-class="{'shown': showSearch}">
+    <div class="background-light container-relative">
+        <div class="item-big background-light">
+            <input type="text" ng-model="inputs.searchWord">
+        </div>
+        <img class="icon-small icon-search"
+            src="img/cross.png"
+            ng-click="clearSearch()"></img>
+        <div class="button-footer search-button"
+        ng-click="search()" >
+        ZOEK
+        <img class="icon-small icon-square"
+            src="img/arrow-square-right-blue.png"></img>
         </div>
     </div>
 
-    <div class="hidden" ng-class="{'shown': showSearch}">
-        <div class="background-light container-relative">
-            <div class="item-big background-light">
-                <input type="text" ng-model="inputs.searchWord">
-            </div>
-            <img class="icon-small icon-search" src="img/cross.png" ng-click="clearSearch()"></img>
-            <div ng-click="search()" class="button-footer search-button">
-                ZOEK
-                <img class="icon-small icon-square" src="img/arrow-square-right-blue.png"></img>
-            </div>
+    <div class="paddded-horizontal">
+        <div class="item-subgroup-noline item-text-wrap"
+            ng-show="searchResults.length == 0">
+            {{searchMessage}}
         </div>
-
-        <div class="paddded-horizontal">
-            <div class="item-subgroup-noline item-text-wrap" ng-show="searchResults.length == 0">{{searchMessage}}</div>
-            <div ng-class="$last ? 'item-subgroup-noline item-text-wrap' : 'item-subgroup-underline item-text-wrap'"
+        <div class="item-text-wrap"
+            ng-class="$last ? 'item-subgroup-noline' : 'item-subgroup-underline'"
             ng-repeat="item in searchResults track by $index"
             ng-click="otherTapped(item)">
             {{item.description}}
@@ -52,57 +67,54 @@
     </div>
 </div>
 
-<div ng-show="questionsShown" ng-repeat="group in questions" ng-init="groupIndex = $index">
-    <div style="background-color: #68B3E2" class="paddded-horizontal background-light">
-        <div class ='item-group-underline background-light' ng-class="{'item-group-noline background-light' : returnTrue(groupIndex)}">
+<div ng-repeat="group in questions"
+    ng-init="groupIndex = $index"
+    ng-show="questionsShown">
+    <div class="paddded-horizontal background-light"
+        style="background-color: #68B3E2" >
+        <div class ='item-group-underline background-light'
+            ng-class="{'item-group-noline background-light' : returnTrue(groupIndex)}">
             {{group.name | strLimit: 30 }}
-            <img ng-click="editField(groupIndex)" class="icon-right icon-small" ng-src="{{isGroupShown($index) && 'img/arrow-square-down.png' || 'img/arrow-square-left.png'}}"></img>
+            <img class="icon-right icon-small"
+                ng-click="editField(groupIndex)"
+                ng-src="{{isGroupShown($index) && 'img/arrow-square-down.png' || 'img/arrow-square-left.png'}}"></img>
         </div>
     </div>
     <div class="paddded-horizontal">
         <div ng-class="$last ? 'item-subgroup-noline item-text-wrap item-animate' : 'item-subgroup-underline item-text-wrap item-animate'"
-        ng-repeat="item in group.items"
-        ng-click="toggleBorder(groupIndex); changeShownGroup(groupIndex); subgroupTapped(item, group, $index); "
-        ng-show="groupShown(groupIndex)">
-        {{item}}
+            ng-repeat="item in group.items"
+            ng-click="toggleBorder(groupIndex); changeShownGroup(groupIndex); subgroupTapped(item, group, $index); "
+            ng-show="groupShown(groupIndex)">
+            {{item}}
         </div>
     </div>
 </div>
 
-<div class="hidden background-light" ng-class="{'shown': showInput}">
+<div class="hidden background-light"
+    ng-class="{'shown': showInput}">
     <div class="paddded-horizontal background-light container-relative">
         <div class="item-group-underline background-light" style="border:1px solid white; border-bottom:none; border-left:none;border-right:none;">
-            <div class="speed-input-label">
-                GEREDEN SNELHEID
-            </div>
-            <div>
-                <input type="number" pattern="[0-9]*" class="input-custom"  ng-model="inputs.speed_driven" ng-change="calcSpeed()"></input>
-            </div>
-            <div class="speed-input-label-2">
-                KM/H
-            </div>
+            <div class="speed-input-label">GEREDEN SNELHEID</div>
+            <input type="number" pattern="[0-9]*" class="input-custom"  ng-model="inputs.speed_driven" ng-change="calcSpeed()"></input>
+            <div class="speed-input-label-2">KM/H</div>
         </div>
     </div>
     <div class="paddded-horizontal background-light container-relative">
         <div class="item-group-noline background-light">
-            <div class="speed-input-label">
-                GECORRIGEERDE SNELHEID
-            </div>
-            <div>
-                <input type="number" pattern="[0-9]*" class="input-custom" ng-model="inputs.speed_corrected" ng-change="calcSpeed2()"></input>
-            </div>
-            <div class="speed-input-label-2">
-                KM/H
-            </div>
+            <div class="speed-input-label">GECORRIGEERDE SNELHEID</div>
+            <input type="number" pattern="[0-9]*" class="input-custom" ng-model="inputs.speed_corrected" ng-change="calcSpeed2()"></input>
+            <div class="speed-input-label-2">KM/H</div>
         </div>
     </div>
 </div>
 
-<div class="button button-full background-light hidden" style="color:white" ng-class="{'shown': isEditting}" ng-click="submitEdit()">OK</div>
+<div class="button button-full background-light hidden"
+    style="color:white"
+    ng-class="{'shown': isEditting}"
+    ng-click="submitEdit()">
+    OK
+</div>
 </ion-content>
-<!-- <div class="default" ng-show="hidden">Hoewel deze informatie met de meeste zorg werd samengesteld, is deze informatie louter informatief. De gebruiker aanvaardt dat hieraan geen rechten kunnen worden ontleend.</div> -->
-<!-- <div class="ggg" ng-click="showInfo()">i</div> -->
-
 </ion-view>
 
 <ion-footer-bar class="bar-subfooter background-light" ng-click="createNewOffense()">
@@ -113,18 +125,17 @@
 </ion-footer-bar>
 
 <ion-footer-bar class="bar-footer footer-custom background-medium">
-
     <div class="mydiv">
         <div class="text-footer">
             BOETE BEREKENEN
         </div>
-    <div ng-click="resultTapped()" class="mydiv3">
-        <div class="mydiv" style="background-color:white">
-        BEVESTIG
-        <img class="myimg" src="img/arrow-square-right-blue.png">
+        <div ng-click="resultTapped()" class="mydiv3">
+            <div class="mydiv" style="background-color:white">
+                BEVESTIG
+                <img class="myimg" src="img/arrow-square-right-blue.png"></img>
+            </div>
         </div>
-    </img>
-    </div>
     </div>
 </ion-footer-bar>
+
 </ion-view>

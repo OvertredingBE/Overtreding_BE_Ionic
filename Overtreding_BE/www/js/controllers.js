@@ -305,26 +305,26 @@ angular.module('starter.controllers', [])
 
     $scope.subgroupTapped = function(item, group, index) {
         var flag = false;
-        if($scope.isEditting){
-            if(group.id === 0 || group.id === 1){
-                var confirmPopup = $ionicPopup.alert({
-                    title: 'INFORMATIE',
-                    template: 'Door uw antwoord op de vragen "Rijbewijs" en "Leeftijd" te veranderen, veranderen deze antwoorden ook in de andere gecreëerde overtredingen'
-                });
-                var offenses = Offenses.all();
-                for (var i = 0; i < offenses.length; i++) {
-                    var fOffense = offenses[i];
-                    fOffense.licence = index;
-                    if(group.id === 0){
-                        if(index === 1){
-                            fOffense.age = index;
-                        }
-                    }
-                    if(group.id === 1){
+        if($scope.offenses.length > 1){
+        if(group.id === 0 || group.id === 1){
+            var confirmPopup = $ionicPopup.alert({
+                title: 'INFORMATIE',
+                template: 'Door uw antwoord op de vragen "Rijbewijs" en "Leeftijd" te veranderen, veranderen deze antwoorden ook in de andere gecreëerde overtredingen'
+            });
+            var offenses = Offenses.all();
+            for (var i = 0; i < offenses.length; i++) {
+                var fOffense = offenses[i];
+                fOffense.licence = index;
+                if(group.id === 0){
+                    if(index === 1){
                         fOffense.age = index;
                     }
                 }
+                if(group.id === 1){
+                    fOffense.age = index;
+                }
             }
+        }
         }
         var fieldName = Offenses.getFieldName(group.id, offense["type"]);
         offense[fieldName] = index;

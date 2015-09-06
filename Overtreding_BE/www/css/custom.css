@@ -37,7 +37,7 @@
      width: 100%
 }
 
-.test{
+.button-two-line{
     width: 80%;
     position: absolute;
     top:0px;
@@ -52,12 +52,12 @@
     display: block;
 }
 
-.button-custom-2{
+.button-rights-white{
     color: #1E91D5;
     background-color: white;
 }
 
-.button-custom-4{
+.button-rights-blue{
     color: white;
     background-color: #1E91D5;
 }
@@ -219,7 +219,7 @@
     border-right: none;
 }
 
-.button-custom-2, .button-custom-4{
+.button-rights-white, .button-rights-blue{
     width:37%;
     margin-top:5px;
     margin-bottom: 10px;
@@ -228,7 +228,7 @@
     height: 60px;
 }
 
-.textarea-custom-2{
+.textarea-small{
     border-radius: 0;
     width: 100%;
     height: 40px;
@@ -386,7 +386,7 @@ and (orientation : portrait) {
     }
     .text-undeline{
     }
-    .button-custom-2, .button-custom-4{
+    .button-rights-white, .button-rights-blue{
     }
     .item-noline, .item-underline{
         font-size: 14px;
@@ -475,7 +475,7 @@ and (orientation : portrait) {
     }
     .text-undeline{
     }
-    .button-custom-2, .button-custom-4{
+    .button-rights-white, .button-rights-blue{
     }
     .item-noline, .item-underline{
     }
@@ -525,7 +525,7 @@ and (-webkit-min-device-pixel-ratio: 1){
     }
     .text-undeline{
     }
-    .button-custom-2, .button-custom-4{
+    .button-rights-white, .button-rights-blue{
         width:30%;
         margin-top:5px;
         margin-bottom: 10px;
@@ -663,7 +663,7 @@ and (max-device-width : 568px) {
         padding-left: 15px;
         line-height: 40px;
     }
-    .button-custom-2, .button-custom-4 {
+    .button-rights-white, .button-rights-blue {
         font-size:13px;
     }
     .item-subgroup-underline, .item-subgroup-noline{
@@ -698,7 +698,7 @@ and (orientation : portrait) {
 }
 .text-undeline{
 }
-.button-custom-2, .button-custom-4{
+.button-rights-white, .button-rights-blue{
 }
 .item-noline, .item-underline{
 }
