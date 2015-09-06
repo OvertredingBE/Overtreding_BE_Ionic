@@ -40,15 +40,18 @@
     ng-class="{'shown': showSearch}">
     <div class="background-light container-relative">
         <div class="item-big background-light">
-            <input type="text" ng-model="inputs.searchWord">
+            <div class="center-container">
+                <input type="text" ng-model="inputs.searchWord">
+            </div>
         </div>
         <img class="icon-small icon-search"
             src="img/cross.png"
             ng-click="clearSearch()"></img>
-        <div class="button-footer search-button"
-            ng-click="search()">
-            ZOEK
-        <img class="icon-small icon-square" src="img/arrow-square-right-blue.png"></img>
+        <div ng-click="resultTapped()" class="button-search-center">
+            <div class="center-container">
+                ZOEK
+                <img class="img-footer-center" src="img/arrow-square-right-blue.png"></img>
+            </div>
         </div>
     </div>
 
@@ -128,8 +131,8 @@
             BOETE BEREKENEN
         </div>
         <div ng-click="resultTapped()" class="button-footer-center">
-            <div class="center-container">
-                BEVESTIG
+            <div class="center-container table-container">
+                <div class="div_a">BEVESTIG</div>
                 <img class="img-footer-center" src="img/arrow-square-right-blue.png"></img>
             </div>
         </div>
