@@ -274,7 +274,6 @@ angular.module('starter.controllers', [])
             }
             else{
                 $scope.questions[1].name = "18 JAAR OF OUDER";
-
             }
             if(offense.licence === 0){
                 $scope.questions[0].name = "IK BEZIT MIJN RIJBEWIJS MINDER DAN 2 JAAR";
@@ -286,7 +285,7 @@ angular.module('starter.controllers', [])
             indexShown = 2;
             if(type != "Other"){
             $scope.questions[indexShown].toggled = true;
-        }
+            }
         }
         if(type === "Speed"){
             $scope.questionsShown = true;
@@ -305,6 +304,25 @@ angular.module('starter.controllers', [])
 
     $scope.subgroupTapped = function(item, group, index) {
         var flag = false;
+        if(group.id === 0){
+            if(index === 1){
+                if(!$scope.arrowTapped)
+                {
+                    indexShown = 1;
+                }
+                else{
+                    indexShown = -10;
+                }
+                offense.age = 1;
+                $scope.questions[1].name = "18 JAAR OF OUDER";
+            }
+        }
+        if(group.id === 1){
+            if(index === 0){
+                offense.licence = 0;
+                $scope.questions[0].name = "IK HEB MIJN RIJBEWIJS MINDER DAN 2 JAAR";
+            }
+        }
         if($scope.offenses.length > 1){
         if(group.id === 0 || group.id === 1){
             var confirmPopup = $ionicPopup.alert({
@@ -329,20 +347,6 @@ angular.module('starter.controllers', [])
         var fieldName = Offenses.getFieldName(group.id, offense["type"]);
         offense[fieldName] = index;
         $scope.questions[group.id].name = item;
-
-        if(group.id === 0){
-            if(index === 1){
-                if(!$scope.arrowTapped)
-                {
-                    indexShown = 1;
-                }
-                else{
-                    indexShown = -10;
-                }
-                offense.age = 1;
-                $scope.questions[1].name = "18 JAAR OF OUDER";
-            }
-        }
 
         if(offense.type === "Alchohol"){
             if(offense.driver == 0){
@@ -382,12 +386,6 @@ angular.module('starter.controllers', [])
         }
     };
 
-    $scope.toggleBorder = function(index){
-    };
-    $scope.changeShownGroup = function(groupIndex) {
-
-    };
-
     $scope.groupShown = function(groupIndex){
         if(groupIndex === indexShown){
             return 1;
@@ -396,7 +394,6 @@ angular.module('starter.controllers', [])
             return 0;
         }
     }
-
 
     $scope.editOffense = function(index){
         var flag = true;
@@ -479,11 +476,10 @@ angular.module('starter.controllers', [])
             }
         }
     };
-    // , 'item-group-underline background-light' : false}"
     $scope.returnTrue = function(index){
-            if(index === $scope.questions.length -1){
-                return true;
-            }
+        if(index === $scope.questions.length -1){
+            return true;
+        }
 
         if(index === indexShown){
             return true;

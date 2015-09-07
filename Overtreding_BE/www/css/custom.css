@@ -461,7 +461,8 @@ and (max-device-width : 736px) {
 }
 /*iPad-1,2*/
 @media only screen
-and (min-device-width : 768px){
+and (min-device-width : 768px)
+and (-webkit-min-device-pixel-ratio: 1){
     .button-home-underline{
         font-size: 22px;
         height: auto;
