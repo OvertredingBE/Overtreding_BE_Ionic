@@ -563,90 +563,49 @@ angular.module('starter.controllers', [])
                 template: 'Gelieve het aanpassen van uw overtreding te vervolledigen'
             });
         }
+        else{
 
-        if(offense != null){
-            if(offense.type != ""){
-                if(Utils.validateOffense(offense)){
-                    Offenses.add(offense);
-                    resetFields();
-                    offense = null;
+
+
+            if(offense != null){
+                if(offense.type != ""){
+                    if(Utils.validateOffense(offense)){
+                        Offenses.add(offense);
+                        resetFields();
+                        offense = null;
+                    }
+                    else{
+                        valid = false;
+                    }
                 }
-                else{
+            }
+
+            var offenses = Offenses.all();
+            if(offenses.length === 0){
+                valid = false;
+            }
+
+            for (var i = 0; i < offenses.length; i++) {
+                var fOffense = offenses[i];
+                if(!Utils.validateOffense(fOffense)){
                     valid = false;
                 }
             }
-        }
-
-        var offenses = Offenses.all();
-        if(offenses.length === 0){
-            valid = false;
-        }
-
-        for (var i = 0; i < offenses.length; i++) {
-            var fOffense = offenses[i];
-            if(!Utils.validateOffense(fOffense)){
-                valid = false;
-            }
-        }
-        if(!valid){
-            $ionicPopup.alert({
-                title: 'INFORMATIE',
-                template: 'Gelieve alle velden van een antwoord te voorzien'
-            });
-        }
-        else{
-            if(offenses.length === 1){
-                $location.path("/result/0");
+            if(!valid){
+                $ionicPopup.alert({
+                    title: 'INFORMATIE',
+                    template: 'Gelieve alle velden van een antwoord te voorzien'
+                });
             }
             else{
-                $location.path("/result");
+                if(offenses.length === 1){
+                    $location.path("/result/0");
+                }
+                else{
+                    $location.path("/result");
+                }
             }
         }
-
-        // if(offense === null){
-        //     if(offenses.length === 1){
-        //         $location.path("/result/0");
-        //     }
-        //     else{
-        //         $location.path("/result");
-        //     }
-        // }
-        // else{
-
-            //
-            // if(offense.type === "Speed"){
-            //     var input = $scope.inputs.speed_driven;
-            //     var speedDriven = parseInt(input);
-            //     var speedCorrected = Formulas.getCorrectedSpeed(speedDriven);
-            //     var speedLimit = (offense.speed_limit+1) * 10;
-            //     if(speedCorrected <= speedLimit){
-            //         flag = true;
-            //         $ionicPopup.alert({
-            //             title: 'INFORMATIE',
-            //             template: 'De gecorrigeerde snelheid kan niet lager zijn dan snelheidslimiet. Gelieve opnieuw te proberen.'
-            //         });
-            //     }
-            // }
-            // if(!flag){
-            //     if(addCurrOffense()){
-            //         resetFields();
-            //         offense = null;
-            //         var offenses = Offenses.all();
-            //         if(offenses.length === 1){
-            //             $location.path("/result/0");
-            //         }
-            //         else{
-            //             $location.path("/result");
-            //         }
-            //     }
-            //     else{
-            //         $ionicPopup.alert({
-            //             title: 'INFORMATIE',
-            //             template: 'Gelieve alle velden van een antwoord te voorzien'
-            //         });
-            //     }
-            // }
-
     };
 
     $scope.calcSpeed = function() {
@@ -670,8 +629,8 @@ angular.module('starter.controllers', [])
                 $scope.inputs.speed_corrected = speedCorrected;
             }
             else{
-            $scope.inputs.speed_corrected = speedCorrected;
-        }
+                $scope.inputs.speed_corrected = speedCorrected;
+            }
 
         }
         if(valid){

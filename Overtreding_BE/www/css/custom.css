@@ -2,19 +2,16 @@
     width: 100%;
     height: 100%;
     background-color: transparent;
-}
-.table-container {
-    height:100%;
-    width:100%;
     display:table;
 }
-.div_a {
+.text-center {
     padding-left: 5%;
+    text-align: left;
     vertical-align:middle;
     height:100%;
     display:table-cell;
 }
-.img-footer-center{
+.img-center{
     display: inline-block;
     width: 14px;
     height: 14px;
@@ -25,51 +22,25 @@
     margin-top: -7px;
     margin-left: 25%;
 }
-.button-footer-center{
+
+.button-footer, .button-search{
+    background-color: white;
+    color:black;
+    position: absolute;
+    right: 5%;
+    top:50%;
+    margin-top: -10px;
+    padding-left: 10px;
+}
+.button-footer{
     width: 120px;
     height: 50%;
-    background-color: white;
-    color:black;
-    position: absolute;
-    right: 5%;
-    top:50%;
-    margin-top: -10px;
-    padding-left: 10px;
 }
-.button-search-center{
+.button-search{
     width: 85px;
     height: 20px;
-    background-color: white;
-    color:black;
-    position: absolute;
-    right: 5%;
-    top:50%;
-    margin-top: -10px;
-    padding-left: 10px;
-}
-.button-text-center{
-    width: 100%;
-    height: 100%;
-    color:black;
-    position: absolute;
-    left: 5%;
-    top:50%;
-    margin-top: -10px;
-    padding-left: 10px;
 }
 
-.test1{
-    margin: 0;
-    display: table;
-}
-
-.test2{
-    display: table-cell;
-    max-height: 50px;
-    margin-left: 15px;
-    padding-left: 5%;
-    vertical-align: middle; /* vertical */
-}​
 .picImg{
  width: 100%;
  height: auto;
@@ -406,10 +377,7 @@ and (orientation : portrait) {
         line-height: 15px;
     }
     .text-footer{
-        /*font-size: 13px;
-        font-weight: normal;
-        padding-left: 15px;
-        line-height: 30px;*/
+        font-size: 13px;
     }
     .icon-custom{
         position:inherit;
@@ -493,9 +461,7 @@ and (max-device-width : 736px) {
 }
 /*iPad-1,2*/
 @media only screen
-and (min-device-width : 768px)
-and (max-device-width : 1024px)
-and (-webkit-min-device-pixel-ratio: 1){
+and (min-device-width : 768px){
     .button-home-underline{
         font-size: 22px;
         height: auto;
@@ -563,20 +529,6 @@ and (-webkit-min-device-pixel-ratio: 1){
         position: absolute;
         top:9px;
         right:60px;
-    }
-    .button-footer{
-        font-size: 17px;
-        height: 24px;
-        line-height: 26px;
-        padding: 0px 55px 0px 10px;
-        position: absolute;
-        top:11px;
-        right:25px;
-    }
-    .button-footer img{
-        position: absolute;
-        top:-6px;
-        right:10px;
     }
     .text-footer{
         font-size: 24px;

@@ -1450,7 +1450,7 @@ var dbJson = {
             "text_id_1": 40,
             "text_id_2": 44,
             "text_id_3": 48,
-            "degree": 3,
+            "degree": 2,
             "description": "22.2 Op autowegen is het verboden stil te staan of te parkeren, behalve op de daarvoor voorziene parkeerstroken."
         },
         {
@@ -5988,7 +5988,7 @@ var dbJson = {
             "offense_id": 16
         },
         {
-            "tag_name": "7,5",
+            "tag_name": "7.5",
             "offense_id": 16
         },
         {
@@ -6048,7 +6048,7 @@ var dbJson = {
             "offense_id": 17
         },
         {
-            "tag_name": "7,5",
+            "tag_name": "7.5",
             "offense_id": 17
         },
         {
@@ -6212,7 +6212,7 @@ var dbJson = {
             "offense_id": 18
         },
         {
-            "tag_name": "7,5",
+            "tag_name": "7.5",
             "offense_id": 18
         },
         {
@@ -9396,7 +9396,7 @@ var dbJson = {
             "offense_id": 67
         },
         {
-            "tag_name": "gebruiken,rijden",
+            "tag_name": "gebruiken.rijden",
             "offense_id": 67
         },
         {
@@ -9880,7 +9880,7 @@ var dbJson = {
             "offense_id": 75
         },
         {
-            "tag_name": "ingehaald,voorbijsteken",
+            "tag_name": "ingehaald.voorbijsteken",
             "offense_id": 75
         },
         {
@@ -10520,11 +10520,11 @@ var dbJson = {
             "offense_id": 84
         },
         {
-            "tag_name": "7,5",
+            "tag_name": "7.5",
             "offense_id": 84
         },
         {
-            "tag_name": "ton,autowegen",
+            "tag_name": "ton.autowegen",
             "offense_id": 84
         },
         {
@@ -10652,11 +10652,11 @@ var dbJson = {
             "offense_id": 85
         },
         {
-            "tag_name": "3,5",
+            "tag_name": "3.5",
             "offense_id": 85
         },
         {
-            "tag_name": "ton,autowegen",
+            "tag_name": "ton.autowegen",
             "offense_id": 85
         },
         {
@@ -10776,11 +10776,11 @@ var dbJson = {
             "offense_id": 86
         },
         {
-            "tag_name": "3,5",
+            "tag_name": "3.5",
             "offense_id": 86
         },
         {
-            "tag_name": "ton,autowegen",
+            "tag_name": "ton.autowegen",
             "offense_id": 86
         },
         {
@@ -10888,7 +10888,7 @@ var dbJson = {
             "offense_id": 87
         },
         {
-            "tag_name": "7,5",
+            "tag_name": "7.5",
             "offense_id": 87
         },
         {
@@ -10976,7 +10976,7 @@ var dbJson = {
             "offense_id": 88
         },
         {
-            "tag_name": "7,5",
+            "tag_name": "7.5",
             "offense_id": 88
         },
         {
@@ -12012,7 +12012,7 @@ var dbJson = {
             "offense_id": 106
         },
         {
-            "tag_name": "3,5",
+            "tag_name": "3.5",
             "offense_id": 106
         },
         {
@@ -13696,7 +13696,7 @@ var dbJson = {
             "offense_id": 142
         },
         {
-            "tag_name": "1,5",
+            "tag_name": "1.5",
             "offense_id": 142
         },
         {
@@ -13928,7 +13928,7 @@ var dbJson = {
             "offense_id": 145
         },
         {
-            "tag_name": "trottoirs,voetpaden",
+            "tag_name": "trottoirs.voetpaden",
             "offense_id": 145
         },
         {
@@ -14496,7 +14496,7 @@ var dbJson = {
             "offense_id": 156
         },
         {
-            "tag_name": "1,65",
+            "tag_name": "1.65",
             "offense_id": 156
         },
         {
@@ -15252,7 +15252,7 @@ var dbJson = {
             "offense_id": 169
         },
         {
-            "tag_name": "middenberm,middelste",
+            "tag_name": "middenberm.middelste",
             "offense_id": 169
         },
         {
@@ -17176,7 +17176,7 @@ var dbJson = {
             "offense_id": 193
         },
         {
-            "tag_name": "2,5",
+            "tag_name": "2.5",
             "offense_id": 193
         },
         {
@@ -19116,7 +19116,7 @@ var dbJson = {
             "offense_id": 220
         },
         {
-            "tag_name": "3,5",
+            "tag_name": "3.5",
             "offense_id": 220
         },
         {
@@ -19268,7 +19268,7 @@ var dbJson = {
             "offense_id": 221
         },
         {
-            "tag_name": "3,5",
+            "tag_name": "3.5",
             "offense_id": 221
         },
         {
@@ -20900,7 +20900,7 @@ var dbJson = {
             "offense_id": 247
         },
         {
-            "tag_name": "één,meter",
+            "tag_name": "één.meter",
             "offense_id": 247
         },
         {
@@ -23888,7 +23888,7 @@ var dbJson = {
             "offense_id": 293
         },
         {
-            "tag_name": "0,55",
+            "tag_name": "0.55",
             "offense_id": 293
         },
         {
@@ -23928,7 +23928,7 @@ var dbJson = {
             "offense_id": 294
         },
         {
-            "tag_name": "0,40",
+            "tag_name": "0.40",
             "offense_id": 294
         },
         {
@@ -24996,7 +24996,7 @@ var dbJson = {
             "offense_id": 312
         },
         {
-            "tag_name": "ongemak,dieren",
+            "tag_name": "ongemak.dieren",
             "offense_id": 312
         },
         {
@@ -25332,7 +25332,7 @@ var dbJson = {
             "offense_id": 316
         },
         {
-            "tag_name": "0,8",
+            "tag_name": "0.8",
             "offense_id": 316
         },
         {
@@ -25340,7 +25340,7 @@ var dbJson = {
             "offense_id": 316
         },
         {
-            "tag_name": "0,5",
+            "tag_name": "0.5",
             "offense_id": 316
         },
         {
@@ -25352,7 +25352,7 @@ var dbJson = {
             "offense_id": 316
         },
         {
-            "tag_name": "0,5",
+            "tag_name": "0.5",
             "offense_id": 316
         },
         {
@@ -25780,7 +25780,7 @@ var dbJson = {
             "offense_id": 318
         },
         {
-            "tag_name": "0,8",
+            "tag_name": "0.8",
             "offense_id": 318
         },
         {
@@ -25788,7 +25788,7 @@ var dbJson = {
             "offense_id": 318
         },
         {
-            "tag_name": "0,5",
+            "tag_name": "0.5",
             "offense_id": 318
         },
         {
@@ -25800,7 +25800,7 @@ var dbJson = {
             "offense_id": 318
         },
         {
-            "tag_name": "0,5",
+            "tag_name": "0.5",
             "offense_id": 318
         },
         {
@@ -25852,7 +25852,7 @@ var dbJson = {
             "offense_id": 319
         },
         {
-            "tag_name": "2,55",
+            "tag_name": "2.55",
             "offense_id": 319
         },
         {
@@ -25860,7 +25860,7 @@ var dbJson = {
             "offense_id": 319
         },
         {
-            "tag_name": "2,60",
+            "tag_name": "2.60",
             "offense_id": 319
         },
         {
@@ -25868,7 +25868,7 @@ var dbJson = {
             "offense_id": 319
         },
         {
-            "tag_name": "2,70",
+            "tag_name": "2.70",
             "offense_id": 319
         },
         {
@@ -25916,7 +25916,7 @@ var dbJson = {
             "offense_id": 319
         },
         {
-            "tag_name": "1,25",
+            "tag_name": "1.25",
             "offense_id": 319
         },
         {
@@ -25976,7 +25976,7 @@ var dbJson = {
             "offense_id": 320
         },
         {
-            "tag_name": "0,30",
+            "tag_name": "0.30",
             "offense_id": 320
         },
         {
@@ -26004,7 +26004,7 @@ var dbJson = {
             "offense_id": 320
         },
         {
-            "tag_name": "2,5",
+            "tag_name": "2.5",
             "offense_id": 320
         },
         {
@@ -26036,7 +26036,7 @@ var dbJson = {
             "offense_id": 321
         },
         {
-            "tag_name": "2,50",
+            "tag_name": "2.50",
             "offense_id": 321
         },
         {
@@ -26116,7 +26116,7 @@ var dbJson = {
             "offense_id": 322
         },
         {
-            "tag_name": "1,00",
+            "tag_name": "1.00",
             "offense_id": 322
         },
         {
@@ -26156,7 +26156,7 @@ var dbJson = {
             "offense_id": 323
         },
         {
-            "tag_name": "1,25",
+            "tag_name": "1.25",
             "offense_id": 323
         },
         {
@@ -26288,7 +26288,7 @@ var dbJson = {
             "offense_id": 325
         },
         {
-            "tag_name": "0,50",
+            "tag_name": "0.50",
             "offense_id": 325
         },
         {
@@ -26392,7 +26392,7 @@ var dbJson = {
             "offense_id": 326
         },
         {
-            "tag_name": "0,50",
+            "tag_name": "0.50",
             "offense_id": 326
         },
         {
@@ -26424,7 +26424,7 @@ var dbJson = {
             "offense_id": 326
         },
         {
-            "tag_name": "2,50:twee-en-halve",
+            "tag_name": "2.50:twee-en-halve",
             "offense_id": 326
         },
         {
@@ -26540,7 +26540,7 @@ var dbJson = {
             "offense_id": 327
         },
         {
-            "tag_name": "1,50",
+            "tag_name": "1.50",
             "offense_id": 327
         },
         {
@@ -26600,7 +26600,7 @@ var dbJson = {
             "offense_id": 328
         },
         {
-            "tag_name": "2,50",
+            "tag_name": "2.50",
             "offense_id": 328
         },
         {
@@ -26644,7 +26644,7 @@ var dbJson = {
             "offense_id": 329
         },
         {
-            "tag_name": "0,50",
+            "tag_name": "0.50",
             "offense_id": 329
         },
         {
@@ -26672,7 +26672,7 @@ var dbJson = {
             "offense_id": 329
         },
         {
-            "tag_name": "2,50",
+            "tag_name": "2.50",
             "offense_id": 329
         },
         {
@@ -26932,7 +26932,7 @@ var dbJson = {
             "offense_id": 331
         },
         {
-            "tag_name": "1,60",
+            "tag_name": "1.60",
             "offense_id": 331
         },
         {
@@ -26952,7 +26952,7 @@ var dbJson = {
             "offense_id": 331
         },
         {
-            "tag_name": "0,40",
+            "tag_name": "0.40",
             "offense_id": 331
         },
         {
@@ -27100,7 +27100,7 @@ var dbJson = {
             "offense_id": 332
         },
         {
-            "tag_name": "0,40",
+            "tag_name": "0.40",
             "offense_id": 332
         },
         {
@@ -27192,7 +27192,7 @@ var dbJson = {
             "offense_id": 332
         },
         {
-            "tag_name": "0,40",
+            "tag_name": "0.40",
             "offense_id": 332
         },
         {
@@ -27444,7 +27444,7 @@ var dbJson = {
             "offense_id": 335
         },
         {
-            "tag_name": "0,120 m²",
+            "tag_name": "0.120 m²",
             "offense_id": 335
         },
         {
@@ -27452,7 +27452,7 @@ var dbJson = {
             "offense_id": 335
         },
         {
-            "tag_name": "0,25",
+            "tag_name": "0.25",
             "offense_id": 335
         },
         {
@@ -27484,7 +27484,7 @@ var dbJson = {
             "offense_id": 335
         },
         {
-            "tag_name": "witte:0,10",
+            "tag_name": "witte:0.10",
             "offense_id": 335
         },
         {
@@ -27504,7 +27504,7 @@ var dbJson = {
             "offense_id": 335
         },
         {
-            "tag_name": "0,40",
+            "tag_name": "0.40",
             "offense_id": 335
         },
         {
@@ -31944,7 +31944,7 @@ var dbJson = {
             "offense_id": 405
         },
         {
-            "tag_name": "maximaal,toegelaten",
+            "tag_name": "maximaal.toegelaten",
             "offense_id": 405
         },
         {
@@ -31956,7 +31956,7 @@ var dbJson = {
             "offense_id": 405
         },
         {
-            "tag_name": "3,5",
+            "tag_name": "3.5",
             "offense_id": 405
         },
         {
@@ -33900,7 +33900,7 @@ var dbJson = {
             "offense_id": 443
         },
         {
-            "tag_name": "1,6",
+            "tag_name": "1.6",
             "offense_id": 443
         },
         {
@@ -34984,7 +34984,7 @@ var dbJson = {
             "offense_id": 460
         },
         {
-            "tag_name": "remorks,rood",
+            "tag_name": "remorks.rood",
             "offense_id": 460
         },
         {
@@ -35268,7 +35268,7 @@ var dbJson = {
             "offense_id": 464
         },
         {
-            "tag_name": "0,10",
+            "tag_name": "0.10",
             "offense_id": 464
         },
         {
@@ -35540,7 +35540,7 @@ var dbJson = {
             "offense_id": 469
         },
         {
-            "tag_name": "2,50",
+            "tag_name": "2.50",
             "offense_id": 469
         },
         {
@@ -35876,7 +35876,7 @@ var dbJson = {
             "offense_id": 476
         },
         {
-            "tag_name": "1,20",
+            "tag_name": "1.20",
             "offense_id": 476
         },
         {
@@ -35896,7 +35896,7 @@ var dbJson = {
             "offense_id": 476
         },
         {
-            "tag_name": "0,40",
+            "tag_name": "0.40",
             "offense_id": 476
         },
         {
@@ -35952,7 +35952,7 @@ var dbJson = {
             "offense_id": 477
         },
         {
-            "tag_name": "lengteas,loodrecht",
+            "tag_name": "lengteas.loodrecht",
             "offense_id": 477
         },
         {
@@ -36004,7 +36004,7 @@ var dbJson = {
             "offense_id": 478
         },
         {
-            "tag_name": "0,40",
+            "tag_name": "0.40",
             "offense_id": 478
         },
         {
@@ -36120,7 +36120,7 @@ var dbJson = {
             "offense_id": 480
         }
     ]
-};
+}
 var zipcodes = [
   {
     "zip": "1000",
