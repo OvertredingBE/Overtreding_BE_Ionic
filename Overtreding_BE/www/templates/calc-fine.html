@@ -76,7 +76,7 @@
         <div class ='item-group-underline background-light'
             ng-class="{'item-group-noline background-light' : returnTrue(groupIndex)}"
             ng-click="editField(groupIndex)">
-            <span style="display:inline-block;width:90%;white-space: nowrap;overflow:hidden !important;text-overflow: ellipsis;">{{group.name}}</span>
+            {{group.name | strLimit: 30 }}
             <img class="icon-right icon-small"
                 ng-src="{{isGroupShown($index) && 'img/arrow-square-down.png' || 'img/arrow-square-left.png'}}"></img>
         </div>
@@ -119,8 +119,8 @@
 </ion-view>
 
 <ion-footer-bar class="bar-subfooter background-light" ng-click="createNewOffense()">
-    <div class="center-container">
-        <div class="text-center">VOEG EEN OVERTREDING TOE</div>
+    <div class="item-group-underline background-light add-fine-container">
+        VOEG EEN OVERTREDING TOE
         <img class="icon-right icon-small icon-add-fine" src="img/plus.png" ng-click="createNewOffense()"></img>
     </div>
 </ion-footer-bar>
