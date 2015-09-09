@@ -227,6 +227,27 @@ angular.module('starter.services', [])
                 }
                 break;
                 case "Other":
+                // var formulas = [
+                //    0 calc1(10) + " tot " + calc1(500),
+                //    1 calc2(25),
+                //    2 calc3(50, 10, diff),
+                //    3 calc3(60,10, diff),
+                //    4 calc3(50,5, diff),
+                //    5 calc3(60,5, diff),
+                //    6 calc1(25) + " tot " + calc1(500),
+                //    7 calc1(200) + " tot " + calc1(2000),
+                //    8 calc1(400) + " tot " + calc1(5000),
+                //    9 calc1(800) + " tot " + calc1(10000),
+                //    10 calc1(10) + " tot " + calc1(250),
+                //    11 calc1(20) + " tot " + calc1(250),
+                //    12 calc1(30) + " tot " + calc1(250),
+                //    13 calc1(40) + " tot " + calc1(250),
+                //    14 calc1(100) + " tot " + calc1(1000),
+                //    15 calc1(200) + " tot " + calc1(4000),
+                //    16 calc1(10) + " tot " + calc1(10000),
+                //    17 calc1(100) + " tot " + calc1(1500),
+                //    18 calc1(500) + " tot " + calc1(500),
+                //     ];
                 formulaIds.push(2);
                 switch (offense.degree) {
                     case 1:
@@ -240,6 +261,42 @@ angular.module('starter.services', [])
                     break;
                     case 4:
                     formulaIds.push(14);
+                    break;
+                    case 5:
+                    formulaIds.push(15);
+                    break;
+                    case 6:
+                    formulaIds.push(16);
+                    break;
+                    case 7:
+                    formulaIds.push(17);
+                    break;
+                    case 8:
+                    formulaIds.push(17);
+                    break;
+                    case 9:
+                    formulaIds.push(17);
+                    break;
+                    case 10:
+                    formulaIds.push(18);
+                    break;
+                    case 11:
+                    formulaIds.push(11);
+                    break;
+                    case 12:
+                    formulaIds.push(8);
+                    break;
+                    case 13:
+                    formulaIds.push(9);
+                    break;
+                    case 14:
+                    formulaIds.push(8);
+                    break;
+                    case 15:
+                    formulaIds.push(19);
+                    break;
+                    case 16:
+                    formulaIds.push(8);
                     break;
                 }
                 break;
@@ -298,7 +355,12 @@ angular.module('starter.services', [])
                 calc1(10) + " tot " + calc1(250),
                 calc1(20) + " tot " + calc1(250),
                 calc1(30) + " tot " + calc1(250),
-                calc1(40) + " tot " + calc1(250)
+                calc1(40) + " tot " + calc1(250),
+                calc1(100) + " tot " + calc1(1000),
+                calc1(200) + " tot " + calc1(4000),
+                calc1(10) + " tot " + calc1(10000),
+                calc1(100) + " tot " + calc1(1500),
+                calc1(500) + " tot " + calc1(500),
                 ];
             return formulas[formulaId -1];
         },
@@ -535,10 +597,10 @@ angular.module('starter.services', [])
             for (var i = 0; i < tag.length; i++) {
                 if(tag[i] != ""){
                     if(i === 0){
-                        query = query + " b.tag_name LIKE "+ "'" + tag[i] + "%'";
+                        query = query + " b.tag_name LIKE "+ "'%" + tag[i] + "%'";
                     }
                     else{
-                        query = query + " OR b.tag_name LIKE "+ "'" + tag[i] + "%'";
+                        query = query + " OR b.tag_name LIKE "+ "'%" + tag[i] + "%'";
                     }
                 }
             }
@@ -790,6 +852,7 @@ angular.module('starter.services', [])
         replaceFines: function (str, fines){
             var asd = str;
             for (var key in fines) {
+                console.log(key + " -> " + fines[key]);
                 if (fines.hasOwnProperty(key)) {
                     asd = replaceAll(asd, key, fines[key] + " EUR");
                 }

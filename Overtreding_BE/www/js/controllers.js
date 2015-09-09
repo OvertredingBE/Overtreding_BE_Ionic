@@ -166,14 +166,15 @@ angular.module('starter.controllers', [])
             }
         }
         if(counter != 4){
+            $scope.isDisabled =false;
             $ionicPopup.alert({
                 title: 'FOUT',
                 template: 'Gelieve alle verplichte velden in te vullen (*)'
             });
         }
         else{
-            $scope.spinnerShown = true;
-            // if(Utils.validateEmail($scope.form.email)){
+            if(Utils.validateEmail($scope.form.email)){
+                $scope.spinnerShown = true;
             var url = 'http://api.overtreding.be/overtreding_api/v1/test';
             var data = $scope.form;
             var functionalityTypeStr = ContactService.getFunctionality();
@@ -217,6 +218,14 @@ angular.module('starter.controllers', [])
                 });
                 $scope.response = err.code;
             });
+            }
+            else{
+                $scope.isDisabled =false;
+                $ionicPopup.alert({
+                    title: 'INFORMATIE',
+                    template: 'Vul een geldig e-mail adres in.'
+                });
+            }
         }
     };
 
@@ -231,7 +240,7 @@ angular.module('starter.controllers', [])
     }
 })
 
-.controller("CalcFineController", function($scope, $ionicHistory, $ionicPopup, $location, Questions, Offenses, Utils, TranslateService, Formulas, Others2, ContactService) {
+.controller("CalcFineController", function($scope, $ionicHistory, $ionicPopup, $location,$ionicScrollDelegate, Questions, Offenses, Utils, TranslateService, Formulas, Others2, ContactService) {
     $scope.offenses = [];
     $scope.searchResults = [];
     $scope.showSearch = false;
@@ -274,7 +283,6 @@ angular.module('starter.controllers', [])
             }
             else{
                 $scope.questions[1].name = "18 JAAR OF OUDER";
-
             }
             if(offense.licence === 0){
                 $scope.questions[0].name = "IK BEZIT MIJN RIJBEWIJS MINDER DAN 2 JAAR";
@@ -286,7 +294,7 @@ angular.module('starter.controllers', [])
             indexShown = 2;
             if(type != "Other"){
             $scope.questions[indexShown].toggled = true;
-        }
+            }
         }
         if(type === "Speed"){
             $scope.questionsShown = true;
@@ -305,6 +313,25 @@ angular.module('starter.controllers', [])
 
     $scope.subgroupTapped = function(item, group, index) {
         var flag = false;
+        if(group.id === 0){
+            if(index === 1){
+                if(!$scope.arrowTapped)
+                {
+                    indexShown = 1;
+                }
+                else{
+                    indexShown = -10;
+                }
+                offense.age = 1;
+                $scope.questions[1].name = "18 JAAR OF OUDER";
+            }
+        }
+        if(group.id === 1){
+            if(index === 0){
+                offense.licence = 0;
+                $scope.questions[0].name = "IK HEB MIJN RIJBEWIJS MINDER DAN 2 JAAR";
+            }
+        }
         if($scope.offenses.length > 1){
         if(group.id === 0 || group.id === 1){
             var confirmPopup = $ionicPopup.alert({
@@ -330,23 +357,9 @@ angular.module('starter.controllers', [])
         offense[fieldName] = index;
         $scope.questions[group.id].name = item;
 
-        if(group.id === 0){
-            if(index === 1){
-                if(!$scope.arrowTapped)
-                {
-                    indexShown = 1;
-                }
-                else{
-                    indexShown = -10;
-                }
-                offense.age = 1;
-                $scope.questions[1].name = "18 JAAR OF OUDER";
-            }
-        }
-
         if(offense.type === "Alchohol"){
             if(offense.driver == 0){
-                $scope.questions[3].items.unshift("0,20 - 0,50 PROMILLE");
+                $scope.questions[3].items.unshift("0,20 - 0,50 promille / 0,09 mg/l - 0,22 mg/l");
             }
             else{
                 if(offense["intoxication"] != -1){
@@ -382,12 +395,6 @@ angular.module('starter.controllers', [])
         }
     };
 
-    $scope.toggleBorder = function(index){
-    };
-    $scope.changeShownGroup = function(groupIndex) {
-
-    };
-
     $scope.groupShown = function(groupIndex){
         if(groupIndex === indexShown){
             return 1;
@@ -396,7 +403,6 @@ angular.module('starter.controllers', [])
             return 0;
         }
     }
-
 
     $scope.editOffense = function(index){
         var flag = true;
@@ -479,11 +485,10 @@ angular.module('starter.controllers', [])
             }
         }
     };
-    // , 'item-group-underline background-light' : false}"
     $scope.returnTrue = function(index){
-            if(index === $scope.questions.length -1){
-                return true;
-            }
+        if(index === $scope.questions.length -1){
+            return true;
+        }
 
         if(index === indexShown){
             return true;
@@ -564,9 +569,6 @@ angular.module('starter.controllers', [])
             });
         }
         else{
-
-
-
             if(offense != null){
                 if(offense.type != ""){
                     if(Utils.validateOffense(offense)){
@@ -714,6 +716,7 @@ angular.module('starter.controllers', [])
     };
 
     $scope.otherTapped = function(item) {
+        $ionicScrollDelegate.scrollTop();
         $scope.searchResults.length = 0;
         $scope.searchResults.push(item);
         offense.id = item.id;
@@ -777,62 +780,62 @@ angular.module('starter.controllers', [])
     var excIdsMS = [11,15,30,31,51,59,65];
     var excIdsOI = [10,13,17,27,29,33,35,41,50,58];
 
-        for (var i = 0; i < offenses.length; i++) {
-            var offense  = offenses[i];
-            var texts = [];
-            var fines = FinesCalculator.getFines(offense);
-            for (var key in fines) {
-                if (fines.hasOwnProperty(key)) {
-                    console.log(key + " -> " + fines[key]);
-                    if(key === "#TOTALAMOUNT3#" || key === "#TOTALAMOUNT5#"){
+    for (var i = 0; i < offenses.length; i++) {
+        var offense  = offenses[i];
+        var texts = [];
+        var fines = FinesCalculator.getFines(offense);
+        for (var key in fines) {
+            console.log(key + " -> " + fines[key]);
+            if (fines.hasOwnProperty(key)) {
+                if(key === "#TOTALAMOUNT3#" || key === "#TOTALAMOUNT5#"){
                     var fineString = fines[key].toString();
                     var fineAmounts = fineString.split(" tot ");
                     sumOI +=parseInt(fineAmounts[0]);
-                    }
-                    if(key === "#TOTALAMOUNT4#" || key === "#TOTALAMOUNT6#"){
+                }
+                if(key === "#TOTALAMOUNT4#" || key === "#TOTALAMOUNT6#"){
                     var fineString = fines[key].toString();
                     var fineAmounts = fineString.split(" tot ");
                     sumMS +=parseInt(fineAmounts[0]);
-                    }
                 }
             }
-            Texts.getTexts(offense).then(function(res){
-                    for (var j = 0; j < excIdsMS.length; j++) {
-                        if(excIdsMS[j] === res.item(1).id){
-                            qualifyMS = false;
-                        }
-                    }
-
-                    for (var k = 0; k < excIdsOI.length; k++) {
-                        if(excIdsOI[k] === res.item(0).id){
-                            qualifyOI = false;
-                        }
-                    }
-
-                if(offense.type != "Alchohol"){
-                sumOI += FinesCalculator.getFinesForText(res.item(0).body);
-                sumMS += FinesCalculator.getFinesForText(res.item(1).body);
+        }
+        Texts.getTexts(offense).then(function(res){
+            for (var j = 0; j < excIdsMS.length; j++) {
+                if(excIdsMS[j] === res.item(1).id){
+                    qualifyMS = false;
                 }
-                console.log(sumOI);
-                console.log(sumMS);
-                if(sumOI > 330){
+            }
+
+            for (var k = 0; k < excIdsOI.length; k++) {
+                if(excIdsOI[k] === res.item(0).id){
                     qualifyOI = false;
                 }
-                if(sumOI > 1500){
-                    qualifyMS = false;
-                }
-                if(sumMS > 1500){
-                    qualifyMS = false;
-                }
+            }
 
-                if(!qualifyOI){
-                    $scope.message = "Deze combinatie van overtredingen zorgt ervoor dat u niet in aanmerking komt voor een onmiddellijke inning. U komt wel in aanmerking voor een minnelijke schikking. Hieronder vindt u het bedrag per overtreding. Ontdek welke gevolgen elke overtreding met zich meebrengt. Wilt u graag meer informatie over deze overtredingen, aarzel dan niet en vraag GRATIS juridisch advies via onderstaande button.";
-                }
-                if(!qualifyMS){
-                    $scope.message = "Deze combinatie van overtredingen zorgt ervoor dat u niet in aanmerking komt voor een onmiddellijke inning of minnelijke schikking. U zal sowieso voor de rechtbank moeten verschijnen. Wilt u GRATIS advies en bijstand van een jurist of advocaat , klik dan op onderstaand button.";
-                }
-            });
-        }
+            if(offense.type != "Alchohol"){
+                sumOI += FinesCalculator.getFinesForText(res.item(0).body);
+                sumMS += FinesCalculator.getFinesForText(res.item(1).body);
+            }
+            console.log(sumOI);
+            console.log(sumMS);
+            if(sumOI > 330){
+                qualifyOI = false;
+            }
+            if(sumOI > 1500){
+                qualifyMS = false;
+            }
+            if(sumMS > 1500){
+                qualifyMS = false;
+            }
+
+            if(!qualifyOI){
+                $scope.message = "Deze combinatie van overtredingen zorgt ervoor dat u niet in aanmerking komt voor een onmiddellijke inning. U komt wel in aanmerking voor een minnelijke schikking. Hieronder vindt u het bedrag per overtreding. Ontdek welke gevolgen elke overtreding met zich meebrengt. Wilt u graag meer informatie over deze overtredingen, aarzel dan niet en vraag GRATIS juridisch advies via onderstaande button.";
+            }
+            if(!qualifyMS){
+                $scope.message = "Deze combinatie van overtredingen zorgt ervoor dat u niet in aanmerking komt voor een onmiddellijke inning of minnelijke schikking. U zal sowieso voor de rechtbank moeten verschijnen. Wilt u GRATIS advies en bijstand van een jurist of advocaat , klik dan op onderstaand button.";
+            }
+        });
+    }
 
     $scope.goToContact = function(){
         ContactService.setFunctionality("CalcFine");

@@ -108,7 +108,7 @@
 .bar-footer .icon-footer-container{
     position:absolute;
     bottom: 14%;
-    right:5%;
+    right:4%;
 }
 
 .bar-subfooter {
@@ -235,10 +235,7 @@
 }
 
 .button-rights-white, .button-rights-blue{
-    width:37%;
-    margin-top:5px;
-    margin-bottom: 10px;
-    margin-left: 30px;
+    width:40%;
     border:none;
     height: 60px;
 }
@@ -377,40 +374,12 @@ and (orientation : portrait) {
         line-height: 15px;
     }
     .text-footer{
-        font-size: 13px;
+        font-size: 14px;
     }
     .icon-custom{
         position:inherit;
     }
 }
-
-/*iPhone-5,5s*/
-/*@media only screen
-and (min-device-width : 320px)
-and (max-device-width : 568px)
-and (orientation : portrait) {
-    .speed-input-label{
-        font-size: 11px;
-    }
-    .input-custom{
-        position: absolute;
-        top:10px;
-        right:70px;
-        width: 60px;
-        height: 20px;
-    }
-    .speed-input-label-2{
-        position: absolute;
-        top:12px;
-        right:30px;
-    }
-}*/
-
-/*Android 5nch*/
-/*@media screen
-  and (min-device-width: 320px)
-  and (min-device-height: 640px) {
-}*/
 
 /*iPhone-6*/
 @media only screen
@@ -455,13 +424,16 @@ and (orientation : portrait) {
 @media only screen
 and (min-device-width : 414px)
 and (max-device-width : 736px) {
-    /*.icon-home-container{
-    background-color: green;
-    }*/
+    .speed-input-label{
+        font-size: 13px;
+    }
+    .speed-input-label-2{
+        top:12px;
+        right:40px;
+    }
 }
-/*iPad-1,2*/
-@media only screen
-and (min-device-width : 768px){
+@media screen and (min-width: 7in)
+{
     .button-home-underline{
         font-size: 22px;
         height: auto;
@@ -470,12 +442,6 @@ and (min-device-width : 768px){
     .text-undeline{
     }
     .button-rights-white, .button-rights-blue{
-        width:30%;
-        margin-top:5px;
-        margin-bottom: 10px;
-        margin-left: 100px;
-        border:none;
-        height: 60px;
         font-size: 20px;
     }
     .item-noline, .item-underline{
@@ -531,9 +497,7 @@ and (min-device-width : 768px){
         right:60px;
     }
     .text-footer{
-        font-size: 24px;
-        padding-left: 30px;
-        line-height: 37px;
+        font-size: 20px;
     }
 
     .icon-custom{
@@ -561,94 +525,100 @@ and (min-device-width : 768px){
         width: 25px;
         margin:5px;
     }
- }}
-/*
-@media only screen
-and (min-device-width : 375px)
-and (max-device-width : 667px) {
-.icon-home-container{
-    background-color: red;
 }
-}*/
+/*iPad-1,2*/
 /*@media only screen
-and (min-device-width : 320px)
-and (max-device-width : 568px) {
-    .button-footer{
-        font-family: "AvenrirNext";
-        padding: 0px 45px 0px 10px;
-        font-size: 13px;
-        height: 24px;
-        line-height: 28px;
-        color: black;
-        background-color: white;
-        position: absolute;
-        top:11px;
-        right:15px;
-    }
-    .icon-home-container{
+and (min-device-width : 768px){
+    .button-home-underline{
+        font-size: 22px;
+        height: auto;
+        padding: 20px 0px 20px 0px;
         background-color: black;
     }
-    .text-footer{
-        font-size: 14px;
-        padding-left: 15px;
-        line-height: 40px;
+    .text-undeline{
     }
-    .button-rights-white, .button-rights-blue {
-        font-size:13px;
+    .button-rights-white, .button-rights-blue{
+        font-size: 20px;
+    }
+    .item-noline, .item-underline{
+        font-size: 22px;
+        text-align: justify;
+    }
+    .right-text-container{
+        padding: 0px 80px;
+    }
+    .text-undeline{
+        font-size: 22px;
+    }
+    .button-underline{
+        font-size: 22px;
+    }
+    .title{
+        font-size: 22px !important;
+    }
+    .item-menu{
+        font-size: 20px;
+        line-height: 30px;
+        height: 40px;
+        padding: 5px 30px 5px 30px;
+    }
+    .item-group-underline, .item-group-noline{
+        overflow: hidden;
+        font-size: 18px;
+        line-height: 40px;
+        height: 60px;
+        padding: 10px 30px 10px 30px;
     }
     .item-subgroup-underline, .item-subgroup-noline{
-        font-size: 12px;
+        font-size: 17px;
+        line-height: 30px;
+        height: auto;
+        padding: 5px 30px 5px 30px;
     }
-}*/
-/*@media only screen
-and (min-device-width : 0px)
-and (max-device-width : 374px)
-and (orientation : portrait) {
-    .picImg{
-        width: 100%;
-        height: 100%;
-        border: none;
+    .item-big{
+        font-size: 13px;
+        height: 60px;
+        padding: 12px;
     }
-    .button-home-underline{
-         float: left;
-         width: 100%
-    }
-    .test{
-        width: 80%;
+    .input-custom{
         position: absolute;
-        top:0px;
-        overflow: hidden;
+        top:18px;
+        right:140px;
+        width: 80px;
+        height: 20px;
+    }
+    .speed-input-label-2{
+        position: absolute;
+        top:9px;
+        right:60px;
     }
     .text-footer{
-        padding-left: 15px;
-        line-height: 37px;
+        font-size: 22px;
     }
-}*/
-/*.button-home-underline{
-}
-.text-undeline{
-}
-.button-rights-white, .button-rights-blue{
-}
-.item-noline, .item-underline{
-}
-.button-underline{
-}
-.item-menu{
-}
-.item-group-underline, .item-group-noline{
-}
-.item-subgroup-underline, .item-subgroup-noline{
-}
-.item-big{
-}
-.input-custom{
-}
-.speed-input-label-2{
-}
-.button-footer{
-}
-.button-footer img{
-}
-.text-footer{
-}*/
+
+    .icon-custom{
+        position:inherit;
+    }
+
+    .icon-right{
+        float:right;
+    }
+
+    .icon-small{
+        width: 20px;
+        height: 20px;
+        margin-top: 8px;
+    }
+    .add-fine-container{
+        line-height: 20px;
+    }
+    .icon-add-fine{
+        margin-top:0px;
+        margin-right: -5px;
+    }
+    .icon-back{
+        height: 25px;
+        width: 25px;
+        margin:5px;
+    }
+ }}*/

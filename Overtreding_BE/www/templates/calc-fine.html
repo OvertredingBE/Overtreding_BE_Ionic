@@ -76,8 +76,7 @@
         <div class ='item-group-underline background-light'
             ng-class="{'item-group-noline background-light' : returnTrue(groupIndex)}"
             ng-click="editField(groupIndex)">
-            {{group.name | strLimit: 30 }}
-            <img class="icon-right icon-small"
+<span style="display:inline-block;width:90%;white-space: nowrap;overflow:hidden !important;text-overflow: ellipsis;">{{group.name}}</span>            <img class="icon-right icon-small"
                 ng-src="{{isGroupShown($index) && 'img/arrow-square-down.png' || 'img/arrow-square-left.png'}}"></img>
         </div>
     </div>

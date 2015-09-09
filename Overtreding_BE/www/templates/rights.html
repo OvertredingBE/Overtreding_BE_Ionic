@@ -6,16 +6,21 @@
 
 <ion-content class="padding">
 
+<div style="width:100%">
+<div style="width:80%; margin-left:10%;">
 <button class="button-rights-white"
         ng-class="{'button-white' : selected==2, 'button-blue' : selected==1}"
         ng-click="showAlch()">
     ALCOHOL<br>CONTROLE
 </button>
 <button class="button-rights-blue"
+        style="float:right"
         ng-class="{'button-white': selected==1, 'button-blue': selected==2}"
         ng-click="showDrugs()">
     DRUGS<br>CONTROLE
 </button>
+</div>
+</div>
 <div ng-repeat="item in items"
     class='item item-text-wrap'
     ng-class="$last ? 'item-noline' : 'item-underline'">

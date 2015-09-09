@@ -4332,6 +4332,102 @@ var dbJson = {
             "text_id_3": 46,
             "degree": 1,
             "description": "83.3.De afmetingen van bespannen voertuigen mogen niet groter zijn dan deze bepaald door het Technisch Reglement van de auto's."
+        },
+        {
+            "id": 481,
+            "text_id_1": 50,
+            "text_id_2": 51,
+            "text_id_3": 52,
+            "degree": 5,
+            "description": "Het bezit van een radardetector of radarverklikker is verboden (62 bis Wegverkeerswet)"
+        },
+        {
+            "id": 482,
+            "text_id_1": 10,
+            "text_id_2": 11,
+            "text_id_3": 53,
+            "degree": 6,
+            "description": "Is het voertuig eigendom van een onderneming, dan moet deze de identiteit van de bestuurder meedelen wanneer de politie daarom vraagt (67 ter Wegverkeerswet)"
+        },
+        {
+            "id": 483,
+            "text_id_1": 10,
+            "text_id_2": 54,
+            "text_id_3": 55,
+            "degree": 7,
+            "description": "Geen geldige technische keuring bij (Wet 21 juni 1985 technische eisen)"
+        },
+        {
+            "id": 484,
+            "text_id_1": 10,
+            "text_id_2": 56,
+            "text_id_3": 55,
+            "degree": 8,
+            "description": "Keuringsbewijs niet bij (Wet 21 juni 1985 technische eisen)"
+        },
+        {
+            "id": 485,
+            "text_id_1": 10,
+            "text_id_2": 57,
+            "text_id_3": 55,
+            "degree": 9,
+            "description": "Het keuringsbewijs was vals of vervalst (Wet 21 juni 1985 Technische Eisen)"
+        },
+        {
+            "id": 486,
+            "text_id_1": 58,
+            "text_id_2": 59,
+            "text_id_3": 60,
+            "degree": 10,
+            "description": "Het voertuig is niet verzekerd (22 § 1 Wet Aansprakelijkheid Motorrijtuigen 21 november 1989)"
+        },
+        {
+            "id": 487,
+            "text_id_1": 61,
+            "text_id_2": 62,
+            "text_id_3": 63,
+            "degree": 11,
+            "description": "De bestuurder heeft het verzekeringsbewijs niet bij (22 § 1 Wet Aansprakelijkheid Motorrijtuigen 21 november 1989) "
+        },
+        {
+            "id": 488,
+            "text_id_1": 10,
+            "text_id_2": 64,
+            "text_id_3": 66,
+            "degree": 12,
+            "description": "Vluchtmisdrijf zonder gewonden (33 § 1 Wegverkeerswet 16 maart 1968)"
+        },
+        {
+            "id": 489,
+            "text_id_1": 10,
+            "text_id_2": 64,
+            "text_id_3": 67,
+            "degree": 13,
+            "description": "Vluchtmisdrijf met gewonden (33 § 2 Wegverkeerswet 16 maart 1968)"
+        },
+        {
+            "id": 490,
+            "text_id_1": 10,
+            "text_id_2": 65,
+            "text_id_3": 68,
+            "degree": 14,
+            "description": "De bestuurder heeft geen geldig rijbewijs (30 § 1 Wegverkeerswet 16 maart 1968)"
+        },
+        {
+            "id": 491,
+            "text_id_1": 10,
+            "text_id_2": 65,
+            "text_id_3": 69,
+            "degree": 15,
+            "description": "De bestuurder rijdt in strijd met het voorlopig rijbewijs (30 § 2 Wegverkeerswet 16 maart 1968)"
+        },
+        {
+            "id": 492,
+            "text_id_1": 10,
+            "text_id_2": 59,
+            "text_id_3": 70,
+            "degree": 16,
+            "description": "De bestuurder rijdt tijdens de onmiddellijke intrekking van zijn rijbewijs (30 § 3 Wegverkeerswet 16 maart 1968)"
         }
     ],
     "other_tags": [
@@ -36118,6 +36214,422 @@ var dbJson = {
         {
             "tag_name": "",
             "offense_id": 480
+        },
+        {
+            "tag_name": "62bis",
+            "offense_id": 481
+        },
+        {
+            "tag_name": "radardetector",
+            "offense_id": 481
+        },
+        {
+            "tag_name": "radarverklikker",
+            "offense_id": 481
+        },
+        {
+            "tag_name": "67ter",
+            "offense_id": 482
+        },
+        {
+            "tag_name": "identiteit",
+            "offense_id": 482
+        },
+        {
+            "tag_name": "bestuurder",
+            "offense_id": 482
+        },
+        {
+            "tag_name": "bedrijfswagens",
+            "offense_id": 482
+        },
+        {
+            "tag_name": "chauffeurs",
+            "offense_id": 482
+        },
+        {
+            "tag_name": "verzwijgen",
+            "offense_id": 482
+        },
+        {
+            "tag_name": "meedelen",
+            "offense_id": 482
+        },
+        {
+            "tag_name": "meegedeeld",
+            "offense_id": 482
+        },
+        {
+            "tag_name": "",
+            "offense_id": 482
+        },
+        {
+            "tag_name": "\"wet",
+            "offense_id": 483
+        },
+        {
+            "tag_name": "21",
+            "offense_id": 483
+        },
+        {
+            "tag_name": "juni",
+            "offense_id": 483
+        },
+        {
+            "tag_name": "1985\"",
+            "offense_id": 483
+        },
+        {
+            "tag_name": "keuring",
+            "offense_id": 483
+        },
+        {
+            "tag_name": "technische",
+            "offense_id": 483
+        },
+        {
+            "tag_name": "schouwing",
+            "offense_id": 483
+        },
+        {
+            "tag_name": "keuringsbewijs",
+            "offense_id": 483
+        },
+        {
+            "tag_name": "controle",
+            "offense_id": 483
+        },
+        {
+            "tag_name": "",
+            "offense_id": 483
+        },
+        {
+            "tag_name": "\"wet",
+            "offense_id": 484
+        },
+        {
+            "tag_name": "21",
+            "offense_id": 484
+        },
+        {
+            "tag_name": "juni",
+            "offense_id": 484
+        },
+        {
+            "tag_name": "1985\"",
+            "offense_id": 484
+        },
+        {
+            "tag_name": "keuring",
+            "offense_id": 484
+        },
+        {
+            "tag_name": "keuringsbewijs",
+            "offense_id": 484
+        },
+        {
+            "tag_name": "technische",
+            "offense_id": 484
+        },
+        {
+            "tag_name": "schouwing",
+            "offense_id": 484
+        },
+        {
+            "tag_name": "controle",
+            "offense_id": 484
+        },
+        {
+            "tag_name": "",
+            "offense_id": 484
+        },
+        {
+            "tag_name": "\"wet",
+            "offense_id": 485
+        },
+        {
+            "tag_name": "21",
+            "offense_id": 485
+        },
+        {
+            "tag_name": "juni",
+            "offense_id": 485
+        },
+        {
+            "tag_name": "1985\"",
+            "offense_id": 485
+        },
+        {
+            "tag_name": "vals",
+            "offense_id": 485
+        },
+        {
+            "tag_name": "vervalst",
+            "offense_id": 485
+        },
+        {
+            "tag_name": "keuring",
+            "offense_id": 485
+        },
+        {
+            "tag_name": "keuringsbewijs",
+            "offense_id": 485
+        },
+        {
+            "tag_name": "technische",
+            "offense_id": 485
+        },
+        {
+            "tag_name": "schouwing",
+            "offense_id": 485
+        },
+        {
+            "tag_name": "controle",
+            "offense_id": 485
+        },
+        {
+            "tag_name": "",
+            "offense_id": 485
+        },
+        {
+            "tag_name": "22",
+            "offense_id": 486
+        },
+        {
+            "tag_name": "aansprakelijkheid",
+            "offense_id": 486
+        },
+        {
+            "tag_name": "motorrijtuigen",
+            "offense_id": 486
+        },
+        {
+            "tag_name": "ba-verzekering",
+            "offense_id": 486
+        },
+        {
+            "tag_name": "b.a.-verzekering",
+            "offense_id": 486
+        },
+        {
+            "tag_name": "papieren",
+            "offense_id": 486
+        },
+        {
+            "tag_name": "wam",
+            "offense_id": 486
+        },
+        {
+            "tag_name": "w.a.m.",
+            "offense_id": 486
+        },
+        {
+            "tag_name": "onverzekerd",
+            "offense_id": 486
+        },
+        {
+            "tag_name": "niet-verzekerd",
+            "offense_id": 486
+        },
+        {
+            "tag_name": "verzekering",
+            "offense_id": 486
+        },
+        {
+            "tag_name": "22",
+            "offense_id": 487
+        },
+        {
+            "tag_name": "aansprakelijkheid",
+            "offense_id": 487
+        },
+        {
+            "tag_name": "motorrijtuigen",
+            "offense_id": 487
+        },
+        {
+            "tag_name": "wam",
+            "offense_id": 487
+        },
+        {
+            "tag_name": "w.a.m.-verzekering",
+            "offense_id": 487
+        },
+        {
+            "tag_name": "papieren",
+            "offense_id": 487
+        },
+        {
+            "tag_name": "verzekering",
+            "offense_id": 487
+        },
+        {
+            "tag_name": "verzekerd",
+            "offense_id": 487
+        },
+        {
+            "tag_name": "ba-verzekering",
+            "offense_id": 487
+        },
+        {
+            "tag_name": "b.a.-verzekering",
+            "offense_id": 487
+        },
+        {
+            "tag_name": "",
+            "offense_id": 487
+        },
+        {
+            "tag_name": "33",
+            "offense_id": 488
+        },
+        {
+            "tag_name": "wegverkeerswet",
+            "offense_id": 488
+        },
+        {
+            "tag_name": "vluchtmisdrijf",
+            "offense_id": 488
+        },
+        {
+            "tag_name": "gewonden",
+            "offense_id": 488
+        },
+        {
+            "tag_name": "lichamelijke",
+            "offense_id": 488
+        },
+        {
+            "tag_name": "fysieke",
+            "offense_id": 488
+        },
+        {
+            "tag_name": "schade",
+            "offense_id": 488
+        },
+        {
+            "tag_name": "gekwetsten",
+            "offense_id": 488
+        },
+        {
+            "tag_name": "",
+            "offense_id": 488
+        },
+        {
+            "tag_name": "33",
+            "offense_id": 489
+        },
+        {
+            "tag_name": "wegverkeerswet",
+            "offense_id": 489
+        },
+        {
+            "tag_name": "vluchtmisdrijf",
+            "offense_id": 489
+        },
+        {
+            "tag_name": "gewonden",
+            "offense_id": 489
+        },
+        {
+            "tag_name": "lichamelijke",
+            "offense_id": 489
+        },
+        {
+            "tag_name": "fysieke",
+            "offense_id": 489
+        },
+        {
+            "tag_name": "schade",
+            "offense_id": 489
+        },
+        {
+            "tag_name": "gekwetsten",
+            "offense_id": 489
+        },
+        {
+            "tag_name": "",
+            "offense_id": 489
+        },
+        {
+            "tag_name": "30",
+            "offense_id": 490
+        },
+        {
+            "tag_name": "wegverkeerswet",
+            "offense_id": 490
+        },
+        {
+            "tag_name": "zonder",
+            "offense_id": 490
+        },
+        {
+            "tag_name": "voorlopig",
+            "offense_id": 490
+        },
+        {
+            "tag_name": "rijbewijs",
+            "offense_id": 490
+        },
+        {
+            "tag_name": "",
+            "offense_id": 490
+        },
+        {
+            "tag_name": "30",
+            "offense_id": 491
+        },
+        {
+            "tag_name": "wegverkeerswet",
+            "offense_id": 491
+        },
+        {
+            "tag_name": "voorlopig",
+            "offense_id": 491
+        },
+        {
+            "tag_name": "rijbewijs",
+            "offense_id": 491
+        },
+        {
+            "tag_name": "leervergunning",
+            "offense_id": 491
+        },
+        {
+            "tag_name": "",
+            "offense_id": 491
+        },
+        {
+            "tag_name": "30",
+            "offense_id": 492
+        },
+        {
+            "tag_name": "wegverkeerswet",
+            "offense_id": 492
+        },
+        {
+            "tag_name": "onmiddellijke",
+            "offense_id": 492
+        },
+        {
+            "tag_name": "intrekking",
+            "offense_id": 492
+        },
+        {
+            "tag_name": "rijbewijs",
+            "offense_id": 492
+        },
+        {
+            "tag_name": "spijts",
+            "offense_id": 492
+        },
+        {
+            "tag_name": "verval",
+            "offense_id": 492
+        },
+        {
+            "tag_name": "rijverbod",
+            "offense_id": 492
         }
     ]
 }
