@@ -7,7 +7,7 @@
 
 <ion-content class="padding">
 
-<div class="item item-text-wrap item-noline" style="text-align: center">Gelieve hieronder uw vraag te stellen.</br> U ontvangt dan zo snel mogelijk een gratis juridisch advies van een advocaat of jurist. Vanzelfsprekend worden uw gegevens vertrouwelijk behandeld. Wilt u een bijlage toevoegen, gelieve dan gebruik te maken van de module "u ontving een brief"</div>
+<div class="item item-text-wrap item-noline" style="text-align: center" ng-show="messageShown">Gelieve hieronder uw vraag te stellen.</br> U ontvangt dan zo snel mogelijk een gratis juridisch advies van een advocaat of jurist. Vanzelfsprekend worden uw gegevens vertrouwelijk behandeld. Wilt u een bijlage toevoegen, gelieve dan gebruik te maken van de module "u ontving een brief"</div>
 <!-- <div>{{response}}</div> -->
 
 <div class="text-undeline">Naam en Voornaam*</div>
@@ -23,12 +23,18 @@
 <textarea class="textarea-small" ng-model="form.postcode" ng-change="getCity()" key-focus></textarea>
 
 <div class="text-undeline">Bericht</div>
-<textarea class="textarea-custom" ng-model="form.comments" key-focus></textarea>
+<textarea class="textarea-custom" style="margin-bottom:10px;" ng-model="form.comments" key-focus></textarea>
 
 </ion-content>
 
 <ion-spinner class="spinner-custom" icon="android" ng-show="spinnerShown"></ion-spinner>
-<ion-footer-bar class="bar-footer background-medium">
+<!-- <ion-footer-bar class="bar-footer background-light">
+      <div ng-click="isDisabled||resultTapped()" class="button-footer" >
+          BEVESTIG
+          <img class="icon-small icon-square" src="img/arrow-square-right-blue.png"></img>
+      </div>
+  </ion-footer-bar> -->
+<ion-footer-bar class="bar-footer background-light">
     <div class="center-container">
         <div ng-click="isDisabled||resultTapped()" class="button-footer">
             <div class="center-container">

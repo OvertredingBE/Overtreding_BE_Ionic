@@ -17,7 +17,7 @@ app.run(function($ionicPlatform, $cordovaSQLite, $cordovaFile) {
         //     successFn: successFn
         // });
         if (window.File && window.FileReader && window.FileList && window.Blob) {
-            var pathOfFileToReadFrom = "myasdfile2.txt";
+            var pathOfFileToReadFrom = "OvertredingDB.txt";
             var request = new XMLHttpRequest();
             request.open("GET", pathOfFileToReadFrom, false);
             request.send(null);
@@ -36,10 +36,9 @@ app.run(function($ionicPlatform, $cordovaSQLite, $cordovaFile) {
                 errorFn: errorFn,
                 progressFn: progressFn
             });
-
         }
         else {
-            alert('The File APIs are not fully supported in this browser.');
+            console.log('The File APIs are not fully supported in this browser.');
         }
     });
 })
@@ -89,66 +88,47 @@ app.run(function($ionicPlatform, $cordovaSQLite, $cordovaFile) {
     $compileProvider.imgSrcSanitizationWhitelist(/^\s*(https|ftp|mailto|file|tel|data)/);
 });
 app.filter('translateToDutch', ['TranslateService', function(TranslateService) {
-   return function(input) {
-      if (! input) return;
-      return TranslateService.englishToDutch(input);
-   };
+    return function(input) {
+        if (! input) return;
+        return TranslateService.englishToDutch(input);
+    };
 }]);
-
 app.filter('zipCodeTranslate', ['ZipCodes', function(ZipCodes) {
-   return function(input) {
-      if (! input) return;
-      return ZipCodes.getNameForZipCode(input);
-      if (input.length <= 5) {
-          return input;
-      }
-   };
+    return function(input) {
+        if (! input) return;
+        return ZipCodes.getNameForZipCode(input);
+    };
 }]);
-app.directive('ngEnter', function () {
-    return function (scope, element, attrs) {
-        element.bind("keydown keypress", function (event) {
-            if(event.which === 13) {
-                scope.$apply(function (){
-                    scope.$eval(attrs.ngEnter);
-                });
-
-                event.preventDefault();
-            }
-        });
+app.directive('keyFocus', function($ionicPopup) {
+    return {
+        restrict: 'A',
+        link: function($scope, element) {
+            element.bind('keydown', function (e) {
+                if (e.keyCode == 13) {
+                    var $nextElement = element.next().next();
+                    if($nextElement.length) {
+                        $nextElement[0].focus();
+                    }
+                    else{
+                        document.activeElement.blur();
+                        $("input").blur();
+                    }
+                }
+            });
+        }
     };
 });
-app.directive('keyFocus', function($ionicPopup) {
-  return {
-    restrict: 'A',
-    link: function($scope, element) {
-      element.bind('keydown', function (e) {
-          // up arrow
-        if (e.keyCode == 13) {
-            var $nextElement = element.next().next();
-                if($nextElement.length) {
-                    $nextElement[0].focus();
-                }
-                else{
-                    document.activeElement.blur();
-                    $("input").blur();
-                }
-
-        }
-      });
-    }
-  };
-});
-app.filter('strLimit', ['$filter', function($filter, $ionicPlatform) {
-   return function(input, limit) {
-      if (! input) return;
-      var isIPad = ionic.Platform.isIPad();
-      if(isIPad){
-          limit = 50;
-      }
-      if (input.length <= limit) {
-          return input;
-      }
-
-      return $filter('limitTo')(input, limit) + '...';
-   };
-}]);
+// app.filter('strLimit', ['$filter', function($filter, $ionicPlatform) {
+//    return function(input, limit) {
+//       if (! input) return;
+//       var isIPad = ionic.Platform.isIPad();
+//       if(isIPad){
+//           limit = 50;
+//       }
+//       if (input.length <= limit) {
+//           return input;
+//       }
+//
+//       return $filter('limitTo')(input, limit) + '...';
+//    };
+// }]);

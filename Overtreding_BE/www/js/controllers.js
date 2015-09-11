@@ -3,7 +3,7 @@
 */
 angular.module('starter.controllers', [])
 .controller("HomeController", function($scope, $cordovaSQLite, $cordovaFile, $cordovaSplashscreen, $ionicPlatform, $timeout, $ionicPopup, $ionicLoading, Others2, Offenses){
-
+    //show info message when opening the app for the first time
     var confirmed = window.localStorage['confirmed'];
     if(!confirmed){
         $ionicPopup.alert({
@@ -12,6 +12,7 @@ angular.module('starter.controllers', [])
         });
         window.localStorage['confirmed'] = true;
     }
+    //clear all current offenses when going to calc fine screen
     $scope.calcFineTapped = function(){
         Offenses.clear();
     }
@@ -113,9 +114,9 @@ angular.module('starter.controllers', [])
         });
     };
 })
-.controller("RightsController", function($scope, $ionicHistory, $location, Rights, ContactService, Texts) {
+.controller("RightsController", function($scope, $ionicHistory, $location, ContactService, Rights) {
     $scope.items = [];
-    Texts.getRights(0).then(function(res){
+    Rights.getRights(0).then(function(res){
         for (var i = 0; i < res.length; i++) {
             $scope.items.push({body:res.item(i).body});
         }
@@ -123,7 +124,7 @@ angular.module('starter.controllers', [])
 
     $scope.showAlch = function() {
         $scope.items.length = 0;
-        Texts.getRights(0).then(function(res){
+        Rights.getRights(0).then(function(res){
             for (var i = 0; i < res.length; i++) {
                 $scope.items.push({body:res.item(i).body});
             }
@@ -133,7 +134,7 @@ angular.module('starter.controllers', [])
 
     $scope.showDrugs = function() {
         $scope.items.length = 0;
-        Texts.getRights(1).then(function(res){
+        Rights.getRights(1).then(function(res){
             for (var i = 0; i < res.length; i++) {
                 $scope.items.push({body:res.item(i).body});
             }
@@ -153,10 +154,17 @@ angular.module('starter.controllers', [])
 
 .controller("ContactController", function($scope, $ionicHistory, $ionicPopup, $http, Offenses, ContactService, TranslateService, Utils, SecuredPopups) {
     $scope.form = {};
+    $scope.messageShown = true;
+    var functionalityTypeStr = ContactService.getFunctionality();
+
+    if(functionalityTypeStr === "TakePicture"){
+        $scope.messageShown = false;
+    }
 
     $scope.resultTapped = function() {
-
+        //disable result button until validation or response from server
         $scope.isDisabled =true;
+        //check for all mandatory fields(comments is not mandatory)
         var counter = 0;
         for (var key in $scope.form) {
             if ($scope.form.hasOwnProperty(key)) {
@@ -175,49 +183,48 @@ angular.module('starter.controllers', [])
         else{
             if(Utils.validateEmail($scope.form.email)){
                 $scope.spinnerShown = true;
-            var url = 'http://api.overtreding.be/overtreding_api/v1/test';
-            var data = $scope.form;
-            var functionalityTypeStr = ContactService.getFunctionality();
-            switch (functionalityTypeStr) {
-                case "CalcFine":
-                var offenses = Offenses.parsed();
-                break;
-                case "TakePicture":
-                var imageData = ContactService.getImageData();
-                default:
-            }
+                var form = $scope.form;
+                switch (functionalityTypeStr) {
+                    case "CalcFine":
+                    var offensesTranslated = Offenses.parsed();
+                    break;
+                    case "TakePicture":
+                    var imageData = ContactService.getImageData();
+                    default:
+                }
+                var functionalityTranslated = TranslateService.englishToDutch(functionalityTypeStr);
+                var functionalityType = {functionality: functionalityTranslated};
+                var imageDataJson = {imageData: imageData};
+                var offensesJson = {offenses: offensesTranslated};
+                var dataJson={};
+                for(var key in form) dataJson[key]=form[key];
+                for(var key in functionalityType) dataJson[key]=functionalityType[key];
+                for(var key in offensesJson) dataJson[key]=offensesJson[key];
+                for(var key in imageDataJson) dataJson[key]=imageDataJson[key];
 
-            var functionalityType = {functionality: TranslateService.englishToDutch(functionalityTypeStr)};
-            var imageDataJson = {imageData: imageData};
-            var offensesJson = {offenses: offenses};
-            var result={};
-            for(var key in data) result[key]=data[key];
-            for(var key in functionalityType) result[key]=functionalityType[key];
-            for(var key in offensesJson) result[key]=offensesJson[key];
-            for(var key in imageDataJson) result[key]=imageDataJson[key];
+                var url = 'http://api.overtreding.be/overtreding_api/v1/test';
+                $http.post(url, dataJson).then(function (res){
+                    $scope.spinnerShown = false;
+                    var alertPopup = SecuredPopups.show('alert', {
+                        title: 'INFORMATIE',
+                        template: 'Bedankt voor uw aanvraag. U wordt zo snel mogelijk gecontacteerd.'
+                    });
+                    alertPopup.then(function(res) {
+                        $scope.isDisabled =false;
+                    });
 
-            $http.post(url, result).then(function (res){
-                $scope.spinnerShown = false;
-                var alertPopup = SecuredPopups.show('alert', {
-                    title: 'INFORMATIE',
-                    template: 'Bedankt voor uw aanvraag. U wordt zo snel mogelijk gecontacteerd.'
+                    $scope.response = res.data;
+                }, function(err){
+                    $scope.spinnerShown = false;
+                    var alertPopup = SecuredPopups.show('alert', {
+                        title: 'FOUT',
+                        template: 'Er is geen internetconnectie gedecteerd. Controleer uw internetconnectie en probeer opnieuw aub.'
+                    });
+                    alertPopup.then(function(res) {
+                        $scope.isDisabled =false;
+                    });
+                    $scope.response = err.code;
                 });
-                alertPopup.then(function(res) {
-                    $scope.isDisabled =false;
-                });
-
-                $scope.response = res.data;
-            }, function(err){
-                $scope.spinnerShown = false;
-                var alertPopup = SecuredPopups.show('alert', {
-                    title: 'FOUT',
-                    template: 'Er is geen internetconnectie gedecteerd. Controleer uw internetconnectie en probeer opnieuw aub.'
-                });
-                alertPopup.then(function(res) {
-                    $scope.isDisabled =false;
-                });
-                $scope.response = err.code;
-            });
             }
             else{
                 $scope.isDisabled =false;
@@ -255,12 +262,7 @@ angular.module('starter.controllers', [])
     addDummyOffense();
     resetFields();
     $scope.menuShown = true;
-    $scope.doSomething = function(){
-        $ionicPopup.alert({
-            title: 'INFORMATIE',
-            template: 'Gelieve alle velden van een antwoord te voorzien'
-        });
-    };
+
     $scope.menuSubgroupTapped = function(menuItem){
         var type = TranslateService.dutchToEnglish(menuItem);
         offense = Offenses.createDefault(type);
@@ -441,7 +443,7 @@ angular.module('starter.controllers', [])
 
             for (var key in fetchedOffense) {
                 if (fetchedOffense.hasOwnProperty(key)) {
-                    if(key === "type" || (key === "speed_corrected" || key==="speed_driven")){
+                    if(key === "type" || (key === "speed_corrected" || key==="speed_driven" || key==="degree")){
                     }
                     else{
                         var index = -1;
@@ -497,6 +499,7 @@ angular.module('starter.controllers', [])
             return false;
         }
     }
+
     $scope.submitEdit = function(){
         $scope.questionsShown = false;
         $scope.showInput = false;
@@ -520,7 +523,7 @@ angular.module('starter.controllers', [])
                 $scope.menuShown = true;
             }
             else{
-                addCurrOffense()
+                addCurrOffense();
                 addDummyOffense();
                 resetFields();
                 $scope.menuShown = true;
@@ -560,6 +563,7 @@ angular.module('starter.controllers', [])
     };
 
     $scope.resultTapped = function() {
+        console.log("result tapped");
         var valid = true;
         if($scope.isEditting){
             valid = false;
@@ -685,12 +689,6 @@ angular.module('starter.controllers', [])
             offense[fieldName] = -1
         }
     };
-    $scope.test = function(){
-        Others2.getAllTags().then(function(res){
-            console.log(res.length);
-
-        });
-    };
     $scope.search = function() {
         offense.age = 0;
         offense.licence = 0;
@@ -723,12 +721,6 @@ angular.module('starter.controllers', [])
         offense.degree = item.degree;
         offense.description = item.description;
         $scope.questionsShown = true;
-    };
-    $scope.showInfo = function(){
-        $ionicPopup.alert({
-            title: 'INFORMATIE',
-            template: 'Hoewel deze informatie met de meeste zorg werd samengesteld, is deze informatie louter informatief. De gebruiker aanvaardt dat hieraan geen rechten kunnen worden ontleend.'
-        });
     };
     $scope.isGroupShown = function(index) {
         return indexShown === index;
@@ -765,7 +757,6 @@ angular.module('starter.controllers', [])
 
     var qualifyOI = CombinedFines.qualifyOI();
     var qualifyMS = CombinedFines.qualifyMS();
-    console.log("ASDASD:" + qualifyOI);
     var sumOI = 0;
     var sumMS = 0;
 
@@ -816,8 +807,6 @@ angular.module('starter.controllers', [])
                 sumOI += FinesCalculator.getFinesForText(res.item(0).body);
                 sumMS += FinesCalculator.getFinesForText(res.item(1).body);
             }
-            console.log(sumOI);
-            console.log(sumMS);
             if(sumOI > 330){
                 qualifyOI = false;
             }
@@ -880,6 +869,7 @@ angular.module('starter.controllers', [])
 
 .controller("TakePictureController", function($scope, $ionicHistory, $ionicPopup, $location,Camera, ContactService, Utils) {
     $scope.items = [];
+
     $scope.addPhoto = function(){
         Camera.getPicture().then(function(imageURI) {
             $scope.items.push("data:image/jpeg;base64," + imageURI);
@@ -887,9 +877,11 @@ angular.module('starter.controllers', [])
             console.log(err);
         });
     };
+
     $scope.removePhoto = function(index){
         $scope.items.splice(index, 1);
     }
+
     $scope.goToContact = function(){
         $scope.imgUris = [];
         if($scope.items.length === 0){
@@ -898,11 +890,7 @@ angular.module('starter.controllers', [])
                 template:  "Gelieve een foto te nemen van de brief die u ontving en deze door te sturen via de button vraag GRATIS juridisch advies.\n Wij bekijken dan wat wij voor u kunnen doen en nemen contact met u op. Alvast bedankt!"
             });
             confirmPopup.then(function(res) {
-                Camera.getPicture().then(function(imageURI) {
-                    $scope.items.push("data:image/jpeg;base64," + imageURI);
-                }, function(err) {
-                    console.log(err);
-                });
+                $scope.addPhoto();
             });
         }
         else{

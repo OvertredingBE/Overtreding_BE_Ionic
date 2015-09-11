@@ -212,7 +212,7 @@
 }
 .icon-search{
     position: absolute;
-    left: 190px;
+    left: 200px;
     bottom: 22px;
 }
 
@@ -320,12 +320,95 @@
 .text-footer{
     color:white;
 }
-
-/*iPhone-2,3,4*/
+.button-home-underline{
+}
+.text-undeline{
+}
+.button-rights-white, .button-rights-blue{
+}
+.item-noline, .item-underline{
+}
+.button-underline{
+}
+.item-menu{
+}
+.item-group-underline, .item-group-noline{
+    font-size: 13px;
+}
+.item-subgroup-underline, .item-subgroup-noline{
+    font-size: 13px;
+}
+.item-big{
+    font-size: 13px;
+}
+.input-custom{
+}
+.speed-input-label{
+}
+.speed-input-label-2{
+    top:12px;
+    right:40px;
+}
+.text-footer{
+    font-size: 15px;
+    line-height: 35px;
+}
+.button-home-underline{
+    font-size: 17px;
+    padding: 20px 0px 20px 0px;
+}
+.text-undeline{
+}
+.button-rights-white, .button-rights-blue{
+}
+.item-noline, .item-underline{
+    font-size: 14px;
+}
+.button-underline{
+    font-size: 15px;
+}
+.item-menu{
+    font-size: 14px;
+    height: 35px;
+    padding: 8px 15px 8px 15px;
+}
+.item-group-underline, .item-group-noline{
+    font-size: 12px;
+    height: 40px;
+    padding: 12px;
+}
+.item-subgroup-underline, .item-subgroup-noline{
+    font-size: 12px;
+    padding: 10px 0px 5px 0px;
+}
+.item-big{
+    font-size: 13px;
+    height: 60px;
+    padding: 12px;
+}
+.input-custom{
+    top:10px;
+    right:80px;
+}
+.speed-input-label{
+    font-size: 10px;
+}
+.speed-input-label-2{
+    top:12px;
+    right:40px;
+}
+.add-fine-container{
+    line-height: 15px;
+}
+.text-footer{
+    font-size: 14px;
+}
+.icon-custom{
+    position:inherit;
+}
 @media only screen
 and (min-device-width : 320px)
-and (max-device-width : 480px)
-and (orientation : portrait) {
+and (max-device-width : 480px) {
     .button-home-underline{
         font-size: 17px;
         padding: 20px 0px 20px 0px;
@@ -381,11 +464,9 @@ and (orientation : portrait) {
     }
 }
 
-/*iPhone-6*/
 @media only screen
 and (min-device-width : 375px)
-and (max-device-width : 667px)
-and (orientation : portrait) {
+and (max-device-width : 667px) {
     .button-home-underline{
     }
     .text-undeline{
@@ -420,7 +501,6 @@ and (orientation : portrait) {
         line-height: 35px;
     }
 }
-/*iPhone-6-Plus*/
 @media only screen
 and (min-device-width : 414px)
 and (max-device-width : 736px) {
@@ -526,8 +606,7 @@ and (max-device-width : 736px) {
         margin:5px;
     }
 }
-/*iPad-1,2*/
-/*@media only screen
+@media only screen
 and (min-device-width : 768px){
     .button-home-underline{
         font-size: 22px;
@@ -621,4 +700,4 @@ and (min-device-width : 768px){
         width: 25px;
         margin:5px;
     }
- }}*/
+ }}

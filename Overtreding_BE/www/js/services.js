@@ -2,6 +2,20 @@
 * Created by MartinDzhonov on 6/1/15.
 */
 angular.module('starter.services', [])
+.factory('Rights', function($cordovaSQLite, FinesCalculator, Formulas){
+    var arr = [];
+    return {
+        getRights: function(type){
+            var query = "SELECT * FROM Rights WHERE type=?";
+            return $cordovaSQLite.execute(db, query, [type]).then(function(res){
+                arr = res.rows;
+                return arr;
+            }, function(err){
+                console.error(err);
+            });
+        },
+    }
+})
 .factory('Texts', function($cordovaSQLite, FinesCalculator, Formulas){
     var arr = [];
     return {
@@ -542,39 +556,6 @@ angular.module('starter.services', [])
         }
     }
 })
-.factory('Rights', function($cordovaSQLite) {
-    var alchRights = [];
-    var drugsRights = [];
-    var query = "SELECT * from Rights where type = 1";
-    $cordovaSQLite.execute(db, query, []).then(function(res){
-        if(res.rows.length > 0){
-            for(var i = 0; i < res.rows.length; i++){
-                drugsRights.push({id: res.rows.item(i).id, body: res.rows.item(i).body});
-            }
-        }
-    }, function(err){
-        console.error(err);
-    });
-    query = "SELECT * from Rights where type = 0";
-    $cordovaSQLite.execute(db, query, []).then(function(res){
-        if(res.rows.length > 0){
-            for(var i = 0; i < res.rows.length; i++){
-                alchRights.push({id: res.rows.item(i).id, body: res.rows.item(i).body});
-            }
-        }
-    }, function(err){
-        console.error(err);
-    });
-
-    return {
-        alchRights: function() {
-            return alchRights;
-        },
-        drugRights: function() {
-            return drugsRights;
-        }
-    };
-})
 .factory('Test', function($cordovaSQLite){
     var arr = [];
     return{
@@ -718,7 +699,9 @@ angular.module('starter.services', [])
   return {
     getPicture: function(options) {
         options = {
-            quality:75,
+            quality:50,
+            targetWidth: 1000,
+            targetHeight:1400,
     saveToPhotoAlbum: false,
     destinationType: Camera.DestinationType.DATA_URL
 };
