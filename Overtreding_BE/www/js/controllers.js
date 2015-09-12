@@ -251,7 +251,6 @@ angular.module('starter.controllers', [])
     $scope.offenses = [];
     $scope.searchResults = [];
     $scope.showSearch = false;
-    $scope.infoShown = false;
     $scope.arrowTapped = false;
     $scope.inputs = {};
     $scope.menu = Questions.getQuestions("Menu");
@@ -262,6 +261,7 @@ angular.module('starter.controllers', [])
     addDummyOffense();
     resetFields();
     $scope.menuShown = true;
+    $scope.showEditOther = false;
 
     $scope.menuSubgroupTapped = function(menuItem){
         var type = TranslateService.dutchToEnglish(menuItem);
@@ -405,8 +405,14 @@ angular.module('starter.controllers', [])
             return 0;
         }
     }
+    $scope.editOtherTapped = function(){
+        $scope.showEditOther = false;
+        $scope.questionsShown = false;
+        $scope.showSearch = true;
+    }
 
     $scope.editOffense = function(index){
+
         var flag = true;
         if($scope.isEditting){
             flag = false;
@@ -430,20 +436,25 @@ angular.module('starter.controllers', [])
         }
 
         if(flag){
+            $scope.showEditOther = false;
             $scope.isEditting = true;
             edittingIndex = index;
             var fetchedOffense = Offenses.findById(index);
             offense = fetchedOffense;
             resetFields();
             $scope.menuShown = false;
-            $scope.questions = Questions.getQuestions(fetchedOffense.type);
-            if(fetchedOffense.type != "Speed"){
-            }
             $scope.questionsShown = true;
+            $scope.questions = Questions.getQuestions(fetchedOffense.type);
+            if(fetchedOffense.type === "Other"){
+                $scope.showEditOther = true;
+                $scope.editOtherDescription = fetchedOffense.description;
+            }
 
             for (var key in fetchedOffense) {
+                console.log(key);
                 if (fetchedOffense.hasOwnProperty(key)) {
-                    if(key === "type" || (key === "speed_corrected" || key==="speed_driven" || key==="degree")){
+                    if(key === "type" || key === "speed_corrected" || key==="speed_driven" || key==="degree" || key==="id" || key ==="description"){
+                        console.log("asd");
                     }
                     else{
                         var index = -1;
@@ -504,6 +515,7 @@ angular.module('starter.controllers', [])
         $scope.questionsShown = false;
         $scope.showInput = false;
         $scope.isEditting = false;
+        $scope.showEditOther = false;
         edittingIndex = -1;
         Offenses.replaceAtIndex(edittingIndex, offense);
         offense = null;
@@ -714,13 +726,27 @@ angular.module('starter.controllers', [])
     };
 
     $scope.otherTapped = function(item) {
-        $ionicScrollDelegate.scrollTop();
-        $scope.searchResults.length = 0;
-        $scope.searchResults.push(item);
-        offense.id = item.id;
-        offense.degree = item.degree;
-        offense.description = item.description;
-        $scope.questionsShown = true;
+        if($scope.isEditting){
+            $scope.showSearch = false;
+            $scope.menuShown = false;
+            $scope.questionsShown = true;
+            $scope.showEditOther = true;
+            offense.id = item.id;
+            offense.degree = item.degree;
+            offense.description = item.description;
+            $scope.editOtherDescription = item.description;
+
+            $scope.offenses.splice(edittingIndex, 1, offense);
+        }
+        else{
+            $ionicScrollDelegate.scrollTop();
+            $scope.searchResults.length = 0;
+            $scope.searchResults.push(item);
+            offense.id = item.id;
+            offense.degree = item.degree;
+            offense.description = item.description;
+            $scope.questionsShown = true;
+        }
     };
     $scope.isGroupShown = function(index) {
         return indexShown === index;

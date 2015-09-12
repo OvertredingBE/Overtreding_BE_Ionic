@@ -68,7 +68,12 @@
         </div>
     </div>
 </div>
-
+<div class="hidden"
+    ng-class="{'shown': showEditOther}" ng-click="editOtherTapped()">
+    <div class="item-text-wrap item-subgroup-noline">
+        {{editOtherDescription}}
+    </div>
+</div>
 <div ng-repeat="group in questions"
     ng-init="groupIndex = $index"
     ng-show="questionsShown">
