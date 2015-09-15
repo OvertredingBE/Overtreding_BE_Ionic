@@ -19,7 +19,7 @@
 
 <div ng-repeat="menuItem in menu track by $index"
     ng-init="currIndex = $index"
-    ng-show="menuShown">
+    ng-show="showMenu">
     <div class="item-group-underline background-light">
         {{menuItem.name}}
         <img class="icon-right icon-small"
@@ -30,7 +30,7 @@
             ng-class="$last ? 'item-subgroup-noline' : 'item-subgroup-underline'"
             ng-repeat="item in menuItem.items"
             ng-click="menuSubgroupTapped(item)"
-            ng-show="groupShown(currIndex)">
+            ng-show="isGroupShown(currIndex)">
             {{item}}
         </div>
     </div>
@@ -76,7 +76,7 @@
 </div>
 <div ng-repeat="group in questions"
     ng-init="groupIndex = $index"
-    ng-show="questionsShown">
+    ng-show="showQuestions">
     <div class="paddded-horizontal background-light">
         <div class ='item-group-underline background-light'
             ng-class="{'item-group-noline background-light' : returnTrue(groupIndex)}"
@@ -89,7 +89,7 @@
         <div ng-class="$last ? 'item-subgroup-noline item-text-wrap item-animate' : 'item-subgroup-underline item-text-wrap item-animate'"
             ng-repeat="item in group.items"
             ng-click="toggleBorder(groupIndex); changeShownGroup(groupIndex); subgroupTapped(item, group, $index); "
-            ng-show="groupShown(groupIndex)">
+            ng-show="isGroupShown(groupIndex)">
             {{item}}
         </div>
     </div>

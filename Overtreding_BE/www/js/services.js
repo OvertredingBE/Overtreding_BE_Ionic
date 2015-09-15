@@ -231,11 +231,13 @@ angular.module('starter.services', [])
                     else{
                         formulaIds.push(5);
                         formulaIds.push(6);
+                        formulaIds.push(7);
                     }
                     break;
                     case 3:
                     formulaIds.push(5);
                     formulaIds.push(6);
+                    formulaIds.push(7);
                     break;
                     default:
                 }
@@ -585,7 +587,6 @@ angular.module('starter.services', [])
                     }
                 }
             }
-            console.log(query);
             return $cordovaSQLite.execute(db, query, []).then(function(res){
                 arr = res.rows;
                 return arr;

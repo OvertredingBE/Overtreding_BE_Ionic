@@ -457,7 +457,7 @@ var dbJson = {
             "road": 1,
             "text_id_1": 12,
             "text_id_2": 7,
-            "text_id_3": 3
+            "text_id_3": 22
         },
         {
             "id": 7,
@@ -473,7 +473,7 @@ var dbJson = {
             "road": 1,
             "text_id_1": 14,
             "text_id_2": 7,
-            "text_id_3": 3
+            "text_id_3": 22
         },
         {
             "id": 9,
@@ -1211,7 +1211,7 @@ var dbJson = {
             "text_id_2": 42,
             "text_id_3": 46,
             "degree": 1,
-            "description": "18.4 Wanneer legervoertuigen in konvooi rijden, moet het eerste voertuig aan de linkerzijde voorzien zijn van een blauwe wimpel of licht en het laatste van een groene wimple of licht. Bovendien moeten deze voertuigen steeds minstens de dimlichten aanhebben."
+            "description": "18.4 Wanneer legervoertuigen in konvooi rijden, moet het eerste voertuig aan de linkerzijde voorzien zijn van een blauwe wimpel of licht en het laatste van een groene wimpel of licht. Bovendien moeten deze voertuigen steeds minstens de dimlichten aanhebben."
         },
         {
             "id": 91,
@@ -1243,7 +1243,7 @@ var dbJson = {
             "text_id_2": 43,
             "text_id_3": 47,
             "degree": 2,
-            "description": "19.2.2° lid 1 en 2 Wanneer je rechts afslaat, moet je steeds zo dicht mogelijk bij de rechterrand van de rijbaan blijven, tenzij wanneer dit wegens plaatsgebrek onmogelijk is. "
+            "description": "19.2.2° lid 1 en 2 Wanneer je rechts afslaat, moet je steeds zo dicht mogelijk bij de van de rijbaan blijven, tenzij wanneer dit wegens plaatsgebrek onmogelijk is. "
         },
         {
             "id": 95,
@@ -2195,7 +2195,7 @@ var dbJson = {
             "text_id_2": 44,
             "text_id_3": 48,
             "degree": 3,
-            "description": "35.1.1, lid 4, tweede zin Kinderen van minder dan 18 jaar en kleinern dan 135 cm mogen niet vooraan zitten in een taxi zonder kinderzitjes"
+            "description": "35.1.1, lid 4, tweede zin Kinderen van minder dan 18 jaar en kleiner dan 135 cm mogen niet vooraan zitten in een taxi zonder kinderzitjes"
         },
         {
             "id": 214,
@@ -2403,7 +2403,7 @@ var dbJson = {
             "text_id_2": 44,
             "text_id_3": 48,
             "degree": 3,
-            "description": "40.3.2  Als de bus- of tramhalte niet op een vluchtheuvel ligt, moet je voorrang verlenen aan aan de passagiers die in- of uitstappen. Je moet de voetgangers veilig laten oversteken. Indien nodig moet je stoppen mag je enkel opnieuw vertrekken met matige snelheid"
+            "description": "40.3.2  Als de bus- of tramhalte niet op een vluchtheuvel ligt, moet je voorrang verlenen aan de passagiers die in- of uitstappen. Je moet de voetgangers veilig laten oversteken. Indien nodig moet je stoppen mag je enkel opnieuw vertrekken met matige snelheid"
         },
         {
             "id": 240,
@@ -2411,7 +2411,7 @@ var dbJson = {
             "text_id_2": 44,
             "text_id_3": 48,
             "degree": 3,
-            "description": "40.4.1 De voetgangers die beginnen oversteken terwijl het voor hen groen is (of terwijl een bevoegd persoon daarvoor toelating hebt gegeven), moet je steeds laten oversteken, ook al heb jezelf inmiddels groen (of toelating om door te rijden). ALs je niet meer mag doorrijden, moet je stoppen voor het zebrapad"
+            "description": "40.4.1 De voetgangers die beginnen oversteken terwijl het voor hen groen is (of terwijl een bevoegd persoon daarvoor toelating hebt gegeven), moet je steeds laten oversteken, ook al heb jezelf inmiddels groen (of toelating om door te rijden). Als je niet meer mag doorrijden, moet je stoppen voor het zebrapad"
         },
         {
             "id": 241,
@@ -2587,7 +2587,7 @@ var dbJson = {
             "text_id_2": 42,
             "text_id_3": 46,
             "degree": 1,
-            "description": "42.2.2.2° Wanneer voetgangers de rijbaan mogen volgen, moeten zij zo dicht mogelijk bij de linkerrand van de rijbaan blijven. Wanneer ze een fiets of bromfiets aan de hand houden, moeten zij zo dicht mogelijk bij de rechterand van de rijbaan blijven"
+            "description": "42.2.2.2° Wanneer voetgangers de rijbaan mogen volgen, moeten zij zo dicht mogelijk bij de linkerrand van de rijbaan blijven. Wanneer ze een fiets of bromfiets aan de hand houden, moeten zij zo dicht mogelijk bij de rechterrand van de rijbaan blijven"
         },
         {
             "id": 263,
@@ -2675,7 +2675,7 @@ var dbJson = {
             "text_id_2": 42,
             "text_id_3": 46,
             "degree": 1,
-            "description": "43.2 eerste lid Op de rijbaan mogen fietsers enkel met twee naast elkaar rijden als zij de tegenliggers niet hinderen. Buiten de bebouwde kom moeten fietsers achter elkaar rijden wanneer een achteropkomede voertuig nadert"
+            "description": "43.2 eerste lid Op de rijbaan mogen fietsers enkel met twee naast elkaar rijden als zij de tegenliggers niet hinderen. Buiten de bebouwde kom moeten fietsers achter elkaar rijden wanneer een achteropkomend voertuig nadert"
         },
         {
             "id": 274,
@@ -2907,7 +2907,7 @@ var dbJson = {
             "text_id_2": 42,
             "text_id_3": 46,
             "degree": 1,
-            "description": "44.5 Het is verboden om in amazonezit op een (brom)fiets, een moto(rfiets), een driewieler of een vierwieler met motor te rijden. Ook passagiers mogen niet in amazonzit rijden. Ook de passagiers moeten hun voeten op de voetsteunen houden"
+            "description": "44.5 Het is verboden om in amazonezit op een (brom)fiets, een moto(rfiets), een driewieler of een vierwieler met motor te rijden. Ook passagiers mogen niet in amazonezit rijden. Ook de passagiers moeten hun voeten op de voetsteunen houden"
         },
         {
             "id": 303,
@@ -2995,7 +2995,7 @@ var dbJson = {
             "text_id_2": 43,
             "text_id_3": 47,
             "degree": 2,
-            "description": "45.6 Indien de deuren of de achterklep uitzonderlijk moeten openblijven, moeten zeworden vastgemaakt ze niet buiten het voertuig uitsteken"
+            "description": "45.6 Indien de deuren of de achterklep uitzonderlijk moeten openblijven, moeten ze worden vastgemaakt ze niet buiten het voertuig uitsteken"
         },
         {
             "id": 314,
@@ -3171,7 +3171,7 @@ var dbJson = {
             "text_id_2": 42,
             "text_id_3": 46,
             "degree": 1,
-            "description": "47bis3 De reflecterende stroken in de Wegcode moeten een oppervlakte hebben van minstens 12 vierkante centimer en een breedte van minstens 25 centiometer. Ze moeten voorzien zijn van diagonale rode en witte strepen van minstens 10 centimerter. De reflecterende verkeerskegels moeten minstens 40 centimeter hoog zijn en voorzien van dezelfde rode en witte strepen."
+            "description": "47bis3 De reflecterende stroken in de Wegcode moeten een oppervlakte hebben van minstens 12 vierkante centimeter en een breedte van minstens 25 centimeter. Ze moeten voorzien zijn van diagonale rode en witte strepen van minstens 10 centimeter. De reflecterende verkeerskegels moeten minstens 40 centimeter hoog zijn en voorzien van dezelfde rode en witte strepen."
         },
         {
             "id": 336,
@@ -3451,7 +3451,7 @@ var dbJson = {
             "text_id_2": 44,
             "text_id_3": 48,
             "degree": 3,
-            "description": "61.1.5° Bij groene verkeerslichten in de vorm van een pijl, mag je enkel voortrdijen in de richting van de pijl. Bovendien moet je voorrang verlenen aan andere bestuurders en voetgangers. "
+            "description": "61.1.5° Bij groene verkeerslichten in de vorm van een pijl, mag je enkel voortrijden in de richting van de pijl. Bovendien moet je voorrang verlenen aan andere bestuurders en voetgangers. "
         },
         {
             "id": 371,
@@ -4123,7 +4123,7 @@ var dbJson = {
             "text_id_2": 42,
             "text_id_3": 46,
             "degree": 1,
-            "description": "82.1.1.5° Overdag en wanneer het zicht meer dan 200 meter bedraagt, zijn de reflectoren niet verplicht voor fietsen met wielen van maximaal 50 centimeter diameter. Hetzelfde geldt voor koersfietsen (koersstuur, banden maximaal 2,5 cm breed, geen bagagedrager) en voor terreinfietsen (minstens 2 versnellingen, geen spatborden, geen babagedrager, banden maximaal 3,8 cm breed als de diameter 65 centimeter bedraagt en 3,2 centimeter als de diameter 70 cm bedraagt). Koersfietsen en terreinfietsen moeten vooraan en achteraan wel een reflector hebben als ze minstens 1 spatbord hebben"
+            "description": "82.1.1.5° Overdag en wanneer het zicht meer dan 200 meter bedraagt, zijn de reflectoren niet verplicht voor fietsen met wielen van maximaal 50 centimeter diameter. Hetzelfde geldt voor koersfietsen (koersstuur, banden maximaal 2,5 cm breed, geen bagagedrager) en voor terreinfietsen (minstens 2 versnellingen, geen spatborden, geen bagagedrager, banden maximaal 3,8 cm breed als de diameter 65 centimeter bedraagt en 3,2 centimeter als de diameter 70 cm bedraagt). Koersfietsen en terreinfietsen moeten vooraan en achteraan wel een reflector hebben als ze minstens 1 spatbord hebben"
         },
         {
             "id": 455,
@@ -11300,7 +11300,7 @@ var dbJson = {
             "offense_id": 91
         },
         {
-            "tag_name": "achteropkomed",
+            "tag_name": "achteropkomend",
             "offense_id": 91
         },
         {
@@ -22624,7 +22624,7 @@ var dbJson = {
             "offense_id": 273
         },
         {
-            "tag_name": "achteropkomed",
+            "tag_name": "achteropkomend",
             "offense_id": 273
         },
         {
@@ -23564,7 +23564,7 @@ var dbJson = {
             "offense_id": 287
         },
         {
-            "tag_name": "achteropkomed",
+            "tag_name": "achteropkomend",
             "offense_id": 287
         },
         {
@@ -24513,6 +24513,22 @@ var dbJson = {
         },
         {
             "tag_name": "rug",
+            "offense_id": 301
+        },
+        {
+            "tag_name": "bagagerek",
+            "offense_id": 301
+        },
+        {
+            "tag_name": "bagagedrager",
+            "offense_id": 301
+        },
+        {
+            "tag_name": "achterop",
+            "offense_id": 301
+        },
+        {
+            "tag_name": "",
             "offense_id": 301
         },
         {

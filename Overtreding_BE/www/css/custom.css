@@ -191,8 +191,8 @@
 }
 
 .icon-small{
-    width: 16px;
-    height: 16px;
+    width: 18px;
+    height: 18px;
 }
 
 .item-big, .text-undeline, .item-menu, .button-home-underline, .button-underline, .item-underline, .item-noline, .background-nav-bar, .background-light, .item-group-underline, .item-group-noline{
@@ -235,7 +235,7 @@
 }
 
 .button-rights-white, .button-rights-blue{
-    width:40%;
+    width:110px;
     border:none;
     height: 60px;
 }
@@ -560,9 +560,12 @@ and (max-device-width : 736px) {
         padding: 5px 30px 5px 30px;
     }
     .item-big{
-        font-size: 13px;
         height: 60px;
         padding: 12px;
+    }
+    .button-rights-white, .button-rights-blue{
+        font-size: 20px;
+        width: 220px;
     }
     .input-custom{
         position: absolute;
@@ -570,6 +573,9 @@ and (max-device-width : 736px) {
         right:140px;
         width: 80px;
         height: 20px;
+    }
+    .speed-input-label{
+        font-size: 17px;
     }
     .speed-input-label-2{
         position: absolute;
@@ -589,9 +595,9 @@ and (max-device-width : 736px) {
     }
 
     .icon-small{
-        width: 20px;
-        height: 20px;
-        margin-top: 8px;
+        width: 22px;
+        height: 22px;
+        margin-top: 4px;
     }
     .add-fine-container{
         line-height: 20px;
@@ -606,18 +612,18 @@ and (max-device-width : 736px) {
         margin:5px;
     }
 }
-@media only screen
+/*@media only screen
 and (min-device-width : 768px){
     .button-home-underline{
         font-size: 22px;
         height: auto;
         padding: 20px 0px 20px 0px;
-        background-color: black;
     }
     .text-undeline{
     }
     .button-rights-white, .button-rights-blue{
         font-size: 20px;
+        width: 220px;
     }
     .item-noline, .item-underline{
         font-size: 22px;
@@ -700,4 +706,4 @@ and (min-device-width : 768px){
         width: 25px;
         margin:5px;
     }
- }}
+ }}*/

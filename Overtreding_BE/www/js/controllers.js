@@ -12,6 +12,26 @@ angular.module('starter.controllers', [])
         });
         window.localStorage['confirmed'] = true;
     }
+    db = window.openDatabase("test3", "1.0", "Test DB", 1000000);
+
+    // var query = "SELECT * FROM Speed b WHERE b.exceed = ? AND b.road = ?";
+    // var exceed = 3;
+    // var road = 1;
+    // $cordovaSQLite.execute(db, query, [exceed, road]).then(function(res){
+    //     for (var i = 0; i < res.rows.length; i++) {
+    //         console.log(res.rows.item(i).id + " " +res.rows.item(i).exceed + " " + res.rows.item(i).road + " " + res.rows.item(i).text_id_1);
+    //     }
+    // }, function(err){
+    //     console.error(err);
+    // });
+    // var query = "SELECT * FROM Texts";
+    // var exceed = 3;
+    // var road = 1;
+    // $cordovaSQLite.execute(db, query, []).then(function(res){
+    //     console.log(res.rows.length);
+    // }, function(err){
+    //     console.error(err);
+    // });
     //clear all current offenses when going to calc fine screen
     $scope.calcFineTapped = function(){
         Offenses.clear();
@@ -158,7 +178,10 @@ angular.module('starter.controllers', [])
     var functionalityTypeStr = ContactService.getFunctionality();
 
     if(functionalityTypeStr === "TakePicture"){
-        $scope.messageShown = false;
+        $scope.message = "Gelieve hieronder uw vraag te stellen. U ontvangt dan zo snel mogelijk een gratis juridisch advies van een advocaat of jurist. Vanzelfsprekend worden uw gegevens vertrouwelijk behandeld.";
+    }
+    else{
+        $scope.message = "Gelieve hieronder uw vraag te stellen. U ontvangt dan zo snel mogelijk een gratis juridisch advies van een advocaat of jurist. Vanzelfsprekend worden uw gegevens vertrouwelijk behandeld. Wilt u een bijlage toevoegen, gelieve dan gebruik te maken van de module \"u ontving een brief\".";
     }
 
     $scope.resultTapped = function() {
@@ -250,64 +273,57 @@ angular.module('starter.controllers', [])
 .controller("CalcFineController", function($scope, $ionicHistory, $ionicPopup, $location,$ionicScrollDelegate, Questions, Offenses, Utils, TranslateService, Formulas, Others2, ContactService) {
     $scope.offenses = [];
     $scope.searchResults = [];
+    $scope.showMenu = false;
+    $scope.showQuestions = true;
     $scope.showSearch = false;
+    $scope.isEditting = false;
+    $scope.showEditOther = false;
     $scope.arrowTapped = false;
     $scope.inputs = {};
-    $scope.menu = Questions.getQuestions("Menu");
     var indexShown = 0;
-    var offense = null;
-    $scope.isEditting = false;
     var edittingIndex = -1;
+    var offense = null;
+
+    $scope.menu = Questions.getQuestions("Menu");
     addDummyOffense();
     resetFields();
-    $scope.menuShown = true;
-    $scope.showEditOther = false;
+    $scope.showMenu = true;
+
 
     $scope.menuSubgroupTapped = function(menuItem){
+        $scope.showMenu = false;
+
+        indexShown = 0;
         var type = TranslateService.dutchToEnglish(menuItem);
         offense = Offenses.createDefault(type);
         $scope.offenses.splice($scope.offenses.length -1, 1, offense);
-
         $scope.questions = Questions.getQuestions(type);
-            $scope.questions[0].toggled = true;
-            $scope.questions[$scope.questions.length-1].toggled = true;
-
-        $scope.menuShown = false;
 
         var offenses = Offenses.all();
         if(offenses.length > 0){
-            $scope.questions[0].toggled = false;
             var firstOffense = Offenses.findById(0);
             offense.age = firstOffense.age;
             offense.licence = firstOffense.licence;
-            if(offense.age === 0){
-                $scope.questions[1].name = "JONGER DAN 18 JAAR";
+            if(offense.licence != -1){
+                $scope.questions[0].name = Questions.getQuestionsForField("licence")[offense.licence]
+                indexShown++;
             }
-            else{
-                $scope.questions[1].name = "18 JAAR OF OUDER";
-            }
-            if(offense.licence === 0){
-                $scope.questions[0].name = "IK BEZIT MIJN RIJBEWIJS MINDER DAN 2 JAAR";
-            }
-            else{
-                $scope.questions[0].name = "IK BEZIT MIJN RIJBEWIJS LANGER DAN 2 JAAR";
-            }
-
-            indexShown = 2;
-            if(type != "Other"){
-            $scope.questions[indexShown].toggled = true;
+            if(offense.age != -1){
+                $scope.questions[1].name = Questions.getQuestionsForField("age")[offense.age]
+                indexShown++;
             }
         }
+
         if(type === "Speed"){
-            $scope.questionsShown = true;
+            $scope.showQuestions = true;
             $scope.showInput = true;
         }
         else{
-            $scope.questionsShown = true;
+            $scope.showQuestions = true;
         }
 
         if(type === "Other"){
-            $scope.questionsShown = false;
+            $scope.showQuestions = false;
             $scope.showSearch = true;
             $scope.searchMessage = "Vul hierboven een trefwoord of artikelnummer in en zoek uw overtreding. Voeg een komma toe om te zoeken door middel van meerdere trefwoorden.";
         }
@@ -325,35 +341,36 @@ angular.module('starter.controllers', [])
                     indexShown = -10;
                 }
                 offense.age = 1;
-                $scope.questions[1].name = "18 JAAR OF OUDER";
+                $scope.questions[1].name = Questions.getQuestionsForField("age")[offense.age]
             }
         }
         if(group.id === 1){
             if(index === 0){
                 offense.licence = 0;
-                $scope.questions[0].name = "IK HEB MIJN RIJBEWIJS MINDER DAN 2 JAAR";
+                $scope.questions[0].name = Questions.getQuestionsForField("licence")[offense.licence]
             }
         }
+
         if($scope.offenses.length > 1){
-        if(group.id === 0 || group.id === 1){
-            var confirmPopup = $ionicPopup.alert({
-                title: 'INFORMATIE',
-                template: 'Door uw antwoord op de vragen "Rijbewijs" en "Leeftijd" te veranderen, veranderen deze antwoorden ook in de andere gecreëerde overtredingen'
-            });
-            var offenses = Offenses.all();
-            for (var i = 0; i < offenses.length; i++) {
-                var fOffense = offenses[i];
-                fOffense.licence = index;
-                if(group.id === 0){
-                    if(index === 1){
+            if(group.id === 0 || group.id === 1){
+                var confirmPopup = $ionicPopup.alert({
+                    title: 'INFORMATIE',
+                    template: 'Door uw antwoord op de vragen "Rijbewijs" en "Leeftijd" te veranderen, veranderen deze antwoorden ook in de andere gecreëerde overtredingen'
+                });
+                var offenses = Offenses.all();
+                for (var i = 0; i < offenses.length; i++) {
+                    var fOffense = offenses[i];
+                    fOffense.licence = index;
+                    if(group.id === 0){
+                        if(index === 1){
+                            fOffense.age = index;
+                        }
+                    }
+                    if(group.id === 1){
                         fOffense.age = index;
                     }
                 }
-                if(group.id === 1){
-                    fOffense.age = index;
-                }
             }
-        }
         }
         var fieldName = Offenses.getFieldName(group.id, offense["type"]);
         offense[fieldName] = index;
@@ -374,14 +391,7 @@ angular.module('starter.controllers', [])
         }
         else{
             indexShown++;
-            if(indexShown < $scope.questions.length){
-            $scope.questions[indexShown].toggled = true;
-            }
         }
-        if(group.id != $scope.questions.length -1){
-            $scope.questions[group.id].toggled = false;
-        }
-
         $scope.arrowTapped = false;
     };
 
@@ -391,41 +401,28 @@ angular.module('starter.controllers', [])
             $scope.arrowTapped = false;
         }
         else{
-            $scope.questions[index].toggled = true;
             indexShown = index;
             $scope.arrowTapped = true;
         }
     };
 
-    $scope.groupShown = function(groupIndex){
-        if(groupIndex === indexShown){
-            return 1;
-        }
-        else{
-            return 0;
-        }
-    }
     $scope.editOtherTapped = function(){
         $scope.showEditOther = false;
-        $scope.questionsShown = false;
+        $scope.showQuestions = false;
         $scope.showSearch = true;
     }
 
     $scope.editOffense = function(index){
-
-        var flag = true;
+        var canEdit = true;
         if($scope.isEditting){
-            flag = false;
+            canEdit = false;
             $ionicPopup.alert({
                 title: 'INFORMATIE',
                 template: 'Gelieve het aanpassen van uw overtreding te vervolledigen'
             });
         }
-        if(offense != null){
-            if($scope.offenses.length === 1){
-                flag = false;
-            }
-            else{
+        else{
+            if(offense != null){
                 if(offense.type === ""){
                     $scope.offenses.pop();
                 }
@@ -435,53 +432,38 @@ angular.module('starter.controllers', [])
             }
         }
 
-        if(flag){
+        if(canEdit){
             $scope.showEditOther = false;
             $scope.isEditting = true;
             edittingIndex = index;
             var fetchedOffense = Offenses.findById(index);
             offense = fetchedOffense;
             resetFields();
-            $scope.menuShown = false;
-            $scope.questionsShown = true;
+            $scope.showMenu = false;
+            $scope.showQuestions = true;
             $scope.questions = Questions.getQuestions(fetchedOffense.type);
             if(fetchedOffense.type === "Other"){
+                $scope.showSearch = true;
                 $scope.showEditOther = true;
                 $scope.editOtherDescription = fetchedOffense.description;
             }
 
             for (var key in fetchedOffense) {
-                console.log(key);
                 if (fetchedOffense.hasOwnProperty(key)) {
-                    if(key === "type" || key === "speed_corrected" || key==="speed_driven" || key==="degree" || key==="id" || key ==="description"){
-                        console.log("asd");
+                    var keyIndexes = {
+                        'licence': 0,
+                        'age': 1,
+                        'road': 2,
+                        'speed_limit': 3,
+                        'driver': 2,
+                        'intoxication': 3,
+                        'blood_test': 2
                     }
-                    else{
-                        var index = -1;
-                        switch (key) {
-                            case 'licence':
-                            index = 0;
-                            break;
-                            case 'age':
-                            index = 1;
-                            break;
-                            case 'road':
-                            index = 2;
-                            break;
-                            case 'speed_limit':
-                            index = 3;
-                            break;
-                            case 'driver':
-                            index = 2;
-                            break;
-                            case 'intoxication':
-                            index = 3;
-                            break;
-                            case 'blood_test':
-                            index = 2;
-                            break;
-                            default:
-                        }
+                    var index = -1;
+                    if (keyIndexes.hasOwnProperty(key)) {
+                        index = keyIndexes[key];
+                    }
+                    if(index != -1){
                         if(offense[key] === -1){
                             $scope.questions[index].name = TranslateService.englishToDutch(key);
                         }
@@ -502,7 +484,6 @@ angular.module('starter.controllers', [])
         if(index === $scope.questions.length -1){
             return true;
         }
-
         if(index === indexShown){
             return true;
         }
@@ -512,10 +493,11 @@ angular.module('starter.controllers', [])
     }
 
     $scope.submitEdit = function(){
-        $scope.questionsShown = false;
+        $scope.showQuestions = false;
         $scope.showInput = false;
         $scope.isEditting = false;
         $scope.showEditOther = false;
+        $scope.showSearch = false;
         edittingIndex = -1;
         Offenses.replaceAtIndex(edittingIndex, offense);
         offense = null;
@@ -532,13 +514,15 @@ angular.module('starter.controllers', [])
             if(offense === null){
                 addDummyOffense();
                 resetFields();
-                $scope.menuShown = true;
+                $scope.showMenu = true;
             }
             else{
-                addCurrOffense();
-                addDummyOffense();
-                resetFields();
-                $scope.menuShown = true;
+                if(offense.type != ""){
+                    addCurrOffense();
+                    addDummyOffense();
+                    resetFields();
+                    $scope.showMenu = true;
+                }
             }
         }
     };
@@ -562,7 +546,7 @@ angular.module('starter.controllers', [])
                         $scope.offenses.splice(index, 1);
                         Offenses.remove(index);
                         resetFields();
-                        $scope.menuShown = false;
+                        $scope.showMenu = false;
                         offense = null;
                     }
                     else{
@@ -575,7 +559,6 @@ angular.module('starter.controllers', [])
     };
 
     $scope.resultTapped = function() {
-        console.log("result tapped");
         var valid = true;
         if($scope.isEditting){
             valid = false;
@@ -705,7 +688,7 @@ angular.module('starter.controllers', [])
         offense.age = 0;
         offense.licence = 0;
         $scope.searchResults.length = 0;
-        $scope.questionsShown = false;
+        $scope.showQuestions = false;
         var searchWords = $scope.inputs.searchWord;
         searchWords = searchWords.toLowerCase();
         var searchArr = Utils.multiSplit(searchWords,[',',' ']);
@@ -727,9 +710,10 @@ angular.module('starter.controllers', [])
 
     $scope.otherTapped = function(item) {
         if($scope.isEditting){
-            $scope.showSearch = false;
-            $scope.menuShown = false;
-            $scope.questionsShown = true;
+            $scope.showSearch = true;
+            $scope.searchResults.length = 0;
+            $scope.showMenu = false;
+            $scope.showQuestions = true;
             $scope.showEditOther = true;
             offense.id = item.id;
             offense.degree = item.degree;
@@ -745,7 +729,7 @@ angular.module('starter.controllers', [])
             offense.id = item.id;
             offense.degree = item.degree;
             offense.description = item.description;
-            $scope.questionsShown = true;
+            $scope.showQuestions = true;
         }
     };
     $scope.isGroupShown = function(index) {
@@ -763,7 +747,7 @@ angular.module('starter.controllers', [])
 
     function resetFields(){
         indexShown = 0;
-        $scope.questionsShown = false;
+        $scope.showQuestions = false;
         $scope.showSearch = false;
         $scope.showInput = false;
         $scope.searchResults.length = 0;
@@ -876,6 +860,7 @@ angular.module('starter.controllers', [])
     var fines = FinesCalculator.getFines(offense);
     Texts.getTexts(offense).then(function(res){
         for (var i = 0; i < res.length; i++) {
+            console.log(res.item(i).id);
             texts.push(Utils.replaceFines(res.item(i).body, fines));
         }
         OffenseEvaluator.evaluateOffense(texts, offense);
