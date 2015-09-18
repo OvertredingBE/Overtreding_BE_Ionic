@@ -134,8 +134,9 @@ angular.module('starter.controllers', [])
         });
     };
 })
-.controller("RightsController", function($scope, $ionicHistory, $location, ContactService, Rights) {
+.controller("RightsController", function($scope, $ionicHistory, $location, ContactService, Rights, Utils) {
     $scope.items = [];
+    $scope.html = "<b>ASDsda</b>";
     Rights.getRights(0).then(function(res){
         for (var i = 0; i < res.length; i++) {
             $scope.items.push({body:res.item(i).body});
@@ -273,12 +274,14 @@ angular.module('starter.controllers', [])
 .controller("CalcFineController", function($scope, $ionicHistory, $ionicPopup, $location,$ionicScrollDelegate, Questions, Offenses, Utils, TranslateService, Formulas, Others2, ContactService) {
     $scope.offenses = [];
     $scope.searchResults = [];
+    $scope.test=true;
     $scope.showMenu = false;
     $scope.showQuestions = true;
     $scope.showSearch = false;
     $scope.isEditting = false;
     $scope.showEditOther = false;
     $scope.arrowTapped = false;
+    $scope.showKeyboard = false;
     $scope.inputs = {};
     var indexShown = 0;
     var edittingIndex = -1;
@@ -289,7 +292,23 @@ angular.module('starter.controllers', [])
     resetFields();
     $scope.showMenu = true;
 
+    window.addEventListener('native.keyboardshow', keyboardShowHandler);
 
+    function keyboardShowHandler(e){
+        $scope.test=false;
+        console.log($scope.test);
+        $scope.$apply();
+        console.log('Keyboard height is: ' + e.keyboardHeight);
+    }
+    window.addEventListener('native.keyboardhide', keyboardHideHandler);
+
+function keyboardHideHandler(e){
+    $scope.test = true;
+    $scope.$apply();
+
+    console.log($scope.test);
+    console.log('Goodnight, sweet prince');
+}
     $scope.menuSubgroupTapped = function(menuItem){
         $scope.showMenu = false;
 
@@ -413,6 +432,8 @@ angular.module('starter.controllers', [])
     }
 
     $scope.editOffense = function(index){
+        $scope.test = true;
+
         var canEdit = true;
         if($scope.isEditting){
             canEdit = false;
@@ -491,7 +512,9 @@ angular.module('starter.controllers', [])
             return false;
         }
     }
-
+    $scope.scrollBottom = function(){
+        $scope.test = false;
+    };
     $scope.submitEdit = function(){
         $scope.showQuestions = false;
         $scope.showInput = false;
@@ -518,10 +541,30 @@ angular.module('starter.controllers', [])
             }
             else{
                 if(offense.type != ""){
-                    addCurrOffense();
-                    addDummyOffense();
-                    resetFields();
-                    $scope.showMenu = true;
+                    if(offense.type === "Speed"){
+                        var input = $scope.inputs.speed_driven;
+                        var speedDriven = parseInt(input);
+                        var speedCorrected = Formulas.getCorrectedSpeed(speedDriven);
+                        var speedLimit = (offense.speed_limit+1) * 10;
+                        if(speedCorrected <= speedLimit){
+                            $ionicPopup.alert({
+                                title: 'INFORMATIE',
+                                template: 'De gecorrigeerde snelheid kan niet lager zijn dan snelheidslimiet. Gelieve opnieuw te proberen.'
+                            });
+                        }
+                        else{
+                            addCurrOffense();
+                            addDummyOffense();
+                            resetFields();
+                            $scope.showMenu = true;
+                        }
+                    }
+                    else{
+                        addCurrOffense();
+                        addDummyOffense();
+                        resetFields();
+                        $scope.showMenu = true;
+                    }
                 }
             }
         }

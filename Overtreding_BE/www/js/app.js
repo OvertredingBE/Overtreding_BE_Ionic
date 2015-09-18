@@ -5,6 +5,9 @@ app.run(function($ionicPlatform, $cordovaSQLite, $cordovaFile) {
         if(window.cordova && window.cordova.plugins.Keyboard) {
             // cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
         }
+        window.addEventListener('native.keyboardshow', function(){
+  document.body.classList.add('keyboard-open');
+});
         if(window.StatusBar) {
             StatusBar.styleDefault();
         }
@@ -87,6 +90,31 @@ app.run(function($ionicPlatform, $cordovaSQLite, $cordovaFile) {
     $ionicConfigProvider.navBar.alignTitle('center');
     $compileProvider.imgSrcSanitizationWhitelist(/^\s*(https|ftp|mailto|file|tel|data)/);
 });
+app.filter('boldKeyWords', function($sce) {
+    return function(input) {
+        if (! input) return;
+        var keyWords = ["alco-sensor", "alcoholcontrole", "ademanalyse", "bloedproef", "uiterlijk", "speekseltest"];
+        for (var i = 0; i < keyWords.length; i++) {
+            if(input.indexOf(keyWords[i]) != -1){
+                return $sce.trustAsHtml("<b>ASDASDAS</b>");
+            }
+        }
+
+        return input;
+    };
+});
+app.directive('htmlSafe', function($parse, $sce) {
+    return {
+      link: function(scope, elem, attr) {
+        var html = attr.ngBindHtml;
+        if(angular.isDefined(html)) {
+          var getter = $parse(html);
+          var setter = getter.assign;
+          setter(scope, $sce.trustAsHtml(getter(scope)));
+        }
+      }
+    };
+  });
 app.filter('translateToDutch', ['TranslateService', function(TranslateService) {
     return function(input) {
         if (! input) return;

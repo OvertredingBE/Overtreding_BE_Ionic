@@ -814,6 +814,15 @@ angular.module('starter.services', [])
 })
 .factory('Utils', function(){
     return{
+        boldKeyWords: function(input) {
+            var keyWords = ["alco-sensor", "alcoholcontrole", "ademanalyse", "bloedproef", "uiterlijk", "speekseltest", "opgevorderde dokter"];
+            for (var i = 0; i < keyWords.length; i++) {
+                if(input.indexOf(keyWords[i]) != -1){
+                    input = replaceAll(input, keyWords[i], '<b>' + keyWords[i] + '</b>');
+                }
+            }
+            return input;
+        },
         validateOffense: function(offense){
             var valid = true;
             for (var key in offense) {

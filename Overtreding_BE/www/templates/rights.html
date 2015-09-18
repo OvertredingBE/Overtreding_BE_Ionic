@@ -21,10 +21,10 @@
 </button>
 </div>
 </div>
+
 <div ng-repeat="item in items"
     class='item item-text-wrap'
-    ng-class="$last ? 'item-noline' : 'item-underline'">
-    {{item.body}}
+    ng-class="$last ? 'item-noline' : 'item-underline'" ng-bind-html="item.body" html-safe>
 </div>
 
 </ion-content>

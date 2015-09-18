@@ -6,14 +6,15 @@
     <h1 class="title background-nav-bar">BOETE BEREKENEN</h1>
 </ion-header-bar>
 
-<ion-content class="has-subfooter">
+<ion-content>
 
 <div ng-repeat="offense in offenses track by $index">
     <div class="item-menu background-medium">
         <span ng-click="editOffense($index)">OVERTREDING {{$index+1}}: {{offense.type | translateToDutch}}</span>
-        <img class="icon-right icon-small"
-            src="img/cross.png"
-            ng-click="removeOffense($index)"></img>
+        <div ng-click="removeOffense($index)" class="icon-right" style="width:28px; height: 28px; margin-left:-6px;margin-top: -4px;">
+            <img class ="icon-small" style="margin-top:4px; margin-left:4px" src="img/cross.png"></img>
+        </div>
+
     </div>
 </div>
 
@@ -41,7 +42,7 @@
     <div class="background-light container-relative">
         <div class="item-big background-light">
             <div class="center-container">
-                <input type="text" ng-model="inputs.searchWord">
+                <input class="input-search" type="text" ng-model="inputs.searchWord" ng-click="scrollBottom()">
             </div>
         </div>
         <img class="icon-small icon-search"
@@ -122,14 +123,14 @@
 </ion-content>
 </ion-view>
 
-<ion-footer-bar class="bar-subfooter background-light" ng-click="createNewOffense()">
+<ion-footer-bar class="bar-subfooter background-light" ng-show="test" ng-click="createNewOffense()">
     <div class="item-group-underline background-light add-fine-container">
         VOEG EEN OVERTREDING TOE
         <img class="icon-right icon-small icon-add-fine" src="img/plus.png" ng-click="createNewOffense()"></img>
     </div>
 </ion-footer-bar>
 
-<ion-footer-bar class="bar-footer background-medium">
+<ion-footer-bar class="bar-footer background-medium" ng-show="test">
     <div class="center-container">
         <div class="text-center text-footer">
             BOETE BEREKENEN
