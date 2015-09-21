@@ -293,22 +293,19 @@ angular.module('starter.controllers', [])
     $scope.showMenu = true;
 
     window.addEventListener('native.keyboardshow', keyboardShowHandler);
+    window.addEventListener('native.keyboardhide', keyboardHideHandler);
 
     function keyboardShowHandler(e){
         $scope.test=false;
-        console.log($scope.test);
         $scope.$apply();
         console.log('Keyboard height is: ' + e.keyboardHeight);
     }
-    window.addEventListener('native.keyboardhide', keyboardHideHandler);
 
-function keyboardHideHandler(e){
-    $scope.test = true;
-    $scope.$apply();
-
-    console.log($scope.test);
-    console.log('Goodnight, sweet prince');
-}
+    function keyboardHideHandler(e){
+        $scope.test = true;
+        $scope.$apply();
+        console.log('Goodnight, sweet prince');
+    }
     $scope.menuSubgroupTapped = function(menuItem){
         $scope.showMenu = false;
 
@@ -745,7 +742,7 @@ function keyboardHideHandler(e){
                 if(res.length === 0){
                     $scope.searchMessage = "Er is geen resultaat voor uw zoekopdracht. Gelieve opnieuw te proberen met andere trefwoorden";
                 }
-            });
+        });
     };
     $scope.clearSearch = function(){
         $scope.inputs.searchWord = "";
