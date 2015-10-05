@@ -11,8 +11,8 @@
 <div ng-repeat="offense in offenses track by $index">
     <div class="item-menu background-medium">
         <span ng-click="editOffense($index)">OVERTREDING {{$index+1}}: {{offense.type | translateToDutch}}</span>
-        <div ng-click="removeOffense($index)" class="icon-right" style="width:28px; height: 28px; margin-left:-6px;margin-top: -4px;">
-            <img class ="icon-small" style="margin-top:4px; margin-left:4px" src="img/cross.png"></img>
+        <div ng-click="removeOffense($index)" class="test" style="margin-left:-6px;margin-top: -4px;">
+            <img class ="icon-small" style="margin-top:4px; margin-left:4px" src="img/close7.png"></img>
         </div>
 
     </div>
@@ -145,7 +145,7 @@
         <div ng-click="resultTapped()" class="button-footer">
             <div class="center-container">
                 <div class="text-center">BEVESTIG</div>
-                <img class="img-center" src="img/arrow-square-right-blue.png"></img>
+                <img class="img-center img-footer" src="img/arrow-square-right-blue.png"></img>
             </div>
         </div>
     </div>

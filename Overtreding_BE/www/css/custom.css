@@ -189,6 +189,12 @@
 .icon-right{
     float:right;
 }
+.test{
+    float:right;
+    width:50px;
+    padding-left: 15px;
+     height: 30px;
+}
 
 .icon-small{
     width: 18px;
@@ -449,7 +455,7 @@ and (max-device-width : 480px) {
         padding: 12px;
     }
     .input-search{
-        width: 140px;
+        width: 130px;
     }
     .icon-search{
         left:160px;
@@ -502,7 +508,7 @@ and (max-device-width : 667px) {
         font-size: 13px;
     }
     .input-search{
-        width: 180px;
+        width: 170px;
     }
     .icon-search{
         left:200px;
@@ -519,8 +525,20 @@ and (max-device-width : 667px) {
     }
 }
 
+
 @media screen and (min-width: 7in)
 {
+    .button-footer{
+        width: 135px;
+        height: 60%;
+        top:40%;
+        font-size: 16px;
+    }
+    .img-center{
+        width: 18px;
+        height: 18px;
+        margin-top: -9px;
+    }
     .button-home-underline{
         font-size: 22px;
         height: auto;

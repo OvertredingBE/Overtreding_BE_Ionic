@@ -346,6 +346,7 @@ angular.module('starter.controllers', [])
     };
 
     $scope.subgroupTapped = function(item, group, index) {
+        $ionicScrollDelegate.scrollBottom();
         var flag = false;
         if(group.id === 0){
             if(index === 1){
@@ -412,6 +413,7 @@ angular.module('starter.controllers', [])
     };
 
     $scope.editField = function(index){
+        $ionicScrollDelegate.scrollBottom();
         if($scope.arrowTapped){
             indexShown = -10;
             $scope.arrowTapped = false;

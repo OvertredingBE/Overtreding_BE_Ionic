@@ -5,9 +5,6 @@ app.run(function($ionicPlatform, $cordovaSQLite, $cordovaFile) {
         if(window.cordova && window.cordova.plugins.Keyboard) {
             // cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
         }
-        window.addEventListener('native.keyboardshow', function(){
-  document.body.classList.add('keyboard-open');
-});
         if(window.StatusBar) {
             StatusBar.styleDefault();
         }

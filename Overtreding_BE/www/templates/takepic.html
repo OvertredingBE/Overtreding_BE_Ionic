@@ -9,7 +9,9 @@
 <div ng-repeat="item in items track by $index">
     <div class="item-menu background-medium">
         <span>FOTO {{$index+1}}</span>
-        <img class="icon-right icon-small" src="img/cross.png" ng-click="removePhoto($index)"></img>
+        <div ng-click="removePhoto($index)" class="icon-right" style="width:28px; height: 28px; margin-left:-6px;margin-top: -4px;">
+            <img class ="icon-small" style="margin-top:4px; margin-left:4px" src="img/cross.png"></img>
+        </div>
     </div>
     <img class="picImg" ng-src="{{item}}"/>
 </div>
