@@ -228,6 +228,7 @@ angular.module('starter.controllers', [])
 
                 var url = 'http://api.overtreding.be/overtreding_api/v1/test';
                 $http.post(url, dataJson).then(function (res){
+                    $scope.response = res;
                     $scope.spinnerShown = false;
                     var alertPopup = SecuredPopups.show('alert', {
                         title: 'INFORMATIE',
@@ -239,6 +240,7 @@ angular.module('starter.controllers', [])
 
                     $scope.response = res.data;
                 }, function(err){
+                    $scope.response = err;
                     $scope.spinnerShown = false;
                     var alertPopup = SecuredPopups.show('alert', {
                         title: 'FOUT',
